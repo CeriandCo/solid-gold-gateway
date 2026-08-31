@@ -303,7 +303,7 @@ function Index() {
       </section> */}
 
       {/* Vault band */}
-      <section id="vault" className="relative isolate">
+      {/* <section id="vault" className="relative isolate">
         <img
           src={bandGold}
           alt="Close detail of polished gold bullion under warm light"
@@ -323,10 +323,10 @@ function Index() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ */}
-      <section className="bg-forest py-24">
+      {/* <section className="bg-forest py-24">
         <div className="mx-auto max-w-[1000px] px-6">
           <div className="text-center">
             <p className="eyebrow text-gold">FAQs</p>
@@ -364,10 +364,10 @@ function Index() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Closing */}
-      <section className="bg-cream py-24">
+      {/* <section className="bg-cream py-24">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <p className="eyebrow text-gold">Built for modern wealth preservation</p>
           <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-forest">Preserve what matters.</h2>
@@ -382,7 +382,7 @@ function Index() {
             Buy Gold
           </a>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <footer className="bg-forest-deep py-16 text-warm-white">
