@@ -196,6 +196,11 @@ function Index() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
+            <div className="hidden items-center gap-2 lg:flex">
+              <AppStoreBadge store="apple" />
+              <AppStoreBadge store="google" />
+            </div>
+            <div className="hidden h-6 w-px bg-warm-white/15 lg:block" />
             <button className="rounded-sm border border-gold/60 px-5 py-2 text-[0.8rem] text-gold transition-colors hover:bg-gold hover:text-forest-deep">
               Log In
             </button>
@@ -229,6 +234,12 @@ function Index() {
                   </a>
                 </li>
               ))}
+              <li className="border-b border-warm-white/10 py-4">
+                <div className="flex flex-wrap gap-2">
+                  <AppStoreBadge store="apple" />
+                  <AppStoreBadge store="google" />
+                </div>
+              </li>
             </ul>
           </nav>
         )}
