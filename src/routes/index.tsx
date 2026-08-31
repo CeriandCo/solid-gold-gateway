@@ -65,7 +65,7 @@ import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
 import pathVault from "@/assets/path-vault.jpg";
 import bandGold from "@/assets/band-gold.jpg";
-import logoAsset from "@/assets/sqoot-pure-logo.png.asset.json";
+import logoUrl from "@/assets/sqoot-pure-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
