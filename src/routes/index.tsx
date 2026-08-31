@@ -130,18 +130,27 @@ function Index() {
   return (
     <div className="min-h-screen bg-warm-white">
       {/* Header + Hero */}
-      <header className="bg-forest text-warm-white">
+      <header className="relative isolate overflow-hidden bg-forest-deep text-warm-white">
+        <img
+          src={heroGold}
+          alt="A dark green presentation box with a gold bar, coin and small bullion bars on marble"
+          width={1920}
+          height={1152}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-right"
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,color-mix(in_oklab,var(--forest-deep)_94%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_88%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_58%,transparent_85%)]" />
+
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
-          <img src={logoAsset.url} alt="SQOOT Pure" className="h-14 w-auto" />
-          <nav className="hidden items-center gap-10 lg:flex">
+          <img src={logoAsset.url} alt="SQOOT Pure" className="h-12 w-auto" />
+          <nav className="hidden items-center gap-9 lg:flex">
             {nav.map((item) => (
-              <a key={item} href="#paths" className="text-sm text-warm-white/80 transition-colors hover:text-gold">
+              <a key={item} href="#paths" className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold">
                 {item}
               </a>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <button className="rounded-sm border border-gold/60 px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-forest-deep sm:px-6">
+            <button className="rounded-sm border border-gold/60 px-5 py-2 text-[0.8rem] text-gold transition-colors hover:bg-gold hover:text-forest-deep">
               Log In
             </button>
             <button
@@ -161,14 +170,14 @@ function Index() {
         </div>
 
         {menuOpen && (
-          <nav className="border-t border-warm-white/10 lg:hidden">
+          <nav className="border-t border-warm-white/10 bg-forest-deep/80 backdrop-blur-sm lg:hidden">
             <ul className="mx-auto max-w-[1200px] px-6 py-2">
               {nav.map((item) => (
                 <li key={item} className="border-b border-warm-white/10 last:border-b-0">
                   <a
                     href="#paths"
                     onClick={() => setMenuOpen(false)}
-                    className="block py-4 text-sm text-warm-white/80 transition-colors hover:text-gold"
+                    className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
                   >
                     {item}
                   </a>
@@ -178,62 +187,57 @@ function Index() {
           </nav>
         )}
 
-        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-6 pb-24 pt-10 lg:grid-cols-[1fr_1.05fr] lg:pb-32">
-          <div>
+        <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-14 sm:pt-20 lg:pb-32">
+          <div className="max-w-[36rem]">
             <p className="eyebrow text-gold">Real Gold. Real Ownership.</p>
-            <h1 className="mt-6 max-w-[14ch] font-display text-[2.75rem] leading-[1.05] text-warm-white sm:max-w-none sm:text-[4.25rem]">
-              Own gold the way <br className="hidden sm:inline" />
-              it was meant <br className="hidden sm:inline" />
-              to be owned.
+            <h1 className="mt-6 font-display text-[2.9rem] leading-[1.02] text-warm-white sm:text-[4.5rem]">
+              Own gold <br className="hidden sm:inline" />
+              the way it was <br className="hidden sm:inline" />
+              <em className="not-italic font-display italic text-gold">meant to be.</em>
             </h1>
-            <div className="rule-ornament mt-8 text-gold">
+            <div className="rule-ornament mt-9 text-gold">
               <Mark className="h-4 w-4 shrink-0" />
             </div>
-            <p className="mt-8 max-w-md text-[0.95rem] leading-relaxed text-warm-white/70">
+            <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/75">
               Buy real allocated gold from ½ oz at live spot pricing. Take delivery of a coin, build a fractional
               holding, or keep it securely stored in insured U.S. vaults — redeemable on demand.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#paths"
-                className="rounded-sm bg-gold px-8 py-3.5 text-sm font-medium text-forest-deep transition-colors hover:bg-gold-soft"
+                className="rounded-sm bg-gold px-7 py-3 text-[0.8rem] font-medium tracking-wide text-forest-deep transition-colors hover:bg-gold-soft"
               >
                 Buy Gold
               </a>
               <a
                 href="#vault"
-                className="rounded-sm border border-warm-white/40 px-8 py-3.5 text-sm text-warm-white transition-colors hover:border-gold hover:text-gold"
+                className="rounded-sm border border-warm-white/45 bg-warm-white/5 px-7 py-3 text-[0.8rem] tracking-wide text-warm-white transition-colors hover:border-gold hover:text-gold"
               >
                 See the Vault
               </a>
             </div>
           </div>
-
-          <img
-            src={heroGold}
-            alt="Fine gold bars and a bullion coin resting on deep green velvet"
-            width={1280}
-            height={960}
-            className="rounded-lg object-cover shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)]"
-          />
         </div>
       </header>
 
       {/* Assurance strip */}
       <section className="border-b border-border bg-forest-deep">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-px px-6 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 px-6 sm:grid-cols-2 lg:grid-cols-4">
           {assurances.map(({ icon: Icon, title, copy }) => (
             <div
               key={title}
-              className="flex flex-col items-center gap-3 border-b border-warm-white/10 px-6 py-10 text-center odd:border-r last:border-b-0 lg:border-b-0 lg:border-l lg:odd:border-r-0 lg:last:border-r"
+              className="flex items-start gap-4 border-b border-warm-white/10 px-2 py-8 last:border-b-0 sm:px-7 sm:[&:nth-child(-n+2)]:border-b lg:border-b-0 lg:border-l lg:first:border-l-0 lg:py-9"
             >
-              <Icon strokeWidth={1} className="h-7 w-7 text-gold" />
-              <p className="text-sm text-gold">{title}</p>
-              <p className="max-w-[16rem] text-xs leading-relaxed text-warm-white/60">{copy}</p>
+              <Icon strokeWidth={1} className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
+              <div>
+                <p className="text-[0.85rem] text-gold">{title}</p>
+                <p className="mt-1.5 max-w-[15rem] text-[0.72rem] leading-relaxed text-warm-white/55">{copy}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
+
 
       {/* Three paths */}
       {/* <section id="paths" className="bg-cream py-24">
