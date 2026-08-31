@@ -136,9 +136,9 @@ function Index() {
           alt="Gold coin, bars and SQOOT Pure presentation box on a marble table with white flowers"
           width={1920}
           height={1280}
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-left"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_82%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_55%,transparent)_38%,color-mix(in_oklab,var(--forest-deep)_22%,transparent)_62%,transparent_85%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
 
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
           <img src={logoAsset.url} alt="SQOOT Pure" className="h-12 w-auto" />
