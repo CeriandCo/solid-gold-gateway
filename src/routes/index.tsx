@@ -10,6 +10,8 @@ import {
   FileText,
   Plus,
   Minus,
+  Menu,
+  X,
 } from "lucide-react";
 
 import heroGold from "@/assets/hero-gold.jpg";
@@ -134,12 +136,13 @@ function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
 
 function Index() {
   const [open, setOpen] = useState<number | null>(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-warm-white">
       {/* Header + Hero */}
       <header className="bg-forest text-warm-white">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-6">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-6">
           <Wordmark />
           <nav className="hidden items-center gap-10 lg:flex">
             {nav.map((item) => (
@@ -152,19 +155,53 @@ function Index() {
               </a>
             ))}
           </nav>
-          <button className="rounded-sm border border-gold/60 px-6 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-forest-deep">
-            Log In
-          </button>
+          <div className="flex items-center gap-3">
+            <button className="rounded-sm border border-gold/60 px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-forest-deep sm:px-6">
+              Log In
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
+            >
+              {menuOpen ? (
+                <X strokeWidth={1.25} className="h-5 w-5" />
+              ) : (
+                <Menu strokeWidth={1.25} className="h-5 w-5" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {menuOpen && (
+          <nav className="border-t border-warm-white/10 lg:hidden">
+            <ul className="mx-auto max-w-[1200px] px-6 py-2">
+              {nav.map((item) => (
+                <li key={item} className="border-b border-warm-white/10 last:border-b-0">
+                  <a
+                    href="#paths"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-4 text-sm text-warm-white/80 transition-colors hover:text-gold"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
 
         <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-6 pb-24 pt-10 lg:grid-cols-[1fr_1.05fr] lg:pb-32">
           <div>
             <p className="eyebrow text-gold">Real Gold. Real Ownership.</p>
-            <h1 className="mt-6 font-display text-[3.25rem] leading-[1.05] text-warm-white sm:text-[4.25rem]">
-              Own gold the way
-              <br />
-              it was meant
-              <br />
+            <h1 className="mt-6 max-w-[14ch] font-display text-[2.75rem] leading-[1.05] text-warm-white sm:max-w-none sm:text-[4.25rem]">
+              Own gold the way{" "}
+              <br className="hidden sm:inline" />
+              it was meant{" "}
+              <br className="hidden sm:inline" />
               to be owned.
             </h1>
             <div className="rule-ornament mt-8 text-gold">
@@ -207,7 +244,7 @@ function Index() {
           {assurances.map(({ icon: Icon, title, copy }) => (
             <div
               key={title}
-              className="flex flex-col items-center gap-3 border-warm-white/10 px-6 py-10 text-center lg:border-l lg:last:border-r"
+              className="flex flex-col items-center gap-3 border-b border-warm-white/10 px-6 py-10 text-center odd:border-r last:border-b-0 lg:border-b-0 lg:border-l lg:odd:border-r-0 lg:last:border-r"
             >
               <Icon strokeWidth={1} className="h-7 w-7 text-gold" />
               <p className="text-sm text-gold">{title}</p>
