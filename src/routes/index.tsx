@@ -19,6 +19,7 @@ import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
 import pathVault from "@/assets/path-vault.jpg";
 import bandGold from "@/assets/band-gold.jpg";
+import logoAsset from "@/assets/sqoot-pure-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const nav = ["Buy Gold", "Vault", "Fractional", "Learn", "For Advisors"];
+const nav = ["Buy Gold", "Vault", "Fractional", "Learn"];
 
 const paths = [
   {
@@ -121,18 +122,6 @@ function Mark({ className = "" }: { className?: string }) {
   );
 }
 
-function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
-  const color = tone === "light" ? "text-warm-white" : "text-forest";
-  return (
-    <div className={`flex items-center gap-3 ${color}`}>
-      <Mark className="h-9 w-9 text-gold" />
-      <div className="leading-none">
-        <div className="font-display text-xl tracking-[0.18em]">SQOOT</div>
-        <div className="eyebrow mt-1 text-gold">Pure</div>
-      </div>
-    </div>
-  );
-}
 
 function Index() {
   const [open, setOpen] = useState<number | null>(0);
@@ -142,8 +131,8 @@ function Index() {
     <div className="min-h-screen bg-warm-white">
       {/* Header + Hero */}
       <header className="bg-forest text-warm-white">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-6">
-          <Wordmark />
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
+          <img src={logoAsset.url} alt="SQOOT Pure" className="h-14 w-auto" />
           <nav className="hidden items-center gap-10 lg:flex">
             {nav.map((item) => (
               <a key={item} href="#paths" className="text-sm text-warm-white/80 transition-colors hover:text-gold">
@@ -388,7 +377,7 @@ function Index() {
       <footer className="bg-forest-deep py-16 text-warm-white">
         <div className="mx-auto grid max-w-[1200px] gap-12 px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Wordmark />
+            <img src={logoAsset.url} alt="SQOOT Pure" className="h-14 w-auto" />
             <p className="mt-6 max-w-xs text-xs leading-relaxed text-warm-white/55">
               A compliance-first platform for buying, storing, and redeeming real physical gold.
             </p>
