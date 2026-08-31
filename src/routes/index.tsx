@@ -132,13 +132,13 @@ function Index() {
       {/* Header + Hero */}
       <header className="relative isolate overflow-hidden bg-forest-deep text-warm-white">
         <img
-          src={heroGold}
-          alt="A dark green presentation box with a gold bar, coin and small bullion bars on marble"
+          src={heroBackground.url}
+          alt="Gold coin, bars and SQOOT Pure presentation box on a marble table with white flowers"
           width={1920}
-          height={1152}
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-right"
+          height={1280}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,color-mix(in_oklab,var(--forest-deep)_94%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_88%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_58%,transparent_85%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_82%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_55%,transparent)_38%,color-mix(in_oklab,var(--forest-deep)_22%,transparent)_62%,transparent_85%)]" />
 
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
           <img src={logoAsset.url} alt="SQOOT Pure" className="h-12 w-auto" />
