@@ -14,7 +14,7 @@ import {
   X,
 } from "lucide-react";
 
-import heroGold from "@/assets/hero-gold.jpg";
+import heroBackground from "@/assets/sqoot-pure-hero-background.jpg.asset.json";
 import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
 import pathVault from "@/assets/path-vault.jpg";
