@@ -438,7 +438,7 @@ function Index() {
       <footer className="bg-forest-deep py-16 text-warm-white">
         <div className="mx-auto grid max-w-[1200px] gap-12 px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <img src={logoAsset.url} alt="SQOOT Pure" className="h-14 w-auto" />
+            <img src={logoUrl} alt="SQOOT Pure" className="h-14 w-auto" />
             <p className="mt-6 max-w-xs text-xs leading-relaxed text-warm-white/55">
               A compliance-first platform for buying, storing, and redeeming real physical gold.
             </p>
