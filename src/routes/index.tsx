@@ -131,8 +131,8 @@ function Index() {
     <div className="min-h-screen bg-warm-white">
       {/* Header + Hero */}
       <header className="bg-forest text-warm-white">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-6">
-          <img src={logoAsset.url} alt="SQOOT Pure" className="h-12 w-auto" />
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
+          <img src={logoAsset.url} alt="SQOOT Pure" className="h-14 w-auto" />
           <nav className="hidden items-center gap-10 lg:flex">
             {nav.map((item) => (
               <a key={item} href="#paths" className="text-sm text-warm-white/80 transition-colors hover:text-gold">
