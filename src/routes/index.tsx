@@ -146,11 +146,7 @@ function Index() {
           <Wordmark />
           <nav className="hidden items-center gap-10 lg:flex">
             {nav.map((item) => (
-              <a
-                key={item}
-                href="#paths"
-                className="text-sm text-warm-white/80 transition-colors hover:text-gold"
-              >
+              <a key={item} href="#paths" className="text-sm text-warm-white/80 transition-colors hover:text-gold">
                 {item}
               </a>
             ))}
@@ -193,24 +189,20 @@ function Index() {
           </nav>
         )}
 
-
         <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-6 pb-24 pt-10 lg:grid-cols-[1fr_1.05fr] lg:pb-32">
           <div>
             <p className="eyebrow text-gold">Real Gold. Real Ownership.</p>
             <h1 className="mt-6 max-w-[14ch] font-display text-[2.75rem] leading-[1.05] text-warm-white sm:max-w-none sm:text-[4.25rem]">
-              Own gold the way{" "}
-              <br className="hidden sm:inline" />
-              it was meant{" "}
-              <br className="hidden sm:inline" />
+              Own gold the way <br className="hidden sm:inline" />
+              it was meant <br className="hidden sm:inline" />
               to be owned.
             </h1>
             <div className="rule-ornament mt-8 text-gold">
               <Mark className="h-4 w-4 shrink-0" />
             </div>
             <p className="mt-8 max-w-md text-[0.95rem] leading-relaxed text-warm-white/70">
-              Buy real allocated gold from ½ oz at live spot pricing. Take delivery of a coin, build
-              a fractional holding, or keep it securely stored in insured U.S. vaults — redeemable
-              on demand.
+              Buy real allocated gold from ½ oz at live spot pricing. Take delivery of a coin, build a fractional
+              holding, or keep it securely stored in insured U.S. vaults — redeemable on demand.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
@@ -255,7 +247,7 @@ function Index() {
       </section>
 
       {/* Three paths */}
-      <section id="paths" className="bg-cream py-24">
+      {/* <section id="paths" className="bg-cream py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow text-gold">Three ways to own</p>
@@ -308,7 +300,7 @@ function Index() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Vault band */}
       <section id="vault" className="relative isolate">
@@ -324,12 +316,10 @@ function Index() {
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto max-w-2xl px-6 text-center">
             <p className="eyebrow text-gold">Institutional custody</p>
-            <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-warm-white">
-              The Vault
-            </h2>
+            <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-warm-white">The Vault</h2>
             <p className="mt-5 text-sm leading-relaxed text-warm-white/75">
-              Your gold is securely stored in fully insured U.S. vaults with institutional-grade
-              custody and third-party auditing. Allocated, protected, and redeemable on demand.
+              Your gold is securely stored in fully insured U.S. vaults with institutional-grade custody and third-party
+              auditing. Allocated, protected, and redeemable on demand.
             </p>
           </div>
         </div>
@@ -359,9 +349,7 @@ function Index() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-start justify-between gap-4 text-left"
                   >
-                    <span
-                      className={`text-sm font-medium ${isOpen ? "text-forest-deep" : "text-warm-white"}`}
-                    >
+                    <span className={`text-sm font-medium ${isOpen ? "text-forest-deep" : "text-warm-white"}`}>
                       {f.q}
                     </span>
                     {isOpen ? (
@@ -370,9 +358,7 @@ function Index() {
                       <Plus strokeWidth={1} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     )}
                   </button>
-                  {isOpen && (
-                    <p className="mt-4 text-xs leading-relaxed text-forest-deep/80">{f.a}</p>
-                  )}
+                  {isOpen && <p className="mt-4 text-xs leading-relaxed text-forest-deep/80">{f.a}</p>}
                 </div>
               );
             })}
@@ -384,12 +370,10 @@ function Index() {
       <section className="bg-cream py-24">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <p className="eyebrow text-gold">Built for modern wealth preservation</p>
-          <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-forest">
-            Preserve what matters.
-          </h2>
+          <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-forest">Preserve what matters.</h2>
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            Real gold, real ownership, and a modern way to hold it. Start with a coin, a fraction,
-            or a vaulted position.
+            Real gold, real ownership, and a modern way to hold it. Start with a coin, a fraction, or a vaulted
+            position.
           </p>
           <a
             href="#paths"
@@ -429,9 +413,7 @@ function Index() {
           ))}
         </div>
         <div className="mx-auto mt-14 max-w-[1200px] border-t border-warm-white/10 px-6 pt-6">
-          <p className="text-xs text-warm-white/40">
-            © {new Date().getFullYear()} SQOOT Pure. All rights reserved.
-          </p>
+          <p className="text-xs text-warm-white/40">© {new Date().getFullYear()} SQOOT Pure. All rights reserved.</p>
         </div>
       </footer>
     </div>
