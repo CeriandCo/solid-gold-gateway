@@ -445,7 +445,7 @@ function Index() {
           </div>
           {[
             { h: "Discover More", l: ["Buy Gold", "Fractional", "Vault", "Learn"] },
-            { h: "Company", l: ["About Us", "Security", "For Advisors", "Help Center"] },
+            { h: "Company", l: ["About Us", "Security", "Trust Center", "Help Center"] },
             { h: "Legal", l: ["Terms of Service", "Data Privacy Policy", "Disclosures"] },
           ].map((col) => (
             <div key={col.h}>
