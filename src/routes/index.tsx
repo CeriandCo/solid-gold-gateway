@@ -190,7 +190,7 @@ function Index() {
         <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-14 sm:pt-20 lg:pb-32">
           <div className="max-w-[36rem]">
             <p className="eyebrow text-gold">Real Gold. Real Ownership.</p>
-            <h1 className="mt-6 break-words font-display text-[2.25rem] leading-[1.05] text-warm-white sm:text-[4.5rem]">
+            <h1 className="mt-6 overflow-hidden font-display text-[2.25rem] leading-[1.05] text-warm-white sm:text-[4.5rem]">
               Own gold <br className="hidden sm:inline" />
               the way it was <br className="hidden sm:inline" />
               <em className="not-italic font-display italic text-gold">meant to be.</em>
