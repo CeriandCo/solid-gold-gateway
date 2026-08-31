@@ -187,7 +187,7 @@ function Index() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
 
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
-          <img src={logoAsset.url} alt="SQOOT Pure" className="h-12 w-auto" />
+          <img src={logoUrl} alt="SQOOT Pure" className="h-12 w-auto" />
           <nav className="hidden items-center gap-9 lg:flex">
             {nav.map((item) => (
               <a key={item} href="#paths" className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold">
