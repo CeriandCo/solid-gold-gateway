@@ -159,8 +159,12 @@ function Index() {
             <p className="ui-label mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
         </div>
-        <div className="absolute bottom-10 right-[5%] hidden h-40 w-40 place-items-center rounded-full border border-background bg-forest/80 text-center text-background backdrop-blur-sm lg:grid">
-           <div><p className="text-[0.5625rem] font-medium tracking-[0.14em]">START FROM</p><p className="mt-1 font-sans text-[2rem] font-medium leading-none">$25</p><p className="mt-2 text-[0.625rem]">≈ 0.0104 oz</p></div>
+        <div className="absolute bottom-10 right-[5%] hidden h-40 w-40 place-items-center rounded-full border-2 border-background/80 text-center text-background lg:grid">
+          <div className="flex flex-col items-center">
+            <p className="text-[0.5625rem] font-semibold leading-none tracking-[0.14em]">START FROM</p>
+            <p className="mt-2 font-display text-[2.625rem] font-normal leading-[0.82]">$25</p>
+            <p className="mt-3 text-[0.625rem] font-medium leading-none">≈ 0.0104 oz</p>
+          </div>
         </div>
       </section>
 
