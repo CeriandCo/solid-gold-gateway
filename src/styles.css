@@ -116,6 +116,10 @@
     font-weight: 400;
     letter-spacing: 0;
   }
+
+  input::placeholder {
+    font-weight: 500;
+  }
 }
 
 @utility eyebrow {
