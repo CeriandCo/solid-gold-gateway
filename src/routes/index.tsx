@@ -6,7 +6,6 @@ import {
   Check,
   CircleDollarSign,
   FileCheck2,
-  Flag,
   LockKeyhole,
   Menu,
   ShieldCheck,
@@ -70,6 +69,22 @@ function Mandala({ className }: { className?: string }) {
         <path d="M40 3 49 9l11-1 5 10 10 5-1 11 6 9-6 9 1 11-10 5-5 10-11-1-9 6-9-6-11 1-5-10-10-5 1-11-6-9 6-9-1-11 10-5 5-10 11 1Z" />
         <circle cx="40" cy="40" r="27" /><circle cx="40" cy="40" r="20" /><circle cx="40" cy="40" r="13" /><circle cx="40" cy="40" r="6" />
         <path d="m40 13 7 14 16-2-10 13 10 12-16-1-7 15-7-15-16 1 10-12-10-13 16 2Z" />
+      </g>
+    </svg>
+  );
+}
+
+function USFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 36 24" aria-hidden="true" className={className}>
+      <rect width="36" height="24" rx="0.75" className="fill-background" />
+      <path d="M0 0h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0z" className="fill-error" />
+      <path d="M0 0h16v13H0z" className="fill-forest" />
+      <g className="fill-background">
+        <circle cx="2.5" cy="2.25" r="0.55" /><circle cx="6" cy="2.25" r="0.55" /><circle cx="9.5" cy="2.25" r="0.55" /><circle cx="13" cy="2.25" r="0.55" />
+        <circle cx="4.25" cy="4.65" r="0.55" /><circle cx="7.75" cy="4.65" r="0.55" /><circle cx="11.25" cy="4.65" r="0.55" /><circle cx="14.25" cy="4.65" r="0.55" />
+        <circle cx="2.5" cy="7.05" r="0.55" /><circle cx="6" cy="7.05" r="0.55" /><circle cx="9.5" cy="7.05" r="0.55" /><circle cx="13" cy="7.05" r="0.55" />
+        <circle cx="4.25" cy="9.45" r="0.55" /><circle cx="7.75" cy="9.45" r="0.55" /><circle cx="11.25" cy="9.45" r="0.55" /><circle cx="14.25" cy="9.45" r="0.55" />
       </g>
     </svg>
   );
@@ -168,7 +183,7 @@ function Index() {
               <span className="bg-charcoal px-5 py-2 font-display text-[0.95rem] font-semibold leading-none text-background">LLOYD’S</span>
             </div>
             <div className="flex min-h-20 items-center justify-center gap-2.5 px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
-              <Flag className="h-7 w-7 shrink-0 text-gold" strokeWidth={1.35} aria-hidden="true" />
+              <USFlag className="h-6 w-9 shrink-0 shadow-sm" />
               <div className="min-w-0 leading-none">
                 <b className="block whitespace-nowrap text-[0.68rem] font-bold text-charcoal sm:text-xs">US-ONLY</b>
                 <small className="mt-1 block text-[0.52rem] leading-[1.35] text-charcoal">We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.</small>
