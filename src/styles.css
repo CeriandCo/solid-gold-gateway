@@ -116,6 +116,10 @@
     font-weight: 400;
     letter-spacing: 0;
   }
+
+  input::placeholder {
+    font-weight: 500;
+  }
 }
 
 @utility eyebrow {
@@ -138,7 +142,7 @@
 @utility header-nav-type {
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0;
 
@@ -240,7 +244,7 @@
 @utility price-value {
   font-family: var(--font-display);
   font-size: 2.75rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0;
 }
@@ -248,7 +252,7 @@
 @utility price-detail {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 }
@@ -256,7 +260,7 @@
 @utility section-title {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0;
 
@@ -298,7 +302,7 @@
 @utility step-title {
   font-family: var(--font-display);
   font-size: 1.875rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   letter-spacing: 0;
 
@@ -327,7 +331,7 @@
 @utility comparison-left-title {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0;
 
@@ -340,7 +344,7 @@
 @utility comparison-right-title {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0;
 
@@ -354,7 +358,7 @@
   font-family: var(--font-display);
   font-size: inherit;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   line-height: inherit;
   letter-spacing: 0;
 }
@@ -386,7 +390,7 @@
 @utility fees-faq-title {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -411,7 +415,7 @@
 @utility fee-card-label {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0;
 
@@ -423,7 +427,7 @@
 @utility fee-card-value {
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.375rem;
   letter-spacing: 0;
 
@@ -435,7 +439,7 @@
 @utility fee-footnote {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 
@@ -447,7 +451,7 @@
 @utility faq-question {
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0;
 
@@ -459,7 +463,7 @@
 @utility early-title {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0;
 
@@ -484,7 +488,7 @@
 @utility early-input {
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 
@@ -508,7 +512,7 @@
 @utility privacy-note {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 
@@ -532,7 +536,7 @@
 @utility footer-legal {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.625rem;
   letter-spacing: 0;
 
