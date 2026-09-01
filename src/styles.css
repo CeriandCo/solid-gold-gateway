@@ -544,12 +544,6 @@ html {
   scroll-behavior: smooth;
 }
 
-button,
-a,
-input {
-  letter-spacing: 0;
-}
-
 @utility rule-ornament {
   display: flex;
   align-items: center;
