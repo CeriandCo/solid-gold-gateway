@@ -150,11 +150,11 @@ function Index() {
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[54%] bg-ivory lg:block [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]" />
         <div className="relative mx-auto flex max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
           <div className="max-w-[470px]">
-            <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
-            <h1 className="mt-5 max-w-[430px] font-display text-[2.5rem] font-medium leading-[0.98] text-forest sm:text-[2.875rem] lg:text-[3.5rem]">
+            <p className="eyebrow font-semibold leading-none text-gold">Real Gold. Real Allocation.</p>
+            <h1 className="mt-7 max-w-[430px] font-display text-[2.5rem] font-medium leading-[0.96] text-forest sm:text-[2.875rem] lg:text-[3.5rem]">
               Gold allocation,<br />made more<br /><em className="font-normal text-gold">accessible.</em>
             </h1>
-            <p className="body-copy mt-5 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
+            <p className="mt-7 max-w-[370px] text-[0.9375rem] font-medium leading-[1.75] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
             <a href="#early-access" className="mt-6 inline-flex min-h-12 items-center gap-5 rounded-sm bg-forest px-7 text-[0.6875rem] font-semibold tracking-[0.02em] text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold">Get Early Access <ArrowRight size={16} /></a>
             <p className="ui-label mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
