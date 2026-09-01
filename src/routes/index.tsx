@@ -6,6 +6,7 @@ import {
   Check,
   CircleDollarSign,
   FileCheck2,
+  Flag,
   LockKeyhole,
   Menu,
   ShieldCheck,
@@ -148,14 +149,31 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-background py-12 sm:py-14" aria-label="Trusted partners">
-        <div className="mx-auto max-w-[1120px] px-5 sm:px-7">
+      <section className="bg-background py-10 sm:py-12" aria-label="Trusted partners">
+        <div className="mx-auto max-w-[1060px] px-5 sm:px-7">
           <p className="eyebrow text-center text-gold">Backed by trust. Built for you.</p>
-          <div className="mt-8 grid grid-cols-2 items-center gap-y-8 sm:grid-cols-4">
-            <div className="flex items-center justify-center gap-3 border-r border-beige px-3"><Mandala className="h-9 w-9 text-gold" /><div><b className="font-display text-lg">DILLON GAGE</b><small className="block text-[0.55rem] tracking-[0.16em] text-gold">EST. 1976</small></div></div>
-            <div className="flex items-center justify-center gap-2 px-3 sm:border-r sm:border-beige"><b className="font-display text-3xl text-forest">IDS</b><span className="text-[0.5rem] leading-tight">INTERNATIONAL<br />DEPOSITORY<br />SERVICES</span></div>
-            <div className="flex items-center justify-center border-r border-beige px-3"><span className="bg-charcoal px-5 py-2 font-display text-base text-background">LLOYD’S</span></div>
-            <div className="flex items-center justify-center gap-3 px-3"><span className="text-3xl" aria-hidden="true">🇺🇸</span><div><b className="text-sm">US-ONLY</b><small className="block text-[0.6rem] leading-tight">We operate exclusively<br />in the United States.</small></div></div>
+          <div className="mt-7 grid grid-cols-2 items-stretch sm:mt-8 sm:grid-cols-4">
+            <div className="flex min-h-20 items-center justify-center gap-2.5 border-b border-r border-beige px-3 py-4 sm:min-h-16 sm:border-b-0 sm:px-5 sm:py-0">
+              <Mandala className="h-9 w-9 shrink-0 text-gold" />
+              <div className="min-w-0 leading-none">
+                <b className="block whitespace-nowrap font-display text-[1.05rem] font-semibold text-charcoal sm:text-lg">DILLON GAGE</b>
+                <small className="mt-1.5 block text-[0.5rem] font-semibold tracking-[0.16em] text-gold">EST. 1976</small>
+              </div>
+            </div>
+            <div className="flex min-h-20 items-center justify-center gap-2 border-b border-beige px-3 py-4 sm:min-h-16 sm:border-b-0 sm:border-r sm:px-5 sm:py-0">
+              <b className="shrink-0 font-display text-[2rem] font-semibold leading-none text-forest">IDS</b>
+              <span className="text-[0.44rem] font-medium leading-[1.2] text-charcoal sm:text-[0.48rem]">INTERNATIONAL<br />DEPOSITORY<br />SERVICES</span>
+            </div>
+            <div className="flex min-h-20 items-center justify-center border-r border-beige px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
+              <span className="bg-charcoal px-5 py-2 font-display text-[0.95rem] font-semibold leading-none text-background">LLOYD’S</span>
+            </div>
+            <div className="flex min-h-20 items-center justify-center gap-2.5 px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
+              <Flag className="h-7 w-7 shrink-0 text-gold" strokeWidth={1.35} aria-hidden="true" />
+              <div className="min-w-0 leading-none">
+                <b className="block whitespace-nowrap text-[0.68rem] font-bold text-charcoal sm:text-xs">US-ONLY</b>
+                <small className="mt-1 block text-[0.52rem] leading-[1.35] text-charcoal">We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.</small>
+              </div>
+            </div>
           </div>
         </div>
       </section>
