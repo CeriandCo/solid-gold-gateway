@@ -100,6 +100,7 @@ function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<"idle" | "error" | "success">("idle");
+  const currentStep = steps[step] ?? ["Create an account", "Join the waitlist and create your account in under a minute."];
 
   function submitWaitlist(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -166,7 +167,7 @@ function Index() {
             <div className="relative rounded-[18px] border border-beige bg-background px-8 py-10 sm:min-h-[310px] sm:px-20 sm:py-14">
               <button type="button" aria-label="Previous step" onClick={() => setStep((step + 4) % 5)} className="absolute left-0 top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-forest text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"><ArrowLeft size={18} /></button>
               <div className="grid items-center gap-10 sm:grid-cols-[1fr_250px]">
-                <div><p className="text-xs font-semibold text-forest">{String(step + 1).padStart(2, "0")} <span className="text-muted-foreground">/ 05</span></p><h3 className="mt-7 text-3xl text-forest">{steps[step][0]}</h3><p className="mt-4 max-w-[245px] text-sm leading-[1.75] text-charcoal">{steps[step][1]}</p></div>
+                <div><p className="text-xs font-semibold text-forest">{String(step + 1).padStart(2, "0")} <span className="text-muted-foreground">/ 05</span></p><h3 className="mt-7 text-3xl text-forest">{currentStep[0]}</h3><p className="mt-4 max-w-[245px] text-sm leading-[1.75] text-charcoal">{currentStep[1]}</p></div>
                 <div className="mx-auto grid h-44 w-44 place-items-center rounded-full border border-dashed border-gold/60 text-forest"><div className="relative grid h-24 w-24 place-items-center rounded-full border-2 border-forest"><UserRound size={52} strokeWidth={1.3} /><span className="absolute -bottom-2 -right-2 grid h-10 w-10 place-items-center rounded-full bg-gold text-background"><Check size={22} /></span></div></div>
               </div>
               <button type="button" aria-label="Next step" onClick={() => setStep((step + 1) % 5)} className="absolute right-0 top-1/2 grid h-12 w-12 translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-forest text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"><ArrowRight size={18} /></button>
