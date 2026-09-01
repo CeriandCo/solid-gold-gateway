@@ -60,7 +60,7 @@ function AppStoreBadge({ store }: { store: "apple" | "google" }) {
   );
 }
 
-import heroBackground from "@/assets/hero-with-white-space.png.asset.json";
+import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
 import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
