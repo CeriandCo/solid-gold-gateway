@@ -149,9 +149,9 @@ function Index() {
         <img src={goldBarVelvetMarbleAsset.url} alt="SQOOT Pure 1kg gold bar on dark green velvet and marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[54%] bg-ivory lg:block [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]" />
         <div className="relative mx-auto flex max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
-          <div className="max-w-[470px]">
+          <div className="max-w-[500px]">
             <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
-            <h1 className="hero-title mt-8 max-w-[460px] text-forest">
+            <h1 className="hero-title mt-8 max-w-[500px] text-forest">
               Gold allocation,<br />made more<br /><em className="hero-emphasis text-gold">accessible.</em>
             </h1>
             <p className="hero-body mt-7 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
