@@ -229,15 +229,21 @@ function Index() {
         </div>
       </section>
 
-      <section id="early-access" className="bg-forest py-10 text-background">
-        <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 sm:px-7 lg:grid-cols-[1fr_1.35fr] lg:px-10">
-          <div className="flex items-center gap-6"><Mandala className="h-20 w-20 shrink-0 text-gold" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
-          <form onSubmit={submitWaitlist} noValidate>
-            <div className="grid gap-3 sm:grid-cols-[1fr_auto]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold" aria-invalid={formState === "error"} aria-describedby="email-status" /><PrimaryButton type="submit" className="early-button min-h-14 bg-gold px-9 text-background hover:bg-gold-dark">Get Early Access</PrimaryButton></div>
-            <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={14} className="text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
-          </form>
+      <section id="early-access" className="relative bg-background">
+        <svg className="block h-[30px] w-full" viewBox="0 0 1440 31" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path fill="currentColor" className="text-forest" d="M0 0 C 120 10, 220 12, 300 12 S 440 15, 500 15 S 640 10, 700 10 S 840 24, 900 24 S 1040 31, 1100 31 S 1240 27, 1300 27 S 1400 14, 1440 14 L 1440 31 L 0 31 Z" />
+        </svg>
+        <div className="bg-forest text-background">
+          <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 py-10 sm:px-7 lg:min-h-[224px] lg:grid-cols-[1fr_1.35fr] lg:px-10 lg:py-0">
+            <div className="flex items-center gap-6"><Mandala className="h-20 w-20 shrink-0 text-gold lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
+            <form onSubmit={submitWaitlist} noValidate>
+              <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold lg:h-[67px]" aria-invalid={formState === "error"} aria-describedby="email-status" /><PrimaryButton type="submit" className="early-button min-h-14 bg-gold px-9 text-background hover:bg-gold-dark lg:h-[67px] lg:w-[253px]">Get Early Access</PrimaryButton></div>
+              <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={18} className="shrink-0 text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
+            </form>
+          </div>
         </div>
       </section>
+
 
       <footer id="about" className="bg-background py-8"><div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 sm:px-7 lg:grid-cols-[auto_1fr_auto] lg:px-10"><Brand compact /><nav className="flex flex-wrap justify-center gap-x-8 gap-y-3" aria-label="Footer navigation">{nav.map(([label,href]) => <a key={label} href={href} className="footer-nav hover:text-gold">{label}</a>)}</nav><div className="footer-legal text-muted-foreground lg:text-right"><p>© 2026 Fortress Gold Inc. All rights reserved.</p><p className="mt-2"><a href="#privacy" className="hover:text-gold">Privacy Policy</a><span className="mx-4">Terms of Service</span></p></div></div></footer>
     </main>

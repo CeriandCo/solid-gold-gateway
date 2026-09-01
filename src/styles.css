@@ -311,7 +311,7 @@
   }
 
   @media (min-width: 64rem) {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 }
 
@@ -323,8 +323,8 @@
   letter-spacing: 0;
 
   @media (min-width: 64rem) {
-    font-size: 1.0625rem;
-    line-height: 1.75rem;
+    font-size: 1.1875rem;
+    line-height: 2.125rem;
   }
 }
 
@@ -468,7 +468,7 @@
   letter-spacing: 0;
 
   @media (min-width: 64rem) {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 }
 
@@ -480,8 +480,8 @@
   letter-spacing: 0;
 
   @media (min-width: 64rem) {
-    font-size: 1.0625rem;
-    line-height: 1.75rem;
+    font-size: 1.1875rem;
+    line-height: 2.125rem;
   }
 }
 
@@ -511,13 +511,13 @@
 
 @utility privacy-note {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 
   @media (min-width: 64rem) {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 }
 
