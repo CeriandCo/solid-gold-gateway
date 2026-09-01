@@ -49,6 +49,11 @@
   --color-ring: var(--ring);
   --color-forest: var(--forest);
   --color-forest-deep: var(--forest-deep);
+  --color-charcoal: var(--charcoal);
+  --color-ivory: var(--ivory);
+  --color-beige: var(--beige);
+  --color-gold-dark: var(--gold-dark);
+  --color-error: var(--error);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-cream: var(--cream);
@@ -59,12 +64,17 @@
   --radius: 2px;
 
   /* Brand */
-  --forest: oklch(0.3 0.045 158);
-  --forest-deep: oklch(0.24 0.038 158);
-  --gold: oklch(0.744 0.106 87);
+  --forest: oklch(0.253 0.047 173.5);
+  --forest-deep: oklch(0.253 0.047 173.5);
+  --charcoal: oklch(0.251 0.026 169.4);
+  --gold: oklch(0.66 0.121 72.2);
+  --gold-dark: oklch(0.57 0.11 72.2);
   --gold-soft: oklch(0.84 0.072 87);
-  --warm-white: oklch(0.982 0.006 85);
-  --cream: oklch(0.955 0.014 85);
+  --warm-white: oklch(0.972 0.011 79.7);
+  --cream: oklch(0.972 0.011 79.7);
+  --ivory: oklch(0.972 0.011 79.7);
+  --beige: oklch(0.88 0.027 74.9);
+  --error: oklch(0.72 0.15 28);
 
   --background: var(--warm-white);
   --foreground: oklch(0.24 0.038 158);
@@ -82,8 +92,8 @@
   --accent-foreground: var(--forest-deep);
   --destructive: oklch(0.53 0.17 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.89 0.012 85);
-  --input: oklch(0.89 0.012 85);
+  --border: var(--beige);
+  --input: var(--beige);
   --ring: var(--gold);
 }
 
@@ -104,7 +114,7 @@
   h3 {
     font-family: var(--font-display);
     font-weight: 300;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 }
 
@@ -113,6 +123,16 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+a,
+input {
+  letter-spacing: 0;
 }
 
 @utility rule-ornament {
