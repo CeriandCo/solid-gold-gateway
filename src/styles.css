@@ -138,18 +138,26 @@
 
 @utility header-nav-type {
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.0625rem;
+  }
 }
 
 @utility header-cta-type {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
 }
 
 @utility hero-title {
