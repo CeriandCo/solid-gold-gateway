@@ -95,7 +95,7 @@ function Brand({ compact = false }: { compact?: boolean }) {
     <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="SQOOT Pure home">
       <Mandala className={cn("text-gold", compact ? "h-10 w-10" : "h-12 w-12")} />
       <span className="leading-none">
-        <span className="block font-display text-[1.7rem] font-medium leading-none text-forest-deep">SQOOT</span>
+        <span className="block font-display text-[1.7rem] font-semibold leading-none text-forest-deep">SQOOT</span>
         <span className="mt-1 block text-[0.625rem] font-medium tracking-[0.14em] text-gold">PURE</span>
       </span>
     </a>
