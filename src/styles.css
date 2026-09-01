@@ -27,7 +27,7 @@
   --radius-3xl: 8px;
   --radius-4xl: 8px;
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Inter", Arial, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -121,11 +121,123 @@
 
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.625rem;
-  line-height: 1.4;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-weight: 700;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility hero-title {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
   font-weight: 500;
+  line-height: 1.0132;
+  letter-spacing: 0;
+
+  @media (min-width: 40rem) {
+    font-size: 3.125rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 4.75rem;
+    line-height: 4.8125rem;
+  }
+}
+
+@utility hero-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 2.3125rem;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.3125rem;
+  }
+}
+
+@utility primary-nav-label {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+@utility header-cta {
+  width: 12.5625rem;
+  height: 3.9375rem;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+@utility hero-cta {
+  width: 19rem;
+  height: 4.625rem;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+@utility hero-note {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+@utility hero-shell {
+  @media (min-width: 64rem) {
+    min-height: 50.5rem;
+  }
+}
+
+@utility hero-art {
+  @media (min-width: 64rem) {
+    position: absolute !important;
+    right: 0 !important;
+    top: -6.875rem !important;
+    width: 51.3889vw !important;
+    height: 59.9375rem !important;
+    object-fit: contain !important;
+    object-position: right center !important;
+  }
+}
+
+@utility hero-copy {
+  @media (min-width: 64rem) {
+    padding-top: 5.4375rem;
+  }
+}
+
+@utility hero-price-badge {
+  width: 10.5rem;
+  height: 10.5rem;
+
+  @media (min-width: 64rem) {
+    right: clamp(2.5rem, 6.4583vw, 5.8125rem);
+    bottom: 7.9375rem;
+  }
+}
+
+@utility trust-grid {
+  @media (min-width: 64rem) {
+    grid-template-columns: 21.5625rem 17.75rem 15.25rem 21.0625rem;
+    height: 4.5rem;
+  }
 }
 
 @utility section-title {
