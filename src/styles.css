@@ -219,7 +219,6 @@
 
 @utility hero-copy {
   @media (min-width: 64rem) {
-    margin-left: clamp(0rem, calc((100vw - 80rem) * 0.296875), 2.96875rem);
     padding-top: 5.4375rem;
   }
 }
