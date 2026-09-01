@@ -241,7 +241,7 @@ function Index() {
 }
 
 function List({ items, bad = false }: { items: string[]; bad?: boolean }) {
-  return <ul className="mt-6 space-y-3">{items.map((item) => <li key={item} className="flex items-start gap-3 text-[0.6875rem] leading-[1.55]"><span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-gold text-gold">{bad ? <X size={12} strokeWidth={2.5} /> : <Check size={12} strokeWidth={2.5} />}</span>{item}</li>)}</ul>;
+  return <ul className="mt-6 space-y-3">{items.map((item) => <li key={item} className="flex items-start gap-3 text-[0.6875rem] leading-[1.55]"><span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-gold text-gold">{bad ? <X size={12} strokeWidth={2.5} /> : <Check size={12} strokeWidth={2.5} />}</span>{item}</li>)}</ul>;
 }
 
 function PlusIcon({ open }: { open: boolean }) {
