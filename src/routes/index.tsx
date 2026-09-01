@@ -13,7 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import heroAsset from "@/assets/hero-with-mandala.png.asset.json";
+import goldBarVelvetMarbleAsset from "@/assets/gold-bar-velvet-marble.png.asset.json";
 import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
 
@@ -130,7 +130,7 @@ function Index() {
       </header>
 
       <section id="why-gold" className="relative min-h-[560px] bg-ivory">
-        <img src={heroAsset.url} alt="SQOOT Pure gold, presentation box and white flowers on marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
+        <img src={goldBarVelvetMarbleAsset.url} alt="SQOOT Pure 1kg gold bar on dark green velvet and marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[54%] bg-ivory lg:block [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]" />
         <div className="relative mx-auto flex max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
           <div className="max-w-[470px]">
