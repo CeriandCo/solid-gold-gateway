@@ -252,7 +252,7 @@
 @utility price-detail {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0;
 }
