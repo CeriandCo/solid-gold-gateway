@@ -92,11 +92,11 @@ function USFlag({ className }: { className?: string }) {
 
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="SQOOT Pure home">
-      <Mandala className={cn("text-gold", compact ? "h-10 w-10" : "h-12 w-12")} />
+    <a href="#top" className={cn("flex shrink-0 items-center gap-2.5", !compact && "lg:gap-[18px]")} aria-label="SQOOT Pure home">
+      <Mandala className={cn("text-gold", compact ? "h-10 w-10" : "h-12 w-12 lg:h-[88px] lg:w-[84px]")} />
       <span className="leading-none">
-        <span className="block font-display text-[1.7rem] font-medium leading-none text-forest-deep">SQOOT</span>
-        <span className="mt-1 block text-[0.625rem] font-medium tracking-[0.14em] text-gold">PURE</span>
+        <span className={cn("block font-display text-[1.7rem] font-medium leading-none text-forest-deep", !compact && "lg:text-[3.25rem] lg:tracking-[0.015em]")}>SQOOT</span>
+        <span className={cn("mt-1 block text-[0.625rem] font-medium tracking-[0.14em] text-gold", !compact && "lg:mt-2 lg:text-[1.125rem] lg:tracking-[0.42em]")}>PURE</span>
       </span>
     </a>
   );
@@ -127,12 +127,12 @@ function Index() {
   return (
     <main id="top" className="overflow-hidden bg-background">
       <header className="relative z-30 bg-background">
-        <div className="mx-auto grid h-[88px] max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-7 lg:flex lg:px-14">
+        <div className="grid h-[88px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-7 lg:flex lg:h-[151px] lg:px-[clamp(45px,3.125vw,60px)] lg:pr-[clamp(57px,3.958vw,76px)]">
           <Brand />
-          <nav className="ml-auto hidden items-center gap-9 lg:flex" aria-label="Primary navigation">
-            {nav.map(([label, href]) => <a key={label} href={href} className="text-[0.6875rem] font-medium tracking-[0.02em] text-charcoal transition-colors hover:text-gold">{label}</a>)}
+          <nav className="ml-auto hidden items-center gap-[60px] lg:flex" aria-label="Primary navigation">
+            {nav.map(([label, href]) => <a key={label} href={href} className="primary-nav-label text-charcoal transition-colors hover:text-gold">{label}</a>)}
           </nav>
-          <a href="#early-access" className="ml-4 hidden min-h-12 items-center rounded-sm bg-forest px-7 text-[0.6875rem] font-semibold tracking-[0.02em] text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold lg:inline-flex">Get Early Access</a>
+          <a href="#early-access" className="header-cta ml-[60px] hidden items-center justify-center bg-forest text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold lg:inline-flex">Get Early Access</a>
           <button type="button" className="grid h-11 w-11 place-items-center rounded-sm border border-beige text-forest lg:hidden" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Toggle navigation menu">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -145,33 +145,32 @@ function Index() {
         )}
       </header>
 
-      <section id="why-gold" className="relative min-h-[560px] bg-ivory">
-        <img src={goldBarVelvetMarbleAsset.url} alt="SQOOT Pure 1kg gold bar on dark green velvet and marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[54%] bg-ivory lg:block [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]" />
-        <div className="relative mx-auto flex max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
-          <div className="max-w-[470px]">
-            <p className="eyebrow font-semibold leading-none tracking-[0.28em] text-gold">Real Gold. Real Allocation.</p>
-            <h1 className="mt-8 max-w-[460px] font-display text-[2.75rem] font-semibold leading-[0.94] tracking-[-0.01em] text-forest sm:text-[3.125rem] lg:text-[3.75rem]">
+      <section id="why-gold" className="hero-shell relative min-h-[560px] bg-ivory">
+        <img src={goldBarVelvetMarbleAsset.url} alt="SQOOT Pure 1kg gold bar on dark green velvet and marble" className="hero-art h-[360px] w-full object-contain object-right sm:h-[440px]" />
+        <div className="relative flex px-5 py-14 sm:px-7 lg:min-h-[808px] lg:px-[clamp(60px,6.5972vw,105px)] lg:py-0">
+          <div className="hero-copy max-w-[560px]">
+            <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
+            <h1 className="hero-title mt-[39px] max-w-[560px] text-forest">
               Gold allocation,<br />made more<br /><em className="font-medium text-gold">accessible.</em>
             </h1>
-            <p className="mt-7 max-w-[370px] text-[0.9375rem] font-medium leading-[1.75] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
-            <a href="#early-access" className="mt-8 inline-flex min-h-[54px] items-center gap-5 rounded-sm bg-forest px-9 text-[0.75rem] font-bold tracking-[0.06em] text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></a>
-            <p className="ui-label mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
+            <p className="hero-body mt-[24px] max-w-[500px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
+            <a href="#early-access" className="hero-cta mt-[27px] inline-flex items-center justify-center gap-5 bg-forest text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold">Get Early Access <ArrowRight size={22} strokeWidth={2.5} /></a>
+            <p className="hero-note mt-[39px] flex items-center gap-2.5 text-charcoal"><LockKeyhole size={20} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
         </div>
-        <div className="absolute bottom-10 right-[5%] hidden h-40 w-40 place-items-center rounded-full border-2 border-background/80 bg-transparent text-center text-background lg:grid">
+        <div className="hero-price-badge absolute hidden place-items-center rounded-full border-[1.5px] border-background bg-transparent text-center text-background lg:grid">
           <div className="flex flex-col items-center">
-            <p className="text-[0.5625rem] font-semibold leading-none tracking-[0.14em]">START FROM</p>
-            <p className="mt-2 font-display text-[2.625rem] font-normal leading-[0.82]">$25</p>
-            <p className="mt-3 text-[0.625rem] font-medium leading-none">≈ 0.0104 oz</p>
+            <p className="text-xs font-bold leading-none tracking-[0.12em]">START FROM</p>
+            <p className="mt-3 font-display text-[2.75rem] font-normal leading-[0.82]">$25</p>
+            <p className="mt-3 text-[0.8125rem] font-normal leading-none">≈ 0.0104 oz</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-10 sm:py-12" aria-label="Trusted partners">
-        <div className="mx-auto max-w-[1060px] px-5 sm:px-7">
+      <section className="bg-background pb-10 pt-[30px] sm:pb-12" aria-label="Trusted partners">
+        <div className="mx-auto max-w-[1210px] px-5 sm:px-7 lg:px-0">
           <p className="eyebrow text-center text-gold">Backed by trust. Built for you.</p>
-          <div className="mt-7 grid grid-cols-2 items-stretch sm:mt-8 sm:grid-cols-4">
+          <div className="trust-grid mt-[37px] grid grid-cols-2 items-stretch sm:grid-cols-4">
             <div className="flex min-h-20 items-center justify-center gap-2.5 border-b border-r border-beige px-3 py-4 sm:min-h-16 sm:border-b-0 sm:px-5 sm:py-0">
               <Mandala className="h-9 w-9 shrink-0 text-gold" />
               <div className="min-w-0 leading-none">
