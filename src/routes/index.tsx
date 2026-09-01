@@ -6,6 +6,7 @@ import {
   Check,
   CircleDollarSign,
   FileCheck2,
+  Flag,
   LockKeyhole,
   Menu,
   ShieldCheck,
@@ -167,7 +168,7 @@ function Index() {
               <span className="bg-charcoal px-5 py-2 font-display text-[0.95rem] font-semibold leading-none text-background">LLOYD’S</span>
             </div>
             <div className="flex min-h-20 items-center justify-center gap-2.5 px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
-              <span className="shrink-0 text-[1.65rem] leading-none" aria-hidden="true">🇺🇸</span>
+              <Flag className="h-7 w-7 shrink-0 text-gold" strokeWidth={1.35} aria-hidden="true" />
               <div className="min-w-0 leading-none">
                 <b className="block whitespace-nowrap text-[0.68rem] font-bold text-charcoal sm:text-xs">US-ONLY</b>
                 <small className="mt-1 block text-[0.52rem] leading-[1.35] text-charcoal">We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.</small>
