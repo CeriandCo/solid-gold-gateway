@@ -495,6 +495,8 @@ input {
     width: 55.5556vw !important;
     height: 59.9375rem !important;
     object-position: right center !important;
+    -webkit-mask-image: radial-gradient(ellipse 82% 72% at 72% 51%, black 68%, transparent 100%);
+    mask-image: radial-gradient(ellipse 82% 72% at 72% 51%, black 68%, transparent 100%);
   }
 
   .how-section {
