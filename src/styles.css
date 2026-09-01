@@ -207,13 +207,13 @@
 
 @utility hero-art {
   @media (min-width: 64rem) {
-    position: absolute;
-    right: 0;
-    top: -6.875rem;
-    width: 51.3889vw;
-    height: 59.9375rem;
-    object-fit: contain;
-    object-position: right center;
+    position: absolute !important;
+    right: 0 !important;
+    top: -6.875rem !important;
+    width: 51.3889vw !important;
+    height: 59.9375rem !important;
+    object-fit: contain !important;
+    object-position: right center !important;
   }
 }
 
@@ -228,7 +228,7 @@
   height: 10.5rem;
 
   @media (min-width: 64rem) {
-    right: clamp(2.5rem, 6.5625vw, 5.90625rem);
+    right: clamp(2.5rem, 6.4583vw, 5.8125rem);
     bottom: 7.9375rem;
   }
 }
