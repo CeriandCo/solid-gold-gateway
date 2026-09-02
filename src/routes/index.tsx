@@ -230,14 +230,14 @@ function Index() {
           <nav className="border-t border-warm-white/10 bg-forest-deep/80 backdrop-blur-sm lg:hidden">
             <ul className="mx-auto max-w-[1200px] px-6 py-2">
               {nav.map((item) => (
-                <li key={item} className="border-b border-warm-white/10 last:border-b-0">
-                  <a
-                    href="#paths"
+                <li key={item.label} className="border-b border-warm-white/10 last:border-b-0">
+                  <Link
+                    to={item.to}
                     onClick={() => setMenuOpen(false)}
                     className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
               <li className="border-b border-warm-white/10 py-4">
