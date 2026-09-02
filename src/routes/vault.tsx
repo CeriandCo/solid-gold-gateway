@@ -28,7 +28,7 @@ import laptopImage from "@/assets/walkthrough-laptop.jpg";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 import mandalaImage from "@/assets/sqoot-mandala.png";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/vault")({
   head: () => ({
     meta: [
       { title: "Vaulted Gold Held in Your Name | SQOOT Pure" },
@@ -49,14 +49,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const nav = [
-  ["Vault", "#vault"],
-  ["How It Works", "#how-it-works"],
-  ["Storage Locations", "#storage"],
-  ["Fees", "#fees"],
-  ["FAQ", "#faq"],
-  ["About Us", "#about"],
-] as const;
 
 const faqs = [
   ["Is this actually real gold?", "Yes. Every allocation is backed by physical metal held at an insured depository in your name."],
