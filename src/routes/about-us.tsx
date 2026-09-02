@@ -74,29 +74,6 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Story */}
-      <section className="bg-background py-14 lg:py-20">
-        <div className={cn(STD, "grid gap-10 lg:grid-cols-2")}>
-          <div>
-            <Eyebrow>Why we exist</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">Built for people who read the fine print.</h2>
-          </div>
-          <div className="space-y-4 text-[15px] leading-[1.7] text-[#2C332E]">
-            <p>
-              Too much of the gold industry is built on ambiguity: unallocated accounts,
-              pooled holdings, fees buried in spreads. We started SQOOT Pure to offer the
-              opposite — a way to buy, hold, gift and redeem physical gold where every
-              gram is accounted for and every fee is stated plainly.
-            </p>
-            <p>
-              Whether you take delivery of a coin, build a fractional position from $25,
-              or store bars in an insured US vault, the principle is the same: it’s real
-              metal, and it’s yours.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Principles */}
       <section className="bg-ivory py-14 lg:py-20">
