@@ -194,7 +194,7 @@ input {
   letter-spacing: 0;
 }
 
-/* Scoped: legacy comparison homepage (/home-sonja) keeps its original eyebrow styling */
+/* Scoped: homepage (/) keeps Sonja's original eyebrow styling */
 .legacy-home .eyebrow {
   font-size: 0.6875rem;
   letter-spacing: 0.22em;

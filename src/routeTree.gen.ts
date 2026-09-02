@@ -13,7 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
-import { Route as HomeSonjaRouteImport } from './routes/home-sonja'
+import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as VaultRouteImport } from './routes/vault'
@@ -38,9 +38,9 @@ const GiftingRoute = GiftingRouteImport.update({
   path: '/gifting',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeSonjaRoute = HomeSonjaRouteImport.update({
-  id: '/home-sonja',
-  path: '/home-sonja',
+const HomeOldVerRoute = HomeOldVerRouteImport.update({
+  id: '/home-old-ver',
+  path: '/home-old-ver',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnRoute = LearnRouteImport.update({
@@ -64,7 +64,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/home-sonja': typeof HomeSonjaRoute
+  '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
@@ -74,7 +74,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/home-sonja': typeof HomeSonjaRoute
+  '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
@@ -85,7 +85,7 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/home-sonja': typeof HomeSonjaRoute
+  '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
@@ -97,7 +97,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
-    | '/home-sonja'
+    | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
     | '/vault'
@@ -107,7 +107,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
-    | '/home-sonja'
+    | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
     | '/vault'
@@ -117,7 +117,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
-    | '/home-sonja'
+    | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
     | '/vault'
@@ -128,7 +128,7 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
   GiftingRoute: typeof GiftingRoute
-  HomeSonjaRoute: typeof HomeSonjaRoute
+  HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRoute
   PreciousMetalRoute: typeof PreciousMetalRoute
   VaultRoute: typeof VaultRoute
@@ -164,11 +164,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GiftingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home-sonja': {
-      id: '/home-sonja'
-      path: '/home-sonja'
-      fullPath: '/home-sonja'
-      preLoaderRoute: typeof HomeSonjaRouteImport
+    '/home-old-ver': {
+      id: '/home-old-ver'
+      path: '/home-old-ver'
+      fullPath: '/home-old-ver'
+      preLoaderRoute: typeof HomeOldVerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn': {
@@ -200,7 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   FractionalGoldRoute: FractionalGoldRoute,
   GiftingRoute: GiftingRoute,
-  HomeSonjaRoute: HomeSonjaRoute,
+  HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRoute,
   PreciousMetalRoute: PreciousMetalRoute,
   VaultRoute: VaultRoute,
