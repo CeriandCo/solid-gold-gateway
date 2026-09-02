@@ -160,54 +160,7 @@ function Index() {
 
   return (
     <main id="top" className="bg-background text-charcoal">
-      {/* Header */}
-      <header className="relative z-30 bg-forest text-[#F8F5F1]">
-        <div className={cn(WIDE, "flex h-[84px] items-center gap-6 lg:h-[112px]")}>
-          <a href="#top" aria-label="SQOOT Pure home" className="shrink-0">
-            <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[160px] lg:w-[200px]" />
-          </a>
-          <nav className="ml-auto hidden items-center gap-[46px] lg:flex" aria-label="Primary navigation">
-            {nav.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="text-[15px] font-medium leading-none text-[#F8F5F1] transition-colors hover:text-gold-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <GoldButton href="#early-access" className="ml-[46px] hidden h-12 w-[186px] whitespace-nowrap bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold lg:inline-flex">
-            Get Early Access
-          </GoldButton>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((value) => !value)}
-            aria-expanded={menuOpen}
-            aria-label="Toggle navigation menu"
-            className="ml-auto grid h-11 w-11 place-items-center rounded-[2px] border border-white/25 lg:hidden"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-        {menuOpen && (
-          <nav aria-label="Mobile navigation" className="border-t border-white/10 px-5 py-3 lg:hidden">
-            {nav.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="block border-b border-white/10 py-3 text-sm font-medium"
-              >
-                {label}
-              </a>
-            ))}
-            <GoldButton href="#early-access" className="mt-4 flex h-12 w-full">
-              Get Early Access
-            </GoldButton>
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
       <section id="vault" className="bg-ivory">
