@@ -160,29 +160,31 @@ function Index() {
       <SiteHeader />
 
       {/* Hero */}
-      <section id="vault" className="bg-ivory">
-        <div className={WIDE}>
-          <div className="grid lg:min-h-[628px] lg:grid-cols-[39%_61%]">
-            <img
-              src={vaultDoor.url}
-              alt="Steel vault door with circular locking mechanism"
-              className="h-[280px] w-full object-cover object-center sm:h-[380px] lg:h-full"
-            />
-            <div className="flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-0 lg:pl-[84px] lg:pr-10">
+      <section id="vault" className="bg-ivory pb-24 pt-16 sm:pb-28 lg:pb-[112px] lg:pt-[68px]">
+        <div className={cn(WIDE, "px-8 lg:max-w-[1400px] lg:px-10 xl:px-10")}>
+          <div className="grid items-center gap-10 md:grid-cols-[46%_1fr] md:gap-12 lg:min-h-[660px] lg:grid-cols-[44%_1fr] lg:gap-[88px]">
+            <div className="overflow-hidden rounded-[2px] lg:h-[660px]">
+              <img
+                src={vaultDoor.url}
+                alt="Steel vault door with circular locking mechanism"
+                className="h-[300px] w-full scale-[1.02] object-cover object-center transition-transform duration-[600ms] ease-out sm:h-[420px] lg:h-full animate-in fade-in zoom-in-95 duration-700 fill-mode-both"
+              />
+            </div>
+            <div className="flex flex-col justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:py-0">
               <Eyebrow>Vaulted Gold</Eyebrow>
               <GoldRule />
-              <h1 className="mt-5 max-w-[660px] font-display font-medium text-charcoal">
+              <h1 className="mt-[22px] max-w-[680px] font-display font-medium text-charcoal">
                 <span
                   className="block"
-                  style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "69px", letterSpacing: "-0.025em" }}
+                  style={{ fontSize: "clamp(38px, 4.9vw, 74px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
                 >
                   Your gold.
                   <br />
                   Held in your name.
                 </span>
                 <span
-                  className="block"
-                  style={{ fontSize: "clamp(31px, 3.75vw, 54px)", lineHeight: "55px", letterSpacing: "-0.02em" }}
+                  className="mt-2 block"
+                  style={{ fontSize: "clamp(31px, 3.85vw, 56px)", lineHeight: "1.02", letterSpacing: "-0.02em" }}
                 >
                   Real, insured, and
                   <br />
@@ -191,24 +193,32 @@ function Index() {
                   whenever you choose.
                 </span>
               </h1>
-              <p className="mt-6 max-w-[540px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
+              <p className="mt-8 max-w-[520px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
                 <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
                 <br className="hidden lg:block" /> A specific holding you can verify and reach.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-8">
-                <GoldButton href="#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
-                  Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
+              <div className="mt-9 flex flex-wrap items-center gap-6 sm:gap-7">
+                <GoldButton
+                  href="#early-access"
+                  className="group h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold"
+                >
+                  Get Early Access
+                  <ArrowRight
+                    size={17}
+                    strokeWidth={2.25}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
                 </GoldButton>
-                <div className="flex items-center gap-4">
-                  <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold text-gold">
+                <a href="#walkthrough" className="group flex items-center gap-4">
+                  <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold/70 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/10">
                     <Play size={16} fill="currentColor" />
                   </span>
                   <span>
                     <span className="block text-[15px] font-semibold leading-tight text-charcoal">See how it works</span>
                     <span className="mt-1 block text-[13px] leading-tight text-[#444A45]">2 min walkthrough</span>
                   </span>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -216,8 +226,8 @@ function Index() {
       </section>
 
       {/* Custody proof row */}
-      <section className="bg-ivory" aria-label="Custody assurances">
-        <div className={cn(STD, "grid items-center gap-6 py-8 sm:grid-cols-3 sm:gap-0 lg:h-[143px] lg:py-0")}>
+      <section className="border-t border-beige/70 bg-background" aria-label="Custody assurances">
+        <div className={cn(STD, "grid gap-10 py-11 sm:grid-cols-3 sm:gap-0 sm:py-12")}>
           {[
             [ShieldCheck, "IDS custody", ["Third-party depository", "built for this purpose."]],
             [Umbrella, "Insured storage", ["Full value, all risk", "insurance coverage."]],
@@ -228,7 +238,7 @@ function Index() {
               <div
                 key={title as string}
                 className={cn(
-                  "flex items-center justify-center gap-5 px-6",
+                  "flex items-center justify-center gap-5 px-6 sm:px-8 lg:px-12",
                   index > 0 && "sm:border-l sm:border-beige",
                 )}
               >
@@ -246,6 +256,7 @@ function Index() {
           })}
         </div>
       </section>
+
 
       {/* Allocation diagram */}
       <section className="bg-background pb-0 pt-16 sm:pt-20">
