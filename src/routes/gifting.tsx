@@ -14,6 +14,7 @@ import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/co
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
+import giftingPackagedImage from "@/assets/gifting-beautifully-packaged.jpg";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -442,6 +443,40 @@ function GiftingPage() {
                 <p className="max-w-[220px] font-sans text-sm leading-relaxed text-[#57534E]">{description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Beautifully Packaged */}
+      <section className="relative flex w-full flex-col overflow-hidden bg-[#0B2017]">
+        <div className="w-full lg:flex lg:flex-row">
+          <div className="h-[400px] w-full sm:h-[500px] lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2">
+            <img
+              src={giftingPackagedImage}
+              alt="Luxury smartphone and 10g SQOOT Pure gold bar on dark green velvet"
+              width={1536}
+              height={1024}
+              loading="lazy"
+              className="h-full w-full object-cover object-right lg:object-center"
+            />
+          </div>
+
+          <div className="flex w-full flex-col justify-center px-4 py-16 sm:px-6 lg:ml-auto lg:w-1/2 lg:max-w-3xl lg:px-12 lg:py-24 xl:px-16">
+            <span className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#C9A24D] md:mb-6 md:text-sm">
+              Beautifully Packaged. Securely Delivered.
+            </span>
+            <h2 className="max-w-lg font-serif text-4xl font-normal leading-[1.15] text-[#F4EFE6] md:mb-8 md:text-5xl lg:mb-8 lg:text-6xl">
+              Every detail designed to impress.
+            </h2>
+            <p className="mb-10 max-w-xl font-sans text-base leading-relaxed text-[#C4CFC9] md:text-lg">
+              Premium packaging, a personal message, and the confidence of real gold—because how you give matters just as much as what you give.
+            </p>
+            <GoldButton
+              to="/precious-metal"
+              className="inline-flex h-auto w-fit items-center justify-center rounded-sm bg-[#C9A24D] px-8 py-3.5 text-sm font-semibold text-[#0B2017] shadow-md transition-colors hover:bg-[#B89758] md:text-base"
+            >
+              Explore Gifts
+            </GoldButton>
           </div>
         </div>
       </section>
