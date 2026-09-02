@@ -13,6 +13,7 @@ import {
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
+import giftingLegacyImage from "@/assets/gifting-legacy-gold.jpg";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
