@@ -288,6 +288,86 @@ function GiftingPage() {
         </div>
       </section>
 
+      {/* Legacy / A Gift That Grows */}
+      <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          {/* Left Column */}
+          <div className="lg:pr-12">
+            <span className="mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#57534E] md:text-sm">
+              A GIFT THAT GROWS
+            </span>
+            <h2 className="mb-6 font-serif text-4xl leading-[1.15] text-[#1C1917] whitespace-pre-line md:text-5xl lg:text-[52px]">
+              More than a gift.{"\n"}A legacy in the making.
+            </h2>
+
+            <div className="mb-6 flex w-3/4 max-w-xs items-center gap-4">
+              <span className="h-[1px] flex-1 bg-[#D8CCB2]" />
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3 w-3 fill-current text-[#B89758]"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="1.6" />
+                <circle cx="12" cy="7.8" r="2.2" />
+                <circle cx="15.8" cy="9" r="2.2" />
+                <circle cx="17" cy="12.8" r="2.2" />
+                <circle cx="15.8" cy="16.6" r="2.2" />
+                <circle cx="12" cy="17.8" r="2.2" />
+                <circle cx="8.2" cy="16.6" r="2.2" />
+                <circle cx="7" cy="12.8" r="2.2" />
+                <circle cx="8.2" cy="9" r="2.2" />
+              </svg>
+              <span className="h-[1px] flex-1 bg-[#D8CCB2]" />
+            </div>
+
+            <p className="mb-8 font-sans text-base leading-relaxed text-[#57534E]">
+              Gold is a lasting symbol of love, blessings, and prosperity. Whether it&apos;s for a loved one or a future they&apos;re building, your gift stays with them—today, tomorrow, always.
+            </p>
+
+            <div className="flex flex-col gap-4">
+              {[
+                "Real gold, real value",
+                "Secure, transparent, and easy to send",
+                "Redeemable anytime, anywhere",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 shrink-0 fill-[#15241C]"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="12" />
+                    <path
+                      d="M7 12l3 3 6-6"
+                      stroke="white"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="font-sans text-sm font-medium text-[#292524] md:text-base">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-lg">
+            <img
+              src={giftingLegacyImage}
+              alt="Luxurious gold bar and presentation card in a dark green velvet box"
+              width={1024}
+              height={1536}
+              loading="lazy"
+              className="h-[500px] w-full object-cover lg:h-[600px]"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Occasions */}
       <section className="bg-background py-14 lg:py-20">
         <div className={STD}>
