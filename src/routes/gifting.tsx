@@ -244,13 +244,10 @@ function GiftingPage() {
           </span>
           <svg
             viewBox="0 0 24 24"
-            className="mx-auto mb-1.5 h-5 w-5 text-[#B89758] opacity-90 fill-current"
+            className="mx-auto mb-1.5 h-5 w-5 text-[#B89758] opacity-90 fill-current md:h-6 md:w-6"
             aria-hidden="true"
           >
-            <path d="M12 2c-2.2 4-4 7-4 10.5 0 2.8 1.7 4.8 4 5.8 2.3-1 4-3 4-5.8C16 9 14.2 6 12 2z" />
-            <path d="M7 7C4.5 10.5 4.5 14 7 16.5c2 1.5 4 2 5 2.5V7c-2 0-4 0-5 0z" />
-            <path d="M17 7c2.5 3.5 2.5 7 0 9.5-2 1.5-4 2-5 2.5V7c2 0 4 0 5 0z" />
-            <path d="M4 20h16" stroke="currentColor" strokeWidth="1" />
+            <path d="M12 2c-1.6 3.2-2.8 5.8-2.8 8.2 0 1.6.6 2.8 1.6 3.6-.8-.6-1.8-.9-2.9-.9-2.6 0-4.8 1.8-5.4 4.2 2.6-.2 4.8.7 6.3 2.3-.9.3-1.7.9-2.2 1.8-.8 1.4-.6 3.2.4 4.4 1.3-1.8 3.2-2.9 5.4-2.9V22h1.6v-4.1c2.2 0 4.1 1.1 5.4 2.9 1-1.2 1.2-3 .4-4.4-.5-.9-1.3-1.5-2.2-1.8 1.5-1.6 3.7-2.5 6.3-2.3-.6-2.4-2.8-4.2-5.4-4.2-1.1 0-2.1.3-2.9.9 1-.8 1.6-2 1.6-3.6 0-2.4-1.2-5-2.8-8.2Z" />
           </svg>
           <h2 className="mb-2 text-center font-serif text-4xl font-normal tracking-tight text-[#1C1917] md:text-5xl">
             Celebrate what matters most.
@@ -265,9 +262,7 @@ function GiftingPage() {
                 <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[72px] md:w-[72px]">
                   <svg
                     viewBox="0 0 24 24"
-                    className="h-7 w-7 fill-none stroke-[#B89758] stroke-[1.25] md:h-8 md:w-8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    className="h-8 w-8 fill-none stroke-[#B89758] stroke-[1.25] stroke-linecap-round stroke-linejoin-round md:h-[40px] md:w-[40px]"
                     aria-hidden="true"
                   >
                     {paths}
