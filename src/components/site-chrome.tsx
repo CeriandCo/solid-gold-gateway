@@ -109,58 +109,88 @@ export function GoldButton({
   );
 }
 
-export function SiteHeader() {
+/**
+ * Shared SQOOT Pure navbar — single source for every page.
+ * variant="overlay" is used on the homepage (transparent, over the hero image);
+ * variant="solid" is used on all other pages via SiteHeader.
+ */
+export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <header className="relative z-30 bg-forest text-[#F8F5F1]">
-      <div className={cn(WIDE, "flex h-[84px] items-center gap-6 lg:h-[112px]")}>
+    <div className={variant === "solid" ? "bg-forest-deep text-warm-white" : undefined}>
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[160px] lg:w-[200px]" />
+          <img src={logoImage} alt="SQOOT Pure" className="h-12 w-auto" />
         </Link>
-        <nav className="ml-auto hidden items-center gap-[38px] lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary navigation">
           {siteNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
-              className="text-[15px] font-medium leading-none text-[#F8F5F1] transition-colors hover:text-gold-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold [&.active]:text-gold-soft"
+              className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
             >
               {label}
             </Link>
           ))}
         </nav>
-        <GoldButton
-          href="/vault#early-access"
-          className="ml-[38px] hidden h-12 w-[186px] whitespace-nowrap bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold lg:inline-flex"
-        >
-          Get Early Access
-        </GoldButton>
-        <button
-          type="button"
-          onClick={() => setMenuOpen((value) => !value)}
-          aria-expanded={menuOpen}
-          aria-label="Toggle navigation menu"
-          className="ml-auto grid h-11 w-11 place-items-center rounded-[2px] border border-white/25 lg:hidden"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-2 lg:flex">
+            <AppStoreBadge store="apple" />
+            <AppStoreBadge store="google" />
+          </div>
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
+          >
+            {menuOpen ? (
+              <X strokeWidth={1.25} className="h-5 w-5" />
+            ) : (
+              <Menu strokeWidth={1.25} className="h-5 w-5" />
+            )}
+          </button>
+        </div>
       </div>
+
       {menuOpen && (
-        <nav aria-label="Mobile navigation" className="border-t border-white/10 px-5 py-3 lg:hidden">
-          {siteNav.map(([label, to]) => (
-            <Link
-              key={label}
-              to={to}
-              onClick={() => setMenuOpen(false)}
-              className="block border-b border-white/10 py-3 text-sm font-medium"
-            >
-              {label}
-            </Link>
-          ))}
-          <GoldButton href="/vault#early-access" className="mt-4 flex h-12 w-full">
-            Get Early Access
-          </GoldButton>
+        <nav
+          aria-label="Mobile navigation"
+          className={cn(
+            "border-t border-warm-white/10 lg:hidden",
+            variant === "solid" ? "bg-forest-deep" : "bg-forest-deep/80 backdrop-blur-sm",
+          )}
+        >
+          <ul className="mx-auto max-w-[1200px] px-6 py-2">
+            {siteNav.map(([label, to]) => (
+              <li key={label} className="border-b border-warm-white/10 last:border-b-0">
+                <Link
+                  to={to}
+                  onClick={() => setMenuOpen(false)}
+                  className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+            <li className="border-b border-warm-white/10 py-4">
+              <div className="flex flex-wrap gap-2">
+                <AppStoreBadge store="apple" />
+                <AppStoreBadge store="google" />
+              </div>
+            </li>
+          </ul>
         </nav>
       )}
+    </div>
+  );
+}
+
+export function SiteHeader() {
+  return (
+    <header className="relative z-30">
+      <SiteNav variant="solid" />
     </header>
   );
 }
