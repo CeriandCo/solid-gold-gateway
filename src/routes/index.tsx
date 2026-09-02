@@ -10,55 +10,8 @@ import {
   FileText,
   Plus,
   Minus,
-  Menu,
-  X,
 } from "lucide-react";
-
-function AppleIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-      <path
-        fill="currentColor"
-        d="M17.05 12.536c-.049-2.744 2.252-4.057 2.353-4.12-1.29-1.868-3.295-2.124-4.002-2.15-1.677-.174-3.298.994-4.158.994-.878 0-2.205-.973-3.634-.945-1.858.029-3.597 1.091-4.55 2.763-1.952 3.369-.504 8.329 1.375 11.043.93 1.33 2.03 2.818 3.474 2.765 1.399-.057 1.925-.9 3.614-.9 1.67 0 2.158.9 3.61.865 1.499-.024 2.45-1.35 3.35-2.69.91-1.31 1.28-2.59 1.298-2.655-.03-.011-2.49-.95-2.53-3.77zm-2.39-6.78c.76-.933 1.274-2.218 1.132-3.506-1.096-.046-2.44.72-3.23 1.65-.703.826-1.32 2.155-1.155 3.438 1.223.095 2.477-.616 3.253-1.582z"
-      />
-    </svg>
-  );
-}
-
-function PlayIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-      <path
-        fill="currentColor"
-        d="M3 20.5V3.5c0-.83.94-1.3 1.6-.82l14.57 8.5c.6.35.6 1.18 0 1.53L4.6 21.32c-.66.48-1.6.01-1.6-.82z"
-      />
-    </svg>
-  );
-}
-
-function AppStoreBadge({ store }: { store: "apple" | "google" }) {
-  const isApple = store === "apple";
-  return (
-    <a
-      href="#"
-      className="flex items-center gap-2 rounded-sm border border-warm-white/30 bg-warm-white/5 px-3 py-2 text-warm-white transition-colors hover:border-gold hover:text-gold"
-    >
-      {isApple ? (
-        <AppleIcon className="h-5 w-5 shrink-0" />
-      ) : (
-        <PlayIcon className="h-5 w-5 shrink-0" />
-      )}
-      <div className="leading-none">
-        <p className="text-[0.55rem] opacity-75">
-          {isApple ? "Download on the" : "Get it on"}
-        </p>
-        <p className="mt-0.5 text-[0.75rem] font-medium">
-          {isApple ? "App Store" : "Google Play"}
-        </p>
-      </div>
-    </a>
-  );
-}
+import { SiteNav } from "@/components/site-chrome";
 
 import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
@@ -87,13 +40,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const nav = [
-  { label: "Buy Gold", to: "/precious-metal" },
-  { label: "Vault", to: "/vault" },
-  { label: "Fractional", to: "/fractional-gold" },
-  { label: "Learn", to: "/learn" },
-] as const;
 
 const paths = [
   {
@@ -177,7 +123,6 @@ function Mark({ className = "" }: { className?: string }) {
 
 function Index() {
   const [open, setOpen] = useState<number | null>(0);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="legacy-home min-h-screen bg-warm-white">
@@ -192,63 +137,7 @@ function Index() {
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
 
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
-          <img src={logoUrl} alt="SQOOT Pure" className="h-12 w-auto" />
-          <nav className="hidden items-center gap-9 lg:flex">
-            {nav.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 lg:flex">
-              <AppStoreBadge store="apple" />
-              <AppStoreBadge store="google" />
-            </div>
-            <button
-              type="button"
-              aria-label="Toggle navigation menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
-            >
-              {menuOpen ? (
-                <X strokeWidth={1.25} className="h-5 w-5" />
-              ) : (
-                <Menu strokeWidth={1.25} className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {menuOpen && (
-          <nav className="border-t border-warm-white/10 bg-forest-deep/80 backdrop-blur-sm lg:hidden">
-            <ul className="mx-auto max-w-[1200px] px-6 py-2">
-              {nav.map((item) => (
-                <li key={item.label} className="border-b border-warm-white/10 last:border-b-0">
-                  <Link
-                    to={item.to}
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="border-b border-warm-white/10 py-4">
-                <div className="flex flex-wrap gap-2">
-                  <AppStoreBadge store="apple" />
-                  <AppStoreBadge store="google" />
-                </div>
-              </li>
-            </ul>
-          </nav>
-        )}
+        <SiteNav variant="overlay" />
 
         <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-14 sm:pt-20 lg:pb-32">
           <div className="max-w-[36rem]">
