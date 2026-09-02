@@ -17,6 +17,9 @@ import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.
 import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
+import idsLogo from "@/assets/ids-logo.png.asset.json";
+import lloydsLogo from "@/assets/lloyds-logo.png.asset.json";
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
