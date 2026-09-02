@@ -376,8 +376,7 @@ function GiftingPage() {
             Simple steps. Lasting impact.
           </h2>
 
-          <div className="relative z-0 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-            <div className="hidden lg:block absolute top-[44px] left-[12.5%] w-[75%] border-t border-dashed border-[#D8CCB2] -z-10"></div>
+          <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {[
               {
                 title: "Choose Your Gift",
@@ -427,7 +426,10 @@ function GiftingPage() {
                 ),
               },
             ].map(({ title, description, icon }, index) => (
-              <div key={title} className="relative z-10 flex flex-col items-center text-center">
+              <div key={title} className="relative z-10 flex w-full flex-col items-center text-center">
+                {index < 3 && (
+                  <div className="hidden lg:block absolute top-[44px] left-[calc(50%+44px+16px)] w-[calc(100%-88px-32px)] border-t border-dashed border-[#D8CCB2]"></div>
+                )}
                 <div className="relative z-10 mb-6 inline-flex h-[88px] w-[88px] items-center justify-center rounded-full border border-[#D8CCB2]/80 bg-[#FAF7F2]">
                   <span className="absolute -top-2 -left-2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-[#15241C] text-xs font-bold text-white shadow-sm">
                     {index + 1}
