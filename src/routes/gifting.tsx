@@ -9,7 +9,7 @@ import {
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
-import giftingPackagedImage from "@/assets/gifting-phone-gold-bar.png.asset.json";
+import giftingPackagedImage from "@/assets/gifting-phone-gold-bar-enhanced.png";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
