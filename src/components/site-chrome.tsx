@@ -123,7 +123,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex xl:gap-[54px]" aria-label="Primary navigation">
-          {headerNav.map(([label, to]) => (
+          {siteNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
