@@ -116,7 +116,6 @@ function PrimaryButton({ children, className = "", type = "button", disabled = f
 }
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState("");
