@@ -165,7 +165,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           )}
         >
           <ul className="mx-auto max-w-[1200px] px-6 py-2">
-            {headerNav.map(([label, to]) => (
+            {siteNav.map(([label, to]) => (
               <li key={label} className="border-b border-warm-white/10 last:border-b-0">
                 <Link
                   to={to}
