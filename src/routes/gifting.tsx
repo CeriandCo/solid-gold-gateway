@@ -41,7 +41,7 @@ const occasions = [
   { icon: HeartHandshake, title: "Thank you", copy: "A gift with substance, for the people who deserve more than a gesture." },
 ] as const;
 
-const occasionIcons: { label: string; paths: JSX.Element }[] = [
+const occasionIcons: { label: string; paths: React.ReactNode }[] = [
   {
     label: "Weddings",
     paths: (
