@@ -34,7 +34,7 @@ const principles = [
 function AboutPage() {
   return (
     <main id="top" className="bg-background text-charcoal">
-      <SiteHeader />
+      <AboutUsHeader />
 
       {/* Hero */}
       <section className="bg-ivory">
