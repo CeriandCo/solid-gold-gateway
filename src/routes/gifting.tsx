@@ -1,21 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  Baby,
-  Cake,
   CreditCard,
   Gift,
-  GraduationCap,
-  Heart,
   HeartHandshake,
-  Home,
   Landmark,
   Package,
   ShieldCheck,
   Smartphone,
   Sparkles,
-  SunMedium,
-  Trophy,
 } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
@@ -47,6 +40,92 @@ const occasions = [
   { icon: Sparkles, title: "New beginnings", copy: "A first piece of gold for a child, a grandchild, a new chapter." },
   { icon: HeartHandshake, title: "Thank you", copy: "A gift with substance, for the people who deserve more than a gesture." },
 ] as const;
+
+const occasionIcons: { label: string; paths: React.ReactNode }[] = [
+  {
+    label: "Weddings",
+    paths: (
+      <>
+        <circle cx="13" cy="19" r="7" />
+        <circle cx="19" cy="19" r="7" />
+        <path d="M16 10.4c-1.1-1.9-4-1.3-4 .9 0 1.6 2.4 3.1 4 4.2 1.6-1.1 4-2.6 4-4.2 0-2.2-2.9-2.8-4-.9z" />
+      </>
+    ),
+  },
+  {
+    label: "Anniversaries",
+    paths: (
+      <>
+        <path d="M16 27s-10-6.3-10-13a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 26 14c0 6.7-10 13-10 13z" />
+        <path d="M16 12.5v9M16 14.5l-4 3M16 14.5l4 3M16 18l-3.4 2.6M16 18l3.4 2.6" />
+      </>
+    ),
+  },
+  {
+    label: "New Arrivals",
+    paths: (
+      <>
+        <path d="M11 8h10M16 8v3" />
+        <path d="M14.4 6.6c-1.4-1.1-3.4-.2-3.4 1.4M17.6 6.6c1.4-1.1 3.4-.2 3.4 1.4" />
+        <path d="M12 11h8a7 7 0 0 1 7 7 8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8 7 7 0 0 1 7-7z" />
+        <circle cx="16" cy="18.5" r="3" />
+      </>
+    ),
+  },
+  {
+    label: "Birthdays",
+    paths: (
+      <>
+        <path d="M12 8.5V6M16 8.5V5.5M20 8.5V6" />
+        <path d="M11 12h10v4H11zM9 16h14v5H9z" />
+        <path d="M16 21v3M11 27h10M13.5 27c0-1.6 1.1-3 2.5-3s2.5 1.4 2.5 3" />
+      </>
+    ),
+  },
+  {
+    label: "Graduations",
+    paths: (
+      <>
+        <path d="M16 7 3.5 12.5 16 18l12.5-5.5L16 7z" />
+        <path d="M8 15.2V21c0 2.2 3.6 4 8 4s8-1.8 8-4v-5.8" />
+        <path d="M27 13v6.5" />
+        <circle cx="27" cy="21" r="1.4" />
+      </>
+    ),
+  },
+  {
+    label: "Festivals",
+    paths: (
+      <>
+        <circle cx="16" cy="16" r="5" />
+        <path d="M16 3.5v4M16 24.5v4M3.5 16h4M24.5 16h4M7.2 7.2l2.8 2.8M22 22l2.8 2.8M24.8 7.2 22 10M10 22l-2.8 2.8" />
+        <path d="M16 8.4c1.6 0 2.6 1.1 2.6 2.2M16 23.6c-1.6 0-2.6-1.1-2.6-2.2" />
+      </>
+    ),
+  },
+  {
+    label: "Achievements",
+    paths: (
+      <>
+        <path d="M11 5h10v7a5 5 0 0 1-10 0V5z" />
+        <path d="M11 7H7.5v2A4.5 4.5 0 0 0 12 13.5M21 7h3.5v2a4.5 4.5 0 0 1-4.5 4.5" />
+        <path d="M16 17v4M12.5 21h7M10.5 24.5h11M9.5 27.5h13" />
+      </>
+    ),
+  },
+  {
+    label: "Housewarmings",
+    paths: (
+      <>
+        <path d="M4.5 15 16 5.5 27.5 15" />
+        <path d="M7.5 13v13h17V13" />
+        <path d="M21 8.2V5.5h3v5.2" />
+        <path d="M13 26v-7h6v7" />
+      </>
+    ),
+  },
+];
+
 
 function GiftingPage() {
   return (
@@ -149,46 +228,47 @@ function GiftingPage() {
       {/* Occasions / Celebrate What Matters Most */}
       <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#B89758] uppercase mb-3 block text-center">
+          <span className="font-sans text-xs font-semibold tracking-[0.25em] text-[#B89758] uppercase mb-2 block text-center">
             PERFECT FOR LIFE&apos;S SPECIAL MOMENTS
           </span>
           <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-4 h-4 text-[#B89758] mx-auto mb-4 opacity-80"
+            viewBox="0 0 32 32"
+            className="w-4 h-4 text-[#B89758] mx-auto mb-4 opacity-85"
             aria-hidden="true"
           >
-            <circle cx="12" cy="12" r="2.2" />
-            <circle cx="12" cy="6.5" r="1.6" />
-            <circle cx="16.4" cy="8.8" r="1.6" />
-            <circle cx="16.4" cy="15.2" r="1.6" />
-            <circle cx="12" cy="17.5" r="1.6" />
-            <circle cx="7.6" cy="15.2" r="1.6" />
-            <circle cx="7.6" cy="8.8" r="1.6" />
+            <g fill="currentColor">
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
+                <ellipse key={a} cx="16" cy="9" rx="3.1" ry="5.4" transform={`rotate(${a} 16 16)`} />
+              ))}
+            </g>
+            <circle cx="16" cy="16" r="3.2" fill="#FAF7F2" />
+            <circle cx="16" cy="16" r="1.6" fill="currentColor" />
           </svg>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1917] tracking-tight text-center mb-4">
+          <h2 className="font-display font-normal text-4xl md:text-5xl text-[#1C1917] tracking-tight text-center mb-3">
             Celebrate what matters most.
           </h2>
-          <p className="text-sm sm:text-base text-[#57534E] text-center max-w-xl mx-auto leading-relaxed whitespace-pre-line mb-12 md:mb-16">
+          <p className="font-sans text-sm md:text-base text-[#57534E] leading-relaxed text-center max-w-xl mx-auto whitespace-pre-line mb-14">
             From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
           </p>
 
           <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-start justify-center">
-            {[
-              { icon: HeartHandshake, label: "Weddings" },
-              { icon: Heart, label: "Anniversaries" },
-              { icon: Baby, label: "New Arrivals" },
-              { icon: Cake, label: "Birthdays" },
-              { icon: GraduationCap, label: "Graduations" },
-              { icon: SunMedium, label: "Festivals" },
-              { icon: Trophy, label: "Achievements" },
-              { icon: Home, label: "Housewarmings" },
-            ].map(({ icon: Icon, label }) => (
+            {occasionIcons.map(({ label, paths }) => (
               <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
-                <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#D6C7A1]/60 bg-[#F4EFE6]/50 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-105 group-hover:border-[#B89758] group-hover:bg-[#FAF7F2] shadow-sm">
-                  <Icon className="w-7 h-7 md:w-8 md:h-8 text-[#B89758]" strokeWidth={1.4} />
+                <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#D8CCB2]/50 bg-[#FAF7F2]/60 flex items-center justify-center transition-transform hover:scale-105 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                  <svg
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    stroke="#B89758"
+                    strokeWidth={1.25}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-7 h-7 md:w-8 md:h-8"
+                    aria-hidden="true"
+                  >
+                    {paths}
+                  </svg>
                 </span>
-                <span className="text-xs md:text-sm font-medium text-[#292524] tracking-tight group-hover:text-[#B89758] transition-colors">
+                <span className="font-sans text-xs md:text-sm font-medium text-[#292524] text-center mt-3 tracking-tight">
                   {label}
                 </span>
               </div>
