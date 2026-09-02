@@ -262,9 +262,7 @@ function GiftingPage() {
                 <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[72px] md:w-[72px]">
                   <svg
                     viewBox="0 0 24 24"
-                    className="h-7 w-7 fill-none stroke-[#B89758] stroke-[1.25] md:h-8 md:w-8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    className="h-8 w-8 fill-none stroke-[#B89758] stroke-[1.25] stroke-linecap-round stroke-linejoin-round md:h-[40px] md:w-[40px]"
                     aria-hidden="true"
                   >
                     {paths}
