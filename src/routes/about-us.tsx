@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Eye, ShieldCheck, UserRound } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { ArrowRight } from "lucide-react";
+import { GoldButton, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
 import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
