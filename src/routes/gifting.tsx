@@ -14,7 +14,7 @@ import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/co
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
-import giftingPackagedImage from "@/assets/gifting-beautifully-packaged.jpg";
+import giftingPackagedImage from "@/assets/gifting-phone-gold-bar.png.asset.json";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -448,35 +448,41 @@ function GiftingPage() {
       </section>
 
       {/* Beautifully Packaged */}
-      <section className="relative flex w-full flex-col overflow-hidden bg-[#0B2017]">
-        <div className="w-full lg:flex lg:flex-row">
-          <div className="h-[400px] w-full sm:h-[500px] lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2">
+      <section className="w-full bg-[#0B1C14]">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-col overflow-hidden lg:flex-row">
+          {/* Left Column (Faded Image) */}
+          <div className="relative h-[400px] w-full sm:h-[500px] lg:h-[600px] lg:w-1/2">
             <img
-              src={giftingPackagedImage}
+              src={giftingPackagedImage.url}
               alt="Luxury smartphone and 10g SQOOT Pure gold bar on dark green velvet"
               width={1536}
               height={1024}
               loading="lazy"
-              className="h-full w-full object-cover object-right lg:object-center"
+              className="h-full w-full object-cover object-left-center"
             />
+            {/* Right-edge fade into background */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#0B1C14] to-transparent lg:w-1/2"></div>
+            {/* Bottom fade for mobile */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1C14] to-transparent lg:hidden"></div>
           </div>
 
-          <div className="flex w-full flex-col justify-center px-4 py-16 sm:px-6 lg:ml-auto lg:w-1/2 lg:max-w-3xl lg:px-12 lg:py-24 xl:px-16">
+          {/* Right Column (Text Content) */}
+          <div className="z-10 flex w-full flex-col justify-center px-6 py-16 lg:w-1/2 lg:py-24 lg:pl-8 lg:pr-12 xl:pl-16">
             <span className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#C9A24D] md:mb-6 md:text-sm">
-              Beautifully Packaged. Securely Delivered.
+              BEAUTIFULLY PACKAGED. SECURELY DELIVERED.
             </span>
-            <h2 className="max-w-lg font-serif text-4xl font-normal leading-[1.15] text-[#F4EFE6] md:mb-8 md:text-5xl lg:mb-8 lg:text-6xl">
+            <h2 className="mb-6 max-w-lg font-serif text-4xl font-normal leading-[1.15] text-[#F4EFE6] md:mb-8 md:text-5xl lg:text-[56px]">
               Every detail designed to impress.
             </h2>
             <p className="mb-10 max-w-xl font-sans text-base leading-relaxed text-[#C4CFC9] md:text-lg">
               Premium packaging, a personal message, and the confidence of real gold—because how you give matters just as much as what you give.
             </p>
-            <GoldButton
+            <Link
               to="/precious-metal"
-              className="inline-flex h-auto w-fit items-center justify-center rounded-sm bg-[#C9A24D] px-8 py-3.5 text-sm font-semibold text-[#0B2017] shadow-md transition-colors hover:bg-[#B89758] md:text-base"
+              className="inline-flex w-fit items-center justify-center rounded-[2px] bg-[#C9A24D] px-8 py-3.5 text-sm font-medium text-[#0B1C14] transition-colors hover:bg-[#B89758] md:text-base"
             >
               Explore Gifts
-            </GoldButton>
+            </Link>
           </div>
         </div>
       </section>
