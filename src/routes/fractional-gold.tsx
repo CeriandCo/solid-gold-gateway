@@ -130,7 +130,7 @@ function Index() {
   }
 
   return (
-    <main id="top" className="overflow-hidden bg-background">
+    <main id="top" className="fractional-legacy overflow-hidden bg-background">
       <header className="relative z-30 bg-background">
         <div className="mx-auto grid h-[88px] max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-7 lg:flex lg:px-14">
           <Brand />

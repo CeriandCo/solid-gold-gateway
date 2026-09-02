@@ -216,3 +216,433 @@ input {
   }
 }
 
+/* --- Restored typography utilities (fractional gold page) --- */
+@utility header-nav-type {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.0625rem;
+  }
+}
+
+@utility header-cta-type {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility hero-title {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-wrap: wrap;
+  white-space: normal;
+
+  @media (min-width: 48rem) {
+    font-size: 3.125rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 4.75rem;
+    line-height: 4.8125rem;
+  }
+}
+
+@utility hero-emphasis {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-style: italic;
+  font-weight: 600;
+  line-height: inherit;
+  letter-spacing: 0;
+}
+
+@utility hero-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0;
+
+  @media (min-width: 48rem) {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 1.3125rem;
+    line-height: 2.3125rem;
+  }
+}
+
+@utility hero-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 0.9375rem;
+  }
+}
+
+@utility hero-cta-type {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.04em;
+
+  @media (min-width: 64rem) {
+    font-size: 1.125rem;
+  }
+}
+
+@utility price-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.12em;
+}
+
+@utility price-value {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+@utility price-detail {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+@utility section-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.1875rem;
+    line-height: 2.125rem;
+  }
+}
+
+@utility step-number {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility step-title {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+
+  @media (min-width: 48rem) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 2.75rem;
+  }
+}
+
+@utility step-body {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.1875rem;
+    line-height: 2.125rem;
+  }
+}
+
+@utility comparison-left-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 2.5625rem;
+    line-height: 3.25rem;
+  }
+}
+
+@utility comparison-right-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 2.5rem;
+    line-height: 3.25rem;
+  }
+}
+
+@utility comparison-emphasis {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-style: italic;
+  font-weight: 600;
+  line-height: inherit;
+  letter-spacing: 0;
+}
+
+@utility comparison-left-list {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility comparison-right-list {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.1875rem;
+  }
+}
+
+@utility fees-faq-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+
+  @media (min-width: 64rem) {
+    font-size: 1.75rem;
+  }
+}
+
+@utility fee-intro {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.1875rem;
+  }
+}
+
+@utility fee-card-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility fee-card-value {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 0.9375rem;
+  }
+}
+
+@utility fee-footnote {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 0.875rem;
+  }
+}
+
+@utility faq-question {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.125rem;
+  }
+}
+
+@utility early-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 2.75rem;
+  }
+}
+
+@utility early-body {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1.1875rem;
+    line-height: 2.125rem;
+  }
+}
+
+@utility early-input {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility early-button {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility privacy-note {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 0.9375rem;
+  }
+}
+
+@utility footer-nav {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+@utility footer-legal {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.625rem;
+  letter-spacing: 0;
+
+  @media (min-width: 64rem) {
+    font-size: 0.875rem;
+  }
+}
+
+/* Scoped: restored fractional gold page keeps its source-commit typography */
+.fractional-legacy {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.fractional-legacy .eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  @media (min-width: 48rem) {
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+  }
+}
+
+.fractional-legacy .section-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+
+  @media (min-width: 48rem) {
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 2.75rem;
+    line-height: 3.4375rem;
+  }
+}
+
