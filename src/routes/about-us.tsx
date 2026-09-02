@@ -26,11 +26,6 @@ export const Route = createFileRoute("/about-us")({
   component: AboutPage,
 });
 
-const principles = [
-  { icon: UserRound, title: "Ownership first", copy: "Metal is allocated in your name — never pooled, never on our balance sheet." },
-  { icon: Eye, title: "Radical transparency", copy: "Clear fees, verifiable records, custody documentation you can actually read." },
-  { icon: ShieldCheck, title: "Protection by default", copy: "Insured US vaults, insured delivery, and redemption on your schedule." },
-] as const;
 
 function AboutPage() {
   return (
