@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Gift, HeartHandshake, Package, Sparkles } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
-import bandImage from "@/assets/band-gold.jpg";
+import giftingHeroImage from "@/assets/gifting-hero-product.jpg";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -37,34 +37,68 @@ function GiftingPage() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="bg-ivory">
-        <div className={cn(STD, "grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20")}>
-          <div>
-            <Eyebrow>Gifting</Eyebrow>
-            <GoldRule />
-            <h1
-              className="mt-5 font-display font-semibold text-charcoal"
-              style={{ fontSize: "clamp(36px, 4vw, 58px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
-            >
-              Give gold.
-              <br />
-              Give something that <em className="font-semibold italic text-gold">lasts.</em>
-            </h1>
-            <p className="mt-6 max-w-[480px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
-              Most gifts are forgotten. Gold isn’t. Send real, physical gold —
-              beautifully presented, fully insured, and entirely theirs.
-            </p>
-            <div className="mt-8">
-              <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
-                Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
-              </GoldButton>
+      <section className="relative isolate overflow-hidden bg-forest-deep text-warm-white lg:min-h-[560px]">
+        <img
+          src={giftingHeroImage}
+          alt="Emerald gift box with a gold bar, gold coin and satin ribbon"
+          width={1920}
+          height={1024}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center] max-lg:hidden"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(90deg,var(--forest-deep)_0%,color-mix(in_oklab,var(--forest-deep)_97%,transparent)_29%,color-mix(in_oklab,var(--forest-deep)_66%,transparent)_48%,transparent_69%),linear-gradient(0deg,color-mix(in_oklab,var(--forest-deep)_32%,transparent),transparent_45%)] max-lg:hidden"
+        />
+
+        <div className="relative mx-auto grid min-h-[560px] w-full max-w-[1440px] grid-cols-[44%_56%] lg:px-[60px] xl:px-[64px]">
+          <div className="flex items-center py-14 max-lg:col-span-2 max-lg:px-5 sm:max-lg:px-8 lg:py-16">
+            <div className="w-full max-w-[520px]">
+              <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.16em] text-gold-soft">
+                Give what lasts
+              </p>
+
+              <h1 className="mt-5 font-display text-[42px] font-medium leading-[0.98] tracking-[0] text-warm-white sm:text-[52px] lg:text-[58px] xl:text-[62px]">
+                <span className="block whitespace-nowrap">Meaningful gold</span>
+                <span className="mt-1 block whitespace-nowrap">for every milestone.</span>
+              </h1>
+
+              <div className="mt-5 flex w-[154px] items-center gap-2.5 text-gold" aria-hidden="true">
+                <span className="h-px flex-1 bg-gold/55" />
+                <svg viewBox="0 0 24 24" className="h-[17px] w-[17px] shrink-0" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="0.8" />
+                  <path d="M12 3.5 14.1 8l4.4 1.9-4.4 2.1L12 16.5 9.9 12l-4.4-2.1L9.9 8 12 3.5Z" stroke="currentColor" strokeWidth="0.8" />
+                  <circle cx="12" cy="10" r="2.2" stroke="currentColor" strokeWidth="0.8" />
+                </svg>
+                <span className="h-px flex-1 bg-gold/55" />
+              </div>
+
+              <p className="mt-5 max-w-[385px] font-sans text-[14px] font-normal leading-[1.58] text-warm-white/80 sm:text-[15px]">
+                SQOOT Pure gold gifts are real, secure, and made to be remembered. Perfect for weddings, new beginnings, achievements, and the people who matter most.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <GoldButton to="/precious-metal" className="h-[42px] min-w-[132px] bg-gold-soft px-6 text-[13px] font-semibold text-forest-deep hover:bg-gold">
+                  Explore Gifts
+                </GoldButton>
+                <GoldButton href="#gifting-process" className="h-[42px] min-w-[154px] border border-gold/65 bg-transparent px-6 text-[13px] font-medium text-warm-white hover:bg-gold/10">
+                  How Gifting Works
+                </GoldButton>
+              </div>
             </div>
           </div>
-          <img
-            src={bandImage}
-            alt="Gold gift presentation"
-            className="h-[280px] w-full rounded-[10px] object-cover sm:h-[380px]"
-          />
+
+          <div className="relative min-h-[360px] max-lg:col-span-2 lg:hidden">
+            <img
+              src={giftingHeroImage}
+              alt=""
+              width={1920}
+              height={1024}
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-[69%_center]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,var(--forest-deep)_0%,transparent_24%,transparent_82%,color-mix(in_oklab,var(--forest-deep)_28%,transparent)_100%)]" />
+          </div>
         </div>
       </section>
 
