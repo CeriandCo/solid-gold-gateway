@@ -62,13 +62,6 @@ export const siteNav = [
   ["Learn", "/learn"],
 ] as const;
 
-const headerNav = [
-  ["Buy Gold", "/precious-metal"],
-  ["Vault", "/vault"],
-  ["Gifting", "/gifting"],
-  ["Learn", "/learn"],
-  ["For Advisors", "/about-us"],
-] as const;
 
 export function GoldRule() {
   return <span className="mt-3 block h-px w-9 bg-gold" />;
