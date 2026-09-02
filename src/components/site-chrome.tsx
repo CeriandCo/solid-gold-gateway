@@ -62,6 +62,14 @@ export const siteNav = [
   ["Learn", "/learn"],
 ] as const;
 
+const headerNav = [
+  ["Buy Gold", "/precious-metal"],
+  ["Vault", "/vault"],
+  ["Gifting", "/gifting"],
+  ["Learn", "/learn"],
+  ["For Advisors", "/about-us"],
+] as const;
+
 export function GoldRule() {
   return <span className="mt-3 block h-px w-9 bg-gold" />;
 }
@@ -115,25 +123,18 @@ export function GoldButton({
  */
 export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isOverlay = variant === "overlay";
   return (
-    <div className={cn("relative", isOverlay ? "text-warm-white" : "bg-forest-deep text-warm-white")}>
-      {isOverlay && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20 bg-gradient-to-b from-forest-deep/75 via-forest-deep/45 to-transparent"
-        />
-      )}
-      <div className="relative z-10 mx-auto flex min-h-[72px] w-full max-w-[1340px] items-center justify-between gap-8 px-5 sm:px-8 lg:min-h-[90px] xl:px-0">
+    <div className="relative bg-forest-deep text-warm-white">
+      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 sm:px-8 lg:min-h-[112px] lg:px-[60px]">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-12 w-auto" />
+          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
         </Link>
-        <nav className="hidden flex-1 items-center justify-center gap-10 lg:flex" aria-label="Primary navigation">
-          {siteNav.map(([label, to]) => (
+        <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex xl:gap-[54px]" aria-label="Primary navigation">
+          {headerNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
-              className="whitespace-nowrap text-[0.8125rem] tracking-[0.015em] text-warm-white/85 transition-colors duration-300 hover:text-gold [&.active]:text-gold"
+              className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[14px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold [&.active]:text-gold [&.active]:after:w-[46px]"
             >
               {label}
             </Link>
@@ -141,11 +142,10 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         </nav>
         <div className="flex shrink-0 items-center gap-3">
           <a
-            href="#early-access"
-            className="group hidden items-center gap-2 rounded-[2px] bg-gold px-6 py-3 text-[0.8125rem] font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors duration-300 hover:bg-gold-dark lg:inline-flex"
+            href="#login"
+            className="hidden h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent font-sans text-[14px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex"
           >
-            Get Early Access
-            <ArrowRight size={15} strokeWidth={2.25} className="transition-transform duration-300 group-hover:translate-x-1" />
+            Log In
           </a>
           <button
             type="button"
@@ -168,16 +168,16 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           aria-label="Mobile navigation"
           className={cn(
             "border-t border-warm-white/10 lg:hidden",
-            variant === "solid" ? "bg-forest-deep" : "bg-forest-deep/80 backdrop-blur-sm",
+            variant === "solid" ? "bg-forest-deep" : "bg-forest-deep",
           )}
         >
           <ul className="mx-auto max-w-[1200px] px-6 py-2">
-            {siteNav.map(([label, to]) => (
+            {headerNav.map(([label, to]) => (
               <li key={label} className="border-b border-warm-white/10 last:border-b-0">
                 <Link
                   to={to}
                   onClick={() => setMenuOpen(false)}
-                  className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
+                  className="block py-4 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
                 >
                   {label}
                 </Link>
@@ -185,12 +185,11 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             ))}
             <li className="py-4">
               <a
-                href="#early-access"
+                href="#login"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-[2px] bg-gold px-6 py-3.5 text-[0.8125rem] font-semibold leading-none text-[#0B2015]"
+                className="inline-flex h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent text-sm font-medium leading-none text-gold"
               >
-                Get Early Access
-                <ArrowRight size={15} strokeWidth={2.25} />
+                Log In
               </a>
             </li>
           </ul>
