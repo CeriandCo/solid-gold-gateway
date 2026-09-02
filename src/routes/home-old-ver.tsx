@@ -4,7 +4,7 @@ import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader, WIDE } from
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/gold-bar-velvet-marble-branded.png";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/home-old-ver")({
   head: () => ({
     meta: [
       { title: "SQOOT Pure — Real Gold, Real Ownership" },
