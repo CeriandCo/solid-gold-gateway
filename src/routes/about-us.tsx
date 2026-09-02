@@ -4,7 +4,7 @@ import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter } from "@/components/sit
 import { AboutUsHeader } from "@/components/about-us-header";
 import { cn } from "@/lib/utils";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
-import aboutHeroGoldBar from "@/assets/about-hero-gold-bar.png.asset.json";
+import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
   head: () => ({
@@ -67,9 +67,9 @@ function AboutPage() {
             <img
               src={aboutHeroGoldBar.url}
               alt="SQOOT Pure gold bar"
-              width={480}
-              height={480}
-              className="w-full max-w-[420px] lg:max-w-[480px] h-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.6)]"
+              width={390}
+              height={780}
+              className="w-full max-w-[340px] lg:max-w-[390px] h-auto object-contain mx-auto lg:ml-auto lg:mr-0 drop-shadow-[0_25px_35px_rgba(0,0,0,0.7)]"
             />
           </div>
         </div>
