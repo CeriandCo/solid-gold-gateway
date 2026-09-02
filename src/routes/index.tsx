@@ -41,13 +41,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const nav = [
-  { label: "Buy Gold", to: "/precious-metal" },
-  { label: "Vault", to: "/vault" },
-  { label: "Fractional", to: "/fractional-gold" },
-  { label: "Learn", to: "/learn" },
-] as const;
-
 const paths = [
   {
     n: "01",
