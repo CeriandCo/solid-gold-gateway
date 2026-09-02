@@ -176,7 +176,7 @@ function Index() {
               <h1 className="mt-6 font-display font-medium text-charcoal">
                 <span
                   className="block"
-                  style={{ fontSize: "clamp(38px, 4.3vw, 68px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
+                  style={{ fontSize: "clamp(36px, 3.55vw, 60px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
                 >
                   Your gold.
                   <br />
@@ -184,7 +184,7 @@ function Index() {
                 </span>
                 <span
                   className="mt-2 block"
-                  style={{ fontSize: "clamp(31px, 3.4vw, 52px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
+                  style={{ fontSize: "clamp(29px, 2.85vw, 48px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
                 >
                   Real, insured, and
                   <br />
@@ -193,7 +193,7 @@ function Index() {
                   whenever you choose.
                 </span>
               </h1>
-              <p className="mt-[34px] max-w-[520px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
+              <p className=mt-[34px] max-w-[560px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
                 <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
                 <br className="hidden lg:block" /> A specific holding you can verify and reach.
