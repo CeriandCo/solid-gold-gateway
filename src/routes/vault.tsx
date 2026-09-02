@@ -161,32 +161,36 @@ function Index() {
 
       {/* Hero — full-bleed cinematic split */}
       <section id="vault" className="bg-ivory">
-        <div className="hero-split grid w-full grid-cols-1 lg:grid-cols-[45%_55%]">
+        <div className="hero-split grid w-full grid-cols-1 lg:grid-cols-[minmax(0,50fr)_minmax(0,50fr)] xl:grid-cols-[minmax(0,54fr)_minmax(0,46fr)]">
           {/* Content panel — first on mobile, second column on desktop */}
-          <div className="order-1 flex items-center bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
+          <div className="relative order-1 flex items-center justify-center overflow-hidden bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
+            <img
+              src={mandalaImage}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute right-[-84px] top-1/2 z-0 hidden h-[280px] w-[280px] -translate-y-1/2 object-contain opacity-[0.04] lg:block"
+            />
             <div
-              className="w-full max-w-[780px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-[clamp(64px,5vw,96px)] lg:py-[clamp(56px,5vw,72px)]"
+              className="relative z-10 w-full max-w-[680px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-14 lg:py-[clamp(56px,5vw,72px)] 2xl:px-16"
             >
               <Eyebrow>Vaulted Gold</Eyebrow>
               <GoldRule />
-              <h1 className="mt-6 font-display font-medium text-charcoal">
+              <h1 className="mt-6 max-w-[660px] text-balance font-display font-medium text-charcoal">
                 <span
-                  className="block"
+                  className="block text-balance"
                   style={{ fontSize: "clamp(36px, 3.55vw, 60px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
                 >
-                  Your gold.
-                  <br />
-                  Held in your name.
+                  <span className="block">Your gold.</span>
+                  <span className="block">Held in your name.</span>
                 </span>
                 <span
-                  className="mt-2 block"
+                  className="mt-2 block text-balance"
                   style={{ fontSize: "clamp(29px, 2.85vw, 48px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
                 >
-                  Real, insured, and
-                  <br />
-                  <em className="font-medium italic text-gold">yours</em> to redeem
-                  <br />
-                  whenever you choose.
+                  <span className="block xl:whitespace-nowrap">
+                    Real, insured, and <em className="font-medium italic text-gold">yours</em>
+                  </span>
+                  <span className="block xl:whitespace-nowrap">to redeem whenever you choose.</span>
                 </span>
               </h1>
               <p className="mt-[34px] max-w-[620px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
@@ -194,7 +198,7 @@ function Index() {
                 <br className="hidden xl:block" /> allocated to you individually. Not a promise on a screen.
                 <br className="hidden xl:block" /> A specific holding you can verify and reach.
               </p>
-              <div className="mt-[36px] flex flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
+              <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
                   href="#early-access"
                   className="group h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold"
