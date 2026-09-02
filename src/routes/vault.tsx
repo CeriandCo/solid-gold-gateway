@@ -767,30 +767,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="about" className="border-t border-white/10 bg-forest py-8 text-[#F8F5F1] lg:py-0">
-        <div className={cn(STD, "grid items-center gap-6 lg:h-[122px] lg:grid-cols-[auto_1fr_auto]")}>
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px]" />
-          <nav className="flex flex-wrap gap-x-8 gap-y-3 lg:justify-center" aria-label="Footer navigation">
-            {nav.map(([label, href]) => (
-              <a key={label} href={href} className="text-[13px] font-medium leading-none hover:text-gold-soft">
-                {label}
-              </a>
-            ))}
-          </nav>
-          <div className="text-[13px] leading-[1.6] lg:text-right">
-            <p>© 2024 Fortress Gold Inc. All rights reserved.</p>
-            <p className="mt-1.5 flex gap-6 lg:justify-end">
-              <a href="#privacy" className="text-gold-soft hover:underline">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="text-gold-soft hover:underline">
-                Terms of Service
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
