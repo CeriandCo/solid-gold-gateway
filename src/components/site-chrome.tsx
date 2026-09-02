@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
