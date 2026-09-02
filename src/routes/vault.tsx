@@ -161,7 +161,7 @@ function Index() {
 
       {/* Hero */}
       <section id="vault" className="bg-ivory pb-24 pt-16 sm:pb-28 lg:pb-[112px] lg:pt-[68px]">
-        <div className={cn(WIDE, "sm:px-8 lg:max-w-[1400px] lg:px-10 xl:px-10")}>
+        <div className={cn(WIDE, "px-8 lg:max-w-[1400px] lg:px-10 xl:px-10")}>
           <div className="grid items-center gap-10 md:grid-cols-[46%_1fr] md:gap-12 lg:min-h-[660px] lg:grid-cols-[44%_1fr] lg:gap-[88px]">
             <div className="overflow-hidden rounded-[2px] lg:h-[660px]">
               <img
