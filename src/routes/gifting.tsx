@@ -153,12 +153,6 @@ function GiftingPage() {
         <div className="relative mx-auto grid min-h-[560px] w-full max-w-[1440px] grid-cols-[44%_56%] lg:px-[60px] xl:px-[64px]">
           <div className="flex items-start pt-8 pb-14 max-lg:col-span-2 max-lg:px-5 sm:max-lg:px-8 lg:pt-10 lg:pb-16">
             <div className="w-full max-w-[520px]">
-              <nav aria-label="Breadcrumb" className="mb-12 flex items-center gap-3 font-sans text-[12px] font-medium text-warm-white/70">
-                <Link to="/" className="transition-colors hover:text-gold-soft">Home</Link>
-                <span aria-hidden="true" className="text-gold-soft/70">›</span>
-                <span aria-current="page" className="text-warm-white/85">Gifting</span>
-              </nav>
-
               <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.16em] text-gold-soft">
                 Give what lasts
               </p>
