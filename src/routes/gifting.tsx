@@ -366,6 +366,83 @@ function GiftingPage() {
         </div>
       </section>
 
+      {/* How Gifting Works */}
+      <section className="bg-[#FAF7F2]">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <span className="mb-4 block text-center font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#57534E] md:text-sm">
+            HOW GIFTING WORKS
+          </span>
+          <h2 className="mb-16 text-center font-serif text-4xl text-[#1C1917] md:text-5xl">
+            Simple steps. Lasting impact.
+          </h2>
+
+          <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 before:-z-10 before:hidden before:absolute before:top-[44px] before:left-[12.5%] before:w-[75%] before:border-t before:border-dashed before:border-[#D8CCB2] lg:before:block">
+            {[
+              {
+                title: "Choose Your Gift",
+                description: "Select the gold weight and add a personal message.",
+                icon: (
+                  <svg viewBox="0 0 24 24" className="h-9 w-9" aria-hidden="true">
+                    <rect x="5" y="9" width="14" height="11" rx="1" />
+                    <path d="M5 9h14V7a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v2z" />
+                    <path d="M12 6V4M8 9c0-2.2 1.8-4 4-4s4 1.8 4 4" />
+                    <path d="M12 9v11" />
+                    <path d="M8 9v11M16 9v11" />
+                  </svg>
+                ),
+              },
+              {
+                title: "We Deliver Securely",
+                description: "We'll notify your recipient and deliver your gift digitally or physically.",
+                icon: (
+                  <svg viewBox="0 0 24 24" className="h-9 w-9" aria-hidden="true">
+                    <rect x="7" y="8" width="10" height="8" rx="1" />
+                    <path d="M7 10l5 3 5-3" />
+                    <path d="M4 11h2M3 9h3M4 13h2" />
+                    <path d="M17 11h3" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Safely Vaulted",
+                description: "Their gold is securely stored in insured U.S. vaults under their name.",
+                icon: (
+                  <svg viewBox="0 0 24 24" className="h-9 w-9" aria-hidden="true">
+                    <path d="M4 20h16" />
+                    <path d="M5 20V12h3v8M11 20V12h2v8M16 20V12h3v8" />
+                    <path d="M3 12l9-8 9 8" />
+                  </svg>
+                ),
+              },
+              {
+                title: "They Redeem Anytime",
+                description: "Your loved one can sell or take delivery of their gold anytime.",
+                icon: (
+                  <svg viewBox="0 0 24 24" className="h-9 w-9" aria-hidden="true">
+                    <ellipse cx="10" cy="15" rx="4" ry="5" transform="rotate(-25 10 15)" />
+                    <ellipse cx="14" cy="15" rx="4" ry="5" transform="rotate(25 14 15)" />
+                    <path d="M12 6c-1.4 0-2.5 1.1-2.5 2.5S10.6 11 12 11s2.5-1.1 2.5-2.5S13.4 6 12 6z" />
+                  </svg>
+                ),
+              },
+            ].map(({ title, description, icon }, index) => (
+              <div key={title} className="relative z-10 flex flex-col items-center text-center">
+                <div className="relative mb-6 inline-flex h-[88px] w-[88px] items-center justify-center rounded-full border border-[#D8CCB2]/80 bg-[#FAF7F2]">
+                  <span className="absolute -top-2 -left-2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-[#15241C] text-xs font-bold text-white shadow-sm">
+                    {index + 1}
+                  </span>
+                  <span className="stroke-[#3A352F] stroke-[1.25] fill-none stroke-linecap-round stroke-linejoin-round">
+                    {icon}
+                  </span>
+                </div>
+                <h3 className="mb-2 font-sans text-base font-semibold text-[#1C1917]">{title}</h3>
+                <p className="max-w-[220px] font-sans text-sm leading-relaxed text-[#57534E]">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Occasions */}
       <section className="bg-background py-14 lg:py-20">
         <div className={STD}>
