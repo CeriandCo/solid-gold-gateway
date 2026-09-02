@@ -55,12 +55,18 @@ const steps = [
 ] as const;
 
 const faqs = [
-  ["What is fractional gold?", "Fractional gold lets you own a precise portion of real physical gold without purchasing a whole bar."],
-  ["Is my gold really allocated to me?", "Yes. Your purchased gold is allocated to you and recorded as part of your personal holding."],
-  ["How is my gold stored and insured?", "Gold is held in secure U.S. vaults with professional custody and insurance."],
-  ["Can I redeem physical gold?", "Eligible holdings can be redeemed for physical gold, subject to the applicable minimums and fees."],
-  ["How do I buy or sell my gold?", "Buy or sell from your account using transparent current pricing."],
-  ["What are the fees?", "SQOOT Pure uses straightforward allocation and storage fees shown before you confirm a transaction."],
+  [
+    "What are the fees?",
+    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Allocation fee: 3.00% of the amount allocated ($3 per $100). This is charged when you purchase and allocate gold to your account. Annual storage fee: 0.35% of the value of your allocated gold per year. Insurance: 0.45% of the value of your allocated gold per year, covering your gold while it is held in secure storage. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
+  ],
+  [
+    "Do I pay a fee when I sell my gold?",
+    "Yes. The $3 per $100 transaction fee applies whether you're buying or selling. There's no separate sell-only or hidden spread."
+  ],
+  [
+    "Are there additional fees if I redeem physical gold?",
+    "Fractional holdings redeem to cash first. If you then want a physical coin, that's a separate purchase, subject to the coin's current price, product premium, shipping, insurance, and any applicable taxes, all shown before you confirm."
+  ],
 ] as const;
 
 function Mandala({ className }: { className?: string }) {
