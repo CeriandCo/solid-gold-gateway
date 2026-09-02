@@ -1,17 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ArrowRight,
   CreditCard,
   Gift,
-  HeartHandshake,
   Landmark,
-  Package,
   ShieldCheck,
   Smartphone,
-  Sparkles,
 } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { cn } from "@/lib/utils";
+import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
 import giftingPackagedImage from "@/assets/gifting-phone-gold-bar.png.asset.json";
@@ -37,11 +32,6 @@ export const Route = createFileRoute("/gifting")({
   component: GiftingPage,
 });
 
-const occasions = [
-  { icon: Gift, title: "Milestones", copy: "Weddings, graduations, anniversaries — mark them with something permanent." },
-  { icon: Sparkles, title: "New beginnings", copy: "A first piece of gold for a child, a grandchild, a new chapter." },
-  { icon: HeartHandshake, title: "Thank you", copy: "A gift with substance, for the people who deserve more than a gesture." },
-] as const;
 
 const occasionIcons: { label: string; paths: React.ReactNode }[] = [
   {
