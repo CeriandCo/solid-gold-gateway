@@ -1,5 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CreditCard, Gift, HeartHandshake, Landmark, Package, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Baby,
+  Cake,
+  CreditCard,
+  Gift,
+  GraduationCap,
+  Heart,
+  HeartHandshake,
+  Home,
+  Landmark,
+  Package,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  SunMedium,
+  Trophy,
+} from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
