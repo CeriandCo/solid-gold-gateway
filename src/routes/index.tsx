@@ -201,10 +201,6 @@ function Index() {
               <AppStoreBadge store="apple" />
               <AppStoreBadge store="google" />
             </div>
-            <div className="hidden h-6 w-px bg-warm-white/15 lg:block" />
-            <button className="rounded-sm border border-gold/60 px-5 py-2 text-[0.8rem] text-gold transition-colors hover:bg-gold hover:text-forest-deep">
-              Log In
-            </button>
             <button
               type="button"
               aria-label="Toggle navigation menu"
