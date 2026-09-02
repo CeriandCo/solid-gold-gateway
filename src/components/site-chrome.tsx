@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
@@ -183,11 +183,15 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
                 </Link>
               </li>
             ))}
-            <li className="border-b border-warm-white/10 py-4">
-              <div className="flex flex-wrap gap-2">
-                <AppStoreBadge store="apple" />
-                <AppStoreBadge store="google" />
-              </div>
+            <li className="py-4">
+              <a
+                href="#early-access"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-[2px] bg-gold px-6 py-3.5 text-[0.8125rem] font-semibold leading-none text-[#0B2015]"
+              >
+                Get Early Access
+                <ArrowRight size={15} strokeWidth={2.25} />
+              </a>
             </li>
           </ul>
         </nav>
