@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
+import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,6 +75,10 @@ function Mandala({ className }: { className?: string }) {
   );
 }
 
+function OfficialMandala({ className }: { className?: string }) {
+  return <img src={sqootPureMandala.url} alt="" aria-hidden="true" className={cn("object-contain", className)} />;
+}
+
 function USFlag({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 36 24" aria-hidden="true" className={className}>
@@ -93,7 +98,7 @@ function USFlag({ className }: { className?: string }) {
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="SQOOT Pure home">
-      <Mandala className={cn("text-gold", compact ? "h-10 w-10" : "h-12 w-12")} />
+      <OfficialMandala className={compact ? "h-10 w-10" : "h-12 w-12"} />
       <span className="leading-none">
         <span className="block font-display text-[1.7rem] font-semibold leading-none text-forest-deep">SQOOT</span>
         <span className="mt-1 block text-[0.625rem] font-medium tracking-[0.14em] text-gold">PURE</span>
@@ -235,7 +240,7 @@ function Index() {
         </svg>
         <div className="bg-forest text-background">
           <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 py-10 sm:px-7 lg:min-h-[224px] lg:grid-cols-[1fr_1.35fr] lg:px-10 lg:py-0">
-            <div className="flex items-center gap-6"><Mandala className="h-20 w-20 shrink-0 text-gold lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
+            <div className="flex items-center gap-6"><OfficialMandala className="h-20 w-20 shrink-0 lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
             <form onSubmit={submitWaitlist} noValidate>
               <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold lg:h-[67px]" aria-invalid={formState === "error"} aria-describedby="email-status" /><PrimaryButton type="submit" className="early-button min-h-14 bg-gold px-9 text-background hover:bg-gold-dark lg:h-[67px] lg:w-[253px]">Get Early Access</PrimaryButton></div>
               <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={18} className="shrink-0 text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
