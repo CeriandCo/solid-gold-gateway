@@ -7,12 +7,12 @@ import {
   CircleDollarSign,
   FileCheck2,
   LockKeyhole,
-  Menu,
   ShieldCheck,
   UserRound,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
