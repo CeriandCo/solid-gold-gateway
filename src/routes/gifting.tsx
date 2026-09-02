@@ -41,6 +41,92 @@ const occasions = [
   { icon: HeartHandshake, title: "Thank you", copy: "A gift with substance, for the people who deserve more than a gesture." },
 ] as const;
 
+const occasionIcons: { label: string; paths: JSX.Element }[] = [
+  {
+    label: "Weddings",
+    paths: (
+      <>
+        <circle cx="13" cy="19" r="7" />
+        <circle cx="19" cy="19" r="7" />
+        <path d="M16 10.4c-1.1-1.9-4-1.3-4 .9 0 1.6 2.4 3.1 4 4.2 1.6-1.1 4-2.6 4-4.2 0-2.2-2.9-2.8-4-.9z" />
+      </>
+    ),
+  },
+  {
+    label: "Anniversaries",
+    paths: (
+      <>
+        <path d="M16 27s-10-6.3-10-13a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 26 14c0 6.7-10 13-10 13z" />
+        <path d="M16 12.5v9M16 14.5l-4 3M16 14.5l4 3M16 18l-3.4 2.6M16 18l3.4 2.6" />
+      </>
+    ),
+  },
+  {
+    label: "New Arrivals",
+    paths: (
+      <>
+        <path d="M11 8h10M16 8v3" />
+        <path d="M14.4 6.6c-1.4-1.1-3.4-.2-3.4 1.4M17.6 6.6c1.4-1.1 3.4-.2 3.4 1.4" />
+        <path d="M12 11h8a7 7 0 0 1 7 7 8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8 7 7 0 0 1 7-7z" />
+        <circle cx="16" cy="18.5" r="3" />
+      </>
+    ),
+  },
+  {
+    label: "Birthdays",
+    paths: (
+      <>
+        <path d="M12 8.5V6M16 8.5V5.5M20 8.5V6" />
+        <path d="M11 12h10v4H11zM9 16h14v5H9z" />
+        <path d="M16 21v3M11 27h10M13.5 27c0-1.6 1.1-3 2.5-3s2.5 1.4 2.5 3" />
+      </>
+    ),
+  },
+  {
+    label: "Graduations",
+    paths: (
+      <>
+        <path d="M16 7 3.5 12.5 16 18l12.5-5.5L16 7z" />
+        <path d="M8 15.2V21c0 2.2 3.6 4 8 4s8-1.8 8-4v-5.8" />
+        <path d="M27 13v6.5" />
+        <circle cx="27" cy="21" r="1.4" />
+      </>
+    ),
+  },
+  {
+    label: "Festivals",
+    paths: (
+      <>
+        <circle cx="16" cy="16" r="5" />
+        <path d="M16 3.5v4M16 24.5v4M3.5 16h4M24.5 16h4M7.2 7.2l2.8 2.8M22 22l2.8 2.8M24.8 7.2 22 10M10 22l-2.8 2.8" />
+        <path d="M16 8.4c1.6 0 2.6 1.1 2.6 2.2M16 23.6c-1.6 0-2.6-1.1-2.6-2.2" />
+      </>
+    ),
+  },
+  {
+    label: "Achievements",
+    paths: (
+      <>
+        <path d="M11 5h10v7a5 5 0 0 1-10 0V5z" />
+        <path d="M11 7H7.5v2A4.5 4.5 0 0 0 12 13.5M21 7h3.5v2a4.5 4.5 0 0 1-4.5 4.5" />
+        <path d="M16 17v4M12.5 21h7M10.5 24.5h11M9.5 27.5h13" />
+      </>
+    ),
+  },
+  {
+    label: "Housewarmings",
+    paths: (
+      <>
+        <path d="M4.5 15 16 5.5 27.5 15" />
+        <path d="M7.5 13v13h17V13" />
+        <path d="M21 8.2V5.5h3v5.2" />
+        <path d="M13 26v-7h6v7" />
+      </>
+    ),
+  },
+];
+
+
 function GiftingPage() {
   return (
     <main id="top" className="bg-background text-charcoal">
