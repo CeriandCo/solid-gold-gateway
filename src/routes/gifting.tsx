@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Gift, HeartHandshake, Package, Sparkles } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
-import giftingHeroImage from "@/assets/gifting-hero-product.jpg";
+import giftingHeroImage from "@/assets/gifting-hero-product-refined.jpg";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -44,7 +44,7 @@ function GiftingPage() {
           width={1920}
           height={1024}
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover object-[68%_center] max-lg:hidden"
+          className="absolute bottom-0 right-0 h-[92%] w-[92%] object-contain object-right-bottom max-lg:hidden"
         />
         <div
           aria-hidden="true"
