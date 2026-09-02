@@ -7,12 +7,12 @@ import {
   CircleDollarSign,
   FileCheck2,
   LockKeyhole,
-  Menu,
   ShieldCheck,
   UserRound,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
@@ -116,7 +116,6 @@ function PrimaryButton({ children, className = "", type = "button", disabled = f
 }
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState("");
@@ -131,24 +130,7 @@ function Index() {
 
   return (
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
-      <header className="relative z-30 bg-background">
-        <div className="mx-auto grid h-[88px] max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-7 lg:flex lg:px-14">
-          <Brand />
-          <nav className="ml-auto hidden items-center gap-9 lg:flex" aria-label="Primary navigation">
-            {nav.map(([label, href]) => <a key={label} href={href} className="header-nav-type text-charcoal transition-colors hover:text-gold">{label}</a>)}
-          </nav>
-          <a href="#early-access" className="header-cta-type ml-4 hidden min-h-12 items-center rounded-sm bg-forest px-7 text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold lg:inline-flex">Get Early Access</a>
-          <button type="button" className="grid h-11 w-11 place-items-center rounded-sm border border-beige text-forest lg:hidden" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Toggle navigation menu">
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-        {menuOpen && (
-          <nav aria-label="Mobile navigation" className="absolute inset-x-0 top-[88px] border-t border-beige bg-background px-5 py-4 shadow-sm lg:hidden">
-            {nav.map(([label, href]) => <a key={label} href={href} onClick={() => setMenuOpen(false)} className="header-nav-type block border-b border-beige py-3 text-charcoal">{label}</a>)}
-            <a href="#early-access" onClick={() => setMenuOpen(false)} className="header-cta-type mt-4 flex min-h-12 items-center justify-center rounded-sm bg-forest px-6 text-gold">Get Early Access</a>
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       <section id="why-gold" className="relative min-h-[560px] bg-ivory">
         <img src={goldBarVelvetMarbleBranded} alt="SQOOT Pure 1kg gold bar with branded mandala on dark green velvet and marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
