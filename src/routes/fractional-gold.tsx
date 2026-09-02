@@ -18,7 +18,7 @@ import goldBarImage from "@/assets/hero-gold.jpg";
 import fractionalImage from "@/assets/path-fractional.jpg";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
     meta: [
       { title: "Fractional Gold Allocation | SQOOT Pure" },
