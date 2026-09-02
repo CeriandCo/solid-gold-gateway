@@ -117,7 +117,7 @@ export function GoldButton({
 export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="relative bg-forest-deep text-warm-white">
+    <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
       <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 sm:px-8 lg:min-h-[112px] lg:px-[60px]">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
           <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
