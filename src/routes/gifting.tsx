@@ -289,10 +289,9 @@ function GiftingPage() {
       </section>
 
       {/* Legacy / A Gift That Grows */}
-      <section className="bg-[#EAE4D8] py-12 lg:py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-          {/* Left Column */}
-          <div className="lg:pr-12">
+      <section className="relative bg-[#EAE4D8]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="w-full py-16 lg:mr-auto lg:w-1/2 lg:py-24 lg:pr-12">
             <span className="mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#57534E] md:text-sm">
               A GIFT THAT GROWS
             </span>
@@ -304,7 +303,7 @@ function GiftingPage() {
               <span className="h-[1px] flex-1 bg-[#D8CCB2]" />
               <svg
                 viewBox="0 0 24 24"
-                className="h-5 w-5 shrink-0 fill-current text-[#B89758] mx-2 md:h-6 md:w-6"
+                className="mx-2 h-5 w-5 shrink-0 fill-current text-[#B89758] md:h-6 md:w-6"
                 aria-hidden="true"
               >
                 <circle cx="12" cy="12" r="1.6" />
@@ -353,18 +352,17 @@ function GiftingPage() {
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Right Column */}
-          <div>
-            <img
-              src={giftingLegacyImage}
-              alt="Luxurious gold bar and presentation card in a dark green velvet box"
-              width={1200}
-              height={1000}
-              loading="lazy"
-              className="aspect-[4/3] h-auto max-h-[460px] w-full rounded-xl object-cover shadow-lg lg:aspect-[6/5]"
-            />
-          </div>
+        <div className="h-96 sm:h-[400px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2">
+          <img
+            src={giftingLegacyImage}
+            alt="Luxurious gold bar and presentation card in a dark green velvet box"
+            width={1200}
+            height={1000}
+            loading="lazy"
+            className="h-full w-full rounded-none object-cover shadow-none"
+          />
         </div>
       </section>
 
