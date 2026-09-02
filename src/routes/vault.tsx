@@ -12,7 +12,6 @@ import {
   FileText,
   Home,
   LockKeyhole,
-  Menu,
   Package,
   Play,
   ShieldCheck,
@@ -20,12 +19,11 @@ import {
   Umbrella,
   UserRound,
   Warehouse,
-  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import vaultDoor from "@/assets/vault-door-hero.png.asset.json";
 import laptopImage from "@/assets/walkthrough-laptop.jpg";
-import logoImage from "@/assets/sqoot-pure-logo.png";
 import mandalaImage from "@/assets/sqoot-mandala.png";
 
 export const Route = createFileRoute("/vault")({
@@ -146,7 +144,6 @@ function TexasMap() {
 }
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [tab, setTab] = useState<"delivered" | "stored">("delivered");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState("");
