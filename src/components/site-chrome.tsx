@@ -54,12 +54,8 @@ export const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
 export const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
 
 export const siteNav = [
-  ["Home", "/"],
-  ["Precious Metal", "/precious-metal"],
   ["Fractional Gold", "/fractional-gold"],
   ["Vault", "/vault"],
-  ["Gifting", "/gifting"],
-  ["About Us", "/about-us"],
   ["Learn", "/learn"],
 ] as const;
 
