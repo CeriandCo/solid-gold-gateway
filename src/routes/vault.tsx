@@ -161,7 +161,7 @@ function Index() {
 
       {/* Hero — full-bleed cinematic split */}
       <section id="vault" className="bg-ivory">
-        <div className="grid w-full grid-cols-1 lg:grid-cols-[45%_55%] lg:min-h-[clamp(640px,calc(100svh-86px),760px)]">
+        <div className="hero-split grid w-full grid-cols-1 lg:grid-cols-[45%_55%]">
           {/* Content panel — first on mobile, second column on desktop */}
           <div className="order-1 flex items-center bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
             <div

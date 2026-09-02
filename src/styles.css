@@ -646,3 +646,18 @@ input {
   }
 }
 
+
+@keyframes vault-settle {
+  from { transform: scale(1.02); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-vault-settle {
+  animation: vault-settle 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 1024px) {
+  .hero-split {
+    min-height: clamp(640px, calc(100svh - 86px), 760px);
+  }
+}
