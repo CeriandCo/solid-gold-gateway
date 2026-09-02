@@ -304,7 +304,7 @@ function GiftingPage() {
               <span className="h-[1px] flex-1 bg-[#D8CCB2]" />
               <svg
                 viewBox="0 0 24 24"
-                className="h-3 w-3 fill-current text-[#B89758]"
+                className="h-5 w-5 shrink-0 fill-current text-[#B89758] mx-2 md:h-6 md:w-6"
                 aria-hidden="true"
               >
                 <circle cx="12" cy="12" r="1.6" />
