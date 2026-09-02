@@ -124,26 +124,29 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20 bg-gradient-to-b from-forest-deep/75 via-forest-deep/45 to-transparent"
         />
       )}
-      <div className="relative z-10 mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
+      <div className="relative z-10 mx-auto flex min-h-[72px] w-full max-w-[1340px] items-center justify-between gap-8 px-5 sm:px-8 lg:min-h-[90px] xl:px-0">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
           <img src={logoImage} alt="SQOOT Pure" className="h-12 w-auto" />
         </Link>
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden flex-1 items-center justify-center gap-10 lg:flex" aria-label="Primary navigation">
           {siteNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
-              className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
+              className="whitespace-nowrap text-[0.8125rem] tracking-[0.015em] text-warm-white/85 transition-colors duration-300 hover:text-gold [&.active]:text-gold"
             >
               {label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <div className="hidden items-center gap-2 lg:flex">
-            <AppStoreBadge store="apple" />
-            <AppStoreBadge store="google" />
-          </div>
+        <div className="flex shrink-0 items-center gap-3">
+          <a
+            href="#early-access"
+            className="group hidden items-center gap-2 rounded-[2px] bg-gold px-6 py-3 text-[0.8125rem] font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors duration-300 hover:bg-gold-dark lg:inline-flex"
+          >
+            Get Early Access
+            <ArrowRight size={15} strokeWidth={2.25} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
           <button
             type="button"
             aria-label="Toggle navigation menu"
