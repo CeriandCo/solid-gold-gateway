@@ -46,9 +46,9 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Weddings",
     paths: (
       <>
-        <circle cx="13" cy="19" r="7" />
-        <circle cx="19" cy="19" r="7" />
-        <path d="M16 10.4c-1.1-1.9-4-1.3-4 .9 0 1.6 2.4 3.1 4 4.2 1.6-1.1 4-2.6 4-4.2 0-2.2-2.9-2.8-4-.9z" />
+        <circle cx="12.5" cy="19" r="6.5" />
+        <circle cx="19.5" cy="19" r="6.5" />
+        <path d="M16 9.7c-1.1-1.8-3.8-1.2-3.8.9 0 1.5 2.3 2.9 3.8 4 1.5-1.1 3.8-2.5 3.8-4 0-2.1-2.7-2.7-3.8-.9z" />
       </>
     ),
   },
@@ -57,7 +57,7 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     paths: (
       <>
         <path d="M16 27s-10-6.3-10-13a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 26 14c0 6.7-10 13-10 13z" />
-        <path d="M16 12.5v9M16 14.5l-4 3M16 14.5l4 3M16 18l-3.4 2.6M16 18l3.4 2.6" />
+        <path d="M10.5 16h3l1.5-3.2 2.2 6.2 1.5-3h2.8" />
       </>
     ),
   },
@@ -65,10 +65,9 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "New Arrivals",
     paths: (
       <>
-        <path d="M11 8h10M16 8v3" />
-        <path d="M14.4 6.6c-1.4-1.1-3.4-.2-3.4 1.4M17.6 6.6c1.4-1.1 3.4-.2 3.4 1.4" />
-        <path d="M12 11h8a7 7 0 0 1 7 7 8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8 7 7 0 0 1 7-7z" />
-        <circle cx="16" cy="18.5" r="3" />
+        <path d="M12.5 9.5c-2-2.2-4.5-.7-3.6 1.3M19.5 9.5c2-2.2 4.5-.7 3.6 1.3" />
+        <path d="M11.5 10.5h9A5.5 5.5 0 0 1 16 16a5.5 5.5 0 0 1-4.5-5.5z" />
+        <path d="M11.5 12.8C7.8 14.1 6 17 6.8 20.1 7.8 24 11.3 26 16 26s8.2-2 9.2-5.9c.8-3.1-1-6-4.7-7.3" />
       </>
     ),
   },
@@ -76,9 +75,12 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Birthdays",
     paths: (
       <>
-        <path d="M12 8.5V6M16 8.5V5.5M20 8.5V6" />
-        <path d="M11 12h10v4H11zM9 16h14v5H9z" />
-        <path d="M16 21v3M11 27h10M13.5 27c0-1.6 1.1-3 2.5-3s2.5 1.4 2.5 3" />
+        <path d="M12 10V7M16 10V7M20 10V7" />
+        <circle cx="12" cy="5.5" r=".7" />
+        <circle cx="16" cy="5.5" r=".7" />
+        <circle cx="20" cy="5.5" r=".7" />
+        <rect x="11" y="10" width="10" height="5.5" />
+        <rect x="8" y="15.5" width="16" height="8" />
       </>
     ),
   },
@@ -86,10 +88,10 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Graduations",
     paths: (
       <>
-        <path d="M16 7 3.5 12.5 16 18l12.5-5.5L16 7z" />
-        <path d="M8 15.2V21c0 2.2 3.6 4 8 4s8-1.8 8-4v-5.8" />
-        <path d="M27 13v6.5" />
-        <circle cx="27" cy="21" r="1.4" />
+        <path d="M16 6.5 4 12l12 5.5L28 12 16 6.5z" />
+        <path d="M9 15v5.5c3.8 2.8 10.2 2.8 14 0V15" />
+        <path d="M16 12h10v7" />
+        <circle cx="26" cy="20.5" r="1.2" />
       </>
     ),
   },
@@ -97,9 +99,9 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Festivals",
     paths: (
       <>
-        <circle cx="16" cy="16" r="5" />
-        <path d="M16 3.5v4M16 24.5v4M3.5 16h4M24.5 16h4M7.2 7.2l2.8 2.8M22 22l2.8 2.8M24.8 7.2 22 10M10 22l-2.8 2.8" />
-        <path d="M16 8.4c1.6 0 2.6 1.1 2.6 2.2M16 23.6c-1.6 0-2.6-1.1-2.6-2.2" />
+        <circle cx="16" cy="16" r="4.5" />
+        <path d="M16 3v5M16 24v5M3 16h5M24 16h5M6.8 6.8l3.6 3.6M21.6 21.6l3.6 3.6M25.2 6.8l-3.6 3.6M10.4 21.6l-3.6 3.6" />
+        <path d="M11.2 5.8 12 9l-2.8-1.7M20.8 26.2 20 23l2.8 1.7M26.2 11.2 23 12l1.7-2.8M5.8 20.8 9 20l-1.7 2.8" />
       </>
     ),
   },
@@ -108,8 +110,8 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     paths: (
       <>
         <path d="M11 5h10v7a5 5 0 0 1-10 0V5z" />
-        <path d="M11 7H7.5v2A4.5 4.5 0 0 0 12 13.5M21 7h3.5v2a4.5 4.5 0 0 1-4.5 4.5" />
-        <path d="M16 17v4M12.5 21h7M10.5 24.5h11M9.5 27.5h13" />
+        <path d="M11 7H7v2a5 5 0 0 0 5 5M21 7h4v2a5 5 0 0 1-5 5" />
+        <path d="M16 17v5M12 22h8M10 26h12" />
       </>
     ),
   },
@@ -119,7 +121,7 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
       <>
         <path d="M4.5 15 16 5.5 27.5 15" />
         <path d="M7.5 13v13h17V13" />
-        <path d="M21 8.2V5.5h3v5.2" />
+        <path d="M21 8.2V5h3v5.7" />
         <path d="M13 26v-7h6v7" />
       </>
     ),
@@ -228,47 +230,44 @@ function GiftingPage() {
       {/* Occasions / Celebrate What Matters Most */}
       <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <span className="font-sans text-xs font-semibold tracking-[0.25em] text-[#B89758] uppercase mb-2 block text-center">
+          <span className="mb-1.5 block text-center font-sans text-xs font-semibold uppercase tracking-[0.25em] text-[#B89758]">
             PERFECT FOR LIFE&apos;S SPECIAL MOMENTS
           </span>
           <svg
-            viewBox="0 0 32 32"
-            className="w-4 h-4 text-[#B89758] mx-auto mb-4 opacity-85"
+            viewBox="0 0 24 24"
+            className="mx-auto mb-2 h-3 w-3 text-[#B89758]"
             aria-hidden="true"
           >
+            <circle cx="12" cy="12" r="3" fill="currentColor" />
             <g fill="currentColor">
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
-                <ellipse key={a} cx="16" cy="9" rx="3.1" ry="5.4" transform={`rotate(${a} 16 16)`} />
-              ))}
+              <ellipse cx="12" cy="5" rx="2.1" ry="4" />
+              <ellipse cx="12" cy="19" rx="2.1" ry="4" />
+              <ellipse cx="5" cy="12" rx="4" ry="2.1" />
+              <ellipse cx="19" cy="12" rx="4" ry="2.1" />
             </g>
-            <circle cx="16" cy="16" r="3.2" fill="#FAF7F2" />
-            <circle cx="16" cy="16" r="1.6" fill="currentColor" />
           </svg>
-          <h2 className="font-display font-normal text-4xl md:text-5xl text-[#1C1917] tracking-tight text-center mb-3">
+          <h2 className="mb-2 text-center font-serif text-4xl font-normal tracking-tight text-[#1C1917] md:text-5xl">
             Celebrate what matters most.
           </h2>
-          <p className="font-sans text-sm md:text-base text-[#57534E] leading-relaxed text-center max-w-xl mx-auto whitespace-pre-line mb-14">
+          <p className="mx-auto mb-10 max-w-xl whitespace-pre-line text-center font-sans text-sm leading-snug text-[#57534E] md:text-base">
             From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
           </p>
 
           <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-start justify-center">
             {occasionIcons.map(({ label, paths }) => (
               <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
-                <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#D8CCB2]/50 bg-[#FAF7F2]/60 flex items-center justify-center transition-transform hover:scale-105 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+                <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[72px] md:w-[72px]">
                   <svg
                     viewBox="0 0 32 32"
-                    fill="none"
-                    stroke="#B89758"
-                    strokeWidth={1.25}
+                    className="h-7 w-7 fill-none stroke-[#B89758] stroke-[1.25] md:h-8 md:w-8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="w-7 h-7 md:w-8 md:h-8"
                     aria-hidden="true"
                   >
                     {paths}
                   </svg>
                 </span>
-                <span className="font-sans text-xs md:text-sm font-medium text-[#292524] text-center mt-3 tracking-tight">
+                <span className="text-center font-sans text-xs font-medium tracking-tight text-[#292524] md:text-sm">
                   {label}
                 </span>
               </div>
