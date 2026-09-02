@@ -20,6 +20,9 @@ import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
 import idsLogo from "@/assets/ids-logo.png.asset.json";
 import lloydsLogo from "@/assets/lloyds-logo.png.asset.json";
+import dillonGageLogoClean from "@/assets/dillon-gage-logo-clean.png.asset.json";
+import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
+import lloydsLogoClean from "@/assets/lloyds-logo-clean.png.asset.json";
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -175,21 +178,21 @@ function Index() {
                 className="h-11 w-auto max-w-[186px] object-contain sm:h-12"
               />
             </div>
-            <div className="flex items-center justify-center px-4 lg:border-l lg:border-beige">
+            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-[""]">
               <img
                 src={idsLogoClean.url}
                 alt="International Depository Services"
                 className="h-8 w-auto max-w-[190px] object-contain sm:h-9"
               />
             </div>
-            <div className="flex items-center justify-center px-4 lg:border-l lg:border-beige">
+            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-[""]">
               <img
                 src={lloydsLogoClean.url}
                 alt="Lloyd's"
                 className="h-10 w-auto max-w-[180px] object-contain sm:h-11"
               />
             </div>
-            <div className="flex items-center justify-center gap-3 px-4 lg:border-l lg:border-beige">
+            <div className="flex items-center justify-center gap-3 relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-[""]">
               <USFlag className="h-7 w-10 shrink-0" />
               <div className="min-w-0 leading-none">
                 <b className="block whitespace-nowrap text-[0.75rem] font-bold tracking-[0.02em] text-charcoal">US-ONLY</b>
