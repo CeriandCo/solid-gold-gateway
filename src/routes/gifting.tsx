@@ -266,13 +266,13 @@ function GiftingPage() {
             From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
           </p>
 
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-start justify-center">
+          <div className="grid grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6 items-start justify-center w-full">
             {occasionIcons.map(({ label, paths }) => (
-              <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
-                <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[72px] md:w-[72px]">
+              <div key={label} className="flex flex-col items-center justify-start text-center group cursor-pointer">
+                <span className="mx-auto mb-3 flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[88px] md:w-[88px]">
                   <svg
                     viewBox="0 0 24 24"
-                    className="w-8 h-8 fill-none stroke-[#B89758] stroke-[1.25] stroke-linecap-round stroke-linejoin-round md:w-[40px] md:h-[40px]"
+                    className="h-10 w-10 fill-none stroke-[#B89758] stroke-[1.25] stroke-linecap-round stroke-linejoin-round md:h-12 md:w-12"
                     aria-hidden="true"
                   >
                     {paths}
