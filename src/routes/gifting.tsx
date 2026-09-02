@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Gift, HeartHandshake, Package, Sparkles } from "lucide-react";
+import { ArrowRight, CreditCard, Gift, HeartHandshake, Landmark, Package, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
@@ -107,6 +107,29 @@ function GiftingPage() {
           </div>
         </div>
       </section>
+
+      {/* Value Proposition / Trust Features */}
+      <section className="border-y border-[#C9A24D]/20 bg-[#0B2017] text-warm-white">
+        <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-[#C9A24D]/25">
+            {[
+              { icon: Gift, title: "Thoughtful & Timeless", description: "A gift they'll value today and for generations." },
+              { icon: ShieldCheck, title: "100% Real Gold", description: "Allocated, insured, and fully backed." },
+              { icon: Landmark, title: "Securely Vaulted", description: "Stored in insured U.S. vaults you can trust." },
+              { icon: CreditCard, title: "Beautifully Presented", description: "Premium packaging with a personal touch." },
+              { icon: Smartphone, title: "Digital Convenience", description: "Send instantly or schedule for later." },
+            ].map(({ icon: Icon, title, description }) => (
+              <div key={title} className="flex flex-col items-center justify-start px-6 py-4 text-center">
+                <Icon className="mb-3 h-8 w-8 text-[#C9A24D] md:mb-4 md:h-9 md:w-9" strokeWidth={1.5} />
+                <h3 className="mb-1.5 text-base font-semibold tracking-tight text-[#C9A24D] md:text-lg">{title}</h3>
+                <p className="max-w-[200px] text-xs leading-relaxed text-[#C4CFC9] md:text-sm">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
 
       {/* Occasions */}
       <section className="bg-background py-14 lg:py-20">
