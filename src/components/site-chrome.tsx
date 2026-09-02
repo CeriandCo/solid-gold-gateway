@@ -208,27 +208,45 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const footerLinks = ["About Us", "Security", "Help", "Contact"];
+  const socialIcons = [
+    { Icon: Instagram, label: "Instagram" },
+    { Icon: Linkedin, label: "LinkedIn" },
+    { Icon: Youtube, label: "YouTube" },
+  ];
+
   return (
-    <footer className="border-t border-white/10 bg-forest py-8 text-[#F8F5F1] lg:py-0">
-      <div className={cn(STD, "grid items-center gap-6 lg:h-[122px] lg:grid-cols-[auto_1fr_auto]")}>
-        <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px]" />
-        <nav className="flex flex-wrap gap-x-8 gap-y-3 lg:justify-center" aria-label="Footer navigation">
-          {siteNav.map(([label, to]) => (
-            <Link key={label} to={to} className="text-[13px] font-medium leading-none hover:text-gold-soft">
-              {label}
-            </Link>
+    <footer className="bg-[#0B2017]">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
+        <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
+          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px]" />
+        </Link>
+
+        <nav className="flex items-center gap-4 md:gap-6" aria-label="Footer navigation">
+          {footerLinks.map((label, index) => (
+            <span key={label} className="flex items-center gap-4 md:gap-6">
+              <a
+                href="#"
+                className="cursor-pointer font-sans text-sm font-normal text-[#EAE4D9] transition-colors hover:text-white"
+              >
+                {label}
+              </a>
+              {index < footerLinks.length - 1 && <span className="h-4 w-px bg-[#C9A24D]/40" />}
+            </span>
           ))}
         </nav>
-        <div className="text-[13px] leading-[1.6] lg:text-right">
-          <p>© 2024 Fortress Gold Inc. All rights reserved.</p>
-          <p className="mt-1.5 flex gap-6 lg:justify-end">
-            <a href="#privacy" className="text-gold-soft hover:underline">
-              Privacy Policy
+
+        <div className="flex items-center gap-5">
+          {socialIcons.map(({ Icon, label }) => (
+            <a
+              key={label}
+              href="#"
+              aria-label={label}
+              className="cursor-pointer text-[#C9A24D] transition-colors hover:text-[#F4EFE6]"
+            >
+              <Icon className="h-5 w-5 stroke-[1.5]" />
             </a>
-            <a href="#terms" className="text-gold-soft hover:underline">
-              Terms of Service
-            </a>
-          </p>
+          ))}
         </div>
       </div>
     </footer>
