@@ -448,7 +448,7 @@ function GiftingPage() {
       </section>
 
       {/* Beautifully Packaged */}
-      <section className="w-full bg-[#0B1C14]">
+      <section className="w-full bg-[#0D1A12]">
         <div className="mx-auto flex w-full max-w-[1600px] flex-col overflow-hidden lg:flex-row">
           {/* Left Column (Faded Image) */}
           <div className="relative h-[400px] w-full sm:h-[500px] lg:h-[600px] lg:w-[55%]">
@@ -458,12 +458,12 @@ function GiftingPage() {
               width={1536}
               height={1024}
               loading="lazy"
-              className="h-full w-full object-cover object-center lg:object-[center_left]"
+              className="h-full w-full object-cover object-left-center opacity-100 brightness-100"
             />
             {/* Right-edge fade into background */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-[#0B1C14] via-[#0B1C14]/70 to-transparent lg:w-[75%]"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-[#0D1A12] via-[#0D1A12]/80 to-transparent"></div>
             {/* Bottom fade for mobile */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1C14] to-transparent lg:hidden"></div>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0D1A12] to-transparent lg:hidden"></div>
           </div>
 
           {/* Right Column (Text Content) */}
