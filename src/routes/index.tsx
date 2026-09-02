@@ -123,7 +123,6 @@ function Mark({ className = "" }: { className?: string }) {
 
 function Index() {
   const [open, setOpen] = useState<number | null>(0);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="legacy-home min-h-screen bg-warm-white">
@@ -138,63 +137,7 @@ function Index() {
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
 
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
-          <img src={logoUrl} alt="SQOOT Pure" className="h-12 w-auto" />
-          <nav className="hidden items-center gap-9 lg:flex">
-            {nav.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 lg:flex">
-              <AppStoreBadge store="apple" />
-              <AppStoreBadge store="google" />
-            </div>
-            <button
-              type="button"
-              aria-label="Toggle navigation menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
-            >
-              {menuOpen ? (
-                <X strokeWidth={1.25} className="h-5 w-5" />
-              ) : (
-                <Menu strokeWidth={1.25} className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {menuOpen && (
-          <nav className="border-t border-warm-white/10 bg-forest-deep/80 backdrop-blur-sm lg:hidden">
-            <ul className="mx-auto max-w-[1200px] px-6 py-2">
-              {nav.map((item) => (
-                <li key={item.label} className="border-b border-warm-white/10 last:border-b-0">
-                  <Link
-                    to={item.to}
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-4 text-sm text-warm-white/85 transition-colors hover:text-gold"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="border-b border-warm-white/10 py-4">
-                <div className="flex flex-wrap gap-2">
-                  <AppStoreBadge store="apple" />
-                  <AppStoreBadge store="google" />
-                </div>
-              </li>
-            </ul>
-          </nav>
-        )}
+        <SiteNav variant="overlay" />
 
         <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-14 sm:pt-20 lg:pb-32">
           <div className="max-w-[36rem]">
