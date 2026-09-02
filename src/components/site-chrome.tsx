@@ -62,13 +62,6 @@ export const siteNav = [
   ["Learn", "/learn"],
 ] as const;
 
-const headerNav = [
-  ["Buy Gold", "/precious-metal"],
-  ["Vault", "/vault"],
-  ["Gifting", "/gifting"],
-  ["Learn", "/learn"],
-  ["For Advisors", "/about-us"],
-] as const;
 
 export function GoldRule() {
   return <span className="mt-3 block h-px w-9 bg-gold" />;
@@ -130,7 +123,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex xl:gap-[54px]" aria-label="Primary navigation">
-          {headerNav.map(([label, to]) => (
+          {siteNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
@@ -172,7 +165,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
           )}
         >
           <ul className="mx-auto max-w-[1200px] px-6 py-2">
-            {headerNav.map(([label, to]) => (
+            {siteNav.map(([label, to]) => (
               <li key={label} className="border-b border-warm-white/10 last:border-b-0">
                 <Link
                   to={to}
