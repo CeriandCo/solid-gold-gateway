@@ -3,6 +3,8 @@ import { ArrowRight, Eye, ShieldCheck, UserRound } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter } from "@/components/site-chrome";
 import { AboutUsHeader } from "@/components/about-us-header";
 import { cn } from "@/lib/utils";
+import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
+import aboutHeroGoldBar from "@/assets/about-hero-gold-bar.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
   head: () => ({
@@ -37,22 +39,39 @@ function AboutPage() {
       <AboutUsHeader />
 
       {/* Hero */}
-      <section className="bg-ivory">
-        <div className={cn(STD, "max-w-[860px] py-16 lg:py-24")}>
-          <Eyebrow>About SQOOT Pure</Eyebrow>
-          <GoldRule />
-          <h1
-            className="mt-5 font-display font-semibold text-charcoal"
-            style={{ fontSize: "clamp(36px, 4vw, 58px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
-          >
-            We believe gold ownership should be
-            <em className="font-semibold italic text-gold"> real.</em>
-          </h1>
-          <p className="mt-6 max-w-[640px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
-            SQOOT Pure was founded on a simple idea: if you buy gold, you should own gold —
-            not a promise, not a ticker symbol, not a line in someone else’s ledger.
-            Specific metal, allocated in your name, held where you can verify it.
-          </p>
+      <section className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-[#0A1A12]">
+        {/* Background image */}
+        <img
+          src={aboutHeroBg.url}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-8 py-16">
+          {/* Left column */}
+          <div className="lg:col-span-7 flex flex-col justify-center lg:pr-8">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#C9A24D] uppercase mb-6">
+              FOUNDER-LED. COMPLIANCE-FIRST.
+            </span>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[64px] text-[#F4EFE6] font-normal leading-[1.12] tracking-tight max-w-2xl">
+              Forty years in the gold market. One platform built to get it right.
+            </h1>
+          </div>
+
+          {/* Right column */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+            <img
+              src={aboutHeroGoldBar.url}
+              alt="SQOOT Pure gold bar"
+              width={480}
+              height={480}
+              className="w-full max-w-[420px] lg:max-w-[480px] h-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.6)]"
+            />
+          </div>
         </div>
       </section>
 
