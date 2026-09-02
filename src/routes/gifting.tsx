@@ -37,7 +37,7 @@ function GiftingPage() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-forest-deep text-warm-white lg:min-h-[560px]">
+      <section className="relative isolate mt-0 overflow-hidden bg-forest-deep text-warm-white lg:min-h-[560px]">
         <img
           src={giftingHeroImage}
           alt="Emerald gift box with a gold bar, gold coin and satin ribbon"
