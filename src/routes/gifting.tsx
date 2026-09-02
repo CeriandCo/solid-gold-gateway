@@ -9,7 +9,7 @@ import {
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
-import giftingPackagedImage from "@/assets/gifting-phone-gold-bar.png.asset.json";
+import giftingPackagedImage from "@/assets/gifting-phone-gold-bar-enhanced.png";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -437,7 +437,7 @@ function GiftingPage() {
           {/* Left Column (Faded Image) */}
           <div className="relative h-[400px] w-full sm:h-[500px] lg:h-[600px] lg:w-[55%]">
             <img
-              src={giftingPackagedImage.url}
+              src={giftingPackagedImage}
               alt="Luxury smartphone and 10g SQOOT Pure gold bar on dark green velvet"
               width={1536}
               height={1024}
