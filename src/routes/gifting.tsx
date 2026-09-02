@@ -477,6 +477,8 @@ function GiftingPage() {
         </div>
       </section>
 
+      <div className="w-full h-[1px] bg-[#C9A24D]/20"></div>
+
       <SiteFooter />
     </main>
   );
