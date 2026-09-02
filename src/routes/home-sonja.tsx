@@ -68,7 +68,7 @@ import pathVault from "@/assets/path-vault.jpg";
 import bandGold from "@/assets/band-gold.jpg";
 import logoUrl from "@/assets/sqoot-pure-logo.png";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/home-sonja")({
   head: () => ({
     meta: [
       { title: "SQOOT Pure — Own Real Gold, Three Ways" },
