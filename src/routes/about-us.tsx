@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Eye, ShieldCheck, UserRound } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter } from "@/components/site-chrome";
-import { AboutUsHeader } from "@/components/about-us-header";
+import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
 import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
@@ -36,7 +35,7 @@ const principles = [
 function AboutPage() {
   return (
     <main id="top" className="bg-background text-charcoal">
-      <AboutUsHeader />
+      <SiteHeader />
 
       {/* Hero */}
       <section className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-[#0A1A12]">
