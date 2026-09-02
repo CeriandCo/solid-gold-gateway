@@ -13,7 +13,7 @@ import {
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
-import giftingLegacyImage from "@/assets/gifting-legacy-gold.jpg";
+import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
 
 export const Route = createFileRoute("/gifting")({
   head: () => ({
@@ -289,8 +289,8 @@ function GiftingPage() {
       </section>
 
       {/* Legacy / A Gift That Grows */}
-      <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
+      <section className="bg-[#EAE4D8] py-12 lg:py-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           {/* Left Column */}
           <div className="lg:pr-12">
             <span className="mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#57534E] md:text-sm">
@@ -320,11 +320,11 @@ function GiftingPage() {
               <span className="h-[1px] flex-1 bg-[#D8CCB2]" />
             </div>
 
-            <p className="mb-8 font-sans text-base leading-relaxed text-[#57534E]">
+            <p className="mb-6 font-sans text-base leading-relaxed text-[#57534E]">
               Gold is a lasting symbol of love, blessings, and prosperity. Whether it&apos;s for a loved one or a future they&apos;re building, your gift stays with them—today, tomorrow, always.
             </p>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {[
                 "Real gold, real value",
                 "Secure, transparent, and easy to send",
@@ -355,14 +355,14 @@ function GiftingPage() {
           </div>
 
           {/* Right Column */}
-          <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-lg">
+          <div>
             <img
               src={giftingLegacyImage}
               alt="Luxurious gold bar and presentation card in a dark green velvet box"
-              width={1024}
-              height={1536}
+              width={1200}
+              height={1000}
               loading="lazy"
-              className="h-[500px] w-full object-cover lg:h-[600px]"
+              className="aspect-[4/3] h-auto max-h-[460px] w-full rounded-xl object-cover shadow-lg lg:aspect-[6/5]"
             />
           </div>
         </div>
