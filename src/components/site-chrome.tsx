@@ -186,7 +186,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
 export function SiteHeader() {
   return (
     <header className="relative z-30">
-      <SiteNav variant="overlay" />
+      <SiteNav variant="solid" />
     </header>
   );
 }
