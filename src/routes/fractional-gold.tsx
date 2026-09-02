@@ -20,6 +20,9 @@ import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
 import idsLogo from "@/assets/ids-logo.png.asset.json";
 import lloydsLogo from "@/assets/lloyds-logo.png.asset.json";
+import dillonGageLogoClean from "@/assets/dillon-gage-logo-clean.png.asset.json";
+import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
+import lloydsLogoClean from "@/assets/lloyds-logo-clean.png.asset.json";
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -164,24 +167,38 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-background py-10 sm:py-12" aria-label="Trusted partners">
+      <section className="bg-background py-12 sm:py-14" aria-label="Trusted partners">
         <div className="mx-auto max-w-[1060px] px-5 sm:px-7">
           <p className="eyebrow text-center text-gold">Backed by trust. Built for you.</p>
-          <div className="mt-7 grid grid-cols-2 items-stretch sm:mt-8 sm:grid-cols-4">
-            <div className="flex min-h-20 items-center justify-center gap-2.5 border-b border-r border-beige px-3 py-4 sm:min-h-16 sm:border-b-0 sm:px-5 sm:py-0">
-              <img src={dillonGageLogo.url} alt="Dillon Gage" className="h-8 w-auto max-w-[90%] object-contain sm:h-9" />
+          <div className="mt-8 grid grid-cols-1 items-center gap-y-7 min-[430px]:grid-cols-2 sm:gap-y-9 lg:mt-9 lg:grid-cols-4 lg:gap-y-0">
+            <div className="flex items-center justify-center px-4">
+              <img
+                src={dillonGageLogoClean.url}
+                alt="Dillon Gage"
+                className="h-11 w-auto max-w-[186px] object-contain sm:h-12"
+              />
             </div>
-            <div className="flex min-h-20 items-center justify-center gap-2 border-b border-beige px-3 py-4 sm:min-h-16 sm:border-b-0 sm:border-r sm:px-5 sm:py-0">
-              <img src={idsLogo.url} alt="International Depository Services" className="h-8 w-auto max-w-[90%] object-contain sm:h-9" />
+            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <img
+                src={idsLogoClean.url}
+                alt="International Depository Services"
+                className="h-8 w-auto max-w-[190px] object-contain sm:h-9"
+              />
             </div>
-            <div className="flex min-h-20 items-center justify-center border-r border-beige px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
-              <img src={lloydsLogo.url} alt="Lloyd's" className="h-8 w-auto max-w-[90%] object-contain sm:h-9" />
+            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <img
+                src={lloydsLogoClean.url}
+                alt="Lloyd's"
+                className="h-10 w-auto max-w-[180px] object-contain sm:h-11"
+              />
             </div>
-            <div className="flex min-h-20 items-center justify-center gap-2.5 px-3 py-4 sm:min-h-16 sm:px-5 sm:py-0">
-              <USFlag className="h-6 w-9 shrink-0 shadow-sm" />
+            <div className="flex items-center justify-center gap-3 relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <USFlag className="h-7 w-10 shrink-0" />
               <div className="min-w-0 leading-none">
-                <b className="block whitespace-nowrap text-[0.68rem] font-bold text-charcoal sm:text-xs">US-ONLY</b>
-                <small className="mt-1 block text-[0.52rem] leading-[1.35] text-charcoal">We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.</small>
+                <b className="block whitespace-nowrap text-[0.75rem] font-bold tracking-[0.02em] text-charcoal">US-ONLY</b>
+                <small className="mt-1.5 block text-[0.62rem] leading-[1.4] text-charcoal/80">
+                  We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.
+                </small>
               </div>
             </div>
           </div>
