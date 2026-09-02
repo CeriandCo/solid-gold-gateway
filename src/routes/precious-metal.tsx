@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check, Coins, Home, Package, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, Coins, Home, Package, ShieldCheck, Truck } from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import coinImage from "@/assets/path-coin.jpg";

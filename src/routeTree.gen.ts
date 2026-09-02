@@ -10,11 +10,41 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
+import { Route as GiftingRouteImport } from './routes/gifting'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as VaultRouteImport } from './routes/vault'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FractionalGoldRoute = FractionalGoldRouteImport.update({
+  id: '/fractional-gold',
+  path: '/fractional-gold',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftingRoute = GiftingRouteImport.update({
+  id: '/gifting',
+  path: '/gifting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreciousMetalRoute = PreciousMetalRouteImport.update({
+  id: '/precious-metal',
+  path: '/precious-metal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VaultRoute = VaultRouteImport.update({
@@ -25,27 +55,69 @@ const VaultRoute = VaultRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/fractional-gold': typeof FractionalGoldRoute
+  '/gifting': typeof GiftingRoute
+  '/learn': typeof LearnRoute
+  '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/fractional-gold': typeof FractionalGoldRoute
+  '/gifting': typeof GiftingRoute
+  '/learn': typeof LearnRoute
+  '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/fractional-gold': typeof FractionalGoldRoute
+  '/gifting': typeof GiftingRoute
+  '/learn': typeof LearnRoute
+  '/precious-metal': typeof PreciousMetalRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/vault'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/fractional-gold'
+    | '/gifting'
+    | '/learn'
+    | '/precious-metal'
+    | '/vault'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/vault'
-  id: '__root__' | '/' | '/vault'
+  to:
+    | '/'
+    | '/about-us'
+    | '/fractional-gold'
+    | '/gifting'
+    | '/learn'
+    | '/precious-metal'
+    | '/vault'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/fractional-gold'
+    | '/gifting'
+    | '/learn'
+    | '/precious-metal'
+    | '/vault'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
+  FractionalGoldRoute: typeof FractionalGoldRoute
+  GiftingRoute: typeof GiftingRoute
+  LearnRoute: typeof LearnRoute
+  PreciousMetalRoute: typeof PreciousMetalRoute
   VaultRoute: typeof VaultRoute
 }
 
@@ -56,6 +128,41 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fractional-gold': {
+      id: '/fractional-gold'
+      path: '/fractional-gold'
+      fullPath: '/fractional-gold'
+      preLoaderRoute: typeof FractionalGoldRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gifting': {
+      id: '/gifting'
+      path: '/gifting'
+      fullPath: '/gifting'
+      preLoaderRoute: typeof GiftingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/precious-metal': {
+      id: '/precious-metal'
+      path: '/precious-metal'
+      fullPath: '/precious-metal'
+      preLoaderRoute: typeof PreciousMetalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vault': {
@@ -70,6 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
+  FractionalGoldRoute: FractionalGoldRoute,
+  GiftingRoute: GiftingRoute,
+  LearnRoute: LearnRoute,
+  PreciousMetalRoute: PreciousMetalRoute,
   VaultRoute: VaultRoute,
 }
 export const routeTree = rootRouteImport
