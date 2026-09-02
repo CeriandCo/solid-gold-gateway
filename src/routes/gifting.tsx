@@ -1,5 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CreditCard, Gift, HeartHandshake, Landmark, Package, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Baby,
+  Cake,
+  CreditCard,
+  Gift,
+  GraduationCap,
+  Heart,
+  HeartHandshake,
+  Home,
+  Landmark,
+  Package,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  SunMedium,
+  Trophy,
+} from "lucide-react";
 import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
@@ -123,6 +140,57 @@ function GiftingPage() {
                 <Icon className="mb-3 h-8 w-8 text-gold-soft md:mb-4 md:h-9 md:w-9" strokeWidth={1.5} />
                 <h3 className="mb-1.5 font-sans text-sm font-medium tracking-tight text-gold-soft md:text-base">{title}</h3>
                 <p className="max-w-[200px] font-sans text-xs leading-relaxed text-warm-white/80 md:text-sm">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Occasions / Celebrate What Matters Most */}
+      <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#B89758] uppercase mb-3 block text-center">
+            PERFECT FOR LIFE&apos;S SPECIAL MOMENTS
+          </span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-4 h-4 text-[#B89758] mx-auto mb-4 opacity-80"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="2.2" />
+            <circle cx="12" cy="6.5" r="1.6" />
+            <circle cx="16.4" cy="8.8" r="1.6" />
+            <circle cx="16.4" cy="15.2" r="1.6" />
+            <circle cx="12" cy="17.5" r="1.6" />
+            <circle cx="7.6" cy="15.2" r="1.6" />
+            <circle cx="7.6" cy="8.8" r="1.6" />
+          </svg>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1917] tracking-tight text-center mb-4">
+            Celebrate what matters most.
+          </h2>
+          <p className="text-sm sm:text-base text-[#57534E] text-center max-w-xl mx-auto leading-relaxed whitespace-pre-line mb-12 md:mb-16">
+            From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
+          </p>
+
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-start justify-center">
+            {[
+              { icon: HeartHandshake, label: "Weddings" },
+              { icon: Heart, label: "Anniversaries" },
+              { icon: Baby, label: "New Arrivals" },
+              { icon: Cake, label: "Birthdays" },
+              { icon: GraduationCap, label: "Graduations" },
+              { icon: SunMedium, label: "Festivals" },
+              { icon: Trophy, label: "Achievements" },
+              { icon: Home, label: "Housewarmings" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
+                <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#D6C7A1]/60 bg-[#F4EFE6]/50 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-105 group-hover:border-[#B89758] group-hover:bg-[#FAF7F2] shadow-sm">
+                  <Icon className="w-7 h-7 md:w-8 md:h-8 text-[#B89758]" strokeWidth={1.4} />
+                </span>
+                <span className="text-xs md:text-sm font-medium text-[#292524] tracking-tight group-hover:text-[#B89758] transition-colors">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
