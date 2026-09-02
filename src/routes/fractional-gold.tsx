@@ -14,8 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
-import goldBarImage from "@/assets/hero-gold.jpg";
-import fractionalImage from "@/assets/path-fractional.jpg";
+import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
 import idsLogo from "@/assets/ids-logo.png.asset.json";
