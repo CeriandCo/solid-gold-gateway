@@ -1,851 +1,138 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { FormEvent, useState } from "react";
-import {
-  ArrowRight,
-  Building2,
-  CalendarDays,
-  Check,
-  CircleCheck,
-  Coins,
-  Layers,
-  CreditCard,
-  FileText,
-  Home,
-  LockKeyhole,
-  Menu,
-  Package,
-  Play,
-  ShieldCheck,
-  Truck,
-  Umbrella,
-  UserRound,
-  Warehouse,
-  X,
-} from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Coins, Gift, Layers, Warehouse } from "lucide-react";
+import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
-import vaultDoor from "@/assets/vault-door-hero.png.asset.json";
-import laptopImage from "@/assets/walkthrough-laptop.jpg";
-import logoImage from "@/assets/sqoot-pure-logo.png";
-import mandalaImage from "@/assets/sqoot-mandala.png";
+import heroImage from "@/assets/gold-bar-velvet-marble-branded.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vaulted Gold Held in Your Name | SQOOT Pure" },
+      { title: "SQOOT Pure — Real Gold, Real Ownership" },
       {
         name: "description",
         content:
-          "Physical gold and silver stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose.",
+          "Buy physical gold delivered to your door, own fractional gold, or store allocated metal in an insured US vault. Real ownership, your way.",
       },
-      { property: "og:title", content: "Vaulted Gold Held in Your Name | SQOOT Pure" },
+      { property: "og:title", content: "SQOOT Pure — Real Gold, Real Ownership" },
       {
         property: "og:description",
-        content: "Insured US vault storage with individual allocation, pro-rata billing and redemption on your schedule.",
+        content: "Physical gold delivered, fractional gold, and insured vault storage — real metal, held in your name.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
 
-const nav = [
-  ["Vault", "#vault"],
-  ["How It Works", "#how-it-works"],
-  ["Storage Locations", "#storage"],
-  ["Fees", "#fees"],
-  ["FAQ", "#faq"],
-  ["About Us", "#about"],
+const paths = [
+  {
+    icon: Coins,
+    title: "Precious Metal",
+    copy: "Buy physical gold and silver coins and bars, shipped insured to your door.",
+    to: "/precious-metal",
+  },
+  {
+    icon: Layers,
+    title: "Fractional Gold",
+    copy: "Own real gold from $25. Fully allocated, never pooled, always yours.",
+    to: "/fractional-gold",
+  },
+  {
+    icon: Warehouse,
+    title: "Vault",
+    copy: "Physical metal stored in an insured US vault, allocated in your name.",
+    to: "/vault",
+  },
+  {
+    icon: Gift,
+    title: "Gifting",
+    copy: "Give real gold. A gift that holds its value long after the moment.",
+    to: "/gifting",
+  },
 ] as const;
 
-const faqs = [
-  ["Is this actually real gold?", "Yes. Every allocation is backed by physical metal held at an insured depository in your name."],
-  ["What happens if SQOOT disappears?", "Your metal is held at IDS in your name, not on our balance sheet, and remains yours."],
-  ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
-  ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
-  ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
-  ["How are fees calculated?", "Storage is billed pro-rata: full period fee × days held ÷ 90, with a $25 minimum charge."],
-] as const;
-
-const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
-const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
-
-function GoldRule() {
-  return <span className="mt-3 block h-px w-9 bg-gold" />;
-}
-
-function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <p className={cn("eyebrow text-gold", className)}>{children}</p>;
-}
-
-function GoldButton({
-  children,
-  href,
-  type,
-  className = "",
-}: {
-  children: React.ReactNode;
-  href?: string;
-  type?: "button" | "submit";
-  className?: string;
-}) {
-  const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
-    className,
-  );
-  if (href) {
-    return (
-      <a href={href} className={classes}>
-        {children}
-      </a>
-    );
-  }
-  return (
-    <button type={type ?? "button"} className={classes}>
-      {children}
-    </button>
-  );
-}
-
-function IconCircle({ size = 84, children }: { size?: number; children: React.ReactNode }) {
-  return (
-    <span
-      className="grid shrink-0 place-items-center rounded-full border border-gold/55 text-gold"
-      style={{ width: size, height: size }}
-    >
-      {children}
-    </span>
-  );
-}
-
-function ThinArrow({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 60 8" aria-hidden="true" className={cn("h-2 w-full text-gold/70", className)} fill="none">
-      <path d="M0 4h52" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
-      <path d="m52 1 6 3-6 3" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function DottedArrow({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 64 8" aria-hidden="true" className={cn("h-2 w-full text-gold/80", className)} fill="none">
-      <path d="M0 4h52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 5" />
-      <path d="m52 1 6 3-6 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function TexasMap() {
-  return (
-    <svg viewBox="0 0 100 100" aria-hidden="true" className="h-[120px] w-[150px]">
-      <path
-        d="M15 8h26v18h15l5 5 10 4 6 10 8 7-5 10-10 14-10 12-6 6-6-8-8-12-10-8-10-6-8-6-3-18Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinejoin="round"
-        className="text-gold/70"
-      />
-      <circle cx="52" cy="33" r="2.6" className="fill-gold" />
-      <circle cx="57" cy="66" r="2.6" className="fill-gold" />
-    </svg>
-  );
-}
-
-function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [tab, setTab] = useState<"delivered" | "stored">("delivered");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "error" | "success">("idle");
-
-  function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.length <= 254;
-    setFormState(valid ? "success" : "error");
-  }
-
+function HomePage() {
   return (
     <main id="top" className="bg-background text-charcoal">
-      {/* Header */}
-      <header className="relative z-30 bg-forest text-[#F8F5F1]">
-        <div className={cn(WIDE, "flex h-[84px] items-center gap-6 lg:h-[112px]")}>
-          <a href="#top" aria-label="SQOOT Pure home" className="shrink-0">
-            <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[160px] lg:w-[200px]" />
-          </a>
-          <nav className="ml-auto hidden items-center gap-[46px] lg:flex" aria-label="Primary navigation">
-            {nav.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="text-[15px] font-medium leading-none text-[#F8F5F1] transition-colors hover:text-gold-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <GoldButton href="#early-access" className="ml-[46px] hidden h-12 w-[186px] whitespace-nowrap bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold lg:inline-flex">
-            Get Early Access
-          </GoldButton>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((value) => !value)}
-            aria-expanded={menuOpen}
-            aria-label="Toggle navigation menu"
-            className="ml-auto grid h-11 w-11 place-items-center rounded-[2px] border border-white/25 lg:hidden"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-        {menuOpen && (
-          <nav aria-label="Mobile navigation" className="border-t border-white/10 px-5 py-3 lg:hidden">
-            {nav.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="block border-b border-white/10 py-3 text-sm font-medium"
-              >
-                {label}
-              </a>
-            ))}
-            <GoldButton href="#early-access" className="mt-4 flex h-12 w-full">
-              Get Early Access
-            </GoldButton>
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
-      <section id="vault" className="bg-ivory">
+      <section className="bg-ivory">
         <div className="grid lg:min-h-[628px] lg:grid-cols-[39%_61%]">
           <img
-            src={vaultDoor.url}
-            alt="Steel vault door with circular locking mechanism"
+            src={heroImage}
+            alt="SQOOT Pure gold bar resting on dark velvet and marble"
             className="h-[280px] w-full object-cover object-center sm:h-[380px] lg:h-full"
           />
           <div className="flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-0 lg:pl-[84px] lg:pr-10">
-            <Eyebrow>Vaulted Gold</Eyebrow>
+            <Eyebrow>SQOOT Pure</Eyebrow>
             <GoldRule />
-            <h1 className="mt-5 max-w-[660px] font-display font-medium text-charcoal">
-              <span
-                className="block"
-                style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "69px", letterSpacing: "-0.025em" }}
-              >
-                Your gold.
-                <br />
-                Held in your name.
-              </span>
-              <span
-                className="block"
-                style={{ fontSize: "clamp(31px, 3.75vw, 54px)", lineHeight: "55px", letterSpacing: "-0.02em" }}
-              >
-                Real, insured, and
-                <br />
-                <em className="font-medium italic text-gold">yours</em> to redeem
-                <br />
-                whenever you choose.
-              </span>
+            <h1
+              className="mt-5 max-w-[560px] font-display font-semibold text-charcoal"
+              style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "1.02", letterSpacing: "-0.025em" }}
+            >
+              Real gold.
+              <br />
+              Real <em className="font-semibold italic text-gold">ownership.</em>
             </h1>
-            <p className="mt-6 max-w-[540px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
-              Physical gold and silver, stored in an insured US vault,
-              <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
-              <br className="hidden lg:block" /> A specific holding you can verify and reach.
+            <p className="mt-6 max-w-[520px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
+              Buy physical gold and have it delivered, own it fractionally, or hold it
+              allocated in an insured US vault. However you choose to own it — it’s real,
+              and it’s yours.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-8">
-              <GoldButton href="#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
+              <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
                 Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
               </GoldButton>
-              <div className="flex items-center gap-4">
-                <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold text-gold">
-                  <Play size={16} fill="currentColor" />
-                </span>
-                <span>
-                  <span className="block text-[15px] font-semibold leading-tight text-charcoal">See how it works</span>
-                  <span className="mt-1 block text-[13px] leading-tight text-[#444A45]">2 min walkthrough</span>
-                </span>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Custody proof row */}
-      <section className="bg-ivory" aria-label="Custody assurances">
-        <div className={cn(STD, "grid items-center gap-6 py-8 sm:grid-cols-3 sm:gap-0 lg:h-[143px] lg:py-0")}>
-          {[
-            [ShieldCheck, "IDS custody", ["Third-party depository", "built for this purpose."]],
-            [Umbrella, "Insured storage", ["Full value, all risk", "insurance coverage."]],
-            [UserRound, "Individually allocated", ["Not pooled. Never", "commingled."]],
-          ].map(([Icon, title, lines], index) => {
-            const ProofIcon = Icon as typeof ShieldCheck;
-            return (
-              <div
-                key={title as string}
-                className={cn(
-                  "flex items-center justify-center gap-5 px-6",
-                  index > 0 && "sm:border-l sm:border-beige",
-                )}
-              >
-                <ProofIcon size={46} strokeWidth={1.4} className="shrink-0 text-gold" />
-                <div>
-                  <p className="text-[15px] font-semibold leading-[1.2] text-charcoal">{title as string}</p>
-                  <p className="mt-1.5 text-[13px] leading-[1.5] text-[#444A45]">
-                    {(lines as string[])[0]}
-                    <br />
-                    {(lines as string[])[1]}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Allocation diagram */}
-      <section className="bg-background pb-0 pt-4">
-        <div className={WIDE}>
-          <div className="grid gap-10 rounded-[10px] bg-forest-deep p-8 text-[#F8F5F1] lg:min-h-[358px] lg:grid-cols-[330px_1fr] lg:p-10">
-            <div className="flex flex-col">
-              <Eyebrow>Allocation, not pooling</Eyebrow>
-              <GoldRule />
-              <h2 className="section-title mt-5 text-[#F8F5F1]">
-                One allocation.
-                <br />
-                One customer.
-              </h2>
-              <p className="compact-copy mt-4 max-w-[260px] text-[#C8CFC9]">
-                Your gold is held at IDS and
-                <br />
-                recorded in your name. Your
-                <br />
-                allocation is never mixed with
-                <br />
-                someone else’s.
-              </p>
-              <a
-                href="#how-it-works"
-                className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-gold-soft underline underline-offset-4"
-              >
-                How allocation works <ArrowRight size={15} strokeWidth={1.5} />
-              </a>
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <div className="grid items-center gap-5 md:grid-cols-[1fr_auto_1fr_auto_1.5fr]">
-                <div className="flex flex-col items-center text-center">
-                  <p className="eyebrow text-[11px] text-[#F8F5F1]">Physical gold</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">At IDS</p>
-                  <IconCircle size={116}>
-                    <Layers size={46} strokeWidth={1.4} className="text-gold-soft" />
-                  </IconCircle>
-                </div>
-                <ThinArrow className="hidden w-10 md:block" />
-                <div className="flex flex-col items-center text-center">
-                  <p className="eyebrow text-[11px] text-[#F8F5F1]">IDS custody</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">Segregated storage</p>
-                  <IconCircle size={116}>
-                    <span className="font-display text-[34px] font-medium tracking-[0.02em] text-gold-soft">IDS</span>
-                  </IconCircle>
-                </div>
-                <ThinArrow className="hidden w-10 md:block" />
-                <div className="text-center">
-                  <p className="eyebrow text-[11px] text-[#F8F5F1]">Individual allocations</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">In customer names</p>
-                  <div className="mt-3 space-y-2">
-                    {[
-                      ["Sonja", "0.024 oz"],
-                      ["Alex", "0.051 oz"],
-                      ["Maya", "0.017 oz"],
-                    ].map(([name, amount]) => (
-                      <div
-                        key={name}
-                        className="flex items-center justify-between rounded-[6px] border border-gold/55 px-4 py-2.5"
-                      >
-                        <span className="flex items-center gap-2 text-[13px] text-[#F8F5F1]">
-                          <UserRound size={15} strokeWidth={1.5} className="text-gold-soft" />
-                          {name}
-                        </span>
-                        <span className="text-[13px] text-[#F8F5F1]">{amount}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 flex justify-center">
-                <div className="inline-flex items-center gap-3 rounded-[4px] border border-gold/45 px-5 py-2.5">
-                  <span className="eyebrow text-[11px] text-[#F8F5F1]">SQOOT Record</span>
-                  <span className="text-gold-soft">↔</span>
-                  <span className="eyebrow text-[11px] text-[#F8F5F1]">IDS Record</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Two ways to hold your gold */}
-      <section id="how-it-works" className="bg-background pb-0 pt-8">
+      {/* Four paths */}
+      <section className="bg-background py-14 lg:py-20">
         <div className={STD}>
-          <Eyebrow>Two ways to hold your gold</Eyebrow>
-          <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="section-title text-charcoal">Choose the path that works for you.</h2>
-            <div role="tablist" aria-label="Holding options" className="flex w-full max-w-[550px] shrink-0">
-              {(
-                [
-                  ["delivered", "Delivered to me", Package],
-                  ["stored", "Stored for me", Building2],
-                ] as const
-              ).map(([key, label, Icon]) => {
-                const active = tab === key;
-                return (
-                  <button
-                    key={key}
-                    role="tab"
-                    aria-selected={active}
-                    type="button"
-                    onClick={() => setTab(key)}
-                    className={cn(
-                      "flex h-[58px] flex-1 items-center justify-center gap-2.5 rounded-[2px] text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
-                      active
-                        ? "bg-forest-deep text-[#F8F5F1]"
-                        : "border border-beige bg-ivory text-charcoal",
-                    )}
-                  >
-                    <Icon size={18} strokeWidth={1.5} className="text-gold" />
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-8 rounded-[10px] border border-beige bg-ivory px-8 py-7 lg:min-h-[274px] lg:grid-cols-[1fr_300px]">
-            <div className="flex flex-wrap items-start justify-center gap-6 lg:flex-nowrap lg:justify-between">
-              {(tab === "delivered"
-                ? ([
-                    [Package, "Choose", ["Select physical gold", "or silver."]],
-                    [Truck, "Ship insured", ["We ship it to your", "address."]],
-                    [Home, "Receive", ["It arrives. It’s", "yours."]],
-                  ] as const)
-                : ([
-                    [Package, "Choose", ["Select physical gold", "or silver."]],
-                    [Warehouse, "We vault it", ["Stored insured at", "an IDS facility."]],
-                    [FileText, "Verify", ["View your vault", "records anytime."]],
-                  ] as const)
-              ).map(([Icon, title, lines], index) => (
-                <div key={title} className="flex items-center gap-6">
-                  {index > 0 && <DottedArrow className="hidden w-16 lg:block" />}
-                  <div className="w-[150px] text-center">
-                    <IconCircle size={86}>
-                      <Icon size={34} strokeWidth={1.5} />
-                    </IconCircle>
-                    <p className="mt-4 text-sm font-semibold leading-[1.2] text-charcoal">{title}</p>
-                    <p className="mt-2 text-[13px] leading-[1.45] text-[#444A45]">
-                      {lines[0]}
-                      <br />
-                      {lines[1]}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="lg:border-l lg:border-beige lg:pl-10">
-              <h3 className="card-title text-charcoal">
-                {tab === "delivered" ? "Physical delivery." : "Vault storage."}
-              </h3>
-              <p className="mt-4 text-[13px] leading-[1.5] text-[#444A45]">
-                {tab === "delivered" ? (
-                  <>
-                    You receive and take direct
-                    <br />
-                    possession of your metals,
-                    <br />
-                    shipped to your door,
-                    <br />
-                    insured in transit.
-                  </>
-                ) : (
-                  <>
-                    We hold your metal in an
-                    <br />
-                    insured US depository,
-                    <br />
-                    allocated in your name and
-                    <br />
-                    ready to redeem.
-                  </>
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Storage locations */}
-      <section id="storage" className="bg-background pb-2 pt-3">
-        <div className={cn(STD, "grid gap-8 lg:grid-cols-[31%_1fr_1fr]")}>
-          <div>
-            <Eyebrow>Storage locations</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">
-              Your gold is held
-              <br />
-              somewhere real.
-            </h2>
-            <p className="mt-4 max-w-[290px] text-[13px] leading-[1.5] text-[#444A45]">
-              Choose from secure US locations.
-              <br />
-              Custody documentation, insurance
-              <br />
-              and access to your vault records
-              <br />
-              come standard.
-            </p>
-            <div className="relative mt-6 w-[240px]">
-              <TexasMap />
-              <span className="absolute left-[105px] top-[32px] text-[11px] font-medium text-charcoal">Dallas, TX</span>
-              <span className="absolute left-[112px] top-[72px] text-[11px] font-medium text-charcoal">
-                Sugar Land, TX
-              </span>
-            </div>
-          </div>
-
-          {(
-            [
-              [
-                "IDS Partner Vault",
-                ["IDS — Dallas, TX"],
-                ["International Depository Services", "Dallas, Texas"],
-                [
-                  "Fully insured, segregated storage",
-                  "IDS-issued custody receipts",
-                  "LBMA-recognized facility",
-                  "Available for IDS account holders",
-                ],
-              ],
-              [
-                "Vaultify HOU",
-                ["Vaultify PMC —", "Sugar Land, TX"],
-                ["10410 Corporate Dr, Suite 107", "Sugar Land, TX 77478"],
-                [
-                  "Operated by Vaultify PMC",
-                  "Fully insured holdings",
-                  "Houston metro access",
-                  "Available to all SQOOT Pure clients",
-                ],
-              ],
-            ] as const
-          ).map(([label, title, address, bullets]) => (
-            <article key={label} className="flex flex-col rounded-[10px] border border-beige bg-ivory p-5">
-              <Eyebrow>{label}</Eyebrow>
-              <h3 className="card-title mt-4 text-charcoal">
-                {title.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </h3>
-              <p className="mt-4 text-[13px] leading-[1.5] text-[#444A45]">
-                {address[0]}
-                <br />
-                {address[1]}
-              </p>
-              <ul className="mt-3 space-y-1.5">
-                {bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-2.5 text-[13px] leading-[1.42] text-charcoal">
-                    <Check size={15} strokeWidth={2.5} className="mt-0.5 shrink-0 text-gold" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#early-access"
-                className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-gold underline underline-offset-4"
+          <Eyebrow>Ways to own</Eyebrow>
+          <GoldRule />
+          <h2 className="section-title mt-5 text-charcoal">Four paths to real gold.</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {paths.map(({ icon: Icon, title, copy, to }) => (
+              <Link
+                key={title}
+                to={to}
+                className="group flex flex-col rounded-[10px] border border-beige bg-ivory p-7 transition-colors hover:border-gold/60"
               >
-                View vault details <ArrowRight size={15} strokeWidth={1.5} />
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Pro-rata billing */}
-      <section id="fees" className="bg-ivory py-[17px]">
-        <div className={cn(STD, "grid items-center gap-10 lg:grid-cols-[38%_1fr]")}>
-          <div>
-            <Eyebrow>Pro-rata billing</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">
-              You only pay for the
-              <br />
-              time your metal is stored.
-            </h2>
-            <p className="mt-4 max-w-[420px] text-[13px] leading-[1.5] text-[#444A45]">
-              If you redeem or request physical delivery before the end of a billing period, your storage fee is
-              calculated for the days your metal was held. The minimum storage fee still applies.
-            </p>
-          </div>
-          <div>
-            <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
-              <div className="text-center">
-                <IconCircle size={86}>
-                  <Layers size={34} strokeWidth={1.4} />
-                </IconCircle>
-                <p className="mt-3 text-sm font-semibold text-charcoal">$20,000</p>
-                <p className="text-[12px] text-[#444A45]">Vault value</p>
-              </div>
-              <span className="text-lg text-[#444A45]">×</span>
-              <div className="text-center">
-                <IconCircle size={86}>
-                  <CalendarDays size={34} strokeWidth={1.4} />
-                </IconCircle>
-                <p className="mt-3 text-sm font-semibold text-charcoal">45 / 90 days</p>
-                <p className="text-[12px] text-[#444A45]">Held in vault</p>
-              </div>
-              <span className="text-lg text-[#444A45]">=</span>
-              <div className="grid h-[88px] w-[88px] place-items-center rounded-full border border-gold/55 text-center">
-                <span>
-                  <span className="block text-sm font-semibold text-charcoal">$18.75</span>
-                  <span className="block text-[11px] text-[#444A45]">Pro-rated fee</span>
+                <span className="grid h-[72px] w-[72px] place-items-center rounded-full border border-gold/55 text-gold">
+                  <Icon size={30} strokeWidth={1.4} />
                 </span>
-              </div>
-              <ThinArrow className="w-10" />
-              <div className="grid h-[92px] w-[92px] place-items-center rounded-full bg-gold px-2 text-center text-[#0B2015]">
-                <span>
-                  <span className="block text-[13px] font-semibold leading-tight">$25.00</span>
-                  <span className="block text-[10px] leading-tight">Minimum fee</span>
+                <h3 className="card-title mt-6 text-charcoal">{title}</h3>
+                <p className="mt-3 text-[13px] leading-[1.55] text-[#444A45]">{copy}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-gold">
+                  Explore <ArrowRight size={15} strokeWidth={1.5} className="transition-transform group-hover:translate-x-1" />
                 </span>
-              </div>
-            </div>
-            <div className="mt-7 grid overflow-hidden rounded-[4px] border border-beige sm:grid-cols-[240px_1fr_auto]">
-              <span className="eyebrow flex items-center bg-background px-5 py-3 text-gold sm:border-r sm:border-beige">
-                Storage fee formula
-              </span>
-              <span className="flex items-center justify-center px-5 py-3 text-[13px] text-charcoal sm:border-r sm:border-beige">
-                Full period fee × days held ÷ 90
-              </span>
-              <span className="flex items-center justify-center px-6 py-3 text-[13px] text-charcoal">
-                Minimum charge: $25
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Redemption process */}
-      <section className="bg-background pb-0 pt-10">
-        <div className={cn(STD, "grid gap-10 lg:grid-cols-[28%_1fr]")}>
-          <div>
-            <Eyebrow>Redemption process</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">Ready when you are.</h2>
-            <p className="mt-4 max-w-[260px] text-[13px] leading-[1.5] text-[#444A45]">
-              Request redemption anytime,
-              <br />
-              including weekends. Once pricing
-              <br />
-              is available and confirmed,
-              <br />
-              proceeds are sent to your
-              <br />
-              verified bank account.
-            </p>
-            <a
-              href="#faq"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold underline underline-offset-4"
-            >
-              Learn more <ArrowRight size={15} strokeWidth={1.5} />
-            </a>
-          </div>
-          <div className="flex flex-wrap items-start justify-center gap-6 lg:flex-nowrap lg:justify-between">
-            {(
-              [
-                [FileText, "Request", ["Submit your request", "anytime."]],
-                [CircleCheck, "Confirm", ["Review and confirm", "pricing and fees."]],
-                [Building2, "Redeem", ["We send proceeds to", "your verified account."]],
-                [CreditCard, "Received", ["Funds arrive based on", "your bank’s processing."]],
-              ] as const
-            ).map(([Icon, title, lines], index) => (
-              <div key={title} className="flex items-center gap-5">
-                {index > 0 && <ThinArrow className="hidden w-12 lg:block" />}
-                <div className="w-[160px] text-center">
-                  <div className="relative inline-block">
-                    <IconCircle size={84}>
-                      <Icon size={32} strokeWidth={1.4} />
-                    </IconCircle>
-                    <span className="absolute -bottom-1 left-1 grid h-[22px] w-[22px] place-items-center rounded-full bg-gold text-[11px] font-semibold text-[#0B2015]">
-                      {index + 1}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-sm font-semibold leading-[1.2] text-charcoal">{title}</p>
-                  <p className="mt-2 text-[13px] leading-[1.45] text-[#444A45]">
-                    {lines[0]}
-                    <br />
-                    {lines[1]}
-                  </p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Founder walkthrough */}
-      <section className="bg-background pb-0 pt-[17px]">
-        <div className={STD}>
-          <div className="grid gap-8 overflow-hidden rounded-[10px] bg-forest-deep lg:min-h-[214px] lg:grid-cols-[380px_1fr]">
-            <div className="relative">
-              <img
-                src={laptopImage}
-                alt="Laptop showing a SQOOT Pure vault record dashboard"
-                loading="lazy"
-                width={1024}
-                height={640}
-                className="h-full w-full object-cover"
-              />
-              <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-b from-gold-soft to-gold text-[#0B2015]">
-                <Play size={20} fill="currentColor" />
-              </span>
-            </div>
-            <div className="px-8 py-4 text-[#F8F5F1] lg:pl-4 lg:pr-12">
-              <Eyebrow>Founder walkthrough</Eyebrow>
-              <h2 className="card-title mt-2 text-[#F8F5F1]">See it, don’t just read about it.</h2>
-              <p className="mt-2 max-w-[520px] text-[14px] leading-[1.5] text-[#C8CFC9]">
-                Watch an actual vault record, an allocation certificate and a redemption request from start to finish.
-                Nothing staged.
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-7">
-                <GoldButton href="#early-access" className="h-12 bg-gradient-to-b from-gold-soft to-gold px-7 text-[15px] font-bold">
-                  Watch the walkthrough <ArrowRight size={16} strokeWidth={2} />
-                </GoldButton>
-                <span className="flex items-center gap-3 text-[13px] leading-[1.45] text-[#C8CFC9]">
-                  <LockKeyhole size={16} strokeWidth={1.5} className="shrink-0 text-gold-soft" />
-                  Join the waitlist to be
-                  <br />
-                  notified when the app opens.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="bg-background pb-[3px] pt-3">
-        <div className={cn(STD, "grid gap-8 lg:grid-cols-[28%_1fr]")}>
+      {/* CTA band */}
+      <section className="bg-forest py-12 text-[#F8F5F1]">
+        <div className={cn(WIDE, "flex flex-wrap items-center justify-between gap-8")}>
           <div>
-            <Eyebrow>Common questions</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">Questions worth asking.</h2>
+            <h2 className="font-display text-[36px] font-semibold leading-[1.05] text-gold-soft">Be first in line.</h2>
+            <p className="mt-2 max-w-[420px] text-[14px] leading-[1.55] text-[#C8CFC9]">
+              SQOOT Pure is launching soon. Join the waitlist to get early access and updates.
+            </p>
           </div>
-          <div className="grid gap-x-8 gap-y-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-3">
-            {faqs.map(([question, answer], index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div key={question} className="h-fit rounded-[4px] border border-beige bg-ivory">
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-2.5 text-left text-sm font-medium leading-[1.2] text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                  >
-                    {question}
-                    <span className="relative block h-3.5 w-3.5 shrink-0 text-charcoal">
-                      <span className="absolute left-0 top-[6px] h-[1.5px] w-3.5 rounded bg-current" />
-                      <span
-                        className={cn("absolute left-[6px] top-0 h-3.5 w-[1.5px] rounded bg-current", isOpen && "opacity-0")}
-                      />
-                    </span>
-                  </button>
-                  {isOpen && <p className="px-5 pb-4 text-[13px] leading-[1.5] text-[#444A45]">{answer}</p>}
-                </div>
-              );
-            })}
-          </div>
+          <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
+            Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
+          </GoldButton>
         </div>
       </section>
 
-      {/* Email waitlist CTA */}
-      <section id="early-access" className="bg-forest py-8 text-[#F8F5F1] lg:py-0">
-        <div className={cn(STD, "grid items-center gap-8 lg:h-[148px] lg:grid-cols-[1fr_auto]")}>
-          <div className="flex items-center gap-6">
-            <img src={mandalaImage} alt="" aria-hidden="true" className="hidden h-[92px] w-[92px] sm:block" />
-            <div>
-              <h2 className="font-display text-[36px] font-medium leading-[1.05] text-gold-soft">Be first in line.</h2>
-              <p className="mt-2 text-[13px] leading-[1.45] text-[#C8CFC9]">
-                SQOOT Pure is launching soon.
-                <br />
-                Get early access and updates.
-              </p>
-            </div>
-          </div>
-          <form onSubmit={submitWaitlist} noValidate className="w-full lg:w-auto">
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <label className="sr-only" htmlFor="waitlist-email">
-                Email address
-              </label>
-              <input
-                id="waitlist-email"
-                type="email"
-                maxLength={254}
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                  setFormState("idle");
-                }}
-                placeholder="Enter your email address"
-                aria-invalid={formState === "error"}
-                aria-describedby="email-status"
-                className="h-[54px] w-full rounded-[2px] border border-transparent bg-background px-5 text-sm text-charcoal outline-none placeholder:text-[#7A817C] focus:border-gold sm:w-[420px]"
-              />
-              <GoldButton type="submit" className="h-[54px] w-full bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold sm:w-[235px]">
-                Get Early Access
-              </GoldButton>
-            </div>
-            <p
-              id="email-status"
-              className={cn(
-                "mt-3 flex items-center gap-2 text-[12px] leading-[1.45]",
-                formState === "error" ? "text-error" : "text-[#C8CFC9]",
-              )}
-            >
-              <LockKeyhole size={13} strokeWidth={1.5} className="text-gold-soft" />
-              {formState === "error"
-                ? "Please enter a valid email address."
-                : formState === "success"
-                  ? "You’re on the list. We’ll be in touch."
-                  : "We respect your privacy. Your information is safe with us."}
-            </p>
-          </form>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer id="about" className="border-t border-white/10 bg-forest py-8 text-[#F8F5F1] lg:py-0">
-        <div className={cn(STD, "grid items-center gap-6 lg:h-[122px] lg:grid-cols-[auto_1fr_auto]")}>
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px]" />
-          <nav className="flex flex-wrap gap-x-8 gap-y-3 lg:justify-center" aria-label="Footer navigation">
-            {nav.map(([label, href]) => (
-              <a key={label} href={href} className="text-[13px] font-medium leading-none hover:text-gold-soft">
-                {label}
-              </a>
-            ))}
-          </nav>
-          <div className="text-[13px] leading-[1.6] lg:text-right">
-            <p>© 2024 Fortress Gold Inc. All rights reserved.</p>
-            <p className="mt-1.5 flex gap-6 lg:justify-end">
-              <a href="#privacy" className="text-gold-soft hover:underline">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="text-gold-soft hover:underline">
-                Terms of Service
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
