@@ -196,9 +196,13 @@ function Index() {
           <img src={logoUrl} alt="SQOOT Pure" className="h-12 w-auto" />
           <nav className="hidden items-center gap-9 lg:flex">
             {nav.map((item) => (
-              <a key={item} href="#paths" className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold">
-                {item}
-              </a>
+              <Link
+                key={item.label}
+                to={item.to}
+                className="text-[0.8rem] text-warm-white/85 transition-colors hover:text-gold"
+              >
+                {item.label}
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-3">
