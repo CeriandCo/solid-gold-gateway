@@ -165,11 +165,7 @@ function Index() {
           {/* Content panel — first on mobile, second column on desktop */}
           <div className="order-1 flex items-center bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
             <div
-              className="w-full max-w-[620px] animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both"
-              style={{
-                paddingInline: "clamp(32px, 7vw, 112px)",
-                paddingBlock: "clamp(56px, 6vw, 72px)",
-              }}
+              className="w-full max-w-[780px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-[clamp(64px,5vw,96px)] lg:py-[clamp(56px,5vw,72px)]"
             >
               <Eyebrow>Vaulted Gold</Eyebrow>
               <GoldRule />
@@ -193,7 +189,7 @@ function Index() {
                   whenever you choose.
                 </span>
               </h1>
-              <p className="mt-[34px] max-w-[560px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
+              <p className="mt-[34px] max-w-[620px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
                 <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
                 <br className="hidden lg:block" /> A specific holding you can verify and reach.
