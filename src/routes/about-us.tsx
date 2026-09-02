@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Eye, ShieldCheck, UserRound } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter } from "@/components/site-chrome";
+import { AboutUsHeader } from "@/components/about-us-header";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/about-us")({
