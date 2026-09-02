@@ -14,8 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
-import goldBarImage from "@/assets/hero-gold.jpg";
-import fractionalImage from "@/assets/path-fractional.jpg";
+import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
 import idsLogo from "@/assets/ids-logo.png.asset.json";
@@ -225,7 +224,7 @@ function Index() {
       <section className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
         <div className="mx-auto grid max-w-[1240px] overflow-hidden rounded-[26px] bg-forest px-7 py-10 text-background sm:px-12 lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="comparison-left-title">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
-          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={goldBarImage} alt="Premium gold bar" className="absolute left-[10%] top-0 h-full w-[48%] rounded-lg object-cover object-center shadow-xl" /><img src={fractionalImage} alt="Smaller fractional gold pieces" className="absolute bottom-2 right-0 h-[64%] w-[58%] rounded-lg object-cover shadow-xl" /></div>
+          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="Premium gold bar and fractional gold pieces" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
           <div className="lg:pl-8"><h2 className="comparison-right-title">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
