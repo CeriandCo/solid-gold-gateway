@@ -237,14 +237,14 @@ function GiftingPage() {
       </section>
 
       {/* Occasions / Celebrate What Matters Most */}
-      <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#FAF7F2] py-10 md:py-14 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <span className="mb-1.5 block text-center font-sans text-xs font-semibold uppercase tracking-[0.25em] text-[#B89758]">
+          <span className="mb-1 block text-center font-sans text-xs font-semibold uppercase tracking-[0.25em] text-[#B89758]">
             PERFECT FOR LIFE&apos;S SPECIAL MOMENTS
           </span>
           <svg
             viewBox="0 0 24 24"
-            className="mx-auto mb-2 h-5 w-5 text-[#B89758] opacity-90 fill-current"
+            className="mx-auto mb-1.5 h-5 w-5 text-[#B89758] opacity-90 fill-current"
             aria-hidden="true"
           >
             <path d="M12 2c-2.2 4-4 7-4 10.5 0 2.8 1.7 4.8 4 5.8 2.3-1 4-3 4-5.8C16 9 14.2 6 12 2z" />
@@ -255,7 +255,7 @@ function GiftingPage() {
           <h2 className="mb-2 text-center font-serif text-4xl font-normal tracking-tight text-[#1C1917] md:text-5xl">
             Celebrate what matters most.
           </h2>
-          <p className="mx-auto mb-10 max-w-xl whitespace-pre-line text-center font-sans text-sm leading-snug text-[#57534E] md:text-base">
+          <p className="mx-auto mb-8 max-w-xl whitespace-pre-line text-center font-sans text-sm leading-snug text-[#57534E] md:text-base">
             From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
           </p>
 
