@@ -129,8 +129,6 @@ function GiftingPage() {
         </div>
       </section>
 
-
-
       {/* Occasions */}
       <section className="bg-background py-14 lg:py-20">
         <div className={STD}>
