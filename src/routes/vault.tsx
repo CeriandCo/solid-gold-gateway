@@ -248,7 +248,7 @@ function Index() {
       </section>
 
       {/* Allocation diagram */}
-      <section className="bg-background pb-0 pt-4">
+      <section className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={WIDE}>
           <div className="grid gap-10 rounded-[10px] bg-forest-deep p-8 text-[#F8F5F1] lg:min-h-[358px] lg:grid-cols-[330px_1fr] lg:p-10">
             <div className="flex flex-col">
@@ -330,7 +330,7 @@ function Index() {
       </section>
 
       {/* Two ways to hold your gold */}
-      <section id="how-it-works" className="bg-background pb-0 pt-8">
+      <section id="how-it-works" className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={STD}>
           <Eyebrow>Two ways to hold your gold</Eyebrow>
           <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
@@ -428,7 +428,7 @@ function Index() {
       </section>
 
       {/* Storage locations */}
-      <section id="storage" className="bg-background pb-2 pt-3">
+      <section id="storage" className="bg-background pb-10 pt-16 sm:pb-14 sm:pt-20">
         <div className={cn(STD, "grid gap-8 lg:grid-cols-[31%_1fr_1fr]")}>
           <div>
             <Eyebrow>Storage locations</Eyebrow>
@@ -516,7 +516,7 @@ function Index() {
       </section>
 
       {/* Pro-rata billing */}
-      <section id="fees" className="bg-ivory py-[17px]">
+      <section id="fees" className="bg-ivory py-14 sm:py-20">
         <div className={cn(STD, "grid items-center gap-10 lg:grid-cols-[38%_1fr]")}>
           <div>
             <Eyebrow>Pro-rata billing</Eyebrow>
@@ -579,7 +579,7 @@ function Index() {
       </section>
 
       {/* Redemption process */}
-      <section className="bg-background pb-0 pt-10">
+      <section className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={cn(STD, "grid gap-10 lg:grid-cols-[28%_1fr]")}>
           <div>
             <Eyebrow>Redemption process</Eyebrow>
@@ -637,7 +637,7 @@ function Index() {
       </section>
 
       {/* Founder walkthrough */}
-      <section className="bg-background pb-0 pt-[17px]">
+      <section className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={STD}>
           <div className="grid gap-8 overflow-hidden rounded-[10px] bg-forest-deep lg:min-h-[214px] lg:grid-cols-[380px_1fr]">
             <div className="relative">
@@ -677,7 +677,7 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="bg-background pb-[3px] pt-3">
+      <section id="faq" className="bg-background pb-16 pt-16 sm:pb-20 sm:pt-20">
         <div className={cn(STD, "grid gap-8 lg:grid-cols-[28%_1fr]")}>
           <div>
             <Eyebrow>Common questions</Eyebrow>
