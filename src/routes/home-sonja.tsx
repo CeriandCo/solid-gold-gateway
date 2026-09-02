@@ -175,7 +175,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-warm-white">
+    <div className="legacy-home min-h-screen bg-warm-white">
       {/* Header + Hero */}
       <header className="relative isolate overflow-hidden bg-forest-deep text-warm-white">
         <img
