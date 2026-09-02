@@ -4,7 +4,7 @@ import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter } from "@/components/sit
 import { AboutUsHeader } from "@/components/about-us-header";
 import { cn } from "@/lib/utils";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
-import aboutHeroGoldBar from "@/assets/about-hero-gold-bar.png.asset.json";
+import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
   head: () => ({
