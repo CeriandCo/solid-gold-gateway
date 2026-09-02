@@ -146,6 +146,57 @@ function GiftingPage() {
         </div>
       </section>
 
+      {/* Occasions / Celebrate What Matters Most */}
+      <section className="bg-[#FAF7F2] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#B89758] uppercase mb-3 block text-center">
+            PERFECT FOR LIFE&apos;S SPECIAL MOMENTS
+          </span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-4 h-4 text-[#B89758] mx-auto mb-4 opacity-80"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="2.2" />
+            <circle cx="12" cy="6.5" r="1.6" />
+            <circle cx="16.4" cy="8.8" r="1.6" />
+            <circle cx="16.4" cy="15.2" r="1.6" />
+            <circle cx="12" cy="17.5" r="1.6" />
+            <circle cx="7.6" cy="15.2" r="1.6" />
+            <circle cx="7.6" cy="8.8" r="1.6" />
+          </svg>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1917] tracking-tight text-center mb-4">
+            Celebrate what matters most.
+          </h2>
+          <p className="text-sm sm:text-base text-[#57534E] text-center max-w-xl mx-auto leading-relaxed whitespace-pre-line mb-12 md:mb-16">
+            From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
+          </p>
+
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-start justify-center">
+            {[
+              { icon: HeartHandshake, label: "Weddings" },
+              { icon: Heart, label: "Anniversaries" },
+              { icon: Baby, label: "New Arrivals" },
+              { icon: Cake, label: "Birthdays" },
+              { icon: GraduationCap, label: "Graduations" },
+              { icon: SunMedium, label: "Festivals" },
+              { icon: Trophy, label: "Achievements" },
+              { icon: Home, label: "Housewarmings" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
+                <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#D6C7A1]/60 bg-[#F4EFE6]/50 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-105 group-hover:border-[#B89758] group-hover:bg-[#FAF7F2] shadow-sm">
+                  <Icon className="w-7 h-7 md:w-8 md:h-8 text-[#B89758]" strokeWidth={1.4} />
+                </span>
+                <span className="text-xs md:text-sm font-medium text-[#292524] tracking-tight group-hover:text-[#B89758] transition-colors">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Occasions */}
       <section className="bg-background py-14 lg:py-20">
         <div className={STD}>
