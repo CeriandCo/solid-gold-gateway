@@ -52,7 +52,7 @@ function GiftingPage() {
         />
 
         <div className="relative mx-auto grid min-h-[560px] w-full max-w-[1440px] grid-cols-[44%_56%] lg:px-[60px] xl:px-[64px]">
-          <div className="flex items-center py-14 max-lg:col-span-2 max-lg:px-5 sm:max-lg:px-8 lg:py-16">
+          <div className="flex items-start pt-10 pb-14 max-lg:col-span-2 max-lg:px-5 sm:max-lg:px-8 lg:pt-12 lg:pb-16">
             <div className="w-full max-w-[520px]">
               <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.16em] text-gold-soft">
                 Give what lasts
