@@ -437,7 +437,7 @@ function GiftingPage() {
           {/* Left Column (Faded Image) */}
           <div className="relative h-[400px] w-full sm:h-[500px] lg:h-[600px] lg:w-[55%]">
             <img
-              src={giftingPackagedImage.url}
+              src={giftingPackagedImage}
               alt="Luxury smartphone and 10g SQOOT Pure gold bar on dark green velvet"
               width={1536}
               height={1024}
