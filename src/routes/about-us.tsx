@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Eye, ShieldCheck, UserRound } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { ArrowRight } from "lucide-react";
+import { GoldButton, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { cn } from "@/lib/utils";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
 import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
@@ -26,11 +26,6 @@ export const Route = createFileRoute("/about-us")({
   component: AboutPage,
 });
 
-const principles = [
-  { icon: UserRound, title: "Ownership first", copy: "Metal is allocated in your name — never pooled, never on our balance sheet." },
-  { icon: Eye, title: "Radical transparency", copy: "Clear fees, verifiable records, custody documentation you can actually read." },
-  { icon: ShieldCheck, title: "Protection by default", copy: "Insured US vaults, insured delivery, and redemption on your schedule." },
-] as const;
 
 function AboutPage() {
   return (
@@ -75,25 +70,6 @@ function AboutPage() {
       </section>
 
 
-      {/* Principles */}
-      <section className="bg-ivory py-14 lg:py-20">
-        <div className={STD}>
-          <Eyebrow>Our principles</Eyebrow>
-          <GoldRule />
-          <h2 className="section-title mt-5 text-charcoal">What we won’t compromise on.</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {principles.map(({ icon: Icon, title, copy }) => (
-              <article key={title} className="rounded-[10px] border border-beige bg-background p-7">
-                <span className="grid h-[84px] w-[84px] place-items-center rounded-full border border-gold/55 text-gold">
-                  <Icon size={32} strokeWidth={1.4} />
-                </span>
-                <h3 className="card-title mt-5 text-charcoal">{title}</h3>
-                <p className="mt-3 text-[13px] leading-[1.55] text-[#444A45]">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="bg-forest py-12 text-[#F8F5F1]">
