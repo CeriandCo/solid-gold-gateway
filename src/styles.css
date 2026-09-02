@@ -27,7 +27,7 @@
   --radius-3xl: 8px;
   --radius-4xl: 8px;
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-sans: "Inter", Arial, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -63,31 +63,31 @@
 :root {
   --radius: 2px;
 
-  /* Brand */
-  --forest: oklch(0.253 0.047 173.5);
-  --forest-deep: oklch(0.253 0.047 173.5);
-  --charcoal: oklch(0.251 0.026 169.4);
-  --gold: oklch(0.66 0.121 72.2);
-  --gold-dark: oklch(0.57 0.11 72.2);
-  --gold-soft: oklch(0.84 0.072 87);
-  --warm-white: oklch(0.972 0.011 79.7);
-  --cream: oklch(0.972 0.011 79.7);
-  --ivory: oklch(0.972 0.011 79.7);
-  --beige: oklch(0.88 0.027 74.9);
-  --error: oklch(0.72 0.15 28);
+  /* Brand — sampled from approved target */
+  --forest: oklch(0.185 0.028 162); /* #05140D header/footer dark */
+  --forest-deep: oklch(0.243 0.035 160); /* #0B2015 dark cards */
+  --charcoal: oklch(0.205 0.03 161); /* #081A12 main ink */
+  --gold: oklch(0.601 0.124 71); /* #B37A0D */
+  --gold-dark: oklch(0.53 0.112 71);
+  --gold-soft: oklch(0.759 0.106 79); /* #D7AA4E */
+  --warm-white: oklch(0.966 0.004 67); /* #F7F4F1 */
+  --cream: oklch(0.966 0.004 67);
+  --ivory: oklch(0.955 0.013 82); /* #F6F0E8 */
+  --beige: oklch(0.874 0.011 72); /* #DED6CC */
+  --error: oklch(0.62 0.17 28);
 
   --background: var(--warm-white);
-  --foreground: oklch(0.24 0.038 158);
+  --foreground: var(--charcoal);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.038 158);
+  --card-foreground: var(--charcoal);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.24 0.038 158);
+  --popover-foreground: var(--charcoal);
   --primary: var(--forest);
-  --primary-foreground: var(--warm-white);
+  --primary-foreground: oklch(0.968 0.005 70);
   --secondary: var(--cream);
   --secondary-foreground: var(--forest);
   --muted: var(--cream);
-  --muted-foreground: oklch(0.5 0.02 155);
+  --muted-foreground: oklch(0.44 0.008 155); /* #444A45 */
   --accent: var(--gold);
   --accent-foreground: var(--forest-deep);
   --destructive: oklch(0.53 0.17 27);
@@ -97,8 +97,12 @@
   --ring: var(--gold);
 }
 
+
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
 
@@ -106,6 +110,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-kerning: normal;
+    font-synthesis: none;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
@@ -113,440 +122,76 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: 0;
-  }
-
-  input::placeholder {
     font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.08;
   }
 }
 
 @utility eyebrow {
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.08em;
+  line-height: 1.2;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-
-  @media (min-width: 48rem) {
-    font-size: 0.875rem;
-  }
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility header-nav-type {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.0625rem;
-  }
-}
-
-@utility header-cta-type {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
   font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility hero-title {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: 0;
-  text-wrap: wrap;
-  white-space: normal;
-
-  @media (min-width: 48rem) {
-    font-size: 3.125rem;
-  }
-
-  @media (min-width: 64rem) {
-    font-size: 4.75rem;
-    line-height: 4.8125rem;
-  }
-}
-
-@utility hero-emphasis {
-  font-family: var(--font-display);
-  font-size: inherit;
-  font-style: italic;
-  font-weight: 600;
-  line-height: inherit;
-  letter-spacing: 0;
-}
-
-@utility hero-body {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.75;
-  letter-spacing: 0;
-
-  @media (min-width: 48rem) {
-    font-size: 1.0625rem;
-    line-height: 1.8;
-  }
-
-  @media (min-width: 64rem) {
-    font-size: 1.3125rem;
-    line-height: 2.3125rem;
-  }
-}
-
-@utility hero-note {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 0.9375rem;
-  }
-}
-
-@utility hero-cta-type {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.04em;
-
-  @media (min-width: 64rem) {
-    font-size: 1.125rem;
-  }
-}
-
-@utility price-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.12em;
-}
-
-@utility price-value {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0;
-}
-
-@utility price-detail {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
 }
 
 @utility section-title {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
-
-  @media (min-width: 48rem) {
-    font-size: 2.25rem;
-  }
-
-  @media (min-width: 64rem) {
-    font-size: 2.75rem;
-    line-height: 3.4375rem;
-  }
-}
-
-@utility section-body {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
+  font-size: 1.75rem;
   font-weight: 500;
-  line-height: 1.75;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.1875rem;
-    line-height: 2.125rem;
-  }
-}
-
-@utility step-number {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility step-title {
-  font-family: var(--font-display);
-  font-size: 1.875rem;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: 0;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 
   @media (min-width: 48rem) {
     font-size: 2rem;
   }
 
-  @media (min-width: 64rem) {
-    font-size: 2.75rem;
+  @media (min-width: 75rem) {
+    font-size: 2.25rem;
   }
 }
 
-@utility step-body {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
+@utility card-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
   font-weight: 500;
-  line-height: 1.6;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.1875rem;
-    line-height: 2.125rem;
-  }
+  line-height: 1.1;
+  letter-spacing: -0.012em;
 }
 
-@utility comparison-left-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 2.5625rem;
-    line-height: 3.25rem;
-  }
-}
-
-@utility comparison-right-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 2.5rem;
-    line-height: 3.25rem;
-  }
-}
-
-@utility comparison-emphasis {
-  font-family: var(--font-display);
-  font-size: inherit;
-  font-style: italic;
-  font-weight: 600;
-  line-height: inherit;
-  letter-spacing: 0;
-}
-
-@utility comparison-left-list {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility comparison-right-list {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.1875rem;
-  }
-}
-
-@utility fees-faq-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-
-  @media (min-width: 64rem) {
-    font-size: 1.75rem;
-  }
-}
-
-@utility fee-intro {
+@utility body-copy {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.1875rem;
-  }
+  font-weight: 400;
+  line-height: 1.55;
 }
 
-@utility fee-card-label {
+@utility compact-copy {
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
-@utility fee-card-value {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.375rem;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 0.9375rem;
-  }
-}
-
-@utility fee-footnote {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 0.875rem;
-  }
-}
-
-@utility faq-question {
+@utility ui-label {
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.125rem;
-  }
 }
 
-@utility early-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 2.75rem;
-  }
-}
-
-@utility early-body {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1.6;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1.1875rem;
-    line-height: 2.125rem;
-  }
-}
-
-@utility early-input {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility early-button {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility privacy-note {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 0.9375rem;
-  }
-}
-
-@utility footer-nav {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 1rem;
-  }
-}
-
-@utility footer-legal {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  line-height: 1.625rem;
-  letter-spacing: 0;
-
-  @media (min-width: 64rem) {
-    font-size: 0.875rem;
-  }
-}
 
 html {
   scroll-behavior: smooth;
+}
+
+button,
+a,
+input {
+  letter-spacing: 0;
 }
 
 @utility rule-ornament {
