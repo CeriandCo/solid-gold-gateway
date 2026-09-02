@@ -193,7 +193,7 @@ function Index() {
                   whenever you choose.
                 </span>
               </h1>
-              <p className=mt-[34px] max-w-[560px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
+              <p className="mt-[34px] max-w-[560px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
                 <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
                 <br className="hidden lg:block" /> A specific holding you can verify and reach.
