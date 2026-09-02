@@ -159,24 +159,20 @@ function Index() {
     <main id="top" className="bg-background text-charcoal">
       <SiteHeader />
 
-      {/* Hero */}
-      <section id="vault" className="bg-ivory pb-24 pt-16 sm:pb-28 lg:pb-[112px] lg:pt-[68px]">
-        <div className={cn(WIDE, "px-8 lg:max-w-[1400px] lg:px-10 xl:px-10")}>
-          <div className="grid items-center gap-10 md:grid-cols-[46%_1fr] md:gap-12 lg:min-h-[660px] lg:grid-cols-[44%_1fr] lg:gap-[88px]">
-            <div className="overflow-hidden rounded-[2px] lg:h-[660px]">
-              <img
-                src={vaultDoor.url}
-                alt="Steel vault door with circular locking mechanism"
-                className="h-[300px] w-full scale-[1.02] object-cover object-center transition-transform duration-[600ms] ease-out sm:h-[420px] lg:h-full animate-in fade-in zoom-in-95 duration-700 fill-mode-both"
-              />
-            </div>
-            <div className="flex flex-col justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:py-0">
+      {/* Hero — full-bleed cinematic split */}
+      <section id="vault" className="bg-ivory">
+        <div className="hero-split grid w-full grid-cols-1 lg:grid-cols-[45%_55%]">
+          {/* Content panel — first on mobile, second column on desktop */}
+          <div className="order-1 flex items-center bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
+            <div
+              className="w-full max-w-[780px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-[clamp(64px,5vw,96px)] lg:py-[clamp(56px,5vw,72px)]"
+            >
               <Eyebrow>Vaulted Gold</Eyebrow>
               <GoldRule />
-              <h1 className="mt-[22px] max-w-[680px] font-display font-medium text-charcoal">
+              <h1 className="mt-6 font-display font-medium text-charcoal">
                 <span
                   className="block"
-                  style={{ fontSize: "clamp(38px, 4.9vw, 74px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
+                  style={{ fontSize: "clamp(36px, 3.55vw, 60px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
                 >
                   Your gold.
                   <br />
@@ -184,7 +180,7 @@ function Index() {
                 </span>
                 <span
                   className="mt-2 block"
-                  style={{ fontSize: "clamp(31px, 3.85vw, 56px)", lineHeight: "1.02", letterSpacing: "-0.02em" }}
+                  style={{ fontSize: "clamp(29px, 2.85vw, 48px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
                 >
                   Real, insured, and
                   <br />
@@ -193,12 +189,12 @@ function Index() {
                   whenever you choose.
                 </span>
               </h1>
-              <p className="mt-8 max-w-[520px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
+              <p className="mt-[34px] max-w-[620px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
-                <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
-                <br className="hidden lg:block" /> A specific holding you can verify and reach.
+                <br className="hidden xl:block" /> allocated to you individually. Not a promise on a screen.
+                <br className="hidden xl:block" /> A specific holding you can verify and reach.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-6 sm:gap-7">
+              <div className="mt-[36px] flex flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
                   href="#early-access"
                   className="group h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold"
@@ -222,8 +218,19 @@ function Index() {
               </div>
             </div>
           </div>
+
+          {/* Image panel — full-bleed left column */}
+          <div className="relative order-2 overflow-hidden lg:order-1">
+            <img
+              src={vaultDoor.url}
+              alt="Steel vault door with circular locking mechanism"
+              className="h-full w-full animate-vault-settle object-cover object-[58%_center] aspect-[5/4] sm:aspect-[16/10] lg:aspect-auto lg:absolute lg:inset-0"
+            />
+            <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-charcoal/25 to-transparent lg:block" />
+          </div>
         </div>
       </section>
+
 
       {/* Custody proof row */}
       <section className="border-t border-beige/70 bg-background" aria-label="Custody assurances">
