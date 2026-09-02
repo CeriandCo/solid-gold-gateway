@@ -191,8 +191,8 @@ function Index() {
               </h1>
               <p className="mt-[34px] max-w-[620px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
                 Physical gold and silver, stored in an insured US vault,
-                <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
-                <br className="hidden lg:block" /> A specific holding you can verify and reach.
+                <br className="hidden xl:block" /> allocated to you individually. Not a promise on a screen.
+                <br className="hidden xl:block" /> A specific holding you can verify and reach.
               </p>
               <div className="mt-[36px] flex flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
