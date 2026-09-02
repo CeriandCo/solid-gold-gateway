@@ -46,9 +46,9 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Weddings",
     paths: (
       <>
-        <circle cx="12.5" cy="19" r="6.5" />
-        <circle cx="19.5" cy="19" r="6.5" />
-        <path d="M16 9.7c-1.1-1.8-3.8-1.2-3.8.9 0 1.5 2.3 2.9 3.8 4 1.5-1.1 3.8-2.5 3.8-4 0-2.1-2.7-2.7-3.8-.9z" />
+        <circle cx="9.5" cy="14" r="4" />
+        <circle cx="14.5" cy="14" r="4" />
+        <path d="M12 6.5c-1.2-1.4-3.3-.9-3.3.8 0 1.2 1.8 2.4 3.3 3.3 1.5-.9 3.3-2.1 3.3-3.3 0-1.7-2.1-2.2-3.3-.8z" />
       </>
     ),
   },
@@ -56,8 +56,9 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Anniversaries",
     paths: (
       <>
-        <path d="M16 27s-10-6.3-10-13a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 26 14c0 6.7-10 13-10 13z" />
-        <path d="M10.5 16h3l1.5-3.2 2.2 6.2 1.5-3h2.8" />
+        <path d="M12 5.5C9.8 2.8 6 4.2 6 8c0 3.8 6 8.5 6 8.5s6-4.7 6-8.5c0-3.8-3.8-5.2-6-2.5z" />
+        <path d="M12 7.5c-1.3-1.3-3-.5-3 1.3 0 1.6 1.7 3.3 3 4.5 1.3-1.2 3-2.9 3-4.5 0-1.8-1.7-2.6-3-1.3z" />
+        <path d="M8.5 10l3.5 2.5 3.5-2.5" />
       </>
     ),
   },
@@ -65,9 +66,10 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "New Arrivals",
     paths: (
       <>
-        <path d="M12.5 9.5c-2-2.2-4.5-.7-3.6 1.3M19.5 9.5c2-2.2 4.5-.7 3.6 1.3" />
-        <path d="M11.5 10.5h9A5.5 5.5 0 0 1 16 16a5.5 5.5 0 0 1-4.5-5.5z" />
-        <path d="M11.5 12.8C7.8 14.1 6 17 6.8 20.1 7.8 24 11.3 26 16 26s8.2-2 9.2-5.9c.8-3.1-1-6-4.7-7.3" />
+        <path d="M7 8.5v5.5c0 3.5 2.2 6 5 7 2.8-1 5-3.5 5-7V8.5" />
+        <path d="M7 8.5h10" />
+        <path d="M10 8.5a2 2 0 0 1 4 0" />
+        <path d="M6.5 8.5l-2-2.5M17.5 8.5l2-2.5" />
       </>
     ),
   },
@@ -75,12 +77,13 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Birthdays",
     paths: (
       <>
-        <path d="M12 10V7M16 10V7M20 10V7" />
-        <circle cx="12" cy="5.5" r=".7" />
-        <circle cx="16" cy="5.5" r=".7" />
-        <circle cx="20" cy="5.5" r=".7" />
-        <rect x="11" y="10" width="10" height="5.5" />
-        <rect x="8" y="15.5" width="16" height="8" />
+        <rect x="8" y="13" width="8" height="3.5" rx="0.3" />
+        <rect x="6" y="16.5" width="12" height="4.5" rx="0.3" />
+        <path d="M12 21v2M8 23h8" />
+        <path d="M9.5 13V10M12 13V9.5M14.5 13V10" />
+        <path d="M9.5 9.5c0 .5-.3.8-.6.8s-.6-.3-.6-.8.3-1 .6-1 .6.5.6 1z" />
+        <path d="M12 9c0 .5-.3.8-.6.8s-.6-.3-.6-.8.3-1 .6-1 .6.5.6 1z" />
+        <path d="M14.5 9.5c0 .5-.3.8-.6.8s-.6-.3-.6-.8.3-1 .6-1 .6.5.6 1z" />
       </>
     ),
   },
@@ -88,10 +91,10 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Graduations",
     paths: (
       <>
-        <path d="M16 6.5 4 12l12 5.5L28 12 16 6.5z" />
-        <path d="M9 15v5.5c3.8 2.8 10.2 2.8 14 0V15" />
-        <path d="M16 12h10v7" />
-        <circle cx="26" cy="20.5" r="1.2" />
+        <path d="M12 5 4 9.5l8 4.5 8-4.5-8-4.5z" />
+        <path d="M8 12.5v3.5c0 2 3 3.5 8 1.5" />
+        <path d="M12 9.5v5.5c0 2.2 2.5 3.5 5 2" />
+        <circle cx="17" cy="17" r="0.9" />
       </>
     ),
   },
@@ -99,9 +102,13 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Festivals",
     paths: (
       <>
-        <circle cx="16" cy="16" r="4.5" />
-        <path d="M16 3v5M16 24v5M3 16h5M24 16h5M6.8 6.8l3.6 3.6M21.6 21.6l3.6 3.6M25.2 6.8l-3.6 3.6M10.4 21.6l-3.6 3.6" />
-        <path d="M11.2 5.8 12 9l-2.8-1.7M20.8 26.2 20 23l2.8 1.7M26.2 11.2 23 12l1.7-2.8M5.8 20.8 9 20l-1.7 2.8" />
+        <circle cx="12" cy="12" r="2.2" />
+        <path d="M12 4v2.5M12 17.5V20M4 12h2.5M17.5 12H20" />
+        <path d="M6.3 6.3l1.8 1.8M15.9 15.9l1.8 1.8M17.7 6.3l-1.8 1.8M8.1 15.9l-1.8 1.8" />
+        <path d="M12 2.5l.7 1.4-.7 1.4-.7-1.4z" />
+        <path d="M12 21.5l.7-1.4-.7-1.4-.7 1.4z" />
+        <path d="M2.5 12l1.4.7 1.4-.7-1.4-.7z" />
+        <path d="M21.5 12l-1.4.7-1.4-.7 1.4-.7z" />
       </>
     ),
   },
@@ -109,9 +116,11 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Achievements",
     paths: (
       <>
-        <path d="M11 5h10v7a5 5 0 0 1-10 0V5z" />
-        <path d="M11 7H7v2a5 5 0 0 0 5 5M21 7h4v2a5 5 0 0 1-5 5" />
-        <path d="M16 17v5M12 22h8M10 26h12" />
+        <path d="M7 4.5h10v5c0 3.2-2.2 5.5-5 5.5s-5-2.3-5-5.5v-5z" />
+        <path d="M7 6.5H5v2c0 2 1.5 3.5 3 4M17 6.5h2v2c0 2-1.5 3.5-3 4" />
+        <path d="M12 15v4.5" />
+        <path d="M9 19.5h6" />
+        <path d="M8 22h8" />
       </>
     ),
   },
@@ -119,10 +128,10 @@ const occasionIcons: { label: string; paths: React.ReactNode }[] = [
     label: "Housewarmings",
     paths: (
       <>
-        <path d="M4.5 15 16 5.5 27.5 15" />
-        <path d="M7.5 13v13h17V13" />
-        <path d="M21 8.2V5h3v5.7" />
-        <path d="M13 26v-7h6v7" />
+        <path d="M3 11l9-6.5 9 6.5" />
+        <path d="M5 10.5v10.5h14V10.5" />
+        <path d="M17 6.5V4.5h2.5v4" />
+        <path d="M10 21v-5.5h4V21" />
       </>
     ),
   },
@@ -235,16 +244,13 @@ function GiftingPage() {
           </span>
           <svg
             viewBox="0 0 24 24"
-            className="mx-auto mb-2 h-3 w-3 text-[#B89758]"
+            className="mx-auto mb-2 h-5 w-5 text-[#B89758] opacity-90 fill-current"
             aria-hidden="true"
           >
-            <circle cx="12" cy="12" r="3" fill="currentColor" />
-            <g fill="currentColor">
-              <ellipse cx="12" cy="5" rx="2.1" ry="4" />
-              <ellipse cx="12" cy="19" rx="2.1" ry="4" />
-              <ellipse cx="5" cy="12" rx="4" ry="2.1" />
-              <ellipse cx="19" cy="12" rx="4" ry="2.1" />
-            </g>
+            <path d="M12 2c-2.2 4-4 7-4 10.5 0 2.8 1.7 4.8 4 5.8 2.3-1 4-3 4-5.8C16 9 14.2 6 12 2z" />
+            <path d="M7 7C4.5 10.5 4.5 14 7 16.5c2 1.5 4 2 5 2.5V7c-2 0-4 0-5 0z" />
+            <path d="M17 7c2.5 3.5 2.5 7 0 9.5-2 1.5-4 2-5 2.5V7c2 0 4 0 5 0z" />
+            <path d="M4 20h16" stroke="currentColor" strokeWidth="1" />
           </svg>
           <h2 className="mb-2 text-center font-serif text-4xl font-normal tracking-tight text-[#1C1917] md:text-5xl">
             Celebrate what matters most.
@@ -258,7 +264,7 @@ function GiftingPage() {
               <div key={label} className="flex flex-col items-center text-center group cursor-pointer">
                 <span className="mb-3 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8CCB2]/60 bg-transparent md:h-[72px] md:w-[72px]">
                   <svg
-                    viewBox="0 0 32 32"
+                    viewBox="0 0 24 24"
                     className="h-7 w-7 fill-none stroke-[#B89758] stroke-[1.25] md:h-8 md:w-8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
