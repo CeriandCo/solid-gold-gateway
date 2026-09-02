@@ -54,8 +54,11 @@ export const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
 export const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
 
 export const siteNav = [
+  ["Precious Metal", "/precious-metal"],
   ["Fractional Gold", "/fractional-gold"],
+  ["Gifting", "/gifting"],
   ["Vault", "/vault"],
+  ["About Us", "/about-us"],
   ["Learn", "/learn"],
 ] as const;
 
@@ -112,9 +115,16 @@ export function GoldButton({
  */
 export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isOverlay = variant === "overlay";
   return (
-    <div className={variant === "solid" ? "bg-forest-deep text-warm-white" : undefined}>
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
+    <div className={cn("relative", isOverlay ? "text-warm-white" : "bg-forest-deep text-warm-white")}>
+      {isOverlay && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20 bg-gradient-to-b from-forest-deep/75 via-forest-deep/45 to-transparent"
+        />
+      )}
+      <div className="relative z-10 mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-5">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
           <img src={logoImage} alt="SQOOT Pure" className="h-12 w-auto" />
         </Link>

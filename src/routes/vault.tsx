@@ -161,52 +161,54 @@ function Index() {
 
       {/* Hero */}
       <section id="vault" className="bg-ivory">
-        <div className="grid lg:min-h-[628px] lg:grid-cols-[39%_61%]">
-          <img
-            src={vaultDoor.url}
-            alt="Steel vault door with circular locking mechanism"
-            className="h-[280px] w-full object-cover object-center sm:h-[380px] lg:h-full"
-          />
-          <div className="flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-0 lg:pl-[84px] lg:pr-10">
-            <Eyebrow>Vaulted Gold</Eyebrow>
-            <GoldRule />
-            <h1 className="mt-5 max-w-[660px] font-display font-medium text-charcoal">
-              <span
-                className="block"
-                style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "69px", letterSpacing: "-0.025em" }}
-              >
-                Your gold.
-                <br />
-                Held in your name.
-              </span>
-              <span
-                className="block"
-                style={{ fontSize: "clamp(31px, 3.75vw, 54px)", lineHeight: "55px", letterSpacing: "-0.02em" }}
-              >
-                Real, insured, and
-                <br />
-                <em className="font-medium italic text-gold">yours</em> to redeem
-                <br />
-                whenever you choose.
-              </span>
-            </h1>
-            <p className="mt-6 max-w-[540px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
-              Physical gold and silver, stored in an insured US vault,
-              <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
-              <br className="hidden lg:block" /> A specific holding you can verify and reach.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-8">
-              <GoldButton href="#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
-                Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
-              </GoldButton>
-              <div className="flex items-center gap-4">
-                <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold text-gold">
-                  <Play size={16} fill="currentColor" />
+        <div className={WIDE}>
+          <div className="grid lg:min-h-[628px] lg:grid-cols-[39%_61%]">
+            <img
+              src={vaultDoor.url}
+              alt="Steel vault door with circular locking mechanism"
+              className="h-[280px] w-full object-cover object-center sm:h-[380px] lg:h-full"
+            />
+            <div className="flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-0 lg:pl-[84px] lg:pr-10">
+              <Eyebrow>Vaulted Gold</Eyebrow>
+              <GoldRule />
+              <h1 className="mt-5 max-w-[660px] font-display font-medium text-charcoal">
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "69px", letterSpacing: "-0.025em" }}
+                >
+                  Your gold.
+                  <br />
+                  Held in your name.
                 </span>
-                <span>
-                  <span className="block text-[15px] font-semibold leading-tight text-charcoal">See how it works</span>
-                  <span className="mt-1 block text-[13px] leading-tight text-[#444A45]">2 min walkthrough</span>
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(31px, 3.75vw, 54px)", lineHeight: "55px", letterSpacing: "-0.02em" }}
+                >
+                  Real, insured, and
+                  <br />
+                  <em className="font-medium italic text-gold">yours</em> to redeem
+                  <br />
+                  whenever you choose.
                 </span>
+              </h1>
+              <p className="mt-6 max-w-[540px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
+                Physical gold and silver, stored in an insured US vault,
+                <br className="hidden lg:block" /> allocated to you individually. Not a promise on a screen.
+                <br className="hidden lg:block" /> A specific holding you can verify and reach.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-8">
+                <GoldButton href="#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
+                  Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
+                </GoldButton>
+                <div className="flex items-center gap-4">
+                  <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold text-gold">
+                    <Play size={16} fill="currentColor" />
+                  </span>
+                  <span>
+                    <span className="block text-[15px] font-semibold leading-tight text-charcoal">See how it works</span>
+                    <span className="mt-1 block text-[13px] leading-tight text-[#444A45]">2 min walkthrough</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
