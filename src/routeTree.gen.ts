@@ -17,6 +17,7 @@ import { Route as GiftingNewRouteImport } from './routes/gifting-new'
 import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
+import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const PreciousMetalRoute = PreciousMetalRouteImport.update({
   path: '/precious-metal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrustCenterRoute = TrustCenterRouteImport.update({
+  id: '/trust-center',
+  path: '/trust-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
   path: '/vault',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
+  '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
+  '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
+  '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
+    | '/trust-center'
     | '/vault'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
+    | '/trust-center'
     | '/vault'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
+    | '/trust-center'
     | '/vault'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRoute
   PreciousMetalRoute: typeof PreciousMetalRoute
+  TrustCenterRoute: typeof TrustCenterRoute
   VaultRoute: typeof VaultRoute
 }
 
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreciousMetalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trust-center': {
+      id: '/trust-center'
+      path: '/trust-center'
+      fullPath: '/trust-center'
+      preLoaderRoute: typeof TrustCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vault': {
       id: '/vault'
       path: '/vault'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRoute,
   PreciousMetalRoute: PreciousMetalRoute,
+  TrustCenterRoute: TrustCenterRoute,
   VaultRoute: VaultRoute,
 }
 export const routeTree = rootRouteImport
