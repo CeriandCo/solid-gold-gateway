@@ -243,43 +243,42 @@ function PricingSection() {
 
 const benefits = [
   {
-    title: "Fully Insured",
-    description: "Insured in transit and in vaulted storage.",
-    icon: <InsuredBenefitIcon />,
+    title: "Shipping",
+    description: "Insured delivery to your address.",
+    icon: <ShippingBenefitIcon />,
   },
   {
-    title: "999.9 Purity",
-    description: "LBMA-certified fine gold, every bar and coin.",
-    icon: <PurityBenefitIcon />,
+    title: "Insurance",
+    description: "Fully insured from our vault to your door.",
+    icon: <InsuranceBenefitIcon />,
   },
   {
-    title: "Secure Storage",
-    description: "Allocated, segregated vault storage, audited.",
+    title: "Storage",
+    description: "You control it. We don't store it.",
     icon: <StorageBenefitIcon />,
   },
   {
-    title: "Instant Liquidity",
-    description: "Sell back anytime at live spot pricing.",
+    title: "Liquidity",
+    description: "Globally recognized. Always in demand.",
     icon: <LiquidityBenefitIcon />,
   },
 ] as const;
 
-function InsuredBenefitIcon() {
+function ShippingBenefitIcon() {
   return (
     <svg viewBox="0 0 82 82" aria-hidden="true">
-      <path d="M41 11c8 7 16 10 25 11v17c0 15-8 25-25 33-17-8-25-18-25-33V22c9-1 17-4 25-11Z" />
-      <path d="m30 41 7 7 15-17M16 54c-5-3-8-8-9-14m59 14c5-3 8-8 9-14" />
-      <path d="M11 33c1-5 4-10 8-13m44 0c4 3 7 8 8 13" opacity=".68" />
+      <path d="M18 28h46v40H18z" />
+      <path d="M18 28 41 12l23 16" />
+      <path d="M28 44h26M28 54h20" />
     </svg>
   );
 }
 
-function PurityBenefitIcon() {
+function InsuranceBenefitIcon() {
   return (
     <svg viewBox="0 0 82 82" aria-hidden="true">
-      <path d="M41 9 49 28l20 2-15 14 5 20-18-10-18 10 5-20-15-14 20-2 8-19Z" />
-      <path d="M41 18v36M27 31l14 13 14-13M31 55c-7 1-13 5-17 11m37-11c7 1 13 5 17 11" />
-      <path d="M14 66c5-1 9 0 13 4m41-4c-5-1-9 0-13 4" opacity=".68" />
+      <path d="M41 11c8 4 16 7 25 8v17c0 15-8 28-25 37-17-9-25-22-25-37V19c9-1 17-4 25-8Z" />
+      <path d="m30 41 7 7 15-17" />
     </svg>
   );
 }
@@ -287,11 +286,11 @@ function PurityBenefitIcon() {
 function StorageBenefitIcon() {
   return (
     <svg viewBox="0 0 82 82" aria-hidden="true">
-      <rect x="11" y="12" width="60" height="58" rx="3" />
-      <rect x="18" y="19" width="46" height="44" rx="2" />
-      <circle cx="41" cy="41" r="13" />
-      <circle cx="41" cy="41" r="4" />
-      <path d="M41 28v9m0 8v9m-13-13h9m8 0h9M20 26h-6m6 30h-6m54-30h-6m6 30h-6" />
+      <rect x="14" y="18" width="54" height="50" rx="4" />
+      <circle cx="41" cy="43" r="11" />
+      <circle cx="41" cy="43" r="3" />
+      <path d="M41 32v6M41 48v6M30 43h6M46 43h6" />
+      <path d="M22 18v-4a3 3 0 0 1 3-3h32a3 3 0 0 1 3 3v4" />
     </svg>
   );
 }
@@ -299,9 +298,10 @@ function StorageBenefitIcon() {
 function LiquidityBenefitIcon() {
   return (
     <svg viewBox="0 0 82 82" aria-hidden="true">
-      <path d="M17 31c4-11 14-18 26-18 11 0 20 5 25 14" />
-      <path d="m58 17 10 10-14 4M65 51c-4 11-14 18-26 18-11 0-20-5-25-14" />
-      <path d="m24 65-10-10 14-4M42 25v32m8-25c-2-4-11-6-16-2-6 5-1 10 7 11 9 1 14 6 8 12-5 5-15 2-17-2" />
+      <path d="M57 25c10 6 12 19 5 28" />
+      <path d="m52 21 9 4-3 9" />
+      <path d="M25 57c-10-6-12-19-5-28" />
+      <path d="m30 61-9-4 3-9" />
     </svg>
   );
 }
