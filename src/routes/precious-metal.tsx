@@ -1260,10 +1260,10 @@ function PreciousMetalPage() {
             .pm-benefit > p { margin-top: 8px; font-size: 15px; }
 
             .pm-cta { height: auto; min-height: 220px; padding: 48px 20px; }
+            .pm-cta-branch { width: 220px; left: -50px; bottom: -40px; opacity: .08; }
             .pm-cta-inner { padding-inline: 0; }
-            .pm-cta h2 { font-size: 34px; }
-            .pm-cta p { font-size: 16px; }
-            .pm-cta a { width: min(420px, 100%); height: 64px; font-size: 13px; }
+            .pm-cta h2 { font-size: 28px; }
+            .pm-cta a { width: min(260px, 100%); height: 54px; font-size: 12px; }
           }
 
 
