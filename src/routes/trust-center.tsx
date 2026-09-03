@@ -534,8 +534,10 @@ function TrustCenterPage() {
               <dl>
                 {TC.protection.rows.map((row) => (
                   <div className="tc-legal-row" key={row.label}>
-                    <TcIcon name={row.icon} className="tc-legal-icon" />
-                    <dt>{row.label}</dt>
+                    <dt>
+                      <TcIcon name={row.icon} className="tc-legal-icon" />
+                      <span>{row.label}</span>
+                    </dt>
                     <dd>{row.value}</dd>
                   </div>
                 ))}
