@@ -292,13 +292,13 @@ const aboutStyles = `
 .about-path-grid h2 { margin-top:clamp(9px,.9028vw,23px); color:var(--gold-400); font-size:clamp(18.5px,1.8056vw,46px); }
 .about-path-grid .is-featured h2 { color:var(--gold-deep); }
 .about-path-grid p { margin-top:clamp(7px,.6944vw,18px); font-size:clamp(9.2px,.9028vw,23px); line-height:1.6; }
-.about-trust { height:clamp(149px,14.5833vw,373px); background:var(--cream-100); }
-.about-trust-inner { width:var(--shell); height:100%; margin:auto; display:grid; grid-template-columns:25% 1fr; align-items:center; gap:clamp(75px,7.2917vw,187px); }
+.about-trust { height:clamp(160px,15.2778vw,391px); background:var(--cream-100); }
+.about-trust-inner { width:var(--shell); height:100%; margin:auto; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:clamp(22px,2.2222vw,57px); }
 .about-trust-emblem { position:relative; width:clamp(98px,9.5139vw,244px); height:clamp(98px,9.5139vw,244px); margin-left:clamp(38px,3.6806vw,94px); display:grid; place-items:center; color:var(--gold-deep); }
 .about-trust-emblem > svg:first-child { position:absolute; inset:0; width:100%; height:100%; opacity:.32; }.about-trust-emblem > svg:first-child * { stroke:currentColor; stroke-width:.8; }
 .about-trust-emblem > svg:last-child { width:43%; height:43%; stroke:currentColor; stroke-width:1.2; }
 .about-trust-copy .about-eyebrow { margin-bottom:clamp(7px,.6944vw,18px); }
-.about-trust-copy h2 { color:var(--gold-deep); font-size:clamp(21.3px,2.0833vw,53px); line-height:1.12; }
+.about-trust-copy h2 { color:var(--gold-deep); font-size:clamp(26px,2.7778vw,71px); line-height:1.12; }
 .about-trust-copy > p:last-child { margin-top:clamp(7px,.6944vw,18px); font-size:clamp(9.6px,.9375vw,24px); line-height:1.7; }
 .about-waitlist { height:clamp(77px,7.5vw,192px); display:grid; place-items:center; background:var(--forest-950); }
 .about-waitlist a { width:clamp(297px,29.0278vw,743px); height:clamp(49px,4.7917vw,123px); display:grid; place-items:center; border-radius:3px; color:var(--forest-950); background:var(--gold-500); font-size:clamp(10px,.9028vw,23px); font-weight:600; letter-spacing:.12em; text-transform:uppercase; transition:background-color .22s,transform .22s; }
