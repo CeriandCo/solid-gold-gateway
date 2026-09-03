@@ -245,7 +245,7 @@ const aboutStyles = `
 .about-hero .about-eyebrow { color:var(--gold-400); font-size:clamp(11px,1.1806vw,30px); letter-spacing:.22em; }
 .about-hero h1 { margin-top:clamp(16px,1.4583vw,37px); color:var(--cream-text); font-size:clamp(48px,5.8333vw,149px); line-height:1.15; }
 .about-hero h1 span { display:block; }
-.about-hero-bar { position:absolute; z-index:2; right:0; top:50%; width:clamp(480px,48.5vw,1242px); height:96%; object-fit:contain; object-position:right 6% center; transform:translateY(-50%); filter:drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+.about-hero-bar { position:absolute; z-index:2; right:0; top:50%; width:clamp(480px,48.5vw,1242px); height:96%; object-fit:contain; object-position:96% center; transform:translateY(-50%); filter:drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
 .about-hero-item { opacity:0; transform:translateY(16px); animation:aboutReveal .6s cubic-bezier(.22,1,.36,1) forwards; }
 .about-hero-item:nth-child(1){animation-delay:.12s}.about-hero-item:nth-child(2){animation-delay:.2s}
 .about-story { height:clamp(332px,32.4306vw,830px); background:var(--cream-100); }
