@@ -334,7 +334,7 @@ const aboutStyles = `
   .about-icon-ring { width:112px; height:112px; }.about-icon-ring svg { width:46px; height:46px; }.about-process-grid h2 { font-size:26px; }.about-process-grid p { max-width:290px; font-size:13px; }
   .about-path-grid { gap:14px; }.about-path-grid article,.about-path-grid article.is-featured { height:auto; min-height:230px; padding:32px 35px; }.about-path-grid h2 { font-size:26px; }.about-path-grid p { font-size:13px; }
   .about-trust-inner { grid-template-columns:1fr; gap:22px; text-align:center; }.about-trust-emblem { margin:auto; }.about-trust-copy h2 { font-size:30px; }.about-trust-copy > p:last-child { font-size:13.5px; }.about-trust-copy br { display:none; }
-  .about-waitlist a { width:min(340px,calc(100% - 40px)); min-height:44px; }
+  .about-waitlist a { width:min(420px,calc(100% - 40px)); min-height:54px; font-size:13px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .about-new * { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-delay:0ms!important; transition-duration:.01ms!important; }
