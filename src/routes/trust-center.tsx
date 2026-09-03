@@ -654,9 +654,8 @@ const trustStyles = `
 .tc-pillars:not(.is-visible) article{opacity:0;transform:translateY(12px)}
 
 /* SHARED CREAM BACKGROUND */
-.tc-audit,.tc-process,.tc-protection,.tc-safeguards{position:relative;background:radial-gradient(circle at 50% 0%,rgba(224,211,187,.14),transparent 42%),var(--tc-cream)}
-.tc-audit:before,.tc-process:before,.tc-protection:before,.tc-safeguards:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:radial-gradient(rgba(120,94,48,.55) .6px,transparent .6px),radial-gradient(rgba(120,94,48,.35) .5px,transparent .5px);background-size:7px 7px,11px 11px;background-position:0 0,4px 6px}
-.tc-audit>*,.tc-process>*,.tc-protection>*,.tc-safeguards>*{position:relative;z-index:1}
+.tc-audit,.tc-process,.tc-protection,.tc-safeguards{position:relative;background:radial-gradient(circle at 50% 18%,rgba(244,236,223,.55),rgba(244,236,223,.22) 18%,transparent 38%),var(--tc-cream)}
+
 
 .tc-display-34{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:calc(34*var(--u));line-height:1;color:var(--tc-ink)}
 .tc-display-32{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:calc(32*var(--u));line-height:1;color:var(--tc-ink)}
