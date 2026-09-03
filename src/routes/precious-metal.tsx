@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
-import heroImage from "@/assets/hero-gold.jpg";
+import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
+
+const heroImage = heroAsset.url;
 
 export const Route = createFileRoute("/precious-metal")({
   head: () => ({
