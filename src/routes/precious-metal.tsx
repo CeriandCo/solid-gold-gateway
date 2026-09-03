@@ -203,6 +203,44 @@ function HowItWorksSection() {
   );
 }
 
+function BotanicalLeafIcon() {
+  return (
+    <svg className="pm-pricing-leaf" viewBox="0 0 68 68" aria-hidden="true">
+      <path d="M34 8c-12 8-20 20-20 34 0 8 4 14 10 16 4 1 7 1 10 1s6 0 10-1c6-2 10-8 10-16 0-14-8-26-20-34Z" />
+      <path d="M34 8v48M34 20c-7 4-12 11-14 20M34 28c7 4 12 11 14 20M34 36c-5 3-9 8-11 14M34 44c5 3 9 8 11 14" />
+    </svg>
+  );
+}
+
+function PricingSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      section.classList.add("pm-pricing-visible");
+      observer.disconnect();
+    }, { threshold: 0.25 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="pm-pricing" aria-labelledby="pm-pricing-title">
+      <div className="pm-pricing-panel">
+        <BotanicalLeafIcon />
+        <span className="pm-pricing-divider" aria-hidden="true" />
+        <div className="pm-pricing-copy">
+          <h2 id="pm-pricing-title">Live spot + premium, varies by product.</h2>
+          <p>Exact pricing and purchasing available in the SQOOT Pure app October 1.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PreciousMetalPage() {
   return (
     <>
@@ -230,6 +268,7 @@ function PreciousMetalPage() {
 
         <ProductsSection />
         <HowItWorksSection />
+        <PricingSection />
 
         <style>{`
           .precious-metals-page {
@@ -664,6 +703,100 @@ function PreciousMetalPage() {
 
           @keyframes pmLineDraw { to { transform: scaleX(1); } }
           @keyframes pmIconSettle { to { transform: scale(1); } }
+          @keyframes pmPricingRise {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes pmLeafDraw {
+            from { stroke-dashoffset: 300; }
+            to { stroke-dashoffset: 0; }
+          }
+
+          .pm-pricing {
+            position: relative;
+            isolation: isolate;
+            height: clamp(84px, 8.125vw, 208px);
+            padding: 0 clamp(48px, 4.7222vw, 121px);
+            overflow: hidden;
+            background-color: var(--pm-cream);
+          }
+
+          .pm-pricing::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            opacity: .07;
+            background-image:
+              radial-gradient(ellipse at 14% 22%, rgba(139,100,40,.34), transparent 38%),
+              radial-gradient(ellipse at 78% 67%, rgba(255,255,255,.72), transparent 42%),
+              radial-gradient(ellipse at 49% 92%, rgba(158,112,45,.22), transparent 35%),
+              linear-gradient(112deg, transparent 22%, rgba(134,94,35,.15) 48%, transparent 72%);
+            background-size: 480px 460px, 510px 490px, 440px 500px, 500px 470px;
+            background-position: 0 -835px, 160px -755px, 300px -965px, 70px -645px;
+          }
+
+          .pm-pricing-panel {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: clamp(82px, 7.9167vw, 203px);
+            padding-right: clamp(24px, 2.4306vw, 62px);
+            border: 1px solid var(--pm-border);
+            border-radius: 5px;
+            background: rgba(250,245,236,.20);
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          .pm-pricing-visible .pm-pricing-panel {
+            animation: pmPricingRise 600ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+
+          .pm-pricing-leaf {
+            width: clamp(46px, 4.7222vw, 121px);
+            height: clamp(46px, 4.7222vw, 121px);
+            margin-left: clamp(160px, 16.32vw, 418px);
+            flex: 0 0 auto;
+            fill: none;
+            stroke: var(--pm-ink);
+            stroke-width: 1.3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+          }
+
+          .pm-pricing-visible .pm-pricing-leaf {
+            animation: pmLeafDraw 900ms ease 200ms forwards;
+          }
+
+          .pm-pricing-divider {
+            width: 1px;
+            height: clamp(46px, 4.7222vw, 121px);
+            margin-inline: clamp(24px, 2.4306vw, 62px);
+            background: rgba(140,94,28,.56);
+            flex: 0 0 auto;
+          }
+
+          .pm-pricing-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 0 1 auto;
+            min-width: 0;
+          }
+
+          .pm-pricing-copy h2,
+          .pm-pricing-copy p {
+            margin: 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(17px, 1.7361vw, 44px);
+            font-weight: 500;
+            line-height: 1.18;
+            text-align: left;
+          }
 
           @media (max-width: 767px) {
             .pm-hero { height: 424px; }
@@ -728,6 +861,12 @@ function PreciousMetalPage() {
             .pm-step-circle { width: 94px; height: 94px; }
             .pm-step-circle svg { width: 54px; height: 54px; }
             .pm-step h3 { margin-top: 12px; font-size: 24px; }
+
+            .pm-pricing { height: auto; padding: 0 20px 40px; overflow: visible; }
+            .pm-pricing-panel { height: auto; padding: 20px 18px; }
+            .pm-pricing-leaf { width: 44px; height: 44px; margin-left: 0; }
+            .pm-pricing-divider { height: 44px; margin-inline: 16px; }
+            .pm-pricing-copy h2, .pm-pricing-copy p { font-size: 18px; }
           }
 
           @media (prefers-reduced-motion: reduce) {
@@ -747,6 +886,13 @@ function PreciousMetalPage() {
               animation: none !important;
               opacity: 1;
               transform: none;
+            }
+            .pm-pricing-panel,
+            .pm-pricing-leaf {
+              animation: none !important;
+              opacity: 1;
+              transform: none;
+              stroke-dashoffset: 0;
             }
           }
         `}</style>
