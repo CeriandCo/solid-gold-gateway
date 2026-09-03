@@ -318,7 +318,7 @@ const aboutStyles = `
   .about-company-grid article { padding:24px 22px; flex-direction:column; gap:14px; text-align:center; }.about-company-grid h2 { white-space:normal; }
   .about-compliance { height:330px; }.about-compliance h2 { font-size:48px; }
   .about-process { height:auto; }.about-process .about-shell { padding-block:50px; }.about-process-grid { height:auto; gap:30px; }.about-process-grid article { padding-inline:18px; }
-  .about-paths { height:auto; }.about-paths .about-shell { padding-block:45px; }.about-path-grid { height:auto; align-items:stretch; }.about-path-grid article,.about-path-grid article.is-featured { height:250px; }
+  .about-paths { height:auto; }.about-paths .about-shell { padding-block:45px; }.about-path-grid { height:auto; align-items:stretch; }.about-path-grid article,.about-path-grid article.is-featured { height:250px; }.about-path-grid article.is-featured { transform:none; }
   .about-trust { height:auto; }.about-trust-inner { padding-block:45px; }
   .about-waitlist { height:108px; }.about-waitlist a { width:340px; height:60px; }
 }
