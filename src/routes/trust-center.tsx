@@ -801,9 +801,10 @@ const trustStyles = `
   .tc-steps{grid-template-columns:repeat(2,1fr);row-gap:34px}
   .tc-connector{display:none}
   .tc-process-intro{padding:32px}
-  .tc-protection-copy{width:auto;padding:28px 28px 0}
-  .tc-scales{position:relative;left:auto;bottom:auto;transform:none;display:block;margin:16px auto 0;width:280px;height:280px}
-  .tc-protection-panel.is-visible .tc-scales{transform:none}
+  .tc-protection-left{padding:28px 28px 0}
+  .tc-protection-center{padding-bottom:0}
+  .tc-protection-center:before{bottom:10%;width:260px;height:200px}
+  .tc-scales{width:260px;margin:8px auto 0}
   .tc-protection-right{padding:0 28px 28px}
   .tc-safeguard-grid{height:auto;grid-template-columns:repeat(2,1fr)}
   .trust-center-page p,.trust-center-page li,.trust-center-page dd,.trust-center-page dt{font-size:13.5px}
