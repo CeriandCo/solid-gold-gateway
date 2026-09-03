@@ -703,6 +703,100 @@ function PreciousMetalPage() {
 
           @keyframes pmLineDraw { to { transform: scaleX(1); } }
           @keyframes pmIconSettle { to { transform: scale(1); } }
+          @keyframes pmPricingRise {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes pmLeafDraw {
+            from { stroke-dashoffset: 300; }
+            to { stroke-dashoffset: 0; }
+          }
+
+          .pm-pricing {
+            position: relative;
+            isolation: isolate;
+            height: clamp(84px, 8.125vw, 208px);
+            padding: 0 clamp(48px, 4.7222vw, 121px);
+            overflow: hidden;
+            background-color: var(--pm-cream);
+          }
+
+          .pm-pricing::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            opacity: .07;
+            background-image:
+              radial-gradient(ellipse at 14% 22%, rgba(139,100,40,.34), transparent 38%),
+              radial-gradient(ellipse at 78% 67%, rgba(255,255,255,.72), transparent 42%),
+              radial-gradient(ellipse at 49% 92%, rgba(158,112,45,.22), transparent 35%),
+              linear-gradient(112deg, transparent 22%, rgba(134,94,35,.15) 48%, transparent 72%);
+            background-size: 480px 460px, 510px 490px, 440px 500px, 500px 470px;
+            background-position: 0 -835px, 160px -755px, 300px -965px, 70px -645px;
+          }
+
+          .pm-pricing-panel {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: clamp(82px, 7.9167vw, 203px);
+            padding-right: clamp(24px, 2.4306vw, 62px);
+            border: 1px solid var(--pm-border);
+            border-radius: 5px;
+            background: rgba(250,245,236,.20);
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          .pm-pricing-visible .pm-pricing-panel {
+            animation: pmPricingRise 600ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+
+          .pm-pricing-leaf {
+            width: clamp(46px, 4.7222vw, 121px);
+            height: clamp(46px, 4.7222vw, 121px);
+            margin-left: clamp(160px, 16.32vw, 418px);
+            flex: 0 0 auto;
+            fill: none;
+            stroke: var(--pm-ink);
+            stroke-width: 1.3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+          }
+
+          .pm-pricing-visible .pm-pricing-leaf {
+            animation: pmLeafDraw 900ms ease 200ms forwards;
+          }
+
+          .pm-pricing-divider {
+            width: 1px;
+            height: clamp(46px, 4.7222vw, 121px);
+            margin-inline: clamp(24px, 2.4306vw, 62px);
+            background: rgba(140,94,28,.56);
+            flex: 0 0 auto;
+          }
+
+          .pm-pricing-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 0 1 auto;
+            min-width: 0;
+          }
+
+          .pm-pricing-copy h2,
+          .pm-pricing-copy p {
+            margin: 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(17px, 1.7361vw, 44px);
+            font-weight: 500;
+            line-height: 1.18;
+            text-align: left;
+          }
 
           @media (max-width: 767px) {
             .pm-hero { height: 424px; }
