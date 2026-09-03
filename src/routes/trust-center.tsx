@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
-import scalesImage from "@/assets/trust-scales.png.asset.json";
+import scalesImage from "@/assets/scale-trust-center.png.asset.json";
+import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
 export const Route = createFileRoute("/trust-center")({
@@ -566,7 +567,7 @@ function TrustCenterPage() {
             </div>
           </div>
           <div className="tc-protection-center">
-            <img className="tc-scales" src={scalesImage.url} alt="Bronze scales of justice" />
+            <img className="tc-scales" src={scalesImage.url} alt="Gold scales of justice" />
           </div>
           <div className="tc-protection-right">
             <div className="tc-legal-panel">
@@ -776,7 +777,7 @@ const trustStyles = `
 
 /* CLIENT PROTECTION */
 .tc-protection{min-height:400px;padding:0 calc(56*var(--u)) calc(24*var(--u))}
-.tc-protection-panel{min-height:clamp(340px,26.8056vw,386px);max-width:calc(1328*var(--u));margin:0 auto;border-radius:var(--tc-radius-large);overflow:hidden;border:1px solid rgba(213,163,59,.22);background:radial-gradient(circle at 28% 78%,rgba(39,91,65,.24),transparent 42%),radial-gradient(circle at 78% 22%,rgba(199,145,47,.10),transparent 35%),linear-gradient(105deg,var(--tc-forest-950) 0%,var(--tc-forest-900) 55%,var(--tc-forest-850) 100%);box-shadow:inset 0 1px 0 rgba(213,163,59,.10);display:grid;grid-template-columns:0.9fr 0.82fr 1.32fr}
+.tc-protection-panel{min-height:clamp(340px,26.8056vw,386px);max-width:calc(1328*var(--u));margin:0 auto;border-radius:var(--tc-radius-large);overflow:hidden;border:1px solid rgba(213,163,59,.22);background-image:linear-gradient(90deg,rgba(1,18,13,.82),rgba(1,18,13,.38) 50%,rgba(1,18,13,.78)),url("${protectionBackground.url}");background-position:center;background-size:cover;box-shadow:inset 0 1px 0 rgba(213,163,59,.10);display:grid;grid-template-columns:0.9fr 0.82fr 1.32fr}
 .tc-protection-left{padding:calc(32*var(--u)) 0 0 calc(36*var(--u))}
 .tc-protection-copy{position:relative;z-index:2;opacity:0;transform:translateX(-16px);transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-protection-panel.is-visible .tc-protection-copy{opacity:1;transform:none}
@@ -790,7 +791,7 @@ const trustStyles = `
 .tc-request:hover i{transform:translateX(4px)}
 .tc-protection-center{position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:calc(22*var(--u))}
 .tc-protection-center:before{content:"";position:absolute;left:50%;bottom:calc(38*var(--u));transform:translateX(-50%);width:calc(360*var(--u));height:calc(260*var(--u));background:radial-gradient(circle,rgba(206,151,43,.18),transparent 65%);pointer-events:none}
-.tc-scales{position:relative;z-index:1;width:clamp(260px,22.5694vw,325px);height:auto;object-fit:contain;opacity:0;transition:opacity .8s var(--tc-ease)}
+.tc-scales{position:relative;z-index:1;width:clamp(260px,22.5694vw,325px);height:auto;object-fit:contain;filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));opacity:0;transition:opacity .8s var(--tc-ease)}
 .tc-protection-panel.is-visible .tc-scales{opacity:1}
 .tc-protection-right{padding:calc(24*var(--u)) calc(28*var(--u));display:flex;flex-direction:column;opacity:0;transform:translateX(16px);transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-protection-panel.is-visible .tc-protection-right{opacity:1;transform:none}
