@@ -130,7 +130,7 @@ function GiftingNewPage() {
       <SiteHeader />
 
       <section className="gift-hero" aria-labelledby="gift-hero-title">
-        <img src={heroGift} alt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar" width={1920} height={1088} fetchPriority="high" />
+        <img src={heroGift} alt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar" width={1920} height={720} fetchPriority="high" />
         <div className="gift-hero-shade" />
         <div className="gift-hero-inner">
           <div className="gift-hero-copy">
@@ -163,7 +163,7 @@ function GiftingNewPage() {
         <div className="gift-benefits-inner">
           {features.map(({ icon: Icon, title, description }) => (
             <article key={title} className="gift-benefit">
-              <Icon strokeWidth={1.35} absoluteStrokeWidth />
+              <Icon size={32} strokeWidth={1.35} absoluteStrokeWidth />
               <h2>{title}</h2>
               <p>{description}</p>
             </article>
@@ -196,7 +196,7 @@ function GiftingNewPage() {
                   />
                 </div>
                 <div className="gift-occasion-label"><h3>{label}</h3></div>
-                <span className="gift-occasion-icon"><Icon strokeWidth={1.3} absoluteStrokeWidth /></span>
+                 <span className="gift-occasion-icon"><Icon size={18} strokeWidth={1.3} absoluteStrokeWidth /></span>
               </article>
             ))}
           </div>
@@ -331,10 +331,10 @@ const giftingStyles = `
 .gifting-new > header a[href="#login"] { width: auto; height: clamp(42px,3.34vw,48px); padding-inline: clamp(17px,1.74vw,25px); white-space: nowrap; border-color: var(--gold-500); color: var(--gold-500); transition: color .22s cubic-bezier(.22,1,.36,1),background-color .22s cubic-bezier(.22,1,.36,1); }
 .gifting-new > header a[href="#login"]:hover { background: var(--gold-500); color: var(--forest-950); }
 .gift-hero { position: relative; height: clamp(384px,37.5vw,540px); overflow: hidden; color: var(--cream-text); background: var(--forest-950); }
-.gift-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% center; animation: giftHeroImage 1.1s cubic-bezier(.22,1,.36,1) both; }
+.gift-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: giftHeroImage 1.1s cubic-bezier(.22,1,.36,1) both; }
 .gift-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.94) 27%,rgba(8,34,24,.70) 42%,rgba(8,34,24,.20) 61%,rgba(8,34,24,0) 76%); }
 .gift-hero-inner { position: relative; height: 100%; max-width: var(--page-max); margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }
-.gift-hero-copy { width: min(39%,390px); margin-top: -4px; }
+.gift-hero-copy { width: 360px; margin-top: -4px; margin-left: clamp(36px,3.515625vw,51px); }
 .gift-overline,.gift-section-overline,.gift-personal-overline,.gift-closing-overline { display: flex; align-items: center; text-transform: uppercase; color: var(--gold-400); }
 .gift-overline { gap: 9px; margin-bottom: 17px; }
 .gift-overline > span { width: 28px; height: 1px; background: var(--gold-500); }
@@ -354,7 +354,7 @@ const giftingStyles = `
 .gift-benefits { height: clamp(140px,calc(13.75vw - .75px),198px); background: var(--cream-150); }
 .gift-benefits-inner { width: min(89.84%,1294px); height: 100%; margin: auto; display: grid; grid-template-columns: repeat(6,1fr); align-items: center; }
 .gift-benefit { min-width: 0; height: clamp(76px,7.4vw,107px); padding-inline: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-left: 1px solid var(--light-divider); }
-.gift-benefit:first-child { border-left: 0; }.gift-benefit > svg { width: clamp(30px,2.36vw,34px); height: clamp(30px,2.36vw,34px); color: var(--forest-800); }
+.gift-benefit:first-child { border-left: 0; }.gift-benefit > svg { width: 32px; height: 32px; flex: 0 0 32px; color: var(--forest-800); }
 .gift-benefit h2 { margin-top: 9px; color: var(--forest-900); font-size: clamp(16px,1.25vw,18px); font-weight: 600; line-height: 1.1; }
 .gift-benefit p { max-width: 118px; margin-top: 3px; font-size: clamp(10.5px,.77vw,11px); font-weight: 400; line-height: 1.35; }
 .gift-occasions { height: clamp(304px,29.72vw,428px); padding: clamp(17px,1.67vw,24px) var(--page-padding) clamp(15px,1.46vw,21px); background-color: var(--cream-100); background-image: radial-gradient(rgba(120,91,48,.035) .6px,transparent .7px); background-size: 5px 5px; }
@@ -366,7 +366,7 @@ const giftingStyles = `
 .gift-occasion-card { position: relative; height: clamp(185px,18.07vw,260px); overflow: hidden; border-radius: 8px; background: var(--forest-900); transition: transform .42s cubic-bezier(.22,1,.36,1),box-shadow .42s; }
 .gift-occasion-image { height: 67.57%; overflow: hidden; }.gift-occasion-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .42s cubic-bezier(.22,1,.36,1); }
 .gift-occasion-label { height: 32.43%; display: grid; place-items: center; padding: 13px 5px 2px; color: var(--cream-text); background: var(--forest-900); text-align: center; }.gift-occasion-label h3 { font-size: clamp(14px,1.04vw,15px); font-weight: 500; line-height: 1.05; }
-.gift-occasion-icon { position: absolute; left: 50%; top: 67.57%; width: clamp(36px,2.78vw,40px); height: clamp(36px,2.78vw,40px); display: grid; place-items: center; border: 1px solid var(--gold-500); border-radius: 50%; color: var(--gold-400); background: var(--forest-900); transform: translate(-50%,-50%); transition: border-color .42s; }.gift-occasion-icon svg { width: clamp(17px,1.32vw,19px); height: clamp(17px,1.32vw,19px); }
+.gift-occasion-icon { position: absolute; left: 50%; top: 67.57%; width: clamp(36px,2.78vw,40px); height: clamp(36px,2.78vw,40px); display: grid; flex: none; place-items: center; border: 1px solid var(--gold-500); border-radius: 50%; color: var(--gold-400); background: var(--forest-900); transform: translate(-50%,-50%); transition: border-color .42s; }.gift-occasion-icon svg { width: 18px; height: 18px; flex: none; }
 .gift-occasion-card:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(18,33,24,.16); }.gift-occasion-card:hover img { transform: scale(1.045); }.gift-occasion-card:hover .gift-occasion-icon { border-color: var(--gold-300); }
 .gift-view-all { display: inline-flex; align-items: center; gap: 5px; margin-top: clamp(10px,1.18vw,17px); color: var(--gold-deep); font-size: 12px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }.gift-view-all svg { width: 15px; height: 15px; }
 .gift-personal { height: clamp(332px,32.36vw,466px); min-height: 0; display: grid; grid-template-columns: 43% 27% 30%; overflow: hidden; background: var(--cream-200); }
@@ -380,13 +380,13 @@ const giftingStyles = `
 .gift-mosaic-side { display: grid; grid-template-rows: 1fr 1fr; gap: 2px; padding-left: 2px; background: var(--cream-200); }.gift-mosaic-side img { object-position: center; }
 .gift-trust { height: clamp(119px,calc(11.67vw - .5px),168px); color: var(--cream-text); background-color: var(--forest-950); background-image: linear-gradient(115deg,rgba(255,255,255,.018),transparent 40%),radial-gradient(ellipse at 30% 10%,rgba(201,168,76,.035),transparent 45%); }
 .gift-trust-inner { width: min(78.13%,1125px); height: 100%; margin: auto; display: grid; grid-template-columns: repeat(5,1fr); align-items: center; }.gift-trust article { min-width: 0; height: clamp(76px,7.4vw,107px); padding-inline: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:first-child { border-left: 0; }.gift-trust svg { width: clamp(28px,2.22vw,32px); height: clamp(28px,2.22vw,32px); color: var(--gold-400); }.gift-trust h2 { margin-top: 5px; color: var(--gold-400); font-family: "DM Sans",sans-serif; font-size: clamp(12px,.9vw,13px); font-weight: 600; line-height: 1.1; }.gift-trust p { max-width: 145px; margin-top: 3px; color: rgba(250,245,234,.82); font-size: clamp(9.5px,.73vw,10.5px); line-height: 1.35; }
-.gift-closing { position: relative; height: clamp(210px,19.44vw,280px); overflow: hidden; color: var(--cream-text); }.gift-closing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% center; }.gift-closing-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(63,31,12,.92) 0%,rgba(63,31,12,.79) 31%,rgba(25,39,26,.34) 57%,rgba(15,31,22,.06) 78%); }.gift-closing-inner { position: relative; max-width: var(--page-max); height: 100%; margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }.gift-closing-inner > div { width: 340px; margin-left: 5%; }.gift-closing-overline { gap: 9px; color: var(--gold-400); }.gift-closing-overline > span { width: 42px; height: 1px; background: var(--gold-500); }.gift-closing-overline p { font-size: clamp(10px,.76vw,11px); font-weight: 600; letter-spacing: .18em; }.gift-closing h2 { margin-top: 7px; color: var(--cream-text); font-size: clamp(34px,3.35vw,48px); font-weight: 500; line-height: .98; }.gift-closing h2 span { display: block; }.gift-closing-inner > div > p { max-width: 300px; margin-top: 7px; color: rgba(250,245,234,.86); font-size: clamp(11px,.97vw,14px); line-height: 1.45; }.gift-closing .gift-button { margin-top: 10px; height: clamp(42px,3.61vw,52px); }
+.gift-closing { position: relative; height: clamp(210px,19.44vw,280px); overflow: hidden; color: var(--cream-text); }.gift-closing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% center; }.gift-closing-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(63,31,12,.92) 0%,rgba(63,31,12,.79) 31%,rgba(25,39,26,.34) 57%,rgba(15,31,22,.06) 78%); }.gift-closing-inner { position: relative; max-width: var(--page-max); height: 100%; margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }.gift-closing-inner > div { width: 340px; margin-left: calc(5% + clamp(36px,3.515625vw,51px)); }.gift-closing-overline { gap: 9px; color: var(--gold-400); }.gift-closing-overline > span { width: 42px; height: 1px; background: var(--gold-500); }.gift-closing-overline p { font-size: clamp(10px,.76vw,11px); font-weight: 600; letter-spacing: .18em; }.gift-closing h2 { margin-top: 7px; color: var(--cream-text); font-size: clamp(34px,3.35vw,48px); font-weight: 500; line-height: .98; }.gift-closing h2 span { display: block; }.gift-closing-inner > div > p { max-width: 300px; margin-top: 7px; color: rgba(250,245,234,.86); font-size: clamp(11px,.97vw,14px); line-height: 1.45; }.gift-closing .gift-button { margin-top: 10px; height: clamp(42px,3.61vw,52px); }
 .gifting-new > footer > div { min-height: 84px; padding-block: 15px; }.gifting-new > footer img { width: 132px; }.gifting-new > footer a { font-size: 12px; }
 .gifting-new [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1); }.gifting-new [data-reveal].is-visible { opacity: 1; transform: none; }
 @keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} }
 @media (max-width: 1023px) {
   .gifting-new > header { height: 76px; }.gifting-new > header > div > div { min-height: 76px; width: 100%; padding-inline: 24px; }.gifting-new > header img { width: 145px; }.gifting-new > header a[href="#login"] { width: auto; }
-  .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
+  .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
   .gift-personal { height: auto; grid-template-columns: 45% 32% 23%; min-height: 520px; }.gift-personal-copy > div { width: 76%; margin-left: 18%; }.gift-personal h2 { font-size: 38px; }.gift-personal-copy { padding-block: 30px; }
