@@ -664,6 +664,7 @@ function PreciousMetalPage() {
           .pm-coin-art { width: clamp(98px, 9.8611vw, 252px); height: clamp(98px, 9.8611vw, 252px); }
           .pm-coin-art[src] { object-fit: contain; border-radius: 50%; }
           .pm-maple-art { width: clamp(103px, 10.4167vw, 267px); height: clamp(103px, 10.4167vw, 267px); }
+          .pm-maple-art[src] { object-fit: contain; border-radius: 50%; }
           .pm-bar-art { width: clamp(74px, 7.6389vw, 196px); height: clamp(107px, 10.7639vw, 276px); }
           .pm-bar-art[src] { object-fit: contain; }
 
