@@ -4,6 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
 import eagleAsset from "@/assets/american-eagle.png.asset.json";
 import pampAsset from "@/assets/pamp-bar.png.asset.json";
+import mapleAsset from "@/assets/maple-leaf.png.asset.json";
 
 const heroImage = heroAsset.url;
 
