@@ -881,6 +881,13 @@ function PreciousMetalPage() {
               opacity: 1;
               transform: none;
             }
+            .pm-pricing-panel,
+            .pm-pricing-leaf {
+              animation: none !important;
+              opacity: 1;
+              transform: none;
+              stroke-dashoffset: 0;
+            }
           }
         `}</style>
       </main>
