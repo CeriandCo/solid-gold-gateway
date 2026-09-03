@@ -1,20 +1,27 @@
-# SQOOT Pure Geometry and Spacing Pass
+# Rebuild the SQOOT Gifting Redesign
 
-## Desktop geometry
-- Establish a reusable 1268px centered container treatment for the trust band, How It Works, Fees/FAQ, Early Access, and footer, with fluid side gutters below that width.
-- Preserve the intentionally wider header and set its desktop logo position, 60px navigation rhythm, 201×63px CTA, and 84×88px logo mark.
-- Adjust only the hero content positioning and spacing so the copy begins at x95 and the eyebrow, headline, body, CTA, and note align to the supplied 1440px vertical targets; retain the current hero art and clip-path untouched.
+## Scope
+- Rebuild `src/routes/gifting-new.tsx` from scratch while preserving `/gifting` byte-for-byte.
+- Change only the two shared-header CTA labels in `src/components/site-chrome.tsx` from “Log In” to “Get Early Access”; preserve all other shared navigation behavior and styling.
+- Create the 11 explicitly requested generated image assets under `src/assets/`. These asset files are treated as required deliverables; no other existing source files will be changed.
 
-## Section refinement
-- Reposition and size the How It Works columns, card, 56px arrows, and 10px/14px pagination dots to the measured design geometry.
-- Expand the comparison panel to approximately 40px desktop margins, 505px height, and 24px radius; tune inner columns, list rhythm, and 22px/1.5px bullet rings; remove only image radii and shadows.
-- Set Fees/FAQ to the measured column widths and divider, size the fee card and FAQ rows, and apply the two authorized uppercase heading treatments without changing typography metrics.
-- Increase the Early Access band to 230px, its mandala to 86px, and its form controls to 68px.
-- Align footer content to the shared container, change the year to 2024, and make Terms of Service a linked item separated from Privacy Policy.
+## Imagery
+- Generate a cohesive high-resolution editorial set: full-bleed gifting hero, six occasion photographs, three personalisation photographs, and the closing banner.
+- Use SQOOT’s deep forest, warm gold, bronze ribbon, cream, and warm-brown palette; avoid text overlays except the specifically requested engraved bar and handwritten card content.
+- Import each image directly into the new route with descriptive alt text, correct aspect treatment, and no generic asset substitutions.
 
-## Responsive and build verification
-- Check 1280px, 1440px, and 1920px for horizontal overflow, overlap, and exact three-line hero wrapping.
-- Compare the 1440px rendered geometry against all supplied coordinates, document any target that cannot be exact due to intrinsic font ink bounds, and confirm the latest build is error-free.
+## Page construction
+- Build semantic, full-width sections in the required order: shared header, hero, six-benefit strip, occasions, personalisation mosaic, trust strip, closing banner, shared footer.
+- Scope the supplied colour tokens, typography, geometry variables, and responsive styles to `/gifting-new` inside the route so no other page changes.
+- At 1024px, enforce the requested boundaries: 76px header, 384px hero, 140px benefits, 304px occasions, 332px personalisation, 119px trust, then the 210px closing banner.
+- Override only the shared header’s rendered dimensions within this route to meet the 1024–1440px geometry while preserving its desktop links, active state, mobile menu, and logo.
+- Use the exact 43% / 27% / 30% personalisation grid, large tightly spaced occasion cards, correct image crops, separators, type weights, icons, and compact footer treatment.
 
-## Scope guard
-No font-size, font-weight, line-height, letter-spacing, colors, copy beyond the authorized year, icons, page structure, hero image element/wrapper/object-fit, or clip-path changes.
+## Responsive and motion
+- Implement tablet and mobile grids, horizontal snap-scroll occasion cards, stacked hero controls, single-column personalisation, responsive trust layout, and overflow-safe image crops.
+- Add lightweight IntersectionObserver reveals and CSS transitions for hero load, cards, buttons, and mosaic imagery; disable movement under `prefers-reduced-motion`.
+
+## Verification and correction pass
+- Render `/gifting-new` at exactly 1024px in Playwright and measure every section boundary in the DOM.
+- Inspect the screenshot for image crop, card sizing, full-width composition, 43/27/30 mosaic proportions, typography strength, and footer density; perform one focused correction pass.
+- Verify mobile rendering, no horizontal overflow, no console errors, no broken images, build success, `/gifting-new` and `/gifting` returning 200, absence of “Log In” and “For Advisors,” and unchanged `src/routes/gifting.tsx`.
