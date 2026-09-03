@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
+import { Route as GiftingNewRouteImport } from './routes/gifting-new'
 import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
@@ -36,6 +37,11 @@ const FractionalGoldRoute = FractionalGoldRouteImport.update({
 const GiftingRoute = GiftingRouteImport.update({
   id: '/gifting',
   path: '/gifting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftingNewRoute = GiftingNewRouteImport.update({
+  id: '/gifting-new',
+  path: '/gifting-new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeOldVerRoute = HomeOldVerRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
+  '/gifting-new': typeof GiftingNewRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
+  '/gifting-new': typeof GiftingNewRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
+  '/gifting-new': typeof GiftingNewRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRoute
   '/precious-metal': typeof PreciousMetalRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
+    | '/gifting-new'
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
+    | '/gifting-new'
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/fractional-gold'
     | '/gifting'
+    | '/gifting-new'
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
   GiftingRoute: typeof GiftingRoute
+  GiftingNewRoute: typeof GiftingNewRoute
   HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRoute
   PreciousMetalRoute: typeof PreciousMetalRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/gifting'
       fullPath: '/gifting'
       preLoaderRoute: typeof GiftingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gifting-new': {
+      id: '/gifting-new'
+      path: '/gifting-new'
+      fullPath: '/gifting-new'
+      preLoaderRoute: typeof GiftingNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home-old-ver': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   FractionalGoldRoute: FractionalGoldRoute,
   GiftingRoute: GiftingRoute,
+  GiftingNewRoute: GiftingNewRoute,
   HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRoute,
   PreciousMetalRoute: PreciousMetalRoute,
