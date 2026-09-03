@@ -104,7 +104,7 @@ function ProductsSection() {
             <div className="pm-product-art-area">{product.art}</div>
             <h3>{product.title}</h3>
             <span className="pm-product-divider" aria-hidden="true" />
-            <p className="pm-product-purity">Purity: {product.purity}</p>
+            <p className="pm-product-purity">Purity : {product.purity}</p>
             <p className="pm-product-label">Available sizes:</p>
             <div className="pm-product-sizes" aria-label={`Available sizes: ${product.sizes.join(", ")}`}>
               {product.sizes.map((size, sizeIndex) => (
