@@ -268,6 +268,7 @@ function PreciousMetalPage() {
 
         <ProductsSection />
         <HowItWorksSection />
+        <PricingSection />
 
         <style>{`
           .precious-metals-page {
