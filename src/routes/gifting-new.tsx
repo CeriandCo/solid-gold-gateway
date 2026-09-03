@@ -218,7 +218,6 @@ function GiftingNewPage() {
               {["Name, initial, date or short message", "Beautiful engraving on gold", "Premium gift packaging", "Include a personalised note"].map((item) => (
                 <li key={item}>
                   <span><Check strokeWidth={2} /></span>
-                  </span>
                   {item}
                 </li>
               ))}
