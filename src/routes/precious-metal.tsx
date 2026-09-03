@@ -913,7 +913,7 @@ function PreciousMetalPage() {
             padding-right: clamp(24px, 2.4306vw, 62px);
             border: 1px solid var(--pm-border);
             border-radius: 5px;
-            background: rgba(250,245,236,.20);
+            background: var(--pm-cream-light);
             opacity: 0;
             transform: translateY(12px);
           }
