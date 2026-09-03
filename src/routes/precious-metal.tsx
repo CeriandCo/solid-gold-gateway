@@ -206,8 +206,9 @@ function HowItWorksSection() {
 function BotanicalLeafIcon() {
   return (
     <svg className="pm-pricing-leaf" viewBox="0 0 68 68" aria-hidden="true">
-      <path d="M34 8c-12 8-20 20-20 34 0 8 4 14 10 16 4 1 7 1 10 1s6 0 10-1c6-2 10-8 10-16 0-14-8-26-20-34Z" />
-      <path d="M34 8v48M34 20c-7 4-12 11-14 20M34 28c7 4 12 11 14 20M34 36c-5 3-9 8-11 14M34 44c5 3 9 8 11 14" />
+      <path d="M34 56V18" />
+      <path d="M34 34c-9-7-18-9-24-4 5 9 15 12 24 7" />
+      <path d="M34 28c9-7 18-9 24-4-5 9-15 12-24 7" />
     </svg>
   );
 }
