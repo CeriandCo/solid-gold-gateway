@@ -62,11 +62,11 @@ function AmericanEagleArt() {
 
 function MapleLeafArt() {
   return (
-    <svg className="pm-product-art pm-maple-art" viewBox="0 0 170 170" role="img" aria-label="Engraved Canadian Maple Leaf coin illustration">
-      <circle cx="85" cy="85" r="72" /><circle cx="85" cy="85" r="67" /><circle cx="85" cy="85" r="61" strokeDasharray="1 3" />
-      <path d="M85 36l8 18 15-7-4 18 17 5-13 13 8 10-23 4 2 28-10-12-10 12 2-28-23-4 8-10-13-13 17-5-4-18 15 7 8-18Z" />
-      <path d="M85 54v59M69 65l16 17 17-17M61 84l24 9 25-9M48 128c23 11 51 11 74 0M52 39c20-14 46-14 66 0" />
-    </svg>
+    <img
+      className="pm-product-art pm-maple-art"
+      src={mapleAsset.url}
+      alt="Canadian Maple Leaf coin"
+    />
   );
 }
 
