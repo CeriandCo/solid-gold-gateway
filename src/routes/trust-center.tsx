@@ -524,6 +524,8 @@ function TrustCenterPage() {
                 {TC.protection.cta} <i aria-hidden="true">→</i>
               </a>
             </div>
+          </div>
+          <div className="tc-protection-center">
             <img className="tc-scales" src={scalesImage.url} alt="Bronze scales of justice" />
           </div>
           <div className="tc-protection-right">
