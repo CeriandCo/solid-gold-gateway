@@ -344,7 +344,34 @@ function BenefitsSection() {
   );
 }
 
+function CTASection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      section.classList.add("pm-cta-visible");
+      observer.disconnect();
+    }, { threshold: 0.25 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="pm-cta" aria-labelledby="pm-cta-title">
+      <div className="pm-cta-inner">
+        <h2 id="pm-cta-title">Own real gold, delivered.</h2>
+        <p>Get early access to the SQOOT Pure app and be first in line.</p>
+        <a href="/vault#early-access">Get Early Access</a>
+      </div>
+    </section>
+  );
+}
+
 function PreciousMetalPage() {
+
   return (
     <>
       <SiteHeader />
