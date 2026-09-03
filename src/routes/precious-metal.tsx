@@ -483,8 +483,8 @@ function PreciousMetalPage() {
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: 72% center;
+            object-fit: contain;
+            object-position: right center;
             animation: pmHeroSettle 1200ms cubic-bezier(.22, 1, .36, 1) both;
           }
 
@@ -1188,7 +1188,7 @@ function PreciousMetalPage() {
           @media (max-width: 767px) {
 
             .pm-hero { height: 320px; }
-            .pm-hero-image { object-position: 75% center; }
+            .pm-hero-image { object-fit: cover; object-position: 75% center; }
             .pm-hero-overlay {
               background: linear-gradient(90deg, rgba(7,25,15,.98) 0%, rgba(7,25,15,.91) 54%, rgba(7,25,15,.48) 78%, rgba(7,25,15,.18) 100%);
             }
