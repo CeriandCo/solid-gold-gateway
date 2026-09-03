@@ -1227,9 +1227,17 @@ function PreciousMetalPage() {
               transform: none;
             }
             .pm-benefit-icon svg { transition: none; }
+            .pm-cta,
+            .pm-cta-inner {
+              animation: none !important;
+              opacity: 1;
+              transform: none;
+            }
+            .pm-cta a { transition: none; }
           }
 
           .pm-cta {
+
             position: relative;
             isolation: isolate;
             height: clamp(220px, 21vw, 538px);
