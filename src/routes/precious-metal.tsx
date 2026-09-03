@@ -210,13 +210,12 @@ function HowItWorksSection() {
 
 function BotanicalLeafIcon() {
   return (
-    <svg className="pm-pricing-leaf" viewBox="0 0 68 68" aria-hidden="true">
-      <path d="M34 58V20" />
-      <path d="M34 36c-8-6-17-8-23-3 4 8 14 11 23 6" />
-      <path d="M34 30c8-6 17-8 23-3-4 8-14 11-23 6" />
-      <path d="M34 44c-6-5-13-6-18-2 3 6 10 8 18 4" />
-      <path d="M34 26c6-5 13-6 18-2-3 6-10 8-18 4" />
-    </svg>
+    <img
+      className="pm-pricing-leaf"
+      src={leafAsset.url}
+      alt=""
+      aria-hidden="true"
+    />
   );
 }
 
