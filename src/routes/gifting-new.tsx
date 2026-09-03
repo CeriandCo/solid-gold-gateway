@@ -321,9 +321,8 @@ const giftingStyles = `
   font-synthesis: none; -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
 .gifting-new h1,.gifting-new h2,.gifting-new h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
-.gifting-new > header { height: clamp(76px,7.25vw,186px); background: var(--forest-950); animation: giftFade .3s ease both; }
-.gifting-new > header > div > div { min-height: clamp(76px,7.25vw,186px); max-width: clamp(1440px,100vw,2560px); width: calc(100% - 72px); margin-inline: auto; padding-inline: 0; }
-.gifting-new > header img { width: clamp(145px,13.9vw,356px); }
+.gifting-new > header { background: var(--forest-950); animation: giftFade .3s ease both; }
+.gifting-new > header > div > div { max-width: clamp(1440px,100vw,2560px); width: calc(100% - 72px); margin-inline: auto; padding-inline: 0; }
 .gifting-new > header nav[aria-label="Primary navigation"] { gap: clamp(22px,3.35vw,86px); }
 .gifting-new > header nav[aria-label="Primary navigation"] a { font-family: "DM Sans",sans-serif; font-size: clamp(11px,1vw,26px); opacity: .92; }
 .gifting-new > header nav[aria-label="Primary navigation"] a[href="/gifting"] { color: var(--gold-500); }
@@ -398,7 +397,7 @@ const giftingStyles = `
   .gift-button-dark { margin-top: max(7px,calc(17px - (100vw - 1024px) * .024)); }
 }
 @media (max-width: 1023px) {
-  .gifting-new > header { height: 76px; }.gifting-new > header > div > div { min-height: 76px; width: 100%; padding-inline: 24px; }.gifting-new > header img { width: 145px; }.gifting-new > header a[href="#login"] { width: auto; }
+  .gifting-new > header > div > div { width: 100%; padding-inline: 24px; }.gifting-new > header a[href="#login"] { width: auto; }
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
@@ -407,7 +406,7 @@ const giftingStyles = `
   .gift-closing { height: 300px; }.gift-closing-inner > div { margin-left: 0; }
 }
 @media (max-width: 767px) {
-  .gifting-new { --page-padding: 20px; }.gifting-new > header { height: 72px; }.gifting-new > header > div > div { min-height: 72px; padding-inline: 18px; }.gifting-new > header img { width: 138px; }.gifting-new > header button { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; }.gifting-new > header nav[aria-label="Mobile navigation"] { position: absolute; left: 0; right: 0; z-index: 50; }.gifting-new > header nav[aria-label="Mobile navigation"] a[href="#login"] { min-width: 148px; height: 44px; }
+  .gifting-new { --page-padding: 20px; }.gifting-new > header > div > div { padding-inline: 18px; }.gifting-new > header button { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; }.gifting-new > header nav[aria-label="Mobile navigation"] { position: absolute; left: 0; right: 0; z-index: 50; }.gifting-new > header nav[aria-label="Mobile navigation"] a[href="#login"] { min-width: 148px; height: 44px; }
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
   .gift-benefits-inner { grid-template-columns: repeat(2,1fr); padding: 12px 14px; }.gift-benefit { height: 122px; }.gift-benefit:nth-child(3n+1) { border-left: 1px solid var(--light-divider); }.gift-benefit:nth-child(odd) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(n+5) { border-bottom: 0; }
   .gift-occasions { padding-inline: 0; }.gift-occasions header { padding-inline: 20px; }.gift-occasions h2 { font-size: 34px; }.gift-occasion-grid { width: 100%; display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }.gift-occasion-grid::-webkit-scrollbar { display:none; }.gift-occasion-card { flex: 0 0 82%; height: 330px; scroll-snap-align: start; }.gift-view-all { margin-top: 2px; }
