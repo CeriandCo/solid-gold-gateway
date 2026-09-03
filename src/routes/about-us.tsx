@@ -214,7 +214,7 @@ function AboutPage() {
       </section>
 
       <section className="about-waitlist" data-reveal>
-        <a href="/vault#early-access">Join the waitlist</a>
+        <a href="/vault#early-access">Get Early Access</a>
       </section>
 
       <SiteFooter />
@@ -300,9 +300,9 @@ const aboutStyles = `
 .about-trust-copy .about-eyebrow { margin-bottom:clamp(7px,.6944vw,18px); }
 .about-trust-copy h2 { color:var(--gold-deep); font-size:clamp(26px,2.7778vw,71px); line-height:1.12; }
 .about-trust-copy > p:last-child { margin-top:clamp(7px,.6944vw,18px); font-size:clamp(9.6px,.9375vw,24px); line-height:1.7; }
-.about-waitlist { height:clamp(77px,7.5vw,192px); display:grid; place-items:center; background:var(--forest-950); }
-.about-waitlist a { width:clamp(297px,29.0278vw,743px); height:clamp(49px,4.7917vw,123px); display:grid; place-items:center; border-radius:3px; color:var(--forest-950); background:var(--gold-500); font-size:clamp(10px,.9028vw,23px); font-weight:600; letter-spacing:.12em; text-transform:uppercase; transition:background-color .22s,transform .22s; }
-.about-waitlist a:hover { background:var(--gold-300); transform:translateY(-1px); }
+.about-waitlist { height:clamp(92px,9.0278vw,231px); display:grid; place-items:center; background:var(--forest-950); }
+.about-waitlist a { width:clamp(360px,36.1111vw,925px); height:clamp(60px,5.9722vw,153px); display:grid; place-items:center; border-radius:3px; color:var(--forest-950); background:linear-gradient(135deg,var(--gold-400) 0%,var(--gold-500) 50%,var(--gold-deep) 100%); font-size:clamp(12px,1.1111vw,28.5px); font-weight:600; letter-spacing:.12em; text-transform:uppercase; transition:background .22s,transform .22s; }
+.about-waitlist a:hover { background:linear-gradient(135deg,var(--gold-300) 0%,var(--gold-400) 55%,var(--gold-500) 100%); transform:translateY(-1px); }
 .about-new [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1); }
 .about-new [data-reveal].is-visible { opacity:1; transform:none; }
 @keyframes aboutFade { from{opacity:0}to{opacity:1} } @keyframes aboutReveal { to{opacity:1;transform:none} }
@@ -320,7 +320,7 @@ const aboutStyles = `
   .about-process { height:auto; }.about-process .about-shell { padding-block:50px; }.about-process-grid { height:auto; gap:30px; }.about-process-grid article { padding-inline:18px; }
   .about-paths { height:auto; }.about-paths .about-shell { padding-block:45px; }.about-path-grid { height:auto; align-items:stretch; }.about-path-grid article,.about-path-grid article.is-featured { height:250px; }.about-path-grid article.is-featured { transform:none; }
   .about-trust { height:auto; }.about-trust-inner { padding-block:45px; }
-  .about-waitlist { height:108px; }.about-waitlist a { width:340px; height:60px; }
+  .about-waitlist { height:120px; }.about-waitlist a { width:420px; height:72px; font-size:14px; }
 }
 @media (max-width:767px) {
   .about-new { --gutter:20px; --shell:calc(100% - 40px); }
@@ -334,7 +334,7 @@ const aboutStyles = `
   .about-icon-ring { width:112px; height:112px; }.about-icon-ring svg { width:46px; height:46px; }.about-process-grid h2 { font-size:26px; }.about-process-grid p { max-width:290px; font-size:13px; }
   .about-path-grid { gap:14px; }.about-path-grid article,.about-path-grid article.is-featured { height:auto; min-height:230px; padding:32px 35px; }.about-path-grid h2 { font-size:26px; }.about-path-grid p { font-size:13px; }
   .about-trust-inner { grid-template-columns:1fr; gap:22px; text-align:center; }.about-trust-emblem { margin:auto; }.about-trust-copy h2 { font-size:30px; }.about-trust-copy > p:last-child { font-size:13.5px; }.about-trust-copy br { display:none; }
-  .about-waitlist a { width:min(340px,calc(100% - 40px)); min-height:44px; }
+  .about-waitlist a { width:min(420px,calc(100% - 40px)); min-height:54px; font-size:13px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .about-new * { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-delay:0ms!important; transition-duration:.01ms!important; }
