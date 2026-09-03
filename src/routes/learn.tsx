@@ -4,15 +4,16 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight,
-  Boxes,
   ChartNoAxesCombined,
   CircleDollarSign,
-  Gem,
   Globe2,
   Landmark,
+  PieChart,
   Play,
+  Presentation,
+  Shield,
   ShieldCheck,
-  TrendingUp,
+  Umbrella,
 } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import bandGold from "@/assets/band-gold.jpg";
