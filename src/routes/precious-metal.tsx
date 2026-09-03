@@ -950,6 +950,11 @@ function PreciousMetalPage() {
           .pm-pricing-visible .pm-pricing-leaf {
             animation: pmLeafDraw 900ms ease 200ms forwards;
           }
+          .pm-pricing-leaf[src] { object-fit: contain; }
+          .pm-pricing-visible .pm-pricing-leaf[src] {
+            opacity: 0;
+            animation: pmLeafFade 700ms ease 200ms forwards;
+          }
 
           .pm-pricing-divider {
             width: 1px;
