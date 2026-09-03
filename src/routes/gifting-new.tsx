@@ -397,7 +397,7 @@ const giftingStyles = `
   .gift-button-dark { margin-top: max(7px,calc(17px - (100vw - 1024px) * .024)); }
 }
 @media (max-width: 1023px) {
-  .gifting-new > header { height: 76px; }.gifting-new > header > div > div { min-height: 76px; width: 100%; padding-inline: 24px; }.gifting-new > header img { width: 145px; }.gifting-new > header a[href="#login"] { width: auto; }
+  .gifting-new > header > div > div { width: 100%; padding-inline: 24px; }.gifting-new > header a[href="#login"] { width: auto; }
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
