@@ -257,14 +257,14 @@ const aboutStyles = `
 .about-short-rule { display:block; width:clamp(57px,5.5556vw,142px); height:1px; margin-top:clamp(19px,1.8056vw,46px); background:var(--gold-deep); }
 .about-story-copy { grid-column:3; grid-row:1; font-size:clamp(14px,1.4583vw,37.3px); line-height:1.75; }
 .about-story-copy p + p { margin-top:clamp(13px,1.25vw,32px); }
-.about-company { height:clamp(140px,13.6806vw,350px); color:var(--cream-text); background:var(--forest-950); }
-.about-company .about-shell { padding-top:clamp(20px,1.9444vw,50px); }
+.about-company { height:clamp(200px,19.4vw,497px); color:var(--cream-text); background:var(--forest-950); }
+.about-company .about-shell { padding-top:clamp(28px,2.7vw,69px); }
 .about-company .about-eyebrow { color:var(--gold-400); }
-.about-company-grid { height:clamp(84px,8.2639vw,212px); display:grid; grid-template-columns:repeat(3,1fr); margin-top:clamp(10px,1.0417vw,27px); }
+.about-company-grid { height:clamp(120px,11.8vw,302px); display:grid; grid-template-columns:repeat(3,1fr); margin-top:clamp(14px,1.3889vw,36px); }
 .about-company-grid article { min-width:0; display:flex; align-items:center; gap:clamp(18px,1.7361vw,44px); padding-inline:clamp(22px,2.0833vw,53px); border-left:1px solid color-mix(in srgb,var(--gold-500) 45%,transparent); }
 .about-company-grid article:first-child { padding-left:0; border-left:0; }
-.about-company-grid svg { width:clamp(41px,4.1667vw,107px); height:clamp(34px,3.125vw,80px); flex:none; color:var(--gold-400); stroke:currentColor; stroke-width:1.35; vector-effect:non-scaling-stroke; }
-.about-company-grid h2 { color:var(--cream-text); font-size:clamp(15.7px,1.5278vw,39px); line-height:1.15; white-space:nowrap; }
+.about-company-grid svg { width:clamp(57px,5.8333vw,150px); height:clamp(48px,4.8611vw,125px); flex:none; color:var(--gold-400); stroke:currentColor; stroke-width:1.35; vector-effect:non-scaling-stroke; }
+.about-company-grid h2 { color:var(--cream-text); font-size:clamp(22px,2.1528vw,55px); line-height:1.15; white-space:nowrap; }
 .about-compliance { position:relative; height:clamp(279px,27.2917vw,699px); display:grid; place-items:center; overflow:hidden; color:var(--gold-500); background:#091B12; }
 .about-mandala { position:absolute; top:50%; width:clamp(315px,30.9vw,791px); height:clamp(315px,30.9vw,791px); color:var(--gold-500); opacity:.075; }
 .about-mandala-left { left:clamp(-190px,-7.6vw,-78px); transform:translateY(-50%); }.about-mandala-right { right:clamp(-190px,-7.6vw,-78px); transform:translateY(-50%) rotate(22.5deg); }
