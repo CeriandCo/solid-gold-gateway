@@ -926,8 +926,8 @@ function PreciousMetalPage() {
           .pm-benefits {
             position: relative;
             isolation: isolate;
-            height: clamp(300px, 29vw, 743px);
-            padding: clamp(29px, 2.8472vw, 73px) clamp(48px, 4.7222vw, 121px) clamp(30px, 2.9167vw, 75px);
+            height: clamp(260px, 22vw, 564px);
+            padding: clamp(30px, 2.9167vw, 75px) clamp(48px, 4.7222vw, 121px) clamp(30px, 2.9167vw, 75px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -947,53 +947,12 @@ function PreciousMetalPage() {
             background-position: 0 -952px, 160px -872px, 300px -1082px, 70px -762px;
           }
 
-          .pm-benefits-heading-row {
-            display: grid;
-            grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
-            align-items: center;
-            column-gap: clamp(27px, 2.6389vw, 68px);
-            width: 100%;
-            opacity: 0;
-            transform: translateY(14px);
-          }
-
-          .pm-benefits-heading-row > span {
-            width: 100%;
-            height: 1px;
-            background: var(--pm-gold-muted);
-            opacity: .78;
-          }
-
-          .pm-benefits-heading-row > div { text-align: center; }
-
-          .pm-benefits-heading-row p {
-            margin: 0 0 clamp(6px, .5556vw, 14px);
-            color: var(--pm-gold-muted);
-            font-family: "DM Sans", Arial, sans-serif;
-            font-size: clamp(10px, .9028vw, 23px);
-            font-weight: 600;
-            line-height: 1;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-          }
-
-          .pm-benefits-heading-row h2 {
-            margin: 0;
-            color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(32px, 3.125vw, 80px);
-            font-weight: 500;
-            line-height: 1;
-            letter-spacing: -.015em;
-            white-space: nowrap;
-          }
-
           .pm-benefits-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0,1fr));
             width: 100%;
             max-width: clamp(944px, 91.6667vw, 2347px);
-            margin: clamp(28px, 2.7083vw, 69px) auto 0;
+            margin: 0 auto;
           }
 
           .pm-benefit {
@@ -1054,7 +1013,6 @@ function PreciousMetalPage() {
             .pm-benefit > p { white-space: normal; }
           }
 
-          .pm-benefits-visible .pm-benefits-heading-row,
           .pm-benefits-visible .pm-benefit {
             animation: pmBenefitRise 620ms cubic-bezier(.22,1,.36,1) forwards;
           }
