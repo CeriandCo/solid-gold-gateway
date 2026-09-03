@@ -239,13 +239,13 @@ const aboutStyles = `
 .about-hero { position:relative; height:clamp(514px,50.2083vw,1285px); overflow:hidden; color:var(--cream-text); background:var(--forest-950); }
 .about-hero-velvet { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.67; }
 .about-hero::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(13,33,23,.98) 0%,rgba(13,33,23,.92) 38%,rgba(13,33,23,.34) 65%,rgba(13,33,23,.06) 100%); }
-.about-hero-mandala { position:absolute; z-index:1; left:clamp(-208px,-8.5vw,-87px); top:50%; width:clamp(365px,35.69vw,914px); height:clamp(365px,35.69vw,914px); color:var(--gold-500); opacity:.055; transform:translateY(-50%); }
+.about-hero-mandala { position:absolute; z-index:1; left:clamp(-208px,-8.5vw,-87px); top:47%; width:clamp(365px,35.69vw,914px); height:clamp(365px,35.69vw,914px); color:var(--gold-500); opacity:.095; transform:translateY(-50%); }
 .about-hero-mandala *,.about-mandala * { stroke:currentColor; stroke-width:.85; vector-effect:non-scaling-stroke; }
-.about-hero-copy { position:absolute; z-index:3; left:var(--gutter); top:clamp(137px,13.4028vw,343px); }
-.about-hero .about-eyebrow { color:var(--gold-400); font-size:clamp(9.2px,.9028vw,23.1px); letter-spacing:.22em; }
-.about-hero h1 { margin-top:clamp(16px,1.4583vw,37px); color:var(--cream-text); font-size:clamp(44px,4.3056vw,110px); line-height:1.15; }
+.about-hero-copy { position:absolute; z-index:3; left:var(--gutter); top:clamp(100px,10.4167vw,267px); }
+.about-hero .about-eyebrow { color:var(--gold-400); font-size:clamp(11px,1.1806vw,30px); letter-spacing:.22em; }
+.about-hero h1 { margin-top:clamp(16px,1.4583vw,37px); color:var(--cream-text); font-size:clamp(48px,5.8333vw,149px); line-height:1.15; }
 .about-hero h1 span { display:block; }
-.about-hero-bar { position:absolute; z-index:2; right:0; top:50%; width:clamp(455px,44.45vw,1138px); height:90%; object-fit:contain; object-position:right center; transform:translateY(-50%); filter:drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+.about-hero-bar { position:absolute; z-index:2; right:0; top:50%; width:clamp(480px,48.5vw,1242px); height:96%; object-fit:contain; object-position:96% center; transform:translateY(-50%); filter:drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
 .about-hero-item { opacity:0; transform:translateY(16px); animation:aboutReveal .6s cubic-bezier(.22,1,.36,1) forwards; }
 .about-hero-item:nth-child(1){animation-delay:.12s}.about-hero-item:nth-child(2){animation-delay:.2s}
 .about-story { height:clamp(332px,32.4306vw,830px); background:var(--cream-100); }
