@@ -118,9 +118,9 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
-      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 sm:px-8 lg:min-h-[112px] lg:px-[60px]">
+      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 py-2 sm:px-8 lg:min-h-[112px] lg:px-[60px] lg:py-5">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
+          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[200px] sm:w-[240px] lg:w-[290px]" />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex xl:gap-[54px]" aria-label="Primary navigation">
           {siteNav.map(([label, to]) => (
