@@ -206,9 +206,11 @@ function HowItWorksSection() {
 function BotanicalLeafIcon() {
   return (
     <svg className="pm-pricing-leaf" viewBox="0 0 68 68" aria-hidden="true">
-      <path d="M34 56V18" />
-      <path d="M34 34c-9-7-18-9-24-4 5 9 15 12 24 7" />
-      <path d="M34 28c9-7 18-9 24-4-5 9-15 12-24 7" />
+      <path d="M34 58V20" />
+      <path d="M34 36c-8-6-17-8-23-3 4 8 14 11 23 6" />
+      <path d="M34 30c8-6 17-8 23-3-4 8-14 11-23 6" />
+      <path d="M34 44c-6-5-13-6-18-2 3 6 10 8 18 4" />
+      <path d="M34 26c6-5 13-6 18-2-3 6-10 8-18 4" />
     </svg>
   );
 }
@@ -911,7 +913,7 @@ function PreciousMetalPage() {
             padding-right: clamp(24px, 2.4306vw, 62px);
             border: 1px solid var(--pm-border);
             border-radius: 5px;
-            background: rgba(250,245,236,.20);
+            background: var(--pm-cream-light);
             opacity: 0;
             transform: translateY(12px);
           }
