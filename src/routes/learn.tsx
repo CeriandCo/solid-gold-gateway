@@ -40,13 +40,22 @@ export const Route = createFileRoute("/learn")({
   component: KnowledgeCenterPage,
 });
 
+function GlobeCoinIcon(props: React.HTMLAttributes<HTMLSpanElement>) {
+  return (
+    <span className="kc-globe-coin" {...props}>
+      <Globe2 aria-hidden="true" />
+      <CircleDollarSign aria-hidden="true" />
+    </span>
+  );
+}
+
 const benefits = [
-  { label: "Inflation Hedge", icon: TrendingUp },
-  { label: "Portfolio Diversifier", icon: ChartNoAxesCombined },
-  { label: "Long-term Value", icon: Landmark },
-  { label: "Global Liquidity", icon: Globe2 },
-  { label: "Tangible Asset", icon: Gem },
-  { label: "Crisis Protection", icon: ShieldCheck },
+  { label: "Inflation Hedge", icon: Shield },
+  { label: "Portfolio Diversifier", icon: PieChart },
+  { label: "Long-term Value", icon: Presentation },
+  { label: "Global Liquidity", icon: GlobeCoinIcon },
+  { label: "Tangible Asset", icon: Landmark },
+  { label: "Crisis Protection", icon: Umbrella },
 ] as const;
 
 const articles = [
