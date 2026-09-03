@@ -265,11 +265,11 @@ const aboutStyles = `
 .about-company-grid article:first-child { padding-left:0; border-left:0; }
 .about-company-grid svg { width:clamp(57px,5.8333vw,150px); height:clamp(48px,4.8611vw,125px); flex:none; color:var(--gold-400); stroke:currentColor; stroke-width:1.35; vector-effect:non-scaling-stroke; }
 .about-company-grid h2 { color:var(--cream-text); font-size:clamp(22px,2.1528vw,55px); line-height:1.15; white-space:nowrap; }
-.about-compliance { position:relative; height:clamp(279px,27.2917vw,699px); display:grid; place-items:center; overflow:hidden; color:var(--gold-500); background:#091B12; }
+.about-compliance { position:relative; height:clamp(340px,35.4vw,907px); display:grid; place-items:center; overflow:hidden; color:var(--gold-500); background:#091B12; }
 .about-mandala { position:absolute; top:50%; width:clamp(315px,30.9vw,791px); height:clamp(315px,30.9vw,791px); color:var(--gold-500); opacity:.075; }
 .about-mandala-left { left:clamp(-190px,-7.6vw,-78px); transform:translateY(-50%); }.about-mandala-right { right:clamp(-190px,-7.6vw,-78px); transform:translateY(-50%) rotate(22.5deg); }
 .about-compliance-copy { position:relative; z-index:2; text-align:center; }
-.about-compliance h2 { font-size:clamp(39.8px,3.8889vw,100px); line-height:1.2; color:var(--gold-500); }
+.about-compliance h2 { font-size:clamp(48px,6.6667vw,171px); line-height:1.12; color:var(--gold-500); }
 .about-compliance h2 span { display:block; }
 .about-ornament { display:flex; align-items:center; justify-content:center; gap:clamp(10px,1.0417vw,27px); margin-top:clamp(19px,1.9444vw,50px); }
 .about-ornament span { width:clamp(81px,7.9167vw,203px); height:1px; background:color-mix(in srgb,var(--gold-500) 72%,transparent); }
