@@ -121,6 +121,88 @@ function ProductsSection() {
   );
 }
 
+const steps = [
+  { title: "Order", icon: <OrderIcon /> },
+  { title: "Insured Shipping", icon: <ShippingIcon /> },
+  { title: <>Arrives at Your<br />Address</>, icon: <AddressIcon /> },
+  { title: "Full Ownership", icon: <OwnershipIcon /> },
+] as const;
+
+function OrderIcon() {
+  return (
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <path d="M17 24h38l-3.3 37H20.3L17 24Z" />
+      <path d="M27 28v-8.5C27 14.3 31 10 36 10s9 4.3 9 9.5V28M27 38c2.3 2 5.3 3 9 3s6.7-1 9-3" />
+      <path d="M24 31h24" opacity=".55" />
+    </svg>
+  );
+}
+
+function ShippingIcon() {
+  return (
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <path d="m11 24 25-12 25 12-25 12-25-12Z" />
+      <path d="M11 24v28l25 12 25-12V24M36 36v28M22 18l25 12v12" />
+      <path d="m50 46 3 3 6-7" />
+      <circle cx="53" cy="46" r="11" />
+    </svg>
+  );
+}
+
+function AddressIcon() {
+  return (
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <path d="M9 35 36 12l27 23M16 31v31h40V31" />
+      <path d="M29 62V44h14v18M24 27h24M52 18v9" />
+      <circle cx="39" cy="53" r="1" />
+    </svg>
+  );
+}
+
+function OwnershipIcon() {
+  return (
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <circle cx="26" cy="29" r="15" />
+      <circle cx="26" cy="29" r="7" />
+      <path d="m37 40 24 24M47 50l7-7M53 56l7-7" />
+    </svg>
+  );
+}
+
+function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      section.classList.add("pm-process-visible");
+      observer.disconnect();
+    }, { threshold: 0.18 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="pm-process" aria-labelledby="pm-process-title">
+      <div className="pm-process-heading-row">
+        <span aria-hidden="true" />
+        <h2 id="pm-process-title">How it works</h2>
+        <span aria-hidden="true" />
+      </div>
+      <div className="pm-steps">
+        {steps.map((step, index) => (
+          <article className="pm-step" key={index}>
+            <div className="pm-step-circle">{step.icon}</div>
+            <h3>{step.title}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function PreciousMetalPage() {
   return (
     <>
@@ -147,6 +229,7 @@ function PreciousMetalPage() {
         </section>
 
         <ProductsSection />
+        <HowItWorksSection />
 
         <style>{`
           .precious-metals-page {
@@ -425,6 +508,140 @@ function PreciousMetalPage() {
             background: rgba(140,94,28,.55);
           }
 
+          .pm-process {
+            position: relative;
+            isolation: isolate;
+            height: clamp(208px, 20.3472vw, 521px);
+            padding: clamp(6px, .625vw, 16px) clamp(51px, 5vw, 128px) clamp(16px, 1.5278vw, 39px);
+            overflow: hidden;
+            background-color: var(--pm-cream);
+          }
+
+          .pm-process::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            opacity: .07;
+            background-image:
+              radial-gradient(ellipse at 14% 22%, rgba(139,100,40,.34), transparent 38%),
+              radial-gradient(ellipse at 78% 67%, rgba(255,255,255,.72), transparent 42%),
+              radial-gradient(ellipse at 49% 92%, rgba(158,112,45,.22), transparent 35%),
+              linear-gradient(112deg, transparent 22%, rgba(134,94,35,.15) 48%, transparent 72%);
+            background-size: 480px 460px, 510px 490px, 440px 500px, 500px 470px;
+            background-position: 0 -542px, 160px -462px, 300px -672px, 70px -352px;
+          }
+
+          .pm-process-heading-row {
+            display: grid;
+            grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+            align-items: center;
+            column-gap: clamp(27px, 2.6389vw, 68px);
+            width: 100%;
+            opacity: 0;
+            transform: translateY(14px);
+          }
+
+          .pm-process-heading-row > span {
+            width: 100%;
+            height: 1px;
+            background: var(--pm-gold-muted);
+            opacity: .78;
+          }
+
+          .pm-process-heading-row h2 {
+            margin: 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(32px, 3.125vw, 80px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.015em;
+            white-space: nowrap;
+          }
+
+          .pm-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0,1fr));
+            width: 100%;
+            max-width: clamp(902px, 88.0556vw, 2254px);
+            margin: clamp(17px, 1.7361vw, 44px) auto 0;
+          }
+
+          .pm-step {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 0;
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          .pm-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            top: clamp(40px, 3.8889vw, 100px);
+            left: calc(50% + clamp(62px, 6.0764vw, 156px));
+            width: clamp(101px, 9.8611vw, 252px);
+            height: 1px;
+            background: rgba(167,123,49,.72);
+            transform: scaleX(0);
+            transform-origin: left center;
+          }
+
+          .pm-step-circle {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            width: clamp(80px, 7.7778vw, 199px);
+            height: clamp(80px, 7.7778vw, 199px);
+            border: 1.5px solid var(--pm-gold);
+            border-radius: 50%;
+            background: transparent;
+          }
+
+          .pm-step-circle svg {
+            width: clamp(46px, 4.5833vw, 117px);
+            height: clamp(46px, 4.5833vw, 117px);
+            fill: none;
+            stroke: var(--pm-gold);
+            stroke-width: 1.35;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: scale(.95);
+          }
+
+          .pm-step h3 {
+            margin: clamp(11px, 1.1111vw, 28px) 0 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(21px, 2.0139vw, 52px);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: 0;
+            text-align: center;
+          }
+
+          .pm-process-visible .pm-process-heading-row {
+            animation: pmProcessRise 600ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+          .pm-process-visible .pm-step {
+            animation: pmProcessRise 600ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+          .pm-process-visible .pm-step:nth-child(1) { animation-delay: 80ms; }
+          .pm-process-visible .pm-step:nth-child(2) { animation-delay: 160ms; }
+          .pm-process-visible .pm-step:nth-child(3) { animation-delay: 240ms; }
+          .pm-process-visible .pm-step:nth-child(4) { animation-delay: 320ms; }
+          .pm-process-visible .pm-step-circle svg {
+            animation: pmIconSettle 600ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+          .pm-process-visible .pm-step:nth-child(1)::after { animation: pmLineDraw 600ms ease 200ms forwards; }
+          .pm-process-visible .pm-step:nth-child(2)::after { animation: pmLineDraw 600ms ease 280ms forwards; }
+          .pm-process-visible .pm-step:nth-child(3)::after { animation: pmLineDraw 600ms ease 360ms forwards; }
+
           @keyframes pmHeroSettle {
             from { transform: scale(1.025); }
             to { transform: scale(1); }
@@ -439,6 +656,14 @@ function PreciousMetalPage() {
             from { opacity: 0; transform: translateY(18px); }
             to { opacity: 1; transform: translateY(0); }
           }
+
+          @keyframes pmProcessRise {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          @keyframes pmLineDraw { to { transform: scaleX(1); } }
+          @keyframes pmIconSettle { to { transform: scale(1); } }
 
           @media (max-width: 767px) {
             .pm-hero { height: 424px; }
@@ -485,6 +710,24 @@ function PreciousMetalPage() {
             .pm-product-purity, .pm-product-label { font-size: 17px; }
             .pm-product-sizes { font-size: 15px; }
             .pm-product-sizes i { height: 20px; margin-inline: 9px; }
+
+            .pm-process {
+              height: auto;
+              padding: 38px 20px 46px;
+              overflow: visible;
+            }
+            .pm-process-heading-row { column-gap: 14px; }
+            .pm-process-heading-row h2 { font-size: 34px; }
+            .pm-steps {
+              grid-template-columns: 1fr 1fr;
+              gap: 34px 12px;
+              max-width: 390px;
+              margin-top: 30px;
+            }
+            .pm-step:not(:last-child)::after { display: none; }
+            .pm-step-circle { width: 94px; height: 94px; }
+            .pm-step-circle svg { width: 54px; height: 54px; }
+            .pm-step h3 { margin-top: 12px; font-size: 24px; }
           }
 
           @media (prefers-reduced-motion: reduce) {
@@ -494,6 +737,14 @@ function PreciousMetalPage() {
             .pm-hero-copy p,
             .pm-products-visible .pm-product-card {
               animation: none;
+              opacity: 1;
+              transform: none;
+            }
+            .pm-process-heading-row,
+            .pm-step,
+            .pm-step-circle svg,
+            .pm-step:not(:last-child)::after {
+              animation: none !important;
               opacity: 1;
               transform: none;
             }
