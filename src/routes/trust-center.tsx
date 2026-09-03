@@ -728,7 +728,7 @@ const trustStyles = `
 .tc-audit-panel{max-width:calc(1328*var(--u));margin:0 auto;border:1px solid var(--tc-border);border-radius:var(--tc-radius-large);background:rgba(255,255,255,.72);box-shadow:var(--tc-shadow-soft);overflow:hidden;display:grid;grid-template-columns:34% 66%}
 .tc-verify{position:relative;isolation:isolate;overflow:hidden;padding:calc(34*var(--u)) calc(36*var(--u));border-right:1px solid var(--tc-divider);background:radial-gradient(circle at 4% 96%,rgba(201,154,53,.09) 0%,rgba(201,154,53,.035) 28%,transparent 58%)}
 .tc-verify-watermark{position:absolute;z-index:0;pointer-events:none;left:-70px;bottom:-90px;width:clamp(300px,23.6111vw,340px);height:auto;object-fit:contain;opacity:0;transform:rotate(-8deg) scale(.97);transform-origin:center;mix-blend-mode:multiply;mask-image:radial-gradient(circle at 38% 62%,#000 0%,rgba(0,0,0,.9) 46%,transparent 78%);-webkit-mask-image:radial-gradient(circle at 38% 62%,#000 0%,rgba(0,0,0,.9) 46%,transparent 78%);filter:sepia(1) saturate(.8) hue-rotate(354deg);transition:opacity 800ms var(--tc-ease),transform 800ms var(--tc-ease)}
-.tc-verify.is-visible .tc-verify-watermark{opacity:.055;transform:rotate(-8deg) scale(1)}
+.tc-audit-panel.is-visible .tc-verify-watermark{opacity:.055;transform:rotate(-8deg) scale(1)}
 .tc-verify>:not(.tc-verify-watermark){position:relative;z-index:1}
 .tc-verify-head{display:flex;align-items:center;gap:calc(18*var(--u))}
 .tc-medallion{flex:none;width:calc(72*var(--u));height:calc(72*var(--u));display:grid;place-items:center;border-radius:50%;border:1px solid var(--tc-border-dark);background:var(--tc-forest-900)}
@@ -759,7 +759,7 @@ const trustStyles = `
 .trust-center-page .tc-audit-seal-marks path{stroke-width:1}
 .trust-center-page .tc-audit-seal-shield{stroke-width:1.2}
 .trust-center-page .tc-audit-seal-check{stroke-width:1.25}
-.tc-latest.is-visible .tc-audit-seal{opacity:.05;transform:rotate(7deg)}
+.tc-audit-panel.is-visible .tc-audit-seal{opacity:.05;transform:rotate(7deg)}
 .tc-preview>:not(.tc-audit-seal){position:relative;z-index:1}
 .tc-preview-head{margin-top:calc(22*var(--u));display:flex;align-items:center;gap:calc(14*var(--u))}
 .tc-doc-medallion{flex:none;width:calc(56*var(--u));height:calc(56*var(--u));display:grid;place-items:center;border-radius:50%;background:var(--tc-forest-900)}
@@ -865,8 +865,8 @@ const trustStyles = `
   .tc-verify-watermark{width:260px;left:-62px;bottom:-78px}
   .tc-latest{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
   .tc-audit-seal{width:190px;right:-46px;bottom:-52px}
-  .tc-verify.is-visible .tc-verify-watermark{opacity:.045}
-  .tc-latest.is-visible .tc-audit-seal{opacity:.045}
+  .tc-audit-panel.is-visible .tc-verify-watermark{opacity:.045}
+  .tc-audit-panel.is-visible .tc-audit-seal{opacity:.045}
   .tc-process{height:auto;padding:0 40px 26px}
   .tc-process-panel{min-height:286px;padding:26px 28px;grid-template-columns:23% 77%}
   .tc-step-circle{width:74px;height:74px}
@@ -898,7 +898,7 @@ const trustStyles = `
   .tc-latest{grid-template-columns:1fr;min-height:0}
   .tc-preview{border-left:0;border-top:1px solid var(--tc-divider)}
   .tc-audit-seal{width:190px;right:-44px;bottom:-50px}
-  .tc-verify.is-visible .tc-verify-watermark,.tc-latest.is-visible .tc-audit-seal{opacity:.04}
+  .tc-audit-panel.is-visible .tc-verify-watermark,.tc-audit-panel.is-visible .tc-audit-seal{opacity:.04}
   .tc-archive{grid-template-columns:1fr}
   .tc-archive-intro{border-right:0;border-bottom:1px solid var(--tc-divider)}
   .tc-process-panel{padding:30px}
@@ -940,7 +940,7 @@ const trustStyles = `
   .tc-latest{grid-template-columns:minmax(0,1fr);min-height:0}
   .tc-preview{border-left:0;border-top:1px solid var(--tc-divider)}
   .tc-audit-seal{display:none}
-  .tc-verify.is-visible .tc-verify-watermark{opacity:.035}
+  .tc-audit-panel.is-visible .tc-verify-watermark{opacity:.035}
   .tc-archive{grid-template-columns:minmax(0,1fr)}
   .tc-archive-intro{border-right:0;border-bottom:1px solid var(--tc-divider)}
   .tc-verify,.tc-latest-main,.tc-preview,.tc-archive-intro,.tc-archive-rows{min-width:0;padding:22px 20px}
