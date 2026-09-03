@@ -235,8 +235,7 @@ const aboutStyles = `
 .about-new p { margin:0; }
 .about-shell { width:var(--shell); height:100%; margin-inline:auto; }
 .about-eyebrow { font-size:clamp(9.2px,.7639vw,19.6px); font-weight:600; line-height:1.2; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-deep); }
-.about-new > header { height:clamp(112px,9.0278vw,231px); background:var(--forest-950); animation:aboutFade .45s ease both; }
-.about-new > header > div > div { min-height:clamp(112px,9.0278vw,231px); }
+.about-new > header { background:var(--forest-950); animation:aboutFade .45s ease both; }
 .about-hero { position:relative; height:clamp(514px,50.2083vw,1285px); overflow:hidden; color:var(--cream-text); background:var(--forest-950); }
 .about-hero-velvet { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.67; }
 .about-hero::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(13,33,23,.98) 0%,rgba(13,33,23,.92) 38%,rgba(13,33,23,.34) 65%,rgba(13,33,23,.06) 100%); }
@@ -309,7 +308,6 @@ const aboutStyles = `
 @keyframes aboutFade { from{opacity:0}to{opacity:1} } @keyframes aboutReveal { to{opacity:1;transform:none} }
 @media (max-width:1023px) {
   .about-new { --gutter:clamp(32px,6vw,61px); --shell:calc(100% - (var(--gutter) * 2)); }
-  .about-new > header { height:76px; }.about-new > header > div > div { min-height:76px; }
   .about-hero { height:auto; min-height:760px; display:flex; flex-direction:column; }
   .about-hero-copy { position:relative; left:auto; top:auto; width:var(--shell); margin:74px auto 0; }
   .about-hero h1 { font-size:clamp(48px,7vw,62px); }
