@@ -677,6 +677,7 @@ const trustStyles = `
   --tc-dark-border: rgba(217, 170, 75, .20);
 
   background: var(--tc-cream);
+  overflow-x: clip;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
