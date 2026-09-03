@@ -214,7 +214,7 @@ function AboutPage() {
       </section>
 
       <section className="about-waitlist" data-reveal>
-        <a href="/vault#early-access">Join the waitlist</a>
+        <a href="/vault#early-access">Get Early Access</a>
       </section>
 
       <SiteFooter />
