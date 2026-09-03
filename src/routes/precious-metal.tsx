@@ -804,7 +804,7 @@ function PreciousMetalPage() {
             place-items: center;
             width: clamp(80px, 7.7778vw, 199px);
             height: clamp(80px, 7.7778vw, 199px);
-            border: 1.5px solid var(--pm-gold);
+            border: 2.2px solid var(--pm-gold);
             border-radius: 50%;
             background: transparent;
           }
@@ -814,7 +814,7 @@ function PreciousMetalPage() {
             height: clamp(46px, 4.5833vw, 117px);
             fill: none;
             stroke: var(--pm-gold);
-            stroke-width: 1.35;
+            stroke-width: 1.7;
             stroke-linecap: round;
             stroke-linejoin: round;
             transform: scale(.95);
@@ -1015,7 +1015,7 @@ function PreciousMetalPage() {
             place-items: center;
             width: clamp(72px, 5.6944vw, 146px);
             height: clamp(72px, 5.6944vw, 146px);
-            border: 1.25px solid rgba(167,123,49,.7);
+            border: 2px solid rgba(167,123,49,.78);
             border-radius: 50%;
           }
 
@@ -1024,7 +1024,7 @@ function PreciousMetalPage() {
             height: clamp(52px, 4.1667vw, 107px);
             fill: none;
             stroke: color-mix(in oklab, var(--pm-ink) 78%, var(--pm-gold-muted));
-            stroke-width: 1.6;
+            stroke-width: 1.9;
             stroke-linecap: round;
             stroke-linejoin: round;
             transition: transform 350ms cubic-bezier(.22,1,.36,1);
