@@ -322,15 +322,7 @@ function BenefitsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pm-benefits" aria-labelledby="pm-benefits-title">
-      <div className="pm-benefits-heading-row">
-        <span aria-hidden="true" />
-        <div>
-          <p>Four benefits</p>
-          <h2 id="pm-benefits-title">Why buy with SQOOT Pure</h2>
-        </div>
-        <span aria-hidden="true" />
-      </div>
+    <section ref={sectionRef} className="pm-benefits" aria-label="Benefits">
       <div className="pm-benefits-grid">
         {benefits.map((benefit) => (
           <article className="pm-benefit" key={benefit.title}>
