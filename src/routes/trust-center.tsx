@@ -355,20 +355,24 @@ function TrustCenterPage() {
       <section className="tc-hero">
         <img className="tc-hero-img" src={heroElephants.url} alt="Ceremonial elephants adorned with gold at a festival" />
         <div className="tc-hero-overlay" />
-        <div className="tc-hero-copy">
-          <h1 className="tc-hero-item">
-            <span>{TC.hero.headingLine1}</span>
-            <span>
-              {TC.hero.headingLine2Lead}
-              <em>{TC.hero.headingLine2Gold}</em>
-            </span>
-          </h1>
-          <span className="tc-hero-rule tc-hero-item" />
-          <p className="tc-hero-item">
-            {TC.hero.body[0]}
-            <br />
-            {TC.hero.body[1]}
-          </p>
+        <div className="tc-hero-inner">
+          <div className="tc-hero-copy">
+            <div className="tc-hero-text">
+              <h1>
+                <span>{TC.hero.headingLine1}</span>
+                <span>
+                  {TC.hero.headingLine2Lead}
+                  <em>{TC.hero.headingLine2Gold}</em>
+                </span>
+              </h1>
+              <span className="tc-hero-rule" />
+              <p>
+                {TC.hero.body[0]}
+                <br />
+                {TC.hero.body[1]}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -626,17 +630,17 @@ const trustStyles = `
 .trust-center-page svg{fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 
 /* HERO */
-.tc-hero{position:relative;height:calc(452*var(--u));overflow:hidden;background:var(--tc-forest-black)}
-.tc-hero-img{position:absolute;top:0;left:0;max-width:none;width:118%;height:100%;object-fit:cover;object-position:66% center;transform-origin:left center;animation:tcHeroZoom 1200ms var(--tc-ease) both}
-.tc-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,20,14,1) 0%,rgba(4,20,14,1) 40%,rgba(4,20,14,0) 53%),linear-gradient(90deg,rgba(4,20,14,.995) 0%,rgba(4,20,14,.98) 30%,rgba(4,20,14,.9) 45%,rgba(4,20,14,.42) 59%,rgba(4,20,14,.06) 76%,transparent 87%)}
-.tc-hero-copy{position:absolute;z-index:2;left:calc(73*var(--u));top:calc(105*var(--u));width:calc(670*var(--u))}
-.tc-hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:calc(72*var(--u));line-height:1.01;letter-spacing:-.025em;color:var(--tc-light-text)}
+.tc-hero{position:relative;height:clamp(360px,31.9444vw,460px);overflow:hidden;background:var(--tc-forest-950)}
+.tc-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;filter:contrast(1.03);transform-origin:center center;animation:tcHeroImage 900ms var(--tc-ease) forwards}
+.tc-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#01120d 0%,#011711 39%,rgba(1,23,17,.94) 48%,rgba(1,23,17,.48) 61%,rgba(1,23,17,.08) 78%)}
+.tc-hero-inner{position:absolute;inset:0;z-index:2;display:flex;align-items:center}
+.tc-hero-copy{width:100%;max-width:1328px;margin:0 auto;padding-inline:clamp(24px,3.8889vw,56px)}
+.tc-hero-text{width:48%;max-width:570px;margin-top:clamp(-30px,-2vh,-16px);opacity:0;transform:translateY(16px);animation:tcHeroText 700ms var(--tc-ease) forwards}
+.tc-hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(56px,4.7vw,68px);line-height:0.98;letter-spacing:-0.025em;color:var(--tc-cream)}
 .tc-hero h1 span{display:block}
-.tc-hero h1 em{font-style:normal;color:var(--tc-gold-light)}
-.tc-hero-rule{display:block;width:calc(70*var(--u));height:calc(2*var(--u));margin:calc(28*var(--u)) 0 calc(24*var(--u));background:var(--tc-gold)}
-.tc-hero p{font-size:calc(21*var(--u));font-weight:400;line-height:1.55;color:rgba(246,241,232,.94)}
-.tc-hero-item{opacity:0;transform:translateY(18px);animation:tcRise 680ms var(--tc-ease) forwards}
-.tc-hero-item:nth-child(2){animation-delay:90ms}.tc-hero-item:nth-child(3){animation-delay:180ms}
+.tc-hero h1 em{font-style:normal;color:var(--tc-gold)}
+.tc-hero-rule{display:block;width:clamp(34px,2.5vw,40px);height:1.5px;margin:clamp(24px,1.9444vw,28px) 0;background:var(--tc-gold)}
+.tc-hero p{font-size:18px;font-weight:400;line-height:1.5;color:rgba(252,250,247,.9)}
 
 /* PILLARS */
 .tc-pillars{height:calc(163*var(--u));padding:calc(27*var(--u)) calc(72*var(--u));background:radial-gradient(circle at 50% 0%,rgba(25,76,56,.26),transparent 70%),var(--tc-forest-900)}
@@ -770,14 +774,15 @@ const trustStyles = `
 .trust-center-page [data-reveal]{transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-audit-panel[data-reveal]{opacity:0;transform:translateY(16px)}
 .tc-audit-panel.is-visible{opacity:1;transform:none}
-@keyframes tcRise{to{opacity:1;transform:none}}
-@keyframes tcHeroZoom{from{transform:scale(1.025)}to{transform:scale(1)}}
+@keyframes tcHeroText{to{opacity:1;transform:none}}
+@keyframes tcHeroImage{from{transform:scale(1.025);opacity:.94}to{transform:scale(1);opacity:1}}
 .tc-statement{max-width:calc(360*var(--u))}
 
 @media (max-width:1023px){
   .trust-center-page{--u:1px}
   .tc-hero{height:520px}
-  .tc-hero-copy{left:40px;top:80px;width:min(620px,calc(100% - 80px))}
+  .tc-hero-copy{padding-inline:40px}
+  .tc-hero-text{width:min(520px,55%);margin-top:-16px}
   .tc-hero h1{font-size:56px}
   .tc-pillars{height:auto;padding:32px 40px}
   .tc-pillars-grid{grid-template-columns:repeat(2,1fr);row-gap:28px}
@@ -801,8 +806,9 @@ const trustStyles = `
 }
 @media (max-width:767px){
   .tc-hero{min-height:620px;height:620px}
-  .tc-hero-img{object-position:72% center}
-  .tc-hero-copy{left:24px;top:64px;width:calc(100% - 48px)}
+  .tc-hero-img{object-position:70% center}
+  .tc-hero-copy{padding-inline:24px}
+  .tc-hero-text{width:100%;margin-top:-12px}
   .tc-hero h1{font-size:50px}
   .tc-hero p{font-size:18px}
   .tc-pillars{padding:28px 24px}
@@ -826,6 +832,6 @@ const trustStyles = `
 }
 @media (prefers-reduced-motion:reduce){
   .trust-center-page *,.trust-center-page *:before,.trust-center-page *:after{animation:none!important;transition:none!important}
-  .trust-center-page [data-reveal],.tc-hero-item,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important}
+  .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important}
 }
 `;
