@@ -241,6 +241,109 @@ function PricingSection() {
   );
 }
 
+const benefits = [
+  {
+    title: "Fully Insured",
+    description: "Insured in transit and in vaulted storage.",
+    icon: <InsuredBenefitIcon />,
+  },
+  {
+    title: "999.9 Purity",
+    description: "LBMA-certified fine gold, every bar and coin.",
+    icon: <PurityBenefitIcon />,
+  },
+  {
+    title: "Secure Storage",
+    description: "Allocated, segregated vault storage, audited.",
+    icon: <StorageBenefitIcon />,
+  },
+  {
+    title: "Instant Liquidity",
+    description: "Sell back anytime at live spot pricing.",
+    icon: <LiquidityBenefitIcon />,
+  },
+] as const;
+
+function InsuredBenefitIcon() {
+  return (
+    <svg viewBox="0 0 82 82" aria-hidden="true">
+      <path d="M41 11c8 7 16 10 25 11v17c0 15-8 25-25 33-17-8-25-18-25-33V22c9-1 17-4 25-11Z" />
+      <path d="m30 41 7 7 15-17M16 54c-5-3-8-8-9-14m59 14c5-3 8-8 9-14" />
+      <path d="M11 33c1-5 4-10 8-13m44 0c4 3 7 8 8 13" opacity=".68" />
+    </svg>
+  );
+}
+
+function PurityBenefitIcon() {
+  return (
+    <svg viewBox="0 0 82 82" aria-hidden="true">
+      <path d="M41 9 49 28l20 2-15 14 5 20-18-10-18 10 5-20-15-14 20-2 8-19Z" />
+      <path d="M41 18v36M27 31l14 13 14-13M31 55c-7 1-13 5-17 11m37-11c7 1 13 5 17 11" />
+      <path d="M14 66c5-1 9 0 13 4m41-4c-5-1-9 0-13 4" opacity=".68" />
+    </svg>
+  );
+}
+
+function StorageBenefitIcon() {
+  return (
+    <svg viewBox="0 0 82 82" aria-hidden="true">
+      <rect x="11" y="12" width="60" height="58" rx="3" />
+      <rect x="18" y="19" width="46" height="44" rx="2" />
+      <circle cx="41" cy="41" r="13" />
+      <circle cx="41" cy="41" r="4" />
+      <path d="M41 28v9m0 8v9m-13-13h9m8 0h9M20 26h-6m6 30h-6m54-30h-6m6 30h-6" />
+    </svg>
+  );
+}
+
+function LiquidityBenefitIcon() {
+  return (
+    <svg viewBox="0 0 82 82" aria-hidden="true">
+      <path d="M17 31c4-11 14-18 26-18 11 0 20 5 25 14" />
+      <path d="m58 17 10 10-14 4M65 51c-4 11-14 18-26 18-11 0-20-5-25-14" />
+      <path d="m24 65-10-10 14-4M42 25v32m8-25c-2-4-11-6-16-2-6 5-1 10 7 11 9 1 14 6 8 12-5 5-15 2-17-2" />
+    </svg>
+  );
+}
+
+function BenefitsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      section.classList.add("pm-benefits-visible");
+      observer.disconnect();
+    }, { threshold: 0.16 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="pm-benefits" aria-labelledby="pm-benefits-title">
+      <div className="pm-benefits-heading-row">
+        <span aria-hidden="true" />
+        <div>
+          <p>Four benefits</p>
+          <h2 id="pm-benefits-title">Why buy with SQOOT Pure</h2>
+        </div>
+        <span aria-hidden="true" />
+      </div>
+      <div className="pm-benefits-grid">
+        {benefits.map((benefit) => (
+          <article className="pm-benefit" key={benefit.title}>
+            <div className="pm-benefit-icon">{benefit.icon}</div>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function PreciousMetalPage() {
   return (
     <>
@@ -269,6 +372,7 @@ function PreciousMetalPage() {
         <ProductsSection />
         <HowItWorksSection />
         <PricingSection />
+        <BenefitsSection />
 
         <style>{`
           .precious-metals-page {
@@ -798,6 +902,167 @@ function PreciousMetalPage() {
             text-align: left;
           }
 
+          .pm-benefits {
+            position: relative;
+            isolation: isolate;
+            height: clamp(300px, 29vw, 743px);
+            padding: clamp(29px, 2.8472vw, 73px) clamp(48px, 4.7222vw, 121px) clamp(30px, 2.9167vw, 75px);
+            overflow: hidden;
+            background-color: var(--pm-cream);
+          }
+
+          .pm-benefits::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            opacity: .07;
+            background-image:
+              radial-gradient(ellipse at 14% 22%, rgba(139,100,40,.34), transparent 38%),
+              radial-gradient(ellipse at 78% 67%, rgba(255,255,255,.72), transparent 42%),
+              radial-gradient(ellipse at 49% 92%, rgba(158,112,45,.22), transparent 35%),
+              linear-gradient(112deg, transparent 22%, rgba(134,94,35,.15) 48%, transparent 72%);
+            background-size: 480px 460px, 510px 490px, 440px 500px, 500px 470px;
+            background-position: 0 -952px, 160px -872px, 300px -1082px, 70px -762px;
+          }
+
+          .pm-benefits-heading-row {
+            display: grid;
+            grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+            align-items: center;
+            column-gap: clamp(27px, 2.6389vw, 68px);
+            width: 100%;
+            opacity: 0;
+            transform: translateY(14px);
+          }
+
+          .pm-benefits-heading-row > span {
+            width: 100%;
+            height: 1px;
+            background: var(--pm-gold-muted);
+            opacity: .78;
+          }
+
+          .pm-benefits-heading-row > div { text-align: center; }
+
+          .pm-benefits-heading-row p {
+            margin: 0 0 clamp(6px, .5556vw, 14px);
+            color: var(--pm-gold-muted);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(10px, .9028vw, 23px);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+          }
+
+          .pm-benefits-heading-row h2 {
+            margin: 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(32px, 3.125vw, 80px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.015em;
+            white-space: nowrap;
+          }
+
+          .pm-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0,1fr));
+            width: 100%;
+            max-width: clamp(944px, 91.6667vw, 2347px);
+            margin: clamp(28px, 2.7083vw, 69px) auto 0;
+          }
+
+          .pm-benefit {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            align-items: center;
+            padding-inline: clamp(17px, 1.6667vw, 43px);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(16px);
+          }
+
+          .pm-benefit + .pm-benefit { border-left: 1px solid var(--pm-divider); }
+
+          .pm-benefit-icon {
+            display: grid;
+            place-items: center;
+            width: clamp(72px, 5.6944vw, 146px);
+            height: clamp(72px, 5.6944vw, 146px);
+            border: 1.25px solid rgba(167,123,49,.7);
+            border-radius: 50%;
+          }
+
+          .pm-benefit-icon svg {
+            width: clamp(52px, 4.1667vw, 107px);
+            height: clamp(52px, 4.1667vw, 107px);
+            fill: none;
+            stroke: color-mix(in oklab, var(--pm-ink) 78%, var(--pm-gold-muted));
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 350ms cubic-bezier(.22,1,.36,1);
+          }
+
+          .pm-benefit h3 {
+            margin: clamp(14px, 1.3194vw, 34px) 0 0;
+            color: var(--pm-ink);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(22px, 1.6667vw, 43px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.01em;
+          }
+
+          .pm-benefit > p {
+            margin: clamp(8px, .6944vw, 18px) 0 0;
+            color: var(--pm-body);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(13px, 1.1111vw, 28px);
+            font-weight: 400;
+            line-height: 1.42;
+            letter-spacing: 0;
+            white-space: nowrap;
+          }
+
+          .pm-benefits-visible .pm-benefits-heading-row,
+          .pm-benefits-visible .pm-benefit {
+            animation: pmBenefitRise 620ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+          .pm-benefits-visible .pm-benefit:nth-child(1) { animation-delay: 90ms; }
+          .pm-benefits-visible .pm-benefit:nth-child(2) { animation-delay: 180ms; }
+          .pm-benefits-visible .pm-benefit:nth-child(3) { animation-delay: 270ms; }
+          .pm-benefits-visible .pm-benefit:nth-child(4) { animation-delay: 360ms; }
+          .pm-benefit:hover .pm-benefit-icon svg { transform: scale(1.045); }
+
+          @keyframes pmBenefitRise {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          @media (max-width: 1023px) {
+            .pm-benefits {
+              height: auto;
+              min-height: 300px;
+              padding-bottom: 44px;
+              overflow: visible;
+            }
+            .pm-benefits-grid {
+              grid-template-columns: repeat(2, minmax(0,1fr));
+              row-gap: 34px;
+              max-width: 720px;
+            }
+            .pm-benefit:nth-child(3) { border-left: 0; }
+            .pm-benefit-icon { width: 78px; height: 78px; }
+            .pm-benefit-icon svg { width: 56px; height: 56px; }
+            .pm-benefit h3 { font-size: 24px; }
+            .pm-benefit > p { white-space: normal; }
+          }
+
           @media (max-width: 767px) {
             .pm-hero { height: 424px; }
             .pm-hero-image { object-position: 67% center; }
@@ -867,6 +1132,27 @@ function PreciousMetalPage() {
             .pm-pricing-leaf { width: 44px; height: 44px; margin-left: 0; }
             .pm-pricing-divider { height: 44px; margin-inline: 16px; }
             .pm-pricing-copy h2, .pm-pricing-copy p { font-size: 18px; }
+
+            .pm-benefits { padding: 38px 20px 46px; }
+            .pm-benefits-heading-row { column-gap: 12px; }
+            .pm-benefits-heading-row p { font-size: 10px; }
+            .pm-benefits-heading-row h2 { font-size: 31px; white-space: normal; }
+            .pm-benefits-grid {
+              grid-template-columns: 1fr;
+              gap: 0;
+              max-width: 420px;
+              margin-top: 30px;
+            }
+            .pm-benefit {
+              padding: 28px 12px;
+              border-left: 0 !important;
+              border-top: 1px solid var(--pm-divider);
+            }
+            .pm-benefit:first-child { padding-top: 0; border-top: 0; }
+            .pm-benefit-icon { width: 84px; height: 84px; }
+            .pm-benefit-icon svg { width: 60px; height: 60px; }
+            .pm-benefit h3 { margin-top: 14px; font-size: 28px; }
+            .pm-benefit > p { margin-top: 8px; font-size: 15px; }
           }
 
           @media (prefers-reduced-motion: reduce) {
@@ -894,6 +1180,13 @@ function PreciousMetalPage() {
               transform: none;
               stroke-dashoffset: 0;
             }
+            .pm-benefits-heading-row,
+            .pm-benefit {
+              animation: none !important;
+              opacity: 1;
+              transform: none;
+            }
+            .pm-benefit-icon svg { transition: none; }
           }
         `}</style>
       </main>
