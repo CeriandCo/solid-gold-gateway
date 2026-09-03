@@ -40,7 +40,7 @@ export const Route = createFileRoute("/learn")({
   component: KnowledgeCenterPage,
 });
 
-function GlobeCoinIcon(props: React.HTMLAttributes<HTMLSpanElement>) {
+function GlobeCoinIcon(props: HTMLAttributes<HTMLSpanElement>) {
   return (
     <span className="kc-globe-coin" {...props}>
       <Globe2 aria-hidden="true" />
