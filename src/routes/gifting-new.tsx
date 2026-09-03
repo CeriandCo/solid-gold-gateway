@@ -321,9 +321,8 @@ const giftingStyles = `
   font-synthesis: none; -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
 .gifting-new h1,.gifting-new h2,.gifting-new h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
-.gifting-new > header { height: clamp(76px,7.25vw,186px); background: var(--forest-950); animation: giftFade .3s ease both; }
-.gifting-new > header > div > div { min-height: clamp(76px,7.25vw,186px); max-width: clamp(1440px,100vw,2560px); width: calc(100% - 72px); margin-inline: auto; padding-inline: 0; }
-.gifting-new > header img { width: clamp(145px,13.9vw,356px); }
+.gifting-new > header { background: var(--forest-950); animation: giftFade .3s ease both; }
+.gifting-new > header > div > div { max-width: clamp(1440px,100vw,2560px); width: calc(100% - 72px); margin-inline: auto; padding-inline: 0; }
 .gifting-new > header nav[aria-label="Primary navigation"] { gap: clamp(22px,3.35vw,86px); }
 .gifting-new > header nav[aria-label="Primary navigation"] a { font-family: "DM Sans",sans-serif; font-size: clamp(11px,1vw,26px); opacity: .92; }
 .gifting-new > header nav[aria-label="Primary navigation"] a[href="/gifting"] { color: var(--gold-500); }
