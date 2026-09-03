@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
 import scalesImage from "@/assets/trust-scales.png.asset.json";
@@ -322,17 +322,30 @@ function TcIcon({ name, className }: { name: IconName; className?: string }) {
 /* ------------------------------------------------------------------ */
 
 function useReveal() {
+  const pageRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>(".trust-center-page [data-reveal]"));
+    const page = pageRef.current;
+    if (!page) return;
+
+    const nodes = Array.from(page.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const reveal = (node: HTMLElement) => node.classList.add("is-visible");
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      nodes.forEach((n) => n.classList.add("is-visible"));
+      nodes.forEach(reveal);
       return;
     }
+
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(reveal);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
+            reveal(e.target as HTMLElement);
             io.unobserve(e.target);
           }
         });
@@ -340,15 +353,42 @@ function useReveal() {
       { threshold: 0.15 },
     );
     nodes.forEach((n) => io.observe(n));
-    return () => io.disconnect();
+    page.classList.add("reveal-ready");
+
+    // Guard against browser/WebView observer failures without leaving content hidden.
+    const revealInViewport = () => {
+      nodes.forEach((node) => {
+        if (node.classList.contains("is-visible")) return;
+        const rect = node.getBoundingClientRect();
+        const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const required = Math.min(rect.height * 0.15, window.innerHeight * 0.5);
+        if (visible >= required && rect.bottom > 0 && rect.top < window.innerHeight) {
+          reveal(node);
+          io.unobserve(node);
+        }
+      });
+    };
+    const onViewportChange = () => window.requestAnimationFrame(revealInViewport);
+    revealInViewport();
+    window.addEventListener("scroll", onViewportChange, { passive: true });
+    window.addEventListener("resize", onViewportChange);
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onViewportChange);
+      window.removeEventListener("resize", onViewportChange);
+      page.classList.remove("reveal-ready");
+    };
   }, []);
+
+  return pageRef;
 }
 
 function TrustCenterPage() {
-  useReveal();
+  const pageRef = useReveal();
 
   return (
-    <main className="trust-center-page">
+    <main ref={pageRef} className="trust-center-page">
       <SiteHeader />
 
       {/* HERO */}
@@ -776,7 +816,7 @@ const trustStyles = `
 .tc-safeguard-grid h3{margin-top:calc(12*var(--u));font-size:calc(15*var(--u));font-weight:600;line-height:1.2;color:var(--tc-ink)}
 .tc-safeguard-grid p{margin-top:calc(8*var(--u));font-size:calc(13*var(--u));font-weight:400;line-height:1.5;color:var(--tc-body)}
 
-.trust-center-page [data-reveal]{opacity:0;transform:translateY(16px);transition-property:opacity,transform;transition-duration:600ms;transition-timing-function:var(--tc-ease);will-change:opacity,transform}
+.trust-center-page.reveal-ready [data-reveal]{opacity:0;transform:translateY(16px);transition-property:opacity,transform;transition-duration:600ms;transition-timing-function:var(--tc-ease);will-change:opacity,transform}
 .trust-center-page [data-reveal].is-visible{opacity:1;transform:translateY(0);will-change:auto}
 .trust-center-page .tc-safeguard-grid article[data-reveal]{transition-property:opacity,transform,box-shadow,border-color;transition-duration:600ms,600ms,220ms,220ms;transition-timing-function:var(--tc-ease)}
 .trust-center-page a:focus-visible{outline:2px solid var(--tc-gold-soft);outline-offset:3px}
