@@ -170,8 +170,8 @@ function KnowledgeCenterPage() {
           </div>
           {period === "20yr" ? <div className="kc-chart" role="tabpanel">
             <h3>CAGR (%)</h3>
-            <div className="kc-bars">{chartData.map(([name, value]) => <div className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`} key={name}><span>{name}</span><div><i style={{ "--bar-width": `${value / 12 * 100}%` } as CSSProperties} /></div><b>{value.toFixed(1)}</b></div>)}</div>
-            <div className="kc-axis" aria-hidden="true"><span>0</span><span>3</span><span>6</span><span>9</span><span>12%</span></div>
+            <div className="kc-bars">{chartData.map(([name, value]) => <div className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`} key={name}><span>{name}</span><div><i style={{ "--bar-width": `${(value / 35 * 100).toFixed(3)}%` } as CSSProperties} /></div><b>{value.toFixed(1)}</b></div>)}</div>
+            <div className="kc-axis" aria-hidden="true"><span>-5</span><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30%</span></div>
             <table className="kc-sr-table"><caption>20-year compound annual growth rates</caption><tbody>{chartData.map(([name,value])=><tr key={name}><th>{name}</th><td>{value}%</td></tr>)}</tbody></table>
           </div> : <div className="kc-chart-empty" role="tabpanel"><ChartNoAxesCombined aria-hidden="true" /><p>Performance data coming soon.</p></div>}
         </div>
