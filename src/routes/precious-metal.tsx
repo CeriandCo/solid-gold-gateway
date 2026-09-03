@@ -804,7 +804,7 @@ function PreciousMetalPage() {
             place-items: center;
             width: clamp(80px, 7.7778vw, 199px);
             height: clamp(80px, 7.7778vw, 199px);
-            border: 1.5px solid var(--pm-gold);
+            border: 2.2px solid var(--pm-gold);
             border-radius: 50%;
             background: transparent;
           }
@@ -814,7 +814,7 @@ function PreciousMetalPage() {
             height: clamp(46px, 4.5833vw, 117px);
             fill: none;
             stroke: var(--pm-gold);
-            stroke-width: 1.35;
+            stroke-width: 1.7;
             stroke-linecap: round;
             stroke-linejoin: round;
             transform: scale(.95);
