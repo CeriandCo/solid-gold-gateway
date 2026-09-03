@@ -757,14 +757,15 @@ const trustStyles = `
 .tc-protection-panel.is-visible .tc-scales{opacity:1}
 .tc-protection-right{padding:calc(24*var(--u)) calc(28*var(--u));display:flex;flex-direction:column;opacity:0;transform:translateX(16px);transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-protection-panel.is-visible .tc-protection-right{opacity:1;transform:none}
-.tc-legal-panel{border:1px solid rgba(213,163,59,.25);border-radius:var(--tc-radius-card);background:rgba(4,31,23,.62);padding:calc(24*var(--u)) calc(26*var(--u))}
+.tc-legal-panel{border:1px solid rgba(213,163,59,.25);border-radius:var(--tc-radius-card);background:rgba(4,31,23,.62);padding:calc(22*var(--u)) calc(24*var(--u))}
 .tc-legal-panel h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(22px,1.7361vw,25px);line-height:1.1;color:var(--tc-cream)}
-.tc-legal-panel dl{margin-top:calc(16*var(--u));display:grid;row-gap:calc(10*var(--u))}
-.tc-legal-row{display:grid;grid-template-columns:calc(22*var(--u)) 1fr;column-gap:calc(12*var(--u));align-items:center;min-height:calc(32*var(--u))}
-.trust-center-page .tc-legal-icon{width:calc(17*var(--u));height:calc(17*var(--u));color:var(--tc-gold);stroke-width:1.5}
-.tc-legal-row dt{font-size:calc(12*var(--u));font-weight:600;color:rgba(252,250,247,.70)}
+.tc-legal-panel dl{margin-top:calc(14*var(--u));display:grid;row-gap:calc(8*var(--u))}
+.tc-legal-row{display:grid;grid-template-columns:minmax(110px,0.42fr) 1fr;column-gap:calc(14*var(--u));align-items:start;min-height:calc(28*var(--u))}
+.tc-legal-row dt{display:flex;align-items:center;gap:calc(8*var(--u));font-size:calc(12*var(--u));font-weight:600;color:rgba(252,250,247,.70)}
+.tc-legal-row dt span{flex:1}
+.trust-center-page .tc-legal-icon{flex:none;width:calc(17*var(--u));height:calc(17*var(--u));color:var(--tc-gold);stroke-width:1.5}
 .tc-legal-row dd{font-size:calc(13*var(--u));line-height:1.35;color:var(--tc-cream)}
-.tc-disclosure{margin-top:calc(12*var(--u));display:grid;grid-template-columns:calc(22*var(--u)) 1fr;column-gap:calc(12*var(--u));border-top:1px solid rgba(213,163,59,.20);padding-top:calc(14*var(--u))}
+.tc-disclosure{margin-top:calc(12*var(--u));display:grid;grid-template-columns:calc(22*var(--u)) 1fr;column-gap:calc(12*var(--u));border-top:1px solid rgba(213,163,59,.20);padding-top:calc(12*var(--u))}
 .tc-disclosure p{font-size:calc(12.5*var(--u));line-height:1.55;color:rgba(252,250,247,.85)}
 .tc-disclosure a,.tc-disclosure em{color:var(--tc-gold-light);font-style:normal}
 
