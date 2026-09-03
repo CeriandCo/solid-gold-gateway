@@ -118,11 +118,11 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
-      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 sm:px-8 lg:min-h-[112px] lg:px-[60px]">
+      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 py-2 sm:px-8 lg:min-h-[112px] lg:px-8 xl:px-[60px] lg:py-5">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px] sm:w-[168px] lg:w-[184px]" />
+          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[200px] sm:w-[230px] lg:w-[250px] xl:w-[290px]" />
         </Link>
-        <nav className="hidden flex-1 items-center justify-center gap-12 lg:flex xl:gap-[54px]" aria-label="Primary navigation">
+        <nav className="hidden flex-1 items-center justify-center gap-12 lg:gap-8 xl:gap-[54px] lg:flex" aria-label="Primary navigation">
           {siteNav.map(([label, to]) => (
             <Link
               key={label}
@@ -136,7 +136,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         <div className="flex shrink-0 items-center gap-3">
           <a
             href="#login"
-            className="hidden h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent font-sans text-[14px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex"
+            className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent font-sans text-[12px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex lg:px-3.5 xl:px-5 xl:text-[13px]"
           >
             Get Early Access
           </a>
@@ -180,7 +180,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
               <a
                 href="#login"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent text-sm font-medium leading-none text-gold"
+                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
               >
                 Get Early Access
               </a>
