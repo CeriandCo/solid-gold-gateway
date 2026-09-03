@@ -561,10 +561,8 @@ function TrustCenterPage() {
         <div className="tc-safeguard-grid">
           {TC.safeguards.map((card, i) => (
             <article key={card.title} data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
-              <div className="tc-safeguard-head">
-                <TcIcon name={card.icon} className="tc-safeguard-icon" />
-                <h3>{card.title}</h3>
-              </div>
+              <TcIcon name={card.icon} className="tc-safeguard-icon" />
+              <h3>{card.title}</h3>
               <p>{card.body}</p>
             </article>
           ))}
