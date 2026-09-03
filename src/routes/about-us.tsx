@@ -308,7 +308,6 @@ const aboutStyles = `
 @keyframes aboutFade { from{opacity:0}to{opacity:1} } @keyframes aboutReveal { to{opacity:1;transform:none} }
 @media (max-width:1023px) {
   .about-new { --gutter:clamp(32px,6vw,61px); --shell:calc(100% - (var(--gutter) * 2)); }
-  .about-new > header { height:76px; }.about-new > header > div > div { min-height:76px; }
   .about-hero { height:auto; min-height:760px; display:flex; flex-direction:column; }
   .about-hero-copy { position:relative; left:auto; top:auto; width:var(--shell); margin:74px auto 0; }
   .about-hero h1 { font-size:clamp(48px,7vw,62px); }
