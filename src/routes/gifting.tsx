@@ -34,7 +34,7 @@ import giftCard from "@/assets/personal-note-card.jpg";
 import boxedGold from "@/assets/personal-boxed-bar.jpg";
 import closingGift from "@/assets/gifting-closing-banner.jpg";
 
-export const Route = createFileRoute("/gifting-new")({
+export const Route = createFileRoute("/gifting")({
   head: () => ({
     meta: [
       { title: "Gift Real Gold — SQOOT Pure" },

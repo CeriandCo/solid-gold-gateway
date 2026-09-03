@@ -11,7 +11,7 @@ import giftingHeroImage from "@/assets/gifting-hero-product-final.jpg";
 import giftingLegacyImage from "@/assets/gifting-legacy-gold-refined.jpg";
 import giftingPackagedImage from "@/assets/gifting-phone-gold-bar-enhanced.png";
 
-export const Route = createFileRoute("/gifting")({
+export const Route = createFileRoute("/gifting-old-ver")({
   head: () => ({
     meta: [
       { title: "Gifting — Give Real Gold | SQOOT Pure" },
