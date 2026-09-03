@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
+import eagleAsset from "@/assets/american-eagle.png.asset.json";
 
 const heroImage = heroAsset.url;
 
@@ -49,11 +50,11 @@ const products = [
 
 function AmericanEagleArt() {
   return (
-    <svg className="pm-product-art pm-coin-art" viewBox="0 0 160 160" role="img" aria-label="Engraved American Gold Eagle coin illustration">
-      <circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="63" /><circle cx="80" cy="80" r="58" strokeDasharray="1.2 3.2" />
-      <path d="M53 119c11-13 15-27 17-42l-9-8 13 1 6-27 7 27 13-1-9 9c2 15 7 29 17 41M66 99c10 5 19 5 29 0M70 111c7 3 14 3 21 0M80 43l-9-8m9 8 9-8M57 61l-12-6m58 6 12-6M52 80H37m71 0h15" />
-      <path d="M51 127c18 8 39 8 58 0M48 39c19-15 45-15 64 0M62 31l3 5m13-10 1 6m16-4-2 6" />
-    </svg>
+    <img
+      className="pm-product-art pm-coin-art"
+      src={eagleAsset.url}
+      alt="American Gold Eagle coin"
+    />
   );
 }
 
@@ -660,6 +661,7 @@ function PreciousMetalPage() {
           }
           .pm-product-card:hover .pm-product-art { transform: scale(1.025); }
           .pm-coin-art { width: clamp(98px, 9.8611vw, 252px); height: clamp(98px, 9.8611vw, 252px); }
+          .pm-coin-art[src] { object-fit: contain; border-radius: 50%; }
           .pm-maple-art { width: clamp(103px, 10.4167vw, 267px); height: clamp(103px, 10.4167vw, 267px); }
           .pm-bar-art { width: clamp(74px, 7.6389vw, 196px); height: clamp(107px, 10.7639vw, 276px); }
 
