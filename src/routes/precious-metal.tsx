@@ -312,7 +312,7 @@ function PreciousMetalPage() {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: clamp(21px, 2.0139vw, 52px);
             width: 100%;
-            max-width: clamp(928px, 90.625vw, 2320px);
+            max-width: clamp(918px, 89.6528vw, 2295px);
             margin: clamp(19px, 1.875vw, 48px) auto 0;
           }
 
