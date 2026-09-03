@@ -898,7 +898,7 @@ function PreciousMetalPage() {
             height: clamp(84px, 8.125vw, 208px);
             padding: 0 clamp(48px, 4.7222vw, 121px);
             overflow: hidden;
-            background-color: var(--pm-cream-light);
+            background-color: var(--pm-cream);
           }
 
           .pm-pricing::before {
@@ -922,9 +922,9 @@ function PreciousMetalPage() {
             width: 100%;
             height: clamp(82px, 7.9167vw, 203px);
             padding-right: clamp(24px, 2.4306vw, 62px);
-            border: 1px solid var(--pm-border);
+            border: 1px solid rgba(199, 169, 115, 0.52);
             border-radius: 5px;
-            background: rgba(250,245,236,.20);
+            background: #F2EADC;
             opacity: 0;
             transform: translateY(12px);
           }
