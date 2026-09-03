@@ -5,6 +5,7 @@ import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
 import eagleAsset from "@/assets/american-eagle.png.asset.json";
 import pampAsset from "@/assets/pamp-bar.png.asset.json";
 import mapleAsset from "@/assets/maple-leaf.png.asset.json";
+import leafAsset from "@/assets/pricing-leaf.png.asset.json";
 
 const heroImage = heroAsset.url;
 
@@ -209,13 +210,12 @@ function HowItWorksSection() {
 
 function BotanicalLeafIcon() {
   return (
-    <svg className="pm-pricing-leaf" viewBox="0 0 68 68" aria-hidden="true">
-      <path d="M34 58V20" />
-      <path d="M34 36c-8-6-17-8-23-3 4 8 14 11 23 6" />
-      <path d="M34 30c8-6 17-8 23-3-4 8-14 11-23 6" />
-      <path d="M34 44c-6-5-13-6-18-2 3 6 10 8 18 4" />
-      <path d="M34 26c6-5 13-6 18-2-3 6-10 8-18 4" />
-    </svg>
+    <img
+      className="pm-pricing-leaf"
+      src={leafAsset.url}
+      alt=""
+      aria-hidden="true"
+    />
   );
 }
 
@@ -887,6 +887,10 @@ function PreciousMetalPage() {
             from { stroke-dashoffset: 300; }
             to { stroke-dashoffset: 0; }
           }
+          @keyframes pmLeafFade {
+            from { opacity: 0; transform: scale(.92); }
+            to { opacity: 1; transform: scale(1); }
+          }
 
           .pm-pricing {
             position: relative;
@@ -945,6 +949,11 @@ function PreciousMetalPage() {
 
           .pm-pricing-visible .pm-pricing-leaf {
             animation: pmLeafDraw 900ms ease 200ms forwards;
+          }
+          .pm-pricing-leaf[src] { object-fit: contain; }
+          .pm-pricing-visible .pm-pricing-leaf[src] {
+            opacity: 0;
+            animation: pmLeafFade 700ms ease 200ms forwards;
           }
 
           .pm-pricing-divider {
