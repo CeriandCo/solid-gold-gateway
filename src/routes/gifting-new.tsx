@@ -370,7 +370,7 @@ const giftingStyles = `
 .gift-occasion-card:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(18,33,24,.16); }.gift-occasion-card:hover img { transform: scale(1.045); }.gift-occasion-card:hover .gift-occasion-icon { border-color: var(--gold-300); }
 .gift-view-all { display: inline-flex; align-items: center; gap: 5px; margin-top: clamp(10px,1.18vw,31px); color: var(--gold-deep); font-size: 12px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }.gift-view-all svg { width: 15px; height: 15px; }
 .gift-personal { height: clamp(332px,32.36vw,829px); min-height: 0; display: grid; grid-template-columns: 43% 27% 30%; overflow: hidden; background: var(--cream-200); }
-.gift-personal > * { min-width: 0; min-height: 0; height: 100%; }.gift-personal-copy { position: relative; display: flex; align-items: center; overflow: hidden; }.gift-personal-copy > div { position: relative; width: min(300px,68.2%); margin-left: 27.7%; }
+.gift-personal > * { min-width: 0; min-height: 0; height: 100%; }.gift-personal-copy { position: relative; display: flex; align-items: center; }.gift-personal-copy > div { position: relative; width: min(300px,68.2%); margin-left: 27.7%; }
 .gift-botanical { position: absolute; inset-block: 0; left: 0; width: 35%; height: 100%; color: var(--gold-deep); opacity: .5; }.gift-botanical path { stroke: currentColor; stroke-width: .9; vector-effect: non-scaling-stroke; }
 .gift-personal-overline { gap: 7px; color: var(--gold-deep); }.gift-personal-overline p { font-size: clamp(10px,.76vw,20px); font-weight: 600; letter-spacing: .2em; }.gift-personal-overline svg { width: 14px; height: 14px; }
 .gift-personal h2 { margin-top: 7px; color: var(--forest-900); font-size: clamp(32px,3.2vw,82px); font-weight: 500; line-height: 1.02; letter-spacing: -.02em; }.gift-personal h2 span { display: block; }
@@ -384,6 +384,11 @@ const giftingStyles = `
 .gifting-new > footer > div { min-height: 84px; padding-block: 15px; }.gifting-new > footer img { width: 132px; }.gifting-new > footer a { font-size: 12px; }
 .gifting-new [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1); }.gifting-new [data-reveal].is-visible { opacity: 1; transform: none; }
 @keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} }
+@media (min-width: 1025px) {
+  .gift-personal-body { margin-top: min(14px,calc(10.67px + (100vw - 1024px) * .002)); }
+  .gift-personal ul { gap: min(5px,calc(4.92px + (100vw - 1024px) * .0002)); margin-top: 8px; }
+  .gift-button-dark { margin-top: max(7px,calc(17px - (100vw - 1024px) * .024)); }
+}
 @media (max-width: 1023px) {
   .gifting-new > header { height: 76px; }.gifting-new > header > div > div { min-height: 76px; width: 100%; padding-inline: 24px; }.gifting-new > header img { width: 145px; }.gifting-new > header a[href="#login"] { width: auto; }
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
