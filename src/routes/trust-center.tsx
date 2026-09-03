@@ -781,7 +781,8 @@ const trustStyles = `
 @media (max-width:1023px){
   .trust-center-page{--u:1px}
   .tc-hero{height:520px}
-  .tc-hero-copy{left:40px;top:80px;width:min(620px,calc(100% - 80px))}
+  .tc-hero-copy{padding-inline:40px}
+  .tc-hero-text{width:min(520px,55%);margin-top:-16px}
   .tc-hero h1{font-size:56px}
   .tc-pillars{height:auto;padding:32px 40px}
   .tc-pillars-grid{grid-template-columns:repeat(2,1fr);row-gap:28px}
