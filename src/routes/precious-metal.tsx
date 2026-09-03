@@ -71,12 +71,11 @@ function MapleLeafArt() {
 
 function PampBarArt() {
   return (
-    <svg className="pm-product-art pm-bar-art" viewBox="0 0 120 170" role="img" aria-label="Engraved PAMP gold bar illustration">
-      <rect x="16" y="5" width="88" height="160" rx="5" /><rect x="22" y="11" width="76" height="148" rx="3" />
-      <path d="M60 30c10 0 18 8 18 18S70 66 60 66s-18-8-18-18 8-18 18-18Zm0 4-5 9-10 2 7 8-2 10 10-5 10 5-2-10 7-8-10-2-5-9Z" />
-      <path d="M42 78h36M38 85h44M46 123h28M42 130h36" />
-      <text x="60" y="99" textAnchor="middle">PAMP</text><text x="60" y="111" textAnchor="middle">SUISSE</text><text x="60" y="145" textAnchor="middle">FINE GOLD</text>
-    </svg>
+    <img
+      className="pm-product-art pm-bar-art"
+      src={pampAsset.url}
+      alt="PAMP Suisse gold bar"
+    />
   );
 }
 
