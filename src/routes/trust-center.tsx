@@ -437,6 +437,7 @@ function TrustCenterPage() {
         <div className="tc-audit-panel" data-reveal>
           {/* left verification column */}
           <div className="tc-verify" data-reveal>
+            <img className="tc-verify-watermark" src={sqootMandala.url} alt="" aria-hidden="true" />
             <div className="tc-verify-head">
               <span className="tc-medallion">
                 <img src={sqootMandala.url} alt="" aria-hidden="true" />
@@ -479,6 +480,18 @@ function TrustCenterPage() {
               </div>
 
               <aside className="tc-preview">
+                <svg className="tc-audit-seal" viewBox="0 0 240 240" aria-hidden="true">
+                  <circle cx="120" cy="120" r="91" />
+                  <circle cx="120" cy="120" r="76" />
+                  <g className="tc-audit-seal-marks">
+                    <path d="M120 17v11M120 212v11M17 120h11M212 120h11" />
+                    <path d="m47.2 47.2 7.8 7.8m130 130 7.8 7.8M47.2 192.8 55 185m130-130 7.8-7.8" />
+                    <path d="m79.5 22.2 4.4 10.2m72.2 175.2 4.4 10.2M22.2 160.5l10.2-4.4m175.2-72.2 10.2-4.4" />
+                    <path d="m22.2 79.5 10.2 4.4m175.2 72.2 10.2 4.4M79.5 217.8l4.4-10.2m72.2-175.2 4.4-10.2" />
+                  </g>
+                  <path className="tc-audit-seal-shield" d="M120 72c12 9 24.5 13.5 38 14.5v28.5c0 24.2-14 42.5-38 54.5-24-12-38-30.3-38-54.5V86.5C95.5 85.5 108 81 120 72Z" />
+                  <path className="tc-audit-seal-check" d="m101 119 13 13 27-30" />
+                </svg>
                 <p className="tc-eyebrow">{TC.reportPreview.eyebrow}</p>
                 <div className="tc-preview-head">
                   <span className="tc-doc-medallion">
@@ -712,7 +725,10 @@ const trustStyles = `
 /* AUDIT */
 .tc-audit{padding:calc(44*var(--u)) calc(56*var(--u)) calc(30*var(--u))}
 .tc-audit-panel{max-width:calc(1328*var(--u));margin:0 auto;border:1px solid var(--tc-border);border-radius:var(--tc-radius-large);background:rgba(255,255,255,.72);box-shadow:var(--tc-shadow-soft);overflow:hidden;display:grid;grid-template-columns:34% 66%}
-.tc-verify{padding:calc(34*var(--u)) calc(36*var(--u));border-right:1px solid var(--tc-divider)}
+.tc-verify{position:relative;isolation:isolate;overflow:hidden;padding:calc(34*var(--u)) calc(36*var(--u));border-right:1px solid var(--tc-divider);background:radial-gradient(circle at 4% 96%,rgba(201,154,53,.09) 0%,rgba(201,154,53,.035) 28%,transparent 58%)}
+.tc-verify-watermark{position:absolute;z-index:0;pointer-events:none;left:-70px;bottom:-90px;width:clamp(300px,23.6111vw,340px);height:auto;object-fit:contain;opacity:0;transform:rotate(-8deg) scale(.97);transform-origin:center;mix-blend-mode:multiply;mask-image:radial-gradient(circle at 38% 62%,#000 0%,rgba(0,0,0,.9) 46%,transparent 78%);-webkit-mask-image:radial-gradient(circle at 38% 62%,#000 0%,rgba(0,0,0,.9) 46%,transparent 78%);filter:sepia(1) saturate(.8) hue-rotate(354deg);transition:opacity 800ms var(--tc-ease),transform 800ms var(--tc-ease)}
+.tc-verify.is-visible .tc-verify-watermark{opacity:.055;transform:rotate(-8deg) scale(1)}
+.tc-verify>:not(.tc-verify-watermark){position:relative;z-index:1}
 .tc-verify-head{display:flex;align-items:center;gap:calc(18*var(--u))}
 .tc-medallion{flex:none;width:calc(72*var(--u));height:calc(72*var(--u));display:grid;place-items:center;border-radius:50%;border:1px solid var(--tc-border-dark);background:var(--tc-forest-900)}
 .tc-medallion img{width:calc(46*var(--u));height:calc(46*var(--u));object-fit:contain}
@@ -736,7 +752,14 @@ const trustStyles = `
 .tc-metric-label{font-size:calc(12*var(--u));font-weight:600;color:var(--tc-ink)}
 .tc-metric-value{margin-top:calc(8*var(--u));font-family:"Cormorant Garamond",Georgia,serif;font-size:calc(26*var(--u));font-weight:500;line-height:1;color:var(--tc-ink)}
 .tc-metric-note{margin-top:calc(8*var(--u));font-size:calc(11.5*var(--u));line-height:1.35;color:var(--tc-muted)}
-.tc-preview{padding:calc(32*var(--u)) calc(30*var(--u));background:var(--tc-paper);border-left:1px solid var(--tc-divider)}
+.tc-preview{position:relative;isolation:isolate;overflow:hidden;padding:calc(32*var(--u)) calc(30*var(--u));background:radial-gradient(circle at 100% 100%,rgba(201,154,53,.085) 0%,rgba(201,154,53,.025) 35%,transparent 65%),var(--tc-paper);border-left:1px solid var(--tc-divider)}
+.tc-audit-seal{position:absolute;z-index:0;pointer-events:none;right:-52px;bottom:-60px;width:clamp(210px,17.3611vw,250px);height:auto;color:var(--tc-gold-dark);opacity:0;transform:rotate(4deg);transform-origin:center;transition:opacity 800ms var(--tc-ease),transform 800ms var(--tc-ease)}
+.trust-center-page .tc-audit-seal circle,.trust-center-page .tc-audit-seal path{fill:none;stroke:currentColor;stroke-width:1.1;vector-effect:non-scaling-stroke}
+.trust-center-page .tc-audit-seal-marks path{stroke-width:1}
+.trust-center-page .tc-audit-seal-shield{stroke-width:1.2}
+.trust-center-page .tc-audit-seal-check{stroke-width:1.25}
+.tc-latest.is-visible .tc-audit-seal{opacity:.05;transform:rotate(7deg)}
+.tc-preview>:not(.tc-audit-seal){position:relative;z-index:1}
 .tc-preview-head{margin-top:calc(22*var(--u));display:flex;align-items:center;gap:calc(14*var(--u))}
 .tc-doc-medallion{flex:none;width:calc(56*var(--u));height:calc(56*var(--u));display:grid;place-items:center;border-radius:50%;background:var(--tc-forest-900)}
 .trust-center-page .tc-doc-icon{width:calc(28*var(--u));height:calc(28*var(--u));color:var(--tc-cream);stroke-width:1.5}
@@ -838,7 +861,11 @@ const trustStyles = `
   .tc-audit{padding:36px 40px 26px}
   .tc-audit-panel{grid-template-columns:32% 68%}
   .tc-verify{padding:28px 26px}
+  .tc-verify-watermark{width:260px;left:-62px;bottom:-78px}
   .tc-latest{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+  .tc-audit-seal{width:190px;right:-46px;bottom:-52px}
+  .tc-verify.is-visible .tc-verify-watermark{opacity:.045}
+  .tc-latest.is-visible .tc-audit-seal{opacity:.045}
   .tc-process{height:auto;padding:0 40px 26px}
   .tc-process-panel{min-height:286px;padding:26px 28px;grid-template-columns:23% 77%}
   .tc-step-circle{width:74px;height:74px}
@@ -866,8 +893,11 @@ const trustStyles = `
   .tc-audit,.tc-process,.tc-protection,.tc-safeguards{height:auto;padding:34px 28px}
   .tc-audit-panel,.tc-process-panel,.tc-protection-panel{height:auto;min-height:0;grid-template-columns:1fr}
   .tc-verify{border-right:0;border-bottom:1px solid var(--tc-divider)}
+  .tc-verify-watermark{width:250px;left:-58px;bottom:-76px}
   .tc-latest{grid-template-columns:1fr;min-height:0}
   .tc-preview{border-left:0;border-top:1px solid var(--tc-divider)}
+  .tc-audit-seal{width:190px;right:-44px;bottom:-50px}
+  .tc-verify.is-visible .tc-verify-watermark,.tc-latest.is-visible .tc-audit-seal{opacity:.04}
   .tc-archive{grid-template-columns:1fr}
   .tc-archive-intro{border-right:0;border-bottom:1px solid var(--tc-divider)}
   .tc-process-panel{padding:30px}
@@ -905,8 +935,11 @@ const trustStyles = `
   .tc-audit,.tc-process,.tc-protection,.tc-safeguards{height:auto;min-height:0;padding:28px 16px}
   .tc-audit-panel,.tc-process-panel,.tc-protection-panel{height:auto;min-height:0;grid-template-columns:minmax(0,1fr)}
   .tc-verify{border-right:0;border-bottom:1px solid var(--tc-divider)}
+  .tc-verify-watermark{width:240px;left:-64px;bottom:-82px}
   .tc-latest{grid-template-columns:minmax(0,1fr);min-height:0}
   .tc-preview{border-left:0;border-top:1px solid var(--tc-divider)}
+  .tc-audit-seal{display:none}
+  .tc-verify.is-visible .tc-verify-watermark{opacity:.035}
   .tc-archive{grid-template-columns:minmax(0,1fr)}
   .tc-archive-intro{border-right:0;border-bottom:1px solid var(--tc-divider)}
   .tc-verify,.tc-latest-main,.tc-preview,.tc-archive-intro,.tc-archive-rows{min-width:0;padding:22px 20px}
@@ -949,5 +982,7 @@ const trustStyles = `
 @media (prefers-reduced-motion:reduce){
   .trust-center-page *,.trust-center-page *:before,.trust-center-page *:after{animation:none!important;transition:none!important}
   .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important;will-change:auto!important}
+  .tc-verify-watermark{opacity:.055!important;transform:rotate(-8deg)!important}
+  .tc-audit-seal{opacity:.05!important;transform:rotate(7deg)!important}
 }
 `;
