@@ -889,7 +889,7 @@ function PreciousMetalPage() {
             height: clamp(84px, 8.125vw, 208px);
             padding: 0 clamp(48px, 4.7222vw, 121px);
             overflow: hidden;
-            background-color: var(--pm-cream);
+            background-color: var(--pm-cream-light);
           }
 
           .pm-pricing::before {
