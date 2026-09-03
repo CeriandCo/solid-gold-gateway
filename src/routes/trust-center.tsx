@@ -355,20 +355,24 @@ function TrustCenterPage() {
       <section className="tc-hero">
         <img className="tc-hero-img" src={heroElephants.url} alt="Ceremonial elephants adorned with gold at a festival" />
         <div className="tc-hero-overlay" />
-        <div className="tc-hero-copy">
-          <h1 className="tc-hero-item">
-            <span>{TC.hero.headingLine1}</span>
-            <span>
-              {TC.hero.headingLine2Lead}
-              <em>{TC.hero.headingLine2Gold}</em>
-            </span>
-          </h1>
-          <span className="tc-hero-rule tc-hero-item" />
-          <p className="tc-hero-item">
-            {TC.hero.body[0]}
-            <br />
-            {TC.hero.body[1]}
-          </p>
+        <div className="tc-hero-inner">
+          <div className="tc-hero-copy">
+            <div className="tc-hero-text">
+              <h1>
+                <span>{TC.hero.headingLine1}</span>
+                <span>
+                  {TC.hero.headingLine2Lead}
+                  <em>{TC.hero.headingLine2Gold}</em>
+                </span>
+              </h1>
+              <span className="tc-hero-rule" />
+              <p>
+                {TC.hero.body[0]}
+                <br />
+                {TC.hero.body[1]}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
