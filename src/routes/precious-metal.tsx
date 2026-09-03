@@ -887,6 +887,10 @@ function PreciousMetalPage() {
             from { stroke-dashoffset: 300; }
             to { stroke-dashoffset: 0; }
           }
+          @keyframes pmLeafFade {
+            from { opacity: 0; transform: scale(.92); }
+            to { opacity: 1; transform: scale(1); }
+          }
 
           .pm-pricing {
             position: relative;
