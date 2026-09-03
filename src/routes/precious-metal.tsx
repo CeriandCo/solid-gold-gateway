@@ -4,6 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
 import eagleAsset from "@/assets/american-eagle.png.asset.json";
 import pampAsset from "@/assets/pamp-bar.png.asset.json";
+import mapleAsset from "@/assets/maple-leaf.png.asset.json";
 
 const heroImage = heroAsset.url;
 
@@ -61,11 +62,11 @@ function AmericanEagleArt() {
 
 function MapleLeafArt() {
   return (
-    <svg className="pm-product-art pm-maple-art" viewBox="0 0 170 170" role="img" aria-label="Engraved Canadian Maple Leaf coin illustration">
-      <circle cx="85" cy="85" r="72" /><circle cx="85" cy="85" r="67" /><circle cx="85" cy="85" r="61" strokeDasharray="1 3" />
-      <path d="M85 36l8 18 15-7-4 18 17 5-13 13 8 10-23 4 2 28-10-12-10 12 2-28-23-4 8-10-13-13 17-5-4-18 15 7 8-18Z" />
-      <path d="M85 54v59M69 65l16 17 17-17M61 84l24 9 25-9M48 128c23 11 51 11 74 0M52 39c20-14 46-14 66 0" />
-    </svg>
+    <img
+      className="pm-product-art pm-maple-art"
+      src={mapleAsset.url}
+      alt="Canadian Maple Leaf coin"
+    />
   );
 }
 
@@ -663,6 +664,7 @@ function PreciousMetalPage() {
           .pm-coin-art { width: clamp(98px, 9.8611vw, 252px); height: clamp(98px, 9.8611vw, 252px); }
           .pm-coin-art[src] { object-fit: contain; border-radius: 50%; }
           .pm-maple-art { width: clamp(103px, 10.4167vw, 267px); height: clamp(103px, 10.4167vw, 267px); }
+          .pm-maple-art[src] { object-fit: contain; border-radius: 50%; }
           .pm-bar-art { width: clamp(74px, 7.6389vw, 196px); height: clamp(107px, 10.7639vw, 276px); }
           .pm-bar-art[src] { object-fit: contain; }
 
