@@ -980,7 +980,7 @@ function PreciousMetalPage() {
             min-width: 0;
             flex-direction: column;
             align-items: center;
-            padding-inline: clamp(17px, 1.6667vw, 43px);
+            padding-inline: clamp(3px, .2778vw, 7px);
             text-align: center;
             opacity: 0;
             transform: translateY(16px);
@@ -1022,11 +1022,15 @@ function PreciousMetalPage() {
             margin: clamp(8px, .6944vw, 18px) 0 0;
             color: var(--pm-body);
             font-family: "DM Sans", Arial, sans-serif;
-            font-size: clamp(13px, 1.1111vw, 28px);
+            font-size: clamp(13px, 1.0417vw, 27px);
             font-weight: 400;
             line-height: 1.42;
             letter-spacing: 0;
             white-space: nowrap;
+          }
+
+          @media (max-width: 1100px) {
+            .pm-benefit > p { white-space: normal; }
           }
 
           .pm-benefits-visible .pm-benefits-heading-row,
