@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Coins, Home, Package, ShieldCheck, Truck } from "lucide-react";
-import { Eyebrow, GoldButton, GoldRule, STD, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { cn } from "@/lib/utils";
-import coinImage from "@/assets/path-coin.jpg";
+import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import heroImage from "@/assets/hero-gold.jpg";
 
 export const Route = createFileRoute("/precious-metal")({
   head: () => ({
@@ -25,122 +23,182 @@ export const Route = createFileRoute("/precious-metal")({
   component: PreciousMetalPage,
 });
 
-const steps = [
-  { icon: Package, title: "Choose", copy: "Select physical gold or silver from the collection." },
-  { icon: Truck, title: "Ship insured", copy: "Every order is fully insured in transit, door to door." },
-  { icon: Home, title: "Receive", copy: "It arrives at your address. It’s yours — entirely." },
-] as const;
-
-const assurances = [
-  "Investment-grade coins and bars",
-  "Fully insured, tracked delivery",
-  "Discreet, secure packaging",
-  "Direct possession — no intermediaries",
-] as const;
-
 function PreciousMetalPage() {
   return (
-    <main id="top" className="bg-background text-charcoal">
+    <>
       <SiteHeader />
-
-      {/* Hero */}
-      <section className="bg-ivory">
-        <div className={cn(STD, "grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20")}>
-          <div>
-            <Eyebrow>Precious Metal</Eyebrow>
-            <GoldRule />
-            <h1
-              className="mt-5 font-display font-semibold text-charcoal"
-              style={{ fontSize: "clamp(36px, 4vw, 58px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
-            >
-              Physical gold,
-              <br />
-              delivered to <em className="font-semibold italic text-gold">your door.</em>
-            </h1>
-            <p className="mt-6 max-w-[480px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
-              Buy real gold and silver coins and bars and take direct possession.
-              Shipped insured, packaged discreetly, owned outright.
-            </p>
-            <div className="mt-8">
-              <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
-                Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
-              </GoldButton>
-            </div>
-          </div>
+      <main id="top" className="precious-metals-page">
+        <section className="pm-hero" aria-labelledby="pm-hero-title">
           <img
-            src={coinImage}
-            alt="Gold coin held in hand"
-            className="h-[280px] w-full rounded-[10px] object-cover sm:h-[380px]"
+            className="pm-hero-image"
+            src={heroImage}
+            alt="Gold bars and coins arranged on a dark emerald surface"
           />
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="bg-background py-14 lg:py-20">
-        <div className={STD}>
-          <Eyebrow>How it works</Eyebrow>
-          <GoldRule />
-          <h2 className="section-title mt-5 text-charcoal">Three steps. Then it’s in your hands.</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {steps.map(({ icon: Icon, title, copy }, index) => (
-              <article key={title} className="rounded-[10px] border border-beige bg-ivory p-7">
-                <div className="relative inline-block">
-                  <span className="grid h-[84px] w-[84px] place-items-center rounded-full border border-gold/55 text-gold">
-                    <Icon size={32} strokeWidth={1.4} />
-                  </span>
-                  <span className="absolute -bottom-1 left-0 grid h-[22px] w-[22px] place-items-center rounded-full bg-gold text-[11px] font-semibold text-[#0B2015]">
-                    {index + 1}
-                  </span>
-                </div>
-                <h3 className="card-title mt-5 text-charcoal">{title}</h3>
-                <p className="mt-3 text-[13px] leading-[1.55] text-[#444A45]">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Assurances */}
-      <section className="bg-ivory py-14 lg:py-20">
-        <div className={cn(STD, "grid gap-10 lg:grid-cols-[38%_1fr]")}>
-          <div>
-            <Eyebrow>The SQOOT standard</Eyebrow>
-            <GoldRule />
-            <h2 className="section-title mt-5 text-charcoal">Metal you can hold. Standards you can check.</h2>
-            <p className="mt-4 max-w-[420px] text-[13px] leading-[1.5] text-[#444A45]">
-              Every piece we sell is sourced from recognized mints and refiners, verified
-              before it ships, and insured until it is in your hands.
+          <div className="pm-hero-overlay" aria-hidden="true" />
+          <div className="pm-hero-copy">
+            <h1 id="pm-hero-title">
+              <span>Own physical</span>
+              <span>gold in your hands.</span>
+            </h1>
+            <span className="pm-hero-rule" aria-hidden="true" />
+            <p>
+              <span>No vault fees. Direct control.</span>
+              <span>Insured shipping to your address.</span>
             </p>
           </div>
-          <ul className="grid content-center gap-4 sm:grid-cols-2">
-            {assurances.map((item) => (
-              <li key={item} className="flex items-start gap-3 rounded-[6px] border border-beige bg-background p-5 text-sm font-medium text-charcoal">
-                <ShieldCheck size={18} strokeWidth={1.6} className="mt-0.5 shrink-0 text-gold" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="bg-forest py-12 text-[#F8F5F1]">
-        <div className={cn(STD, "flex flex-wrap items-center justify-between gap-8")}>
-          <div>
-            <h2 className="font-display text-[36px] font-semibold leading-[1.05] text-gold-soft">
-              Own it. Hold it. <Coins className="mb-1 inline" size={30} strokeWidth={1.4} />
-            </h2>
-            <p className="mt-2 max-w-[420px] text-[14px] leading-[1.55] text-[#C8CFC9]">
-              Join the waitlist for early access to the SQOOT Pure precious metal collection.
-            </p>
-          </div>
-          <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
-            Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
-          </GoldButton>
-        </div>
-      </section>
+        <style>{`
+          .precious-metals-page {
+            --pm-forest-black: #08150D;
+            --pm-forest-950: #0A1A10;
+            --pm-forest-900: #0F2113;
+            --pm-forest-850: #132A1C;
+            --pm-cream: #F5EEE3;
+            --pm-cream-warm: #F4ECDE;
+            --pm-cream-light: #FAF5EC;
+            --pm-gold: #B8872D;
+            --pm-gold-medium: #C6973D;
+            --pm-gold-light: #D9AC52;
+            --pm-gold-muted: #A77B31;
+            --pm-ink: #12251B;
+            --pm-body: #243027;
+            --pm-cream-text: #F7F0E5;
+            --pm-border: rgba(168, 119, 43, 0.35);
+            --pm-divider: rgba(157, 111, 39, 0.42);
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: clip;
+            font-synthesis: none;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+          }
 
+          .precious-metals-page *,
+          .precious-metals-page *::before,
+          .precious-metals-page *::after { box-sizing: inherit; }
+
+          .pm-hero {
+            position: relative;
+            width: 100%;
+            height: clamp(424px, 41.4583vw, 1061px);
+            overflow: hidden;
+            background: var(--pm-forest-black);
+          }
+
+          .pm-hero-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 58% center;
+            animation: pmHeroSettle 1200ms cubic-bezier(.22, 1, .36, 1) both;
+          }
+
+          .pm-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(7,25,15,.98) 0%, rgba(7,25,15,.94) 26%, rgba(7,25,15,.77) 40%, rgba(7,25,15,.37) 54%, rgba(7,25,15,.06) 69%, transparent 80%);
+          }
+
+          .pm-hero-copy {
+            position: absolute;
+            z-index: 1;
+            top: clamp(68px, 6.6667vw, 171px);
+            left: clamp(52px, 5.0694vw, 130px);
+            max-width: clamp(476px, 46.5278vw, 1191px);
+          }
+
+          .pm-hero-copy h1 {
+            margin: 0;
+            max-width: clamp(484px, 47.2222vw, 1209px);
+            color: var(--pm-cream-text);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(58px, 5.6944vw, 146px);
+            font-weight: 500;
+            line-height: .98;
+            letter-spacing: -.025em;
+          }
+
+          .pm-hero-copy h1 span,
+          .pm-hero-copy p span { display: block; }
+
+          .pm-hero-copy h1 span,
+          .pm-hero-rule,
+          .pm-hero-copy p {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: pmHeroRise 680ms cubic-bezier(.22, 1, .36, 1) forwards;
+          }
+
+          .pm-hero-copy h1 span:nth-child(1) { animation-delay: 90ms; }
+          .pm-hero-copy h1 span:nth-child(2) { animation-delay: 180ms; }
+          .pm-hero-rule { animation-delay: 270ms; }
+          .pm-hero-copy p { animation-delay: 360ms; }
+
+          .pm-hero-rule {
+            display: block;
+            width: clamp(41px, 4.0278vw, 103px);
+            height: 2px;
+            margin-top: clamp(26px, 2.5vw, 64px);
+            margin-bottom: clamp(17px, 1.6667vw, 43px);
+            background: var(--pm-gold);
+          }
+
+          .pm-hero-copy p {
+            margin: 0;
+            color: rgba(247,240,229,.94);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(18px, 1.7361vw, 44px);
+            font-weight: 400;
+            line-height: 1.55;
+            letter-spacing: 0;
+          }
+
+          @keyframes pmHeroSettle {
+            from { transform: scale(1.025); }
+            to { transform: scale(1); }
+          }
+
+          @keyframes pmHeroRise {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          @media (max-width: 767px) {
+            .pm-hero { height: 424px; }
+            .pm-hero-image { object-position: 67% center; }
+            .pm-hero-overlay {
+              background: linear-gradient(90deg, rgba(7,25,15,.98) 0%, rgba(7,25,15,.91) 54%, rgba(7,25,15,.48) 78%, rgba(7,25,15,.18) 100%);
+            }
+            .pm-hero-copy {
+              top: 64px;
+              left: 24px;
+              right: 20px;
+              max-width: none;
+            }
+            .pm-hero-copy h1 {
+              max-width: 350px;
+              font-size: clamp(45px, 12.3vw, 58px);
+            }
+            .pm-hero-rule { margin-top: 28px; margin-bottom: 20px; }
+            .pm-hero-copy p { font-size: 17px; }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .pm-hero-image,
+            .pm-hero-copy h1 span,
+            .pm-hero-rule,
+            .pm-hero-copy p {
+              animation: none;
+              opacity: 1;
+              transform: none;
+            }
+          }
+        `}</style>
+      </main>
       <SiteFooter />
-    </main>
+    </>
   );
 }
