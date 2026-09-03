@@ -648,7 +648,7 @@ const trustStyles = `
 .tc-pillars-grid article{position:relative;display:grid;grid-template-columns:40px 1fr;column-gap:16px;align-items:center;padding-inline:24px;transition:opacity .6s var(--tc-ease),transform .6s var(--tc-ease)}
 .tc-pillars-grid article:first-child{padding-left:0}
 .tc-pillars-grid article+article:before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:68px;background:rgba(213,163,59,.20)}
-.tc-pillar-icon{width:40px;height:40px;color:var(--tc-gold);stroke-width:1.5}
+.trust-center-page .tc-pillar-icon{width:40px;height:40px;color:var(--tc-gold);stroke-width:1.5}
 .tc-pillars-grid h2{font-family:"DM Sans",system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--tc-cream)}
 .tc-pillars-grid p{margin-top:8px;max-width:225px;font-size:13.5px;font-weight:400;line-height:1.45;color:rgba(252,250,247,.84)}
 .tc-pillars:not(.is-visible) article{opacity:0;transform:translateY(12px)}
