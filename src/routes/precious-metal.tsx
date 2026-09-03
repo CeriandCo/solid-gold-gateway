@@ -1221,7 +1221,79 @@ function PreciousMetalPage() {
             }
             .pm-benefit-icon svg { transition: none; }
           }
+
+          .pm-cta {
+            position: relative;
+            isolation: isolate;
+            height: clamp(220px, 21vw, 538px);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: var(--pm-forest-950);
+          }
+          .pm-cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, rgba(184,135,45,.18), transparent 60%), linear-gradient(135deg, var(--pm-forest-900) 0%, var(--pm-forest-950) 55%, var(--pm-forest-black) 100%);
+          }
+          .pm-cta-inner {
+            width: 100%;
+            max-width: clamp(944px, 91.6667vw, 2347px);
+            margin-inline: auto;
+            padding-inline: clamp(48px, 4.7222vw, 121px);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          .pm-cta h2 {
+            margin: 0;
+            color: var(--pm-cream-text);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(34px, 3.0556vw, 78px);
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -.015em;
+          }
+          .pm-cta p {
+            margin: clamp(10px, .9722vw, 25px) 0 0;
+            color: rgba(247,240,229,.88);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(15px, 1.25vw, 32px);
+            font-weight: 400;
+            line-height: 1.45;
+          }
+          .pm-cta a {
+            display: inline-grid;
+            place-items: center;
+            width: clamp(320px, 36.1111vw, 525px);
+            height: clamp(56px, 5.9028vw, 86px);
+            margin-top: clamp(22px, 2.0833vw, 53px);
+            border-radius: 3px;
+            color: var(--pm-forest-950);
+            background: linear-gradient(135deg, var(--pm-gold-light) 0%, var(--pm-gold) 50%, var(--pm-gold-medium) 100%);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(13px, 1.1111vw, 16px);
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 220ms ease, transform 220ms ease;
+          }
+          .pm-cta a:hover {
+            background: linear-gradient(135deg, #E6C070 0%, var(--pm-gold-light) 55%, var(--pm-gold) 100%);
+            transform: translateY(-1px);
+          }
+          .pm-cta-visible .pm-cta-inner {
+            animation: pmCtaRise 620ms cubic-bezier(.22,1,.36,1) forwards;
+          }
+          @keyframes pmCtaRise {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
         `}</style>
+
       </main>
       <SiteFooter />
     </>
