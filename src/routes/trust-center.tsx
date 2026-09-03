@@ -337,7 +337,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.18 },
+      { threshold: 0.15 },
     );
     nodes.forEach((n) => io.observe(n));
     return () => io.disconnect();
@@ -377,10 +377,10 @@ function TrustCenterPage() {
       </section>
 
       {/* TRUST PILLARS */}
-      <section className="tc-pillars" data-reveal>
+      <section className="tc-pillars">
         <div className="tc-pillars-grid">
           {TC.pillars.map((pillar, i) => (
-            <article key={pillar.title} style={{ transitionDelay: `${i * 75}ms` }}>
+            <article key={pillar.title} data-reveal style={{ transitionDelay: `${i * 65}ms` }}>
               <TcIcon name={pillar.icon} className="tc-pillar-icon" />
               <div>
                 <h2>{pillar.title}</h2>
@@ -407,8 +407,8 @@ function TrustCenterPage() {
             </div>
             <p className="tc-verify-body">{TC.verification.body}</p>
             <ul className="tc-checklist">
-              {TC.verification.checklist.map((item) => (
-                <li key={item}>
+              {TC.verification.checklist.map((item, i) => (
+                <li key={item} data-reveal style={{ transitionDelay: `${i * 65}ms` }}>
                   <TcIcon name="check" className="tc-check" />
                   <span>{item}</span>
                 </li>
@@ -418,7 +418,7 @@ function TrustCenterPage() {
 
           {/* right column */}
           <div className="tc-report">
-            <div className="tc-latest" data-reveal style={{ transitionDelay: "80ms" }}>
+            <div className="tc-latest" data-reveal style={{ transitionDelay: "65ms" }}>
               <div className="tc-latest-main">
                 <h2 className="tc-display-34">{TC.latestAudit.title}</h2>
                 <h3 className="tc-label">{TC.latestAudit.smallHeading}</h3>
@@ -452,7 +452,7 @@ function TrustCenterPage() {
               </aside>
             </div>
 
-            <div className="tc-archive" data-reveal style={{ transitionDelay: "160ms" }}>
+            <div className="tc-archive" data-reveal style={{ transitionDelay: "130ms" }}>
               <div className="tc-archive-intro">
                 <h2 className="tc-display-32">{TC.archive.title}</h2>
                 <h3 className="tc-label">{TC.archive.subtitle}</h3>
@@ -490,14 +490,14 @@ function TrustCenterPage() {
             {TC.process.steps.map((step, i) => (
               <div className="tc-step-wrap" key={step.title}>
                 {i > 0 && (
-                  <span className="tc-connector" style={{ transitionDelay: `${i * 120}ms` }}>
+                  <span className="tc-connector" style={{ transitionDelay: `${i * 65}ms` }}>
                     <svg viewBox="0 0 60 8" fill="none" aria-hidden="true">
                       <path d="M0 4h50" />
                       <path d="m46 1 4 3-4 3" />
                     </svg>
                   </span>
                 )}
-                <article style={{ transitionDelay: `${i * 120}ms` }}>
+                <article data-reveal style={{ transitionDelay: `${i * 65}ms` }}>
                   <span className="tc-step-circle">
                     <b>{i + 1}</b>
                     <TcIcon name={step.icon} className="tc-step-icon" />
@@ -560,7 +560,7 @@ function TrustCenterPage() {
       <section className="tc-safeguards">
         <div className="tc-safeguard-grid">
           {TC.safeguards.map((card, i) => (
-            <article key={card.title} data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
+            <article key={card.title} data-reveal style={{ transitionDelay: `${i * 65}ms` }}>
               <TcIcon name={card.icon} className="tc-safeguard-icon" />
               <h3>{card.title}</h3>
               <p>{card.body}</p>
@@ -648,13 +648,12 @@ const trustStyles = `
 /* PILLARS */
 .tc-pillars{height:clamp(150px,11.1111vw,160px);background:var(--tc-forest-900)}
 .tc-pillars-grid{height:100%;max-width:1328px;margin:0 auto;padding-inline:clamp(24px,3.8889vw,56px);display:grid;grid-template-columns:repeat(4,1fr);align-items:center}
-.tc-pillars-grid article{position:relative;display:grid;grid-template-columns:40px 1fr;column-gap:16px;align-items:center;padding-inline:24px;transition:opacity .6s var(--tc-ease),transform .6s var(--tc-ease)}
+.tc-pillars-grid article{position:relative;display:grid;grid-template-columns:40px 1fr;column-gap:16px;align-items:center;padding-inline:24px}
 .tc-pillars-grid article:first-child{padding-left:0}
 .tc-pillars-grid article+article:before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:68px;background:rgba(213,163,59,.20)}
 .trust-center-page .tc-pillar-icon{width:40px;height:40px;color:var(--tc-gold);stroke-width:1.5}
 .tc-pillars-grid h2{font-family:"DM Sans",system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--tc-cream)}
 .tc-pillars-grid p{margin-top:8px;max-width:225px;font-size:13.5px;font-weight:400;line-height:1.45;color:rgba(252,250,247,.84)}
-.tc-pillars:not(.is-visible) article{opacity:0;transform:translateY(12px)}
 
 /* SHARED CREAM BACKGROUND */
 .tc-audit,.tc-process,.tc-protection,.tc-safeguards{position:relative;background:radial-gradient(circle at 50% 18%,rgba(244,236,223,.55),rgba(244,236,223,.22) 18%,transparent 38%),var(--tc-cream)}
@@ -724,8 +723,7 @@ const trustStyles = `
 .tc-process-body{margin-top:calc(12*var(--u));font-size:calc(14*var(--u));line-height:1.5;max-width:calc(250*var(--u));color:var(--tc-body)}
 .tc-steps{display:grid;grid-template-columns:repeat(4,1fr);align-items:start;padding:0}
 .tc-step-wrap{position:relative;display:flex;justify-content:center}
-.tc-step-wrap article{display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .6s var(--tc-ease),transform .6s var(--tc-ease)}
-.tc-process-panel.is-visible article{opacity:1;transform:none}
+.tc-step-wrap article{display:flex;flex-direction:column;align-items:center;text-align:center}
 .tc-step-circle{position:relative;width:calc(86*var(--u));height:calc(86*var(--u));display:grid;place-items:center;border-radius:50%;background:var(--tc-forest-900)}
 .tc-step-circle b{position:absolute;top:calc(10*var(--u));left:50%;transform:translateX(-50%);font-size:calc(12*var(--u));font-weight:600;color:var(--tc-gold-light)}
 .trust-center-page .tc-step-icon{width:calc(40*var(--u));height:calc(40*var(--u));color:var(--tc-gold-light);stroke-width:1.5}
@@ -771,17 +769,16 @@ const trustStyles = `
 /* SAFEGUARDS */
 .tc-safeguards{height:calc(232*var(--u));padding:0 calc(56*var(--u)) calc(22*var(--u))}
 .tc-safeguard-grid{max-width:calc(1328*var(--u));height:calc(210*var(--u));margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(17*var(--u))}
-.tc-safeguard-grid article{display:flex;flex-direction:column;align-items:flex-start;border:1px solid var(--tc-border);border-radius:var(--tc-radius-card);background:rgba(255,255,255,.80);padding:calc(24*var(--u));box-shadow:0 10px 28px rgba(29,34,27,.065);opacity:0;transform:translateY(14px);transition:opacity .6s var(--tc-ease),transform .35s var(--tc-ease),box-shadow .35s var(--tc-ease)}
-.tc-safeguard-grid article.is-visible{opacity:1;transform:none}
-.tc-safeguard-grid article.is-visible:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(38,30,17,.09),0 3px 8px rgba(38,30,17,.04)}
+.tc-safeguard-grid article{display:flex;flex-direction:column;align-items:flex-start;border:1px solid var(--tc-border);border-radius:var(--tc-radius-card);background:rgba(255,255,255,.80);padding:calc(24*var(--u));box-shadow:0 10px 28px rgba(29,34,27,.065);transition-property:opacity,transform,box-shadow,border-color;transition-duration:600ms,600ms,220ms,220ms;transition-timing-function:var(--tc-ease)}
+.tc-safeguard-grid article.is-visible:hover{transform:translateY(-3px);box-shadow:var(--tc-shadow-hover);border-color:rgba(213,163,59,.32)}
 .trust-center-page .tc-safeguard-icon{flex:none;width:calc(32*var(--u));height:calc(32*var(--u));color:var(--tc-gold);stroke-width:1.5;transition:transform .35s var(--tc-ease)}
 .tc-safeguard-grid article:hover .tc-safeguard-icon{transform:translateY(-1px)}
 .tc-safeguard-grid h3{margin-top:calc(12*var(--u));font-size:calc(15*var(--u));font-weight:600;line-height:1.2;color:var(--tc-ink)}
 .tc-safeguard-grid p{margin-top:calc(8*var(--u));font-size:calc(13*var(--u));font-weight:400;line-height:1.5;color:var(--tc-body)}
 
-.trust-center-page [data-reveal]{transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
-.tc-audit-panel[data-reveal]{opacity:0;transform:translateY(16px)}
-.tc-audit-panel.is-visible{opacity:1;transform:none}
+.trust-center-page [data-reveal]{opacity:0;transform:translateY(16px);transition-property:opacity,transform;transition-duration:600ms;transition-timing-function:var(--tc-ease);will-change:opacity,transform}
+.trust-center-page [data-reveal].is-visible{opacity:1;transform:translateY(0);will-change:auto}
+.trust-center-page a:focus-visible{outline:2px solid var(--tc-gold-soft);outline-offset:3px}
 @keyframes tcHeroText{to{opacity:1;transform:none}}
 @keyframes tcHeroImage{from{transform:scale(1.025);opacity:.94}to{transform:scale(1);opacity:1}}
 
@@ -844,6 +841,6 @@ const trustStyles = `
 }
 @media (prefers-reduced-motion:reduce){
   .trust-center-page *,.trust-center-page *:before,.trust-center-page *:after{animation:none!important;transition:none!important}
-  .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important}
+  .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important;will-change:auto!important}
 }
 `;
