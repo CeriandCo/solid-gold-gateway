@@ -138,7 +138,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             href="#login"
             className="hidden h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent font-sans text-[14px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex"
           >
-            Log In
+            Get Early Access
           </a>
           <button
             type="button"
@@ -182,7 +182,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
                 onClick={() => setMenuOpen(false)}
                 className="inline-flex h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent text-sm font-medium leading-none text-gold"
               >
-                Log In
+                Get Early Access
               </a>
             </li>
           </ul>
