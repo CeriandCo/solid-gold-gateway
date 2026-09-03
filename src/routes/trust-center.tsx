@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
@@ -112,27 +113,27 @@ const TC = {
   process: {
     title: "The Process",
     subtitle: "How our audit works",
-    body: "Every 6 months, an independent auditor with no financial relationship to SQOOT Pure verifies every ounce of gold held on behalf of our clients.",
+    body: "Every six months, an independent auditor verifies every ounce of gold held for SQOOT Pure clients.",
     steps: [
       {
         icon: "auditor" as const,
         title: "Independent auditor engaged",
-        body: "A third-party auditing firm with no financial relationship is engaged 30 days in advance.",
+        body: "An independent firm is appointed 30 days before each audit.",
       },
       {
         icon: "vault" as const,
         title: "Physical vault inspection",
-        body: "The auditor visits the vault and physically verifies every client coin against our allocation records.",
+        body: "The auditor inspects the vault and matches each holding to its allocation record.",
       },
       {
         icon: "signed" as const,
         title: "Signed report issued",
-        body: "The auditor issues a signed report confirming total gold held, client accounts, and any discrepancies found.",
+        body: "A signed report confirms total gold, client accounts and any discrepancies.",
       },
       {
         icon: "globe" as const,
         title: "Published in full",
-        body: "Every page of the report is published here within 5 business days. Nothing is withheld or redacted.",
+        body: "The complete report is published within five business days—nothing withheld.",
       },
     ],
   },
@@ -541,23 +542,21 @@ function TrustCenterPage() {
             <p className="tc-process-body">{TC.process.body}</p>
           </div>
           <div className="tc-steps">
+            <span className="tc-timeline-line" aria-hidden="true" />
+            <span className="tc-timeline-arrow tc-timeline-arrow-1" aria-hidden="true" />
+            <span className="tc-timeline-arrow tc-timeline-arrow-2" aria-hidden="true" />
+            <span className="tc-timeline-arrow tc-timeline-arrow-3" aria-hidden="true" />
             {TC.process.steps.map((step, i) => (
               <div className="tc-step-wrap" key={step.title}>
-                {i > 0 && (
-                  <span className="tc-connector" style={{ transitionDelay: `${i * 65}ms` }}>
-                    <svg viewBox="0 0 60 8" fill="none" aria-hidden="true">
-                      <path d="M0 4h50" />
-                      <path d="m46 1 4 3-4 3" />
-                    </svg>
-                  </span>
-                )}
-                <article data-reveal style={{ transitionDelay: `${i * 65}ms` }}>
+                <article style={{ "--step-index": i } as CSSProperties}>
                   <span className="tc-step-circle">
                     <b>{i + 1}</b>
                     <TcIcon name={step.icon} className="tc-step-icon" />
                   </span>
-                  <h4>{step.title}</h4>
-                  <p>{step.body}</p>
+                  <div className="tc-step-copy">
+                    <h4>{step.title}</h4>
+                    <p>{step.body}</p>
+                  </div>
                 </article>
               </div>
             ))}
@@ -780,23 +779,32 @@ const trustStyles = `
 
 
 /* PROCESS */
-.tc-process{height:clamp(280px,22.9167vw,310px);padding:0 calc(56*var(--u)) calc(26*var(--u))}
-.tc-process-panel{height:100%;max-width:calc(1328*var(--u));margin:0 auto;border:1px solid var(--tc-border);border-radius:var(--tc-radius-large);background:var(--tc-paper);box-shadow:var(--tc-shadow-soft);display:grid;grid-template-columns:25% 75%;padding:calc(30*var(--u)) calc(34*var(--u)) calc(26*var(--u))}
-.tc-process-intro{padding:0 calc(20*var(--u)) 0 0}
-.tc-process-intro .tc-display-34{font-size:calc(30*var(--u))}
-.tc-process-intro .tc-label{margin-top:calc(10*var(--u))}
-.tc-process-body{margin-top:calc(12*var(--u));font-size:calc(14*var(--u));line-height:1.5;max-width:calc(250*var(--u));color:var(--tc-body)}
-.tc-steps{display:grid;grid-template-columns:repeat(4,1fr);align-items:start;padding:0}
-.tc-step-wrap{position:relative;display:flex;justify-content:center}
-.tc-step-wrap article{display:flex;flex-direction:column;align-items:center;text-align:center}
-.tc-step-circle{position:relative;width:calc(86*var(--u));height:calc(86*var(--u));display:grid;place-items:center;border-radius:50%;background:var(--tc-forest-900)}
-.tc-step-circle b{position:absolute;top:calc(10*var(--u));left:50%;transform:translateX(-50%);font-size:calc(12*var(--u));font-weight:600;color:var(--tc-gold-light)}
-.trust-center-page .tc-step-icon{width:calc(40*var(--u));height:calc(40*var(--u));color:var(--tc-gold-light);stroke-width:1.5}
-.tc-step-wrap h4{margin-top:calc(14*var(--u));font-size:calc(14*var(--u));font-weight:600;line-height:1.3;color:var(--tc-ink)}
-.tc-step-wrap p{margin-top:calc(8*var(--u));max-width:calc(195*var(--u));font-size:calc(12.5*var(--u));line-height:1.5;color:var(--tc-body)}
-.tc-connector{position:absolute;left:calc(-30*var(--u));top:calc(43*var(--u));width:calc(60*var(--u));color:var(--tc-gold);opacity:0;transition:opacity .5s var(--tc-ease)}
-.tc-process-panel.is-visible .tc-connector{opacity:.85}
-.tc-connector svg{width:100%;height:calc(8*var(--u));stroke-width:1.2}
+.tc-process{height:auto;padding:0 calc(56*var(--u)) calc(26*var(--u))}
+.tc-process-panel{--tc-process-bg:#faf7f0;min-height:clamp(315px,22.9167vw,330px);max-width:calc(1328*var(--u));margin:0 auto;border:1px solid rgba(111,88,48,.16);border-radius:15px;background:linear-gradient(135deg,rgba(255,255,255,.34),transparent 48%),var(--tc-process-bg);box-shadow:var(--tc-shadow-soft);display:grid;grid-template-columns:250px minmax(0,1fr);column-gap:48px;padding:42px}
+.tc-process-intro{position:relative;align-self:start;padding-right:32px;opacity:0;transform:translateY(12px);transition:opacity 600ms var(--tc-ease),transform 600ms var(--tc-ease)}
+.tc-process-panel.is-visible .tc-process-intro{opacity:1;transform:none}
+.tc-process-intro:after{content:"";position:absolute;right:0;top:0;width:1px;height:170px;background:rgba(185,130,36,.18)}
+.tc-process-intro .tc-display-34{font-size:clamp(32px,2.36vw,34px);font-weight:500;line-height:1.05}
+.tc-process-intro .tc-label{margin-top:14px;font-size:15px;font-weight:600}
+.tc-process-body{margin-top:8px;font-size:15px;line-height:1.55;font-weight:400;max-width:220px;color:var(--tc-body)}
+.tc-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;align-items:start;min-width:0}
+.tc-timeline-line{position:absolute;z-index:0;left:calc(12.5% - 4px);right:calc(12.5% - 4px);top:46px;height:1px;background:rgba(185,130,36,.45);transform:scaleX(0);transform-origin:left center;transition:transform 650ms var(--tc-ease) 120ms}
+.tc-process-panel.is-visible .tc-timeline-line{transform:scaleX(1)}
+.tc-timeline-arrow{position:absolute;z-index:1;top:42px;width:7px;height:7px;border-top:1px solid rgba(185,130,36,.62);border-right:1px solid rgba(185,130,36,.62);transform:translateX(-50%) rotate(45deg);opacity:0;transition:opacity 250ms var(--tc-ease) 520ms}
+.tc-process-panel.is-visible .tc-timeline-arrow{opacity:1}
+.tc-timeline-arrow-1{left:25%}.tc-timeline-arrow-2{left:50%}.tc-timeline-arrow-3{left:75%}
+.tc-step-wrap{position:relative;z-index:2;display:flex;justify-content:center;min-width:0}
+.tc-step-wrap article{display:flex;flex-direction:column;align-items:center;width:100%;text-align:center}
+.tc-step-circle{position:relative;width:92px;height:92px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--tc-forest-900);box-shadow:0 0 0 7px var(--tc-process-bg);opacity:0;transform:translateY(10px);transition:opacity 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),transform 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),background-color 200ms ease}
+.tc-process-panel.is-visible .tc-step-circle{opacity:1;transform:none}
+.tc-process-panel.is-visible .tc-step-circle:hover{transform:translateY(-2px);background:var(--tc-forest-850)}
+.tc-step-circle b{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;color:var(--tc-gold)}
+.trust-center-page .tc-step-icon{width:33px;height:33px;color:var(--tc-gold);stroke-width:1.5;transition:color 200ms ease,filter 200ms ease}
+.tc-step-circle:hover .tc-step-icon{color:var(--tc-gold-soft);filter:brightness(1.08)}
+.tc-step-copy{opacity:0;transform:translateY(8px);transition:opacity 500ms var(--tc-ease) calc(470ms + var(--step-index)*90ms),transform 500ms var(--tc-ease) calc(470ms + var(--step-index)*90ms)}
+.tc-process-panel.is-visible .tc-step-copy{opacity:1;transform:none}
+.tc-step-wrap h4{display:flex;align-items:flex-start;justify-content:center;min-height:40px;margin-top:19px;font-size:15px;font-weight:600;line-height:1.25;color:var(--tc-ink)}
+.tc-step-wrap p{margin:10px auto 0;max-width:215px;font-size:13.5px;font-weight:400;line-height:1.55;color:var(--tc-body)}
 
 
 /* CLIENT PROTECTION */
@@ -868,9 +876,7 @@ const trustStyles = `
   .tc-audit-panel.is-visible .tc-verify-watermark{opacity:.045}
   .tc-audit-panel.is-visible .tc-audit-seal{opacity:.045}
   .tc-process{height:auto;padding:0 40px 26px}
-  .tc-process-panel{min-height:286px;padding:26px 28px;grid-template-columns:23% 77%}
-  .tc-step-circle{width:74px;height:74px}
-  .tc-connector{top:37px;width:46px;left:-23px}
+  .tc-process-panel{min-height:315px;padding:40px;grid-template-columns:250px minmax(0,1fr);column-gap:40px}
   .tc-protection{padding:0 40px 24px}
   .tc-protection-panel{grid-template-columns:minmax(0,.9fr) minmax(220px,.72fr) minmax(350px,1.38fr)}
   .tc-protection-left{padding:28px 0 0 28px}
@@ -901,15 +907,14 @@ const trustStyles = `
   .tc-audit-panel.is-visible .tc-verify-watermark,.tc-audit-panel.is-visible .tc-audit-seal{opacity:.04}
   .tc-archive{grid-template-columns:1fr}
   .tc-archive-intro{border-right:0;border-bottom:1px solid var(--tc-divider)}
-  .tc-process-panel{padding:30px}
-  .tc-process-intro{padding:0 0 26px}
+  .tc-process-panel{padding:36px;grid-template-columns:1fr;row-gap:38px}
+  .tc-process-intro{padding:0}
+  .tc-process-intro:after{display:none}
   .tc-process-body{max-width:620px}
-  .tc-steps{grid-template-columns:1fr;gap:24px;padding-top:4px}
-  .tc-connector{display:none}
-  .tc-step-wrap article{display:grid;grid-template-columns:86px minmax(0,1fr);grid-template-rows:auto auto;column-gap:22px;width:100%;text-align:left;align-items:center}
-  .tc-step-circle{grid-row:1/3}
-  .tc-step-wrap h4{margin-top:0;align-self:end}
-  .tc-step-wrap p{max-width:none;margin-top:6px;align-self:start}
+  .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px;padding-top:0}
+  .tc-timeline-line{left:25%;right:25%;top:46px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:calc(138px + 46px);height:1px;background:inherit}
+  .tc-timeline-arrow-1{left:50%}.tc-timeline-arrow-2{display:none}.tc-timeline-arrow-3{left:50%;top:calc(42px + 184px)}
   .tc-protection-left{padding:30px 30px 0}
   .tc-protection-copy>p{max-width:660px}
   .tc-protection-center{padding:12px 0 0}
@@ -918,6 +923,18 @@ const trustStyles = `
   .tc-protection-right{padding:0 30px 30px}
   .tc-safeguard-grid{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}
   .tc-safeguard-grid article{min-height:200px}
+}
+@media (min-width:1024px) and (max-width:1100px){
+  .tc-process-panel{padding:38px;grid-template-columns:1fr;row-gap:38px}
+  .tc-process-intro{padding:0}
+  .tc-process-intro:after{display:none}
+  .tc-process-body{max-width:620px}
+  .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px}
+  .tc-timeline-line{left:25%;right:25%;top:46px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:184px;height:1px;background:inherit}
+  .tc-timeline-arrow-1{left:50%}
+  .tc-timeline-arrow-2{display:none}
+  .tc-timeline-arrow-3{left:50%;top:226px}
 }
 @media (max-width:767px){
   .trust-center-page{--u:1px}
@@ -952,12 +969,23 @@ const trustStyles = `
   .tc-archive-row{grid-template-columns:26px minmax(0,1fr);row-gap:8px}
   .tc-archive-row .tc-badge{grid-column:2;justify-self:start}
   .tc-archive-note{text-align:left}
-  .tc-process-panel{padding:24px 20px}
-  .tc-process-intro{padding:0 0 24px}
-  .tc-steps{grid-template-columns:1fr;gap:26px;padding:0}
-  .tc-connector{display:none}
-  .tc-step-wrap article{width:100%}
-  .tc-step-wrap p{max-width:280px}
+  .tc-process{padding:28px 16px}
+  .tc-process-panel{padding:28px 20px;row-gap:32px}
+  .tc-process-intro{padding:0}
+  .tc-process-intro:after{display:none}
+  .tc-process-body{max-width:100%}
+  .tc-steps{display:flex;flex-direction:column;gap:28px;padding:0}
+  .tc-timeline-line{left:35px;right:auto;top:35px;bottom:35px;width:1px;height:auto;transform:scaleY(0);transform-origin:center top}
+  .tc-process-panel.is-visible .tc-timeline-line{transform:scaleY(1)}
+  .tc-timeline-line:after,.tc-timeline-arrow{display:none}
+  .tc-step-wrap{display:block}
+  .tc-step-wrap article{display:grid;grid-template-columns:70px minmax(0,1fr);column-gap:20px;align-items:center;text-align:left}
+  .tc-step-circle{grid-column:1;grid-row:1;width:70px;height:70px;box-shadow:0 0 0 6px var(--tc-process-bg)}
+  .tc-step-circle b{top:7px;font-size:10px}
+  .trust-center-page .tc-step-icon{width:28px;height:28px}
+  .tc-step-copy{grid-column:2;grid-row:1;min-width:0}
+  .tc-step-wrap h4{display:block;min-height:0;margin-top:0;justify-content:flex-start;font-size:15px;text-align:left}
+  .tc-step-wrap p{max-width:none;margin-top:8px;font-size:13.5px;text-align:left}
   .tc-protection-left{padding:26px 22px 0}
   .tc-protection-copy>p{max-width:none}
   .tc-request{min-height:44px}
@@ -982,7 +1010,7 @@ const trustStyles = `
 }
 @media (prefers-reduced-motion:reduce){
   .trust-center-page *,.trust-center-page *:before,.trust-center-page *:after{animation:none!important;transition:none!important}
-  .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-wrap article,.tc-connector,.tc-safeguard-grid article{opacity:1!important;transform:none!important;will-change:auto!important}
+  .trust-center-page [data-reveal],.tc-hero-text,.tc-scales,.tc-protection-copy,.tc-protection-right,.tc-step-circle,.tc-step-copy,.tc-timeline-line,.tc-safeguard-grid article{opacity:1!important;transform:none!important;will-change:auto!important}
   .tc-verify-watermark{opacity:.055!important;transform:rotate(-8deg)!important}
   .tc-audit-seal{opacity:.05!important;transform:rotate(7deg)!important}
 }
