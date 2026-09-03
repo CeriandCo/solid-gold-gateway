@@ -1186,7 +1186,14 @@ function PreciousMetalPage() {
             .pm-benefit-icon svg { width: 60px; height: 60px; }
             .pm-benefit h3 { margin-top: 14px; font-size: 28px; }
             .pm-benefit > p { margin-top: 8px; font-size: 15px; }
+
+            .pm-cta { height: auto; min-height: 220px; padding: 48px 20px; }
+            .pm-cta-inner { padding-inline: 0; }
+            .pm-cta h2 { font-size: 34px; }
+            .pm-cta p { font-size: 16px; }
+            .pm-cta a { width: min(420px, 100%); height: 64px; font-size: 13px; }
           }
+
 
           @media (prefers-reduced-motion: reduce) {
             .pm-hero-image,
