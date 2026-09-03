@@ -50,11 +50,11 @@ const products = [
 
 function AmericanEagleArt() {
   return (
-    <svg className="pm-product-art pm-coin-art" viewBox="0 0 160 160" role="img" aria-label="Engraved American Gold Eagle coin illustration">
-      <circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="63" /><circle cx="80" cy="80" r="58" strokeDasharray="1.2 3.2" />
-      <path d="M53 119c11-13 15-27 17-42l-9-8 13 1 6-27 7 27 13-1-9 9c2 15 7 29 17 41M66 99c10 5 19 5 29 0M70 111c7 3 14 3 21 0M80 43l-9-8m9 8 9-8M57 61l-12-6m58 6 12-6M52 80H37m71 0h15" />
-      <path d="M51 127c18 8 39 8 58 0M48 39c19-15 45-15 64 0M62 31l3 5m13-10 1 6m16-4-2 6" />
-    </svg>
+    <img
+      className="pm-product-art pm-coin-art"
+      src={eagleAsset.url}
+      alt="American Gold Eagle coin"
+    />
   );
 }
 
