@@ -49,10 +49,10 @@ export const Route = createFileRoute("/gifting")({
         content: "A thoughtful, meaningful and timeless gift of real gold.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://solid-gold-gateway.lovable.app/gifting-new" },
+      { property: "og:url", content: "https://solid-gold-gateway.lovable.app/gifting" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://solid-gold-gateway.lovable.app/gifting-new" }],
+    links: [{ rel: "canonical", href: "https://solid-gold-gateway.lovable.app/gifting" }],
   }),
   component: GiftingNewPage,
 });
