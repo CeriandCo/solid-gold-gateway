@@ -710,7 +710,7 @@ const trustStyles = `
 
 /* AUDIT */
 .tc-audit{padding:calc(44*var(--u)) calc(56*var(--u)) calc(30*var(--u))}
-.tc-audit-panel{max-width:calc(1328*var(--u));min-height:calc(700*var(--u));margin:0 auto;border:1px solid var(--tc-border);border-radius:var(--tc-radius-large);background:rgba(255,255,255,.72);box-shadow:var(--tc-shadow-soft);overflow:hidden;display:grid;grid-template-columns:34% 66%}
+.tc-audit-panel{max-width:calc(1328*var(--u));margin:0 auto;border:1px solid var(--tc-border);border-radius:var(--tc-radius-large);background:rgba(255,255,255,.72);box-shadow:var(--tc-shadow-soft);overflow:hidden;display:grid;grid-template-columns:34% 66%}
 .tc-verify{padding:calc(34*var(--u)) calc(36*var(--u));border-right:1px solid var(--tc-divider)}
 .tc-verify-head{display:flex;align-items:center;gap:calc(18*var(--u))}
 .tc-medallion{flex:none;width:calc(72*var(--u));height:calc(72*var(--u));display:grid;place-items:center;border-radius:50%;border:1px solid var(--tc-border-dark);background:var(--tc-forest-900)}
@@ -722,7 +722,7 @@ const trustStyles = `
 .tc-checklist{margin-top:calc(26*var(--u));display:grid;row-gap:calc(16*var(--u))}
 .tc-checklist li{display:grid;grid-template-columns:calc(18*var(--u)) 1fr;column-gap:calc(12*var(--u));align-items:center;font-size:calc(14*var(--u));line-height:1.4;color:var(--tc-body)}
 .trust-center-page .tc-check{width:calc(18*var(--u));height:calc(18*var(--u));color:var(--tc-gold);stroke-width:1.5}
-.tc-report{display:grid;grid-template-rows:1fr auto;min-width:0}
+.tc-report{display:grid;grid-template-rows:auto auto;min-width:0}
 .tc-latest{display:grid;grid-template-columns:62% 38%;min-height:0}
 .tc-latest-main{padding:calc(30*var(--u)) calc(34*var(--u))}
 .tc-latest-main .tc-display-34{font-size:calc(30*var(--u))}
