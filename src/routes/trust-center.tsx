@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
@@ -547,7 +548,7 @@ function TrustCenterPage() {
             <span className="tc-timeline-arrow tc-timeline-arrow-3" aria-hidden="true" />
             {TC.process.steps.map((step, i) => (
               <div className="tc-step-wrap" key={step.title}>
-                <article style={{ "--step-index": i } as React.CSSProperties}>
+                <article style={{ "--step-index": i } as CSSProperties}>
                   <span className="tc-step-circle">
                     <b>{i + 1}</b>
                     <TcIcon name={step.icon} className="tc-step-icon" />
