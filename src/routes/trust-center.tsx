@@ -806,8 +806,9 @@ const trustStyles = `
 }
 @media (max-width:767px){
   .tc-hero{min-height:620px;height:620px}
-  .tc-hero-img{object-position:72% center}
-  .tc-hero-copy{left:24px;top:64px;width:calc(100% - 48px)}
+  .tc-hero-img{object-position:70% center}
+  .tc-hero-copy{padding-inline:24px}
+  .tc-hero-text{width:100%;margin-top:-12px}
   .tc-hero h1{font-size:50px}
   .tc-hero p{font-size:18px}
   .tc-pillars{padding:28px 24px}
