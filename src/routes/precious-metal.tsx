@@ -337,6 +337,44 @@ function BenefitsSection() {
   );
 }
 
+function CtaBranchWatermark() {
+  return (
+    <svg className="pm-cta-branch" viewBox="0 0 420 520" aria-hidden="true">
+      <path d="M380 520c-12-48-26-94-48-136-22-42-52-78-90-104" />
+      <path d="M342 384c-28-18-58-28-90-30M320 332c-22-26-48-48-78-64M296 280c-14-32-34-60-60-82" />
+      <path d="M342 384c18 8 36 6 52-6M320 332c16 4 32 0 46-12M296 280c14 2 28-4 40-16M258 212c12 0 24-6 34-16" />
+      <path d="M260 280c-26-22-56-38-88-48M232 236c-18-28-40-52-66-70M206 198c-10-30-26-56-46-78" />
+      <path d="M260 280c16 14 34 18 52 12M232 236c14 18 30 26 50 22M206 198c12 16 26 24 44 20M160 120c10 14 22 20 38 16" />
+      <path d="M180 200c-24-16-50-26-78-30M154 158c-20-24-44-44-70-58M130 124c-12-28-28-52-48-72" />
+      <path d="M180 200c14 10 30 12 46 6M154 158c12 14 26 20 44 16M130 124c10 12 22 18 38 14M82 52c8 10 18 14 32 10" />
+      <path d="M126 140c-22-12-46-18-70-18M98 104c-18-18-38-34-60-46M74 74c-10-22-22-42-38-58" />
+      <path d="M126 140c12 8 26 10 40 6M98 104c10 12 22 16 36 12M74 74c8 10 18 14 32 10M36 16c6 8 14 10 24 8" />
+      <path d="M74 86c-18-8-36-12-54-10M52 58c-14-14-28-26-44-34M32 32c-6-16-14-30-24-42" />
+      <path d="M74 86c10 6 20 6 30 2M52 58c8 10 18 12 30 8M32 32c6 8 12 10 22 6M8 8c4 4 8 6 14 4" />
+      <ellipse cx="388" cy="504" rx="10" ry="6" transform="rotate(-25 388 504)" />
+      <ellipse cx="354" cy="372" rx="9" ry="5" transform="rotate(-20 354 372)" />
+      <ellipse cx="330" cy="320" rx="8" ry="5" transform="rotate(-30 330 320)" />
+      <ellipse cx="304" cy="268" rx="8" ry="5" transform="rotate(-15 304 268)" />
+      <ellipse cx="268" cy="204" rx="7" ry="4" transform="rotate(-22 268 204)" />
+      <ellipse cx="268" cy="272" rx="8" ry="5" transform="rotate(-28 268 272)" />
+      <ellipse cx="240" cy="228" rx="7" ry="4" transform="rotate(-18 240 228)" />
+      <ellipse cx="214" cy="190" rx="7" ry="4" transform="rotate(-32 214 190)" />
+      <ellipse cx="166" cy="112" rx="7" ry="4" transform="rotate(-20 166 112)" />
+      <ellipse cx="188" cy="192" rx="8" ry="5" transform="rotate(-24 188 192)" />
+      <ellipse cx="162" cy="150" rx="7" ry="4" transform="rotate(-16 162 150)" />
+      <ellipse cx="136" cy="116" rx="7" ry="4" transform="rotate(-30 136 116)" />
+      <ellipse cx="88" cy="56" rx="6" ry="4" transform="rotate(-22 88 56)" />
+      <ellipse cx="134" cy="132" rx="7" ry="4" transform="rotate(-26 134 132)" />
+      <ellipse cx="106" cy="96" rx="7" ry="4" transform="rotate(-14 106 96)" />
+      <ellipse cx="80" cy="62" rx="6" ry="4" transform="rotate(-34 80 62)" />
+      <ellipse cx="40" cy="20" rx="6" ry="4" transform="rotate(-20 40 20)" />
+      <ellipse cx="80" cy="78" rx="7" ry="4" transform="rotate(-28 80 78)" />
+      <ellipse cx="56" cy="50" rx="6" ry="4" transform="rotate(-18 56 50)" />
+      <ellipse cx="30" cy="24" rx="6" ry="4" transform="rotate(-32 30 24)" />
+    </svg>
+  );
+}
+
 function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -354,10 +392,10 @@ function CTASection() {
 
   return (
     <section ref={sectionRef} className="pm-cta" aria-labelledby="pm-cta-title">
+      <CtaBranchWatermark />
       <div className="pm-cta-inner">
-        <h2 id="pm-cta-title">Own real gold, delivered.</h2>
-        <p>Get early access to the SQOOT Pure app and be first in line.</p>
-        <a href="/vault#early-access">Get Early Access</a>
+        <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
+        <a href="/vault#early-access">Join the Waitlist</a>
       </div>
     </section>
   );
