@@ -467,7 +467,7 @@ function PreciousMetalPage() {
           .pm-hero {
             position: relative;
             width: 100%;
-            height: clamp(424px, 41.4583vw, 1061px);
+            height: clamp(300px, 29.1667vw, 767px);
             overflow: hidden;
             background: var(--pm-forest-black);
           }
@@ -478,7 +478,7 @@ function PreciousMetalPage() {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 58% center;
+            object-position: 72% center;
             animation: pmHeroSettle 1200ms cubic-bezier(.22, 1, .36, 1) both;
           }
 
@@ -491,8 +491,8 @@ function PreciousMetalPage() {
           .pm-hero-copy {
             position: absolute;
             z-index: 1;
-            top: clamp(68px, 6.6667vw, 171px);
-            left: clamp(52px, 5.0694vw, 130px);
+            top: clamp(72px, 10.7639vw, 276px);
+            left: clamp(48px, 4.5139vw, 116px);
             max-width: clamp(476px, 46.5278vw, 1191px);
           }
 
@@ -501,7 +501,7 @@ function PreciousMetalPage() {
             max-width: clamp(484px, 47.2222vw, 1209px);
             color: var(--pm-cream-text);
             font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(58px, 5.6944vw, 146px);
+            font-size: clamp(40px, 4.0278vw, 103px);
             font-weight: 500;
             line-height: .98;
             letter-spacing: -.025em;
