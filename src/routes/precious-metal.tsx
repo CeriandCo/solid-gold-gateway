@@ -400,8 +400,10 @@ function PreciousMetalPage() {
         <HowItWorksSection />
         <PricingSection />
         <BenefitsSection />
+        <CTASection />
 
         <style>{`
+
           .precious-metals-page {
             --pm-forest-black: #08150D;
             --pm-forest-950: #0A1A10;
