@@ -287,7 +287,7 @@ const aboutStyles = `
 .about-paths .about-shell { padding-top:clamp(24px,2.4306vw,62px); }
 .about-path-grid { height:clamp(265px,27.0833vw,694px); display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,1.5278vw,39px); align-items:end; margin-top:clamp(24px,2.2222vw,57px); }
 .about-path-grid article { height:clamp(221px,22.5694vw,578px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(18px,1.8056vw,46px) clamp(38px,3.75vw,96px); border-radius:clamp(7px,.6944vw,18px); text-align:center; color:var(--cream-text); background:var(--forest-950); }
-.about-path-grid article.is-featured { height:clamp(265px,27.0833vw,694px); color:var(--ink); border:1px solid var(--gold-500); background:var(--cream-150); box-shadow:0 18px 45px rgba(22,39,31,.13); transform:translateY(clamp(-26px,-2vw,-51px)); position:relative; z-index:1; }
+.about-path-grid article.is-featured { height:clamp(265px,27.0833vw,694px); color:var(--ink); border:1px solid var(--gold-500); background:var(--cream-150); box-shadow:0 18px 45px rgba(22,39,31,.13); transform:translateY(clamp(-30px,-2.0833vw,-53px)); position:relative; z-index:1; }
 .about-path-grid svg { width:clamp(43px,4.1667vw,107px); height:clamp(35px,3.4722vw,89px); color:var(--gold-400); stroke:currentColor; stroke-width:1.3; }
 .about-path-grid h2 { margin-top:clamp(9px,.9028vw,23px); color:var(--gold-400); font-size:clamp(18.5px,1.8056vw,46px); }
 .about-path-grid .is-featured h2 { color:var(--gold-deep); }
