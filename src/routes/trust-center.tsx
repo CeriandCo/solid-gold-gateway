@@ -774,8 +774,8 @@ const trustStyles = `
 .trust-center-page [data-reveal]{transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-audit-panel[data-reveal]{opacity:0;transform:translateY(16px)}
 .tc-audit-panel.is-visible{opacity:1;transform:none}
-@keyframes tcRise{to{opacity:1;transform:none}}
-@keyframes tcHeroZoom{from{transform:scale(1.025)}to{transform:scale(1)}}
+@keyframes tcHeroText{to{opacity:1;transform:none}}
+@keyframes tcHeroImage{from{transform:scale(1.025);opacity:.94}to{transform:scale(1);opacity:1}}
 .tc-statement{max-width:calc(360*var(--u))}
 
 @media (max-width:1023px){
