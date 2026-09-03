@@ -49,8 +49,17 @@ function AmericanEagleArt() {
   return (
     <svg className="pm-product-art pm-coin-art" viewBox="0 0 160 160" role="img" aria-label="Engraved American Gold Eagle coin illustration">
       <circle cx="80" cy="80" r="68" /><circle cx="80" cy="80" r="63" /><circle cx="80" cy="80" r="58" strokeDasharray="1.2 3.2" />
-      <path d="M53 119c11-13 15-27 17-42l-9-8 13 1 6-27 7 27 13-1-9 9c2 15 7 29 17 41M66 99c10 5 19 5 29 0M70 111c7 3 14 3 21 0M80 43l-9-8m9 8 9-8M57 61l-12-6m58 6 12-6M52 80H37m71 0h15" />
-      <path d="M51 127c18 8 39 8 58 0M48 39c19-15 45-15 64 0M62 31l3 5m13-10 1 6m16-4-2 6" />
+      {/* sunburst rays behind the figure */}
+      <path d="M80 122V44M80 122 62 50M80 122 46 60M80 122 34 74M80 122 98 50M80 122 114 60M80 122 126 74M80 122 30 92M80 122 130 92" opacity="0.45" />
+      {/* Walking Liberty: head, robe, striding legs, extended arm */}
+      <circle cx="86" cy="45" r="6.5" />
+      <path d="M83 51c-6 4-9 11-11 19-3 13-8 24-15 33l10 3c6-9 10-19 13-30" />
+      <path d="M89 51c5 3 8 9 10 17 2 12 4 22 8 31l-11 4c-4-10-7-21-8-31" />
+      <path d="M72 70 48 62l-6 3 5 5 25 8" />
+      <path d="M96 68c5 5 8 12 9 20" />
+      <path d="M77 106c7 2 14 2 21 0M74 118c9 3 18 3 27 0" opacity="0.6" />
+      <path d="M67 126l-8 12h13l4-9M99 129l6 11h-13l-3-8" />
+      <path d="M51 129c19 9 40 9 58 0M48 39c19-15 45-15 64 0" />
     </svg>
   );
 }
@@ -59,8 +68,9 @@ function MapleLeafArt() {
   return (
     <svg className="pm-product-art pm-maple-art" viewBox="0 0 170 170" role="img" aria-label="Engraved Canadian Maple Leaf coin illustration">
       <circle cx="85" cy="85" r="72" /><circle cx="85" cy="85" r="67" /><circle cx="85" cy="85" r="61" strokeDasharray="1 3" />
-      <path d="M85 36l8 18 15-7-4 18 17 5-13 13 8 10-23 4 2 28-10-12-10 12 2-28-23-4 8-10-13-13 17-5-4-18 15 7 8-18Z" />
-      <path d="M85 54v59M69 65l16 17 17-17M61 84l24 9 25-9M48 128c23 11 51 11 74 0M52 39c20-14 46-14 66 0" />
+      <path d="M85 34l6 16 12-6-2 14 14-4-5 13 15 1-11 10 6 7-19 4 2 9-19-3-1 26h-4l-1-26-19 3 2-9-19-4 6-7-11-10 15-1-5-13 14 4-2-14 12 6 6-16Z" />
+      <path d="M85 50v66M85 78l-14-9M85 78l14-9M85 96l-19-8M85 96l19-8" opacity="0.55" />
+      <path d="M48 132c23 11 51 11 74 0M52 39c20-14 46-14 66 0" />
     </svg>
   );
 }
@@ -69,12 +79,18 @@ function PampBarArt() {
   return (
     <svg className="pm-product-art pm-bar-art" viewBox="0 0 120 170" role="img" aria-label="Engraved PAMP gold bar illustration">
       <rect x="16" y="5" width="88" height="160" rx="5" /><rect x="22" y="11" width="76" height="148" rx="3" />
-      <path d="M60 30c10 0 18 8 18 18S70 66 60 66s-18-8-18-18 8-18 18-18Zm0 4-5 9-10 2 7 8-2 10 10-5 10 5-2-10 7-8-10-2-5-9Z" />
+      {/* Lady Fortuna engraving */}
+      <circle cx="60" cy="30" r="4.5" />
+      <path d="M57 35c-4 3-6 8-7 14-1 6-3 12-6 17h10c2-5 4-11 5-17" />
+      <path d="M63 35c3 2 5 7 6 13 1 7 2 13 5 18h-9c-2-6-3-12-4-18" />
+      <path d="M56 41 44 34M64 40l12-7c3-2 6 0 5 3l-4 9-9-2" />
+      <path d="M53 66h14" opacity="0.6" />
       <path d="M42 78h36M38 85h44M46 123h28M42 130h36" />
       <text x="60" y="99" textAnchor="middle">PAMP</text><text x="60" y="111" textAnchor="middle">SUISSE</text><text x="60" y="145" textAnchor="middle">FINE GOLD</text>
     </svg>
   );
 }
+
 
 function ProductsSection() {
   const sectionRef = useRef<HTMLElement>(null);
