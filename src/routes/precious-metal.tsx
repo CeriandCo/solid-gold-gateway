@@ -861,6 +861,12 @@ function PreciousMetalPage() {
             .pm-step-circle { width: 94px; height: 94px; }
             .pm-step-circle svg { width: 54px; height: 54px; }
             .pm-step h3 { margin-top: 12px; font-size: 24px; }
+
+            .pm-pricing { height: auto; padding: 0 20px 40px; overflow: visible; }
+            .pm-pricing-panel { height: auto; padding: 20px 18px; }
+            .pm-pricing-leaf { width: 44px; height: 44px; margin-left: 0; }
+            .pm-pricing-divider { height: 44px; margin-inline: 16px; }
+            .pm-pricing-copy h2, .pm-pricing-copy p { font-size: 18px; }
           }
 
           @media (prefers-reduced-motion: reduce) {
