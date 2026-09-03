@@ -622,7 +622,10 @@ function PreciousMetalPage() {
           .pm-bar-art { width: clamp(74px, 7.6389vw, 196px); height: clamp(107px, 10.7639vw, 276px); }
 
           .pm-product-card h3 {
-            min-height: clamp(56px, 5.4861vw, 140px);
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: clamp(56px, 5.4861vw, 140px);
             margin: 0;
             color: var(--pm-ink);
             font-family: "Cormorant Garamond", Georgia, serif;
