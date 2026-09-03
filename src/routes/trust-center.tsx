@@ -923,6 +923,18 @@ const trustStyles = `
   .tc-safeguard-grid{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}
   .tc-safeguard-grid article{min-height:200px}
 }
+@media (min-width:1024px) and (max-width:1100px){
+  .tc-process-panel{padding:38px;grid-template-columns:1fr;row-gap:38px}
+  .tc-process-intro{padding:0}
+  .tc-process-intro:after{display:none}
+  .tc-process-body{max-width:620px}
+  .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px}
+  .tc-timeline-line{left:25%;right:25%;top:46px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:184px;height:1px;background:inherit}
+  .tc-timeline-arrow-1{left:50%}
+  .tc-timeline-arrow-2{display:none}
+  .tc-timeline-arrow-3{left:50%;top:226px}
+}
 @media (max-width:767px){
   .trust-center-page{--u:1px}
   .tc-hero{min-height:430px;height:clamp(430px,112vw,500px)}
