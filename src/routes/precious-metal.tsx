@@ -1169,23 +1169,23 @@ function PreciousMetalPage() {
 
           @media (max-width: 767px) {
 
-            .pm-hero { height: 424px; }
-            .pm-hero-image { object-position: 67% center; }
+            .pm-hero { height: 320px; }
+            .pm-hero-image { object-position: 75% center; }
             .pm-hero-overlay {
               background: linear-gradient(90deg, rgba(7,25,15,.98) 0%, rgba(7,25,15,.91) 54%, rgba(7,25,15,.48) 78%, rgba(7,25,15,.18) 100%);
             }
             .pm-hero-copy {
-              top: 64px;
+              top: 86px;
               left: 24px;
               right: 20px;
               max-width: none;
             }
             .pm-hero-copy h1 {
-              max-width: 350px;
-              font-size: clamp(45px, 12.3vw, 58px);
+              max-width: 300px;
+              font-size: clamp(32px, 9.2vw, 42px);
             }
-            .pm-hero-rule { margin-top: 28px; margin-bottom: 20px; }
-            .pm-hero-copy p { font-size: 17px; }
+            .pm-hero-rule { margin-top: 22px; margin-bottom: 16px; }
+            .pm-hero-copy p { font-size: 15px; }
 
             .pm-products {
               height: auto;
