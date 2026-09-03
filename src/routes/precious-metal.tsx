@@ -473,7 +473,7 @@ function PreciousMetalPage() {
           .pm-hero {
             position: relative;
             width: 100%;
-            height: clamp(300px, 29.1667vw, 767px);
+            height: clamp(300px, 38.8889vw, 560px);
             overflow: hidden;
             background: var(--pm-forest-black);
           }
@@ -497,7 +497,7 @@ function PreciousMetalPage() {
           .pm-hero-copy {
             position: absolute;
             z-index: 1;
-            top: clamp(72px, 10.7639vw, 276px);
+            top: clamp(90px, 14.4vw, 240px);
             left: clamp(48px, 4.5139vw, 116px);
             max-width: clamp(476px, 46.5278vw, 1191px);
           }
