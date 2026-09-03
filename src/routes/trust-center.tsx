@@ -812,6 +812,9 @@ const trustStyles = `
   .tc-hero h1{font-size:50px}
   .tc-hero p{font-size:18px}
   .tc-pillars{padding:28px 24px}
+  .tc-pillars-grid{padding-inline:0}
+  .tc-pillars-grid article{padding-left:0}
+  .tc-pillars-grid article+article:before{display:none}
   .tc-audit,.tc-process,.tc-protection,.tc-safeguards{padding:32px 20px}
   .tc-latest{grid-template-columns:1fr}
   .tc-preview{border-left:0;border-top:1px solid var(--tc-light-border)}
