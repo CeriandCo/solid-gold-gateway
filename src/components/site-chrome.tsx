@@ -180,7 +180,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
               <a
                 href="#login"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-[43px] w-[84px] items-center justify-center rounded-[4px] border border-gold/55 bg-transparent text-sm font-medium leading-none text-gold"
+                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
               >
                 Get Early Access
               </a>
