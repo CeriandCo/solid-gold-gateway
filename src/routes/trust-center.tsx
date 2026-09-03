@@ -785,7 +785,7 @@ const trustStyles = `
   .tc-hero-text{width:min(520px,55%);margin-top:-16px}
   .tc-hero h1{font-size:56px}
   .tc-pillars{height:auto;padding:32px 40px}
-  .tc-pillars-grid{grid-template-columns:repeat(2,1fr);row-gap:28px}
+  .tc-pillars-grid{grid-template-columns:repeat(2,1fr);row-gap:28px;padding-inline:0}
   .tc-pillars-grid article:nth-child(odd){padding-left:0}
   .tc-pillars-grid article:nth-child(3):before{display:none}
   .tc-audit,.tc-process,.tc-protection,.tc-safeguards{height:auto;padding:40px 32px}
