@@ -570,15 +570,55 @@ function TrustCenterPage() {
 }
 
 const trustStyles = `
-.trust-center-page{
-  --u:clamp(.7111px,.069444vw,1.7778px);
-  --tc-forest-black:#06150E;--tc-forest-950:#071B13;--tc-forest-900:#09251A;--tc-forest-850:#103226;--tc-forest-panel:#102F24;
-  --tc-cream:#FAF8F4;--tc-cream-warm:#F6F1E8;--tc-cream-panel:#F3EFE7;--tc-white-panel:#FCFBF8;
-  --tc-gold:#C7912F;--tc-gold-light:#D9AA4B;--tc-gold-muted:#A97828;--tc-gold-dark:#825F1D;
-  --tc-ink:#12231A;--tc-body:#30372F;--tc-muted:#62675F;--tc-light-text:#F6F1E8;
-  --tc-light-border:rgba(98,80,49,.15);--tc-gold-border:rgba(199,145,47,.43);--tc-dark-border:rgba(217,170,75,.20);
-  --tc-ease:cubic-bezier(.22,1,.36,1);
-  background:var(--tc-cream);font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+.trust-center-page {
+  --u: clamp(.7111px, .069444vw, 1.7778px);
+  --tc-ease: cubic-bezier(.22, 1, .36, 1);
+
+  /* Design tokens — Trust Center refinement pass */
+  --tc-forest-950: #01120d;
+  --tc-forest-900: #041f17;
+  --tc-forest-850: #06291f;
+  --tc-forest-800: #0a3528;
+
+  --tc-gold: #d5a33b;
+  --tc-gold-dark: #b98224;
+  --tc-gold-soft: #e6c478;
+
+  --tc-cream: #fcfaf7;
+  --tc-paper: #f8f3ea;
+  --tc-paper-warm: #f4ecdf;
+
+  --tc-ink: #10261e;
+  --tc-body: #25352f;
+  --tc-muted: #66706b;
+
+  --tc-border: rgba(111, 88, 48, 0.17);
+  --tc-border-dark: rgba(213, 163, 59, 0.28);
+
+  --tc-shadow-soft: 0 2px 8px rgba(21, 30, 25, 0.025), 0 16px 42px rgba(21, 30, 25, 0.075);
+  --tc-shadow-hover: 0 4px 12px rgba(21, 30, 25, 0.04), 0 22px 48px rgba(21, 30, 25, 0.11);
+
+  --tc-radius-large: 16px;
+  --tc-radius-card: 12px;
+  --tc-radius-small: 6px;
+
+  /* Legacy tokens still referenced by current section CSS (migrated in later passes) */
+  --tc-forest-black: #06150E;
+  --tc-forest-panel: #102F24;
+  --tc-cream-warm: #F6F1E8;
+  --tc-cream-panel: #F3EFE7;
+  --tc-white-panel: #FCFBF8;
+  --tc-gold-light: #D9AA4B;
+  --tc-gold-muted: #A97828;
+  --tc-light-text: #F6F1E8;
+  --tc-light-border: rgba(98, 80, 49, .15);
+  --tc-gold-border: rgba(199, 145, 47, .43);
+  --tc-dark-border: rgba(217, 170, 75, .20);
+
+  background: var(--tc-cream);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 .trust-center-page h1,.trust-center-page h2,.trust-center-page h3,.trust-center-page h4,.trust-center-page p,.trust-center-page dl,.trust-center-page dd,.trust-center-page dt,.trust-center-page ul{margin:0;padding:0}
 .trust-center-page ul{list-style:none}
