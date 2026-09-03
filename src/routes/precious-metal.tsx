@@ -483,8 +483,8 @@ function PreciousMetalPage() {
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: 72% center;
+            object-fit: contain;
+            object-position: right center;
             animation: pmHeroSettle 1200ms cubic-bezier(.22, 1, .36, 1) both;
           }
 
