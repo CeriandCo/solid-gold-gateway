@@ -561,10 +561,8 @@ function TrustCenterPage() {
         <div className="tc-safeguard-grid">
           {TC.safeguards.map((card, i) => (
             <article key={card.title} data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
-              <div className="tc-safeguard-head">
-                <TcIcon name={card.icon} className="tc-safeguard-icon" />
-                <h3>{card.title}</h3>
-              </div>
+              <TcIcon name={card.icon} className="tc-safeguard-icon" />
+              <h3>{card.title}</h3>
               <p>{card.body}</p>
             </article>
           ))}
@@ -770,16 +768,15 @@ const trustStyles = `
 .tc-disclosure a,.tc-disclosure em{color:var(--tc-gold-light);font-style:normal}
 
 /* SAFEGUARDS */
-.tc-safeguards{height:calc(246*var(--u));padding:0 calc(56*var(--u)) calc(22*var(--u))}
-.tc-safeguard-grid{max-width:calc(1328*var(--u));height:calc(219*var(--u));margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(16*var(--u))}
-.tc-safeguard-grid article{border:1px solid rgba(98,80,49,.10);border-radius:calc(12*var(--u));background:rgba(252,251,248,.96);padding:calc(28*var(--u)) calc(25*var(--u));box-shadow:0 12px 28px rgba(38,30,17,.055),0 2px 6px rgba(38,30,17,.025);opacity:0;transform:translateY(14px);transition:opacity .6s var(--tc-ease),transform .35s var(--tc-ease),box-shadow .35s var(--tc-ease)}
+.tc-safeguards{height:calc(232*var(--u));padding:0 calc(56*var(--u)) calc(22*var(--u))}
+.tc-safeguard-grid{max-width:calc(1328*var(--u));height:calc(210*var(--u));margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(17*var(--u))}
+.tc-safeguard-grid article{display:flex;flex-direction:column;align-items:flex-start;border:1px solid var(--tc-border);border-radius:var(--tc-radius-card);background:rgba(255,255,255,.80);padding:calc(24*var(--u));box-shadow:0 10px 28px rgba(29,34,27,.065);opacity:0;transform:translateY(14px);transition:opacity .6s var(--tc-ease),transform .35s var(--tc-ease),box-shadow .35s var(--tc-ease)}
 .tc-safeguard-grid article.is-visible{opacity:1;transform:none}
 .tc-safeguard-grid article.is-visible:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(38,30,17,.09),0 3px 8px rgba(38,30,17,.04)}
+.trust-center-page .tc-safeguard-icon{flex:none;width:calc(32*var(--u));height:calc(32*var(--u));color:var(--tc-gold);stroke-width:1.5;transition:transform .35s var(--tc-ease)}
 .tc-safeguard-grid article:hover .tc-safeguard-icon{transform:translateY(-1px)}
-.tc-safeguard-head{display:grid;grid-template-columns:calc(40*var(--u)) 1fr;column-gap:calc(13*var(--u));align-items:start}
-.tc-safeguard-icon{width:calc(36*var(--u));height:calc(36*var(--u));color:var(--tc-gold);transition:transform .35s var(--tc-ease)}
-.tc-safeguard-grid h3{font-size:calc(15*var(--u));font-weight:600;line-height:1.2;color:var(--tc-ink)}
-.tc-safeguard-grid p{margin-top:calc(12*var(--u));font-size:calc(12.5*var(--u));font-weight:400;line-height:1.52;color:var(--tc-body)}
+.tc-safeguard-grid h3{margin-top:calc(12*var(--u));font-size:calc(15*var(--u));font-weight:600;line-height:1.2;color:var(--tc-ink)}
+.tc-safeguard-grid p{margin-top:calc(8*var(--u));font-size:calc(13*var(--u));font-weight:400;line-height:1.5;color:var(--tc-body)}
 
 .trust-center-page [data-reveal]{transition:opacity .7s var(--tc-ease),transform .7s var(--tc-ease)}
 .tc-audit-panel[data-reveal]{opacity:0;transform:translateY(16px)}
