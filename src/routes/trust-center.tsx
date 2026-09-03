@@ -786,7 +786,7 @@ const trustStyles = `
 .tc-audit-panel.is-visible{opacity:1;transform:none}
 @keyframes tcHeroText{to{opacity:1;transform:none}}
 @keyframes tcHeroImage{from{transform:scale(1.025);opacity:.94}to{transform:scale(1);opacity:1}}
-.tc-statement{max-width:calc(360*var(--u))}
+
 
 @media (max-width:1023px){
   .trust-center-page{--u:1px}
