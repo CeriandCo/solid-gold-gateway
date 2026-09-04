@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
 import eagleAsset from "@/assets/american-eagle.png.asset.json";
 import pampAsset from "@/assets/pamp-bar.png.asset.json";
@@ -401,7 +401,9 @@ function CTASection() {
       <CtaBranchWatermark />
       <div className="pm-cta-inner">
         <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
-        <a href="/vault#early-access">Join the Waitlist</a>
+        <GoldButton href="/vault#early-access" className="h-[54px] px-8 mt-[clamp(22px,2.0833vw,53px)]">
+          Join the Waitlist
+        </GoldButton>
       </div>
     </section>
   );
@@ -1156,27 +1158,6 @@ function PreciousMetalPage() {
             line-height: 1.08;
             letter-spacing: -.015em;
           }
-          .pm-cta a {
-            display: inline-grid;
-            place-items: center;
-            width: clamp(220px, 17.7083vw, 255px);
-            height: clamp(48px, 3.8889vw, 58px);
-            margin-top: clamp(22px, 2.0833vw, 53px);
-            border-radius: 3px;
-            color: var(--pm-forest-950);
-            background: linear-gradient(135deg, var(--pm-gold-light) 0%, var(--pm-gold) 50%, var(--pm-gold-medium) 100%);
-            font-family: "DM Sans", Arial, sans-serif;
-            font-size: clamp(12px, .9028vw, 14px);
-            font-weight: 600;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            transition: background 220ms ease, transform 220ms ease;
-          }
-          .pm-cta a:hover {
-            background: linear-gradient(135deg, #E6C070 0%, var(--pm-gold-light) 55%, var(--pm-gold) 100%);
-            transform: translateY(-1px);
-          }
           .pm-cta-visible .pm-cta-inner {
             animation: pmCtaRise 620ms cubic-bezier(.22,1,.36,1) forwards;
           }
@@ -1281,7 +1262,6 @@ function PreciousMetalPage() {
             .pm-cta-branch { width: 220px; left: -50px; bottom: -40px; opacity: .08; }
             .pm-cta-inner { padding-inline: 0; }
             .pm-cta h2 { font-size: 28px; }
-            .pm-cta a { width: min(260px, 100%); height: 54px; font-size: 12px; }
           }
 
 
@@ -1323,7 +1303,6 @@ function PreciousMetalPage() {
               opacity: 1;
               transform: none;
             }
-            .pm-cta a { transition: none; }
           }
 
         `}</style>
