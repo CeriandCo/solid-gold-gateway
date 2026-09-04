@@ -147,7 +147,12 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         <div className="flex shrink-0 items-center gap-3">
           <a
             href="#login"
-            className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent font-sans text-[12px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex lg:px-3 xl:px-4 xl:text-[13px] min-[1440px]:px-5"
+            className={cn(
+              "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
+              variant === "overlay"
+                ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
+            )}
           >
             Get Early Access
           </a>
