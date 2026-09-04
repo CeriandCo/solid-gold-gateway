@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
@@ -118,13 +118,6 @@ function Brand({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function PrimaryButton({ children, className = "", type = "button", disabled = false }: { children: React.ReactNode; className?: string; type?: "button" | "submit"; disabled?: boolean }) {
-  return (
-    <button type={type} disabled={disabled} className={cn("early-button inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-forest px-7 text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60", className)}>
-      {children}
-    </button>
-  );
-}
 
 function Index() {
   const [step, setStep] = useState(0);
@@ -153,7 +146,7 @@ function Index() {
               Gold allocation,<br />made more<br /><em className="hero-emphasis text-gold">accessible.</em>
             </h1>
             <p className="hero-body mt-7 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
-            <a href="#early-access" className="hero-cta-type mt-8 inline-flex min-h-[54px] items-center gap-5 rounded-sm bg-forest px-9 text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></a>
+            <GoldButton href="#early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
             <p className="hero-note mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
         </div>
@@ -244,7 +237,7 @@ function Index() {
           <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 py-10 sm:px-7 lg:min-h-[224px] lg:grid-cols-[1fr_1.35fr] lg:px-10 lg:py-0">
             <div className="flex items-center gap-6"><OfficialMandala className="h-20 w-20 shrink-0 lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
             <form onSubmit={submitWaitlist} noValidate>
-              <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold lg:h-[67px]" aria-invalid={formState === "error"} aria-describedby="email-status" /><PrimaryButton type="submit" className="early-button min-h-14 bg-gold px-9 text-background hover:bg-gold-dark lg:h-[67px] lg:w-[253px]">Get Early Access</PrimaryButton></div>
+              <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold lg:h-[67px]" aria-invalid={formState === "error"} aria-describedby="email-status" /><GoldButton type="submit" className="h-[54px] w-full px-8 lg:w-[253px]">Get Early Access</GoldButton></div>
               <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={18} className="shrink-0 text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
             </form>
           </div>
