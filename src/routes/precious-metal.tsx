@@ -401,7 +401,9 @@ function CTASection() {
       <CtaBranchWatermark />
       <div className="pm-cta-inner">
         <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
-        <a href="/vault#early-access">Join the Waitlist</a>
+        <GoldButton href="/vault#early-access" className="h-[54px] px-8 mt-[clamp(22px,2.0833vw,53px)]">
+          Join the Waitlist
+        </GoldButton>
       </div>
     </section>
   );
