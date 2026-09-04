@@ -204,7 +204,7 @@ function Index() {
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
             </p>
-            <GoldButton href="#early-access" className="mt-8 inline-flex">
+            <GoldButton href="#early-access" className="mt-8 inline-flex py-3">
               Join for early access
             </GoldButton>
           </div>
