@@ -11,7 +11,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { GoldButton, SiteNav } from "@/components/site-chrome";
+import { GoldButton, SiteFooter, SiteNav } from "@/components/site-chrome";
 
 import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
@@ -19,7 +19,6 @@ import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
 import pathVault from "@/assets/path-vault.jpg";
 import bandGold from "@/assets/band-gold.jpg";
-import logoUrl from "@/assets/sqoot-pure-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
