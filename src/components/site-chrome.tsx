@@ -86,7 +86,7 @@ export function GoldButton({
   className?: string;
 }) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gradient-to-b from-gold-soft to-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
     className,
   );
   const style: React.CSSProperties = { fontFamily: "Inter, Arial, sans-serif" };
