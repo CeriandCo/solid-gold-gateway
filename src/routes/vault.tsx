@@ -21,7 +21,7 @@ import {
   Warehouse,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import vaultDoor from "@/assets/vault-door-hero.png.asset.json";
 import laptopImage from "@/assets/walkthrough-laptop.jpg";
 import mandalaImage from "@/assets/sqoot-mandala.png";
@@ -68,34 +68,6 @@ function Eyebrow({ children, className = "" }: { children: React.ReactNode; clas
   return <p className={cn("eyebrow text-gold", className)}>{children}</p>;
 }
 
-function GoldButton({
-  children,
-  href,
-  type,
-  className = "",
-}: {
-  children: React.ReactNode;
-  href?: string;
-  type?: "button" | "submit";
-  className?: string;
-}) {
-  const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
-    className,
-  );
-  if (href) {
-    return (
-      <a href={href} className={classes}>
-        {children}
-      </a>
-    );
-  }
-  return (
-    <button type={type ?? "button"} className={classes}>
-      {children}
-    </button>
-  );
-}
 
 function IconCircle({ size = 84, children }: { size?: number; children: React.ReactNode }) {
   return (
@@ -201,7 +173,7 @@ function Index() {
               <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
                   href="#early-access"
-                  className="group h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold"
+                  className="group h-[54px] px-8"
                 >
                   Get Early Access
                   <ArrowRight
@@ -683,7 +655,7 @@ function Index() {
                 Nothing staged.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-7">
-                <GoldButton href="#early-access" className="h-12 bg-gradient-to-b from-gold-soft to-gold px-7 text-[15px] font-bold">
+                <GoldButton href="#early-access" className="h-[54px] px-8">
                   Watch the walkthrough <ArrowRight size={16} strokeWidth={2} />
                 </GoldButton>
                 <span className="flex items-center gap-3 text-[13px] leading-[1.45] text-[#C8CFC9]">
@@ -766,7 +738,7 @@ function Index() {
                 aria-describedby="email-status"
                 className="h-[54px] w-full rounded-[2px] border border-transparent bg-background px-5 text-sm text-charcoal outline-none placeholder:text-[#7A817C] focus:border-gold sm:w-[420px]"
               />
-              <GoldButton type="submit" className="h-[54px] w-full bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold sm:w-[235px]">
+              <GoldButton type="submit" className="h-[54px] w-full px-8 sm:w-[235px]">
                 Get Early Access
               </GoldButton>
             </div>
