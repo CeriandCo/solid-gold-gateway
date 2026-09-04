@@ -228,7 +228,7 @@ function AboutPage() {
 }
 
 const aboutStyles = `
-.about-new{--forest-950:#061B11;--paper:#F2E9D4;--gold:#D89F2E;--gold-line:#B18E39;--gold-deep:#76521B;--cream:#F4ECDA;--ink:#1B1A16;--gutter:clamp(71px,6.9444vw,178px);color:var(--ink);background:var(--paper);font-family:"DM Sans",Arial,sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.about-new{--forest-950:#061B11;--paper:#F2E9D4;--gold:#B37A0D;--gold-line:#B18E39;--gold-deep:#76521B;--cream:#F4ECDA;--ink:#1B1A16;--gutter:clamp(71px,6.9444vw,178px);color:var(--ink);background:var(--paper);font-family:"DM Sans",Arial,sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip}
 .about-new h1,.about-new h2{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500}.about-new p{margin:0}.about-shell{width:calc(100% - 200px);height:100%;margin:auto}.about-eyebrow{font-size:13px;font-weight:600;line-height:1.2;letter-spacing:.2em;text-transform:uppercase;color:#8D6720}.about-new>header{background:var(--forest-950);animation:aboutFade .45s ease both}
 .about-hero{position:relative;height:clamp(560px,80vh,820px);overflow:hidden;color:var(--cream);background:var(--forest-950)}
 .about-hero-velvet{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72}.about-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,27,17,.98) 0%,rgba(6,27,17,.91) 38%,rgba(6,27,17,.28) 67%,rgba(6,27,17,.03) 100%)}
