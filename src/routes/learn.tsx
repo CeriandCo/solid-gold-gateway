@@ -20,6 +20,7 @@ import bandGold from "@/assets/band-gold.jpg";
 import brandedGold from "@/assets/gold-bar-velvet-marble-branded.png";
 import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
+import confidencePhone from "@/assets/knowledge-confidence-phone.jpg.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
 import goldNugget from "@/assets/knowledge-gold-nugget.jpg.asset.json";
 import cinematicGold from "@/assets/knowledge-cinematic-gold.jpg.asset.json";
