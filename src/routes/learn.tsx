@@ -61,7 +61,7 @@ const benefits = [
 
 const articles = [
   { title: "HOW TO OWN GOLD ONLINE", copy: "Gold can be digitally bought, stored and sold.", image: phoneHand.url, alt: "A hand holding a phone displaying a gold ownership interface" },
-  { title: "CONFIDENCE IN GOLD", copy: "Principles and guidance for trust and safety when investing in gold.", image: brandedGold, alt: "Macro view of a SQOOT Pure engraved gold bar" },
+  { title: "CONFIDENCE IN GOLD", copy: "Principles and guidance for trust and safety when investing in gold.", image: confidencePhone.url, alt: "A hand holding a phone displaying a gold ownership interface" },
   { title: "GOLD OVER THE LONG AND SHORT TERM", copy: "Easily bought today, investing in gold could help you in the future.", image: coupleBench.url, alt: "A couple sitting together on a park bench" },
 ] as const;
 
