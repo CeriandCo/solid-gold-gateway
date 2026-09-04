@@ -349,38 +349,7 @@ function Index() {
         </div>
       </section> */}
 
-      {/* Footer */}
-      <footer className="bg-forest-deep py-16 text-warm-white">
-        <div className="mx-auto grid max-w-[1200px] gap-12 px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div>
-            <img src={logoUrl} alt="SQOOT Pure" className="h-14 w-auto" />
-            <p className="mt-6 max-w-xs text-xs leading-relaxed text-warm-white/55">
-              A compliance-first platform for buying, storing, and redeeming real physical gold.
-            </p>
-          </div>
-          {[
-            { h: "Discover More", l: ["Buy Gold", "Fractional", "Vault", "Learn"] },
-            { h: "Company", l: ["About Us", "Security", "Trust Center", "Help Center"] },
-            { h: "Legal", l: ["Terms of Service", "Data Privacy Policy", "Disclosures"] },
-          ].map((col) => (
-            <div key={col.h}>
-              <p className="eyebrow text-gold">{col.h}</p>
-              <ul className="mt-5 space-y-3">
-                {col.l.map((l) => (
-                  <li key={l}>
-                    <a href="#paths" className="text-xs text-warm-white/65 hover:text-gold">
-                      {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mx-auto mt-14 max-w-[1200px] border-t border-warm-white/10 px-6 pt-6">
-          <p className="text-xs text-warm-white/40">© {new Date().getFullYear()} SQOOT Pure. All rights reserved.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
