@@ -597,7 +597,7 @@ function Index() {
               Learn more <ArrowRight size={15} strokeWidth={1.5} />
             </a>
           </div>
-          <div className="flex flex-wrap items-start justify-center gap-6 xl:flex-nowrap xl:justify-between">
+          <div className="flex flex-wrap items-start justify-center gap-6 min-[1366px]:flex-nowrap min-[1366px]:justify-between">
             {(
               [
                 [FileText, "Request", ["Submit your request", "anytime."]],
@@ -607,7 +607,7 @@ function Index() {
               ] as const
             ).map(([Icon, title, lines], index) => (
               <div key={title} className="flex items-center gap-5">
-                {index > 0 && <ThinArrow className="hidden w-12 xl:block" />}
+                {index > 0 && <ThinArrow className="hidden w-12 min-[1366px]:block" />}
                 <div className="w-[160px] text-center">
                   <div className="relative inline-block">
                     <IconCircle size={84}>
