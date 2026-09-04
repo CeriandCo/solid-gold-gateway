@@ -86,25 +86,26 @@ export function GoldButton({
   className?: string;
 }) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
     className,
   );
+  const style: React.CSSProperties = { fontFamily: "Inter, Arial, sans-serif" };
   if (to) {
     return (
-      <Link to={to} className={classes}>
+      <Link to={to} className={classes} style={style}>
         {children}
       </Link>
     );
   }
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} style={style}>
         {children}
       </a>
     );
   }
   return (
-    <button type={type ?? "button"} className={classes}>
+    <button type={type ?? "button"} className={classes} style={style}>
       {children}
     </button>
   );
