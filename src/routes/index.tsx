@@ -11,7 +11,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { SiteNav } from "@/components/site-chrome";
+import { GoldButton, SiteNav } from "@/components/site-chrome";
 
 import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
@@ -155,15 +155,10 @@ function Index() {
               holding, or keep it securely stored in insured U.S. vaults — redeemable on demand.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#paths"
-                className="rounded-sm bg-gold px-7 py-3 text-[0.8rem] font-medium tracking-wide text-forest-deep transition-colors hover:bg-gold-soft"
-              >
-                Buy Gold
-              </a>
+              <GoldButton href="#paths">Buy Gold</GoldButton>
               <a
                 href="#vault"
-                className="rounded-sm border border-warm-white/45 bg-warm-white/5 px-7 py-3 text-[0.8rem] tracking-wide text-warm-white transition-colors hover:border-gold hover:text-gold"
+                className="rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-7 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white transition-colors hover:border-gold hover:text-gold"
               >
                 See the Vault
               </a>
@@ -209,12 +204,9 @@ function Index() {
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
             </p>
-            <a
-              href="#"
-              className="mt-8 inline-block rounded-sm bg-forest px-8 py-3 text-[0.8rem] font-medium tracking-wide text-warm-white transition-colors hover:bg-forest-deep"
-            >
+            <GoldButton href="#early-access" className="mt-8 inline-flex py-3">
               Join for early access
-            </a>
+            </GoldButton>
           </div>
         </div>
       </section>
