@@ -313,7 +313,7 @@ const giftingStyles = `
 .gifting-new {
   --forest-950: #0D2117; --forest-900: #112118; --forest-800: #173126; --forest-700: #244637;
   --cream-50: #FBF6EE; --cream-100: #F8EEE2; --cream-150: #F4E9DB; --cream-200: #EFE4D3;
-  --gold-500: #C9A84C; --gold-400: #D9B260; --gold-300: #E6C77D; --gold-deep: #A97827;
+  --gold-500: #B37A0D; --gold-400: #D9B260; --gold-300: #E6C77D; --gold-deep: #A97827;
   --ink: #16271F; --body-dark: #30382F; --cream-text: #FAF5EA;
   --muted-cream: rgba(250,245,234,.76); --light-divider: rgba(120,91,48,.22); --dark-divider: rgba(201,168,76,.27);
   --page-max: clamp(1320px,91.6667vw,2347px); --page-padding: clamp(32px,4.2vw,108px);
