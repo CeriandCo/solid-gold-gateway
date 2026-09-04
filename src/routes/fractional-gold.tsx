@@ -118,13 +118,6 @@ function Brand({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function PrimaryButton({ children, className = "", type = "button", disabled = false }: { children: React.ReactNode; className?: string; type?: "button" | "submit"; disabled?: boolean }) {
-  return (
-    <button type={type} disabled={disabled} className={cn("early-button inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-forest px-7 text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60", className)}>
-      {children}
-    </button>
-  );
-}
 
 function Index() {
   const [step, setStep] = useState(0);
