@@ -1303,7 +1303,6 @@ function PreciousMetalPage() {
               opacity: 1;
               transform: none;
             }
-            .pm-cta a { transition: none; }
           }
 
         `}</style>
