@@ -342,7 +342,7 @@ const giftingStyles = `
 .gift-hero h1 { max-width: 100%; color: var(--cream-text); font-size: clamp(54px,5.28vw,136px); font-weight: 500; line-height: .96; letter-spacing: -.025em; }
 .gift-hero h1 span { display: block; }
 .gift-hero-body { max-width: 93%; margin-top: 16px; color: rgba(250,245,234,.88); font-size: clamp(13px,1.1vw,29px); font-weight: 400; line-height: 1.55; }
-.gift-hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+.gift-hero-actions { display: flex; align-items: center; gap: 20px; margin-top: 24px; }
 .gift-hero-actions .gift-button { height: 54px; min-height: 54px; }
 .gift-button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: clamp(42px,3.89vw,100px); padding-inline: clamp(20px,1.75vw,45px); border-radius: 3px; font-size: clamp(12px,1.05vw,27px); font-weight: 600; line-height: 1; transition: color .22s,background-color .22s,border-color .22s,transform .22s; }
 .gift-button svg { width: 16px; height: 16px; stroke-width: 1.5; transition: transform .22s; }
