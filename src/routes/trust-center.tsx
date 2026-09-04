@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
