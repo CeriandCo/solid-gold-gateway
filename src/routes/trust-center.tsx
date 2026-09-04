@@ -984,7 +984,7 @@ const trustStyles = `
   .tc-step-wrap p{max-width:none;margin-top:8px;font-size:13.5px;text-align:left}
   .tc-protection-left{padding:26px 22px 0}
   .tc-protection-copy>p{max-width:none}
-  .tc-request{min-height:44px}
+  
   .tc-protection-center{padding:12px 0 4px}
   .tc-protection-center:before{bottom:0;width:min(280px,90vw);height:190px}
   .tc-scales{width:min(260px,78vw);margin:0 auto}
