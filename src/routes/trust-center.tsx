@@ -573,9 +573,9 @@ function TrustCenterPage() {
               <h3>{TC.protection.subtitle}</h3>
               <p>{TC.protection.body}</p>
               <p className="tc-statement">{TC.protection.statement}</p>
-              <a className="tc-request" href="mailto:support@getsqoot.com?subject=Legal%20Counsel%20Details%20Request">
+              <GoldButton className="h-[54px] px-8 mt-[calc(22*var(--u))]" href="mailto:support@getsqoot.com?subject=Legal%20Counsel%20Details%20Request">
                 {TC.protection.cta} <i aria-hidden="true">→</i>
-              </a>
+              </GoldButton>
             </div>
           </div>
           <div className="tc-protection-center">
