@@ -186,27 +186,25 @@ function Index() {
 
       {/* App showcase */}
       <section className="bg-cream py-16 sm:py-24">
-        <div className="mx-auto max-w-[1200px] px-6 text-center">
-          <img
-            src={appShowcase.url}
-            alt="SQOOT Pure app screens showing portfolio, buy gold, gold price, and vault views"
-            loading="lazy"
-            width={1920}
-            height={1080}
-            className="w-full rounded-lg"
-          />
-          <div className="mt-10 sm:mt-14">
-            <p className="eyebrow text-gold">Early access</p>
-            <h2 className="mt-4 font-display text-[2rem] leading-tight text-forest sm:text-[2.75rem]">
-              Gold ownership, in your pocket.
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
-            </p>
-            <GoldButton href="#early-access" className="mt-8 h-[54px] px-8">
-              Join for early access
-            </GoldButton>
-          </div>
+        <img
+          src={appShowcase.url}
+          alt="SQOOT Pure app screens showing portfolio, buy gold, gold price, and vault views"
+          loading="lazy"
+          width={1920}
+          height={1080}
+          className="w-full"
+        />
+        <div className="mx-auto max-w-[1200px] px-6 pt-10 text-center sm:pt-14">
+          <p className="eyebrow text-gold">Early access</p>
+          <h2 className="mt-4 font-display text-[2rem] leading-tight text-forest sm:text-[2.75rem]">
+            Gold ownership, in your pocket.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
+          </p>
+          <GoldButton href="#early-access" className="mt-8 h-[54px] px-8">
+            Join for early access
+          </GoldButton>
         </div>
       </section>
 
