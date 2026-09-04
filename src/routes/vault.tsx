@@ -359,8 +359,8 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-8 rounded-[10px] border border-beige bg-ivory px-8 py-7 lg:min-h-[274px] lg:grid-cols-[1fr_300px]">
-            <div className="flex flex-wrap items-start justify-center gap-6 lg:flex-nowrap lg:justify-between">
+          <div className="mt-5 grid gap-8 rounded-[10px] border border-beige bg-ivory px-8 py-7 lg:min-h-[274px] xl:grid-cols-[1fr_300px]">
+            <div className="flex flex-wrap items-start justify-center gap-6 xl:flex-nowrap xl:justify-between">
               {(tab === "delivered"
                 ? ([
                     [Package, "Choose", ["Select physical gold", "or silver."]],
@@ -389,7 +389,7 @@ function Index() {
                 </div>
               ))}
             </div>
-            <div className="lg:border-l lg:border-beige lg:pl-10">
+            <div className="xl:border-l xl:border-beige xl:pl-10">
               <h3 className="card-title text-charcoal">
                 {tab === "delivered" ? "Physical delivery." : "Vault storage."}
               </h3>
@@ -597,7 +597,7 @@ function Index() {
               Learn more <ArrowRight size={15} strokeWidth={1.5} />
             </a>
           </div>
-          <div className="flex flex-wrap items-start justify-center gap-6 lg:flex-nowrap lg:justify-between">
+          <div className="flex flex-wrap items-start justify-center gap-6 min-[1366px]:flex-nowrap min-[1366px]:justify-between">
             {(
               [
                 [FileText, "Request", ["Submit your request", "anytime."]],
@@ -607,7 +607,7 @@ function Index() {
               ] as const
             ).map(([Icon, title, lines], index) => (
               <div key={title} className="flex items-center gap-5">
-                {index > 0 && <ThinArrow className="hidden w-12 lg:block" />}
+                {index > 0 && <ThinArrow className="hidden w-12 min-[1366px]:block" />}
                 <div className="w-[160px] text-center">
                   <div className="relative inline-block">
                     <IconCircle size={84}>

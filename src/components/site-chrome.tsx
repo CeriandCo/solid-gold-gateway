@@ -120,16 +120,25 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
-      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 py-2 sm:px-8 lg:min-h-[112px] lg:px-8 xl:px-[60px] lg:py-5">
+      {/* Desktop geometry steps up with the viewport so the row never overflows:
+          1024–1279px compact, 1280–1439px medium, ≥1440px the full artboard values. */}
+      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 py-2 sm:px-8 lg:min-h-[112px] lg:px-6 lg:py-5 xl:px-10 min-[1440px]:px-[60px]">
         <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[200px] sm:w-[230px] lg:w-[250px] xl:w-[290px]" />
+          <img
+            src={logoImage}
+            alt="SQOOT Pure"
+            className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
+          />
         </Link>
-        <nav className="hidden flex-1 items-center justify-center gap-12 lg:gap-8 xl:gap-[54px] lg:flex" aria-label="Primary navigation">
+        <nav
+          className="hidden flex-1 items-center justify-center lg:flex lg:gap-5 xl:gap-8 min-[1440px]:gap-[54px]"
+          aria-label="Primary navigation"
+        >
           {siteNav.map(([label, to]) => (
             <Link
               key={label}
               to={to}
-              className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[14px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold [&.active]:text-gold [&.active]:after:w-[46px]"
+              className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
             >
               {label}
             </Link>
@@ -138,7 +147,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         <div className="flex shrink-0 items-center gap-3">
           <a
             href="#login"
-            className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent font-sans text-[12px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex lg:px-3.5 xl:px-5 xl:text-[13px]"
+            className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent font-sans text-[12px] font-medium leading-none text-gold transition-colors duration-300 hover:border-gold hover:bg-gold/10 lg:inline-flex lg:px-3 xl:px-4 xl:text-[13px] min-[1440px]:px-5"
           >
             Get Early Access
           </a>

@@ -390,8 +390,9 @@ function TrustCenterPage() {
   const pageRef = useReveal();
 
   return (
-    <main ref={pageRef} className="trust-center-page">
+    <>
       <SiteHeader />
+      <main ref={pageRef} className="trust-center-page">
 
       {/* HERO */}
       <section className="tc-hero">
@@ -622,9 +623,10 @@ function TrustCenterPage() {
         </div>
       </section>
 
-      <SiteFooter />
       <style>{trustStyles}</style>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
 
