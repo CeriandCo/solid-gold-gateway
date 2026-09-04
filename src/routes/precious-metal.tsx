@@ -617,7 +617,7 @@ function PreciousMetalPage() {
             height: clamp(304px, 29.6528vw, 759px);
             padding: clamp(14px, 1.3889vw, 36px) clamp(14px, 1.3889vw, 36px) clamp(13px, 1.25vw, 32px);
             border: 1px solid var(--pm-border);
-            border-radius: 4px;
+            border-radius: 8px;
             background: rgba(250,245,236,.28);
             color: var(--pm-ink);
             text-align: center;
@@ -925,7 +925,7 @@ function PreciousMetalPage() {
             height: clamp(82px, 7.9167vw, 203px);
             padding-right: clamp(24px, 2.4306vw, 62px);
             border: 1px solid rgba(199, 169, 115, 0.52);
-            border-radius: 5px;
+            border-radius: 8px;
             background: #F2EADC;
             opacity: 0;
             transform: translateY(12px);
