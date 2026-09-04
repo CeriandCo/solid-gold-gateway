@@ -153,7 +153,7 @@ function Index() {
               Gold allocation,<br />made more<br /><em className="hero-emphasis text-gold">accessible.</em>
             </h1>
             <p className="hero-body mt-7 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
-            <a href="#early-access" className="hero-cta-type mt-8 inline-flex min-h-[54px] items-center gap-5 rounded-sm bg-forest px-9 text-gold transition-colors hover:bg-charcoal focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-gold">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></a>
+            <GoldButton href="#early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
             <p className="hero-note mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
         </div>
