@@ -11,7 +11,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { SiteNav } from "@/components/site-chrome";
+import { GoldButton, SiteNav } from "@/components/site-chrome";
 
 import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
