@@ -155,10 +155,10 @@ function Index() {
               holding, or keep it securely stored in insured U.S. vaults — redeemable on demand.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <GoldButton href="#paths">Buy Gold</GoldButton>
+              <GoldButton href="#paths" className="h-[54px] px-8">Buy Gold</GoldButton>
               <a
                 href="#vault"
-                className="rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-7 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white transition-colors hover:border-gold hover:text-gold"
+                className="rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-8 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white transition-colors hover:border-gold hover:text-gold"
               >
                 See the Vault
               </a>
@@ -204,7 +204,7 @@ function Index() {
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
             </p>
-            <GoldButton href="#early-access" className="mt-8 inline-flex py-3">
+            <GoldButton href="#early-access" className="mt-8 h-[54px] px-8">
               Join for early access
             </GoldButton>
           </div>
