@@ -19,7 +19,7 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import bandGold from "@/assets/band-gold.jpg";
 import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
-import confidencePhone from "@/assets/knowledge-confidence-phone.jpg.asset.json";
+import confidenceGoldBar from "@/assets/knowledge-confidence-gold-bar.png.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
 import goldNugget from "@/assets/knowledge-gold-nugget.jpg.asset.json";
 import cinematicGold from "@/assets/knowledge-cinematic-gold.jpg.asset.json";
@@ -60,7 +60,7 @@ const benefits = [
 
 const articles = [
   { title: "HOW TO OWN GOLD ONLINE", copy: "Gold can be digitally bought, stored and sold.", image: phoneHand.url, alt: "A hand holding a phone displaying a gold ownership interface" },
-  { title: "CONFIDENCE IN GOLD", copy: "Principles and guidance for trust and safety when investing in gold.", image: confidencePhone.url, alt: "A hand holding a phone displaying a gold ownership interface" },
+  { title: "CONFIDENCE IN GOLD", copy: "Principles and guidance for trust and safety when investing in gold.", image: confidenceGoldBar.url, alt: "A SQOOT Pure fine gold bar on a dark surface" },
   { title: "GOLD OVER THE LONG AND SHORT TERM", copy: "Easily bought today, investing in gold could help you in the future.", image: coupleBench.url, alt: "A couple sitting together on a park bench" },
 ] as const;
 
