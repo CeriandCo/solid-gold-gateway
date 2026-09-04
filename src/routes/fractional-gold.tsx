@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
@@ -43,6 +43,13 @@ export const Route = createFileRoute("/fractional-gold")({
   component: Index,
 });
 
+const nav = [
+  ["Why Gold", "#why-gold"],
+  ["How It Works", "#how-it-works"],
+  ["Fees", "#fees"],
+  ["FAQ", "#faq"],
+  ["About Us", "#about"],
+] as const;
 
 const steps = [
   ["Create an account", "Join the waitlist and create your account in under a minute."],
@@ -99,6 +106,17 @@ function USFlag({ className }: { className?: string }) {
   );
 }
 
+function Brand({ compact = false }: { compact?: boolean }) {
+  return (
+    <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="SQOOT Pure home">
+      <OfficialMandala className={compact ? "h-10 w-10" : "h-12 w-12"} />
+      <span className="leading-none">
+        <span className="block font-display text-[1.7rem] font-semibold leading-none text-forest-deep">SQOOT</span>
+        <span className="mt-1 block text-[0.625rem] font-medium tracking-[0.14em] text-gold">PURE</span>
+      </span>
+    </a>
+  );
+}
 
 
 function Index() {
@@ -226,7 +244,8 @@ function Index() {
         </div>
       </section>
 
-      <SiteFooter />
+
+      <footer id="about" className="bg-background py-8"><div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 sm:px-7 lg:grid-cols-[auto_1fr_auto] lg:px-10"><Brand compact /><nav className="flex flex-wrap justify-center gap-x-8 gap-y-3" aria-label="Footer navigation">{nav.map(([label,href]) => <a key={label} href={href} className="footer-nav hover:text-gold">{label}</a>)}</nav><div className="footer-legal text-muted-foreground lg:text-right"><p>© 2026 Fortress Gold Inc. All rights reserved.</p><p className="mt-2"><a href="#privacy" className="hover:text-gold">Privacy Policy</a><span className="mx-4">Terms of Service</span></p></div></div></footer>
     </main>
   );
 }
