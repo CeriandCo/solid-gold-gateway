@@ -86,7 +86,7 @@ export function GoldButton({
   className?: string;
 }) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] transition-colors hover:bg-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
     className,
   );
   if (to) {
