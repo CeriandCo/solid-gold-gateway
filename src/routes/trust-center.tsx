@@ -639,7 +639,7 @@ const trustStyles = `
   --tc-forest-850: #06291f;
   --tc-forest-800: #0a3528;
 
-  --tc-gold: #B37A0D;
+  --tc-gold: #C9A84C;
   --tc-gold-dark: #b98224;
   --tc-gold-soft: #e6c478;
 
