@@ -173,7 +173,7 @@ function Index() {
               <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
                   href="#early-access"
-                  className="group h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold"
+                  className="group h-[54px] px-8"
                 >
                   Get Early Access
                   <ArrowRight
@@ -655,7 +655,7 @@ function Index() {
                 Nothing staged.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-7">
-                <GoldButton href="#early-access" className="h-12 bg-gradient-to-b from-gold-soft to-gold px-7 text-[15px] font-bold">
+                <GoldButton href="#early-access" className="h-[54px] px-8">
                   Watch the walkthrough <ArrowRight size={16} strokeWidth={2} />
                 </GoldButton>
                 <span className="flex items-center gap-3 text-[13px] leading-[1.45] text-[#C8CFC9]">
@@ -738,7 +738,7 @@ function Index() {
                 aria-describedby="email-status"
                 className="h-[54px] w-full rounded-[2px] border border-transparent bg-background px-5 text-sm text-charcoal outline-none placeholder:text-[#7A817C] focus:border-gold sm:w-[420px]"
               />
-              <GoldButton type="submit" className="h-[54px] w-full bg-gradient-to-b from-gold-soft to-gold text-[15px] font-bold sm:w-[235px]">
+              <GoldButton type="submit" className="h-[54px] w-full px-8 sm:w-[235px]">
                 Get Early Access
               </GoldButton>
             </div>
