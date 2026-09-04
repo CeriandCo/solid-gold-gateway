@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import bandGold from "@/assets/band-gold.jpg";
-import brandedGold from "@/assets/gold-bar-velvet-marble-branded.png";
 import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
 import confidencePhone from "@/assets/knowledge-confidence-phone.jpg.asset.json";
