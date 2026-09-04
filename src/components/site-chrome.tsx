@@ -202,44 +202,94 @@ export function SiteHeader() {
   );
 }
 
+type SiteRoute = "/" | (typeof siteNav)[number][1];
+type FooterLink = { label: string; to?: SiteRoute; href?: string };
+
+/** Footer columns — mirrors the homepage footer, now shared by every page. */
+const footerColumns: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: "Discover More",
+    links: [
+      { label: "Buy Gold", to: "/precious-metal" },
+      { label: "Fractional", to: "/fractional-gold" },
+      { label: "Gifting", to: "/gifting" },
+      { label: "Vault", to: "/vault" },
+      { label: "Learn", to: "/learn" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About Us", to: "/about-us" },
+      { label: "Security", href: "#" },
+      { label: "Trust Center", to: "/trust-center" },
+      { label: "Help Center", href: "#" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Terms of Service", href: "#" },
+      { label: "Data Privacy Policy", href: "#" },
+      { label: "Disclosures", href: "#" },
+    ],
+  },
+];
+
+const socialIcons = [
+  { Icon: Instagram, label: "Instagram" },
+  { Icon: Linkedin, label: "LinkedIn" },
+  { Icon: Youtube, label: "YouTube" },
+];
+
+/**
+ * Shared SQOOT Pure footer — single source for every page.
+ * Styled by the `footer.site-footer` block in src/styles.css so that
+ * page-scoped stylesheets cannot alter its typography or spacing.
+ */
 export function SiteFooter() {
-  const footerLinks = ["About Us", "Security", "Help", "Contact"];
-  const socialIcons = [
-    { Icon: Instagram, label: "Instagram" },
-    { Icon: Linkedin, label: "LinkedIn" },
-    { Icon: Youtube, label: "YouTube" },
-  ];
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0B2017]">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
-        <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img src={logoImage} alt="SQOOT Pure" className="h-auto w-[150px]" />
-        </Link>
+    <footer className="site-footer">
+      <div className="site-footer__grid">
+        <div className="site-footer__brand">
+          <Link to="/" aria-label="SQOOT Pure home" className="site-footer__logo-link">
+            <img src={logoImage} alt="SQOOT Pure" className="site-footer__logo" />
+          </Link>
+          <p className="site-footer__tagline">
+            A compliance-first platform for buying, storing, and redeeming real physical gold.
+          </p>
+        </div>
 
-        <nav className="flex items-center gap-4 md:gap-6" aria-label="Footer navigation">
-          {footerLinks.map((label, index) => (
-            <span key={label} className="flex items-center gap-4 md:gap-6">
-              <a
-                href="#"
-                className="cursor-pointer font-sans text-sm font-normal text-[#EAE4D9] transition-colors hover:text-white"
-              >
-                {label}
-              </a>
-              {index < footerLinks.length - 1 && <span className="h-4 w-px bg-[#C9A24D]/40" />}
-            </span>
-          ))}
-        </nav>
+        {footerColumns.map((column) => (
+          <nav key={column.heading} aria-label={column.heading}>
+            <p className="site-footer__heading">{column.heading}</p>
+            <ul className="site-footer__list">
+              {column.links.map((link) => (
+                <li key={link.label}>
+                  {link.to ? (
+                    <Link to={link.to} className="site-footer__link">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href ?? "#"} className="site-footer__link">
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+      </div>
 
-        <div className="flex items-center gap-5">
+      <div className="site-footer__bottom">
+        <p className="site-footer__copy">© {year} SQOOT Pure. All rights reserved.</p>
+        <div className="site-footer__social">
           {socialIcons.map(({ Icon, label }) => (
-            <a
-              key={label}
-              href="#"
-              aria-label={label}
-              className="cursor-pointer text-[#C9A24D] transition-colors hover:text-[#F4EFE6]"
-            >
-              <Icon className="h-5 w-5 stroke-[1.5]" />
+            <a key={label} href="#" aria-label={label}>
+              <Icon strokeWidth={1.5} aria-hidden="true" />
             </a>
           ))}
         </div>
