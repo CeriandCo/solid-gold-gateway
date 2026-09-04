@@ -148,9 +148,9 @@ function GiftingNewPage() {
                 Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.
               </p>
               <div className="gift-hero-actions gift-hero-item">
-                <a href="#occasions" className="gift-button gift-button-gold">
+                <GoldButton href="#occasions" className="h-[54px] px-8">
                   Explore Gifting <ArrowRight />
-                </a>
+                </GoldButton>
                 <a href="#personalise" className="gift-button gift-button-outline">
                   How It Works <CirclePlay />
                 </a>
