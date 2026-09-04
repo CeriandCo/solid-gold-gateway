@@ -21,7 +21,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroGift from "@/assets/gifting-target-hero.jpg";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
 import arrivalsPhoto from "@/assets/occasion-new-arrivals.jpg";
@@ -148,9 +148,9 @@ function GiftingNewPage() {
                 Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.
               </p>
               <div className="gift-hero-actions gift-hero-item">
-                <a href="#occasions" className="gift-button gift-button-gold">
+                <GoldButton href="#occasions" className="h-[54px] px-8">
                   Explore Gifting <ArrowRight />
-                </a>
+                </GoldButton>
                 <a href="#personalise" className="gift-button gift-button-outline">
                   How It Works <CirclePlay />
                 </a>
@@ -287,9 +287,9 @@ function GiftingNewPage() {
             <p>
               Give real gold that will be cherished today and passed down through generations.
             </p>
-            <a href="#top" className="gift-button gift-button-gold">
+            <GoldButton href="#top" className="h-[54px] px-8">
               Start Gifting Gold <ArrowRight />
-            </a>
+            </GoldButton>
           </div>
         </div>
       </section>
@@ -346,7 +346,7 @@ const giftingStyles = `
 .gift-button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: clamp(42px,3.89vw,100px); padding-inline: clamp(20px,1.75vw,45px); border-radius: 3px; font-size: clamp(12px,1.05vw,27px); font-weight: 600; line-height: 1; transition: color .22s,background-color .22s,border-color .22s,transform .22s; }
 .gift-button svg { width: 16px; height: 16px; stroke-width: 1.5; transition: transform .22s; }
 .gift-button:hover { transform: translateY(-1px); }.gift-button:hover svg { transform: translateX(4px); }
-.gift-button-gold { color: var(--forest-950); background: var(--gold-500); }.gift-button-gold:hover { background: var(--gold-300); }
+
 .gift-button-outline { color: var(--cream-text); border: 1px solid var(--gold-500); background: transparent; }.gift-button-outline:hover { color: var(--forest-950); background: var(--gold-500); }
 .gift-button-dark { height: clamp(42px,3.75vw,96px); margin-top: 17px; color: var(--cream-text); background: var(--forest-900); }.gift-button-dark svg { color: var(--gold-400); }
 .gift-hero-item { opacity: 0; transform: translateY(16px); animation: giftReveal .6s cubic-bezier(.22,1,.36,1) forwards; }.gift-hero-item:nth-child(1){animation-delay:.12s}.gift-hero-item:nth-child(2){animation-delay:.2s}.gift-hero-item:nth-child(3){animation-delay:.28s}.gift-hero-item:nth-child(4){animation-delay:.36s}
