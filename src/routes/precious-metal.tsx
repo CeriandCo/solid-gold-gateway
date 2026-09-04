@@ -1262,7 +1262,6 @@ function PreciousMetalPage() {
             .pm-cta-branch { width: 220px; left: -50px; bottom: -40px; opacity: .08; }
             .pm-cta-inner { padding-inline: 0; }
             .pm-cta h2 { font-size: 28px; }
-            .pm-cta a { width: min(260px, 100%); height: 54px; font-size: 12px; }
           }
 
 
