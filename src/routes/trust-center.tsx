@@ -658,8 +658,8 @@ const trustStyles = `
   --tc-shadow-soft: 0 2px 8px rgba(21, 30, 25, 0.025), 0 16px 42px rgba(21, 30, 25, 0.075);
   --tc-shadow-hover: 0 4px 12px rgba(21, 30, 25, 0.04), 0 22px 48px rgba(21, 30, 25, 0.11);
 
-  --tc-radius-large: 16px;
-  --tc-radius-card: 12px;
+  --tc-radius-large: 8px;
+  --tc-radius-card: 8px;
   --tc-radius-small: 6px;
 
   /* Legacy tokens still referenced by current section CSS (migrated in later passes) */
