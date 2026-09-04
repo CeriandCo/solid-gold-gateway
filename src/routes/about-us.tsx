@@ -221,6 +221,7 @@ function AboutPage() {
         </GoldButton>
       </section>
 
+      <SiteFooter />
       <style>{aboutStyles}</style>
     </main>
   );
