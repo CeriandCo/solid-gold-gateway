@@ -451,7 +451,7 @@ function PreciousMetalPage() {
             --pm-cream: #F5EEE3;
             --pm-cream-warm: #F4ECDE;
             --pm-cream-light: #FAF5EC;
-            --pm-gold: #B8872D;
+            --pm-gold: #B37A0D;
             --pm-gold-medium: #C6973D;
             --pm-gold-light: #D9AC52;
             --pm-gold-muted: #A77B31;
