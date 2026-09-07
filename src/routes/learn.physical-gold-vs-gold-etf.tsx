@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GoldButton, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
+import { GoldButton, GoldRule, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/learn/physical-gold-vs-gold-etf")({
   head: () => ({
