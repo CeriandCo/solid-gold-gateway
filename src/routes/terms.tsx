@@ -52,6 +52,29 @@ function TermsPage() {
           <p className="body-copy mt-5 text-charcoal/90">
             These Terms of Use (&quot;Terms&quot;) govern your access to and use of getsqoot.com and related services (&quot;Platform&quot;) operated by Fortress Gold Inc. DBA Sqoot (&quot;Sqoot Pure,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.
           </p>
+          <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
+            <p className="eyebrow text-gold mb-4">On this page</p>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <a href="#program-description" className="text-sm text-forest transition-colors hover:text-gold">1. Program Description</a>
+              <a href="#eligibility" className="text-sm text-forest transition-colors hover:text-gold">2. Eligibility</a>
+              <a href="#account-registration-kyc" className="text-sm text-forest transition-colors hover:text-gold">3. Account Registration and KYC</a>
+              <a href="#payment-methods" className="text-sm text-forest transition-colors hover:text-gold">4. Payment Methods</a>
+              <a href="#pricing-and-fees" className="text-sm text-forest transition-colors hover:text-gold">5. Pricing and Fees</a>
+              <a href="#gold-ownership-and-storage" className="text-sm text-forest transition-colors hover:text-gold">6. Gold Ownership and Storage</a>
+              <a href="#redemption-and-delivery" className="text-sm text-forest transition-colors hover:text-gold">7. Redemption and Delivery</a>
+              <a href="#sms-and-text-messaging-terms" className="text-sm text-forest transition-colors hover:text-gold">8. SMS and Text Messaging Terms</a>
+              <a href="#prohibited-uses" className="text-sm text-forest transition-colors hover:text-gold">9. Prohibited Uses</a>
+              <a href="#intellectual-property" className="text-sm text-forest transition-colors hover:text-gold">10. Intellectual Property</a>
+              <a href="#limitation-of-liability" className="text-sm text-forest transition-colors hover:text-gold">11. Limitation of Liability</a>
+              <a href="#disclaimer-of-warranties" className="text-sm text-forest transition-colors hover:text-gold">12. Disclaimer of Warranties</a>
+              <a href="#governing-law" className="text-sm text-forest transition-colors hover:text-gold">13. Governing Law</a>
+              <a href="#changes-to-these-terms" className="text-sm text-forest transition-colors hover:text-gold">14. Changes to These Terms</a>
+              <a href="#commodity-risk-and-market-movement" className="text-sm text-forest transition-colors hover:text-gold">15. Commodity Risk and Market Movement</a>
+              <a href="#refund-policy-all-sales-final" className="text-sm text-forest transition-colors hover:text-gold">16. Refund Policy — All Sales Final</a>
+              <a href="#contact-us" className="text-sm text-forest transition-colors hover:text-gold">17. Contact Us</a>
+            </div>
+          </nav>
+
 
           <h2 id="program-description" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             1. Program Description
