@@ -216,7 +216,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | "/terms" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | "/privacy" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
@@ -244,7 +244,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     heading: "Legal",
     links: [
       { label: "Terms of Service", to: "/terms" },
-      { label: "Data Privacy Policy", href: "#" },
+      { label: "Data Privacy Policy", to: "/privacy" },
       { label: "Disclosures", href: "#" },
     ],
   },
