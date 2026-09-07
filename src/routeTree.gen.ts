@@ -20,6 +20,7 @@ import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as LearnGiftingGoldGuideRouteImport } from './routes/learn.gifting-gold-guide'
 import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
 
@@ -78,6 +79,11 @@ const LearnIndexRoute = LearnIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LearnRoute,
 } as any)
+const LearnGiftingGoldGuideRoute = LearnGiftingGoldGuideRouteImport.update({
+  id: '/gifting-gold-guide',
+  path: '/gifting-gold-guide',
+  getParentRoute: () => LearnRoute,
+} as any)
 const LearnHowToBuyGoldSafelyRoute = LearnHowToBuyGoldSafelyRouteImport.update({
   id: '/how-to-buy-gold-safely',
   path: '/how-to-buy-gold-safely',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn': typeof LearnIndexRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
@@ -274,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnIndexRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/learn/gifting-gold-guide': {
+      id: '/learn/gifting-gold-guide'
+      path: '/gifting-gold-guide'
+      fullPath: '/learn/gifting-gold-guide'
+      preLoaderRoute: typeof LearnGiftingGoldGuideRouteImport
+      parentRoute: typeof LearnRoute
+    }
     '/learn/how-to-buy-gold-safely': {
       id: '/learn/how-to-buy-gold-safely'
       path: '/how-to-buy-gold-safely'
@@ -292,12 +311,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface LearnRouteChildren {
+  LearnGiftingGoldGuideRoute: typeof LearnGiftingGoldGuideRoute
   LearnHowToBuyGoldSafelyRoute: typeof LearnHowToBuyGoldSafelyRoute
   LearnPhysicalGoldVsGoldEtfRoute: typeof LearnPhysicalGoldVsGoldEtfRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
 const LearnRouteChildren: LearnRouteChildren = {
+  LearnGiftingGoldGuideRoute: LearnGiftingGoldGuideRoute,
   LearnHowToBuyGoldSafelyRoute: LearnHowToBuyGoldSafelyRoute,
   LearnPhysicalGoldVsGoldEtfRoute: LearnPhysicalGoldVsGoldEtfRoute,
   LearnIndexRoute: LearnIndexRoute,
