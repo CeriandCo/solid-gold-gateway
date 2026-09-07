@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
   ArrowDown,
@@ -59,9 +59,9 @@ const benefits = [
 ] as const;
 
 const articles = [
-  { title: "HOW TO OWN GOLD ONLINE", copy: "Gold can be digitally bought, stored and sold.", image: phoneHand.url, alt: "A hand holding a phone displaying a gold ownership interface" },
-  { title: "CONFIDENCE IN GOLD", copy: "Principles and guidance for trust and safety when investing in gold.", image: confidenceGoldBar.url, alt: "A SQOOT Pure fine gold bar on a dark surface" },
-  { title: "GOLD OVER THE LONG AND SHORT TERM", copy: "Easily bought today, investing in gold could help you in the future.", image: coupleBench.url, alt: "A couple sitting together on a park bench" },
+  { title: "PHYSICAL GOLD VS GOLD ETF", copy: "Understand what you actually own when you buy physical gold versus a gold ETF.", image: phoneHand.url, alt: "A hand holding a phone displaying a gold ownership interface", href: "/learn/physical-gold-vs-gold-etf" },
+  { title: "HOW TO BUY GOLD SAFELY", copy: "What to check before buying physical gold online, from provenance to storage.", image: confidenceGoldBar.url, alt: "A SQOOT Pure fine gold bar on a dark surface", href: "/learn/how-to-buy-gold-safely" },
+  { title: "GIFTING GOLD", copy: "A guide to giving gold for weddings, festivals, and life's milestones.", image: coupleBench.url, alt: "A couple sitting together on a park bench", href: "/learn/gifting-gold-guide" },
 ] as const;
 
 const returnPoints = [
@@ -151,7 +151,7 @@ function KnowledgeCenterPage() {
           {articles.map((article, index) => (
             <article className="kc-article-card" data-kc-reveal key={article.title} style={{ "--kc-index": index } as CSSProperties}>
               <div className="kc-article-image"><img src={article.image} alt={article.alt} width={1408} height={912} loading="lazy" /></div>
-              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><a href="#resources">Learn More <ArrowRight aria-hidden="true" /></a></div>
+              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
             </article>
           ))}
         </div>
