@@ -19,6 +19,7 @@ import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
+import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,11 @@ const VaultRoute = VaultRouteImport.update({
   path: '/vault',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LearnRoute,
+} as any)
 const LearnPhysicalGoldVsGoldEtfRoute =
   LearnPhysicalGoldVsGoldEtfRouteImport.update({
     id: '/physical-gold-vs-gold-etf',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -98,11 +105,11 @@ export interface FileRoutesByTo {
   '/gifting': typeof GiftingRoute
   '/gifting-old-ver': typeof GiftingOldVerRoute
   '/home-old-ver': typeof HomeOldVerRoute
-  '/learn': typeof LearnRouteWithChildren
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/learn': typeof LearnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -117,6 +124,7 @@ export interface FileRoutesById {
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,6 +140,7 @@ export interface FileRouteTypes {
     | '/trust-center'
     | '/vault'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/learn/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -140,11 +149,11 @@ export interface FileRouteTypes {
     | '/gifting'
     | '/gifting-old-ver'
     | '/home-old-ver'
-    | '/learn'
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/learn'
   id:
     | '__root__'
     | '/'
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/trust-center'
     | '/vault'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/learn/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -245,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VaultRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/': {
+      id: '/learn/'
+      path: '/'
+      fullPath: '/learn/'
+      preLoaderRoute: typeof LearnIndexRouteImport
+      parentRoute: typeof LearnRoute
+    }
     '/learn/physical-gold-vs-gold-etf': {
       id: '/learn/physical-gold-vs-gold-etf'
       path: '/physical-gold-vs-gold-etf'
@@ -257,10 +274,12 @@ declare module '@tanstack/react-router' {
 
 interface LearnRouteChildren {
   LearnPhysicalGoldVsGoldEtfRoute: typeof LearnPhysicalGoldVsGoldEtfRoute
+  LearnIndexRoute: typeof LearnIndexRoute
 }
 
 const LearnRouteChildren: LearnRouteChildren = {
   LearnPhysicalGoldVsGoldEtfRoute: LearnPhysicalGoldVsGoldEtfRoute,
+  LearnIndexRoute: LearnIndexRoute,
 }
 
 const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
