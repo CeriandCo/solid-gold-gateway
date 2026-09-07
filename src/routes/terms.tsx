@@ -53,56 +53,56 @@ function TermsPage() {
             These Terms of Use (&quot;Terms&quot;) govern your access to and use of getsqoot.com and related services (&quot;Platform&quot;) operated by Fortress Gold Inc. DBA Sqoot (&quot;Sqoot Pure,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="program-description" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             1. Program Description
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Sqoot Pure is a digital platform for purchasing, storing, gifting, and redeeming physical gold. Gold is classified as a commodity under US law. Sqoot Pure is not a securities broker, investment advisor, bank, or money services business. We provide infrastructure for direct physical gold ownership.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="eligibility" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             2. Eligibility
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             You must be at least 18 years old and a US resident to use the Platform. By creating an account, you represent that you meet these requirements and that all information you provide is accurate and complete.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="account-registration-kyc" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             3. Account Registration and KYC
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             To use the Platform, you must create an account and complete identity verification (Know Your Customer / KYC). As part of our BSA/AML compliance program, we are required to verify all customers. Failure to complete KYC will prevent access to buying, selling, and gifting features.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="payment-methods" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             4. Payment Methods
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             SQOOT Pure accepts the following payment methods: (1) ACH bank transfer up to $100,000 per transaction with same-day settlement; (2) RTP instant bank payment; and (3) wire transfer. No cash, no cards, and no cryptocurrency accepted. Payment processing is subject to identity verification and may be delayed pending AML review. SQOOT Pure reserves the right to add, modify, or remove supported payment methods with notice to users.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="pricing-and-fees" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             5. Pricing and Fees
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Gold prices are based on live spot prices sourced from global exchanges (COMEX, LME, LBMA, DGCX, Perth Mint). A transparent platform fee is applied per transaction. All pricing is displayed before you confirm a purchase. Prices are indicative and may change between the time a quote is viewed and a transaction is confirmed.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="gold-ownership-and-storage" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             6. Gold Ownership and Storage
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             All gold purchased on the Platform is physically allocated and stored in insured, audited vault facilities through institutional-grade custodians. You retain full ownership of your gold. Vault storage fees, if applicable, will be disclosed at the time of purchase.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="redemption-and-delivery" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             7. Redemption and Delivery
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             You may redeem your SQOOT Pure gold at any time. Redemption is the process for exiting a gold position or requesting physical delivery. Depending on the redemption method available in your account, you may request an ACH cash payout based on the current live spot price, less disclosed platform and processing fees, or request physical delivery through an insured carrier. Redemption requests are subject to processing times, identity verification, available liquidity, shipping requirements, and applicable fees.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="sms-and-text-messaging-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             8. SMS and Text Messaging Terms
           </h2>
           <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
@@ -124,56 +124,56 @@ function TermsPage() {
             Consent to receive text messages is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. We do not share your phone number with third parties for their marketing purposes.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="prohibited-uses" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             9. Prohibited Uses
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             You agree not to use the Platform for any unlawful purpose, including money laundering, fraud, or circumventing regulatory requirements. We reserve the right to suspend or terminate any account that violates these Terms or applicable law.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="intellectual-property" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             10. Intellectual Property
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             All content on getsqoot.com, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA Sqoot and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="limitation-of-liability" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             11. Limitation of Liability
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             To the maximum extent permitted by law, Sqoot Pure shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="disclaimer-of-warranties" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             12. Disclaimer of Warranties
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             The Platform is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or implied. We do not guarantee that the Platform will be uninterrupted, error-free, or secure at all times.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="governing-law" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             13. Governing Law
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             These Terms are governed by the laws of the State of Wyoming. Any disputes arising from these Terms shall be resolved in the state or federal courts located in Wyoming.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="changes-to-these-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             14. Changes to These Terms
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             We may update these Terms from time to time. Changes will be posted on this page with an updated revision date. Continued use of the Platform after changes constitutes acceptance of the revised Terms.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="commodity-risk-and-market-movement" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             15. Commodity Risk and Market Movement
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Gold prices fluctuate continuously. SQOOT Pure does not guarantee that your gold will increase in value or that a redemption will return the same amount you paid. You are responsible for reviewing the live price, fees, and transaction details before confirming any purchase or redemption.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="refund-policy-all-sales-final" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             16. Refund Policy — All Sales Final
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -207,7 +207,7 @@ function TermsPage() {
             <strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today&apos;s market price, less disclosed fees. That is your exit path.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             17. Contact Us
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
