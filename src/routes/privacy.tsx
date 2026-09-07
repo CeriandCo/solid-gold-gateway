@@ -56,6 +56,25 @@ function PrivacyPage() {
             Fortress Gold Inc. DBA Sqoot ("Sqoot Pure," "we," "us," or "our") operates the website getsqoot.com and related services. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you visit our website or use our platform.
           </p>
 
+          <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
+            <p className="eyebrow text-gold mb-4">On this page</p>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <a href="#information-we-collect" className="text-sm text-forest transition-colors hover:text-gold">1. Information We Collect</a>
+              <a href="#how-we-use-your-information" className="text-sm text-forest transition-colors hover:text-gold">2. How We Use Your Information</a>
+              <a href="#information-sharing" className="text-sm text-forest transition-colors hover:text-gold">3. Information Sharing</a>
+              <a href="#data-security" className="text-sm text-forest transition-colors hover:text-gold">4. Data Security</a>
+              <a href="#data-retention" className="text-sm text-forest transition-colors hover:text-gold">5. Data Retention</a>
+              <a href="#your-rights" className="text-sm text-forest transition-colors hover:text-gold">6. Your Rights</a>
+              <a href="#cookies" className="text-sm text-forest transition-colors hover:text-gold">7. Cookies</a>
+              <a href="#third-party-links" className="text-sm text-forest transition-colors hover:text-gold">8. Third-Party Links</a>
+              <a href="#childrens-privacy" className="text-sm text-forest transition-colors hover:text-gold">9. Children's Privacy</a>
+              <a href="#changes-to-this-policy" className="text-sm text-forest transition-colors hover:text-gold">10. Changes to This Policy</a>
+              <a href="#sms-and-text-messaging" className="text-sm text-forest transition-colors hover:text-gold">11. SMS and Text Messaging</a>
+              <a href="#stripe-payment-integration" className="text-sm text-forest transition-colors hover:text-gold">12. Stripe Payment Integration</a>
+              <a href="#contact-us" className="text-sm text-forest transition-colors hover:text-gold">13. Contact Us</a>
+            </div>
+          </nav>
+
           <h2 id="information-we-collect" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             1. Information We Collect
           </h2>
