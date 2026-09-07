@@ -56,7 +56,7 @@ function PrivacyPage() {
             Fortress Gold Inc. DBA Sqoot ("Sqoot Pure," "we," "us," or "our") operates the website getsqoot.com and related services. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you visit our website or use our platform.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="information-we-collect" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             1. Information We Collect
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -78,7 +78,7 @@ function PrivacyPage() {
             <strong>Communication Data:</strong> Emails, support inquiries, and newsletter subscriptions.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="how-we-use-your-information" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             2. How We Use Your Information
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -93,7 +93,7 @@ function PrivacyPage() {
             <li>comply with legal obligations and regulatory requirements.</li>
           </ul>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="information-sharing" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             3. Information Sharing
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -109,21 +109,21 @@ function PrivacyPage() {
             <strong>Business Partners</strong> — vault custodians and gold supply partners who need transaction details to fulfill your orders.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="data-security" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             4. Data Security
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             We implement security controls appropriate to our current stage and risk profile to protect your information, including AES-256 encryption for data at rest, TLS encryption for data in transit, and field-level encryption for sensitive personal data. Access to personal information is restricted to authorized personnel only.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="data-retention" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             5. Data Retention
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Payment, compliance, and KYC records are retained for the legally required period under applicable financial regulations. Stripe-processed payment data is retained only as needed for payment processing, fraud and risk review, reconciliation, and legal obligations. Non-required data is deleted within 30 days of a deletion request. We may retain certain information after account closure as required by law or for legitimate business purposes such as resolving disputes and enforcing agreements.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="your-rights" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             6. Your Rights
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -133,35 +133,35 @@ function PrivacyPage() {
             To exercise these rights, contact us at compliance@sqoot.us.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="cookies" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             7. Cookies
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             We use cookies and similar tracking technologies to analyze website traffic and improve your experience. You can control cookie preferences through your browser settings. We use Cloudflare analytics for performance monitoring.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="third-party-links" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             8. Third-Party Links
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites and encourage you to review their privacy policies.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="childrens-privacy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             9. Children's Privacy
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from minors.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="changes-to-this-policy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             10. Changes to This Policy
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of our services after changes constitutes acceptance of the revised policy.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="sms-and-text-messaging" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             11. SMS and Text Messaging
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
@@ -174,14 +174,14 @@ function PrivacyPage() {
             By consenting to receive text messages, you confirm that you are the owner or authorized user of the phone number provided. Your consent is not a condition of purchase.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="stripe-payment-integration" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             12. Stripe Payment Integration
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
             We use regulated payment processors to handle all transactions — including ACH bank transfer, RTP, and wire transfer. When you initiate a payment, your bank account details are transmitted directly to our payment processor and are never stored by SQOOT Pure. We receive only the transaction confirmation and limited account details necessary to fulfill your order.
           </p>
 
-          <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
+          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             13. Contact Us
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
