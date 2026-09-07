@@ -216,7 +216,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
@@ -243,7 +243,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Legal",
     links: [
-      { label: "Terms of Service", href: "#" },
+      { label: "Terms of Service", to: "/terms" },
       { label: "Data Privacy Policy", href: "#" },
       { label: "Disclosures", href: "#" },
     ],
