@@ -235,7 +235,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     heading: "Company",
     links: [
       { label: "About Us", to: "/about-us" },
-      { label: "Security", href: "#" },
+      { label: "Security", to: "/trust-center" },
       { label: "Trust Center", to: "/trust-center" },
       { label: "Help Center", href: "#" },
     ],
