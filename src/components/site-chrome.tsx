@@ -216,7 +216,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
