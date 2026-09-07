@@ -245,7 +245,6 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Terms of Service", to: "/terms" },
       { label: "Data Privacy Policy", to: "/privacy" },
-      { label: "Disclosures", href: "#" },
     ],
   },
 ];
