@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GoldButton, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
+import { GoldButton, GoldRule, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/learn/gifting-gold-guide")({
   head: () => ({
@@ -68,6 +68,7 @@ function ArticlePage() {
           </p>
           <p className="body-copy leading-relaxed mt-6 text-charcoal/90">Here is what to know.</p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Why do people give gold?
           </h2>
@@ -85,6 +86,7 @@ function ArticlePage() {
           </p>
           <p className="body-copy leading-relaxed mt-6 text-charcoal/90">That distinction matters.</p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Weddings: a gift for the beginning of something
           </h2>
@@ -107,6 +109,7 @@ function ArticlePage() {
             The gift doesn&apos;t have to be enormous to be meaningful. The significance can come from the occasion and the intention behind it, rather than simply the dollar amount.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Festivals and cultural celebrations
           </h2>
@@ -132,6 +135,7 @@ function ArticlePage() {
             A grandmother&apos;s gold gift may look different today than it did 40 years ago, but the sentiment behind it can remain remarkably similar.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Births and birthdays: something they can grow up with
           </h2>
@@ -158,6 +162,7 @@ function ArticlePage() {
             Together, they tell a story.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Graduations and coming of age
           </h2>
@@ -180,6 +185,7 @@ function ArticlePage() {
             That can make the gift feel quite different from cash in an envelope.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Anniversaries and major milestones
           </h2>
@@ -199,6 +205,7 @@ function ArticlePage() {
             Over time, its story can become as important as the gold itself.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Jewellery or bullion: what&apos;s the difference?
           </h2>
@@ -227,6 +234,7 @@ function ArticlePage() {
             If your intention is to give gold primarily as a tangible asset they can own, bullion may be the more direct option.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             Do you need to buy a whole gold bar?
           </h2>
@@ -252,6 +260,7 @@ function ArticlePage() {
             The principle remains simple: the size of the gift doesn&apos;t determine its meaning.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             What should you check before gifting gold online?
           </h2>
@@ -280,6 +289,7 @@ function ArticlePage() {
             If the ownership structure is difficult to explain in plain English, that is worth paying attention to.
           </p>
 
+          <GoldRule />
           <h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             A gift with a story
           </h2>
@@ -319,6 +329,7 @@ function ArticlePage() {
             And so is the story.
           </p>
 
+          <GoldRule />
           <h3 className="font-display mt-12 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
             A more accessible way to give gold
           </h3>
