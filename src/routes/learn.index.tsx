@@ -151,7 +151,7 @@ function KnowledgeCenterPage() {
           {articles.map((article, index) => (
             <article className="kc-article-card" data-kc-reveal key={article.title} style={{ "--kc-index": index } as CSSProperties}>
               <div className="kc-article-image"><img src={article.image} alt={article.alt} width={1408} height={912} loading="lazy" /></div>
-              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><a href="#resources">Learn More <ArrowRight aria-hidden="true" /></a></div>
+              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
             </article>
           ))}
         </div>
