@@ -20,6 +20,7 @@ import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const LearnIndexRoute = LearnIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LearnRoute,
 } as any)
+const LearnHowToBuyGoldSafelyRoute = LearnHowToBuyGoldSafelyRouteImport.update({
+  id: '/how-to-buy-gold-safely',
+  path: '/how-to-buy-gold-safely',
+  getParentRoute: () => LearnRoute,
+} as any)
 const LearnPhysicalGoldVsGoldEtfRoute =
   LearnPhysicalGoldVsGoldEtfRouteImport.update({
     id: '/physical-gold-vs-gold-etf',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn': typeof LearnIndexRoute
 }
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/precious-metal': typeof PreciousMetalRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
   fileRoutesByTo: FileRoutesByTo
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn'
   id:
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/precious-metal'
     | '/trust-center'
     | '/vault'
+    | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
   fileRoutesById: FileRoutesById
@@ -262,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnIndexRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/learn/how-to-buy-gold-safely': {
+      id: '/learn/how-to-buy-gold-safely'
+      path: '/how-to-buy-gold-safely'
+      fullPath: '/learn/how-to-buy-gold-safely'
+      preLoaderRoute: typeof LearnHowToBuyGoldSafelyRouteImport
+      parentRoute: typeof LearnRoute
+    }
     '/learn/physical-gold-vs-gold-etf': {
       id: '/learn/physical-gold-vs-gold-etf'
       path: '/physical-gold-vs-gold-etf'
@@ -273,11 +292,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface LearnRouteChildren {
+  LearnHowToBuyGoldSafelyRoute: typeof LearnHowToBuyGoldSafelyRoute
   LearnPhysicalGoldVsGoldEtfRoute: typeof LearnPhysicalGoldVsGoldEtfRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
 const LearnRouteChildren: LearnRouteChildren = {
+  LearnHowToBuyGoldSafelyRoute: LearnHowToBuyGoldSafelyRoute,
   LearnPhysicalGoldVsGoldEtfRoute: LearnPhysicalGoldVsGoldEtfRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
