@@ -120,39 +120,93 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-background py-12 sm:py-14" aria-label="Trusted partners">
-        <div className="mx-auto max-w-[1060px] px-5 sm:px-7">
-          <p className="eyebrow text-center text-gold">Backed by trust. Built for you.</p>
-          <div className="mt-8 grid grid-cols-1 items-center gap-y-7 min-[430px]:grid-cols-2 sm:gap-y-9 lg:mt-9 lg:grid-cols-4 lg:gap-y-0">
-            <div className="flex items-center justify-center px-4">
-              <img
-                src={dillonGageLogoClean.url}
-                alt="Dillon Gage"
-                className="h-11 w-auto max-w-[186px] object-contain sm:h-12"
-              />
+      <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
+        <div className="mx-auto max-w-[1160px] px-5 sm:px-7">
+          <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
+          <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
+            {/* JBT — SQOOT Pure industry membership */}
+            <a
+              href="https://www.jewelersboard.com/were-legit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center px-4 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            >
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={jbtMemberBadge.url}
+                  alt="Jewelers Board of Trade — Retail Member"
+                  className="h-[68px] w-auto object-contain mix-blend-multiply"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                JBT Member
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70 transition-colors group-hover:text-gold">
+                Jewelers Board of Trade
+              </span>
+            </a>
+            {/* NCBA — SQOOT Pure industry membership */}
+            <a
+              href="https://www.ncbassoc.org/membership"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col items-center px-4 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']"
+            >
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={ncbaMemberBadge.url}
+                  alt="National Coin &amp; Bullion Association — Member"
+                  className="h-[72px] w-auto object-contain"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                NCBA Member
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70 transition-colors group-hover:text-gold">
+                National Coin &amp; Bullion Association
+              </span>
+            </a>
+            {/* IDS — custody service provider */}
+            <div className="relative flex flex-col items-center px-4 text-center lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={idsLogoClean.url}
+                  alt="International Depository Services"
+                  className="h-9 w-auto max-w-[190px] object-contain"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                Securely vaulted with IDS
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70">
+                Institutional precious metals storage
+              </span>
             </div>
-            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <img
-                src={idsLogoClean.url}
-                alt="International Depository Services"
-                className="h-8 w-auto max-w-[190px] object-contain sm:h-9"
-              />
-            </div>
-            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <img
-                src={lloydsLogoClean.url}
-                alt="Lloyd's"
-                className="h-10 w-auto max-w-[180px] object-contain sm:h-11"
-              />
-            </div>
-            <div className="flex items-center justify-center gap-3 relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <USFlag className="h-7 w-10 shrink-0" />
-              <div className="min-w-0 leading-none">
-                <b className="block whitespace-nowrap text-[0.75rem] font-bold tracking-[0.02em] text-charcoal">US-ONLY</b>
-                <small className="mt-1.5 block text-[0.62rem] leading-[1.4] text-charcoal/80">
-                  We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.
-                </small>
-              </div>
+            {/* LBMA — bullion sourcing standard (typographic treatment, no badge) */}
+            <div className="relative flex flex-col items-center px-4 text-center lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <span className="flex h-[72px] items-center justify-center">
+                <span className="font-display text-[1.05rem] leading-[1.2] tracking-[0.08em] text-forest">
+                  LBMA
+                  <span className="mx-2 inline-block h-[26px] w-px translate-y-[6px] bg-gold/70" aria-hidden="true" />
+                  <span className="text-[0.8rem] tracking-[0.12em] text-forest/80">
+                    GOOD DELIVERY
+                  </span>
+                </span>
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                LBMA Good Delivery sourced
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70">
+                Sourced through recognised refiners
+              </span>
+              <a
+                href="https://www.lbma.org.uk/good-delivery"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1.5 text-[0.66rem] font-medium text-gold underline-offset-4 transition-colors hover:text-forest hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              >
+                Learn about the standard →
+              </a>
             </div>
           </div>
         </div>
