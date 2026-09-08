@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Truck,
   PieChart,
@@ -77,30 +77,66 @@ const assurances = [
   { icon: FileText, title: "Third-Party Audited", copy: "Independently verified holdings." },
 ];
 
-const faqs = [
+const faqs: { q: string; a: ReactNode }[] = [
   {
-    q: "Is the gold real physical gold?",
-    a: "Yes. All gold purchased through SQOOT Pure is real, allocated physical gold, stored in insured U.S. vaults or shipped to you. This is not an ETF, a token, or paper exposure.",
+    q: "Is Sqoot available now?",
+    a: "Not yet. Sqoot is currently in pre-launch mode. You can join the waitlist, but accounts, payments, gold purchases, and other transactions are not available yet.",
   },
   {
-    q: 'What does "allocated" gold mean?',
-    a: "Allocated gold means the metal is specifically assigned to you and held in your name. You own the physical bullion directly rather than a share of a pooled holding.",
+    q: "Is the gold real?",
+    a: "Yes. Sqoot is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
   },
   {
-    q: "Can I request delivery of my gold?",
-    a: "Yes. Vaulted gold can be redeemed and shipped on demand. SQOOT Pure combines the convenience of secure vault storage with the finality of physical ownership.",
+    q: "Where does the gold come from?",
+    a: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually.",
   },
   {
-    q: "Where is the gold stored?",
-    a: "All gold is stored in fully insured, institutional-grade vaults located within the United States and protected through third-party audited custody infrastructure.",
+    q: "What happens when I join the waitlist?",
+    a: "We save the contact details you provide so we can send relevant product updates, educational content, surveys, and launch information. Joining the waitlist does not create a transactional account and does not mean you have purchased gold.",
   },
   {
-    q: "How is pricing calculated?",
-    a: "SQOOT Pure uses transparent live spot pricing with a simple, flat fee structure. No hidden dealer markups and no complicated pricing models.",
+    q: "Do I need to pay or provide bank details to join?",
+    a: "No. Joining the waitlist is free. We will not ask you to fund an account or provide bank details while Sqoot remains in waitlist mode.",
   },
   {
-    q: "How small can a fractional purchase be?",
-    a: "Fractional purchases start at ½ oz at live spot pricing, and you can add to your holding in the increments that suit you.",
+    q: "Do I need to complete identity verification now?",
+    a: "No. Identity verification is not required just to join the waitlist. Eligible customers will be asked to complete the required checks when account access and transactions become available.",
+  },
+  {
+    q: "Does joining the waitlist guarantee access at launch?",
+    a: "No. Waitlist members will receive launch updates, but access may depend on eligibility, identity verification, location, and product availability.",
+  },
+  {
+    q: "When will Sqoot launch?",
+    a: "We are working toward launch, but we will not promise a date before the product and its safeguards are ready. Waitlist members will receive an update when access begins.",
+  },
+  {
+    q: "How will Sqoot protect my information?",
+    a: (
+      <>
+        We handle waitlist information in accordance with our{" "}
+        <Link to="/privacy" className="underline hover:text-forest">
+          Privacy Policy
+        </Link>
+        , which covers the categories of data, recipients, retention, choices, and contact details.
+      </>
+    ),
+  },
+  {
+    q: "Can I leave the waitlist?",
+    a: (
+      <>
+        Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@getsqoot.com or see our{" "}
+        <Link to="/privacy" className="underline hover:text-forest">
+          Privacy Policy
+        </Link>
+        {" "}for contact details.
+      </>
+    ),
+  },
+  {
+    q: "Where can I ask another question?",
+    a: "Contact support@getsqoot.com. Sqoot will never ask for a password, one-time code, or full bank credentials by email.",
   },
 ];
 
@@ -288,7 +324,7 @@ function Index() {
       </section> */}
 
       {/* FAQ */}
-      {/* <section className="bg-forest py-24">
+      <section className="bg-forest py-24">
         <div className="mx-auto max-w-[1000px] px-6">
           <div className="text-center">
             <p className="eyebrow text-gold">FAQs</p>
@@ -320,13 +356,13 @@ function Index() {
                       <Plus strokeWidth={1} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     )}
                   </button>
-                  {isOpen && <p className="mt-4 text-xs leading-relaxed text-forest-deep/80">{f.a}</p>}
+                  {isOpen && <div className="mt-4 text-xs leading-relaxed text-forest-deep/80">{f.a}</div>}
                 </div>
               );
             })}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Closing */}
       {/* <section className="bg-cream py-24">
