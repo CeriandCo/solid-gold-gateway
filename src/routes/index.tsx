@@ -210,7 +210,7 @@ function Index() {
               key={title}
               className="flex items-start gap-4 border-b border-warm-white/10 px-2 py-8 last:border-b-0 sm:px-7 sm:[&:nth-child(-n+2)]:border-b lg:border-b-0 lg:border-l lg:first:border-l-0 lg:py-9"
             >
-              <Icon strokeWidth={1} className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
+              <Icon strokeWidth={1.5} className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
               <div>
                 <p className="text-[0.85rem] text-gold">{title}</p>
                 <p className="mt-1.5 max-w-[15rem] text-[0.72rem] leading-relaxed text-warm-white/55">{copy}</p>
@@ -351,9 +351,9 @@ function Index() {
                       {f.q}
                     </span>
                     {isOpen ? (
-                      <Minus strokeWidth={1} className="mt-0.5 h-4 w-4 shrink-0 text-forest-deep" />
+                      <Minus strokeWidth={1.25} className="mt-0.5 h-4 w-4 shrink-0 text-forest-deep" />
                     ) : (
-                      <Plus strokeWidth={1} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                      <Plus strokeWidth={1.25} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     )}
                   </button>
                   {isOpen && <div className="mt-6 text-sm leading-relaxed text-forest-deep">{f.a}</div>}
