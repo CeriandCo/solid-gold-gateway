@@ -467,7 +467,7 @@ The image spans edge-to-edge; the caption and CTA below it are constrained to `m
     | About Us "Trust close" emblem (`.about-trust-emblem img`) | `0.16` | `multiply` | Behind the shield line icon. |
     | About Us story section etch (`.about-story-etch`) | `0.07` | `multiply` | Bottom-left decorative mark. |
     | Fractional Gold philosophy section | `0.12` | — | Right-side watermark; no `mix-blend-mode` class applied. |
-    | Trust Center | `0.14` | `screen` | Hero and safeguard section backgrounds. |
+    | Trust Center (`.tc-verify-watermark`) | `0.055` (tapers to `0.035`–`0.045` on smaller viewports) | `multiply` | Large background watermark behind the audit-dashboard verification column, deliberately kept faint and responsive so it never competes with the dense audit content. |
 
     - Always `aria-hidden="true"` with an empty `alt` (purely decorative).
 
@@ -508,8 +508,10 @@ This collapses the old `1.3` / `1.35` / `1.4` cluster into **Standard (1.5)**, a
 | Tier | Opacity | Blend mode | Purpose | Applies to |
 |------|---------|------------|---------|------------|
 | **Ambient** | `0.05` | none | Barely-perceptible background presence; should not compete with foreground content | Vault hero watermark |
-| **Structural** | `0.12` | `screen` | Visible decorative motif that reinforces brand on a dark or mid-tone section without becoming a focal point | About Us hero, About Us compliance band, Fractional Gold philosophy section, Trust Center |
+| **Structural** | `0.12` | `screen` | Visible decorative motif that reinforces brand on a dark or mid-tone section without becoming a focal point | About Us hero, About Us compliance band, Fractional Gold philosophy section |
 | **Emblem** | `0.18` | `multiply` | A focal decorative mark set behind a specific icon/graphic, meant to be noticed | About Us "Trust close" emblem, About Us story-section etch |
+
+> **Note:** Trust Center's mandala watermark (`.tc-verify-watermark`) is a special case, not part of the three tiers above — it is already correctly tuned as an extra-faint, responsive watermark (`0.055` opacity on desktop, tapering to `0.035`–`0.045` on smaller viewports, `multiply` blend) sitting behind dense audit-dashboard content. It is left unchanged.
 
 ### 5.3 Page-scoped color palettes — Proposed (not yet applied)
 
