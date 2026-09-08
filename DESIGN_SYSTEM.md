@@ -52,7 +52,7 @@ The site loads three font families from Google Fonts in `src/routes/__root.tsx`,
 | **DM Sans** | Scoped override on `.fractional-legacy` | Legacy fractional-gold page body only; do not use on new pages. |
 
 #### Typeface weights loaded
-- **Cormorant Garamond**: 400, 500, 600, 700 (roman and italic).
+- **Cormorant Garamond**: roman 400, 500, 600, 700; italic 400, 500, 600 only (no italic 700 — bold italic falls back to synthetic/faux italic).
 - **Inter**: 400, 500, 600, 700.
 - **DM Sans**: 400, 500, 700 (legacy only).
 
@@ -67,6 +67,8 @@ The site loads three font families from Google Fonts in `src/routes/__root.tsx`,
 | **H2 / Early-access** | `early-title` utility | `2rem` (32px) | — | `2.75rem` (44px) | Waitlist CTA headings. |
 | **H3 / Card** | `card-title` utility | `1.75rem` (28px) | — | — | Cormorant Garamond, weight 500. |
 | **Fees/FAQ title** | `fees-faq-title` utility | `1.5rem` (24px) | — | `1.75rem` (28px) | Uppercase, weight 600. |
+
+> **Article/legal page headings (one-off Tailwind classes):** Several newer route files (`learn.physical-gold-vs-gold-etf.tsx`, `learn.how-to-buy-gold-safely.tsx`, `learn.gifting-gold-guide.tsx`, `terms.tsx`, `privacy.tsx`) do not use the named utilities above. Instead they set H2 directly as `text-2xl sm:text-3xl font-display font-medium` (~24px → 30px) and H3 as `text-xl sm:text-2xl font-display font-medium` (~20px → 24px), both in `text-forest-deep`.
 
 Base heading styles in `@layer base`:
 - `font-family: var(--font-display)`
