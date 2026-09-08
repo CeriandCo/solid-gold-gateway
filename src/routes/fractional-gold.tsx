@@ -16,12 +16,9 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
-import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
-import idsLogo from "@/assets/ids-logo.png.asset.json";
-import lloydsLogo from "@/assets/lloyds-logo.png.asset.json";
-import dillonGageLogoClean from "@/assets/dillon-gage-logo-clean.png.asset.json";
+import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
+import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
 import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
-import lloydsLogoClean from "@/assets/lloyds-logo-clean.png.asset.json";
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -82,21 +79,6 @@ function OfficialMandala({ className }: { className?: string }) {
   return <img src={sqootPureMandala.url} alt="" aria-hidden="true" className={cn("object-contain", className)} />;
 }
 
-function USFlag({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 36 24" aria-hidden="true" className={className}>
-      <rect width="36" height="24" rx="0.75" className="fill-background" />
-      <path d="M0 0h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0z" className="fill-error" />
-      <path d="M0 0h16v13H0z" className="fill-forest" />
-      <g className="fill-background">
-        <circle cx="2.5" cy="2.25" r="0.55" /><circle cx="6" cy="2.25" r="0.55" /><circle cx="9.5" cy="2.25" r="0.55" /><circle cx="13" cy="2.25" r="0.55" />
-        <circle cx="4.25" cy="4.65" r="0.55" /><circle cx="7.75" cy="4.65" r="0.55" /><circle cx="11.25" cy="4.65" r="0.55" /><circle cx="14.25" cy="4.65" r="0.55" />
-        <circle cx="2.5" cy="7.05" r="0.55" /><circle cx="6" cy="7.05" r="0.55" /><circle cx="9.5" cy="7.05" r="0.55" /><circle cx="13" cy="7.05" r="0.55" />
-        <circle cx="4.25" cy="9.45" r="0.55" /><circle cx="7.75" cy="9.45" r="0.55" /><circle cx="11.25" cy="9.45" r="0.55" /><circle cx="14.25" cy="9.45" r="0.55" />
-      </g>
-    </svg>
-  );
-}
 
 function Index() {
   const [step, setStep] = useState(0);
