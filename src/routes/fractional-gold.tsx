@@ -14,7 +14,6 @@ import {
 import { cn } from "@/lib/utils";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
-import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
 import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
