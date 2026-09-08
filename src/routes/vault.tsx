@@ -140,7 +140,7 @@ function Index() {
               src={mandalaImage}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute right-[-84px] top-1/2 z-0 hidden h-[280px] w-[280px] -translate-y-1/2 object-contain opacity-[0.04] lg:block"
+              className="pointer-events-none absolute right-[-84px] top-1/2 z-0 hidden h-[280px] w-[280px] -translate-y-1/2 object-contain opacity-[0.05] lg:block"
             />
             <div
               className="relative z-10 w-full max-w-[680px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-14 lg:py-[clamp(56px,5vw,72px)] 2xl:px-16"
