@@ -341,3 +341,30 @@ The site uses two primary card/panel surfaces:
    - Often paired with `border-warm-white/25` or `border-gold` borders depending on state.
 
 **Radius rule:** buttons use `2px`; cards, panels, and larger containers use `8px` (`rounded-lg` / `--radius-lg`).
+
+---
+
+## 3. Responsive Breakpoints
+
+This section consolidates every Tailwind responsive prefix actually used across the SQOOT Pure site. The values below are the **concrete pixel breakpoints** in production code (`src/routes/*.tsx`, `src/components/site-chrome.tsx`, and `src/styles.css`).
+
+Tailwind v4 defaults provide `sm`, `md`, `lg`, and `xl`. The site adds one custom arbitrary breakpoint for the full artboard navigation, plus a secondary one-off in the Vault process row.
+
+| Breakpoint | Pixel value | Source | What changes at this width |
+|------------|-------------|--------|----------------------------|
+| **sm** | `640px` | Tailwind v4 default | Footer grid collapses to a single column below this and becomes `repeat(3, 1fr)` at/above it (brand spans all three columns). Layout constants `WIDE`/`STD` increase horizontal padding from `px-5` to `px-8`. Homepage hero headline jumps from `2.25rem` to `4.5rem`; line-break helpers (`hidden sm:inline`) begin showing. |
+| **md** | `768px` | Tailwind v4 default | Footer grid switches to the full `1.4fr 1fr 1fr 1fr` four-column layout with the brand as a normal cell. FAQ accordion grid becomes two columns (`md:grid-cols-2`). Vault process arrows and multi-column fee/feature grids appear. Many route layouts (Vault, Precious Metal, About Us) switch from stacked to side-by-side at this breakpoint. |
+| **lg** | `1024px` | Tailwind v4 default | **Primary nav switch:** hamburger menu is hidden (`lg:hidden`), desktop nav appears (`hidden lg:flex`). Nav geometry changes to compact desktop: logo `210px`, gap `20px`, horizontal padding `px-6`, CTA padding `px-4`. Many route grids switch to multi-column here (e.g. homepage feature row `lg:grid-cols-4`, Vault hero split `lg:grid-cols-[50fr_50fr]`). |
+| **xl** | `1280px` | Tailwind v4 default | Layout constants `WIDE`/`STD` drop horizontal padding to `0` (`xl:px-0`) while keeping the max-width. Nav geometry shifts to medium desktop: logo `250px`, gap `32px`, padding `px-10`, CTA padding `px-5`, nav link size `14px`. |
+| **min-[1366px]** | `1366px` | Arbitrary Tailwind prefix | Vault "How It Works" process row stops wrapping and becomes a single nowrap line (`min-[1366px]:flex-nowrap`). This is a one-off local optimization, not a site-wide breakpoint. |
+| **min-[1440px]** | `1440px` | Arbitrary Tailwind prefix | **Full artboard nav:** logo expands to `290px`, nav gap becomes `54px`, horizontal padding becomes `60px`, CTA padding becomes `px-6`. This is the largest deliberate breakpoint in the codebase and the target for desktop QA. |
+
+### Reference viewport sizes for QA/testing
+
+Test every page at exactly these three widths. They map to the breakpoints above and cover the three layout regimes the site is designed for.
+
+| QA viewport | Width | Breakpoint regime | What to verify |
+|-------------|-------|-------------------|----------------|
+| **Mobile** | `375px` | Below `sm` (`<640px`) | Hamburger menu is visible and functional; desktop nav is hidden. Footer is a single stacked column. FAQ accordion is single-column. Body text uses mobile sizes from the heading/body scale tables. Horizontal padding is `20px` (`px-5`). No horizontal overflow. |
+| **Tablet** | `768px` | At `md` (`≥768px`, `<1024px`) | Footer is the 4-column `1.4fr 1fr 1fr 1fr` grid. FAQ is a 2-column grid. **Nav is still the hamburger menu** because `lg` (`1024px`) has not been reached. Route layouts that switch at `md` should show side-by-side columns. |
+| **Desktop** | `1440px` | At the custom `min-[1440px]` breakpoint | Full desktop nav is visible at full artboard sizing: `290px` logo, `54px` gap, `60px` horizontal padding. Footer is 4-column. All route grids are at their widest multi-column state. No max-width containers should touch viewport edges (`WIDE`/`STD` use `xl:px-0`). This is the canonical desktop artboard size. |
