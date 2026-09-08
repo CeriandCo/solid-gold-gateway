@@ -16,12 +16,9 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
-import dillonGageLogo from "@/assets/dillon-gage-logo.png.asset.json";
-import idsLogo from "@/assets/ids-logo.png.asset.json";
-import lloydsLogo from "@/assets/lloyds-logo.png.asset.json";
-import dillonGageLogoClean from "@/assets/dillon-gage-logo-clean.png.asset.json";
+import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
+import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
 import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
-import lloydsLogoClean from "@/assets/lloyds-logo-clean.png.asset.json";
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -82,21 +79,6 @@ function OfficialMandala({ className }: { className?: string }) {
   return <img src={sqootPureMandala.url} alt="" aria-hidden="true" className={cn("object-contain", className)} />;
 }
 
-function USFlag({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 36 24" aria-hidden="true" className={className}>
-      <rect width="36" height="24" rx="0.75" className="fill-background" />
-      <path d="M0 0h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0z" className="fill-error" />
-      <path d="M0 0h16v13H0z" className="fill-forest" />
-      <g className="fill-background">
-        <circle cx="2.5" cy="2.25" r="0.55" /><circle cx="6" cy="2.25" r="0.55" /><circle cx="9.5" cy="2.25" r="0.55" /><circle cx="13" cy="2.25" r="0.55" />
-        <circle cx="4.25" cy="4.65" r="0.55" /><circle cx="7.75" cy="4.65" r="0.55" /><circle cx="11.25" cy="4.65" r="0.55" /><circle cx="14.25" cy="4.65" r="0.55" />
-        <circle cx="2.5" cy="7.05" r="0.55" /><circle cx="6" cy="7.05" r="0.55" /><circle cx="9.5" cy="7.05" r="0.55" /><circle cx="13" cy="7.05" r="0.55" />
-        <circle cx="4.25" cy="9.45" r="0.55" /><circle cx="7.75" cy="9.45" r="0.55" /><circle cx="11.25" cy="9.45" r="0.55" /><circle cx="14.25" cy="9.45" r="0.55" />
-      </g>
-    </svg>
-  );
-}
 
 function Index() {
   const [step, setStep] = useState(0);
@@ -138,39 +120,93 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-background py-12 sm:py-14" aria-label="Trusted partners">
-        <div className="mx-auto max-w-[1060px] px-5 sm:px-7">
-          <p className="eyebrow text-center text-gold">Backed by trust. Built for you.</p>
-          <div className="mt-8 grid grid-cols-1 items-center gap-y-7 min-[430px]:grid-cols-2 sm:gap-y-9 lg:mt-9 lg:grid-cols-4 lg:gap-y-0">
-            <div className="flex items-center justify-center px-4">
-              <img
-                src={dillonGageLogoClean.url}
-                alt="Dillon Gage"
-                className="h-11 w-auto max-w-[186px] object-contain sm:h-12"
-              />
+      <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
+        <div className="mx-auto max-w-[1160px] px-5 sm:px-7">
+          <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
+          <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
+            {/* JBT — SQOOT Pure industry membership */}
+            <a
+              href="https://www.jewelersboard.com/were-legit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center px-4 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            >
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={jbtMemberBadge.url}
+                  alt="Jewelers Board of Trade — Retail Member"
+                  className="h-[68px] w-auto object-contain mix-blend-multiply"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                JBT Member
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70 transition-colors group-hover:text-gold">
+                Jewelers Board of Trade
+              </span>
+            </a>
+            {/* NCBA — SQOOT Pure industry membership */}
+            <a
+              href="https://www.ncbassoc.org/membership"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col items-center px-4 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']"
+            >
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={ncbaMemberBadge.url}
+                  alt="National Coin &amp; Bullion Association — Member"
+                  className="h-[72px] w-auto object-contain"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                NCBA Member
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70 transition-colors group-hover:text-gold">
+                National Coin &amp; Bullion Association
+              </span>
+            </a>
+            {/* IDS — custody service provider */}
+            <div className="relative flex flex-col items-center px-4 text-center lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <span className="flex h-[72px] items-center justify-center">
+                <img
+                  src={idsLogoClean.url}
+                  alt="International Depository Services"
+                  className="h-9 w-auto max-w-[190px] object-contain"
+                />
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                Securely vaulted with IDS
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70">
+                Institutional precious metals storage
+              </span>
             </div>
-            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <img
-                src={idsLogoClean.url}
-                alt="International Depository Services"
-                className="h-8 w-auto max-w-[190px] object-contain sm:h-9"
-              />
-            </div>
-            <div className="flex items-center justify-center relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <img
-                src={lloydsLogoClean.url}
-                alt="Lloyd's"
-                className="h-10 w-auto max-w-[180px] object-contain sm:h-11"
-              />
-            </div>
-            <div className="flex items-center justify-center gap-3 relative px-4 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[60px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
-              <USFlag className="h-7 w-10 shrink-0" />
-              <div className="min-w-0 leading-none">
-                <b className="block whitespace-nowrap text-[0.75rem] font-bold tracking-[0.02em] text-charcoal">US-ONLY</b>
-                <small className="mt-1.5 block text-[0.62rem] leading-[1.4] text-charcoal/80">
-                  We operate exclusively<br className="hidden min-[430px]:block" /> in the United States.
-                </small>
-              </div>
+            {/* LBMA — bullion sourcing standard (typographic treatment, no badge) */}
+            <div className="relative flex flex-col items-center px-4 text-center lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[72px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-beige lg:before:content-['']">
+              <span className="flex h-[72px] items-center justify-center">
+                <span className="font-display text-[1.05rem] leading-[1.2] tracking-[0.08em] text-forest">
+                  LBMA
+                  <span className="mx-2 inline-block h-[26px] w-px translate-y-[6px] bg-gold/70" aria-hidden="true" />
+                  <span className="text-[0.8rem] tracking-[0.12em] text-forest/80">
+                    GOOD DELIVERY
+                  </span>
+                </span>
+              </span>
+              <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
+                LBMA Good Delivery sourced
+              </span>
+              <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70">
+                Sourced through recognised refiners
+              </span>
+              <a
+                href="https://www.lbma.org.uk/good-delivery"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1.5 text-[0.66rem] font-medium text-gold underline-offset-4 transition-colors hover:text-forest hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              >
+                Learn about the standard →
+              </a>
             </div>
           </div>
         </div>
@@ -214,7 +250,7 @@ function Index() {
         </svg>
         <div className="bg-forest text-background">
           <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 py-10 sm:px-7 lg:min-h-[224px] lg:grid-cols-[1fr_1.35fr] lg:px-10 lg:py-0">
-            <div className="flex items-center gap-6"><OfficialMandala className="h-20 w-20 shrink-0 lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p></div></div>
+            <div className="flex items-center gap-6"><OfficialMandala className="h-20 w-20 shrink-0 lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p><p className="privacy-note mt-3">Currently available to U.S. residents only.</p></div></div>
             <form onSubmit={submitWaitlist} noValidate>
               <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold" aria-invalid={formState === "error"} aria-describedby="email-status" /><GoldButton type="submit" className="h-[54px] w-full px-8 lg:w-[253px]">Get Early Access</GoldButton></div>
               <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={18} className="shrink-0 text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
