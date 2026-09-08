@@ -478,3 +478,50 @@ The image spans edge-to-edge; the caption and CTA below it are constrained to `m
 #### Credential / badge imagery
 
 Member badges and logos (JBT, NCBA, IDS, LBMA-related) are rendered with `object-contain` and, where needed, `mix-blend-multiply` so they sit cleanly on parchment/cream backgrounds without heavy borders or cards.
+
+---
+
+## 5. Design Refinement — Senior Design Review
+
+This section is a senior-designer / UI-UX audit of the Foundations, Components, and Iconography sections above. Sections 1–4 describe the site **as implemented today** (including its inconsistencies). This section identifies where that implementation is visually inconsistent and defines a **standardized, intentional system** to replace ad-hoc values. Items marked **Applied** have been implemented in the live codebase; items marked **Proposed** are documented here as the target but not yet applied (to avoid a large, risky multi-file rewrite in one pass).
+
+### 5.1 Icon stroke-width system — Applied
+
+**Problem:** stroke widths were scattered across 9 distinct values (`1`, `1.25`, `1.3`, `1.35`, `1.4`, `1.5`, `2`, `2.25`, `2.5`) with no rule connecting the value to icon role or size. This reads as visually noisy — icons of similar size/role render at noticeably different weights on different pages.
+
+**Standardized to 3 named weights:**
+
+| Weight | Value | Role | Applies to |
+|--------|-------|------|------------|
+| **Standard** | `1.5` | Default weight for nearly all functional and editorial icons (20px–52px) | Feature/benefit icons, process/step icons, security markers, nav icons, path-card icons |
+| **Fine** | `1.25` | Small, dense, or purely ornamental icons (≤18px) where a heavier stroke would look clumsy | Occasion icons, ornamental marks, dotted/thin connector SVGs, accordion Plus/Minus |
+| **Bold** | `2.5` | Small affirmative/emphasis marks only (≤17px) — needs a heavier stroke to stay legible at that size | Check/X marks in comparison tables, primary CTA arrows |
+
+This collapses the old `1.3` / `1.35` / `1.4` cluster into **Standard (1.5)**, and the old `2` / `2.25` cluster into **Bold (2.5)**, giving the site two visually distinct, intentional icon weights instead of a continuum of near-identical ones.
+
+### 5.2 Mandala motif system — Applied
+
+**Problem:** the mandala decorative motif appeared at 6 different opacity values (`0.04`, `0.07`, `0.12`, `0.14`, `0.16`) with 3 blend modes (none, `screen`, `multiply`) assigned per-placement with no underlying logic — a purely accidental range rather than a designed one.
+
+**Standardized to 3 named tiers**, each with a clear purpose:
+
+| Tier | Opacity | Blend mode | Purpose | Applies to |
+|------|---------|------------|---------|------------|
+| **Ambient** | `0.05` | none | Barely-perceptible background presence; should not compete with foreground content | Vault hero watermark |
+| **Structural** | `0.12` | `screen` | Visible decorative motif that reinforces brand on a dark or mid-tone section without becoming a focal point | About Us hero, About Us compliance band, Fractional Gold philosophy section, Trust Center |
+| **Emblem** | `0.18` | `multiply` | A focal decorative mark set behind a specific icon/graphic, meant to be noticed | About Us "Trust close" emblem, About Us story-section etch |
+
+### 5.3 Page-scoped color palettes — Proposed (not yet applied)
+
+**Problem:** `gifting.tsx` and `about-us.tsx` each define their own local CSS custom-property palette in an inline `<style>` block (e.g. `--forest-950`, `--gold-500`, `--gold-deep`, `--cream-50`) instead of referencing the root tokens in `src/styles.css` (`--forest`, `--forest-deep`, `--gold`, `--gold-soft`, `--cream`). The values are close to — but not identical to — the root palette, and both pages also load `DM Sans` as their base font instead of the site's `Inter`. This means the brand's gold and forest tones render at very slightly different hues depending on which page you're on, and body copy uses a different typeface on two of the site's most visually important pages.
+
+**Recommended standardization (target state, for a future, carefully-staged pass):**
+- Replace each page's local `--forest-950` / `--gold-500` / etc. custom properties with direct references to the root tokens (`--forest`, `--forest-deep`, `--gold`, `--gold-soft`, `--gold-dark`, `--cream`).
+- Remove the page-level `DM Sans` font-family override so both pages inherit the site-wide `Inter` body font (matching every other route).
+- Keep each page's structural CSS (layout, animation, one-off component classes) — only the color and font-family declarations change.
+
+This is intentionally left as a **documented recommendation rather than an applied change**: it touches the full visual surface of two content-heavy pages at once, and applying it safely requires a page-by-page pass with full visual QA (desktop/tablet/mobile) rather than a single bundled edit.
+
+### 5.4 Card radius consistency — Verified, no change needed
+
+Reviewed for arbitrary/one-off radius values outside the `2px` (buttons) / `8px` (cards) rule documented in §1. No stray radius values were found outside these two tokens across the routes reviewed in this audit (`index.tsx`, `vault.tsx`, `gifting.tsx`, `fractional-gold.tsx`, `about-us.tsx`, `site-chrome.tsx`) — the radius system is already consistent site-wide.
