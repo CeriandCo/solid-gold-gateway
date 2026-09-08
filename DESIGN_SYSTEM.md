@@ -385,7 +385,7 @@ A survey of `src/routes/index.tsx`, `src/routes/vault.tsx`, `src/components/site
 |--------------|-----------------|----------|
 | `1` | Fine decorative / editorial icons; FAQ accordion state icons | Homepage feature-list icons (`h-6 w-6`), FAQ `Plus`/`Minus` (`h-4 w-4`), homepage ornamental `Mark` SVG. |
 | `1.25` | UI chrome / custom inline SVG arrows | Mobile menu `X`/`Menu` (`h-5 w-5`); Vault dotted/thin arrow SVGs. |
-| `1.3` – `1.4` | Large editorial / process icons | Gifting occasion icons (`size={32}`), Vault "How It Works" and "Redemption process" icons (`size={34}`–`46`), fractional-gold fee icons. |
+| `1.3` – `1.4` | Large editorial / process icons | Gifting feature/benefit icons (`size={32}` `strokeWidth={1.35}`) and occasion icons (`size={18}` `strokeWidth={1.3}`); Vault "How It Works" and "Redemption process" icons (`size={34}`–`46`); fractional-gold fee icons. |
 | `1.5` | Inline CTA arrows; small functional icons | `ArrowRight` next to text links (`size={15}`–`18`), Vault allocation tab icons, `LockKeyhole` security markers. |
 | `2` – `2.5` | Bold CTA arrows and affirmative/check marks | Primary `GoldButton` arrows (`size={17}`, `strokeWidth={2.25}` or `2.5`); comparison/checklist `Check`/`X` in circles (`size={12}`, `strokeWidth={2.5}`). |
 
@@ -456,13 +456,20 @@ The image spans edge-to-edge; the caption and CTA below it are constrained to `m
    - Stroke widths `1` and `0.8`; inherits `currentColor` (`text-gold`).
 
 2. **SQOOT Pure mandala** (`sqoot-mandala.png` / `sqoot-pure-mandala.png.asset.json`)
-   - A repeating brand motif used decoratively across multiple pages.
-   - Typical treatment:
-     - `opacity: 0.14`
-     - `mix-blend-mode: screen`
-     - absolutely positioned, often partially off-canvas
-     - `aria-hidden="true"` and empty `alt` (purely decorative)
-   - Used in: Vault hero (`right-[-84px] top-1/2 ... opacity-[0.04]`), Vault waitlist (`h-[92px] w-[92px]`), About Us hero and compliance band, Fractional Gold philosophy section, Trust Center.
+    - A repeating brand motif used decoratively across multiple pages. The treatment varies by placement rather than using one fixed formula:
+
+    | Placement | Opacity | Blend mode | Notes |
+    |-----------|---------|------------|-------|
+    | Vault hero | `0.04` | — | Positioned `right-[-84px] top-1/2` as a faint watermark. |
+    | Vault waitlist | — | — | Small `92px × 92px` mark, no opacity/blend-mode override. |
+    | About Us hero (`.about-hero-mandala`) | `0.14` | `screen` | Large off-canvas left placement. |
+    | About Us compliance band (`.about-mandala-left/right`) | `0.14` | `screen` | Flanking the centered compliance copy. |
+    | About Us "Trust close" emblem (`.about-trust-emblem img`) | `0.16` | `multiply` | Behind the shield line icon. |
+    | About Us story section etch (`.about-story-etch`) | `0.07` | `multiply` | Bottom-left decorative mark. |
+    | Fractional Gold philosophy section | `0.12` | — | Right-side watermark; no `mix-blend-mode` class applied. |
+    | Trust Center | `0.14` | `screen` | Hero and safeguard section backgrounds. |
+
+    - Always `aria-hidden="true"` with an empty `alt` (purely decorative).
 
 3. **Inline SVG line-art**
    - Several routes include hand-coded SVGs for process arrows, dotted connectors, and credential ornaments (e.g. Vault `ThinArrow`, `DottedArrow`, fractional-gold custom checkmark icon).
