@@ -119,3 +119,108 @@ Additional layout notes from the implementation:
 - The homepage hero content is constrained to `max-w-[1200px]` with `max-w-[36rem]` for the copy column.
 - Legal pages (`/terms`, `/privacy`) use `max-w-[760px]` for the prose column.
 - Article pages (`/learn/*`) use `max-w-[720px]` for the article body.
+
+---
+
+## 2. Components
+
+Documented based on the actual implementation in `src/components/site-chrome.tsx`.
+
+### Buttons
+
+#### `GoldButton` (primary CTA)
+
+Shared component exported from `src/components/site-chrome.tsx`. Renders as one of three elements depending on props:
+
+| Prop | Rendered element | Use case |
+|------|------------------|----------|
+| `to` | `<Link>` from `@tanstack/react-router` | Internal navigation |
+| `href` | `<a>` | External links or in-page anchors |
+| `type` | `<button>` | Form submission / client actions |
+
+**Base classes applied:**
+
+```text
+inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gradient-to-b from-gold-soft to-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold
+```
+
+- **Radius:** `2px` (matches the global button radius token).
+- **Gradient:** `from-gold-soft` → `to-gold` at rest; shifts to `from-gold` → `to-gold-dark` on hover.
+- **Text:** `#0B2015` (deep forest) for maximum contrast on the gold surface.
+- **Shadow:** subtle dark shadow that deepens on hover.
+- **Motion:** `transition-all` with a `1px` upward translate (`-translate-y-px`) and gradient/shadow intensification on hover.
+- **Focus:** `2px` gold outline with `2px` offset.
+- **Font:** forced to `Inter, Arial, sans-serif` via inline style to prevent page-level overrides.
+
+**Typical CTA sizing seen across pages:** `className="h-[54px] px-8"` (used on hero and waitlist CTAs).
+
+#### Secondary / outline variant
+
+Used inline on the homepage hero for the "See the Vault" action. It is **not** a separate shared component; it is a one-off `<a>` styled to contrast against the hero background.
+
+**Exact classes:**
+
+```text
+rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-8 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:border-gold hover:text-gold hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold
+```
+
+- **Surface:** transparent with a warm-white tint (`bg-warm-white/5`) and a low-opacity warm-white border.
+- **Hover:** border and text turn gold, shadow deepens, and the button lifts `1px`.
+- **Sizing:** currently `px-8 py-3` on the homepage (not the fixed `54px` height used for primary CTAs elsewhere).
+
+---
+
+### Navigation (`SiteNav` / `SiteHeader`)
+
+Single shared navigation component used across every page.
+
+#### Header variants
+
+| Variant | Background | Usage |
+|---------|------------|-------|
+| `overlay` | `bg-transparent` | Homepage hero only — sits directly over the hero image. |
+| `solid` | `bg-forest-deep` | Every other page, rendered via `SiteHeader`. |
+
+`SiteNav` accepts `variant?: "solid" | "overlay"` and defaults to `"solid"`. `SiteHeader` is a thin wrapper that renders `<SiteNav variant="solid" />` inside a `<header>` with `z-30`.
+
+#### Responsive geometry steps
+
+The nav row scales in three steps so it never overflows the artboard values:
+
+| Range | Logo width | Min height | Nav gap | Horizontal padding | CTA padding |
+|-------|------------|------------|---------|--------------------|-------------|
+| `<1024px` (mobile) | `200px` → `230px` | `76px` | N/A (hamburger) | `px-5` / `sm:px-8` | N/A |
+| `1024px–1279px` (compact) | `210px` (`lg:w-[210px]`) | `112px` | `20px` (`lg:gap-5`) | `lg:px-6` | `lg:px-4` |
+| `1280px–1439px` (medium) | `250px` (`xl:w-[250px]`) | `112px` | `32px` (`xl:gap-8`) | `xl:px-10` | `xl:px-5` |
+| `≥1440px` (full artboard) | `290px` (`min-[1440px]:w-[290px]`) | `112px` | `54px` (`min-[1440px]:gap-[54px]`) | `60px` (`min-[1440px]:px-[60px]`) | `min-[1440px]:px-6` |
+
+Desktop nav links are `text-[13px]` at `lg`, `text-[14px]` at `xl`, font-sans, medium weight, warm-white/90 at rest.
+
+#### Active-link treatment
+
+Each nav link has a centered underline pseudo-element:
+
+```text
+after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300
+```
+
+- At rest the underline width is `0`.
+- On the active route, `[&.active]:after:w-[46px]` expands it to `46px` and `[&.active]:text-gold` turns the link gold.
+- Hover also turns the link text gold (`hover:text-gold`).
+
+#### Mobile menu behavior
+
+- **Toggle:** a hamburger button (`Menu` / `X` icons) appears below the `lg` breakpoint (`lg:hidden`).
+- **Trigger:** clicking the toggle sets local `menuOpen` state; the menu expands/slides beneath the header bar.
+- **Breakpoint switch:** desktop nav is `hidden lg:flex`; hamburger is `lg:hidden`. The switch happens at `1024px`.
+- **Menu surface:** full-width panel with `bg-forest-deep`, a top border `border-warm-white/10`, and stacked items separated by `border-warm-white/10`.
+- **Item styling:** `text-sm font-medium text-warm-white/85` with gold hover and active states matching desktop.
+- **CTA in mobile menu:** rendered as an outline button (`border-gold/55 bg-transparent text-gold`) below the nav links.
+
+#### "Get Early Access" button styling differences
+
+| Variant | Classes | Appearance |
+|---------|---------|------------|
+| `overlay` (homepage) | `border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)]` | Solid gold gradient with dark text and stronger shadow, to remain visible over the hero image. |
+| `solid` (all other pages) | `border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10` | Outline style on the dark forest header; hover adds a subtle gold tint. |
+| mobile menu | `border border-gold/55 bg-transparent px-5 text-sm font-medium text-gold` | Outline style, consistent with the solid variant. |
