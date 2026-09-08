@@ -212,6 +212,33 @@ function Index() {
         </div>
       </section>
 
+      <section className="relative overflow-hidden bg-background" aria-label="Our philosophy">
+        <div className="pointer-events-none absolute right-[-8%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 text-beige/25 sm:h-[620px] sm:w-[620px] lg:right-[-6%] lg:h-[760px] lg:w-[760px]">
+          <Mandala className="h-full w-full" />
+        </div>
+        <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-20 sm:px-7 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:px-14 lg:py-32">
+          <div>
+            <p className="eyebrow text-gold">Our Philosophy</p>
+            <h2 className="mt-5 font-display text-[2.6rem] leading-[1.08] tracking-[-0.01em] text-forest sm:text-[3.2rem] lg:text-[3.8rem]">
+              Buy to Build™
+            </h2>
+            <p className="mt-6 font-display text-[1.35rem] leading-[1.35] text-forest/90 sm:text-[1.55rem] lg:text-[1.75rem]">
+              Gold reserves have been built one purchase at a time for generations.
+            </p>
+            <p className="mt-5 max-w-[540px] font-['DM_Sans',_sans-serif] text-base leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
+              Each purchase may be small, but together they can become something durable: a personal reserve, family wealth and an asset recognised across borders.
+            </p>
+            <p className="mt-5 max-w-[540px] font-['DM_Sans',_sans-serif] text-base leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
+              SQOOT brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
+            </p>
+            <p className="mt-8 max-w-[560px] font-['DM_Sans',_sans-serif] text-[0.8rem] leading-[1.6] text-charcoal/55 sm:text-[0.85rem]">
+              Gold is not presented as guaranteed appreciation or a replacement for productive investments. It is a distinct reserve, built gradually, held for the long term and available for sale or eligible physical redemption when needed.
+            </p>
+          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
+        </div>
+      </section>
+
       <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
         <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 sm:px-7 lg:grid-cols-[280px_1fr] lg:px-14">
           <div><p className="eyebrow text-gold">How it works</p><h2 className="section-title mt-4 text-forest">Five steps.<br />All online.<br />All simple.</h2><p className="section-body mt-4 max-w-[220px] text-charcoal">From sign up to gold allocation in minutes.</p></div>
