@@ -340,7 +340,7 @@ function Index() {
                 <div
                   key={f.q}
                   className={`h-fit rounded-lg border p-6 transition-colors ${
-                    isOpen ? "border-gold bg-gold-soft" : "border-warm-white/15 bg-forest-deep"
+                    isOpen ? "border-gold bg-gold-soft" : "border-warm-white/25 bg-warm-white/5"
                   }`}
                 >
                   <button
@@ -356,7 +356,7 @@ function Index() {
                       <Plus strokeWidth={1} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     )}
                   </button>
-                  {isOpen && <div className="mt-4 text-xs leading-relaxed text-forest-deep/80">{f.a}</div>}
+                  {isOpen && <div className="mt-6 text-sm leading-relaxed text-forest-deep">{f.a}</div>}
                 </div>
               );
             })}
