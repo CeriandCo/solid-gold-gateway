@@ -163,7 +163,7 @@ function GiftingNewPage() {
         <div className="gift-benefits-inner">
           {features.map(({ icon: Icon, title, description }) => (
             <article key={title} className="gift-benefit">
-              <Icon size={32} strokeWidth={1.35} absoluteStrokeWidth />
+              <Icon size={32} strokeWidth={1.5} absoluteStrokeWidth />
               <h2>{title}</h2>
               <p>{description}</p>
             </article>
@@ -196,7 +196,7 @@ function GiftingNewPage() {
                   />
                 </div>
                 <div className="gift-occasion-label"><h3>{label}</h3></div>
-                 <span className="gift-occasion-icon"><Icon size={18} strokeWidth={1.3} absoluteStrokeWidth /></span>
+                 <span className="gift-occasion-icon"><Icon size={18} strokeWidth={1.25} absoluteStrokeWidth /></span>
               </article>
             ))}
           </div>
@@ -217,7 +217,7 @@ function GiftingNewPage() {
             <ul>
               {["Name, initial, date or short message", "Beautiful engraving on gold", "Premium gift packaging", "Include a personalised note"].map((item) => (
                 <li key={item}>
-                  <span><Check strokeWidth={2} /></span>
+                  <span><Check strokeWidth={2.5} /></span>
                   {item}
                 </li>
               ))}
@@ -263,7 +263,7 @@ function GiftingNewPage() {
         <div className="gift-trust-inner">
           {assurances.map(({ icon: Icon, title, description }) => (
             <article key={title}>
-              <Icon strokeWidth={1.3} absoluteStrokeWidth />
+              <Icon strokeWidth={1.5} absoluteStrokeWidth />
               <h2>{title}</h2>
               <p>{description}</p>
             </article>
