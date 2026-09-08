@@ -213,8 +213,8 @@ function Index() {
       </section>
 
       <section className="relative overflow-hidden bg-background" aria-label="Our philosophy">
-        <div className="pointer-events-none absolute right-[-8%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 text-beige/25 sm:h-[620px] sm:w-[620px] lg:right-[-6%] lg:h-[760px] lg:w-[760px]">
-          <Mandala className="h-full w-full" />
+        <div className="pointer-events-none absolute right-[-10%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 opacity-[0.12] sm:h-[620px] sm:w-[620px] lg:right-[-8%] lg:h-[760px] lg:w-[760px]">
+          <OfficialMandala className="h-full w-full" />
         </div>
         <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-20 sm:px-7 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:px-14 lg:py-32">
           <div>
