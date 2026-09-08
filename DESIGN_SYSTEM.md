@@ -513,16 +513,15 @@ This collapses the old `1.3` / `1.35` / `1.4` cluster into **Standard (1.5)**, a
 
 > **Note:** Trust Center's mandala watermark (`.tc-verify-watermark`) is a special case, not part of the three tiers above — it is already correctly tuned as an extra-faint, responsive watermark (`0.055` opacity on desktop, tapering to `0.035`–`0.045` on smaller viewports, `multiply` blend) sitting behind dense audit-dashboard content. It is left unchanged.
 
-### 5.3 Page-scoped color palettes — Proposed (not yet applied)
+### 5.3 Page-scoped color palettes and typography — Applied (partial)
 
-**Problem:** `gifting.tsx` and `about-us.tsx` each define their own local CSS custom-property palette in an inline `<style>` block (e.g. `--forest-950`, `--gold-500`, `--gold-deep`, `--cream-50`) instead of referencing the root tokens in `src/styles.css` (`--forest`, `--forest-deep`, `--gold`, `--gold-soft`, `--cream`). The values are close to — but not identical to — the root palette, and both pages also load `DM Sans` as their base font instead of the site's `Inter`. This means the brand's gold and forest tones render at very slightly different hues depending on which page you're on, and body copy uses a different typeface on two of the site's most visually important pages.
+**Problem:** `gifting.tsx` and `about-us.tsx` each defined their own local CSS custom-property palette in an inline `<style>` block (e.g. `--forest-950`, `--gold-500`, `--gold-deep`, `--cream-50`) instead of referencing the root tokens in `src/styles.css`, and both pages loaded `DM Sans` as their base font instead of the site's `Inter`.
 
-**Recommended standardization (target state, for a future, carefully-staged pass):**
-- Replace each page's local `--forest-950` / `--gold-500` / etc. custom properties with direct references to the root tokens (`--forest`, `--forest-deep`, `--gold`, `--gold-soft`, `--gold-dark`, `--cream`).
-- Remove the page-level `DM Sans` font-family override so both pages inherit the site-wide `Inter` body font (matching every other route).
-- Keep each page's structural CSS (layout, animation, one-off component classes) — only the color and font-family declarations change.
+**Applied:**
+- Both pages now use `"Inter"` as their base body font (the local `DM Sans` overrides were removed), matching every other route on the site.
+- Each page's primary brand-anchor colors now reference the root tokens directly instead of duplicating near-identical hex values: `gifting.tsx`'s `--forest-950`, `--cream-50`, and `--gold-500` now resolve to `var(--forest-deep)`, `var(--warm-white)`, and `var(--gold)` respectively; `about-us.tsx`'s `--forest-950` now resolves to `var(--forest)`, and its local `--gold` override was removed entirely so it inherits `--gold` directly from `:root` (its value was already numerically identical to root `--gold`, so this is a source-of-truth fix rather than a visual change).
 
-This is intentionally left as a **documented recommendation rather than an applied change**: it touches the full visual surface of two content-heavy pages at once, and applying it safely requires a page-by-page pass with full visual QA (desktop/tablet/mobile) rather than a single bundled edit.
+**Deliberately left as page-local (not migrated to root tokens):** each page's secondary shade ladder — `gifting.tsx`'s `--forest-900/800/700`, `--cream-100/150/200`, `--gold-400/300`, `--gold-deep`, `--ink`, `--body-dark`, `--cream-text`, `--muted-cream`, `--light-divider`, `--dark-divider`; and `about-us.tsx`'s `--paper`, `--gold-line`, `--gold-deep`, `--cream`, `--ink`. The root design system defines only one forest tone, one gold tone, and one cream/warm-white tone — it has no equivalent tint/shade ladder. These page-local shades provide internal visual depth and hierarchy (borders, hover states, secondary text) within each page's dense, editorial layout, and collapsing them onto the single root tones would flatten that hierarchy and risk a real visual regression across two content-heavy pages. Migrating them is a larger, separate design exercise (defining an actual tint/shade scale for the root tokens) rather than a same-value alignment, and is intentionally out of scope for this pass.
 
 ### 5.4 Card radius consistency — Verified, no change needed
 
