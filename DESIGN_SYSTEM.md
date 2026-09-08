@@ -224,3 +224,120 @@ after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-transl
 | `overlay` (homepage) | `border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)]` | Solid gold gradient with dark text and stronger shadow, to remain visible over the hero image. |
 | `solid` (all other pages) | `border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10` | Outline style on the dark forest header; hover adds a subtle gold tint. |
 | mobile menu | `border border-gold/55 bg-transparent px-5 text-sm font-medium text-gold` | Outline style, consistent with the solid variant. |
+
+---
+
+### Footer (`SiteFooter`)
+
+Shared footer component exported from `src/components/site-chrome.tsx` and styled by a dedicated, unlayered `footer.site-footer` block in `src/styles.css` (lines ~665–806). The component itself renders only semantic class hooks (`site-footer__grid`, `site-footer__brand`, etc.); all typography, spacing, color, and layout are defined in the global stylesheet.
+
+#### Layout and breakpoints
+
+The footer grid is defined in CSS, not Tailwind utility classes:
+
+| Breakpoint | Grid | Notes |
+|------------|------|-------|
+| `<640px` | Single column, stacked | Brand block + three nav columns stack vertically with `gap: 3rem`. |
+| `≥640px` (`sm`) | `repeat(3, 1fr)` | Brand block spans all three columns (`grid-column: 1 / -1`). |
+| `≥768px` (`md`) | `1.4fr 1fr 1fr 1fr` | Brand block returns to a normal cell; three link columns sit to its right. |
+
+- **Container:** `max-width: 1200px`, centered, `padding-inline: 1.5rem`.
+- **Outer padding:** `padding-block: 4rem`.
+- **Background:** `var(--forest-deep)` (`#0B2015`).
+- **Text color:** `var(--warm-white)`.
+- **Font:** forced to `"Inter", Arial, sans-serif` at the block level.
+
+#### Content blocks
+
+1. **Brand / tagline column**
+   - Logo image (`site-footer__logo`): `height: 3.5rem`, width auto.
+   - Tagline (`site-footer__tagline`): `font-size: 0.75rem`, `line-height: 1.625`, `color: warm-white/55`, `max-width: 20rem`.
+
+2. **Discover More** — internal product links (`/precious-metal`, `/fractional-gold`, `/gifting`, `/vault`, `/learn`).
+3. **Company** — `/about-us`, `/trust-center`.
+4. **Legal** — `/terms`, `/privacy`.
+
+The link map is hard-coded in `footerColumns` in `src/components/site-chrome.tsx`.
+
+#### Heading and link styles
+
+- **Column headings (`site-footer__heading`):**
+  - `font-family: "Inter", Arial, sans-serif`
+  - `font-size: 0.6875rem`
+  - `font-weight: 500`
+  - `letter-spacing: 0.22em`
+  - `text-transform: uppercase`
+  - `color: var(--gold)`
+
+- **Links (`site-footer__link`):**
+  - `font-size: 0.75rem`
+  - `font-weight: 400`
+  - `line-height: 1.25`
+  - `text-decoration: none`
+  - `color: warm-white/65`
+  - `transition: color 0.2s ease`
+  - **Hover:** `color: var(--gold)`
+
+#### Bottom bar
+
+A separate flex row (`site-footer__bottom`) sits below the grid:
+
+- **Top border:** `1px solid warm-white/10`.
+- **Padding:** `1.5rem 1.5rem 0`.
+- **Layout:** `flex-wrap`, `justify-content: space-between`, `align-items: center`, `gap: 1rem`.
+- **Copyright (`site-footer__copy`):** `font-size: 0.75rem`, `color: warm-white/40`.
+- **Social icons (`site-footer__social`):**
+  - Instagram, LinkedIn, YouTube (Lucide icons).
+  - `color: var(--gold)` at rest, `color: var(--warm-white)` on hover.
+  - Icon size: `1.25rem × 1.25rem`.
+  - Focus outline: `2px solid var(--gold)`, `3px` offset.
+
+#### Why the footer uses a dedicated CSS block
+
+The `footer.site-footer` rules live **outside** `@layer base` / `@layer components` and use explicit `font-family` declarations. This is intentional isolation: many route files use page-scoped selectors (e.g. `.trust-center-page a`, `.about-new p`, `.fractional-legacy`) that could otherwise override footer typography or link colors. The unlayered, higher-specificity `footer.site-footer .site-footer__*` selectors guarantee the footer looks identical on every page regardless of local route styles.
+
+---
+
+### Cards & Accordion
+
+#### Homepage FAQ accordion (canonical accordion pattern)
+
+Implemented in `src/routes/index.tsx` as a single-open accordion grid.
+
+**Container:**
+
+- Section background: `bg-forest` (dark forest).
+- Accordion wrapper: `mx-auto max-w-[1000px] px-6`.
+- Grid: `grid gap-4 md:grid-cols-2` (two columns on tablet/desktop, single column on mobile).
+
+**Card states:**
+
+| State | Background | Border | Question text | Icon |
+|-------|------------|--------|---------------|------|
+| **Closed** | `bg-warm-white/5` | `border-warm-white/25` | `text-warm-white` | `Plus` icon, `text-gold` |
+| **Open** | `bg-gold-soft` | `border-gold` | `text-forest-deep` | `Minus` icon, `text-forest-deep` |
+
+- **Border radius:** `rounded-lg` (8px, the global card radius token).
+- **Padding:** `p-6`.
+- **Transition:** `transition-colors` on the card surface.
+- **Single-open behavior:** React state holds one open index (`open: number | null`); clicking the already-open card closes it (`setOpen(isOpen ? null : i)`).
+- **Answer text (open):** `text-sm leading-relaxed text-forest-deep` with `mt-6` spacing from the question.
+- **Icons:** `Plus` / `Minus` from `lucide-react`, `strokeWidth={1}`, `h-4 w-4`.
+
+This pattern is the canonical accordion treatment for the site: closed cards sit slightly above a dark section background with a warm-white border; open cards invert to a gold-soft surface with forest-deep text.
+
+#### Card surface treatments
+
+The site uses two primary card/panel surfaces:
+
+1. **Light card surface**
+   - Token: `--card` → `oklch(1 0 0)` / `#FFFFFF`.
+   - Used on light sections (parchment, cream, warm-white backgrounds).
+   - Typically combined with `rounded-lg` (8px) for panels and larger containers.
+
+2. **Dark card surface**
+   - Token: `--forest-deep` (`#0B2015`).
+   - Used for cards on dark sections (FAQ accordion closed state, Trust Center audit panels, Vault dark sections, etc.).
+   - Often paired with `border-warm-white/25` or `border-gold` borders depending on state.
+
+**Radius rule:** buttons use `2px`; cards, panels, and larger containers use `8px` (`rounded-lg` / `--radius-lg`).
