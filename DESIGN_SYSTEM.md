@@ -368,3 +368,106 @@ Test every page at exactly these three widths. They map to the breakpoints above
 | **Mobile** | `375px` | Below `sm` (`<640px`) | Hamburger menu is visible and functional; desktop nav is hidden. Footer is a single stacked column. FAQ accordion is single-column. Body text uses mobile sizes from the heading/body scale tables. Horizontal padding is `20px` (`px-5`). No horizontal overflow. |
 | **Tablet** | `768px` | At `md` (`≥768px`, `<1024px`) | Footer is the 4-column `1.4fr 1fr 1fr 1fr` grid. FAQ is a 2-column grid. **Nav is still the hamburger menu** because `lg` (`1024px`) has not been reached. Route layouts that switch at `md` should show side-by-side columns. |
 | **Desktop** | `1440px` | At the custom `min-[1440px]` breakpoint | Full desktop nav is visible at full artboard sizing: `290px` logo, `54px` gap, `60px` horizontal padding. Footer is 4-column. All route grids are at their widest multi-column state. No max-width containers should touch viewport edges (`WIDE`/`STD` use `xl:px-0`). This is the canonical desktop artboard size. |
+
+---
+
+## 4. Iconography & Imagery
+
+### Icons
+
+The site uses **lucide-react** as its sole icon library. Every icon is imported as a named React component and rendered inline (tree-shakable). No custom icon font or separate SVG sprite sheet is used for UI icons.
+
+#### Stroke widths in use
+
+A survey of `src/routes/index.tsx`, `src/routes/vault.tsx`, `src/components/site-chrome.tsx`, `src/routes/gifting.tsx`, and `src/routes/fractional-gold.tsx` shows the following stroke widths are actually passed:
+
+| Stroke width | Typical context | Examples |
+|--------------|-----------------|----------|
+| `1` | Fine decorative / editorial icons; FAQ accordion state icons | Homepage feature-list icons (`h-6 w-6`), FAQ `Plus`/`Minus` (`h-4 w-4`), homepage ornamental `Mark` SVG. |
+| `1.25` | UI chrome / custom inline SVG arrows | Mobile menu `X`/`Menu` (`h-5 w-5`); Vault dotted/thin arrow SVGs. |
+| `1.3` – `1.4` | Large editorial / process icons | Gifting occasion icons (`size={32}`), Vault "How It Works" and "Redemption process" icons (`size={34}`–`46`), fractional-gold fee icons. |
+| `1.5` | Inline CTA arrows; small functional icons | `ArrowRight` next to text links (`size={15}`–`18`), Vault allocation tab icons, `LockKeyhole` security markers. |
+| `2` – `2.5` | Bold CTA arrows and affirmative/check marks | Primary `GoldButton` arrows (`size={17}`, `strokeWidth={2.25}` or `2.5`); comparison/checklist `Check`/`X` in circles (`size={12}`, `strokeWidth={2.5}`). |
+
+#### Sizing patterns
+
+Icons are sized in two ways:
+
+1. **Tailwind utility classes** — most common for icons that sit next to text:
+   - `h-4 w-4` — accordion state icons.
+   - `h-5 w-5` — header mobile-menu toggle.
+   - `h-6 w-6` — homepage feature-list bullets.
+   - `h-8 w-8` — path-card lead icons.
+2. **Explicit `size={n}` prop** — used for large editorial/process icons where the artboard needs a precise pixel value:
+   - `size={15}`–`{18}` — inline link arrows.
+   - `size={30}`–`{46}` — feature/process illustrations.
+   - `size={52}` — fractional-gold user/verification illustration.
+
+#### Default color treatment
+
+- **Dominant:** `text-gold` — the default accent for almost every icon (feature bullets, process icons, CTA arrows, security markers).
+- **Soft accent:** `text-gold-soft` — used on dark or gold-filled surfaces where a full-gold icon would clash (Vault allocation icons, lock icons).
+- **Dark/contextual:** `text-forest` or `text-forest-deep` — used on light card surfaces (path-card icons, open FAQ state icons).
+- **Light:** `text-warm-white` or `text-background` — used inside dark buttons or forest circles.
+
+Icons inherit `currentColor` by default; the color is almost always set via a surrounding `className` rather than the `color` prop.
+
+---
+
+### Photography & Imagery
+
+#### Hero images
+
+Hero images are treated as **full-bleed backgrounds** with `object-cover` and a directional `object-position`:
+
+- `src/routes/index.tsx`: `hero-with-mandala.png` spans the full header/hero area, with `object-cover object-left` and a forest-deep gradient overlay (`bg-[linear-gradient(95deg,...)]`) so the copy remains readable.
+- `src/routes/fractional-gold.tsx`: `gold-bar-velvet-marble-branded.png` is positioned as a right-aligned hero image (`lg:absolute lg:inset-y-0 lg:right-0 lg:w-[67%]`) with `object-cover`.
+- `src/routes/vault.tsx`: `vault-door-hero.png` fills the left image panel of the split hero (`lg:absolute lg:inset-0`, `object-cover object-[58%_center]`).
+- `src/routes/about-us.tsx`: `about-hero-velvet-bg.jpg` plus a cut-out gold bar (`about-hero-gold-bar-v2.png`) create a layered hero composition.
+
+Common treatment: a dark gradient scrim or `bg-forest-deep/70` overlay is applied so warm-white and gold text stays legible.
+
+#### Product photography style
+
+Product shots are **editorial and tactile**: gold bars and coins are shown on marble, velvet, or softly lit surfaces. Representative assets:
+
+- `gold-bar-velvet-marble-branded.png` — 1kg bar on dark green velvet and marble.
+- `gifting-target-hero.jpg` — composed gifting scene.
+- `occasion-*.jpg` — lifestyle occasion cards (weddings, birthdays, festivals, etc.) used as `object-cover` thumbnails.
+- `precious-metal-hero.png`, `american-eagle.png`, `pamp-bar.png`, `maple-leaf.png` — coin and bar product imagery on the Precious Metal page.
+
+These images are usually `object-cover` inside rounded (`rounded-lg`, 8px) cards or full-bleed containers.
+
+#### App showcase screenshot
+
+`app-showcase.png` is rendered on the homepage as a **full-width, non-rounded screenshot** inside the cream "Early access" section:
+
+```text
+<img src={appShowcase.url} alt="..." loading="lazy" width={1920} height={1080} className="w-full" />
+```
+
+The image spans edge-to-edge; the caption and CTA below it are constrained to `max-w-[1200px] px-6`.
+
+#### Custom illustration / decorative marks
+
+1. **Ornamental `Mark` SVG** (`src/routes/index.tsx`)
+   - A small 40×40 compass/star-like mark: two concentric circles plus a diamond cross.
+   - Used as a decorative rule ornament below the homepage hero headline (`h-4 w-4`).
+   - Stroke widths `1` and `0.8`; inherits `currentColor` (`text-gold`).
+
+2. **SQOOT Pure mandala** (`sqoot-mandala.png` / `sqoot-pure-mandala.png.asset.json`)
+   - A repeating brand motif used decoratively across multiple pages.
+   - Typical treatment:
+     - `opacity: 0.14`
+     - `mix-blend-mode: screen`
+     - absolutely positioned, often partially off-canvas
+     - `aria-hidden="true"` and empty `alt` (purely decorative)
+   - Used in: Vault hero (`right-[-84px] top-1/2 ... opacity-[0.04]`), Vault waitlist (`h-[92px] w-[92px]`), About Us hero and compliance band, Fractional Gold philosophy section, Trust Center.
+
+3. **Inline SVG line-art**
+   - Several routes include hand-coded SVGs for process arrows, dotted connectors, and credential ornaments (e.g. Vault `ThinArrow`, `DottedArrow`, fractional-gold custom checkmark icon).
+   - These use `strokeWidth` values of `1.25`–`1.5`, `currentColor`, and are sized with Tailwind classes or explicit dimensions.
+
+#### Credential / badge imagery
+
+Member badges and logos (JBT, NCBA, IDS, LBMA-related) are rendered with `object-contain` and, where needed, `mix-blend-multiply` so they sit cleanly on parchment/cream backgrounds without heavy borders or cards.
