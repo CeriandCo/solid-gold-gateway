@@ -226,7 +226,7 @@ function Index() {
 
       {/* Assurance strip */}
       <section className="border-b border-border bg-forest-deep">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 px-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="site-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {assurances.map(({ icon: Icon, title, copy }) => (
             <div
               key={title}
