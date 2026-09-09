@@ -571,7 +571,7 @@ function PreciousMetalPage() {
           .pm-products {
             position: relative;
             isolation: isolate;
-            height: clamp(386px, 37.6389vw, 964px);
+            height: clamp(410px, 40vw, 1000px);
             padding: clamp(24px, 2.3611vw, 60px) clamp(48px, 4.7222vw, 121px) clamp(9px, .8333vw, 21px);
             overflow: hidden;
             background-color: var(--pm-cream);
