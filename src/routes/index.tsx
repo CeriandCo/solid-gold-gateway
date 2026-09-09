@@ -170,7 +170,7 @@ function Index() {
           height={1280}
           className="absolute inset-0 -z-20 h-full w-full object-cover object-left"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_78%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_58%,transparent)_30%,color-mix(in_oklab,var(--forest-deep)_34%,transparent)_52%,transparent_78%)]" />
 
         <SiteNav variant="overlay" />
 
