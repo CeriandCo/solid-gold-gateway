@@ -10,7 +10,7 @@ import {
   LockKeyhole,
   ShieldCheck,
   UserPlus,
-  WalletCards,
+  Wallet,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -69,7 +69,7 @@ const steps = [
     summary: "Review clear pricing before confirming your purchase.",
     detail:
       "When transactions become available, you will see the applicable price and fees before confirming. Once purchased, your physical gold allocation is recorded to your account.",
-    icon: WalletCards,
+    icon: Wallet,
   },
   {
     title: "Track your holding",
