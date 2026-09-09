@@ -121,31 +121,31 @@ function Index() {
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
       <SiteHeader />
 
-      <section id="why-gold" className="relative flex min-h-[560px] flex-col bg-ivory lg:block">
-        {/* Desktop: full-bleed image with a smooth cream fade from the text side */}
+      <section id="why-gold" className="relative flex min-h-[560px] flex-col bg-forest lg:block">
+        {/* Desktop: full-bleed image with a smooth dark-green fade from the text side */}
         <div className="absolute inset-0 hidden overflow-hidden lg:block">
           <img
             src={fractionalGoldHero.url}
             alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-contain object-right"
           />
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, var(--ivory) 0%, var(--ivory) 25%, rgba(246,240,232,0.98) 34%, rgba(246,240,232,0.82) 44%, rgba(246,240,232,0.45) 54%, rgba(246,240,232,0) 68%)",
+                "linear-gradient(90deg, var(--forest) 0%, var(--forest) 25%, rgba(5,20,13,0.96) 36%, rgba(5,20,13,0.78) 48%, rgba(5,20,13,0.42) 59%, rgba(5,20,13,0) 70%)",
             }}
           />
         </div>
         <div className="relative order-1 z-10 mx-auto flex w-full max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
           <div className="max-w-[500px]">
             <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
-            <h1 className="hero-title mt-8 max-w-[500px] text-forest">
+            <h1 className="hero-title mt-8 max-w-[500px] text-warm-white">
               Gold allocation,<br />made more<br /><em className="hero-emphasis text-gold">accessible.</em>
             </h1>
-            <p className="hero-body mt-7 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
+            <p className="hero-body mt-7 max-w-[370px] text-warm-white/90">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
             <GoldButton to="/early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
-            <p className="hero-note mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
+            <p className="hero-note mt-4 flex items-center gap-2 text-warm-white/80"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
         </div>
         {/* Mobile: image below the text with a subtle top fade */}
@@ -153,9 +153,9 @@ function Index() {
           <img
             src={fractionalGoldHero.url}
             alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-cover object-right"
+            className="h-full w-full object-contain object-right"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ivory to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-forest to-transparent" />
         </div>
       </section>
 
