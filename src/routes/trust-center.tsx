@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import { FileCheck2, Globe, Landmark, Users } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
+import trustHeroImage from "@/assets/trust-centre-verification-hero-v2.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
@@ -399,7 +399,7 @@ function TrustCenterPage() {
 
       {/* HERO */}
       <section className="tc-hero">
-        <img className="tc-hero-img" src={heroElephants.url} alt="Ceremonial elephants adorned with gold at a festival" />
+        <img className="tc-hero-img" src={trustHeroImage.url} alt="A gloved hand holds a gold bar beside an open audit register" />
         <div className="tc-hero-overlay" />
         <div className="tc-hero-inner">
           <div className="tc-hero-copy">
@@ -695,9 +695,9 @@ const trustStyles = `
 .trust-center-page svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 
 /* HERO */
-.tc-hero{position:relative;height:clamp(360px,31.9444vw,460px);overflow:hidden;background:var(--tc-forest-950)}
-.tc-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;filter:contrast(1.03);transform-origin:center center;animation:tcHeroImage 900ms var(--tc-ease) forwards}
-.tc-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#01120d 0%,#011711 39%,rgba(1,23,17,.94) 48%,rgba(1,23,17,.48) 61%,rgba(1,23,17,.08) 78%)}
+.tc-hero{position:relative;height:clamp(360px,31.9444vw,460px);overflow:hidden;background:var(--forest)}
+.tc-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;transform-origin:center center;animation:tcHeroImage 900ms var(--tc-ease) forwards}
+.tc-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,15,.98) 0%,rgba(7,25,15,.94) 26%,rgba(7,25,15,.77) 40%,rgba(7,25,15,.37) 54%,rgba(7,25,15,.06) 69%,transparent 80%)}
 .tc-hero-inner{position:absolute;inset:0;z-index:2;display:flex;align-items:center}
 .tc-hero-copy{width:100%;max-width:1328px;margin:0 auto;padding-inline:clamp(24px,3.8889vw,56px)}
 .tc-hero-text{width:48%;max-width:570px;margin-top:clamp(-30px,-2vh,-16px);opacity:0;transform:translateY(16px);animation:tcHeroText 700ms var(--tc-ease) forwards}
@@ -942,8 +942,8 @@ const trustStyles = `
 @media (max-width:767px){
   .trust-center-page{--u:1px}
   .tc-hero{min-height:430px;height:clamp(430px,112vw,500px)}
-  .tc-hero-img{object-position:72% center}
-  .tc-hero-overlay{background:linear-gradient(90deg,#01120d 0%,rgba(1,23,17,.96) 48%,rgba(1,23,17,.62) 72%,rgba(1,23,17,.22) 100%)}
+  .tc-hero-img{object-position:right center}
+  .tc-hero-overlay{background:linear-gradient(90deg,rgba(7,25,15,.98) 0%,rgba(7,25,15,.91) 54%,rgba(7,25,15,.48) 78%,rgba(7,25,15,.18) 100%)}
   .tc-hero-copy{padding-inline:24px}
   .tc-hero-text{width:100%;max-width:480px;margin-top:-6px}
   .tc-hero h1{font-size:clamp(42px,11.5vw,50px)}
