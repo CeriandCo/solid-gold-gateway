@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -83,15 +83,7 @@ function OfficialMandala({ className }: { className?: string }) {
 function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "error" | "success">("idle");
   const currentStep = steps[step] ?? ["Create an account", "Join the waitlist and create your account in under a minute."];
-
-  function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.length <= 254;
-    setFormState(valid ? "success" : "error");
-  }
 
   return (
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
@@ -270,22 +262,6 @@ function Index() {
           <div id="faq"><h2 className="fees-faq-title mt-3 text-forest">Frequently asked questions</h2><div className="mt-5">{faqs.map(([question, answer], index) => { const isOpen = openFaq === index; return <div key={question} className="border-b border-beige"><button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold" aria-expanded={isOpen}><span>{question}</span><PlusIcon open={isOpen} /></button>{isOpen && <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>}</div>})}</div></div>
         </div>
       </section>
-
-      <section id="early-access" className="relative bg-background">
-        <svg className="block h-[30px] w-full" viewBox="0 0 1440 31" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path fill="currentColor" className="text-forest" d="M0 0 C 120 10, 220 12, 300 12 S 440 15, 500 15 S 640 10, 700 10 S 840 24, 900 24 S 1040 31, 1100 31 S 1240 27, 1300 27 S 1400 14, 1440 14 L 1440 31 L 0 31 Z" />
-        </svg>
-        <div className="bg-forest text-background">
-          <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-5 py-10 sm:px-7 lg:min-h-[224px] lg:grid-cols-[1fr_1.35fr] lg:px-10 lg:py-0">
-            <div className="flex items-center gap-6"><OfficialMandala className="h-20 w-20 shrink-0 lg:h-[110px] lg:w-[110px]" /><div><h2 className="early-title text-gold">Be first in line.</h2><p className="early-body mt-2">SQOOT Pure is launching soon.<br />Join the waitlist to get early access.</p><p className="privacy-note mt-3">Currently available to U.S. residents only.</p></div></div>
-            <form onSubmit={submitWaitlist} noValidate>
-              <div className="grid gap-3 sm:grid-cols-[minmax(0,387px)_auto] sm:gap-[18px]"><label className="sr-only" htmlFor="waitlist-email">Email address</label><input id="waitlist-email" type="email" maxLength={254} value={email} onChange={(e) => { setEmail(e.target.value); setFormState("idle"); }} placeholder="Enter your email address" className="early-input min-h-14 rounded-sm border border-transparent bg-background px-5 text-forest outline-none transition-shadow placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold" aria-invalid={formState === "error"} aria-describedby="email-status" /><GoldButton type="submit" className="h-[54px] w-full px-8 lg:w-[253px]">Get Early Access</GoldButton></div>
-              <p id="email-status" className={cn("privacy-note mt-3 flex items-center gap-2", formState === "error" && "text-error", formState === "success" && "text-gold")}><LockKeyhole size={18} className="shrink-0 text-gold" />{formState === "error" ? "Please enter a valid email address." : formState === "success" ? "You’re on the list. We’ll be in touch." : "We respect your privacy. Your information is safe with us."}</p>
-            </form>
-          </div>
-        </div>
-      </section>
-
 
       <SiteFooter />
     </main>
