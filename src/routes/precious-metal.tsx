@@ -424,13 +424,13 @@ function PreciousMetalPage() {
           <div className="pm-hero-overlay" aria-hidden="true" />
           <div className="pm-hero-copy">
             <h1 id="pm-hero-title">
-              <span>Own physical</span>
-              <span>gold in your hands.</span>
+              <span>Real gold.</span>
+              <span>In your hands.</span>
             </h1>
             <span className="pm-hero-rule" aria-hidden="true" />
             <p>
-              <span>No vault fees. Direct control.</span>
-              <span>Insured shipping to your address.</span>
+              <span>No vaulting, no third party holding your metal.</span>
+              <span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span>
             </p>
           </div>
         </section>
