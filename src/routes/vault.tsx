@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Building2,
@@ -118,14 +118,6 @@ function TexasMap() {
 function Index() {
   const [tab, setTab] = useState<"delivered" | "stored">("delivered");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "error" | "success">("idle");
-
-  function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.length <= 254;
-    setFormState(valid ? "success" : "error");
-  }
 
   return (
     <main id="top" className="bg-background text-charcoal">
@@ -499,7 +491,7 @@ function Index() {
                 ))}
               </ul>
               <a
-                href="#early-access"
+                href="/early-access"
                 className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-gold underline underline-offset-4"
               >
                 View vault details <ArrowRight size={15} strokeWidth={1.5} />
@@ -655,7 +647,7 @@ function Index() {
                 Nothing staged.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-7">
-                <GoldButton href="#early-access" className="h-[54px] px-8">
+                <GoldButton to="/early-access" className="h-[54px] px-8">
                   Watch the walkthrough <ArrowRight size={16} strokeWidth={2} />
                 </GoldButton>
                 <span className="flex items-center gap-3 text-[13px] leading-[1.45] text-[#C8CFC9]">

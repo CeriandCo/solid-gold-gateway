@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -83,15 +83,7 @@ function OfficialMandala({ className }: { className?: string }) {
 function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<"idle" | "error" | "success">("idle");
   const currentStep = steps[step] ?? ["Create an account", "Join the waitlist and create your account in under a minute."];
-
-  function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.length <= 254;
-    setFormState(valid ? "success" : "error");
-  }
 
   return (
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
