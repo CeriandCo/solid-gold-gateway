@@ -204,7 +204,7 @@ function Index() {
 
       {/* Value prop strip */}
       <section className="border-b border-warm-white/10 bg-forest-deep">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-2 gap-y-3 px-6 py-4 sm:gap-x-4 sm:py-5">
+        <div className="site-container flex flex-wrap items-center justify-center gap-x-2 gap-y-3 py-4 sm:gap-x-4 sm:py-5">
           {[
             "START FROM US$25",
             "100% REAL GOLD",
