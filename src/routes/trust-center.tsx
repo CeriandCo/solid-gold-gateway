@@ -545,25 +545,28 @@ function TrustCenterPage() {
             <h3 className="tc-label">{TC.process.subtitle}</h3>
             <p className="tc-process-body">{TC.process.body}</p>
           </div>
-          <div className="tc-steps">
+          <div className="tc-steps" aria-label="Four-step audit process">
             <span className="tc-timeline-line" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-1" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-2" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-3" aria-hidden="true" />
-            {TC.process.steps.map((step, i) => (
-              <div className="tc-step-wrap" key={step.title}>
-                <article style={{ "--step-index": i } as CSSProperties}>
-                  <span className="tc-step-circle">
-                    <b>{i + 1}</b>
-                    <TcIcon name={step.icon} className="tc-step-icon" />
-                  </span>
-                  <div className="tc-step-copy">
-                    <h4>{step.title}</h4>
-                    <p>{step.body}</p>
-                  </div>
-                </article>
-              </div>
-            ))}
+            {TC.process.steps.map((step, i) => {
+              const StepIcon = AUDIT_STEP_ICONS[i];
+              return (
+                <div className="tc-step-wrap" key={step.title}>
+                  <article style={{ "--step-index": i } as CSSProperties}>
+                    <span className="tc-step-circle">
+                      <StepIcon size={32} strokeWidth={1.4} aria-hidden="true" className="tc-step-icon" />
+                      <span className="tc-step-badge">{i + 1}</span>
+                    </span>
+                    <div className="tc-step-copy">
+                      <h4>{step.title}</h4>
+                      <p>{step.body}</p>
+                    </div>
+                  </article>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
