@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteNav } from "@/components/site-chrome";
 
-import heroBackground from "@/assets/hero-with-mandala.png.asset.json";
+import heroBackground from "@/assets/hero-v1-goc.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";
 import pathCoin from "@/assets/path-coin.jpg";
 import pathFractional from "@/assets/path-fractional.jpg";
@@ -165,10 +165,10 @@ function Index() {
       <header className="relative isolate overflow-hidden bg-forest-deep text-warm-white">
         <img
           src={heroBackground.url}
-          alt="Gold coin, bars and SQOOT Pure presentation box on a marble table with white flowers"
-          width={1920}
-          height={1280}
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-left"
+          alt="Gold bullion bars and a family photograph in a brass frame on a marble table in warm sunlight"
+          width={1536}
+          height={1024}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[75%_center] lg:object-left"
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_78%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_58%,transparent)_30%,color-mix(in_oklab,var(--forest-deep)_34%,transparent)_52%,transparent_78%)]" />
 
