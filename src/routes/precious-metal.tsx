@@ -128,10 +128,26 @@ function ProductsSection() {
 }
 
 const steps = [
-  { title: "Order", icon: <OrderIcon /> },
-  { title: "Insured Shipping", icon: <ShippingIcon /> },
-  { title: <>Arrives at Your<br />Address</>, icon: <AddressIcon /> },
-  { title: "Full Ownership", icon: <OwnershipIcon /> },
+  {
+    title: "Order",
+    body: "Choose your coins or bars and lock in live spot plus premium at checkout.",
+    icon: <OrderIcon />,
+  },
+  {
+    title: "Insured Shipping",
+    body: "Your order ships fully insured from our vault to your door, tracked every step.",
+    icon: <ShippingIcon />,
+  },
+  {
+    title: <>Arrives at Your<br />Address</>,
+    body: "Delivered discreetly and securely, no signature surprises, no unmarked guesswork.",
+    icon: <AddressIcon />,
+  },
+  {
+    title: "Full Ownership",
+    body: "It's yours outright. No storage account, no ongoing fees, nothing to manage.",
+    icon: <OwnershipIcon />,
+  },
 ] as const;
 
 function OrderIcon() {
@@ -202,6 +218,7 @@ function HowItWorksSection() {
           <article className="pm-step" key={index}>
             <div className="pm-step-circle">{step.icon}</div>
             <h3>{step.title}</h3>
+            <p>{step.body}</p>
           </article>
         ))}
       </div>
