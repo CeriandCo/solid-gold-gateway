@@ -57,8 +57,8 @@ const faqs = [
   ["How are fees calculated?", "Storage is billed pro-rata: full period fee × days held ÷ 90, with a $25 minimum charge."],
 ] as const;
 
-const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
-const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
+const WIDE = "site-container";
+const STD = "site-container";
 
 function GoldRule() {
   return <span className="mt-3 block h-px w-9 bg-gold" />;
