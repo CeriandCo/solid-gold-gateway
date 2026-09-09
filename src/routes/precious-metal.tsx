@@ -103,6 +103,7 @@ function ProductsSection() {
         <h2 id="pm-products-title">What&apos;s available</h2>
         <span aria-hidden="true" />
       </div>
+      <p className="pm-products-eyebrow">Coins and bars, ready to ship.</p>
       <div className="pm-products-grid">
         {products.map((product, index) => (
           <article className="pm-product-card" key={product.purity + index}>
