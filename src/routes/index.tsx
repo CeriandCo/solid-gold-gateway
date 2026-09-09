@@ -170,7 +170,7 @@ function Index() {
           height={1280}
           className="absolute inset-0 -z-20 h-full w-full object-cover object-left"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_72%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_45%,transparent)_32%,color-mix(in_oklab,var(--forest-deep)_18%,transparent)_54%,transparent_78%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,color-mix(in_oklab,var(--forest-deep)_78%,transparent)_0%,color-mix(in_oklab,var(--forest-deep)_58%,transparent)_30%,color-mix(in_oklab,var(--forest-deep)_34%,transparent)_52%,transparent_78%)]" />
 
         <SiteNav variant="overlay" />
 
@@ -185,7 +185,7 @@ function Index() {
             <div className="rule-ornament mt-9 text-gold">
               <Mark className="h-4 w-4 shrink-0" />
             </div>
-            <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/75">
+            <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/95 [text-shadow:0_1px_3px_rgba(0,0,0,0.45)]">
               Buy real gold, your way. Build your holding over time, keep it securely stored, take delivery when you
               choose, or gift gold to someone special.
             </p>
