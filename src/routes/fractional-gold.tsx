@@ -330,7 +330,7 @@ function Index() {
                       </span>
                     </button>
                     {isSelected && (
-                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[70px] rounded-[8px] border border-gold/45 bg-background px-5 py-4">
+                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[70px] flex min-h-[200px] items-center rounded-[8px] border border-gold/45 bg-background px-5 py-4">
                         <p className="text-sm leading-relaxed text-charcoal">{detail}</p>
                       </div>
                     )}
