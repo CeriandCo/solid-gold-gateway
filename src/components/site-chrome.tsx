@@ -120,55 +120,55 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
-      {/* Desktop geometry steps up with the viewport so the row never overflows:
-          1024–1279px compact, 1280–1439px medium, ≥1440px the full artboard values. */}
-      <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 px-5 py-2 sm:px-8 lg:min-h-[112px] lg:px-6 lg:py-5 xl:px-10 min-[1440px]:px-[60px]">
-        <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
-          <img
-            src={logoImage}
-            alt="SQOOT Pure"
-            className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
-          />
-        </Link>
-        <nav
-          className="hidden flex-1 items-center justify-center lg:flex lg:gap-5 xl:gap-8 min-[1440px]:gap-[54px]"
-          aria-label="Primary navigation"
-        >
-          {siteNav.map(([label, to]) => (
-            <Link
-              key={label}
-              to={to}
-              className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex shrink-0 items-center gap-3">
-          <Link
-            to="/early-access"
-            className={cn(
-              "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
-              variant === "overlay"
-                ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
-            )}
-          >
-            Get Early Access
+      <div className="site-container">
+        <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 lg:min-h-[112px] lg:py-5">
+          <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
+            <img
+              src={logoImage}
+              alt="SQOOT Pure"
+              className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
+            />
           </Link>
-          <button
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-            className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
+          <nav
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-5 xl:gap-8 min-[1440px]:gap-[54px]"
+            aria-label="Primary navigation"
           >
-            {menuOpen ? (
-              <X strokeWidth={1.25} className="h-5 w-5" />
-            ) : (
-              <Menu strokeWidth={1.25} className="h-5 w-5" />
-            )}
-          </button>
+            {siteNav.map(([label, to]) => (
+              <Link
+                key={label}
+                to={to}
+                className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex shrink-0 items-center gap-3">
+            <Link
+              to="/early-access"
+              className={cn(
+                "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
+                variant === "overlay"
+                  ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
+              )}
+            >
+              Get Early Access
+            </Link>
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
+            >
+              {menuOpen ? (
+                <X strokeWidth={1.25} className="h-5 w-5" />
+              ) : (
+                <Menu strokeWidth={1.25} className="h-5 w-5" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
