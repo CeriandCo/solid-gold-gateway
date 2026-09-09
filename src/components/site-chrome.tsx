@@ -50,8 +50,8 @@ export function AppStoreBadge({ store }: { store: "apple" | "google" }) {
   );
 }
 
-export const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
-export const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
+export const WIDE = "site-container";
+export const STD = "site-container";
 
 export const siteNav = [
   ["Buy Gold", "/precious-metal"],
@@ -180,7 +180,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             variant === "solid" ? "bg-forest-deep" : "bg-forest-deep",
           )}
         >
-          <ul className="mx-auto max-w-[1200px] px-6 py-2">
+          <ul className="site-container py-2">
             {siteNav.map(([label, to]) => (
               <li key={label} className="border-b border-warm-white/10 last:border-b-0">
                 <Link

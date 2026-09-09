@@ -174,7 +174,7 @@ function Index() {
 
         <SiteNav variant="overlay" />
 
-        <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-14 sm:pt-20 lg:pb-32">
+        <div className="site-container pb-24 pt-14 sm:pt-20 lg:pb-32">
           <div className="max-w-[36rem]">
             <p className="eyebrow text-gold">GOLD, MADE PERSONAL.</p>
             <h1 className="mt-6 overflow-hidden font-display text-[2.25rem] leading-[1.05] text-warm-white sm:text-[4.5rem]">
@@ -204,7 +204,7 @@ function Index() {
 
       {/* Value prop strip */}
       <section className="border-b border-warm-white/10 bg-forest-deep">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-2 gap-y-3 px-6 py-4 sm:gap-x-4 sm:py-5">
+        <div className="site-container flex flex-wrap items-center justify-center gap-x-2 gap-y-3 py-4 sm:gap-x-4 sm:py-5">
           {[
             "START FROM US$25",
             "100% REAL GOLD",
@@ -226,7 +226,7 @@ function Index() {
 
       {/* Assurance strip */}
       <section className="border-b border-border bg-forest-deep">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 px-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="site-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {assurances.map(({ icon: Icon, title, copy }) => (
             <div
               key={title}
@@ -252,7 +252,7 @@ function Index() {
           height={1080}
           className="w-full"
         />
-        <div className="mx-auto max-w-[1200px] px-6 pt-10 text-center sm:pt-14">
+        <div className="site-container pt-10 text-center sm:pt-14">
           <p className="eyebrow text-gold">Early access</p>
           <h2 className="mt-4 font-display text-[2rem] leading-tight text-forest sm:text-[2.75rem]">
             Gold ownership, in your pocket.
@@ -268,7 +268,7 @@ function Index() {
 
       {/* Three paths */}
       {/* <section id="paths" className="bg-cream py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow text-gold">Three ways to own</p>
             <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-forest">

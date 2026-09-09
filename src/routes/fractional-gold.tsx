@@ -136,7 +136,7 @@ function Index() {
       />
 
       <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
-        <div className="mx-auto max-w-[1160px] px-5 sm:px-7">
+        <div className="site-container">
           <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
           <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
             {/* JBT — SQOOT Pure industry membership */}
@@ -231,7 +231,7 @@ function Index() {
         <div className="pointer-events-none absolute right-[-10%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 opacity-[0.18] mix-blend-multiply sm:h-[620px] sm:w-[620px] lg:right-[-8%] lg:h-[760px] lg:w-[760px]">
           <OfficialMandala className="h-full w-full" />
         </div>
-        <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-20 sm:px-7 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:px-14 lg:py-32">
+        <div className="site-container relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:py-32">
           <div>
             <p className="eyebrow text-gold">Our Philosophy</p>
             <h2 className="mt-5 font-display text-[2.6rem] leading-[1.08] tracking-[-0.01em] text-forest sm:text-[3.2rem] lg:text-[3.8rem]">
@@ -255,7 +255,7 @@ function Index() {
       </section>
 
       <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[1240px] gap-10 px-5 sm:px-8 lg:grid-cols-[28%_1fr] lg:gap-12 xl:px-0">
+        <div className="site-container grid gap-10 lg:grid-cols-[28%_1fr] lg:gap-12">
           <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
             <h2 className="section-title mt-5 text-forest">Five steps. All online. All simple.</h2>
@@ -351,7 +351,7 @@ function Index() {
       </section>
 
       <section className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
-        <div className="mx-auto grid max-w-[1240px] overflow-hidden rounded-[26px] bg-forest px-7 py-10 text-background sm:px-12 lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
+        <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="comparison-left-title">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
           <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="Premium gold bar and fractional gold pieces" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
           <div className="lg:pl-8"><h2 className="comparison-right-title">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
@@ -359,7 +359,7 @@ function Index() {
       </section>
 
       <section id="fees" className="bg-background py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[1240px] gap-14 px-5 sm:px-7 lg:grid-cols-2 lg:px-10">
+        <div className="site-container grid gap-14 lg:grid-cols-2">
           <div className="lg:border-r lg:border-beige lg:pr-10"><h2 className="fees-faq-title mt-3 text-forest">Simple, transparent fees</h2><p className="fee-intro mt-3 text-muted-foreground">One simple fee. No hidden costs, no surprises.</p><div className="mt-7 grid rounded-lg border border-beige bg-ivory sm:grid-cols-3">{[[CircleDollarSign,"Allocation Fee","$3 per $100 allocated (3.00%)"],[ShieldCheck,"Annual Storage Fee","0.35% of value"],[FileCheck2,"Insured Storage","0.45% of value"]].map(([Icon,title,copy], i) => { const FeeIcon = Icon as typeof CircleDollarSign; return <div key={title as string} className={cn("px-5 py-7 text-center", i > 0 && "border-t border-beige sm:border-l sm:border-t-0")}><FeeIcon className="mx-auto text-gold" strokeWidth={1.5} /><p className="fee-card-label mt-4 min-h-[2.5rem] text-forest">{title as string}</p><p className="fee-card-value mt-3 text-muted-foreground">{copy as string}</p></div>})}</div><p className="fee-footnote mt-4 text-muted-foreground">*Fees are subject to change. See full Fee Schedule in FAQ.</p></div>
           <div id="faq"><h2 className="fees-faq-title mt-3 text-forest">Frequently asked questions</h2><div className="mt-5">{faqs.map(([question, answer], index) => { const isOpen = openFaq === index; return <div key={question} className="border-b border-beige"><button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold" aria-expanded={isOpen}><span>{question}</span><PlusIcon open={isOpen} /></button>{isOpen && <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>}</div>})}</div></div>
         </div>
