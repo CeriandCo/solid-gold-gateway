@@ -216,7 +216,7 @@ function AboutPage() {
       </section>
 
       <section className="about-waitlist" data-reveal>
-        <GoldButton href="/vault#early-access" className="h-[54px] px-8">
+        <GoldButton to="/early-access" className="h-[54px] px-8">
           Get Early Access
         </GoldButton>
       </section>

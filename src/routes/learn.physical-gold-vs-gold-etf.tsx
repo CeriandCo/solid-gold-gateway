@@ -238,7 +238,7 @@ function ArticlePage() {
                 Be among the first to explore fractional physical gold ownership when SQOOT Pure launches.
               </p>
               <div className="mt-8">
-                <GoldButton to="/vault" className="h-[54px] px-8">Join the SQOOT Pure waitlist</GoldButton>
+                <GoldButton to="/early-access" className="h-[54px] px-8">Join the SQOOT Pure waitlist</GoldButton>
               </div>
               <p className="compact-copy mt-10 text-warm-white/60">
                 Important information: This content is provided for general educational purposes only and does not constitute financial, investment, legal or tax advice. Gold prices can rise or fall, and you may receive less than you paid. Product structures, fees, custody arrangements and redemption rights vary. Always review the relevant terms and disclosures before making a financial decision.
