@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import goldBarVelvetMarbleBranded from "@/assets/gold-bar-velvet-marble-branded.png";
+import fractionalGoldHero from "@/assets/fractional-gold-hero.png.asset.json";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
@@ -121,10 +121,16 @@ function Index() {
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
       <SiteHeader />
 
-      <section id="why-gold" className="relative min-h-[560px] bg-ivory">
-        <img src={goldBarVelvetMarbleBranded} alt="SQOOT Pure 1kg gold bar with branded mandala on dark green velvet and marble" className="h-[360px] w-full object-cover object-[68%_center] sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[67%] lg:object-cover" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[54%] bg-ivory lg:block [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]" />
-        <div className="relative mx-auto flex max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
+      <section id="why-gold" className="relative flex min-h-[560px] flex-col bg-ivory lg:block">
+        <div className="relative order-2 h-[clamp(300px,66vw,470px)] w-full overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[59%]">
+          <img
+            src={fractionalGoldHero.url}
+            alt="Gold bars and a coin arranged on deep green velvet"
+            className="h-full w-full object-cover object-right"
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-ivory to-transparent lg:inset-y-0 lg:left-0 lg:right-auto lg:h-full lg:w-[34%] lg:bg-gradient-to-r lg:from-ivory lg:via-ivory/75 lg:to-transparent" />
+        </div>
+        <div className="relative order-1 mx-auto flex w-full max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
           <div className="max-w-[500px]">
             <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
             <h1 className="hero-title mt-8 max-w-[500px] text-forest">
@@ -133,13 +139,6 @@ function Index() {
             <p className="hero-body mt-7 max-w-[370px] text-charcoal">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
             <GoldButton to="/early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
             <p className="hero-note mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
-          </div>
-        </div>
-        <div className="absolute bottom-10 right-[5%] hidden h-40 w-40 place-items-center rounded-full border-2 border-background/80 bg-transparent text-center text-background lg:grid">
-          <div className="flex flex-col items-center">
-            <p className="price-label">START FROM</p>
-            <p className="price-value mt-2">$25</p>
-            <p className="price-detail mt-3">≈ 0.0104 oz</p>
           </div>
         </div>
       </section>
