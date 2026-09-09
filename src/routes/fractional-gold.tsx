@@ -122,15 +122,22 @@ function Index() {
       <SiteHeader />
 
       <section id="why-gold" className="relative flex min-h-[560px] flex-col bg-ivory lg:block">
-        <div className="relative order-2 h-[clamp(300px,66vw,470px)] w-full overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[59%]">
+        {/* Desktop: full-bleed image with a smooth cream fade from the text side */}
+        <div className="absolute inset-0 hidden overflow-hidden lg:block">
           <img
             src={fractionalGoldHero.url}
             alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-cover object-right"
+            className="h-full w-full object-cover object-center"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-ivory to-transparent lg:inset-y-0 lg:left-0 lg:right-auto lg:h-full lg:w-[34%] lg:bg-gradient-to-r lg:from-ivory lg:via-ivory/75 lg:to-transparent" />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--ivory) 0%, var(--ivory) 25%, rgba(246,240,232,0.98) 34%, rgba(246,240,232,0.82) 44%, rgba(246,240,232,0.45) 54%, rgba(246,240,232,0) 68%)",
+            }}
+          />
         </div>
-        <div className="relative order-1 mx-auto flex w-full max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
+        <div className="relative order-1 z-10 mx-auto flex w-full max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
           <div className="max-w-[500px]">
             <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
             <h1 className="hero-title mt-8 max-w-[500px] text-forest">
@@ -140,6 +147,15 @@ function Index() {
             <GoldButton to="/early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
             <p className="hero-note mt-4 flex items-center gap-2 text-charcoal"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
           </div>
+        </div>
+        {/* Mobile: image below the text with a subtle top fade */}
+        <div className="relative order-2 h-[clamp(300px,66vw,470px)] w-full overflow-hidden lg:hidden">
+          <img
+            src={fractionalGoldHero.url}
+            alt="Gold bars and a coin arranged on deep green velvet"
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ivory to-transparent" />
         </div>
       </section>
 
