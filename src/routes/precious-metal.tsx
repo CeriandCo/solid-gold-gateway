@@ -627,7 +627,7 @@ function PreciousMetalPage() {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: clamp(21px, 2.0139vw, 52px);
             width: 100%;
-            max-width: clamp(918px, 89.6528vw, 2295px);
+            max-width: var(--container);
             margin: clamp(10px, .9722vw, 25px) auto 0;
           }
 
@@ -802,7 +802,7 @@ function PreciousMetalPage() {
             display: grid;
             grid-template-columns: repeat(4, minmax(0,1fr));
             width: 100%;
-            max-width: clamp(902px, 88.0556vw, 2254px);
+            max-width: var(--container);
             margin: clamp(17px, 1.7361vw, 44px) auto 0;
           }
 
@@ -1046,7 +1046,7 @@ function PreciousMetalPage() {
             display: grid;
             grid-template-columns: repeat(4, minmax(0,1fr));
             width: 100%;
-            max-width: clamp(944px, 91.6667vw, 2347px);
+            max-width: var(--container);
             margin: 0 auto;
           }
 
@@ -1174,9 +1174,9 @@ function PreciousMetalPage() {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: clamp(944px, 91.6667vw, 2347px);
+            max-width: var(--container);
             margin-inline: auto;
-            padding-inline: clamp(48px, 4.7222vw, 121px);
+            padding-inline: var(--gutter);
             text-align: center;
             opacity: 0;
             transform: translateY(16px);
