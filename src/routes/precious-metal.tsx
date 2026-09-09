@@ -269,22 +269,22 @@ function PricingSection() {
 const benefits = [
   {
     title: "Shipping",
-    description: "Insured delivery to your address.",
+    description: "Insured delivery, straight to your address.",
     icon: <ShippingBenefitIcon />,
   },
   {
     title: "Insurance",
-    description: "Fully insured from our vault to your door.",
+    description: "Covered from our vault to your door.",
     icon: <InsuranceBenefitIcon />,
   },
   {
     title: "Storage",
-    description: "You control it. We don't store it.",
+    description: "You hold it. We don't.",
     icon: <StorageBenefitIcon />,
   },
   {
     title: "Liquidity",
-    description: "Globally recognized. Always in demand.",
+    description: "Globally recognized metal, always in demand.",
     icon: <LiquidityBenefitIcon />,
   },
 ] as const;
