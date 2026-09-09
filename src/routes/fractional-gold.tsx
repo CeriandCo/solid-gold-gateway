@@ -305,7 +305,7 @@ function Index() {
                           {index + 1}
                         </span>
                       </span>
-                      <span className={cn("mt-4 inline-block text-sm font-semibold leading-[1.2] text-charcoal", isSelected && "border-b-2 border-gold pb-1")}>{title}</span>
+                      <span className={cn("mt-4 inline-block border-b-2 pb-1 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
                       <span className="mt-2 min-h-[56px] text-[13px] leading-[1.45] text-charcoal/70">{summary}</span>
                     </button>
                   );
@@ -343,7 +343,7 @@ function Index() {
                         </span>
                       </span>
                       <span>
-                        <span className={cn("inline-block text-sm font-semibold leading-[1.2] text-charcoal", isSelected && "border-b-2 border-gold pb-0.5")}>{title}</span>
+                        <span className={cn("inline-block border-b-2 pb-0.5 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
                         <span className="mt-1.5 block text-[0.82rem] leading-[1.5] text-charcoal/70">{summary}</span>
                       </span>
                     </button>
