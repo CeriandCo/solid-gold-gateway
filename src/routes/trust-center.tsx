@@ -399,7 +399,7 @@ function TrustCenterPage() {
 
       {/* HERO */}
       <section className="tc-hero">
-        <img className="tc-hero-img" src={heroElephants.url} alt="Ceremonial elephants adorned with gold at a festival" />
+        <img className="tc-hero-img" src={trustHeroImage.url} alt="A gloved hand holds a gold bar beside an open audit register" />
         <div className="tc-hero-overlay" />
         <div className="tc-hero-inner">
           <div className="tc-hero-copy">
