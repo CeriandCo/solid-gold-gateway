@@ -12,16 +12,16 @@ const heroImage = heroAsset.url;
 export const Route = createFileRoute("/precious-metal")({
   head: () => ({
     meta: [
-      { title: "Precious Metal — Physical Gold & Silver Delivered | SQOOT Pure" },
+      { title: "Buy Physical Gold and Silver, Delivered | SQOOT Pure" },
       {
         name: "description",
         content:
-          "Buy physical gold and silver coins and bars, shipped insured directly to your door. Real metal, direct possession.",
+          "Buy physical gold and silver coins and bars, insured in transit and shipped directly to your address. Real metal, in your hands.",
       },
-      { property: "og:title", content: "Precious Metal — Physical Gold & Silver Delivered | SQOOT Pure" },
+      { property: "og:title", content: "Buy Physical Gold and Silver, Delivered | SQOOT Pure" },
       {
         property: "og:description",
-        content: "Physical gold and silver, insured in transit, delivered to your address.",
+        content: "Physical gold and silver, insured in transit, delivered to your door.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -103,6 +103,7 @@ function ProductsSection() {
         <h2 id="pm-products-title">What&apos;s available</h2>
         <span aria-hidden="true" />
       </div>
+      <p className="pm-products-eyebrow">Coins and bars, ready to ship.</p>
       <div className="pm-products-grid">
         {products.map((product, index) => (
           <article className="pm-product-card" key={product.purity + index}>
@@ -127,10 +128,26 @@ function ProductsSection() {
 }
 
 const steps = [
-  { title: "Order", icon: <OrderIcon /> },
-  { title: "Insured Shipping", icon: <ShippingIcon /> },
-  { title: <>Arrives at Your<br />Address</>, icon: <AddressIcon /> },
-  { title: "Full Ownership", icon: <OwnershipIcon /> },
+  {
+    title: "Order",
+    body: "Choose your coins or bars and lock in live spot plus premium at checkout.",
+    icon: <OrderIcon />,
+  },
+  {
+    title: "Insured Shipping",
+    body: "Your order ships fully insured from our vault to your door, tracked every step.",
+    icon: <ShippingIcon />,
+  },
+  {
+    title: <>Arrives at Your<br />Address</>,
+    body: "Delivered discreetly and securely, no signature surprises, no unmarked guesswork.",
+    icon: <AddressIcon />,
+  },
+  {
+    title: "Full Ownership",
+    body: "It's yours outright. No storage account, no ongoing fees, nothing to manage.",
+    icon: <OwnershipIcon />,
+  },
 ] as const;
 
 function OrderIcon() {
@@ -201,6 +218,7 @@ function HowItWorksSection() {
           <article className="pm-step" key={index}>
             <div className="pm-step-circle">{step.icon}</div>
             <h3>{step.title}</h3>
+            <p>{step.body}</p>
           </article>
         ))}
       </div>
@@ -251,22 +269,22 @@ function PricingSection() {
 const benefits = [
   {
     title: "Shipping",
-    description: "Insured delivery to your address.",
+    description: "Insured delivery, straight to your address.",
     icon: <ShippingBenefitIcon />,
   },
   {
     title: "Insurance",
-    description: "Fully insured from our vault to your door.",
+    description: "Covered from our vault to your door.",
     icon: <InsuranceBenefitIcon />,
   },
   {
     title: "Storage",
-    description: "You control it. We don't store it.",
+    description: "You hold it. We don't.",
     icon: <StorageBenefitIcon />,
   },
   {
     title: "Liquidity",
-    description: "Globally recognized. Always in demand.",
+    description: "Globally recognized metal, always in demand.",
     icon: <LiquidityBenefitIcon />,
   },
 ] as const;
@@ -424,13 +442,13 @@ function PreciousMetalPage() {
           <div className="pm-hero-overlay" aria-hidden="true" />
           <div className="pm-hero-copy">
             <h1 id="pm-hero-title">
-              <span>Own physical</span>
-              <span>gold in your hands.</span>
+              <span>Real gold.</span>
+              <span>In your hands.</span>
             </h1>
             <span className="pm-hero-rule" aria-hidden="true" />
             <p>
-              <span>No vault fees. Direct control.</span>
-              <span>Insured shipping to your address.</span>
+              <span>No vaulting, no third party holding your metal.</span>
+              <span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span>
             </p>
           </div>
         </section>
@@ -553,7 +571,7 @@ function PreciousMetalPage() {
           .pm-products {
             position: relative;
             isolation: isolate;
-            height: clamp(386px, 37.6389vw, 964px);
+            height: clamp(410px, 40vw, 1000px);
             padding: clamp(24px, 2.3611vw, 60px) clamp(48px, 4.7222vw, 121px) clamp(9px, .8333vw, 21px);
             overflow: hidden;
             background-color: var(--pm-cream);
@@ -601,13 +619,25 @@ function PreciousMetalPage() {
             white-space: nowrap;
           }
 
+          .pm-products-eyebrow {
+            margin: clamp(4px, .4167vw, 11px) 0 0;
+            color: var(--pm-gold-muted);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(10px, .9722vw, 25px);
+            font-weight: 500;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            text-transform: uppercase;
+            text-align: center;
+          }
+
           .pm-products-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: clamp(21px, 2.0139vw, 52px);
             width: 100%;
             max-width: clamp(918px, 89.6528vw, 2295px);
-            margin: clamp(19px, 1.875vw, 48px) auto 0;
+            margin: clamp(10px, .9722vw, 25px) auto 0;
           }
 
           .pm-product-card {
@@ -728,7 +758,7 @@ function PreciousMetalPage() {
           .pm-process {
             position: relative;
             isolation: isolate;
-            height: clamp(208px, 20.3472vw, 521px);
+            height: clamp(300px, 28vw, 560px);
             padding: clamp(6px, .625vw, 16px) clamp(51px, 5vw, 128px) clamp(16px, 1.5278vw, 39px);
             overflow: hidden;
             background-color: var(--pm-cream);
@@ -838,6 +868,18 @@ function PreciousMetalPage() {
             font-size: clamp(21px, 2.0139vw, 52px);
             font-weight: 500;
             line-height: 1.02;
+            letter-spacing: 0;
+            text-align: center;
+          }
+
+          .pm-step p {
+            max-width: clamp(140px, 13.8889vw, 356px);
+            margin: clamp(4px, .4167vw, 11px) 0 0;
+            color: var(--pm-body);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(11px, 1.1111vw, 28px);
+            font-weight: 400;
+            line-height: 1.45;
             letter-spacing: 0;
             text-align: center;
           }
