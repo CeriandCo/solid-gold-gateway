@@ -172,7 +172,7 @@ function Index() {
               </p>
               <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
                 <GoldButton
-                  href="#early-access"
+                  to="/early-access"
                   className="group h-[54px] px-8"
                 >
                   Get Early Access

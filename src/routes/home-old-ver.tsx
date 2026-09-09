@@ -82,7 +82,7 @@ function HomePage() {
               and it’s yours.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-8">
-              <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
+              <GoldButton to="/early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
                 Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
               </GoldButton>
             </div>
@@ -126,7 +126,7 @@ function HomePage() {
               SQOOT Pure is launching soon. Join the waitlist to get early access and updates.
             </p>
           </div>
-          <GoldButton href="/vault#early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
+          <GoldButton to="/early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
             Get Early Access <ArrowRight size={17} strokeWidth={2.25} />
           </GoldButton>
         </div>
