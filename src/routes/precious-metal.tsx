@@ -872,6 +872,18 @@ function PreciousMetalPage() {
             text-align: center;
           }
 
+          .pm-step p {
+            max-width: clamp(140px, 13.8889vw, 356px);
+            margin: clamp(4px, .4167vw, 11px) 0 0;
+            color: var(--pm-body);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(11px, 1.1111vw, 28px);
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: 0;
+            text-align: center;
+          }
+
           .pm-process-visible .pm-process-heading-row {
             animation: pmProcessRise 600ms cubic-bezier(.22,1,.36,1) forwards;
           }
