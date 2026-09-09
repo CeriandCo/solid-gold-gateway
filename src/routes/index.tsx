@@ -252,7 +252,7 @@ function Index() {
           height={1080}
           className="w-full"
         />
-        <div className="mx-auto max-w-[1200px] px-6 pt-10 text-center sm:pt-14">
+        <div className="site-container pt-10 text-center sm:pt-14">
           <p className="eyebrow text-gold">Early access</p>
           <h2 className="mt-4 font-display text-[2rem] leading-tight text-forest sm:text-[2.75rem]">
             Gold ownership, in your pocket.
