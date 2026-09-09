@@ -11,5 +11,5 @@
 - Wire the header "Get Early Access" button (`#login`) to the actual early-access form (`/vault#early-access`).
 - Social links in the footer point to `#`; add real Instagram / LinkedIn / YouTube URLs when available.
 
-## In progress
-- Standardize six inner-page heroes to the Buy Gold structure; verify desktop, tablet, and mobile without changing Homepage or Vault.
+## Done
+- Standardized Buy Gold, Fractional Gold, Gifting, Trust Centre, About Us, and Learn heroes to one shared Buy Gold structure; verified desktop, tablet, and mobile without changing Homepage or Vault.
