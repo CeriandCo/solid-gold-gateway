@@ -136,7 +136,7 @@ function Index() {
       />
 
       <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
-        <div className="mx-auto max-w-[1160px] px-5 sm:px-7">
+        <div className="site-container">
           <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
           <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
             {/* JBT — SQOOT Pure industry membership */}
