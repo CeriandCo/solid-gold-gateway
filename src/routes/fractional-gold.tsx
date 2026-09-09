@@ -47,7 +47,7 @@ const steps = [
     title: "Create an account",
     summary: "Join the waitlist now; account access will follow when available.",
     detail:
-      "SQOOT Pure is currently in pre-launch. You can join the waitlist today, but doing so does not create a transactional account or mean you have purchased gold.",
+      "SQOOT Pure is currently in pre-launch. You will be prompted to set up a transactional account after launch.",
     icon: UserPlus,
   },
   {
