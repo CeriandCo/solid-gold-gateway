@@ -80,7 +80,7 @@ const innerPageHeroStyles = `
 .inner-page-hero>.about-hero-mandala{position:absolute;z-index:1;left:clamp(-267px,-10.4167vw,-107px);top:clamp(71px,6.9444vw,178px);width:clamp(441px,45.1389vw,1156px);height:clamp(441px,45.1389vw,1156px);object-fit:contain;opacity:.12;mix-blend-mode:screen}.inner-page-hero>.about-hero-bar{position:absolute;z-index:3;left:59.375%;top:6.7%;width:clamp(485px,33.6806vw,862px);height:90.8%;object-fit:contain;transform:rotate(4deg);filter:drop-shadow(0 25px 38px rgba(0,0,0,.42))}
 .inner-page-hero>.kc-play{z-index:3}
 .inner-page-hero-overlay{position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,rgba(7,25,15,.98) 0%,rgba(7,25,15,.94) 26%,rgba(7,25,15,.77) 40%,rgba(7,25,15,.37) 54%,rgba(7,25,15,.06) 69%,transparent 80%)}
-.inner-page-hero-shell{position:absolute;z-index:4;inset:0;padding:clamp(54px,7vh,76px) clamp(48px,4.5139vw,116px)}
+.inner-page-hero-shell{position:absolute;z-index:4;inset:0;padding-block:clamp(54px,7vh,76px);padding-inline:calc(max(0px,(100% - var(--container))/2) + var(--gutter))}
 .inner-page-hero-copy{width:clamp(476px,46.5278vw,1191px);max-width:52%;height:100%;display:flex;flex-direction:column}
 .inner-page-hero-eyebrow{height:18px;margin:0 0 16px;color:var(--gold);font-family:"Inter",Arial,sans-serif;font-size:clamp(11px,.9vw,14px);font-weight:600;line-height:18px;letter-spacing:.18em;text-transform:uppercase}
 .inner-page-hero h1{max-width:clamp(484px,47.2222vw,1209px);margin:0;color:var(--warm-white);font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(40px,4.0278vw,103px);font-weight:500;line-height:.98;letter-spacing:-.025em}
