@@ -267,7 +267,6 @@ function Index() {
         <div className="mx-auto grid max-w-[1240px] gap-10 px-5 sm:px-8 lg:grid-cols-[28%_1fr] lg:gap-12 xl:px-0">
           <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
-            <span aria-hidden="true" className="mt-3 block h-px w-9 bg-gold" />
             <h2 className="section-title mt-5 text-forest">Five steps. All online. All simple.</h2>
             <p className="mt-4 max-w-[280px] text-[13px] leading-[1.6] text-charcoal/75">A clear path from joining the waitlist to managing an allocated gold holding when access becomes available.</p>
           </div>
@@ -298,7 +297,7 @@ function Index() {
                       className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
                     >
                       <span className="relative inline-block">
-                        <span className={cn("grid h-[84px] w-[84px] place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-gold/55 bg-warm-white text-gold group-hover:border-gold")}>
+                        <span className={cn("grid h-[84px] w-[84px] place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest-deep text-gold" : "border-gold/55 bg-warm-white text-gold group-hover:border-gold")}>
                           <Icon size={32} strokeWidth={1.4} aria-hidden="true" />
                         </span>
                         <span className="absolute -bottom-1 left-1 grid h-[22px] w-[22px] place-items-center rounded-full bg-gold text-[11px] font-semibold text-forest-deep">
@@ -335,7 +334,7 @@ function Index() {
                       className="grid w-full grid-cols-[64px_minmax(0,1fr)] items-center gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                     >
                       <span className="relative inline-block h-[64px] w-[64px]">
-                        <span className={cn("grid h-full w-full place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-gold/55 bg-warm-white text-gold")}>
+                        <span className={cn("grid h-full w-full place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest-deep text-gold" : "border-gold/55 bg-warm-white text-gold")}>
                           <Icon size={26} strokeWidth={1.4} aria-hidden="true" />
                         </span>
                         <span className="absolute -bottom-1 left-0 grid h-[20px] w-[20px] place-items-center rounded-full bg-gold text-[10px] font-semibold text-forest-deep">
