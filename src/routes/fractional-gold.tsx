@@ -264,21 +264,23 @@ function Index() {
       </section>
 
       <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
-        <div className="mx-auto max-w-[1320px] px-5 sm:px-7 lg:px-14">
-          <div className="max-w-[660px]">
+        <div className="mx-auto grid max-w-[1240px] gap-10 px-5 sm:px-8 lg:grid-cols-[28%_1fr] lg:gap-12 xl:px-0">
+          <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
-            <h2 className="section-title mt-4 text-forest">Five steps. All online. All simple.</h2>
-            <p className="section-body mt-4 max-w-[590px] text-charcoal">A clear path from joining the waitlist to managing an allocated gold holding when access becomes available.</p>
+            <span aria-hidden="true" className="mt-3 block h-px w-9 bg-gold" />
+            <h2 className="section-title mt-5 text-forest">Five steps. All online. All simple.</h2>
+            <p className="mt-4 max-w-[280px] text-[13px] leading-[1.6] text-charcoal/75">A clear path from joining the waitlist to managing an allocated gold holding when access becomes available.</p>
           </div>
 
-          <div className="mt-10 lg:mt-14" aria-label="Five-step gold allocation process">
-            <div className="hidden grid-cols-5 lg:grid" role="tablist" aria-label="Select a process step">
-              {steps.map(({ title, summary, icon: Icon }, index) => {
-                const isSelected = step === index;
-                return (
-                  <div key={title} className="relative px-3 first:pl-0 last:pr-0">
-                    {index < steps.length - 1 && <span aria-hidden="true" className="absolute left-[calc(50%+32px)] right-[calc(-50%+32px)] top-8 h-px bg-beige" />}
+          <div aria-label="Five-step gold allocation process">
+            {/* Desktop: all five steps in one horizontal row */}
+            <div className="hidden lg:block">
+              <div className="grid grid-cols-5 gap-6" role="tablist" aria-label="Select a process step">
+                {steps.map(({ title, summary, icon: Icon }, index) => {
+                  const isSelected = step === index;
+                  return (
                     <button
+                      key={title}
                       type="button"
                       role="tab"
                       id={`fractional-step-tab-${index}`}
@@ -293,58 +295,66 @@ function Index() {
                         setStep(next);
                         document.getElementById(`fractional-step-tab-${next}`)?.focus();
                       }}
-                      className="group relative z-10 flex w-full flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                      className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
                     >
-                      <span className={cn("grid h-16 w-16 place-items-center rounded-full border bg-ivory transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-beige text-forest group-hover:border-gold")}>
-                        <Icon size={27} strokeWidth={1.5} aria-hidden="true" />
+                      <span className="relative inline-block">
+                        <span className={cn("grid h-[84px] w-[84px] place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-gold/55 bg-warm-white text-gold group-hover:border-gold")}>
+                          <Icon size={32} strokeWidth={1.4} aria-hidden="true" />
+                        </span>
+                        <span className="absolute -bottom-1 left-1 grid h-[22px] w-[22px] place-items-center rounded-full bg-gold text-[11px] font-semibold text-forest-deep">
+                          {index + 1}
+                        </span>
                       </span>
-                      <span className={cn("step-number mt-5", isSelected ? "text-gold" : "text-charcoal/65")}>{String(index + 1).padStart(2, "0")} / 05</span>
-                      <span className="mt-2 min-h-[3rem] font-display text-[1.25rem] font-semibold leading-[1.18] text-forest">{title}</span>
-                      <span className="mt-3 max-w-[190px] text-[0.78rem] leading-[1.55] text-charcoal/75">{summary}</span>
+                      <span className={cn("mt-4 inline-block text-sm font-semibold leading-[1.2] text-charcoal", isSelected && "border-b-2 border-gold pb-1")}>{title}</span>
+                      <span className="mt-2 min-h-[56px] text-[13px] leading-[1.45] text-charcoal/70">{summary}</span>
                     </button>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+
+              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex min-h-[120px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
+                <div className="shrink-0 border-r border-beige pr-8">
+                  <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
+                  <p className="mt-2 font-display text-[1.4rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
+                </div>
+                <p className="max-w-[720px] text-[0.95rem] leading-relaxed text-charcoal">{currentStep.detail}</p>
+              </div>
             </div>
 
+            {/* Mobile: intro above, steps vertical, detail beneath the selected step */}
             <div className="space-y-0 lg:hidden">
               {steps.map(({ title, summary, detail, icon: Icon }, index) => {
                 const isSelected = step === index;
                 return (
                   <div key={title} className={cn("relative border-b border-beige", index === 0 && "border-t")}>
-                    {index < steps.length - 1 && <span aria-hidden="true" className="absolute bottom-[-24px] left-[27px] top-[56px] w-px bg-beige" />}
                     <button
                       type="button"
                       aria-expanded={isSelected}
                       aria-controls={`fractional-step-mobile-detail-${index}`}
                       onClick={() => setStep(index)}
-                      className="relative z-10 grid w-full grid-cols-[54px_minmax(0,1fr)] gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                      className="grid w-full grid-cols-[64px_minmax(0,1fr)] items-center gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                     >
-                      <span className={cn("grid h-[54px] w-[54px] place-items-center rounded-full border bg-ivory transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-beige text-forest")}>
-                        <Icon size={24} strokeWidth={1.5} aria-hidden="true" />
+                      <span className="relative inline-block h-[64px] w-[64px]">
+                        <span className={cn("grid h-full w-full place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-gold/55 bg-warm-white text-gold")}>
+                          <Icon size={26} strokeWidth={1.4} aria-hidden="true" />
+                        </span>
+                        <span className="absolute -bottom-1 left-0 grid h-[20px] w-[20px] place-items-center rounded-full bg-gold text-[10px] font-semibold text-forest-deep">
+                          {index + 1}
+                        </span>
                       </span>
                       <span>
-                        <span className={cn("step-number block", isSelected ? "text-gold" : "text-charcoal/65")}>{String(index + 1).padStart(2, "0")} / 05</span>
-                        <span className="mt-1 block font-display text-[1.35rem] font-semibold leading-[1.2] text-forest">{title}</span>
-                        <span className="mt-2 block text-[0.82rem] leading-[1.55] text-charcoal/75">{summary}</span>
+                        <span className={cn("inline-block text-sm font-semibold leading-[1.2] text-charcoal", isSelected && "border-b-2 border-gold pb-0.5")}>{title}</span>
+                        <span className="mt-1.5 block text-[0.82rem] leading-[1.5] text-charcoal/70">{summary}</span>
                       </span>
                     </button>
                     {isSelected && (
-                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[70px] flex min-h-[200px] items-center rounded-[8px] border border-gold/45 bg-background px-5 py-4">
+                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[80px] flex min-h-[96px] items-center rounded-[8px] border border-beige bg-warm-white px-5 py-4">
                         <p className="text-sm leading-relaxed text-charcoal">{detail}</p>
                       </div>
                     )}
                   </div>
                 );
               })}
-            </div>
-
-            <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-12 hidden min-h-[178px] grid-cols-[170px_minmax(0,1fr)] items-center rounded-[8px] border border-beige bg-background px-9 py-7 lg:grid">
-              <div className="border-r border-beige pr-8">
-                <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
-                <p className="mt-3 font-display text-[1.55rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
-              </div>
-              <p className="max-w-[760px] pl-10 text-[0.95rem] leading-relaxed text-charcoal">{currentStep.detail}</p>
             </div>
           </div>
         </div>
