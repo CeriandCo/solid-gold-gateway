@@ -126,7 +126,7 @@ function Index() {
           <img
             src={fractionalGoldHero.url}
             alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-cover object-[62%_center] sm:object-[68%_center] lg:object-[62%_center] xl:object-[66%_center]"
+            className="h-full w-full object-cover object-right"
           />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-ivory to-transparent lg:inset-y-0 lg:left-0 lg:right-auto lg:h-full lg:w-[34%] lg:bg-gradient-to-r lg:from-ivory lg:via-ivory/75 lg:to-transparent" />
         </div>
