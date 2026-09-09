@@ -758,7 +758,7 @@ function PreciousMetalPage() {
           .pm-process {
             position: relative;
             isolation: isolate;
-            height: clamp(208px, 20.3472vw, 521px);
+            height: clamp(300px, 28vw, 560px);
             padding: clamp(6px, .625vw, 16px) clamp(51px, 5vw, 128px) clamp(16px, 1.5278vw, 39px);
             overflow: hidden;
             background-color: var(--pm-cream);
