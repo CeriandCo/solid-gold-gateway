@@ -984,11 +984,11 @@ const trustStyles = `
   .tc-step-wrap{display:block}
   .tc-step-wrap article{display:grid;grid-template-columns:70px minmax(0,1fr);column-gap:20px;align-items:center;text-align:left}
   .tc-step-circle{grid-column:1;grid-row:1;width:70px;height:70px;box-shadow:0 0 0 6px var(--tc-process-bg)}
-  .tc-step-circle b{top:7px;font-size:10px}
-  .trust-center-page .tc-step-icon{width:28px;height:28px}
+  .tc-step-badge{width:20px;height:20px;font-size:10px;left:-2px;bottom:-2px;box-shadow:0 0 0 3px var(--tc-process-bg)}
+  .trust-center-page .tc-step-icon{width:26px;height:26px}
   .tc-step-copy{grid-column:2;grid-row:1;min-width:0}
   .tc-step-wrap h4{display:block;min-height:0;margin-top:0;justify-content:flex-start;font-size:15px;text-align:left}
-  .tc-step-wrap p{max-width:none;margin-top:8px;font-size:13.5px;text-align:left}
+  .tc-step-wrap p{max-width:none;min-height:0;margin-top:8px;font-size:13.5px;text-align:left}
   .tc-protection-left{padding:26px 22px 0}
   .tc-protection-copy>p{max-width:none}
   
