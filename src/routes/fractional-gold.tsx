@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import fractionalGoldHero from "@/assets/fractional-gold-hero.png.asset.json";
 import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
@@ -121,43 +122,18 @@ function Index() {
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
       <SiteHeader />
 
-      <section id="why-gold" className="relative flex min-h-[560px] flex-col bg-forest lg:block">
-        {/* Desktop: full-bleed image with a smooth dark-green fade from the text side */}
-        <div className="absolute inset-0 hidden overflow-hidden lg:block">
-          <img
-            src={fractionalGoldHero.url}
-            alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-contain object-right"
-          />
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--forest) 0%, var(--forest) 25%, rgba(5,20,13,0.96) 36%, rgba(5,20,13,0.78) 48%, rgba(5,20,13,0.42) 59%, rgba(5,20,13,0) 70%)",
-            }}
-          />
-        </div>
-        <div className="relative order-1 z-10 mx-auto flex w-full max-w-[1320px] px-5 py-14 sm:px-7 lg:min-h-[560px] lg:items-center lg:px-14 lg:py-16">
-          <div className="max-w-[500px]">
-            <p className="eyebrow text-gold">Real Gold. Real Allocation.</p>
-            <h1 className="hero-title mt-8 max-w-[500px] text-warm-white">
-              Gold allocation,<br />made more<br /><em className="hero-emphasis text-gold">accessible.</em>
-            </h1>
-            <p className="hero-body mt-7 max-w-[370px] text-warm-white/90">Allocate a fraction of physical gold.<br className="hidden sm:block" /> It’s simple, secure, and built for how<br className="hidden sm:block" /> you want to save in gold.</p>
-            <GoldButton to="/early-access" className="mt-8 h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>
-            <p className="hero-note mt-4 flex items-center gap-2 text-warm-white/80"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</p>
-          </div>
-        </div>
-        {/* Mobile: image below the text with a subtle top fade */}
-        <div className="relative order-2 h-[clamp(300px,66vw,470px)] w-full overflow-hidden lg:hidden">
-          <img
-            src={fractionalGoldHero.url}
-            alt="Gold bars and a coin arranged on deep green velvet"
-            className="h-full w-full object-contain object-right"
-          />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-forest to-transparent" />
-        </div>
-      </section>
+      <InnerPageHero
+        id="why-gold"
+        titleId="fractional-hero-title"
+        eyebrow="Real Gold. Real Allocation."
+        title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
+        body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
+        actions={<GoldButton to="/early-access" className="h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>}
+        note={<span className="flex items-center gap-2"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</span>}
+        imageSrc={fractionalGoldHero.url}
+        imageAlt="Gold bars and a coin arranged on deep green velvet"
+        imageVariant="fractional"
+      />
 
       <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
         <div className="mx-auto max-w-[1160px] px-5 sm:px-7">

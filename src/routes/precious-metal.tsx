@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
 import eagleAsset from "@/assets/american-eagle.png.asset.json";
 import pampAsset from "@/assets/pamp-bar.png.asset.json";
@@ -433,25 +434,15 @@ function PreciousMetalPage() {
     <>
       <SiteHeader />
       <main id="top" className="precious-metals-page">
-        <section className="pm-hero" aria-labelledby="pm-hero-title">
-          <img
-            className="pm-hero-image"
-            src={heroImage}
-            alt="Gold bars and coins arranged on a dark emerald surface"
-          />
-          <div className="pm-hero-overlay" aria-hidden="true" />
-          <div className="pm-hero-copy">
-            <h1 id="pm-hero-title">
-              <span>Real gold.</span>
-              <span>In your hands.</span>
-            </h1>
-            <span className="pm-hero-rule" aria-hidden="true" />
-            <p>
-              <span>No vaulting, no third party holding your metal.</span>
-              <span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span>
-            </p>
-          </div>
-        </section>
+        <InnerPageHero
+          titleId="pm-hero-title"
+          eyebrow="Buy Gold"
+          title={<><span>Real gold.</span><span>In your hands.</span></>}
+          body={<><span>No vaulting, no third party holding your metal.</span><span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span></>}
+          actions={<GoldButton to="/early-access" className="h-[54px] px-8">Get Early Access</GoldButton>}
+          imageSrc={heroImage}
+          imageAlt="Gold bars and coins arranged on a dark emerald surface"
+        />
 
         <ProductsSection />
         <HowItWorksSection />
