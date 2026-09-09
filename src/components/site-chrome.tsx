@@ -146,7 +146,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         </nav>
         <div className="flex shrink-0 items-center gap-3">
           <a
-            href="#login"
+            href="#early-access"
             className={cn(
               "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
               variant === "overlay"
@@ -194,7 +194,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             ))}
             <li className="py-4">
               <a
-                href="#login"
+                href="#early-access"
                 onClick={() => setMenuOpen(false)}
                 className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
               >
