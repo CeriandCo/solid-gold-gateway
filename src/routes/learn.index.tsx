@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
-  ArrowDown,
   ArrowLeft,
   ArrowRight,
   ChartNoAxesCombined,

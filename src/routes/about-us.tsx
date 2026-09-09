@@ -135,7 +135,7 @@ function AboutPage() {
         titleId="about-title"
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
-        actions={<GoldButton to="/trust-center" className="h-[54px] px-8">How we protect ownership</GoldButton>}
+        actions={<GoldButton href="/trust-center#protection" className="h-[54px] px-8">How we protect ownership</GoldButton>}
         imageSrc={aboutHeroBg.url}
         imageAlt="Dark green velvet"
         imageVariant="about"
