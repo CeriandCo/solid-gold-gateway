@@ -54,7 +54,7 @@ export const WIDE = "mx-auto w-full max-w-[1340px] px-5 sm:px-8 xl:px-0";
 export const STD = "mx-auto w-full max-w-[1240px] px-5 sm:px-8 xl:px-0";
 
 export const siteNav = [
-  ["Precious Metal", "/precious-metal"],
+  ["Buy Gold", "/precious-metal"],
   ["Fractional Gold", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
