@@ -185,7 +185,7 @@ function Index() {
             <div className="rule-ornament mt-9 text-gold">
               <Mark className="h-4 w-4 shrink-0" />
             </div>
-            <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/75">
+            <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/95 [text-shadow:0_1px_3px_rgba(0,0,0,0.45)]">
               Buy real gold, your way. Build your holding over time, keep it securely stored, take delivery when you
               choose, or gift gold to someone special.
             </p>
