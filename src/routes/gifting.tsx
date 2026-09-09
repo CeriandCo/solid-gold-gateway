@@ -298,7 +298,7 @@ const giftingStyles = `
   --gold-500: var(--gold); --gold-400: #D9B260; --gold-300: #E6C77D; --gold-deep: #A97827;
   --ink: #16271F; --body-dark: #30382F; --cream-text: #FAF5EA;
   --muted-cream: rgba(250,245,234,.76); --light-divider: rgba(120,91,48,.22); --dark-divider: rgba(201,168,76,.27);
-  --page-max: clamp(1320px,91.6667vw,2347px); --page-padding: clamp(32px,4.2vw,108px);
+  --page-max: var(--container); --page-padding: var(--gutter);
   color: var(--body-dark); background: var(--cream-50); font-family: "Inter", system-ui, sans-serif;
   font-synthesis: none; -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
