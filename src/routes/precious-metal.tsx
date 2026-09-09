@@ -619,13 +619,25 @@ function PreciousMetalPage() {
             white-space: nowrap;
           }
 
+          .pm-products-eyebrow {
+            margin: clamp(4px, .4167vw, 11px) 0 0;
+            color: var(--pm-gold-muted);
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(10px, .9722vw, 25px);
+            font-weight: 500;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            text-transform: uppercase;
+            text-align: center;
+          }
+
           .pm-products-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: clamp(21px, 2.0139vw, 52px);
             width: 100%;
             max-width: clamp(918px, 89.6528vw, 2295px);
-            margin: clamp(19px, 1.875vw, 48px) auto 0;
+            margin: clamp(10px, .9722vw, 25px) auto 0;
           }
 
           .pm-product-card {
