@@ -231,7 +231,7 @@ function Index() {
         <div className="pointer-events-none absolute right-[-10%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 opacity-[0.18] mix-blend-multiply sm:h-[620px] sm:w-[620px] lg:right-[-8%] lg:h-[760px] lg:w-[760px]">
           <OfficialMandala className="h-full w-full" />
         </div>
-        <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-20 sm:px-7 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:px-14 lg:py-32">
+        <div className="site-container relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[0.6fr_0.4fr] lg:items-center lg:py-32">
           <div>
             <p className="eyebrow text-gold">Our Philosophy</p>
             <h2 className="mt-5 font-display text-[2.6rem] leading-[1.08] tracking-[-0.01em] text-forest sm:text-[3.2rem] lg:text-[3.8rem]">
