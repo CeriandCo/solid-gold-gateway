@@ -986,6 +986,7 @@ const trustStyles = `
   .tc-protection-right{min-width:0;padding:0 20px 24px}
   .tc-legal-panel{padding:20px 16px}
   .tc-legal-row{grid-template-columns:25px minmax(0,1fr);row-gap:3px}
+  .tc-legal-row dt{grid-column:1/-1}
   .tc-legal-row dd{grid-column:2;min-width:0;overflow-wrap:anywhere}
   .tc-disclosure{grid-template-columns:20px minmax(0,1fr)}
   .tc-disclosure p,.tc-disclosure a{overflow-wrap:anywhere}
@@ -997,6 +998,7 @@ const trustStyles = `
   .tc-pillars-grid article{padding-left:0}
   .tc-pillars-grid article+article:before{display:none}
   .tc-legal-row{grid-template-columns:calc(25*var(--u)) 1fr;row-gap:2px}
+  .tc-legal-row dt{grid-column:1/-1}
   .tc-legal-row dd{grid-column:2}
 }
 @media (prefers-reduced-motion:reduce){
