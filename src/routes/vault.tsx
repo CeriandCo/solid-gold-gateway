@@ -681,11 +681,16 @@ function Index() {
           <div className="grid gap-x-8 gap-y-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-3">
             {faqs.map(([question, answer], index) => {
               const isOpen = openFaq === index;
+              const answerId = `faq-answer-${index}`;
               return (
-                <div key={question} className="h-fit rounded-[4px] border border-beige bg-ivory">
+                <div
+                  key={question}
+                  className={cn("relative h-fit rounded-[4px] border border-beige bg-ivory", isOpen && "z-30")}
+                >
                   <button
                     type="button"
                     aria-expanded={isOpen}
+                    aria-controls={answerId}
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="flex w-full items-center justify-between gap-4 px-5 py-2.5 text-left text-sm font-medium leading-[1.2] text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   >
@@ -697,7 +702,15 @@ function Index() {
                       />
                     </span>
                   </button>
-                  {isOpen && <p className="px-5 pb-4 text-[13px] leading-[1.5] text-[#444A45]">{answer}</p>}
+                  {isOpen && (
+                    <div
+                      id={answerId}
+                      role="region"
+                      className="absolute left-0 top-full z-30 w-full rounded-[4px] border border-beige bg-ivory px-5 pb-4 pt-3 shadow-[0_8px_24px_-8px_rgba(8,26,18,0.25)]"
+                    >
+                      <p className="text-[13px] leading-[1.5] text-[#444A45]">{answer}</p>
+                    </div>
+                  )}
                 </div>
               );
             })}
