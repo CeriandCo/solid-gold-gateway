@@ -942,8 +942,8 @@ const trustStyles = `
 @media (max-width:767px){
   .trust-center-page{--u:1px}
   .tc-hero{min-height:430px;height:clamp(430px,112vw,500px)}
-  .tc-hero-img{object-position:72% center}
-  .tc-hero-overlay{background:linear-gradient(90deg,#01120d 0%,rgba(1,23,17,.96) 48%,rgba(1,23,17,.62) 72%,rgba(1,23,17,.22) 100%)}
+  .tc-hero-img{object-position:right center}
+  .tc-hero-overlay{background:linear-gradient(90deg,rgba(7,25,15,.98) 0%,rgba(7,25,15,.91) 54%,rgba(7,25,15,.48) 78%,rgba(7,25,15,.18) 100%)}
   .tc-hero-copy{padding-inline:24px}
   .tc-hero-text{width:100%;max-width:480px;margin-top:-6px}
   .tc-hero h1{font-size:clamp(42px,11.5vw,50px)}
