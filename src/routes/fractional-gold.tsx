@@ -305,14 +305,14 @@ function Index() {
                           {index + 1}
                         </span>
                       </span>
-                      <span className={cn("mt-4 inline-block border-b-2 pb-1 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
-                      <span className="mt-2 min-h-[56px] text-[13px] leading-[1.45] text-charcoal/70">{summary}</span>
+                      <span className={cn("mt-4 inline-block min-h-[2.4em] border-b-2 pb-1 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
+                      <span className="mt-2 block min-h-[76px] text-[13px] leading-[1.45] text-charcoal/70">{summary}</span>
                     </button>
                   );
                 })}
               </div>
 
-              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex min-h-[172px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
+              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex h-[188px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
                 <div className="w-[220px] shrink-0 border-r border-beige pr-8">
                   <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
                   <p className="mt-2 font-display text-[1.4rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
@@ -343,12 +343,12 @@ function Index() {
                         </span>
                       </span>
                       <span>
-                        <span className={cn("inline-block border-b-2 pb-0.5 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
-                        <span className="mt-1.5 block text-[0.82rem] leading-[1.5] text-charcoal/70">{summary}</span>
+                        <span className={cn("inline-block min-h-[1.2em] border-b-2 pb-0.5 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
+                        <span className="mt-1.5 block min-h-[3em] text-[0.82rem] leading-[1.5] text-charcoal/70">{summary}</span>
                       </span>
                     </button>
                     {isSelected && (
-                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[80px] flex min-h-[96px] items-center rounded-[8px] border border-beige bg-warm-white px-5 py-4">
+                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[80px] flex h-[188px] items-center rounded-[8px] border border-beige bg-warm-white px-5 py-4">
                         <p className="text-sm leading-relaxed text-charcoal">{detail}</p>
                       </div>
                     )}
