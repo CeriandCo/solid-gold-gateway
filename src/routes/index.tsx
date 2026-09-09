@@ -268,7 +268,7 @@ function Index() {
 
       {/* Three paths */}
       {/* <section id="paths" className="bg-cream py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow text-gold">Three ways to own</p>
             <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-forest">
