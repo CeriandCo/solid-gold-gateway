@@ -202,6 +202,28 @@ function Index() {
         </div>
       </header>
 
+      {/* Value prop strip */}
+      <section className="border-b border-warm-white/10 bg-forest-deep">
+        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-2 gap-y-3 px-6 py-4 sm:gap-x-4 sm:py-5">
+          {[
+            "START FROM US$25",
+            "100% REAL GOLD",
+            "LIVE SPOT PRICING",
+            "SECURE U.S. STORAGE",
+            "SELL WHEN YOU CHOOSE",
+          ].map((item, i, arr) => (
+            <div key={item} className="flex items-center gap-2 sm:gap-4">
+              <span className="whitespace-nowrap text-[0.7rem] font-semibold tracking-[0.12em] text-gold sm:text-[0.75rem]">
+                {item}
+              </span>
+              {i < arr.length - 1 && (
+                <span className="hidden h-1 w-1 rounded-full bg-gold/40 sm:inline-block" aria-hidden="true" />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Assurance strip */}
       <section className="border-b border-border bg-forest-deep">
         <div className="mx-auto grid max-w-[1200px] grid-cols-1 px-6 sm:grid-cols-2 lg:grid-cols-4">
