@@ -563,7 +563,7 @@ function PreciousMetalPage() {
             position: relative;
             isolation: isolate;
             height: clamp(410px, 40vw, 1000px);
-            padding: clamp(24px, 2.3611vw, 60px) clamp(48px, 4.7222vw, 121px) clamp(9px, .8333vw, 21px);
+            padding: clamp(24px, 2.3611vw, 60px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(9px, .8333vw, 21px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -627,7 +627,6 @@ function PreciousMetalPage() {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: clamp(21px, 2.0139vw, 52px);
             width: 100%;
-            max-width: var(--container);
             margin: clamp(10px, .9722vw, 25px) auto 0;
           }
 
@@ -750,7 +749,7 @@ function PreciousMetalPage() {
             position: relative;
             isolation: isolate;
             height: clamp(300px, 28vw, 560px);
-            padding: clamp(6px, .625vw, 16px) clamp(51px, 5vw, 128px) clamp(16px, 1.5278vw, 39px);
+            padding: clamp(6px, .625vw, 16px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(16px, 1.5278vw, 39px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -931,7 +930,7 @@ function PreciousMetalPage() {
             position: relative;
             isolation: isolate;
             height: clamp(84px, 8.125vw, 208px);
-            padding: 0 clamp(48px, 4.7222vw, 121px);
+            padding: 0 calc(max(0px, (100% - var(--container)) / 2) + var(--gutter));
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -1022,7 +1021,7 @@ function PreciousMetalPage() {
             position: relative;
             isolation: isolate;
             height: clamp(260px, 22vw, 564px);
-            padding: clamp(30px, 2.9167vw, 75px) clamp(48px, 4.7222vw, 121px) clamp(30px, 2.9167vw, 75px);
+            padding: clamp(30px, 2.9167vw, 75px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(30px, 2.9167vw, 75px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -1046,7 +1045,6 @@ function PreciousMetalPage() {
             display: grid;
             grid-template-columns: repeat(4, minmax(0,1fr));
             width: 100%;
-            max-width: var(--container);
             margin: 0 auto;
           }
 
