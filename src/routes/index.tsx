@@ -186,8 +186,8 @@ function Index() {
               <Mark className="h-4 w-4 shrink-0" />
             </div>
             <p className="mt-8 max-w-[30rem] text-[0.9rem] leading-[1.85] text-warm-white/75">
-              Buy real allocated gold from ½ oz at live spot pricing. Take delivery of a coin, build a fractional
-              holding, or keep it securely stored in insured U.S. vaults redeemable on demand.
+              Buy real gold, your way. Build your holding over time, keep it securely stored, take delivery when you
+              choose, or gift gold to someone special.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <GoldButton href="#paths" className="h-[54px] px-8">Buy Gold</GoldButton>
