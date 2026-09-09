@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowLeft,
   ArrowRight,
+  ChartNoAxesCombined,
   Check,
   CircleDollarSign,
+  Coins,
   FileCheck2,
   LockKeyhole,
   ShieldCheck,
-  UserRound,
+  UserPlus,
+  WalletCards,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -41,11 +43,41 @@ export const Route = createFileRoute("/fractional-gold")({
 });
 
 const steps = [
-  ["Create an account", "Join the waitlist and create your account in under a minute."],
-  ["Verify your identity", "Complete a secure identity check to protect your account."],
-  ["Choose an amount", "Start with as little as $25 and allocate at your own pace."],
-  ["Purchase your gold", "Confirm your order with clear, transparent pricing."],
-  ["Track your holding", "See your allocated gold and its value from your account."],
+  {
+    title: "Create an account",
+    summary: "Join the waitlist now; account access will follow when available.",
+    detail:
+      "SQOOT Pure is currently in pre-launch. You can join the waitlist today, but doing so does not create a transactional account or mean you have purchased gold.",
+    icon: UserPlus,
+  },
+  {
+    title: "Verify your identity",
+    summary: "Complete the required identity checks before transactions become available.",
+    detail:
+      "Identity verification is not required to join the waitlist. Eligible customers will complete the required checks when account access and transactions become available, helping protect their account.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Choose an amount",
+    summary: "When access becomes available, start with as little as US$25.",
+    detail:
+      "Choose an amount that suits you, starting from US$25. SQOOT Pure is still pre-launch, so gold purchases are not available yet.",
+    icon: Coins,
+  },
+  {
+    title: "Fund and purchase",
+    summary: "Review clear pricing before confirming your purchase.",
+    detail:
+      "When transactions become available, you will see the applicable price and fees before confirming. Once purchased, your physical gold allocation is recorded to your account.",
+    icon: WalletCards,
+  },
+  {
+    title: "Track your holding",
+    summary: "See your allocated gold and its value from your account.",
+    detail:
+      "Track your allocated gold and its value from your account. When transactions become available, you can choose to sell; fractional holdings redeem to cash first, while buying a physical coin is a separate purchase.",
+    icon: ChartNoAxesCombined,
+  },
 ] as const;
 
 const faqs = [
@@ -83,7 +115,7 @@ function OfficialMandala({ className }: { className?: string }) {
 function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const currentStep = steps[step] ?? ["Create an account", "Join the waitlist and create your account in under a minute."];
+  const currentStep = steps[step] ?? steps[0];
 
   return (
     <main id="top" className="fractional-legacy overflow-hidden bg-background">
@@ -232,18 +264,88 @@ function Index() {
       </section>
 
       <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 sm:px-7 lg:grid-cols-[280px_1fr] lg:px-14">
-          <div><p className="eyebrow text-gold">How it works</p><h2 className="section-title mt-4 text-forest">Five steps.<br />All online.<br />All simple.</h2><p className="section-body mt-4 max-w-[220px] text-charcoal">From sign up to gold allocation in minutes.</p></div>
-          <div>
-            <div className="relative rounded-[18px] border border-beige bg-background px-8 py-10 sm:min-h-[310px] sm:px-20 sm:py-14">
-              <button type="button" aria-label="Previous step" onClick={() => setStep((step + 4) % 5)} className="absolute left-0 top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-forest text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"><ArrowLeft size={18} /></button>
-              <div className="grid items-center gap-10 sm:grid-cols-[1fr_250px]">
-                 <div><p className="step-number text-forest">{String(step + 1).padStart(2, "0")} <span className="text-muted-foreground">/ 05</span></p><h3 className="step-title mt-6 text-forest">{currentStep[0]}</h3><p className="step-body mt-4 max-w-[245px] text-charcoal">{currentStep[1]}</p></div>
-                <div className="mx-auto grid h-44 w-44 place-items-center rounded-full border border-dashed border-gold/60 text-forest"><div className="relative grid h-24 w-24 place-items-center rounded-full border-2 border-forest"><UserRound size={52} strokeWidth={1.5} /><span className="absolute -bottom-2 -right-2 grid h-10 w-10 place-items-center rounded-full bg-gold text-background"><Check size={22} /></span></div></div>
-              </div>
-              <button type="button" aria-label="Next step" onClick={() => setStep((step + 1) % 5)} className="absolute right-0 top-1/2 grid h-12 w-12 translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-forest text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"><ArrowRight size={18} /></button>
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-7 lg:px-14">
+          <div className="max-w-[660px]">
+            <p className="eyebrow text-gold">How it works</p>
+            <h2 className="section-title mt-4 text-forest">Five steps. All online. All simple.</h2>
+            <p className="section-body mt-4 max-w-[590px] text-charcoal">A clear path from joining the waitlist to managing an allocated gold holding when access becomes available.</p>
+          </div>
+
+          <div className="mt-10 lg:mt-14" aria-label="Five-step gold allocation process">
+            <div className="hidden grid-cols-5 lg:grid" role="tablist" aria-label="Select a process step">
+              {steps.map(({ title, summary, icon: Icon }, index) => {
+                const isSelected = step === index;
+                return (
+                  <div key={title} className="relative px-3 first:pl-0 last:pr-0">
+                    {index < steps.length - 1 && <span aria-hidden="true" className="absolute left-[calc(50%+32px)] right-[calc(-50%+32px)] top-8 h-px bg-beige" />}
+                    <button
+                      type="button"
+                      role="tab"
+                      id={`fractional-step-tab-${index}`}
+                      aria-selected={isSelected}
+                      aria-controls="fractional-step-detail"
+                      tabIndex={isSelected ? 0 : -1}
+                      onClick={() => setStep(index)}
+                      onKeyDown={(event) => {
+                        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+                        event.preventDefault();
+                        const next = event.key === "Home" ? 0 : event.key === "End" ? steps.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + steps.length) % steps.length;
+                        setStep(next);
+                        document.getElementById(`fractional-step-tab-${next}`)?.focus();
+                      }}
+                      className="group relative z-10 flex w-full flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                    >
+                      <span className={cn("grid h-16 w-16 place-items-center rounded-full border bg-ivory transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-beige text-forest group-hover:border-gold")}>
+                        <Icon size={27} strokeWidth={1.5} aria-hidden="true" />
+                      </span>
+                      <span className={cn("step-number mt-5", isSelected ? "text-gold" : "text-charcoal/65")}>{String(index + 1).padStart(2, "0")} / 05</span>
+                      <span className="mt-2 min-h-[3rem] font-display text-[1.25rem] font-semibold leading-[1.18] text-forest">{title}</span>
+                      <span className="mt-3 max-w-[190px] text-[0.78rem] leading-[1.55] text-charcoal/75">{summary}</span>
+                    </button>
+                  </div>
+                );
+              })}
             </div>
-            <div className="mt-6 flex justify-center gap-3" aria-label={`Step ${step + 1} of 5`}>{steps.map((_, index) => <button key={index} type="button" onClick={() => setStep(index)} aria-label={`Show step ${index + 1}`} className={cn("h-2.5 w-2.5 rounded-full", index === step ? "bg-gold" : "bg-beige")} />)}</div>
+
+            <div className="space-y-0 lg:hidden">
+              {steps.map(({ title, summary, detail, icon: Icon }, index) => {
+                const isSelected = step === index;
+                return (
+                  <div key={title} className={cn("relative border-b border-beige", index === 0 && "border-t")}>
+                    {index < steps.length - 1 && <span aria-hidden="true" className="absolute bottom-[-24px] left-[27px] top-[56px] w-px bg-beige" />}
+                    <button
+                      type="button"
+                      aria-expanded={isSelected}
+                      aria-controls={`fractional-step-mobile-detail-${index}`}
+                      onClick={() => setStep(index)}
+                      className="relative z-10 grid w-full grid-cols-[54px_minmax(0,1fr)] gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    >
+                      <span className={cn("grid h-[54px] w-[54px] place-items-center rounded-full border bg-ivory transition-colors", isSelected ? "border-gold bg-forest text-gold" : "border-beige text-forest")}>
+                        <Icon size={24} strokeWidth={1.5} aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className={cn("step-number block", isSelected ? "text-gold" : "text-charcoal/65")}>{String(index + 1).padStart(2, "0")} / 05</span>
+                        <span className="mt-1 block font-display text-[1.35rem] font-semibold leading-[1.2] text-forest">{title}</span>
+                        <span className="mt-2 block text-[0.82rem] leading-[1.55] text-charcoal/75">{summary}</span>
+                      </span>
+                    </button>
+                    {isSelected && (
+                      <div id={`fractional-step-mobile-detail-${index}`} role="region" aria-label={`${title} details`} className="mb-5 ml-[70px] rounded-[8px] border border-gold/45 bg-background px-5 py-4">
+                        <p className="text-sm leading-relaxed text-charcoal">{detail}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-12 hidden min-h-[178px] grid-cols-[170px_minmax(0,1fr)] items-center rounded-[8px] border border-beige bg-background px-9 py-7 lg:grid">
+              <div className="border-r border-beige pr-8">
+                <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
+                <p className="mt-3 font-display text-[1.55rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
+              </div>
+              <p className="max-w-[760px] pl-10 text-[0.95rem] leading-relaxed text-charcoal">{currentStep.detail}</p>
+            </div>
           </div>
         </div>
       </section>
