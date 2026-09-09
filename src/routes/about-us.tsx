@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
 import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
@@ -130,17 +131,16 @@ function AboutPage() {
     <main id="top" className="about-new">
       <SiteHeader />
 
-      <section className="about-hero" aria-labelledby="about-title">
-        <img className="about-hero-velvet" src={aboutHeroBg.url} alt="" aria-hidden="true" />
-        <img className="about-hero-mandala" src={sqootMandala.url} alt="" aria-hidden="true" />
-        <div className="about-hero-copy">
-          <p className="about-eyebrow about-hero-item">Founder-led. Compliance-first.</p>
-          <h1 id="about-title" className="about-hero-item">
-            <span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span>
-          </h1>
-        </div>
-        <img className="about-hero-bar" src={aboutHeroGoldBar.url} alt="Angled SQOOT Pure gold bar on dark green velvet" width={390} height={780} fetchPriority="high" />
-      </section>
+      <InnerPageHero
+        titleId="about-title"
+        eyebrow="Founder-led. Compliance-first."
+        title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
+        actions={<GoldButton href="/trust-center#protection" className="h-[54px] px-8">How we protect ownership</GoldButton>}
+        imageSrc={aboutHeroBg.url}
+        imageAlt="Dark green velvet"
+        imageVariant="about"
+        media={<><img className="about-hero-mandala" src={sqootMandala.url} alt="" aria-hidden="true" /><img className="about-hero-bar" src={aboutHeroGoldBar.url} alt="Angled SQOOT Pure gold bar on dark green velvet" width={390} height={780} /></>}
+      />
 
       <section className="about-story" data-reveal>
         <div className="about-story-inner">

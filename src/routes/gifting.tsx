@@ -22,6 +22,7 @@ import {
   Truck,
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { InnerHeroSecondaryLink, InnerPageHero } from "@/components/inner-page-hero";
 import heroGift from "@/assets/gifting-target-hero.jpg";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
 import arrivalsPhoto from "@/assets/occasion-new-arrivals.jpg";
@@ -129,35 +130,16 @@ function GiftingNewPage() {
     <main id="top" className="gifting-new">
       <SiteHeader />
 
-      <section className="gift-hero" aria-labelledby="gift-hero-title">
-        <img src={heroGift} alt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar" width={1920} height={720} fetchPriority="high" />
-        <div className="gift-hero-shade" />
-        <div className="gift-hero-inner">
-          <div className="gift-hero-copy">
-              <div className="gift-overline gift-hero-item">
-                <span />
-                <p>Gifting gold</p>
-                <Mandala />
-              </div>
-              <h1 id="gift-hero-title" className="gift-hero-item">
-                Celebrate love
-                <span>with a gift</span>
-                <span>that lasts.</span>
-              </h1>
-              <p className="gift-hero-body gift-hero-item">
-                Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.
-              </p>
-              <div className="gift-hero-actions gift-hero-item">
-                <GoldButton href="#occasions" className="h-[54px] px-8">
-                  Explore Gifting <ArrowRight />
-                </GoldButton>
-                <a href="#personalise" className="gift-button gift-button-outline">
-                  How It Works <CirclePlay />
-                </a>
-              </div>
-          </div>
-        </div>
-      </section>
+      <InnerPageHero
+        titleId="gift-hero-title"
+        eyebrow="Gifting gold"
+        title={<>Celebrate love<span>with a gift</span><span>that lasts.</span></>}
+        body={<>Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.</>}
+        actions={<><GoldButton href="#occasions" className="h-[54px] px-8">Explore Gifting <ArrowRight /></GoldButton><InnerHeroSecondaryLink href="#personalise">How It Works <CirclePlay /></InnerHeroSecondaryLink></>}
+        imageSrc={heroGift}
+        imageAlt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar"
+        imageVariant="gifting"
+      />
 
       <section className="gift-benefits" data-reveal aria-label="Gifting benefits">
         <div className="gift-benefits-inner">

@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
-  ArrowDown,
   ArrowLeft,
   ArrowRight,
   ChartNoAxesCombined,
@@ -16,6 +15,7 @@ import {
   Umbrella,
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import bandGold from "@/assets/band-gold.jpg";
 import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
@@ -105,22 +105,17 @@ function KnowledgeCenterPage() {
     <main ref={rootRef} id="top" className="knowledge-center-page">
       <SiteHeader />
 
-      <section className="kc-hero">
-        <div className="kc-container kc-hero-inner">
-          <div className="kc-hero-text">
-            <h1 className="kc-display">Gold.</h1>
-            <p className="kc-hero-copy">It's famous for being a <em>'safe haven'</em> investment thanks to years of strong performance in both good and bad economic times.</p>
-            <span className="kc-gold-rule" aria-hidden="true" />
-            <p className="kc-body">Discover how investing in gold today could be the first step on your financial journey.</p>
-            <a href="#benefits" className="kc-circle-control" aria-label="Explore the Knowledge Center"><ArrowDown aria-hidden="true" /></a>
-          </div>
-          <div className="kc-hero-media">
-            <img src={bandGold} alt="Macro detail of polished physical gold bars" width={1400} height={800} fetchPriority="high" />
-            <span className="kc-media-vignette" aria-hidden="true" />
-            <button type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>
-          </div>
-        </div>
-      </section>
+      <InnerPageHero
+        titleId="learn-hero-title"
+        eyebrow="Learn"
+        title={<>Gold.<span>Start with clarity.</span></>}
+        body={<>It's famous for being a <em>'safe haven'</em> investment thanks to years of strong performance in both good and bad economic times.<br />Discover how investing in gold today could be the first step on your financial journey.</>}
+        actions={<GoldButton href="#learn-introduction" className="h-[54px] px-8">Watch the introduction <Play aria-hidden="true" /></GoldButton>}
+        imageSrc={bandGold}
+        imageAlt="Macro detail of polished physical gold bars"
+        imageVariant="learn"
+        media={<button id="learn-introduction" type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>}
+      />
 
       <div className="kc-disclaimer"><div className="kc-container"><a href="#disclaimer"><ShieldCheck aria-hidden="true" />Important Disclaimer: Please Read</a></div></div>
 

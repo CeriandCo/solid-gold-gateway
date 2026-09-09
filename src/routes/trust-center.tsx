@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import { FileCheck2, Globe, Landmark, Users } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import trustHeroImage from "@/assets/trust-centre-verification-hero-v2.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
@@ -398,29 +399,16 @@ function TrustCenterPage() {
       <main ref={pageRef} className="trust-center-page">
 
       {/* HERO */}
-      <section className="tc-hero">
-        <img className="tc-hero-img" src={trustHeroImage.url} alt="A gloved hand holds a gold bar beside an open audit register" />
-        <div className="tc-hero-overlay" />
-        <div className="tc-hero-inner">
-          <div className="tc-hero-copy">
-            <div className="tc-hero-text">
-              <h1>
-                <span>{TC.hero.headingLine1}</span>
-                <span>
-                  {TC.hero.headingLine2Lead}
-                  <em>{TC.hero.headingLine2Gold}</em>
-                </span>
-              </h1>
-              <span className="tc-hero-rule" />
-              <p>
-                {TC.hero.body[0]}
-                <br />
-                {TC.hero.body[1]}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <InnerPageHero
+        titleId="trust-center-hero-title"
+        eyebrow="Trust Centre"
+        title={<><span>{TC.hero.headingLine1}</span><span>{TC.hero.headingLine2Lead}<em>{TC.hero.headingLine2Gold}</em></span></>}
+        body={<>{TC.hero.body[0]}<br />{TC.hero.body[1]}</>}
+        actions={<GoldButton href="#audit-programme" className="h-[54px] px-8">Explore the audit programme</GoldButton>}
+        imageSrc={trustHeroImage.url}
+        imageAlt="A gloved hand holds a gold bar beside an open audit register"
+        imageVariant="trust"
+      />
 
       {/* TRUST PILLARS */}
       <section className="tc-pillars">
@@ -438,7 +426,7 @@ function TrustCenterPage() {
       </section>
 
       {/* AUDIT DASHBOARD */}
-      <section className="tc-audit">
+      <section id="audit-programme" className="tc-audit">
         <div className="tc-audit-panel" data-reveal>
           {/* left verification column */}
           <div className="tc-verify" data-reveal>
@@ -572,7 +560,7 @@ function TrustCenterPage() {
       </section>
 
       {/* CLIENT PROTECTION */}
-      <section className="tc-protection">
+      <section id="protection" className="tc-protection">
         <div className="tc-protection-panel" data-reveal>
           <div className="tc-protection-left">
             <div className="tc-protection-copy">
