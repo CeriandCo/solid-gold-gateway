@@ -787,9 +787,9 @@ footer.site-footer .site-footer__bottom {
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--container);
   margin: 3.5rem auto 0;
-  padding: 1.5rem 1.5rem 0;
+  padding: 1.5rem var(--gutter) 0;
   border-top: 1px solid color-mix(in oklab, var(--warm-white) 10%, transparent);
 }
 
