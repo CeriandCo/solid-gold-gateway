@@ -710,61 +710,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Email waitlist CTA */}
-      <section id="early-access" className="bg-forest py-8 text-[#F8F5F1] lg:py-0">
-        <div className={cn(STD, "grid items-center gap-8 lg:h-[148px] lg:grid-cols-[1fr_auto]")}>
-          <div className="flex items-center gap-6">
-            <img src={mandalaImage} alt="" aria-hidden="true" className="hidden h-[92px] w-[92px] sm:block" />
-            <div>
-              <h2 className="font-display text-[36px] font-medium leading-[1.05] text-gold-soft">Be first in line.</h2>
-              <p className="mt-2 text-[13px] leading-[1.45] text-[#C8CFC9]">
-                SQOOT Pure is launching soon.
-                <br />
-                Get early access and updates.
-              </p>
-            </div>
-          </div>
-          <form onSubmit={submitWaitlist} noValidate className="w-full lg:w-auto">
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <label className="sr-only" htmlFor="waitlist-email">
-                Email address
-              </label>
-              <input
-                id="waitlist-email"
-                type="email"
-                maxLength={254}
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                  setFormState("idle");
-                }}
-                placeholder="Enter your email address"
-                aria-invalid={formState === "error"}
-                aria-describedby="email-status"
-                className="h-[54px] w-full rounded-[2px] border border-transparent bg-background px-5 text-sm text-charcoal outline-none placeholder:text-[#7A817C] focus:border-gold sm:w-[420px]"
-              />
-              <GoldButton type="submit" className="h-[54px] w-full px-8 sm:w-[235px]">
-                Get Early Access
-              </GoldButton>
-            </div>
-            <p
-              id="email-status"
-              className={cn(
-                "mt-3 flex items-center gap-2 text-[12px] leading-[1.45]",
-                formState === "error" ? "text-error" : "text-[#C8CFC9]",
-              )}
-            >
-              <LockKeyhole size={13} strokeWidth={1.5} className="text-gold-soft" />
-              {formState === "error"
-                ? "Please enter a valid email address."
-                : formState === "success"
-                  ? "You’re on the list. We’ll be in touch."
-                  : "We respect your privacy. Your information is safe with us."}
-            </p>
-          </form>
-        </div>
-      </section>
-
       <SiteFooter />
     </main>
   );
