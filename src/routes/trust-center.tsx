@@ -551,7 +551,7 @@ function TrustCenterPage() {
             <span className="tc-timeline-arrow tc-timeline-arrow-2" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-3" aria-hidden="true" />
             {TC.process.steps.map((step, i) => {
-              const StepIcon = AUDIT_STEP_ICONS[i];
+              const StepIcon = AUDIT_STEP_ICONS[i]!;
               return (
                 <div className="tc-step-wrap" key={step.title}>
                   <article style={{ "--step-index": i } as CSSProperties}>
