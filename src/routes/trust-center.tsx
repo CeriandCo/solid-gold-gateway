@@ -933,11 +933,11 @@ const trustStyles = `
   .tc-process-intro:after{display:none}
   .tc-process-body{max-width:620px}
   .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px}
-  .tc-timeline-line{left:25%;right:25%;top:46px}
-  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:184px;height:1px;background:inherit}
+  .tc-timeline-line{left:25%;right:25%;top:42px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:188px;height:1px;background:inherit}
   .tc-timeline-arrow-1{left:50%}
   .tc-timeline-arrow-2{display:none}
-  .tc-timeline-arrow-3{left:50%;top:226px}
+  .tc-timeline-arrow-3{left:50%;top:222px}
 }
 @media (max-width:767px){
   .trust-center-page{--u:1px}
