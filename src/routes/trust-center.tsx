@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
+import { FileCheck2, Globe, Landmark, Users } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import heroElephants from "@/assets/trust-hero-elephants.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
@@ -183,6 +184,8 @@ const TC = {
     },
   ],
 };
+
+const AUDIT_STEP_ICONS = [Users, Landmark, FileCheck2, Globe] as const;
 
 /* ------------------------------------------------------------------ */
 /* ICONS                                                               */
@@ -542,25 +545,28 @@ function TrustCenterPage() {
             <h3 className="tc-label">{TC.process.subtitle}</h3>
             <p className="tc-process-body">{TC.process.body}</p>
           </div>
-          <div className="tc-steps">
+          <div className="tc-steps" aria-label="Four-step audit process">
             <span className="tc-timeline-line" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-1" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-2" aria-hidden="true" />
             <span className="tc-timeline-arrow tc-timeline-arrow-3" aria-hidden="true" />
-            {TC.process.steps.map((step, i) => (
-              <div className="tc-step-wrap" key={step.title}>
-                <article style={{ "--step-index": i } as CSSProperties}>
-                  <span className="tc-step-circle">
-                    <b>{i + 1}</b>
-                    <TcIcon name={step.icon} className="tc-step-icon" />
-                  </span>
-                  <div className="tc-step-copy">
-                    <h4>{step.title}</h4>
-                    <p>{step.body}</p>
-                  </div>
-                </article>
-              </div>
-            ))}
+            {TC.process.steps.map((step, i) => {
+              const StepIcon = AUDIT_STEP_ICONS[i]!;
+              return (
+                <div className="tc-step-wrap" key={step.title}>
+                  <article style={{ "--step-index": i } as CSSProperties}>
+                    <span className="tc-step-circle">
+                      <StepIcon size={32} strokeWidth={1.4} aria-hidden="true" className="tc-step-icon" />
+                      <span className="tc-step-badge">{i + 1}</span>
+                    </span>
+                    <div className="tc-step-copy">
+                      <h4>{step.title}</h4>
+                      <p>{step.body}</p>
+                    </div>
+                  </article>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -783,30 +789,29 @@ const trustStyles = `
 /* PROCESS */
 .tc-process{height:auto;padding:0 calc(56*var(--u)) calc(26*var(--u))}
 .tc-process-panel{--tc-process-bg:#faf7f0;min-height:clamp(315px,22.9167vw,330px);max-width:calc(1328*var(--u));margin:0 auto;border:1px solid rgba(111,88,48,.16);border-radius:15px;background:linear-gradient(135deg,rgba(255,255,255,.34),transparent 48%),var(--tc-process-bg);box-shadow:var(--tc-shadow-soft);display:grid;grid-template-columns:250px minmax(0,1fr);column-gap:48px;padding:42px}
-.tc-process-intro{position:relative;align-self:start;padding-right:32px;opacity:0;transform:translateY(12px);transition:opacity 600ms var(--tc-ease),transform 600ms var(--tc-ease)}
+.tc-process-intro{align-self:start;opacity:0;transform:translateY(12px);transition:opacity 600ms var(--tc-ease),transform 600ms var(--tc-ease)}
 .tc-process-panel.is-visible .tc-process-intro{opacity:1;transform:none}
-.tc-process-intro:after{content:"";position:absolute;right:0;top:0;width:1px;height:170px;background:rgba(185,130,36,.18)}
 .tc-process-intro .tc-display-34{font-size:clamp(32px,2.36vw,34px);font-weight:500;line-height:1.05}
 .tc-process-intro .tc-label{margin-top:14px;font-size:15px;font-weight:600}
 .tc-process-body{margin-top:8px;font-size:15px;line-height:1.55;font-weight:400;max-width:220px;color:var(--tc-body)}
 .tc-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;align-items:start;min-width:0}
-.tc-timeline-line{position:absolute;z-index:0;left:calc(12.5% - 4px);right:calc(12.5% - 4px);top:46px;height:1px;background:rgba(185,130,36,.45);transform:scaleX(0);transform-origin:left center;transition:transform 650ms var(--tc-ease) 120ms}
+.tc-timeline-line{position:absolute;z-index:0;left:calc(12.5% - 4px);right:calc(12.5% - 4px);top:42px;height:1px;background:rgba(185,130,36,.45);transform:scaleX(0);transform-origin:left center;transition:transform 650ms var(--tc-ease) 120ms}
 .tc-process-panel.is-visible .tc-timeline-line{transform:scaleX(1)}
-.tc-timeline-arrow{position:absolute;z-index:1;top:42px;width:7px;height:7px;border-top:1px solid rgba(185,130,36,.62);border-right:1px solid rgba(185,130,36,.62);transform:translateX(-50%) rotate(45deg);opacity:0;transition:opacity 250ms var(--tc-ease) 520ms}
+.tc-timeline-arrow{position:absolute;z-index:1;top:38px;width:7px;height:7px;border-top:1px solid rgba(185,130,36,.62);border-right:1px solid rgba(185,130,36,.62);transform:translateX(-50%) rotate(45deg);opacity:0;transition:opacity 250ms var(--tc-ease) 520ms}
 .tc-process-panel.is-visible .tc-timeline-arrow{opacity:1}
 .tc-timeline-arrow-1{left:25%}.tc-timeline-arrow-2{left:50%}.tc-timeline-arrow-3{left:75%}
 .tc-step-wrap{position:relative;z-index:2;display:flex;justify-content:center;min-width:0}
 .tc-step-wrap article{display:flex;flex-direction:column;align-items:center;width:100%;text-align:center}
-.tc-step-circle{position:relative;width:92px;height:92px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--tc-forest-900);box-shadow:0 0 0 7px var(--tc-process-bg);opacity:0;transform:translateY(10px);transition:opacity 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),transform 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),background-color 200ms ease}
+.tc-step-circle{position:relative;width:84px;height:84px;display:grid;place-items:center;flex:none;border-radius:50%;border:1px solid rgba(185,130,36,.55);background:var(--tc-cream);box-shadow:0 0 0 7px var(--tc-process-bg);color:var(--tc-gold);opacity:0;transform:translateY(10px);transition:opacity 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),transform 500ms var(--tc-ease) calc(300ms + var(--step-index)*90ms),border-color 200ms ease,background-color 200ms ease}
 .tc-process-panel.is-visible .tc-step-circle{opacity:1;transform:none}
-.tc-process-panel.is-visible .tc-step-circle:hover{transform:translateY(-2px);background:var(--tc-forest-850)}
-.tc-step-circle b{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;color:var(--tc-gold)}
-.trust-center-page .tc-step-icon{width:33px;height:33px;color:var(--tc-gold);stroke-width:1.5;transition:color 200ms ease,filter 200ms ease}
-.tc-step-circle:hover .tc-step-icon{color:var(--tc-gold-soft);filter:brightness(1.08)}
+.tc-step-circle:hover{border-color:rgba(185,130,36,.85);background:#fff}
+.tc-step-badge{position:absolute;left:-2px;bottom:-2px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--tc-gold);font-size:11px;font-weight:600;color:var(--tc-forest-950);box-shadow:0 0 0 3px var(--tc-process-bg)}
+.trust-center-page .tc-step-icon{width:32px;height:32px;color:currentColor;stroke-width:1.4;transition:color 200ms ease,filter 200ms ease}
+.tc-step-circle:hover .tc-step-icon{color:var(--tc-gold-dark);filter:brightness(1.08)}
 .tc-step-copy{opacity:0;transform:translateY(8px);transition:opacity 500ms var(--tc-ease) calc(470ms + var(--step-index)*90ms),transform 500ms var(--tc-ease) calc(470ms + var(--step-index)*90ms)}
 .tc-process-panel.is-visible .tc-step-copy{opacity:1;transform:none}
 .tc-step-wrap h4{display:flex;align-items:flex-start;justify-content:center;min-height:40px;margin-top:19px;font-size:15px;font-weight:600;line-height:1.25;color:var(--tc-ink)}
-.tc-step-wrap p{margin:10px auto 0;max-width:215px;font-size:13.5px;font-weight:400;line-height:1.55;color:var(--tc-body)}
+.tc-step-wrap p{margin:10px auto 0;max-width:215px;min-height:63px;font-size:13.5px;font-weight:400;line-height:1.55;color:var(--tc-body)}
 
 
 /* CLIENT PROTECTION */
@@ -910,9 +915,9 @@ const trustStyles = `
   .tc-process-intro:after{display:none}
   .tc-process-body{max-width:620px}
   .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px;padding-top:0}
-  .tc-timeline-line{left:25%;right:25%;top:46px}
-  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:calc(138px + 46px);height:1px;background:inherit}
-  .tc-timeline-arrow-1{left:50%}.tc-timeline-arrow-2{display:none}.tc-timeline-arrow-3{left:50%;top:calc(42px + 184px)}
+  .tc-timeline-line{left:25%;right:25%;top:42px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:188px;height:1px;background:inherit}
+  .tc-timeline-arrow-1{left:50%}.tc-timeline-arrow-2{display:none}.tc-timeline-arrow-3{left:50%;top:222px}
   .tc-protection-left{padding:30px 30px 0}
   .tc-protection-copy>p{max-width:660px}
   .tc-protection-center{padding:12px 0 0}
@@ -928,11 +933,11 @@ const trustStyles = `
   .tc-process-intro:after{display:none}
   .tc-process-body{max-width:620px}
   .tc-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:46px 40px}
-  .tc-timeline-line{left:25%;right:25%;top:46px}
-  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:184px;height:1px;background:inherit}
+  .tc-timeline-line{left:25%;right:25%;top:42px}
+  .tc-timeline-line:after{content:"";position:absolute;left:0;right:0;top:188px;height:1px;background:inherit}
   .tc-timeline-arrow-1{left:50%}
   .tc-timeline-arrow-2{display:none}
-  .tc-timeline-arrow-3{left:50%;top:226px}
+  .tc-timeline-arrow-3{left:50%;top:222px}
 }
 @media (max-width:767px){
   .trust-center-page{--u:1px}
@@ -979,11 +984,11 @@ const trustStyles = `
   .tc-step-wrap{display:block}
   .tc-step-wrap article{display:grid;grid-template-columns:70px minmax(0,1fr);column-gap:20px;align-items:center;text-align:left}
   .tc-step-circle{grid-column:1;grid-row:1;width:70px;height:70px;box-shadow:0 0 0 6px var(--tc-process-bg)}
-  .tc-step-circle b{top:7px;font-size:10px}
-  .trust-center-page .tc-step-icon{width:28px;height:28px}
+  .tc-step-badge{width:20px;height:20px;font-size:10px;left:-2px;bottom:-2px;box-shadow:0 0 0 3px var(--tc-process-bg)}
+  .trust-center-page .tc-step-icon{width:26px;height:26px}
   .tc-step-copy{grid-column:2;grid-row:1;min-width:0}
   .tc-step-wrap h4{display:block;min-height:0;margin-top:0;justify-content:flex-start;font-size:15px;text-align:left}
-  .tc-step-wrap p{max-width:none;margin-top:8px;font-size:13.5px;text-align:left}
+  .tc-step-wrap p{max-width:none;min-height:0;margin-top:8px;font-size:13.5px;text-align:left}
   .tc-protection-left{padding:26px 22px 0}
   .tc-protection-copy>p{max-width:none}
   
