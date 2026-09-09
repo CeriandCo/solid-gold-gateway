@@ -155,7 +155,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             )}
           >
             Get Early Access
-          </a>
+          </Link>
           <button
             type="button"
             aria-label="Toggle navigation menu"
@@ -199,7 +199,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
                 className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
               >
                 Get Early Access
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
