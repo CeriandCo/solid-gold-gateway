@@ -255,7 +255,7 @@ function Index() {
       </section>
 
       <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[1240px] gap-10 px-5 sm:px-8 lg:grid-cols-[28%_1fr] lg:gap-12 xl:px-0">
+        <div className="site-container grid gap-10 lg:grid-cols-[28%_1fr] lg:gap-12">
           <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
             <h2 className="section-title mt-5 text-forest">Five steps. All online. All simple.</h2>
