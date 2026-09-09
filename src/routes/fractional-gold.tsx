@@ -312,7 +312,7 @@ function Index() {
                 })}
               </div>
 
-              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex min-h-[120px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
+              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex min-h-[158px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
                 <div className="shrink-0 border-r border-beige pr-8">
                   <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
                   <p className="mt-2 font-display text-[1.4rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
