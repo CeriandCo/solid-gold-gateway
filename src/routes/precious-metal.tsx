@@ -360,6 +360,7 @@ function CTASection() {
 }
 
 function PreciousMetalPage() {
+  const scope = useReveal<HTMLElement>();
 
   return (
     <>
