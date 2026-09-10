@@ -342,7 +342,7 @@ function TrustCenterPage() {
         eyebrow="Trust Centre"
         title={<><span>{TC.hero.headingLine1}</span><span>{TC.hero.headingLine2Lead}<em>{TC.hero.headingLine2Gold}</em></span></>}
         body={<>{TC.hero.body[0]}<br />{TC.hero.body[1]}</>}
-        actions={<GoldButton href="#audit-programme" className="h-[54px] px-8">Explore the audit programme</GoldButton>}
+        actions={<GoldButton href="#audit-programme">Explore the audit programme</GoldButton>}
         imageSrc={trustHeroImage.url}
         imageAlt="A gloved hand holds a gold bar beside an open audit register"
         imageVariant="trust"
@@ -506,8 +506,8 @@ function TrustCenterPage() {
               <h3>{TC.protection.subtitle}</h3>
               <p>{TC.protection.body}</p>
               <p className="tc-statement">{TC.protection.statement}</p>
-              <GoldButton className="h-[54px] px-8 mt-[calc(22*var(--u))]" href="mailto:support@getsqoot.com?subject=Legal%20Counsel%20Details%20Request">
-                {TC.protection.cta} <i aria-hidden="true">→</i>
+              <GoldButton className="mt-[calc(22*var(--u))]" href="mailto:support@getsqoot.com?subject=Legal%20Counsel%20Details%20Request">
+                {TC.protection.cta}
               </GoldButton>
             </div>
           </div>

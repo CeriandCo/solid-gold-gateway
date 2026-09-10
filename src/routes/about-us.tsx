@@ -118,7 +118,7 @@ function AboutPage() {
         titleId="about-title"
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
-        actions={<GoldButton href="/trust-center#protection" className="h-[54px] px-8">How we protect ownership</GoldButton>}
+        actions={<GoldButton href="/trust-center#protection">How we protect ownership</GoldButton>}
         imageSrc={aboutHeroBg.url}
         imageAlt="SQOOT Pure gold bar resting on dark green velvet"
         imageVariant="about"
@@ -198,9 +198,7 @@ function AboutPage() {
       </section>
 
       <section className="about-waitlist" data-reveal>
-        <GoldButton to="/early-access" className="h-[54px] px-8">
-          Get Early Access
-        </GoldButton>
+        <GoldButton to="/early-access">Get Early Access</GoldButton>
       </section>
 
       <SiteFooter />

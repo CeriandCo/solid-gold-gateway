@@ -130,7 +130,7 @@ function Index() {
         eyebrow="Real Gold. Real Allocation."
         title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
         body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
-        actions={<GoldButton to="/early-access" className="h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>}
+        actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
         note={<span className="flex items-center gap-2"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</span>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"

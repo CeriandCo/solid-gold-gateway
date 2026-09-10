@@ -117,7 +117,7 @@ function GiftingNewPage() {
         eyebrow="Gifting gold"
         title={<>Celebrate love<span>with a gift</span><span>that lasts.</span></>}
         body={<>Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.</>}
-        actions={<><GoldButton href="#occasions" className="h-[54px] px-8">Explore Gifting <ArrowRight /></GoldButton><InnerHeroSecondaryLink href="#personalise">How It Works <CirclePlay /></InnerHeroSecondaryLink></>}
+        actions={<CtaRow><GoldButton href="#occasions">Explore Gifting</GoldButton><GoldButton href="#personalise" variant="secondary">How It Works</GoldButton></CtaRow>}
         imageSrc={heroGift}
         imageAlt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar"
         imageVariant="gifting"
@@ -251,9 +251,7 @@ function GiftingNewPage() {
             <p>
               Give real gold that will be cherished today and passed down through generations.
             </p>
-            <GoldButton href="#top" className="mt-8 h-[54px] px-8">
-              Start Gifting Gold <ArrowRight />
-            </GoldButton>
+            <GoldButton href="#top" className="mt-8">Start Gifting Gold</GoldButton>
           </div>
         </div>
       </section>

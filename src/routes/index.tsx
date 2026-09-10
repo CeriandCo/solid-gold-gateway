@@ -190,7 +190,7 @@ function Index() {
               choose, or gift gold to someone special.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <GoldButton href="#paths" className="h-[54px] px-8">Buy Gold</GoldButton>
+              <GoldButton href="#paths">Buy Gold</GoldButton>
               <a
                 href="#vault"
                 className="rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-8 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:border-gold hover:text-gold hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
@@ -262,9 +262,7 @@ function Index() {
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
             Be the first to experience the SQOOT Pure app. Buy, track, and manage your gold from anywhere.
           </p>
-          <GoldButton to="/early-access" className="mt-8 h-[54px] px-8">
-            Join for early access
-          </GoldButton>
+          <GoldButton to="/early-access" className="mt-8">Join for early access</GoldButton>
         </div>
       </section>
 
