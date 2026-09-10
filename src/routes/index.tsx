@@ -158,9 +158,10 @@ function Mark({ className = "" }: { className?: string }) {
 
 function Index() {
   const [open, setOpen] = useState<number | null>(0);
+  const scope = useReveal<HTMLDivElement>();
 
   return (
-    <div className="legacy-home min-h-screen bg-warm-white">
+    <div ref={scope} className="legacy-home min-h-screen bg-warm-white">
       {/* Header + Hero */}
       <header className="relative isolate overflow-hidden bg-forest-deep text-warm-white">
         <img
@@ -230,6 +231,7 @@ function Index() {
           {assurances.map(({ icon: Icon, title, copy }) => (
             <div
               key={title}
+              data-reveal
               className="flex items-start gap-4 border-b border-warm-white/10 px-2 py-8 last:border-b-0 sm:px-7 sm:[&:nth-child(-n+2)]:border-b lg:border-b-0 lg:border-l lg:first:border-l-0 lg:py-9"
             >
               <Icon strokeWidth={1.5} className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
@@ -245,6 +247,7 @@ function Index() {
       {/* App showcase */}
       <section className="bg-cream py-16 sm:py-24">
         <img
+          data-reveal
           src={appShowcase.url}
           alt="SQOOT Pure app screens showing portfolio, buy gold, gold price, and vault views"
           loading="lazy"
@@ -252,7 +255,7 @@ function Index() {
           height={1080}
           className="w-full"
         />
-        <div className="site-container pt-10 text-center sm:pt-14">
+        <div data-reveal className="site-container pt-10 text-center sm:pt-14">
           <p className="eyebrow text-gold">Early access</p>
           <h2 className="mt-4 font-display text-[2rem] leading-tight text-forest sm:text-[2.75rem]">
             Gold ownership, in your pocket.
@@ -348,14 +351,14 @@ function Index() {
       {/* FAQ */}
       <section className="bg-forest py-24">
         <div className="mx-auto max-w-[1000px] px-6">
-          <div className="text-center">
+          <div data-reveal className="text-center">
             <p className="eyebrow text-gold">FAQs</p>
             <h2 className="mt-5 font-display text-[2.75rem] leading-tight text-warm-white">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-4 md:grid-cols-2">
+          <div data-reveal className="mt-14 grid gap-4 md:grid-cols-2">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
