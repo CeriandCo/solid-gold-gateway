@@ -246,14 +246,14 @@ function Index() {
       </section>
 
       {/* App showcase */}
-      <section className="bg-cream py-16 sm:py-24">
+      <section className="bg-cream pb-16 sm:pb-24">
         <img
           data-reveal
           src={appShowcase.url}
           alt="SQOOT Pure app screens showing portfolio, buy gold, gold price, and vault views"
           loading="lazy"
-          width={1920}
-          height={1080}
+          width={1536}
+          height={1024}
           className="w-full"
         />
         <div data-reveal className="site-container pt-10 text-center sm:pt-14">
