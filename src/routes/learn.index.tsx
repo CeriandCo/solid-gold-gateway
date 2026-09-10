@@ -84,7 +84,7 @@ const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
 function KnowledgeCenterPage() {
   const rootRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState(0);
-  const [period, setPeriod] = useState<string>(AVAILABLE[0]);
+  const [period, setPeriod] = useState<string>(AVAILABLE[0]!);
   const moveBenefit = (direction: number) => setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
 
   return (
