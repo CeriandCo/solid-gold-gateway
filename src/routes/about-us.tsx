@@ -139,7 +139,7 @@ function AboutPage() {
         imageSrc={aboutHeroBg.url}
         imageAlt="Dark green velvet"
         imageVariant="about"
-        media={<><img className="about-hero-mandala" src={sqootMandala.url} alt="" aria-hidden="true" /><img className="about-hero-bar" src={aboutHeroGoldBar.url} alt="Angled SQOOT Pure gold bar on dark green velvet" width={390} height={780} /></>}
+        media={<img className="about-hero-bar" src={aboutHeroGoldBar.url} alt="Angled SQOOT Pure gold bar on dark green velvet" width={390} height={780} />}
       />
 
       <section className="about-story" data-reveal>
