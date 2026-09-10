@@ -178,7 +178,7 @@ function AboutPage() {
           <p className="about-eyebrow">Three ownership paths</p>
           <div className="about-path-grid">
             {ownershipItems.map(({ icon, title, body, featured }) => (
-              <article key={title} className={featured ? "is-featured" : ""}>
+              <article key={title} data-featured={featured ? "true" : undefined}>
                 <LineIcon name={icon} /><h2>{title}</h2><p>{body}</p>
               </article>
             ))}
@@ -193,13 +193,11 @@ function AboutPage() {
             <p className="about-eyebrow">Trust close</p>
             <h2>Compliance isn&apos;t a department. It&apos;s the product.</h2>
             <p>We are built to meet the highest regulatory standards—<br />so you can own with confidence, today and for generations to come.</p>
+            <div className="about-trust-cta"><GoldButton to="/early-access">Get Early Access</GoldButton></div>
           </div>
         </div>
       </section>
 
-      <section className="about-waitlist" data-reveal>
-        <GoldButton to="/early-access">Get Early Access</GoldButton>
-      </section>
 
       <SiteFooter />
       <style>{aboutStyles}</style>
