@@ -2,7 +2,6 @@ import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight,
   ChartNoAxesCombined,
   Check,
   CircleDollarSign,

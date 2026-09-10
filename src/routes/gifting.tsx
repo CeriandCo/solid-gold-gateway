@@ -6,7 +6,6 @@ import {
   Award,
   Baby,
   Check,
-  CirclePlay,
   Gem,
   Gift,
   Globe2,
@@ -22,7 +21,7 @@ import {
   Truck,
 } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { InnerHeroSecondaryLink, InnerPageHero } from "@/components/inner-page-hero";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import heroGift from "@/assets/gifting-target-hero.jpg";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
 import arrivalsPhoto from "@/assets/occasion-new-arrivals.jpg";
