@@ -72,43 +72,79 @@ export function Eyebrow({ children, className = "" }: { children: React.ReactNod
   return <p className={cn("eyebrow text-gold", className)}>{children}</p>;
 }
 
+/**
+ * Shared SQOOT CTA button.
+ * variant: "primary" (gold fill) | "secondary" (bordered) | "video" (bordered, play icon)
+ * icon: "arrow" (default for primary/secondary) | "play" | "none"
+ * All variants share 54px height, ~200px minimum width and identical typography.
+ */
 export function GoldButton({
   children,
   href,
   to,
   type,
+  variant = "primary",
+  icon,
+  onClick,
+  disabled,
+  "aria-label": ariaLabel,
   className = "",
 }: {
   children: React.ReactNode;
   href?: string;
   to?: string;
   type?: "button" | "submit";
+  variant?: "primary" | "secondary" | "video";
+  icon?: "arrow" | "play" | "none";
+  onClick?: () => void;
+  disabled?: boolean;
+  "aria-label"?: string;
   className?: string;
 }) {
+  const resolvedIcon = icon ?? (variant === "video" ? "play" : "arrow");
   const classes = cn(
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] bg-gradient-to-b from-gold-soft to-gold px-7 font-sans text-sm font-semibold leading-none tracking-[0.01em] text-[#0B2015] shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    "group inline-flex h-[54px] min-w-[200px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[2px] px-8 font-sans text-sm font-semibold leading-none tracking-[0.01em] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    variant === "primary"
+      ? "bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] hover:-translate-y-px hover:from-gold hover:to-gold-dark"
+      : "border border-gold/70 bg-transparent text-warm-white hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-[#0B2015]",
+    disabled && "pointer-events-none opacity-60",
     className,
   );
   const style: React.CSSProperties = { fontFamily: "Inter, Arial, sans-serif" };
+  const content = (
+    <>
+      <span>{children}</span>
+      {resolvedIcon === "arrow" ? <ArrowRight size={17} strokeWidth={2.5} aria-hidden="true" className="shrink-0" /> : null}
+      {resolvedIcon === "play" ? <CirclePlay size={17} strokeWidth={2} aria-hidden="true" className="shrink-0" /> : null}
+    </>
+  );
   if (to) {
     return (
-      <Link to={to} className={classes} style={style}>
-        {children}
+      <Link to={to} className={classes} style={style} aria-label={ariaLabel}>
+        {content}
       </Link>
     );
   }
   if (href) {
     return (
-      <a href={href} className={classes} style={style}>
-        {children}
+      <a href={href} className={classes} style={style} aria-label={ariaLabel}>
+        {content}
       </a>
     );
   }
   return (
-    <button type={type ?? "button"} className={classes} style={style}>
-      {children}
+    <button type={type ?? "button"} className={classes} style={style} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
+      {content}
     </button>
   );
+}
+
+/**
+ * Wraps two CTAs so they share one width on desktop (sized to the wider label)
+ * and stack full width on mobile.
+ */
+export function CtaRow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn("cta-row", className)}>{children}</div>;
 }
 
 /**
