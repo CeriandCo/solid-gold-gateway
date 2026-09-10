@@ -189,15 +189,10 @@ function Index() {
               Buy real gold, your way. Build your holding over time, keep it securely stored, take delivery when you
               choose, or gift gold to someone special.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <CtaRow className="mt-10">
               <GoldButton href="#paths">Buy Gold</GoldButton>
-              <a
-                href="#vault"
-                className="rounded-[2px] border border-warm-white/45 bg-warm-white/5 px-8 py-3 text-sm font-semibold tracking-[0.01em] text-warm-white shadow-[0_2px_8px_rgba(0,0,0,0.25)] transition-all hover:-translate-y-px hover:border-gold hover:text-gold hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-              >
-                See the Vault
-              </a>
-            </div>
+              <GoldButton href="#vault" variant="secondary">See the Vault</GoldButton>
+            </CtaRow>
           </div>
         </div>
       </header>
