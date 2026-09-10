@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import aboutHeroProduct from "@/assets/sqoot-pure-product-comparison.png.asset.json";
+import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
+import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
@@ -135,9 +136,10 @@ function AboutPage() {
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
         actions={<GoldButton href="/trust-center#protection" className="h-[54px] px-8">How we protect ownership</GoldButton>}
-        imageSrc={aboutHeroProduct.url}
-        imageAlt="Green suede SQOOT Pure box, gold bar, display card, flowers, marble surface and velvet cloth"
+        imageSrc={aboutHeroBg.url}
+        imageAlt="Dark green velvet"
         imageVariant="about"
+        media={<><img className="about-hero-mandala" src={sqootMandala.url} alt="" aria-hidden="true" /><img className="about-hero-bar" src={aboutHeroGoldBar.url} alt="Angled SQOOT Pure gold bar on dark green velvet" width={390} height={780} /></>}
       />
 
       <section className="about-story" data-reveal>
