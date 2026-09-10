@@ -4,7 +4,6 @@ import { useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  ChartNoAxesCombined,
   CircleDollarSign,
   Globe2,
   Landmark,
