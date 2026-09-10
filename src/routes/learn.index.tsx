@@ -1,3 +1,4 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
