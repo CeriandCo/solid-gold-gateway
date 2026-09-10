@@ -365,7 +365,7 @@ function ArticlePage() {
                 Be among the first to explore fractional physical gold ownership when SQOOT Pure launches.
               </p>
               <div className="mt-8">
-                <GoldButton to="/early-access" className="h-[54px] px-8">Join the SQOOT Pure waitlist</GoldButton>
+                <GoldButton to="/early-access">Join the SQOOT Pure waitlist</GoldButton>
               </div>
               <p className="compact-copy mt-10 text-warm-white/60">
                 Important: Gold and other precious metals can rise or fall in value. Nothing in this article is financial, investment, tax or legal advice. Before purchasing precious metals, consider your circumstances and make sure you understand the product, ownership structure, fees and risks involved.

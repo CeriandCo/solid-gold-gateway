@@ -121,6 +121,26 @@
   padding-inline: var(--gutter);
 }
 
+/* Paired CTA row: equal-width columns on desktop, full-width stack on mobile. */
+.cta-row {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.cta-row > * {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .cta-row {
+    display: grid;
+    width: 100%;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+  }
+}
+
 /* ---------------- MOTION TOKENS + SHARED SCROLL REVEAL ----------------
  * Contract: content is NOT hidden by default. It is only hidden once the
  * useReveal() hook adds `.reveal-ready` to the scope root. Without JS every

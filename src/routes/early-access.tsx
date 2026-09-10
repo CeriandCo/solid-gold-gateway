@@ -174,7 +174,8 @@ function EarlyAccessPage() {
                     />
                     <GoldButton
                       type="submit"
-                      className={cn("h-[54px] w-full px-8 sm:w-auto", formState === "submitting" && "opacity-70")}
+                      icon="none"
+                      className={cn("w-full sm:w-auto", formState === "submitting" && "opacity-70")}
                     >
                       {formState === "submitting" ? "Joining…" : "Join the Waitlist"}
                     </GoldButton>

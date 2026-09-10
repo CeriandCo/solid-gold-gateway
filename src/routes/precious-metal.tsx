@@ -351,9 +351,7 @@ function CTASection() {
       <CtaBranchWatermark />
       <div className="pm-cta-inner">
         <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
-        <GoldButton to="/early-access" className="h-[54px] px-8 mt-[clamp(22px,2.0833vw,53px)]">
-          Join the Waitlist
-        </GoldButton>
+        <GoldButton to="/early-access" className="mt-[clamp(22px,2.0833vw,53px)]">Join the Waitlist</GoldButton>
       </div>
     </section>
   );
@@ -371,7 +369,7 @@ function PreciousMetalPage() {
           eyebrow="Buy Gold"
           title={<><span>Real gold.</span><span>In your hands.</span></>}
           body={<><span>No vaulting, no third party holding your metal.</span><span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span></>}
-          actions={<GoldButton to="/early-access" className="h-[54px] px-8">Get Early Access</GoldButton>}
+          actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
           imageSrc={heroImage}
           imageAlt="Gold bars and coins arranged on a dark emerald surface"
         />

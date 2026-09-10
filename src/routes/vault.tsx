@@ -165,17 +165,7 @@ function Index() {
                 <br className="hidden xl:block" /> A specific holding you can verify and reach.
               </p>
               <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
-                <GoldButton
-                  to="/early-access"
-                  className="group h-[54px] px-8"
-                >
-                  Get Early Access
-                  <ArrowRight
-                    size={17}
-                    strokeWidth={2.25}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </GoldButton>
+                <GoldButton to="/early-access">Get Early Access</GoldButton>
                 <a href="#walkthrough" className="group flex items-center gap-4">
                   <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold/70 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/10">
                     <Play size={16} fill="currentColor" />
@@ -649,9 +639,7 @@ function Index() {
                 Nothing staged.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-7">
-                <GoldButton to="/early-access" className="h-[54px] px-8">
-                  Watch the walkthrough <ArrowRight size={16} strokeWidth={2} />
-                </GoldButton>
+                <GoldButton to="/early-access">Watch the walkthrough</GoldButton>
                 <span className="flex items-center gap-3 text-[13px] leading-[1.45] text-[#C8CFC9]">
                   <LockKeyhole size={16} strokeWidth={1.5} className="shrink-0 text-gold-soft" />
                   Join the waitlist to be
