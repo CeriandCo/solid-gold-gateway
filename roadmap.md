@@ -16,3 +16,7 @@
 
 - [ ] Replace About Us hero image with uploaded gold-bar-on-green-velvet asset
 - [x] Unify scroll-reveal animation across all routes (shared useReveal hook)
+
+## New (pending)
+- Replace Vault page hero image with uploaded secure allocation drawer image and restructure Vault hero to match shared InnerPageHero pattern.
+- Fix homepage FAQ accordion: split into two independent columns, animate height with grid-template-rows, replace icon swap with animated plus/minus bars.
