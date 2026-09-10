@@ -76,10 +76,6 @@ const RETURNS: Record<string, [string, number][]> = {
     ["US Cash", 1.3], ["US Treasuries", 2.1], ["Global stocks", 6.6], ["US stocks", 8.6],
     ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
   ],
-  '10yr': [
-    ["US Cash", 0.9], ["US Treasuries", 1.5], ["Global stocks", 5.2], ["US stocks", 7.1],
-    ["EM Stocks", 3.0], ["Commodities", 2.8], ["Gold", 6.4],
-  ],
 };
 const PERIODS = ['20yr', '10yr', '5yr', '3yr', '1yr'] as const;
 const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
