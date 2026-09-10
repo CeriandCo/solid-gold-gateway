@@ -71,10 +71,14 @@ const returnPoints = [
   <>Through its dual nature as a consumer good and investment, gold has historically preserved its value. Unlike fiat currencies, gold cannot be printed, only mined—this helps explain why it has consistently outperformed major fiat currencies. <sup>[4]</sup></>,
 ];
 
-const chartData = [
-  ["US Cash", 1.3], ["US Treasuries", 2.1], ["Global stocks", 6.6], ["US stocks", 8.6],
-  ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
-] as const;
+const RETURNS: Record<string, [string, number][]> = {
+  '20yr': [
+    ["US Cash", 1.3], ["US Treasuries", 2.1], ["Global stocks", 6.6], ["US stocks", 8.6],
+    ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
+  ],
+};
+const PERIODS = ['20yr', '10yr', '5yr', '3yr', '1yr'] as const;
+const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
 
 
 function KnowledgeCenterPage() {
