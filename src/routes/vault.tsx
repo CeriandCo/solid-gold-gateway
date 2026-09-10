@@ -150,18 +150,17 @@ function Index() {
         imageAlt="Steel vault door with circular locking mechanism"
         imageVariant="standard"
         actions={
-          <>
+          <CtaRow className="!items-baseline">
             <GoldButton to="/early-access">Get Early Access</GoldButton>
-            <a href="#walkthrough" className="group flex items-center gap-4">
-              <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold/70 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/10">
-                <Play size={16} fill="currentColor" />
+            <div className="inline-flex w-full flex-col items-center">
+              <GoldButton href="#walkthrough" variant="video" className="w-full">
+                See how it works
+              </GoldButton>
+              <span className="mt-2 text-center text-[13px] leading-tight text-warm-white/75">
+                2 min walkthrough
               </span>
-              <span>
-                <span className="block text-[15px] font-semibold leading-tight text-[var(--warm-white)]">See how it works</span>
-                <span className="mt-1 block text-[13px] leading-tight text-[color-mix(in_srgb,var(--warm-white)_75%,transparent)]">2 min walkthrough</span>
-              </span>
-            </a>
-          </>
+            </div>
+          </CtaRow>
         }
       />
 
