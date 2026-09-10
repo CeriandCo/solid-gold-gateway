@@ -48,9 +48,9 @@ export function InnerPageHero({
           <div className={cn("inner-page-hero-body", !body && "is-empty")} aria-hidden={!body || undefined}>
             {body}
           </div>
-          <div className="inner-page-hero-action-area">
+          <div className={cn("inner-page-hero-action-area", !note && "no-note")}>
             <div className="inner-page-hero-actions">{actions}</div>
-            <div className={cn("inner-page-hero-note", !note && "is-empty")}>{note}</div>
+            {note ? <div className="inner-page-hero-note">{note}</div> : null}
           </div>
         </div>
       </div>
