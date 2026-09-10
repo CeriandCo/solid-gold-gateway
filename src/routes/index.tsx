@@ -9,8 +9,6 @@ import {
   BadgeCheck,
   Scale,
   FileText,
-  Plus,
-  Minus,
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteNav } from "@/components/site-chrome";
 
@@ -359,33 +357,70 @@ function Index() {
             </h2>
           </div>
 
-          <div data-reveal className="mt-14 grid gap-4 md:grid-cols-2">
-            {faqs.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <div
-                  key={f.q}
-                  className={`h-fit rounded-lg border p-6 transition-colors ${
-                    isOpen ? "border-gold bg-gold-soft" : "border-warm-white/25 bg-warm-white/5"
-                  }`}
-                >
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-start justify-between gap-4 text-left"
+          <div data-reveal className="mt-14 grid gap-4 md:grid-cols-2 md:items-start">
+            {(() => {
+              const left = faqs.slice(0, Math.ceil(faqs.length / 2));
+              const right = faqs.slice(Math.ceil(faqs.length / 2));
+
+              const renderItem = (f: (typeof faqs)[number], i: number) => {
+                const isOpen = open === i;
+                return (
+                  <div
+                    key={f.q}
+                    className={`h-fit rounded-lg border p-6 transition-colors ${
+                      isOpen ? "border-gold bg-gold-soft" : "border-warm-white/25 bg-warm-white/5"
+                    }`}
                   >
-                    <span className={`text-sm font-medium ${isOpen ? "text-forest-deep" : "text-warm-white"}`}>
-                      {f.q}
-                    </span>
-                    {isOpen ? (
-                      <Minus strokeWidth={1.25} className="mt-0.5 h-4 w-4 shrink-0 text-forest-deep" />
-                    ) : (
-                      <Plus strokeWidth={1.25} className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                    )}
-                  </button>
-                  {isOpen && <div className="mt-6 text-sm leading-relaxed text-forest-deep">{f.a}</div>}
-                </div>
+                    <button
+                      id={`faq-button-${i}`}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${i}`}
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      className="flex w-full items-start justify-between gap-4 text-left"
+                    >
+                      <span className={`text-sm font-medium ${isOpen ? "text-forest-deep" : "text-warm-white"}`}>
+                        {f.q}
+                      </span>
+                      <span className="relative mt-0.5 h-4 w-4 shrink-0" aria-hidden="true">
+                        <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
+                        <span
+                          className={[
+                            "absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current",
+                            "transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
+                            "motion-reduce:transition-none",
+                            isOpen ? "scale-y-0" : "scale-y-100",
+                          ].join(" ")}
+                        />
+                      </span>
+                    </button>
+                    <div
+                      id={`faq-panel-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-button-${i}`}
+                      inert={!isOpen ? true : undefined}
+                      className={[
+                        "grid transition-[grid-template-rows,opacity] duration-300",
+                        "ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none",
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                      ].join(" ")}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="pt-6 text-sm leading-relaxed text-forest-deep">{f.a}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              };
+
+              return (
+                <>
+                  <div className="flex flex-col gap-4">{left.map((f, idx) => renderItem(f, idx))}</div>
+                  <div className="flex flex-col gap-4">
+                    {right.map((f, idx) => renderItem(f, idx + left.length))}
+                  </div>
+                </>
               );
-            })}
+            })()}
           </div>
         </div>
       </section>
