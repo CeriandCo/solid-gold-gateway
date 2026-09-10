@@ -1,5 +1,6 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+
 import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import heroAsset from "@/assets/precious-metal-hero.png.asset.json";
@@ -83,22 +84,8 @@ function PampBarArt() {
 }
 
 function ProductsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      section.classList.add("pm-products-visible");
-      observer.disconnect();
-    }, { threshold: 0.14 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="pm-products" aria-labelledby="pm-products-title">
+    <section data-reveal="trigger" className="pm-products" aria-labelledby="pm-products-title">
       <div className="pm-products-heading-row">
         <span aria-hidden="true" />
         <h2 id="pm-products-title">What&apos;s available</h2>
@@ -193,22 +180,8 @@ function OwnershipIcon() {
 }
 
 function HowItWorksSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      section.classList.add("pm-process-visible");
-      observer.disconnect();
-    }, { threshold: 0.18 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="pm-process" aria-labelledby="pm-process-title">
+    <section data-reveal="trigger" className="pm-process" aria-labelledby="pm-process-title">
       <div className="pm-process-heading-row">
         <span aria-hidden="true" />
         <h2 id="pm-process-title">How it works</h2>
@@ -239,22 +212,8 @@ function BotanicalLeafIcon() {
 }
 
 function PricingSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      section.classList.add("pm-pricing-visible");
-      observer.disconnect();
-    }, { threshold: 0.25 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="pm-pricing" aria-labelledby="pm-pricing-title">
+    <section data-reveal="trigger" className="pm-pricing" aria-labelledby="pm-pricing-title">
       <div className="pm-pricing-panel">
         <BotanicalLeafIcon />
         <span className="pm-pricing-divider" aria-hidden="true" />
@@ -333,22 +292,8 @@ function LiquidityBenefitIcon() {
 }
 
 function BenefitsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      section.classList.add("pm-benefits-visible");
-      observer.disconnect();
-    }, { threshold: 0.16 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="pm-benefits" aria-label="Benefits">
+    <section data-reveal="trigger" className="pm-benefits" aria-label="Benefits">
       <div className="pm-benefits-grid">
         {benefits.map((benefit) => (
           <article className="pm-benefit" key={benefit.title}>
@@ -401,22 +346,8 @@ function CtaBranchWatermark() {
 }
 
 function CTASection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      section.classList.add("pm-cta-visible");
-      observer.disconnect();
-    }, { threshold: 0.25 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="pm-cta" aria-labelledby="pm-cta-title">
+    <section data-reveal="trigger" className="pm-cta" aria-labelledby="pm-cta-title">
       <CtaBranchWatermark />
       <div className="pm-cta-inner">
         <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
@@ -433,7 +364,7 @@ function PreciousMetalPage() {
   return (
     <>
       <SiteHeader />
-      <main id="top" className="precious-metals-page">
+      <main ref={scope} id="top" className="precious-metals-page">
         <InnerPageHero
           titleId="pm-hero-title"
           eyebrow="Buy Gold"
@@ -646,11 +577,11 @@ function PreciousMetalPage() {
             transition: transform 350ms cubic-bezier(.22,1,.36,1), border-color 350ms ease, box-shadow 350ms ease;
           }
 
-          .pm-products-visible .pm-product-card {
+          .pm-products.is-visible .pm-product-card {
             animation: pmProductRise 620ms cubic-bezier(.22,1,.36,1) forwards;
           }
-          .pm-products-visible .pm-product-card:nth-child(2) { animation-delay: 90ms; }
-          .pm-products-visible .pm-product-card:nth-child(3) { animation-delay: 180ms; }
+          .pm-products.is-visible .pm-product-card:nth-child(2) { animation-delay: 90ms; }
+          .pm-products.is-visible .pm-product-card:nth-child(3) { animation-delay: 180ms; }
 
           .pm-product-card:hover {
             transform: translateY(-5px);
@@ -874,22 +805,22 @@ function PreciousMetalPage() {
             text-align: center;
           }
 
-          .pm-process-visible .pm-process-heading-row {
+          .pm-process.is-visible .pm-process-heading-row {
             animation: pmProcessRise 600ms cubic-bezier(.22,1,.36,1) forwards;
           }
-          .pm-process-visible .pm-step {
+          .pm-process.is-visible .pm-step {
             animation: pmProcessRise 600ms cubic-bezier(.22,1,.36,1) forwards;
           }
-          .pm-process-visible .pm-step:nth-child(1) { animation-delay: 80ms; }
-          .pm-process-visible .pm-step:nth-child(2) { animation-delay: 160ms; }
-          .pm-process-visible .pm-step:nth-child(3) { animation-delay: 240ms; }
-          .pm-process-visible .pm-step:nth-child(4) { animation-delay: 320ms; }
-          .pm-process-visible .pm-step-circle svg {
+          .pm-process.is-visible .pm-step:nth-child(1) { animation-delay: 80ms; }
+          .pm-process.is-visible .pm-step:nth-child(2) { animation-delay: 160ms; }
+          .pm-process.is-visible .pm-step:nth-child(3) { animation-delay: 240ms; }
+          .pm-process.is-visible .pm-step:nth-child(4) { animation-delay: 320ms; }
+          .pm-process.is-visible .pm-step-circle svg {
             animation: pmIconSettle 600ms cubic-bezier(.22,1,.36,1) forwards;
           }
-          .pm-process-visible .pm-step:nth-child(1)::after { animation: pmLineDraw 600ms ease 200ms forwards; }
-          .pm-process-visible .pm-step:nth-child(2)::after { animation: pmLineDraw 600ms ease 280ms forwards; }
-          .pm-process-visible .pm-step:nth-child(3)::after { animation: pmLineDraw 600ms ease 360ms forwards; }
+          .pm-process.is-visible .pm-step:nth-child(1)::after { animation: pmLineDraw 600ms ease 200ms forwards; }
+          .pm-process.is-visible .pm-step:nth-child(2)::after { animation: pmLineDraw 600ms ease 280ms forwards; }
+          .pm-process.is-visible .pm-step:nth-child(3)::after { animation: pmLineDraw 600ms ease 360ms forwards; }
 
           @keyframes pmHeroSettle {
             from { transform: scale(1.025); }
@@ -963,7 +894,7 @@ function PreciousMetalPage() {
             transform: translateY(12px);
           }
 
-          .pm-pricing-visible .pm-pricing-panel {
+          .pm-pricing.is-visible .pm-pricing-panel {
             animation: pmPricingRise 600ms cubic-bezier(.22,1,.36,1) forwards;
           }
 
@@ -981,11 +912,11 @@ function PreciousMetalPage() {
             stroke-dashoffset: 300;
           }
 
-          .pm-pricing-visible .pm-pricing-leaf {
+          .pm-pricing.is-visible .pm-pricing-leaf {
             animation: pmLeafDraw 900ms ease 200ms forwards;
           }
           .pm-pricing-leaf[src] { object-fit: contain; }
-          .pm-pricing-visible .pm-pricing-leaf[src] {
+          .pm-pricing.is-visible .pm-pricing-leaf[src] {
             opacity: 0;
             animation: pmLeafFade 700ms ease 200ms forwards;
           }
@@ -1106,13 +1037,13 @@ function PreciousMetalPage() {
             .pm-benefit > p { white-space: normal; }
           }
 
-          .pm-benefits-visible .pm-benefit {
+          .pm-benefits.is-visible .pm-benefit {
             animation: pmBenefitRise 620ms cubic-bezier(.22,1,.36,1) forwards;
           }
-          .pm-benefits-visible .pm-benefit:nth-child(1) { animation-delay: 90ms; }
-          .pm-benefits-visible .pm-benefit:nth-child(2) { animation-delay: 180ms; }
-          .pm-benefits-visible .pm-benefit:nth-child(3) { animation-delay: 270ms; }
-          .pm-benefits-visible .pm-benefit:nth-child(4) { animation-delay: 360ms; }
+          .pm-benefits.is-visible .pm-benefit:nth-child(1) { animation-delay: 90ms; }
+          .pm-benefits.is-visible .pm-benefit:nth-child(2) { animation-delay: 180ms; }
+          .pm-benefits.is-visible .pm-benefit:nth-child(3) { animation-delay: 270ms; }
+          .pm-benefits.is-visible .pm-benefit:nth-child(4) { animation-delay: 360ms; }
           .pm-benefit:hover .pm-benefit-icon svg { transform: scale(1.045); }
 
           @keyframes pmBenefitRise {
@@ -1189,7 +1120,7 @@ function PreciousMetalPage() {
             line-height: 1.08;
             letter-spacing: -.015em;
           }
-          .pm-cta-visible .pm-cta-inner {
+          .pm-cta.is-visible .pm-cta-inner {
             animation: pmCtaRise 620ms cubic-bezier(.22,1,.36,1) forwards;
           }
           @keyframes pmCtaRise {
@@ -1301,7 +1232,7 @@ function PreciousMetalPage() {
             .pm-hero-copy h1 span,
             .pm-hero-rule,
             .pm-hero-copy p,
-            .pm-products-visible .pm-product-card {
+            .pm-products.is-visible .pm-product-card {
               animation: none;
               opacity: 1;
               transform: none;
