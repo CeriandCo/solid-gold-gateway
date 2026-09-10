@@ -7,7 +7,6 @@ import {
   CircleDollarSign,
   Coins,
   FileCheck2,
-  LockKeyhole,
   ShieldCheck,
   UserPlus,
   Wallet,
@@ -130,7 +129,6 @@ function Index() {
         title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
         body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
         actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
-        note={<span className="flex items-center gap-2"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</span>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
