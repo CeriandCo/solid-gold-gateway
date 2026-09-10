@@ -251,7 +251,7 @@ function GiftingNewPage() {
             <p>
               Give real gold that will be cherished today and passed down through generations.
             </p>
-            <GoldButton href="#top" className="h-[54px] px-8">
+            <GoldButton href="#top" className="mt-8 h-[54px] px-8">
               Start Gifting Gold <ArrowRight />
             </GoldButton>
           </div>
