@@ -7,7 +7,6 @@ import {
   CircleDollarSign,
   Coins,
   FileCheck2,
-  LockKeyhole,
   ShieldCheck,
   UserPlus,
   Wallet,
