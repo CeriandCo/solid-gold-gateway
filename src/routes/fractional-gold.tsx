@@ -135,13 +135,20 @@ function Index() {
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
         media={
-          <div
-            aria-hidden="true"
-            className="absolute bottom-[6%] right-[5%] z-[3] flex h-24 w-24 flex-col items-center justify-center rounded-full border border-gold/70 bg-forest-deep/90 text-center shadow-[0_18px_40px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32 lg:h-36 lg:w-36"
-          >
-            <span className="text-[0.5rem] font-semibold tracking-[0.22em] text-warm-white/80 sm:text-[0.6rem]">START FROM</span>
-            <span className="mt-1 text-2xl font-medium text-gold [font-family:var(--font-display)] sm:text-3xl lg:text-4xl">$25</span>
-            <span className="mt-1 text-[0.55rem] tracking-[0.08em] text-warm-white/70 sm:text-[0.65rem]">≈ 0.0104 oz</span>
+          <div aria-hidden="true" className="fg-price-badge">
+            <div>
+              <p className="fg-price-label">START FROM</p>
+              <p className="fg-price-value">$25</p>
+              <p className="fg-price-detail">≈ 0.0104 oz</p>
+            </div>
+            <style>{`
+.fg-price-badge{position:absolute;z-index:3;right:5%;bottom:40px;display:grid;place-items:center;width:clamp(112px,11.1vw,160px);height:clamp(112px,11.1vw,160px);border:2px solid rgba(250,245,234,.8);border-radius:9999px;background:transparent;color:var(--warm-white);text-align:center}
+.fg-price-badge>div{display:flex;flex-direction:column;align-items:center}
+.fg-price-label{margin:0;font-family:var(--font-sans);font-size:clamp(.525rem,.52vw,.75rem);font-weight:700;line-height:normal;letter-spacing:.12em}
+.fg-price-value{margin:clamp(6px,.55vw,8px) 0 0;font-family:var(--font-display);font-size:clamp(1.925rem,1.91vw,2.75rem);font-weight:600;line-height:normal}
+.fg-price-detail{margin:clamp(8px,.83vw,12px) 0 0;font-family:var(--font-sans);font-size:clamp(.569rem,.56vw,.8125rem);font-weight:500;line-height:normal}
+@media(max-width:767px){.fg-price-badge{right:6%;bottom:28px}}
+`}</style>
           </div>
         }
       />
