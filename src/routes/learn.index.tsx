@@ -115,7 +115,7 @@ function KnowledgeCenterPage() {
           </div>
           <div className="kc-benefit-grid">
             {benefits.map(({ label, icon: Icon }, index) => (
-              <article key={label} className={index === activeBenefit ? "is-active" : ""} style={{ "--kc-index": index } as CSSProperties}>
+              <article key={label} className={index === activeBenefit ? "is-active" : ""}>
                 <Icon aria-hidden="true" />
                 <h3>{label}</h3>
               </article>
@@ -127,7 +127,7 @@ function KnowledgeCenterPage() {
       <section id="articles" className="kc-section kc-articles">
         <div className="kc-container kc-article-grid">
           {articles.map((article, index) => (
-            <article className="kc-article-card" data-reveal key={article.title} style={{ "--kc-index": index } as CSSProperties}>
+            <article className="kc-article-card" data-reveal key={article.title}>
               <div className="kc-article-image"><img src={article.image} alt={article.alt} width={1408} height={912} loading="lazy" /></div>
               <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
             </article>
