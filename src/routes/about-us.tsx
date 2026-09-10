@@ -118,6 +118,7 @@ function AboutPage() {
         titleId="about-title"
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
+        body={<>Our experience became SQOOT Pure: a simpler, more transparent way to own real gold.</>}
         actions={<GoldButton href="/trust-center#protection">How we protect ownership</GoldButton>}
         imageSrc={aboutHeroBg.url}
         imageAlt="SQOOT Pure gold bar resting on dark green velvet"
