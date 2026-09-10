@@ -76,7 +76,7 @@ export function InnerHeroSecondaryLink({
 const innerPageHeroStyles = `
 .inner-page-hero{position:relative;width:100%;height:clamp(560px,80vh,820px);overflow:hidden;color:var(--warm-white);background:var(--forest)}
 .inner-page-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;animation:innerHeroSettle 1.2s cubic-bezier(.22,1,.36,1) both}
-.inner-page-hero-image--fractional{object-position:right center}.inner-page-hero-image--gifting{object-position:center}.inner-page-hero-image--trust{object-position:right center}.inner-page-hero-image--learn{object-position:right center}.inner-page-hero-image--about{object-position:center}
+.inner-page-hero-image--fractional{object-position:68% center}.inner-page-hero-image--gifting{object-position:center}.inner-page-hero-image--trust{object-position:right center}.inner-page-hero-image--learn{object-position:right center}.inner-page-hero-image--about{object-position:center}
 .inner-page-hero>.about-hero-mandala{position:absolute;z-index:1;left:clamp(-267px,-10.4167vw,-107px);top:clamp(71px,6.9444vw,178px);width:clamp(441px,45.1389vw,1156px);height:clamp(441px,45.1389vw,1156px);object-fit:contain;opacity:.12;mix-blend-mode:screen}.inner-page-hero>.about-hero-bar{position:absolute;z-index:3;left:59.375%;top:6.7%;width:clamp(485px,33.6806vw,862px);height:90.8%;object-fit:contain;transform:rotate(4deg);filter:drop-shadow(0 25px 38px rgba(0,0,0,.42))}
 .inner-page-hero>.kc-play{z-index:3}
 .inner-page-hero-overlay{position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,rgba(7,25,15,.98) 0%,rgba(7,25,15,.94) 26%,rgba(7,25,15,.77) 40%,rgba(7,25,15,.37) 54%,rgba(7,25,15,.06) 69%,transparent 80%)}
