@@ -133,8 +133,18 @@ function Index() {
         actions={<GoldButton to="/early-access" className="h-[54px] px-8">Get Early Access <ArrowRight size={17} strokeWidth={2.5} /></GoldButton>}
         note={<span className="flex items-center gap-2"><LockKeyhole size={14} className="text-gold" />No obligation. Be the first to access.</span>}
         imageSrc={fractionalGoldHero.url}
-        imageAlt="Gold bars and a coin arranged on deep green velvet"
+        imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
+        media={
+          <div
+            aria-hidden="true"
+            className="absolute bottom-[6%] right-[5%] z-[3] flex h-24 w-24 flex-col items-center justify-center rounded-full border border-gold/70 bg-forest-deep/90 text-center shadow-[0_18px_40px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32 lg:h-36 lg:w-36"
+          >
+            <span className="text-[0.5rem] font-semibold tracking-[0.22em] text-warm-white/80 sm:text-[0.6rem]">START FROM</span>
+            <span className="mt-1 text-2xl font-medium text-gold [font-family:var(--font-display)] sm:text-3xl lg:text-4xl">$25</span>
+            <span className="mt-1 text-[0.55rem] tracking-[0.08em] text-warm-white/70 sm:text-[0.65rem]">≈ 0.0104 oz</span>
+          </div>
+        }
       />
 
       <section data-reveal className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
