@@ -10,7 +10,7 @@ import {
   Scale,
   FileText,
 } from "lucide-react";
-import { GoldButton, SiteFooter, SiteNav } from "@/components/site-chrome";
+import { CtaRow, GoldButton, SiteFooter, SiteNav } from "@/components/site-chrome";
 
 import heroBackground from "@/assets/hero-v1-goc.png.asset.json";
 import appShowcase from "@/assets/app-showcase.png.asset.json";

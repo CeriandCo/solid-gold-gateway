@@ -21,7 +21,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerHeroSecondaryLink, InnerPageHero } from "@/components/inner-page-hero";
 import heroGift from "@/assets/gifting-target-hero.jpg";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
