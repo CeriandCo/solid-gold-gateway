@@ -1,3 +1,4 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Check, Coins, LockKeyhole, ShieldCheck, Smartphone, Vault } from "lucide-react";
@@ -86,6 +87,7 @@ function EarlyAccessPage() {
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const scope = useReveal<HTMLElement>();
 
   async function submitWaitlist(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -109,7 +111,7 @@ function EarlyAccessPage() {
     <div className="early-access-page min-h-screen bg-background text-charcoal">
       <SiteHeader />
 
-      <main>
+      <main ref={scope}>
         {/* Hero — form above the fold */}
         <section className="relative overflow-hidden bg-ivory">
           <img
@@ -219,7 +221,7 @@ function EarlyAccessPage() {
         </section>
 
         {/* What happens next */}
-        <section className="bg-background py-16 sm:py-20">
+        <section data-reveal className="bg-background py-16 sm:py-20">
           <div className={WIDE}>
             <div className="max-w-[560px]">
               <Eyebrow>What happens next</Eyebrow>
@@ -245,7 +247,7 @@ function EarlyAccessPage() {
         </section>
 
         {/* Benefits */}
-        <section className="bg-forest-deep py-16 text-warm-white sm:py-20">
+        <section data-reveal className="bg-forest-deep py-16 text-warm-white sm:py-20">
           <div className={WIDE}>
             <div className="max-w-[560px]">
               <Eyebrow>Why SQOOT Pure</Eyebrow>
@@ -270,7 +272,7 @@ function EarlyAccessPage() {
         </section>
 
         {/* FAQ */}
-        <section className="bg-background py-16 sm:py-20">
+        <section data-reveal className="bg-background py-16 sm:py-20">
           <div className={cn(WIDE, "max-w-[860px]")}>
             <div className="text-center">
               <Eyebrow>Questions</Eyebrow>

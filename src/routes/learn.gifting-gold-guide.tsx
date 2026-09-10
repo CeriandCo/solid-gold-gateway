@@ -1,3 +1,4 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import { GoldButton, GoldRule, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
 
@@ -34,8 +35,10 @@ export const Route = createFileRoute("/learn/gifting-gold-guide")({
 });
 
 function ArticlePage() {
+  const scope = useReveal<HTMLDivElement>();
+
   return (
-    <div className="flex min-h-screen flex-col bg-warm-white">
+    <div ref={scope} className="flex min-h-screen flex-col bg-warm-white">
       <SiteHeader />
 
       <main className="flex-1">
@@ -353,7 +356,7 @@ function ArticlePage() {
         {/* Closing CTA */}
         <section className="bg-forest-deep py-14 text-warm-white sm:py-18">
           <div className={WIDE}>
-            <div className="mx-auto max-w-[720px] text-center">
+            <div data-reveal className="mx-auto max-w-[720px] text-center">
               <p className="eyebrow text-gold mb-4">Get early access</p>
               <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-[-0.015em] sm:text-3xl">
                 Join the SQOOT Pure waitlist

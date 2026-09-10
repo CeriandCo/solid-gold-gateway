@@ -1,5 +1,5 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -106,28 +106,10 @@ const assurances: Feature[] = [
 ];
 
 function GiftingNewPage() {
-  useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>(".gifting-new [data-reveal]"));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      sections.forEach((section) => section.classList.add("is-visible"));
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.18 },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+  const scope = useReveal<HTMLElement>();
 
   return (
-    <main id="top" className="gifting-new">
+    <main ref={scope} id="top" className="gifting-new">
       <SiteHeader />
 
       <InnerPageHero
@@ -363,7 +345,6 @@ const giftingStyles = `
     var(--forest-950); }
 .gift-trust-inner { width: min(78.13%,2000px); height: 100%; margin: auto; display: grid; grid-template-columns: repeat(5,1fr); align-items: center; }.gift-trust article { min-width: 0; height: clamp(76px,7.4vw,190px); padding-inline: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:first-child { border-left: 0; }.gift-trust svg { width: clamp(28px,2.22vw,57px); height: clamp(28px,2.22vw,57px); color: var(--gold-400); }.gift-trust h2 { margin-top: 5px; color: var(--gold-400); font-family: "Inter",sans-serif; font-size: clamp(12px,.9vw,23px); font-weight: 600; line-height: 1.1; }.gift-trust p { max-width: 80%; margin-top: 3px; color: rgba(250,245,234,.82); font-size: clamp(9.5px,.73vw,19px); line-height: 1.35; }
 .gift-closing { position: relative; height: clamp(210px,19.44vw,498px); overflow: hidden; color: var(--cream-text); }.gift-closing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% center; }.gift-closing-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(63,31,12,.92) 0%,rgba(63,31,12,.79) 31%,rgba(25,39,26,.34) 57%,rgba(15,31,22,.06) 78%); }.gift-closing-inner { position: relative; max-width: var(--page-max); height: 100%; margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }.gift-closing-inner > div { width: clamp(340px,33.2vw,850px); margin-left: calc(5% + clamp(36px,3.515625vw,90px)); }.gift-closing-overline { gap:8px; color: var(--gold-400); }.gift-closing-overline > span { width: 42px; height: 1px; background: var(--gold-500); }.gift-closing-overline p { font-size: clamp(10px,.76vw,20px); font-weight: 600; letter-spacing: .18em; }.gift-closing h2 { margin-top: 7px; color: var(--cream-text); font-size: clamp(34px,3.35vw,86px); font-weight: 500; line-height: .98; }.gift-closing h2 span { display: block; }.gift-closing-inner > div > p { max-width: 88%; margin-top: 7px; color: rgba(250,245,234,.86); font-size: clamp(11px,.97vw,25px); line-height: 1.45; }.gift-closing .gift-button { margin-top: 10px; height: clamp(42px,3.61vw,93px); }
-.gifting-new [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1); }.gifting-new [data-reveal].is-visible { opacity: 1; transform: none; }
 @keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} }
 @media (min-width: 1025px) {
   .gift-personal-body { margin-top: min(14px,calc(10.67px + (100vw - 1024px) * .002)); }
@@ -387,5 +368,5 @@ const giftingStyles = `
   .gift-trust-inner { grid-template-columns: repeat(2,1fr); padding: 14px; }.gift-trust article { height: 125px; }.gift-trust article:nth-child(odd) { border-left: 0; }.gift-trust article:nth-child(4) { border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:last-child { grid-column: 1/-1; }
   .gift-closing { height: 440px; }.gift-closing > img { object-position: 66% bottom; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
 }
-@media (prefers-reduced-motion: reduce) { .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }.gifting-new [data-reveal] { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } }
 `;

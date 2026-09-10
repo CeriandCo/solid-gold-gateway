@@ -1,3 +1,4 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
@@ -117,9 +118,10 @@ function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const currentStep = steps[step] ?? steps[0];
+  const scope = useReveal<HTMLElement>();
 
   return (
-    <main id="top" className="fractional-legacy overflow-hidden bg-background">
+    <main ref={scope} id="top" className="fractional-legacy overflow-hidden bg-background">
       <SiteHeader />
 
       <InnerPageHero
@@ -135,7 +137,7 @@ function Index() {
         imageVariant="fractional"
       />
 
-      <section className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
+      <section data-reveal className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
         <div className="site-container">
           <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
           <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
@@ -227,7 +229,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-background" aria-label="Our philosophy">
+      <section data-reveal className="relative overflow-hidden bg-background" aria-label="Our philosophy">
         <div className="pointer-events-none absolute right-[-10%] top-1/2 h-[520px] w-[520px] -translate-y-1/2 opacity-[0.18] mix-blend-multiply sm:h-[620px] sm:w-[620px] lg:right-[-8%] lg:h-[760px] lg:w-[760px]">
           <OfficialMandala className="h-full w-full" />
         </div>
@@ -254,7 +256,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="how-it-works" className="bg-ivory py-16 sm:py-20">
+      <section data-reveal id="how-it-works" className="bg-ivory py-16 sm:py-20">
         <div className="site-container grid gap-10 lg:grid-cols-[28%_1fr] lg:gap-12">
           <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
@@ -350,7 +352,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
+      <section data-reveal className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="comparison-left-title">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
           <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
@@ -358,7 +360,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="fees" className="bg-background py-16 sm:py-20">
+      <section data-reveal id="fees" className="bg-background py-16 sm:py-20">
         <div className="site-container grid gap-14 lg:grid-cols-2">
           <div className="lg:border-r lg:border-beige lg:pr-10"><h2 className="fees-faq-title mt-3 text-forest">Simple, transparent fees</h2><p className="fee-intro mt-3 text-muted-foreground">One simple fee. No hidden costs, no surprises.</p><div className="mt-7 grid rounded-lg border border-beige bg-ivory sm:grid-cols-3">{[[CircleDollarSign,"Allocation Fee","$3 per $100 allocated (3.00%)"],[ShieldCheck,"Annual Storage Fee","0.35% of value"],[FileCheck2,"Insured Storage","0.45% of value"]].map(([Icon,title,copy], i) => { const FeeIcon = Icon as typeof CircleDollarSign; return <div key={title as string} className={cn("px-5 py-7 text-center", i > 0 && "border-t border-beige sm:border-l sm:border-t-0")}><FeeIcon className="mx-auto text-gold" strokeWidth={1.5} /><p className="fee-card-label mt-4 min-h-[2.5rem] text-forest">{title as string}</p><p className="fee-card-value mt-3 text-muted-foreground">{copy as string}</p></div>})}</div><p className="fee-footnote mt-4 text-muted-foreground">*Fees are subject to change. See full Fee Schedule in FAQ.</p></div>
           <div id="faq"><h2 className="fees-faq-title mt-3 text-forest">Frequently asked questions</h2><div className="mt-5">{faqs.map(([question, answer], index) => { const isOpen = openFaq === index; return <div key={question} className="border-b border-beige"><button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold" aria-expanded={isOpen}><span>{question}</span><PlusIcon open={isOpen} /></button>{isOpen && <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>}</div>})}</div></div>

@@ -1,5 +1,6 @@
+import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
+import { useState, type CSSProperties, type HTMLAttributes } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -76,27 +77,9 @@ const chartData = [
   ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
 ] as const;
 
-function useReveals() {
-  const rootRef = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    root.classList.add("kc-reveal-ready");
-    const nodes = [...root.querySelectorAll<HTMLElement>("[data-kc-reveal]")];
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    }), { threshold: 0.14 });
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-  return rootRef;
-}
 
 function KnowledgeCenterPage() {
-  const rootRef = useReveals();
+  const rootRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState(0);
   const [period, setPeriod] = useState("20yr");
   const moveBenefit = (direction: number) => setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
@@ -119,7 +102,7 @@ function KnowledgeCenterPage() {
 
       <div className="kc-disclaimer"><div className="kc-container"><a href="#disclaimer"><ShieldCheck aria-hidden="true" />Important Disclaimer: Please Read</a></div></div>
 
-      <section id="benefits" className="kc-section kc-benefits" data-kc-reveal>
+      <section id="benefits" className="kc-section kc-benefits" data-reveal>
         <div className="kc-container kc-benefits-layout">
           <div className="kc-benefits-intro">
             <h2 className="kc-section-title">Discover more of gold's potential benefits</h2>
@@ -144,7 +127,7 @@ function KnowledgeCenterPage() {
       <section id="articles" className="kc-section kc-articles">
         <div className="kc-container kc-article-grid">
           {articles.map((article, index) => (
-            <article className="kc-article-card" data-kc-reveal key={article.title} style={{ "--kc-index": index } as CSSProperties}>
+            <article className="kc-article-card" data-reveal key={article.title} style={{ "--kc-index": index } as CSSProperties}>
               <div className="kc-article-image"><img src={article.image} alt={article.alt} width={1408} height={912} loading="lazy" /></div>
               <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
             </article>
@@ -152,7 +135,7 @@ function KnowledgeCenterPage() {
         </div>
       </section>
 
-      <section className="kc-section kc-returns"><div className="kc-container kc-returns-panel" data-kc-reveal>
+      <section className="kc-section kc-returns"><div className="kc-container kc-returns-panel" data-reveal>
         <div className="kc-returns-copy">
           <span className="kc-label">Returns</span>
           <h2 className="kc-section-title">A proven asset with competitive returns</h2>
@@ -173,19 +156,19 @@ function KnowledgeCenterPage() {
       </div></section>
 
       <section id="resources" className="kc-section kc-promos"><div className="kc-container kc-promo-grid">
-        <article className="kc-promo-card" data-kc-reveal><img src={goldNugget.url} alt="Natural raw gold nugget" width={1200} height={912} loading="lazy" /><div><h2>Consider gold's potential benefits</h2><p>Gold is used in everything from electronics to jewellery, but you can also invest in it. The unique nature of gold could help in times of economic turmoil and growth.</p><a href="#benefits">The Case for Gold <ArrowRight /></a></div></article>
-        <article className="kc-promo-card kc-guide-card" data-kc-reveal><img src={buyingGuide.url} alt="Dark green SQOOT Pure Buying Gold Safely guide" width={1400} height={900} loading="lazy" /><div><h2>Get the guide for investing in gold</h2><p>Investing in gold can be simple and safe—provided you ask the right questions. Find out more with our 5-step guide to buying gold safely.</p><a href="#articles">Buying Gold Safely <ArrowRight /></a></div></article>
+        <article className="kc-promo-card" data-reveal><img src={goldNugget.url} alt="Natural raw gold nugget" width={1200} height={912} loading="lazy" /><div><h2>Consider gold's potential benefits</h2><p>Gold is used in everything from electronics to jewellery, but you can also invest in it. The unique nature of gold could help in times of economic turmoil and growth.</p><a href="#benefits">The Case for Gold <ArrowRight /></a></div></article>
+        <article className="kc-promo-card kc-guide-card" data-reveal><img src={buyingGuide.url} alt="Dark green SQOOT Pure Buying Gold Safely guide" width={1400} height={900} loading="lazy" /><div><h2>Get the guide for investing in gold</h2><p>Investing in gold can be simple and safe—provided you ask the right questions. Find out more with our 5-step guide to buying gold safely.</p><a href="#articles">Buying Gold Safely <ArrowRight /></a></div></article>
       </div></section>
 
-      <section className="kc-section kc-investing"><div className="kc-container kc-investing-panel" data-kc-reveal>
+      <section className="kc-section kc-investing"><div className="kc-container kc-investing-panel" data-reveal>
         <div className="kc-investing-copy"><h2>Simple, straightforward investing</h2><p>History shows that people turn to gold as an investment because of its unique qualities.</p><p>If you're looking for a safer way to grow what you have and protect it, gold could be the investment for you.</p><p>Offering the potential for competitive returns and the ability to buy and sell online, gold could help you navigate your future.</p><p>Choose your own path, with gold.</p></div>
         <img src={investingBars.url} alt="Upright SQOOT Pure gold bar with stacked bars and two coins" width={1920} height={900} loading="lazy" />
       </div></section>
 
       <section className="kc-section kc-external"><div className="kc-container kc-external-grid">
-        <article className="kc-external-card kc-newsletter" data-kc-reveal><div><span className="kc-label">Stay up to date</span><h2>Get weekly insights on gold's performance</h2><p>Follow market context and the forces shaping gold, delivered in a clear weekly briefing.</p><GoldButton href="#" className="h-[54px] px-8">Sign Up on Gold.org</GoldButton></div><div className="kc-report-art" role="img" aria-label="Pale market report with a line chart and gold stationery"><span className="kc-report-sheet"><svg viewBox="0 0 180 112" aria-hidden="true"><path className="kc-chart-grid" d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"/><path className="kc-chart-line kc-chart-line-muted" d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"/><path className="kc-chart-line" d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"/></svg></span><span className="kc-report-notebook" aria-hidden="true" /><span className="kc-report-pen" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-one" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-two" aria-hidden="true" /></div></article>
-        <article className="kc-external-card kc-goldhub" data-kc-reveal><div><span className="kc-label">Explore the home of gold research</span><h2>Get the latest insights from the World Gold Council</h2><p>Explore trusted research, market analysis and educational resources about gold.</p><GoldButton href="#" className="h-[54px] px-8">Goldhub</GoldButton></div><img src={laptop} alt="Laptop displaying an institutional gold dashboard" width={1200} height={800} loading="lazy" /></article>
-        <article className="kc-film-card" data-kc-reveal><img src={cinematicGold.url} alt="Abstract black silk and textured gold leaf" width={912} height={1200} loading="lazy" /><span className="kc-film-overlay" /><div><h2>Elton John / Touched by Gold: Watch the Film</h2><button type="button" aria-label="Preview Touched by Gold"><Play /></button><p>Touched by Gold</p></div></article>
+        <article className="kc-external-card kc-newsletter" data-reveal><div><span className="kc-label">Stay up to date</span><h2>Get weekly insights on gold's performance</h2><p>Follow market context and the forces shaping gold, delivered in a clear weekly briefing.</p><GoldButton href="#" className="h-[54px] px-8">Sign Up on Gold.org</GoldButton></div><div className="kc-report-art" role="img" aria-label="Pale market report with a line chart and gold stationery"><span className="kc-report-sheet"><svg viewBox="0 0 180 112" aria-hidden="true"><path className="kc-chart-grid" d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"/><path className="kc-chart-line kc-chart-line-muted" d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"/><path className="kc-chart-line" d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"/></svg></span><span className="kc-report-notebook" aria-hidden="true" /><span className="kc-report-pen" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-one" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-two" aria-hidden="true" /></div></article>
+        <article className="kc-external-card kc-goldhub" data-reveal><div><span className="kc-label">Explore the home of gold research</span><h2>Get the latest insights from the World Gold Council</h2><p>Explore trusted research, market analysis and educational resources about gold.</p><GoldButton href="#" className="h-[54px] px-8">Goldhub</GoldButton></div><img src={laptop} alt="Laptop displaying an institutional gold dashboard" width={1200} height={800} loading="lazy" /></article>
+        <article className="kc-film-card" data-reveal><img src={cinematicGold.url} alt="Abstract black silk and textured gold leaf" width={912} height={1200} loading="lazy" /><span className="kc-film-overlay" /><div><h2>Elton John / Touched by Gold: Watch the Film</h2><button type="button" aria-label="Preview Touched by Gold"><Play /></button><p>Touched by Gold</p></div></article>
       </div></section>
 
       <div id="disclaimer" className="kc-footnote kc-container">Past performance is not a guarantee of future results. Educational content is provided for general information only.</div>
@@ -206,10 +189,10 @@ const knowledgeStyles = `
 .kc-promo-grid{height:298px;display:grid;grid-template-columns:.84fr 1.16fr;gap:16px}.kc-promo-card{height:100%;display:grid;grid-template-columns:42% 58%;overflow:hidden;border:1px solid var(--kc-border);border-radius:var(--kc-radius-card);background:var(--kc-paper);box-shadow:var(--kc-shadow)}.kc-promo-card>img{width:100%;height:100%;object-fit:cover}.kc-promo-card>div{display:flex;flex-direction:column;padding:28px 26px}.kc-promo-card h2{font-size:29px;line-height:1.06;font-weight:500}.kc-promo-card p{margin-top:13px;font-size:14px;line-height:1.5;color:var(--kc-body)}.kc-promo-card a{color:var(--kc-gold-dark)}.kc-guide-card{grid-template-columns:40% 60%}
 .kc-investing-panel{position:relative;height:336px;display:grid;grid-template-columns:55% 45%;overflow:hidden;border:1px solid rgba(213,163,59,.22);border-radius:14px;background:linear-gradient(105deg,var(--kc-forest-950),var(--kc-forest-800));color:var(--kc-cream)}.kc-investing-copy{position:relative;z-index:2;padding:34px 38px;background:linear-gradient(90deg,var(--kc-forest-950) 25%,rgba(1,18,13,.84) 75%,transparent)}.kc-investing h2{font-size:40px;font-weight:500;line-height:1.05;color:var(--kc-gold-soft)}.kc-investing-copy p{max-width:610px;margin-top:11px;font-size:15px;line-height:1.42;color:rgba(252,250,246,.86)}.kc-investing-panel>img{width:100%;height:100%;object-fit:cover;object-position:72% center;mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 100%)}
 .kc-external-grid{height:340px;display:grid;grid-template-columns:1.04fr 1.16fr .88fr;gap:16px}.kc-external-card,.kc-film-card{position:relative;height:100%;overflow:hidden;border:1px solid var(--kc-border);border-radius:var(--kc-radius-card);box-shadow:var(--kc-shadow)}.kc-external-card{display:grid;grid-template-columns:58% 42%;background:var(--kc-paper)}.kc-external-card>div{position:relative;z-index:2;display:flex;flex-direction:column;padding:27px 24px}.kc-external-card .kc-label{color:var(--kc-gold-dark);line-height:1.3}.kc-external-card h2{margin-top:13px;font-size:28px;line-height:1.06;font-weight:500}.kc-external-card p{margin-top:12px;font-size:14px;line-height:1.5;color:var(--kc-body)}.kc-external-card>img{width:100%;height:100%;object-fit:cover}.kc-report-art{position:relative!important;z-index:1!important;display:block!important;padding:0!important;overflow:hidden;background:linear-gradient(145deg,#fdfbf6,#e9dfcf)}.kc-report-sheet{position:absolute;left:8%;right:8%;top:24%;height:51%;padding:10%;border:1px solid rgba(112,87,45,.12);border-radius:2px;background:#fffdf8;box-shadow:0 10px 24px rgba(58,46,28,.12);transform:rotate(-4deg)}.kc-report-sheet svg{width:100%;height:100%;overflow:visible}.kc-chart-grid{fill:none;stroke:rgba(16,38,30,.13);stroke-width:1}.kc-chart-line{fill:none;stroke:var(--kc-gold-dark);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.kc-chart-line-muted{stroke:var(--kc-forest-800);stroke-width:1.8}.kc-report-notebook{position:absolute;width:40%;height:26%;right:-7%;top:-5%;border-radius:3px;background:#f2eadf;box-shadow:0 6px 15px rgba(58,46,28,.1);transform:rotate(8deg)}.kc-report-pen{position:absolute;width:4px;height:39%;right:10%;bottom:-5%;border-radius:4px;background:linear-gradient(90deg,var(--kc-gold-dark),var(--kc-gold-soft),var(--kc-gold-dark));transform:rotate(17deg);box-shadow:0 2px 5px rgba(58,46,28,.15)}.kc-report-clip{position:absolute;width:11px;height:25px;border:2px solid var(--kc-gold-dark);border-radius:6px;transform:rotate(19deg)}.kc-report-clip-one{right:29%;bottom:6%}.kc-report-clip-two{right:21%;bottom:4%}.kc-film-card>img{width:100%;height:100%;object-fit:cover}.kc-film-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,18,13,.14),rgba(1,18,13,.88))}.kc-film-card>div{position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;padding:26px;color:var(--kc-cream)}.kc-film-card h2{max-width:260px;font-size:27px;line-height:1.08;font-weight:500}.kc-film-card button{display:grid;width:58px;height:58px;margin:auto;place-items:center;border:1px solid var(--kc-gold-soft);border-radius:50%;color:var(--kc-gold-soft)}.kc-film-card button svg{width:18px;fill:currentColor}.kc-film-card p{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;font-weight:600;text-transform:uppercase;color:var(--kc-gold-soft)}.kc-footnote{padding-block:24px 32px;color:var(--kc-muted);font-size:12px;line-height:1.5}
-.kc-reveal-ready [data-kc-reveal]{opacity:0;transform:translateY(14px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}.kc-reveal-ready [data-kc-reveal].is-visible{opacity:1;transform:none}.kc-article-card[data-kc-reveal],.kc-external-grid>[data-kc-reveal]{transition-delay:calc(var(--kc-index,0)*60ms)}
+
 @keyframes kc-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}@keyframes kc-media{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:scale(1)}}
 @media(max-width:1279px){.kc-container{width:calc(100% - 80px)}.kc-hero-inner{grid-template-columns:40% 60%;gap:32px}.kc-benefit-grid{grid-template-columns:repeat(3,1fr);height:auto}.kc-benefit-grid article:nth-child(4){border-left:0}.kc-benefits{height:auto;min-height:310px}.kc-returns-panel{grid-template-columns:40% 60%;height:auto;min-height:558px}.kc-external-grid{height:auto;grid-template-columns:repeat(2,1fr)}.kc-film-card{height:340px}}
 @media(max-width:1023px){.kc-container{width:calc(100% - 56px)}.kc-hero{height:auto}.kc-hero-inner{grid-template-columns:1fr;padding-block:48px}.kc-hero-text{max-width:680px}.kc-hero-media{height:auto;aspect-ratio:16/9}.kc-benefits-layout{grid-template-columns:1fr;padding-block:32px}.kc-benefit-grid article{border-left:1px solid rgba(112,87,45,.14)}.kc-article-grid{height:auto;grid-template-columns:repeat(2,1fr)}.kc-article-card{height:440px}.kc-returns-panel{height:auto;grid-template-columns:1fr}.kc-chart-panel{min-height:455px}.kc-promo-grid{height:auto;grid-template-columns:1fr}.kc-promo-card{height:300px}.kc-investing-panel{height:auto;min-height:340px;grid-template-columns:55% 45%}.kc-external-grid{grid-template-columns:repeat(2,1fr)}.kc-external-card,.kc-film-card{height:340px}}
 @media(max-width:767px){.kc-container{width:calc(100% - 40px)}.kc-section{margin-top:22px}.kc-display{font-size:clamp(48px,13vw,54px)}.kc-hero-copy{font-size:clamp(29px,8.2vw,34px)}.kc-hero-inner{padding-block:38px;gap:30px}.kc-hero-media{border-radius:14px}.kc-play{width:72px;height:72px}.kc-disclaimer{height:50px}.kc-benefits-layout{gap:22px}.kc-benefits-intro .kc-section-title{font-size:32px}.kc-benefit-grid{grid-template-columns:repeat(2,1fr)}.kc-benefit-grid article:nth-child(odd){border-left:0}.kc-article-grid{grid-template-columns:1fr}.kc-article-card{height:auto;min-height:430px}.kc-article-image{height:auto;aspect-ratio:1.5}.kc-article-copy{height:164px}.kc-returns-panel{padding:28px 20px}.kc-returns-copy li p{font-size:14px}.kc-chart-panel{min-height:445px;padding-inline:14px}.kc-tabs{height:52px}.kc-tabs button{font-size:12px}.kc-bar-row{grid-template-columns:82px minmax(0,1fr) 31px;gap:7px}.kc-bar-row>span{font-size:11px;overflow-wrap:anywhere}.kc-axis{margin-left:89px;margin-right:38px}.kc-promo-card,.kc-guide-card{height:auto;grid-template-columns:1fr}.kc-promo-card>img{height:auto;aspect-ratio:1.55}.kc-promo-card>div{min-height:260px}.kc-investing-panel{grid-template-columns:1fr}.kc-investing-copy{padding:30px 22px}.kc-investing h2{font-size:36px}.kc-investing-panel>img{height:auto;aspect-ratio:1.4}.kc-external-grid{grid-template-columns:1fr}.kc-external-card,.kc-film-card{height:350px}.kc-external-card{grid-template-columns:60% 40%}.kc-footnote{font-size:12px}}
-@media(prefers-reduced-motion:reduce){.knowledge-center-page *,.knowledge-center-page *:before,.knowledge-center-page *:after{animation:none!important;transition:none!important}.kc-reveal-ready [data-kc-reveal]{opacity:1!important;transform:none!important}.kc-bar-row i{width:var(--bar-width)!important}}
+@media(prefers-reduced-motion:reduce){.knowledge-center-page *,.knowledge-center-page *:before,.knowledge-center-page *:after{animation:none!important;transition:none!important}.kc-bar-row i{width:var(--bar-width)!important}}
 `;

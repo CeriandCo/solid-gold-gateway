@@ -121,6 +121,40 @@
   padding-inline: var(--gutter);
 }
 
+/* ---------------- MOTION TOKENS + SHARED SCROLL REVEAL ----------------
+ * Contract: content is NOT hidden by default. It is only hidden once the
+ * useReveal() hook adds `.reveal-ready` to the scope root. Without JS every
+ * section renders fully visible. Do not invert this.
+ */
+:root {
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 0.65s;
+  --reveal-rise: 16px;
+  --reveal-step: 60ms;
+}
+
+.reveal-ready [data-reveal]:not([data-reveal="trigger"]) {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--reveal-index, 0) * var(--reveal-step));
+}
+
+.reveal-ready [data-reveal]:not([data-reveal="trigger"]).is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 
 @layer base {
   *,
