@@ -26,7 +26,7 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import vaultDoor from "@/assets/vault-door-hero-v2.png.asset.json";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import laptopImage from "@/assets/walkthrough-laptop.jpg";
-import mandalaImage from "@/assets/sqoot-mandala.png";
+
 
 export const Route = createFileRoute("/vault")({
   head: () => ({
