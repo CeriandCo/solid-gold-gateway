@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import aboutHeroBg from "@/assets/about-hero-velvet-bg.jpg.asset.json";
-import aboutHeroGoldBar from "@/assets/about-hero-gold-bar-v2.png.asset.json";
+import aboutHeroProduct from "@/assets/sqoot-pure-product-comparison.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
