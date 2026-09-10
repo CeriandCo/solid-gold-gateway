@@ -22,7 +22,7 @@ import {
   Warehouse,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import vaultDoor from "@/assets/vault-door-hero-v2.png.asset.json";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import laptopImage from "@/assets/walkthrough-laptop.jpg";
