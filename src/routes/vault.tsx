@@ -23,9 +23,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
-import vaultDoor from "@/assets/vault-door-hero.png.asset.json";
+import vaultDoor from "@/assets/vault-door-hero-v2.png.asset.json";
+import { InnerPageHero } from "@/components/inner-page-hero";
 import laptopImage from "@/assets/walkthrough-laptop.jpg";
-import mandalaImage from "@/assets/sqoot-mandala.png";
+
 
 export const Route = createFileRoute("/vault")({
   head: () => ({
@@ -125,71 +126,44 @@ function Index() {
     <main ref={scope} id="top" className="bg-background text-charcoal">
       <SiteHeader />
 
-      {/* Hero — full-bleed cinematic split */}
-      <section id="vault" className="bg-ivory">
-        <div className="hero-split grid w-full grid-cols-1 lg:grid-cols-[minmax(0,50fr)_minmax(0,50fr)] xl:grid-cols-[minmax(0,54fr)_minmax(0,46fr)]">
-          {/* Content panel — first on mobile, second column on desktop */}
-          <div className="relative order-1 flex items-center justify-center overflow-hidden bg-ivory lg:order-2 lg:border-l lg:border-gold/25">
-            <img
-              src={mandalaImage}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute right-[-84px] top-1/2 z-0 hidden h-[280px] w-[280px] -translate-y-1/2 object-contain opacity-[0.05] lg:block"
-            />
-            <div
-              className="relative z-10 w-full max-w-[680px] px-8 py-14 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both lg:px-14 lg:py-[clamp(56px,5vw,72px)] 2xl:px-16"
-            >
-              <Eyebrow>Vaulted Gold</Eyebrow>
-              <GoldRule />
-              <h1 className="mt-6 max-w-[660px] text-balance font-display font-medium text-charcoal">
-                <span
-                  className="block text-balance"
-                  style={{ fontSize: "clamp(36px, 3.55vw, 60px)", lineHeight: "1.0", letterSpacing: "-0.025em" }}
-                >
-                  <span className="block">Your gold.</span>
-                  <span className="block">Held in your name.</span>
-                </span>
-                <span
-                  className="mt-2 block text-balance"
-                  style={{ fontSize: "clamp(29px, 2.85vw, 48px)", lineHeight: "1.04", letterSpacing: "-0.02em" }}
-                >
-                  <span className="block xl:whitespace-nowrap">
-                    Real, insured, and <em className="font-medium italic text-gold">yours</em>
-                  </span>
-                  <span className="block xl:whitespace-nowrap">to redeem whenever you choose.</span>
-                </span>
-              </h1>
-              <p className="mt-[34px] max-w-[620px] text-[17px] font-medium leading-[1.65] text-[#2C332E]">
-                Physical gold and silver, stored in an insured US vault,
-                <br className="hidden xl:block" /> allocated to you individually. Not a promise on a screen.
-                <br className="hidden xl:block" /> A specific holding you can verify and reach.
-              </p>
-              <div className="mt-[36px] flex w-full flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
-                <GoldButton to="/early-access">Get Early Access</GoldButton>
-                <a href="#walkthrough" className="group flex items-center gap-4">
-                  <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold/70 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/10">
-                    <Play size={16} fill="currentColor" />
-                  </span>
-                  <span>
-                    <span className="block text-[15px] font-semibold leading-tight text-charcoal">See how it works</span>
-                    <span className="mt-1 block text-[13px] leading-tight text-[#444A45]">2 min walkthrough</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Image panel — full-bleed left column */}
-          <div className="relative order-2 overflow-hidden lg:order-1">
-            <img
-              src={vaultDoor.url}
-              alt="Steel vault door with circular locking mechanism"
-              className="h-full w-full animate-vault-settle object-cover object-[58%_center] aspect-[5/4] sm:aspect-[16/10] lg:aspect-auto lg:absolute lg:inset-0"
-            />
-            <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-charcoal/25 to-transparent lg:block" />
-          </div>
-        </div>
-      </section>
+      {/* Hero — shared landing-page structure */}
+      <InnerPageHero
+        id="vault"
+        titleId="vault-hero-title"
+        eyebrow="Vaulted Gold"
+        title={
+          <>
+            <span>Your gold.</span>
+            <span>Held in your name.</span>
+          </>
+        }
+        body={
+          <>
+            <span>Real, insured, and yours to redeem whenever you choose.</span>
+            <span>
+              Physical gold and silver, stored in an insured US vault, allocated to you individually. Not a promise on
+              a screen. A specific holding you can verify and reach.
+            </span>
+          </>
+        }
+        imageSrc={vaultDoor.url}
+        imageAlt="Steel vault door with circular locking mechanism"
+        imageVariant="standard"
+        actions={
+          <>
+            <GoldButton to="/early-access">Get Early Access</GoldButton>
+            <a href="#walkthrough" className="group flex items-center gap-4">
+              <span className="grid h-[48px] w-[48px] place-items-center rounded-full border border-gold/70 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/10">
+                <Play size={16} fill="currentColor" />
+              </span>
+              <span>
+                <span className="block text-[15px] font-semibold leading-tight text-[var(--warm-white)]">See how it works</span>
+                <span className="mt-1 block text-[13px] leading-tight text-[color-mix(in_srgb,var(--warm-white)_75%,transparent)]">2 min walkthrough</span>
+              </span>
+            </a>
+          </>
+        }
+      />
 
 
       {/* Custody proof row */}
