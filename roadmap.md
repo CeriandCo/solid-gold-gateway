@@ -15,4 +15,4 @@
 - Standardized Buy Gold, Fractional Gold, Gifting, Trust Centre, About Us, and Learn heroes to one shared Buy Gold structure; verified desktop, tablet, and mobile without changing Homepage or Vault.
 
 - [ ] Replace About Us hero image with uploaded gold-bar-on-green-velvet asset
-- [ ] Unify scroll-reveal animation across all routes (shared useReveal hook)
+- [x] Unify scroll-reveal animation across all routes (shared useReveal hook)
