@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import fractionalGoldHero from "@/assets/fractional-gold-hero.png.asset.json";
-import comparisonImage from "@/assets/fractional-gold-comparison.png.asset.json";
+import comparisonImage from "@/assets/sqoot-pure-product-comparison.png.asset.json";
 import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
 import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
