@@ -118,6 +118,7 @@ function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const currentStep = steps[step] ?? steps[0];
+  const scope = useReveal<HTMLElement>();
 
   return (
     <main ref={scope} id="top" className="fractional-legacy overflow-hidden bg-background">

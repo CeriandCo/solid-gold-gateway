@@ -119,6 +119,7 @@ function TexasMap() {
 function Index() {
   const [tab, setTab] = useState<"delivered" | "stored">("delivered");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const scope = useReveal<HTMLElement>();
 
   return (
     <main ref={scope} id="top" className="bg-background text-charcoal">

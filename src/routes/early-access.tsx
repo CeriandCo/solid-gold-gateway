@@ -87,6 +87,7 @@ function EarlyAccessPage() {
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const scope = useReveal<HTMLElement>();
 
   async function submitWaitlist(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
