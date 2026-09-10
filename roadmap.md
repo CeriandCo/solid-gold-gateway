@@ -14,7 +14,5 @@
 ## Done
 - Standardized Buy Gold, Fractional Gold, Gifting, Trust Centre, About Us, and Learn heroes to one shared Buy Gold structure; verified desktop, tablet, and mobile without changing Homepage or Vault.
 
-- [x] Replace About Us hero image with uploaded gold-bar-on-green-velvet asset
+- [ ] Replace About Us hero image with uploaded gold-bar-on-green-velvet asset
 - [x] Unify scroll-reveal animation across all routes (shared useReveal hook)
-- [x] Stabilize the About Us “How it works” and ownership-path responsive reflow
-- [x] Replace and standardize the Vault hero with the uploaded secure allocation drawer image
