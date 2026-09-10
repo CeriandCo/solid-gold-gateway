@@ -16,3 +16,5 @@
 
 - [ ] Replace About Us hero image with uploaded gold-bar-on-green-velvet asset
 - [x] Unify scroll-reveal animation across all routes (shared useReveal hook)
+- [ ] Stabilize the About Us “How it works” and ownership-path responsive reflow
+- [ ] Replace and standardize the Vault hero with the uploaded secure allocation drawer image
