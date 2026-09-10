@@ -186,16 +186,11 @@ function KnowledgeCenterPage() {
                           <span>{name}</span>
                           <div style={{ "--bar-start": barStart, "--bar-width": width, "--grid-step": `${gridStep}%` } as CSSProperties}>
                             <i style={iStyle} />
+                            <b>{value.toFixed(1)}</b>
                           </div>
-                          <b>{value.toFixed(1)}</b>
                         </div>
                       );
                     })}
-                  </div>
-                  <div className="kc-axis" aria-hidden="true">
-                    {labels.map((l, idx) => (
-                      <span key={l}>{l}{idx === labels.length - 1 ? "%" : ""}</span>
-                    ))}
                   </div>
                   <table className="kc-sr-table"><caption>{period}-year compound annual growth rates</caption><tbody>{data.map(([name, value]) => <tr key={name}><th>{name}</th><td>{value}%</td></tr>)}</tbody></table>
                 </>
