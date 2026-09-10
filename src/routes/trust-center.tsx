@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { FileCheck2, Globe, Landmark, Users } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import trustHeroImage from "@/assets/trust-centre-verification-hero-v2.png.asset.json";
+import trustHeroImage from "@/assets/trust-centre-hero-gold-register.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
