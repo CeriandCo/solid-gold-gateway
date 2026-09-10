@@ -57,11 +57,7 @@ export function useReveal<T extends HTMLElement = HTMLElement>() {
     scope.classList.add("reveal-ready");
     nodes.forEach((node) => observer.observe(node));
 
-    // Safety net: never leave content stuck hidden if the observer misfires.
-    const failSafe = window.setTimeout(() => nodes.forEach(show), 4000);
-
     return () => {
-      window.clearTimeout(failSafe);
       observer.disconnect();
       scope.classList.remove("reveal-ready");
     };
