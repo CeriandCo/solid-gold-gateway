@@ -138,7 +138,7 @@ function KnowledgeCenterPage() {
         </div>
       </section>
 
-      <section className="kc-section kc-returns"><div className="kc-container kc-returns-panel" data-reveal>
+      <section className="kc-section kc-returns"><div className="kc-container"><div className="kc-returns-panel" data-reveal>
         <div className="kc-returns-copy">
           <span className="kc-label">Returns</span>
           <h2 className="kc-section-title">A proven asset with competitive returns</h2>
@@ -198,17 +198,17 @@ function KnowledgeCenterPage() {
             })()}
           </div>
         </div>
-      </div></section>
+      </div></div></section>
 
       <section id="resources" className="kc-section kc-promos"><div className="kc-container kc-promo-grid">
         <article className="kc-promo-card" data-reveal><img src={goldNugget.url} alt="Natural raw gold nugget" width={1200} height={912} loading="lazy" /><div><h2>Consider gold's potential benefits</h2><p>Gold is used in everything from electronics to jewellery, but you can also invest in it. The unique nature of gold could help in times of economic turmoil and growth.</p><a href="#benefits">The Case for Gold <ArrowRight /></a></div></article>
         <article className="kc-promo-card kc-guide-card" data-reveal><img src={buyingGuide.url} alt="Dark green SQOOT Pure Buying Gold Safely guide" width={1400} height={900} loading="lazy" /><div><h2>Get the guide for investing in gold</h2><p>Investing in gold can be simple and safe—provided you ask the right questions. Find out more with our 5-step guide to buying gold safely.</p><a href="#articles">Buying Gold Safely <ArrowRight /></a></div></article>
       </div></section>
 
-      <section className="kc-section kc-investing"><div className="kc-container kc-investing-panel" data-reveal>
+      <section className="kc-section kc-investing"><div className="kc-container"><div className="kc-investing-panel" data-reveal>
         <div className="kc-investing-copy"><h2>Simple, straightforward investing</h2><p>History shows that people turn to gold as an investment because of its unique qualities.</p><p>If you're looking for a safer way to grow what you have and protect it, gold could be the investment for you.</p><p>Offering the potential for competitive returns and the ability to buy and sell online, gold could help you navigate your future.</p><p>Choose your own path, with gold.</p></div>
         <img src={investingBars.url} alt="Upright SQOOT Pure gold bar with stacked bars and two coins" width={1920} height={900} loading="lazy" />
-      </div></section>
+      </div></div></section>
 
       <section className="kc-section kc-external"><div className="kc-container kc-external-grid">
         <article className="kc-external-card kc-newsletter" data-reveal><div><span className="kc-label">Stay up to date</span><h2>Get weekly insights on gold's performance</h2><p>Follow market context and the forces shaping gold, delivered in a clear weekly briefing.</p><GoldButton href="#">Sign Up on Gold.org</GoldButton></div><div className="kc-report-art" role="img" aria-label="Pale market report with a line chart and gold stationery"><span className="kc-report-sheet"><svg viewBox="0 0 180 112" aria-hidden="true"><path className="kc-chart-grid" d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"/><path className="kc-chart-line kc-chart-line-muted" d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"/><path className="kc-chart-line" d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"/></svg></span><span className="kc-report-notebook" aria-hidden="true" /><span className="kc-report-pen" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-one" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-two" aria-hidden="true" /></div></article>
