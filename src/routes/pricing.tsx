@@ -73,13 +73,42 @@ export const Route = createFileRoute("/pricing")({
 const FOCUS_RING =
   "focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-gold rounded-[3px]";
 
-function ProductImage({ image, alt }: { image: string; alt: string }) {
+const USD = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+const OZ = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 4,
+  maximumFractionDigits: 4,
+});
+const PLAIN = new Intl.NumberFormat("en-US");
+
+function ProductImage({
+  image,
+  webp,
+  webp2x,
+  alt,
+}: {
+  image: string;
+  webp: string;
+  webp2x: string;
+  alt: string;
+}) {
   return (
-    <img
-      src={image}
-      alt={alt}
-      className="max-h-[140px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right lg:max-h-[140px]"
-    />
+    <picture>
+      <source type="image/webp" srcSet={`${webp} 1x, ${webp2x} 2x`} />
+      <img
+        src={image}
+        alt={alt}
+        width={280}
+        height={280}
+        loading="lazy"
+        decoding="async"
+        className="max-h-[140px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right lg:max-h-[140px]"
+      />
+    </picture>
   );
 }
 
