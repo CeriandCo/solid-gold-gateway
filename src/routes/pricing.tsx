@@ -49,6 +49,91 @@ type PathCard = {
   isLead: boolean;
 };
 
+type FeeAmount =
+  | { kind: "text"; value: string }
+  | { kind: "highlight"; value: string; suffix?: string; footnote?: string }
+  | { kind: "zero"; value: string; suffix?: string; tag?: string };
+
+type FeeRow = { label: string; hint?: string; amount: FeeAmount };
+
+type FeeTable = { title: string; caption: string; rows: FeeRow[] };
+
+const FEE_TABLES: FeeTable[] = [
+  {
+    title: "Fractional — stored in the vault",
+    caption: "Own from $25. Allocated to you, insured, segregated.",
+    rows: [
+      {
+        label: "Purchase price",
+        amount: { kind: "text", value: "Weight × live spot price, plus product premium" },
+      },
+      {
+        label: "Purchase fee",
+        hint: "One-off, at the time you buy",
+        amount: { kind: "highlight", value: "3.00%", suffix: "of purchase amount" },
+      },
+      {
+        label: "Storage & insurance — year 1",
+        hint: "From your first purchase",
+        amount: { kind: "zero", value: "$0.00", tag: "Free" },
+      },
+      {
+        label: "Storage & insurance — after year 1",
+        hint: "Charged pro-rata for the exact number of days held",
+        amount: {
+          kind: "highlight",
+          value: "0.45%",
+          suffix: "of value per year",
+          footnote: "Insurance included — there is no separate insurance charge",
+        },
+      },
+      {
+        label: "Minimum storage fee",
+        hint: "Applies only after your first 12 months",
+        amount: { kind: "highlight", value: "$3.00", suffix: "per year" },
+      },
+      {
+        label: "Selling",
+        amount: { kind: "text", value: "Your sale price is shown in full before you confirm" },
+      },
+      {
+        label: "Taking delivery later",
+        amount: { kind: "text", value: "Insured delivery — cost varies by location and weight" },
+      },
+    ],
+  },
+  {
+    title: "Coins & bars — delivered to you",
+    caption: "Whole products from trusted mints, shipped insured.",
+    rows: [
+      {
+        label: "Purchase price",
+        amount: { kind: "text", value: "Weight × live spot price, plus product premium" },
+      },
+      { label: "Purchase fee", amount: { kind: "zero", value: "None" } },
+      {
+        label: "Storage & insurance",
+        amount: { kind: "zero", value: "None", suffix: "— you hold it" },
+      },
+      { label: "Minimum storage fee", amount: { kind: "zero", value: "None" } },
+      {
+        label: "Insured delivery",
+        amount: { kind: "text", value: "Varies by location and weight, shown before you pay" },
+      },
+      {
+        label: "Engraving",
+        hint: "Optional gift service",
+        amount: { kind: "text", value: "Shown at checkout" },
+      },
+      {
+        label: "Premium gift packaging",
+        hint: "Optional gift service",
+        amount: { kind: "text", value: "Shown at checkout" },
+      },
+    ],
+  },
+];
+
 const HERO_CHIPS: HeroChip[] = [
   { icon: Shield, title: "Transparent costs", description: "Every fee shown upfront" },
   { icon: Lock, title: "Insured storage", description: "Segregated U.S. depository" },
@@ -113,21 +198,125 @@ function PathLeadBadge() {
   );
 }
 
-function BulletValue({ value }: { value: string }) {
-  if (value === "None") {
-    return <strong className="font-sans font-bold text-gold-dark">None</strong>;
+function FreeTag({ label }: { label: string }) {
+  return (
+    <span className="ml-1.5 inline-block rounded-[3px] bg-forest-black px-2 py-[3px] align-middle font-sans text-[10px] font-bold uppercase leading-none tracking-[1px] text-gold">
+      {label}
+    </span>
+  );
+}
+
+function FeeAmountValue({
+  amount,
+  zeroTone = "forest",
+}: {
+  amount: FeeAmount;
+  zeroTone?: "forest" | "gold";
+}) {
+  if (amount.kind === "text") {
+    return <>{amount.value}</>;
   }
 
-  if (value.startsWith("None ")) {
+  if (amount.kind === "highlight") {
     return (
       <>
-        <strong className="font-sans font-bold text-gold-dark">None</strong>
-        {value.slice(4)}
+        <strong className="font-sans font-bold text-charcoal">{amount.value}</strong>
+        {amount.suffix ? ` ${amount.suffix}` : null}
+        {amount.footnote ? (
+          <span className="mt-0.5 block font-sans text-xs font-normal leading-[1.4] text-muted-ink">
+            {amount.footnote}
+          </span>
+        ) : null}
       </>
     );
   }
 
+  return (
+    <>
+      <strong
+        className={`font-sans font-bold ${zeroTone === "gold" ? "text-gold-dark" : "text-forest-black"}`}
+      >
+        {amount.value}
+      </strong>
+      {amount.suffix ? ` ${amount.suffix}` : null}
+      {amount.tag ? <FreeTag label={amount.tag} /> : null}
+    </>
+  );
+}
+
+function BulletValue({ value }: { value: string }) {
+  if (value === "None" || value.startsWith("None ")) {
+    const suffix = value.slice(4).trim();
+    return (
+      <FeeAmountValue
+        zeroTone="gold"
+        amount={{ kind: "zero", value: "None", ...(suffix ? { suffix } : {}) }}
+      />
+    );
+  }
+
   return value;
+}
+
+function FeeTableCard({ table }: { table: FeeTable }) {
+  const headingId = `fees-${table.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+
+  return (
+    <div>
+      <h3 id={headingId} className="text-display-h6 mb-1 text-charcoal">
+        {table.title}
+      </h3>
+      <p className="mb-[14px] font-sans text-[13px] font-normal leading-[1.45] text-muted-ink">
+        {table.caption}
+      </p>
+      <div className="overflow-hidden rounded-[6px] border border-beige">
+        <table
+          aria-labelledby={headingId}
+          className="w-full border-collapse font-sans text-[13px] font-normal md:text-[13.5px]"
+        >
+          <thead>
+            <tr className="bg-wash-green">
+              <th
+                scope="col"
+                className="w-[47%] border-b border-beige px-3 py-2.5 text-left font-sans text-[10.5px] font-bold uppercase tracking-[1.4px] text-charcoal md:px-3.5 md:py-[11px]"
+              >
+                Cost
+              </th>
+              <th
+                scope="col"
+                className="border-b border-beige px-3 py-2.5 text-left font-sans text-[10.5px] font-bold uppercase tracking-[1.4px] text-charcoal md:px-3.5 md:py-[11px]"
+              >
+                Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {table.rows.map((row) => (
+              <tr key={row.label}>
+                <th
+                  scope="row"
+                  className="w-[47%] border-b border-beige px-3 py-2.5 text-left align-top font-sans text-[13px] font-semibold leading-[1.45] text-charcoal last:border-b-0 md:px-3.5 md:py-3 md:text-[13.5px] [tr:last-child_&]:border-b-0"
+                >
+                  {row.label}
+                  {row.hint ? (
+                    <span className="mt-0.5 block font-sans text-xs font-normal leading-[1.4] text-muted-ink">
+                      {row.hint}
+                    </span>
+                  ) : null}
+                </th>
+                <td className="border-b border-beige px-3 py-2.5 align-top font-sans text-[13px] font-normal leading-[1.45] text-muted-ink md:px-3.5 md:py-3 md:text-[13.5px] [tr:last-child_&]:border-b-0">
+                  <FeeAmountValue amount={row.amount} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 function PricingPage() {
@@ -213,6 +402,25 @@ function PricingPage() {
                   </Link>
                   <p className="mt-3.5 font-sans text-[12.5px] font-normal leading-[1.5] text-muted-ink">{card.footnote}</p>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="fee-detail-heading" className="pb-0 pt-[54px]">
+          <div className="mx-auto max-w-[1120px] px-5 md:px-7 lg:px-8">
+            <div className="mb-[30px] max-w-[44em]">
+              <h2 id="fee-detail-heading" className="text-display-h3 mb-[9px] text-charcoal">
+                Every fee, in one place
+              </h2>
+              <p className="font-sans text-base font-normal leading-normal text-muted-ink">
+                The same two paths, with the numbers laid out side by side.
+              </p>
+            </div>
+
+            <div className="mt-1.5 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-[18px] lg:gap-6">
+              {FEE_TABLES.map((table) => (
+                <FeeTableCard key={table.title} table={table} />
               ))}
             </div>
           </div>
