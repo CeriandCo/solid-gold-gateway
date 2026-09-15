@@ -127,7 +127,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
 
   function openWithClamp() {
     const rect = btnRef.current?.getBoundingClientRect();
-    if (rect && typeof window !== "undefined" && window.innerWidth < 768) {
+    if (rect && typeof window !== "undefined") {
       const vw = window.innerWidth;
       const center = rect.left + rect.width / 2;
       const width = Math.min(280, vw - 32);
