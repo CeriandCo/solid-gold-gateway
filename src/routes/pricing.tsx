@@ -945,6 +945,7 @@ function PricingPage() {
 
         <TrustBar />
         <FaqSection />
+        <BottomCta />
       </main>
       <SiteFooter />
     </div>
