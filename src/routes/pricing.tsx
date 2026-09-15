@@ -3,7 +3,7 @@ import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
 import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
 import heroWebp2x from "@/assets/pricing/hero-vault-2x.webp.asset.json";
 import { track } from "@/lib/analytics";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import {
   HERO_CHIPS,
   PRODUCT_CARDS,
@@ -758,14 +758,15 @@ function PurchaseCalculator() {
           />
         </StepRow>
 
-        <button
+        <GoldButton
           ref={submitRef}
           type="submit"
-          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-ui-md font-semibold text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
+          variant="forest"
+          size="md"
+          className="mt-6 w-full"
         >
           Show my estimate
-          <ArrowRight size={16} aria-hidden="true" focusable="false" />
-        </button>
+        </GoldButton>
 
         {error && (
           <p
@@ -962,14 +963,15 @@ function BottomCta() {
           Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
           monthly subscription.
         </p>
-        <Link
+        <GoldButton
           to="/early-access"
+          variant="forest"
+          size="lg"
           onClick={() => track("bottom_cta_click", { target: "get_started" })}
-          className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-ui-lg font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
+          className="w-full no-underline md:w-auto"
         >
           Get started
-          <ArrowRight size={18} aria-hidden="true" focusable="false" className="shrink-0" />
-        </Link>
+        </GoldButton>
         <div className="mt-4">
           <Link
             to="/precious-metal"
