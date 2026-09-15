@@ -482,7 +482,7 @@ function StepRow({
   last?: boolean;
 }) {
   return (
-    <div className={`flex items-start gap-3.5 ${last ? "" : "mb-6"}`}>
+    <div className={`flex items-start gap-3.5 ${last ? "" : "mb-3.5"}`}>
       <span
         aria-hidden="true"
         className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-black font-sans text-xs font-bold text-paper"
@@ -576,15 +576,15 @@ function PurchaseCalculator() {
   return (
     <section
       aria-labelledby="calculator-heading"
-      className="mx-auto w-full max-w-none rounded-[8px] bg-wash-green px-6 pb-7 pt-6 md:max-w-[560px] md:px-7 md:pb-8 md:pt-7 lg:max-w-none"
+      className="mx-auto w-full max-w-none rounded-[8px] bg-wash-green px-5 pb-5 pt-4 md:max-w-[560px] md:px-6 md:pb-6 md:pt-5 lg:max-w-none lg:px-6 lg:pb-6.5 lg:pt-5.5"
     >
-      <p className="mb-2.5 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[2px] text-gold-dark">
+      <p className="mb-2 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[2px] text-gold-dark">
         Purchase calculator
       </p>
-      <h2 id="calculator-heading" className="text-display-h4 mb-2 text-forest-black">
+      <h2 id="calculator-heading" className="text-display-h4 mb-1.5 text-forest-black">
         See what your money could buy
       </h2>
-      <p className="mb-6 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
+      <p className="mb-4.5 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
         Explore your gold or silver options and see the estimated costs, including fees,
         storage and delivery.
       </p>
@@ -780,7 +780,7 @@ function PurchaseCalculator() {
 
         <div role="status" aria-live="polite">
           {estimate && (
-            <div className="estimate-enter mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
+            <div className="estimate-enter mt-2.5 rounded-[6px] border border-beige bg-paper p-4">
               <p className="text-display-h5 text-[22px] text-forest-black">
                 {OZ.format(estimate.oz)} oz {estimate.metal}
               </p>
@@ -805,7 +805,7 @@ function PurchaseCalculator() {
         </div>
       </form>
 
-      <p className="mt-4 font-sans text-[11.5px] font-normal leading-[1.5] text-muted-ink">
+      <p className="mt-3 font-sans text-[11.5px] font-normal leading-[1.5] text-muted-ink">
         This is an estimate only. Live market prices, product availability and shipping
         costs may affect your total cost.
       </p>
@@ -817,14 +817,14 @@ function TrustBar() {
   return (
     <section
       aria-labelledby="trust-heading"
-      className="mt-6 border-y border-beige py-7 md:mt-7 md:py-10 lg:mt-10"
+      className="mt-4 border-y border-beige py-5 md:mt-5 md:py-6 lg:mt-7"
     >
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
       </h2>
-      <ul className="grid grid-cols-1 items-start gap-y-6 md:grid-cols-4 md:gap-7 lg:gap-12">
+      <ul className="grid grid-cols-1 items-start gap-y-4 md:grid-cols-4 md:gap-6 lg:gap-7">
         {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
-          <li key={title} className="flex min-w-0 items-start gap-3.5 lg:gap-4">
+          <li key={title} className="flex min-w-0 items-start gap-3 lg:gap-3">
             <Icon
               strokeWidth={1.6}
               aria-hidden="true"
@@ -870,7 +870,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
     <details open={mounted} className="group border-b border-beige first:border-t">
       <summary
         onClick={toggle}
-        className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-5 [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
+        className={`flex cursor-pointer list-none items-center justify-between gap-4 py-3 md:py-3 lg:py-3.5 [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
       >
         <span className="font-sans text-sm font-medium leading-[1.4] text-forest-black lg:text-ui-md">
           {question}
@@ -896,7 +896,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="max-w-none pb-5 pr-6 font-sans text-ui-sm font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
+          <p className="max-w-none pb-3.5 pr-6 font-sans text-ui-sm font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
             {answer}
           </p>
         </div>
@@ -909,11 +909,11 @@ function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="pb-5 pt-5 md:pb-4 md:pt-5 lg:pb-5 lg:pt-6"
+      className="pb-4 pt-4 md:pb-4 md:pt-4 lg:pb-4 lg:pt-4"
     >
       <h2
         id="faq-heading"
-        className="text-display-h4 mb-8 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+        className="text-display-h4 mb-5 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
       >
         Frequently asked questions
       </h2>
@@ -930,7 +930,7 @@ function FaqSection() {
         <details> instead of JS — unsupported browsers fall back to multi-open.
 
       */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 lg:gap-x-14">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-6 lg:gap-x-10">
         <div>
           {FAQ_ITEMS.slice(0, 4).map((item) => (
             <FaqRow key={item.question} {...item} />
@@ -950,7 +950,7 @@ function BottomCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="pb-10 pt-4 md:pb-10 md:pt-4 lg:pb-12 lg:pt-5"
+      className="pb-8 pt-3 md:pb-7 md:pt-3 lg:pb-8 lg:pt-4"
     >
       <div className="mx-auto max-w-[36em] text-center">
         <h2
@@ -1000,7 +1000,7 @@ function PricingPage() {
 
         <section
           aria-labelledby="pricing-hero-heading"
-          className="grid grid-cols-1 items-start gap-7 pb-6 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-4 md:pt-11 lg:gap-14 lg:pb-5 lg:pt-14"
+          className="grid grid-cols-1 items-start gap-7 pb-5 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-5 md:pt-8 lg:gap-14 lg:pb-4 lg:pt-9"
         >
           <div>
             <p className="mb-5 font-sans text-[11px] font-bold uppercase leading-none tracking-[2.4px] text-gold-dark">
@@ -1008,11 +1008,11 @@ function PricingPage() {
             </p>
             <h1
               id="pricing-hero-heading"
-              className="text-display-h1-sm mb-6 text-forest-black md:text-display-h1-md lg:text-display-h1"
+              className="text-display-h1-sm mb-5 text-forest-black md:mb-3 md:text-display-h1-md lg:mb-3.5 lg:text-display-h1"
             >
               Simple pricing.<br className="hidden lg:block" /> Greater confidence.
             </h1>
-            <p className="mb-8 max-w-none font-sans text-ui-lg font-normal leading-[1.6] text-muted-ink md:max-w-[38em] lg:text-[15.5px]">
+            <p className="mb-6 max-w-none font-sans text-ui-lg font-normal leading-[1.6] text-muted-ink md:mb-4 md:max-w-[38em] lg:mb-5 lg:text-[15.5px]">
               Know exactly what it costs to buy, store, gift or take delivery of gold and silver. All prices and fees are shown in U.S. dollars (USD), so you can invest with clarity.
             </p>
             <ul className="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-5">
@@ -1045,7 +1045,7 @@ function PricingPage() {
             </ul>
           </div>
 
-          <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden rounded-[6px] md:min-h-[320px]">
+          <div className="relative aspect-[4/3] min-h-[200px] w-full overflow-hidden rounded-[6px] md:min-h-[280px]">
             <picture>
               <source
                 type="image/webp"
