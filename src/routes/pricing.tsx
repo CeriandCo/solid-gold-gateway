@@ -43,7 +43,7 @@ function ProductImage({ image, alt }: { image: string; alt: string }) {
     <img
       src={image}
       alt={alt}
-      className="h-auto max-h-full w-auto max-w-full object-contain object-bottom"
+      className="max-h-[140px] w-auto max-w-full object-contain object-center md:h-full md:max-h-full md:w-full md:object-right"
     />
   );
 }
@@ -683,24 +683,21 @@ function PricingPage() {
                 {PRODUCT_CARDS.map((card) => (
                   <article
                     key={card.title}
-                    className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-6 md:pt-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:px-6 lg:pb-7 lg:pt-8"
+                    className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:grid md:grid-cols-[1fr_44%] md:items-stretch md:gap-4 md:border-l md:px-5 md:pb-6 md:pt-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:grid-cols-[1fr_46%] lg:px-6 lg:pb-7 lg:pt-8"
                   >
-                    <div className="flex h-[120px] items-end justify-center md:h-[140px] lg:h-[160px]">
-                      <ProductImage image={card.image} alt={card.imageAlt} />
-                    </div>
-                    <div className="flex min-w-0 flex-1 flex-col">
-                      <h3 className="text-display-h5 md:text-display-h5-md lg:text-display-h5-lg mb-1 mt-7 text-forest-black">
+                    <div className="flex min-w-0 flex-col max-md:contents">
+                      <h3 className="text-display-h5 order-1 md:order-none md:text-display-h5-md lg:text-display-h5-lg mb-1 text-forest-black">
                         {card.title}
                       </h3>
-                      <p className="mb-3.5 font-sans text-[13.5px] font-medium leading-normal text-forest-black lg:mb-[18px] lg:text-sm">
+                      <p className="order-2 md:order-none mb-3.5 font-sans text-[13.5px] font-medium leading-normal text-forest-black lg:mb-[18px] lg:text-sm">
                         {card.kicker}
                       </p>
-                      <p className="mb-[22px] max-w-[16em] font-sans text-[13.5px] font-normal leading-[1.55] text-muted-ink lg:mb-7">
+                      <p className="order-3 md:order-none mb-[22px] font-sans text-[13.5px] font-normal leading-[1.55] text-muted-ink lg:mb-7">
                         {card.description}
                       </p>
                       <a
                         href={card.ctaHref}
-                        className={`group inline-flex self-start items-center gap-2 font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark md:mt-auto ${FOCUS_RING}`}
+                        className={`group order-5 md:order-none inline-flex self-start items-center gap-2 font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark md:mt-auto ${FOCUS_RING}`}
                       >
                         {card.ctaLabel}
                         <ArrowRight
@@ -710,6 +707,9 @@ function PricingPage() {
                           className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover:translate-x-[3px]"
                         />
                       </a>
+                    </div>
+                    <div className="order-4 my-5 flex items-center justify-center md:order-none md:my-0 md:justify-end">
+                      <ProductImage image={card.image} alt={card.imageAlt} />
                     </div>
                   </article>
                 ))}
