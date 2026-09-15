@@ -1,5 +1,8 @@
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
+import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
+import heroWebp2x from "@/assets/pricing/hero-vault-2x.webp.asset.json";
+import { track } from "@/lib/analytics";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import {
   HERO_CHIPS,
