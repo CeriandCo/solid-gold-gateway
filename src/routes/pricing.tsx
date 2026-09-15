@@ -131,8 +131,14 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
       const vw = window.innerWidth;
       const center = rect.left + rect.width / 2;
       const width = Math.min(280, vw - 32);
-      const left = Math.min(Math.max(16, center - width / 2), vw - 16 - width);
-      const arrowX = Math.min(Math.max(8, center - left - 6), width - 20);
+      // left is relative to the icon wrapper (the tooltip's containing
+      // block), so convert the viewport-clamped position into wrapper space.
+      const left =
+        Math.min(Math.max(16, center - width / 2), vw - 16 - width) - rect.left;
+      const arrowX = Math.min(
+        Math.max(8, center - (rect.left + left) - 6),
+        width - 20,
+      );
       setMobilePos({ left, width, arrowX });
     } else {
       setMobilePos(null);
