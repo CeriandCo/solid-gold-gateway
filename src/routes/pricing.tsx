@@ -135,38 +135,38 @@ function PricingPage() {
     <div className="min-h-screen bg-background text-charcoal">
       <SiteHeader />
       <main>
-        <section aria-labelledby="pricing-title">
-          <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-5 py-11 pt-14 md:px-7 min-[900px]:grid-cols-2 lg:px-8">
+        <section aria-labelledby="pricing-hero-heading">
+          <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-7 px-5 pb-7 pt-8 md:grid-cols-2 md:gap-8 md:px-7 md:pb-8 md:pt-11 lg:gap-12 lg:px-8 lg:pb-11 lg:pt-14">
             <div>
               <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[2px] text-muted-ink">
                 Pricing &amp; Fees
               </p>
-              <h1 id="pricing-title" className="text-display-h1 my-3.5 mb-4 text-charcoal max-[899px]:text-[44px] max-[520px]:text-[38px]">
-                Simple pricing.<br className="max-[899px]:hidden" /> Greater confidence.
+              <h1 id="pricing-hero-heading" className="text-display-h1-sm my-3.5 mb-4 text-charcoal md:text-display-h1-md lg:text-display-h1">
+                Simple pricing.<br className="max-lg:hidden" /> Greater confidence.
               </h1>
-              <p className="max-w-[31em] font-sans text-[16.5px] font-normal leading-[1.55] text-muted-ink">
+              <p className="max-w-none font-sans text-[15px] font-normal leading-[1.55] text-muted-ink md:max-w-[31em] md:text-[16.5px]">
                 Know exactly what it costs to own gold and silver — whether you keep it in the vault or have it delivered. All prices and fees are shown in U.S. dollars.
               </p>
-              <ul className="mt-[26px] flex flex-wrap border-t border-beige pt-5 min-[900px]:flex-nowrap">
+              <ul className="mt-5 flex flex-wrap gap-[14px] md:mt-[26px] md:flex-nowrap md:gap-0 md:border-t md:border-beige md:pt-5">
                 {HERO_CHIPS.map(({ icon: Icon, title, description }) => (
-                  <li key={title} className="min-w-0 flex-[1_1_45%] py-2 pr-[18px] min-[900px]:border-r min-[900px]:border-beige min-[900px]:pl-[18px] min-[900px]:first:pl-0 min-[900px]:last:border-r-0 min-[900px]:last:pr-0">
-                    <Icon size={19} strokeWidth={1.6} aria-hidden="true" className="mb-[7px] block text-forest-black" />
+                  <li key={title} className="min-w-0 flex-[1_1_45%] p-0 md:py-2 md:pr-3 md:border-r md:border-beige md:pl-[18px] md:first:pl-0 md:last:border-r-0 md:last:pr-0 lg:pr-[18px]">
+                    <Icon size={19} strokeWidth={1.6} aria-hidden="true" focusable="false" className="mb-[7px] block text-forest-black" />
                     <strong className="mb-0.5 block font-sans text-[13.5px] font-semibold leading-tight text-charcoal">{title}</strong>
                     <span className="block font-sans text-[12.5px] font-normal leading-[1.4] text-muted-ink">{description}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="min-h-[330px] w-full overflow-hidden rounded-[6px]">
-              <img src={heroImage.url} alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface" className="h-full min-h-[330px] w-full object-cover object-center" />
+            <div className="max-h-[320px] min-h-[240px] w-full overflow-hidden rounded-[6px] md:max-h-none md:min-h-[280px] lg:min-h-[330px]">
+              <img src={heroImage.url} alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface" className="h-full min-h-[240px] w-full object-cover object-center md:min-h-[280px] lg:min-h-[330px]" />
             </div>
           </div>
         </section>
 
-        <section aria-labelledby="paths-title" className="pb-0 pt-[54px]">
+        <section aria-labelledby="paths-heading" className="pb-0 pt-[54px]">
           <div className="mx-auto max-w-[1120px] px-5 md:px-7 lg:px-8">
             <div className="mb-[30px] max-w-[44em]">
-              <h2 id="paths-title" className="text-display-h3 mb-[9px] text-charcoal">Two ways to own it</h2>
+              <h2 id="paths-heading" className="text-display-h3 mb-[9px] text-charcoal">Two ways to own it</h2>
               <p className="font-sans text-base font-normal leading-normal text-muted-ink">
                 Everything comes down to one question: do you want it in the vault, or in your hands?
               </p>
