@@ -449,7 +449,7 @@ function PurchaseCalculator() {
           >
             How much do you want to spend? (USD)
           </label>
-          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
+          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 motion-safe:transition-[border-color,box-shadow] motion-safe:duration-[120ms] motion-safe:ease-standard focus-within:border-gold-dark has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
             <span className="font-sans text-[15px] font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
@@ -509,8 +509,13 @@ function PurchaseCalculator() {
           />
         </StepRow>
 
-        {receive === "vault" && (
-          <div className="motion-safe:transition-all motion-safe:duration-100 motion-safe:ease-standard">
+        <div
+          inert={receive !== "vault" ? true : undefined}
+          className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
+            receive === "vault" ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
             <StepRow index={5}>
               <SegmentedGroup
                 name="hold"
