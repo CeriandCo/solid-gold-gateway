@@ -73,7 +73,7 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-function ProductImage({ image, alt }: { image?: string; alt: string }) {
+function ProductImage({ image, alt }: { image: string | undefined; alt: string }) {
   if (!image) {
     return (
       <div
