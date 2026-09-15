@@ -767,11 +767,55 @@ function FaqSection() {
   );
 }
 
+function BottomCta() {
+  return (
+    <section
+      aria-labelledby="cta-heading"
+      className="pb-12 pt-9 md:pb-14 md:pt-11 lg:pb-[72px] lg:pt-14"
+    >
+      <div className="mx-auto max-w-[36em] text-center">
+        <h2
+          id="cta-heading"
+          className="text-display-h4 mb-3 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+        >
+          Ready to start?
+        </h2>
+        <p className="mx-auto mb-7 max-w-none font-sans text-[15px] font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
+          Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
+          monthly subscription.
+        </p>
+        <Link
+          to="/early-access"
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-[15px] font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
+        >
+          Get started
+          <ArrowRight size={18} aria-hidden="true" focusable="false" className="shrink-0" />
+        </Link>
+        <div className="mt-4">
+          <Link
+            to="/precious-metal"
+            className={`inline-block border-b-[1.5px] border-gold-dark pb-[3px] font-sans text-[13.5px] font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
+          >
+            Or explore products first →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingPage() {
   return (
     <div className="min-h-screen bg-background text-forest-black">
+      <a
+        href="#main-content"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-md focus-visible:bg-forest-black focus-visible:px-4 focus-visible:py-2 focus-visible:text-background focus-visible:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <SiteHeader />
-      <main className="site-container">
+      <main id="main-content" className="site-container">
+
         <section
           aria-labelledby="pricing-hero-heading"
           className="grid grid-cols-1 items-start gap-7 pb-6 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-4 md:pt-11 lg:gap-14 lg:pb-5 lg:pt-14"
