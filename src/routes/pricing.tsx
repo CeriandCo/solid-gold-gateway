@@ -11,8 +11,9 @@ import {
   type SpanCell,
   type TransactionRow,
 } from "@/lib/pricing/data";
+import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight, Info, Minus, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -823,6 +824,9 @@ function PricingPage() {
             <PurchaseCalculator />
           </div>
         </div>
+
+        <TrustBar />
+        <FaqSection />
       </main>
       <SiteFooter />
     </div>
