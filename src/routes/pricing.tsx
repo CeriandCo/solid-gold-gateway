@@ -912,6 +912,7 @@ function BottomCta() {
         </p>
         <Link
           to="/early-access"
+          onClick={() => track("bottom_cta_click", { target: "get_started" })}
           className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-[15px] font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
         >
           Get started
