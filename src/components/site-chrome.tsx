@@ -76,8 +76,10 @@ export function Eyebrow({ children, className = "" }: { children: React.ReactNod
 /**
  * Shared SQOOT CTA button.
  * variant: "primary" (gold fill) | "secondary" (bordered) | "video" (bordered, play icon)
- * icon: "arrow" (default for primary/secondary) | "play" | "none"
- * All variants share 54px height, ~200px minimum width and identical typography.
+ *          | "forest" (forest-black fill, compact — pairs with sm/md/lg sizes)
+ * size: "hero" (54px, min-width 200px — the default for primary/secondary/video)
+ *       | "sm" | "md" | "lg" (compact scale for the forest variant)
+ * icon: "arrow" (default) | "play" | "none"
  */
 export function GoldButton({
   children,
@@ -85,9 +87,11 @@ export function GoldButton({
   to,
   type,
   variant = "primary",
+  size = "hero",
   icon,
   onClick,
   disabled,
+  ref,
   "aria-label": ariaLabel,
   className = "",
 }: {
@@ -95,20 +99,31 @@ export function GoldButton({
   href?: string;
   to?: string;
   type?: "button" | "submit";
-  variant?: "primary" | "secondary" | "video";
+  variant?: "primary" | "secondary" | "video" | "forest";
+  size?: "hero" | "sm" | "md" | "lg";
   icon?: "arrow" | "play" | "none";
   onClick?: () => void;
   disabled?: boolean;
+  ref?: React.Ref<HTMLButtonElement>;
   "aria-label"?: string;
   className?: string;
 }) {
   const resolvedIcon = icon ?? (variant === "video" ? "play" : "arrow");
   const classes = cn(
-    "group inline-flex h-[54px] min-w-[200px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[2px] px-8 font-sans text-sm font-semibold leading-none tracking-[0.01em] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+    "group inline-flex items-center justify-center gap-2.5 whitespace-nowrap font-sans font-semibold leading-none tracking-[0.01em] focus-visible:outline-2 focus-visible:outline-gold",
+    size === "hero"
+      ? "h-[54px] min-w-[200px] rounded-[2px] px-8 text-sm focus-visible:outline-offset-2"
+      : size === "sm"
+        ? "rounded-[6px] px-[18px] py-2.5 text-[13.5px] focus-visible:outline-offset-[3px]"
+        : size === "md"
+          ? "rounded-[6px] px-6 py-3.5 text-sm focus-visible:outline-offset-[3px]"
+          : "rounded-[6px] px-7 py-4 text-[15px] focus-visible:outline-offset-[3px]",
     variant === "primary"
-      ? "bg-gradient-to-b from-gold-soft to-gold text-forest-deep hover:-translate-y-px hover:from-gold hover:to-gold-dark"
-      : "border border-gold/70 bg-transparent text-warm-white hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
-    disabled && "pointer-events-none opacity-60",
+      ? "bg-gradient-to-b from-gold-soft to-gold text-forest-deep transition-all hover:-translate-y-px hover:from-gold hover:to-gold-dark"
+      : variant === "forest"
+        ? "bg-forest-black text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep"
+        : "border border-gold/70 bg-transparent text-warm-white transition-all hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
+    disabled && (variant === "forest" ? "cursor-not-allowed opacity-50" : "pointer-events-none opacity-60"),
     className,
   );
   const content = (
@@ -120,20 +135,20 @@ export function GoldButton({
   );
   if (to) {
     return (
-      <Link to={to} className={classes} aria-label={ariaLabel}>
+      <Link to={to} className={classes} aria-label={ariaLabel} onClick={onClick} ref={ref as React.Ref<HTMLAnchorElement>}>
         {content}
       </Link>
     );
   }
   if (href) {
     return (
-      <a href={href} className={classes} aria-label={ariaLabel}>
+      <a href={href} className={classes} aria-label={ariaLabel} onClick={onClick} ref={ref as React.Ref<HTMLAnchorElement>}>
         {content}
       </a>
     );
   }
   return (
-    <button type={type ?? "button"} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
+    <button type={type ?? "button"} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel} ref={ref}>
       {content}
     </button>
   );
