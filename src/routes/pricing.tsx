@@ -115,19 +115,51 @@ function ProductImage({
 function InfoTooltip({ label, text }: { label: string; text: string }) {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const btnRef = useRef<HTMLButtonElement>(null);
+  // Below md the tooltip is width-clamped and horizontally clamped to the
+  // viewport (measured from the trigger on open) so it can never overflow
+  // either edge, wherever the icon sits. Desktop keeps the CSS center anchor.
+  const [mobilePos, setMobilePos] = useState<{
+    left: number;
+    width: number;
+    arrowX: number;
+  } | null>(null);
+
+  function openWithClamp() {
+    const rect = btnRef.current?.getBoundingClientRect();
+    if (rect && typeof window !== "undefined" && window.innerWidth < 768) {
+      const vw = window.innerWidth;
+      const center = rect.left + rect.width / 2;
+      const width = Math.min(280, vw - 32);
+      const left = Math.min(Math.max(16, center - width / 2), vw - 16 - width);
+      const arrowX = Math.min(Math.max(8, center - left - 6), width - 20);
+      setMobilePos({ left, width, arrowX });
+    } else {
+      setMobilePos(null);
+    }
+  }
+
+  function handleOpen() {
+    openWithClamp();
+    setOpen(true);
+  }
 
   return (
     <span className="relative inline-flex">
       <button
+        ref={btnRef}
         type="button"
         aria-label={label}
         aria-describedby={open ? id : undefined}
         className={`inline-flex items-center text-muted-ink ${FOCUS_RING}`}
-        onMouseEnter={() => setOpen(true)}
+        onMouseEnter={handleOpen}
         onMouseLeave={() => setOpen(false)}
-        onFocus={() => setOpen(true)}
+        onFocus={handleOpen}
         onBlur={() => setOpen(false)}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          if (open) setOpen(false);
+          else handleOpen();
+        }}
         onKeyDown={(event) => {
           if (event.key === "Escape") setOpen(false);
         }}
@@ -138,7 +170,18 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
         <span
           role="tooltip"
           id={id}
-          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-max max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)] max-md:left-auto max-md:right-0 max-md:translate-x-0"
+          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-max max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)]"
+          style={
+            mobilePos
+              ? ({
+                  left: mobilePos.left,
+                  width: mobilePos.width,
+                  right: "auto",
+                  transform: "none",
+                  "--tip-arrow-x": `${mobilePos.arrowX}px`,
+                } as React.CSSProperties)
+              : undefined
+          }
         >
           {text}
         </span>

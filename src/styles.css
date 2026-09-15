@@ -856,25 +856,18 @@ input {
 
 /* --- Pricing info tooltips (src/routes/pricing.tsx InfoTooltip) ---
    Dark surface with an upward pointer. Desktop centers the tooltip under
-   the trigger icon; below md the tooltip right-anchors to the icon so it
-   never overflows the left viewport edge. The pointer follows. */
+   the trigger icon; below md the tooltip is clamped to the viewport via an
+   inline style computed on open, and the pointer follows via
+   --tip-arrow-x (falls back to centered when no clamp is applied). */
 .pricing-tooltip::before {
   content: "";
   position: absolute;
   bottom: 100%;
-  left: 50%;
+  left: var(--tip-arrow-x, 50%);
   transform: translateX(-50%);
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: 6px solid var(--forest-black);
-}
-
-@media (max-width: 767px) {
-  .pricing-tooltip::before {
-    left: auto;
-    right: 12px;
-    transform: none;
-  }
 }
 
 @keyframes vault-settle {
