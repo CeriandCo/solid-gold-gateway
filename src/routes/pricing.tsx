@@ -805,6 +805,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
     if (timer.current) clearTimeout(timer.current);
     if (!mounted) {
       setMounted(true);
+      track("faq_open", { question });
       requestAnimationFrame(() => setExpanded(true));
     } else {
       setExpanded(false);
