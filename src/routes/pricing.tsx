@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { HERO_CHIPS, PRODUCT_CARDS } from "@/lib/pricing/data";
@@ -57,25 +58,33 @@ function PricingPage() {
             <p className="mb-[34px] max-w-none font-sans text-[15px] font-normal leading-[1.6] text-muted-ink md:max-w-[38em] lg:text-[15.5px]">
               Know exactly what it costs to buy, store, gift or take delivery of gold and silver. All prices and fees are shown in U.S. dollars (USD), so you can invest with clarity.
             </p>
-            <ul className="flex flex-col gap-[18px] md:flex-row md:gap-6 lg:gap-10">
-              {HERO_CHIPS.map(({ icon: Icon, title, description }) => (
-                <li key={title} className="flex max-w-none flex-1 items-start gap-3 lg:max-w-[15em]">
-                  <Icon
-                    size={22}
-                    strokeWidth={1.6}
-                    aria-hidden="true"
-                    focusable="false"
-                    className="mt-0.5 shrink-0 text-forest-black"
-                  />
-                  <span className="flex min-w-0 flex-col gap-[3px]">
-                    <strong className="font-sans text-[13.5px] font-semibold leading-[1.35] text-forest-black">
-                      {title}
-                    </strong>
-                    <span className="font-sans text-[12.5px] font-normal leading-[1.45] text-muted-ink">
-                      {description}
+            <ul className="flex flex-col gap-[18px] md:flex-row md:items-stretch md:gap-5">
+              {HERO_CHIPS.map(({ icon: Icon, title, description }, index) => (
+                <Fragment key={title}>
+                  {index > 0 && (
+                    <span
+                      aria-hidden="true"
+                      className="hidden w-px self-stretch bg-beige md:block"
+                    />
+                  )}
+                  <li className="flex min-w-0 flex-1 items-start gap-3 lg:max-w-[15em]">
+                    <Icon
+                      size={22}
+                      strokeWidth={1.6}
+                      aria-hidden="true"
+                      focusable="false"
+                      className="mt-0.5 shrink-0 text-forest-black"
+                    />
+                    <span className="flex min-w-0 flex-col gap-[3px]">
+                      <strong className="font-sans text-[13.5px] font-semibold leading-[1.35] text-forest-black">
+                        {title}
+                      </strong>
+                      <span className="font-sans text-[12.5px] font-normal leading-[1.45] text-muted-ink">
+                        {description}
+                      </span>
                     </span>
-                  </span>
-                </li>
+                  </li>
+                </Fragment>
               ))}
             </ul>
           </div>
