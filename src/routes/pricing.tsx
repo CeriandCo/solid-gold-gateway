@@ -297,7 +297,7 @@ function TransactionCostsSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-3.5 ${
+                className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
                   index === 0 ? "text-left" : "border-l border-beige text-center"
                 }`}
               >
@@ -314,14 +314,14 @@ function TransactionCostsSection() {
             >
               <th
                 scope="row"
-                className="px-3 py-2.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black md:px-3.5"
+                className="px-3 py-2.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black lg:px-3.5"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
               {isSpanCell(row.cells) ? (
                 <td
                   colSpan={3}
-                  className="border-l border-beige px-3 py-2.5 text-center align-top text-muted-ink md:px-3.5"
+                  className="border-l border-beige px-3 py-2.5 text-center align-top text-muted-ink lg:px-3.5"
                 >
                   <SpanCellContent cell={row.cells} />
                 </td>
@@ -329,7 +329,7 @@ function TransactionCostsSection() {
                 row.cells.map((cell, index) => (
                   <td
                     key={table.columns[index + 1]}
-                    className="border-l border-beige px-3 py-2.5 text-center align-top md:px-3.5"
+                    className="border-l border-beige px-3 py-2.5 text-center align-top lg:px-3.5"
                   >
                     <CellValue cell={cell} />
                   </td>
@@ -363,7 +363,7 @@ function StorageSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-3.5 ${
+                className={`border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
                   index === 0 ? "" : "border-l border-beige"
                 }`}
               >
@@ -380,11 +380,11 @@ function StorageSection() {
             >
               <th
                 scope="row"
-                className="px-3 py-2.5 text-left align-top font-sans text-[13px] font-medium text-forest-black md:px-3.5 md:py-2.5 md:text-ui-sm"
+                className="px-3 py-2.5 text-left align-top font-sans text-[13px] font-medium text-forest-black lg:px-3.5 md:py-2.5 md:text-ui-sm"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
-              <td className="border-l border-beige px-3 py-2.5 text-left align-top text-muted-ink md:px-3.5 md:py-2.5">
+              <td className="border-l border-beige px-3 py-2.5 text-left align-top text-muted-ink lg:px-3.5 md:py-2.5">
                 {row.highlight ? (
                   <span className="font-bold text-forest-black">{row.highlight} </span>
                 ) : null}
