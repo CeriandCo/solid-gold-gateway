@@ -206,10 +206,10 @@ function PricingPage() {
                   </ul>
                   <Link
                     to={card.ctaHref}
-                    className="group mt-auto inline-flex self-start items-center gap-[9px] border-b-[1.5px] border-gold-dark pb-1 font-sans text-[14.5px] font-semibold leading-none text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:border-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                    className="group mt-auto inline-flex min-h-[44px] self-start items-center gap-[9px] border-b-[1.5px] border-gold-dark pt-[10px] pb-1 font-sans text-[14.5px] font-semibold leading-none text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:border-gold focus-visible:rounded-[3px] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-gold md:min-h-0 md:pt-0 lg:focus-visible:outline-offset-4"
                   >
                     {card.ctaLabel}
-                    <ArrowRight size={14} aria-hidden="true" className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard group-hover:translate-x-0.5" />
+                    <ArrowRight size={14} aria-hidden="true" focusable="false" className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard group-hover:translate-x-0.5" />
                   </Link>
                   <p className="mt-3.5 font-sans text-[12.5px] font-normal leading-[1.5] text-muted-ink">{card.footnote}</p>
                 </article>
