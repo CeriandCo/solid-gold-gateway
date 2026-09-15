@@ -83,7 +83,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
   );
 }
 
-function RowLabel({ label, hint }: { label: string; hint?: string }) {
+function RowLabel({ label, hint }: { label: string; hint?: string | undefined }) {
   return (
     <>
       {label}
@@ -309,7 +309,7 @@ function SegmentedGroup({
   onChange: (value: string) => void;
   name: string;
   compact?: boolean;
-  describedBy?: string;
+  describedBy?: string | undefined;
   legendExtra?: React.ReactNode;
 }) {
   return (
