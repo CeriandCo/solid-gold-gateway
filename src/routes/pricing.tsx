@@ -298,7 +298,9 @@ function TransactionCostsSection() {
                 key={column}
                 scope="col"
                 className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
-                  index === 0 ? "text-left" : "border-l border-beige text-center"
+                  index === 0
+                    ? "w-[32%] text-left"
+                    : "w-[22.66%] border-l border-beige text-center"
                 }`}
               >
                 {column}
