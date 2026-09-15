@@ -178,7 +178,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
         <span
           role="tooltip"
           id={id}
-          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-[280px] max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)]"
+          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-[280px] max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-xs font-normal leading-[1.45] text-paper shadow-tooltip"
           style={
             mobilePos
               ? ({
@@ -204,7 +204,7 @@ function RowLabel({ label, hint }: { label: string; hint?: string | undefined })
     <>
       {label}
       {hint ? (
-        <span className="font-sans text-[12.5px] font-normal text-muted-ink"> {hint}</span>
+        <span className="font-sans text-ui-xs font-normal text-muted-ink"> {hint}</span>
       ) : null}
     </>
   );
@@ -216,11 +216,11 @@ function CellValue({ cell }: { cell: RowCell }) {
   }
   return (
     <span className="block">
-      <span className="block font-sans text-[13.5px] font-bold text-forest-black">
+      <span className="block font-sans text-ui-sm font-bold text-forest-black">
         {cell.value}
       </span>
       {cell.suffix ? (
-        <span className="mt-1 block font-sans text-[12.5px] font-normal text-muted-ink">
+        <span className="mt-1 block font-sans text-ui-xs font-normal text-muted-ink">
           {cell.suffix}
         </span>
       ) : null}
@@ -256,7 +256,7 @@ function TransactionCostsSection() {
       >
         {table.title}
       </h2>
-      <p className="mb-5 font-sans text-[14.5px] font-normal leading-[1.55] text-muted-ink">
+      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink">
         {table.subtitle}
       </p>
 
@@ -264,7 +264,7 @@ function TransactionCostsSection() {
       <dl className="border-t border-beige sm:hidden">
         {table.rows.map((row) => (
           <div key={row.label} className="border-b border-beige py-3.5">
-            <dt className="font-sans text-[13.5px] font-medium text-forest-black">
+            <dt className="font-sans text-ui-sm font-medium text-forest-black">
               <RowLabel label={row.label} hint={row.hint} />
             </dt>
             <dd className="mt-2 font-sans text-[13px] font-normal text-muted-ink">
@@ -289,7 +289,7 @@ function TransactionCostsSection() {
 
       <table
         aria-labelledby="transaction-costs-heading"
-        className="hidden w-full border-collapse border border-beige font-sans text-[13.5px] font-normal sm:table"
+        className="hidden w-full border-collapse border border-beige font-sans text-ui-sm font-normal sm:table"
       >
         <thead>
           <tr className="bg-wash-green">
@@ -297,7 +297,7 @@ function TransactionCostsSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3.5 py-3 font-sans text-[12.5px] font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
+                className={`border-b border-beige px-3.5 py-3 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
                   index === 0 ? "text-left" : "border-l border-beige text-center"
                 }`}
               >
@@ -314,7 +314,7 @@ function TransactionCostsSection() {
             >
               <th
                 scope="row"
-                className="px-3.5 py-3.5 text-left align-top font-sans text-[13.5px] font-medium text-forest-black md:px-4"
+                className="px-3.5 py-3.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black md:px-4"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
@@ -350,12 +350,12 @@ function StorageSection() {
       <h2 id="storage-heading" className="text-display-h4 mb-1.5 text-forest-black">
         {table.title}
       </h2>
-      <p className="mb-5 font-sans text-[14.5px] font-normal leading-[1.55] text-muted-ink">
+      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink">
         {table.subtitle}
       </p>
       <table
         aria-labelledby="storage-heading"
-        className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-[13.5px]"
+        className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-ui-sm"
       >
         <thead>
           <tr className="bg-wash-green">
@@ -363,7 +363,7 @@ function StorageSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3 py-3 text-left font-sans text-[12.5px] font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
+                className={`border-b border-beige px-3 py-3 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
                   index === 0 ? "" : "border-l border-beige"
                 }`}
               >
@@ -380,7 +380,7 @@ function StorageSection() {
             >
               <th
                 scope="row"
-                className="px-3 py-3 text-left align-top font-sans text-[13px] font-medium text-forest-black md:px-4 md:py-3.5 md:text-[13.5px]"
+                className="px-3 py-3 text-left align-top font-sans text-[13px] font-medium text-forest-black md:px-4 md:py-3.5 md:text-ui-sm"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
@@ -432,7 +432,7 @@ function SegmentedGroup({
 }) {
   return (
     <fieldset className="min-w-0 border-0 p-0">
-      <legend className="mb-2 flex items-center gap-1.5 font-sans text-[13.5px] font-medium text-forest-black">
+      <legend className="mb-2 flex items-center gap-1.5 font-sans text-ui-sm font-medium text-forest-black">
         {legend}
         {legendExtra}
       </legend>
@@ -446,8 +446,8 @@ function SegmentedGroup({
           return (
             <label
               key={option.value}
-              className={`flex-1 max-md:min-w-[calc(50%-3px)] cursor-pointer rounded-[4px] border border-beige text-center font-sans font-medium ${
-                compact ? "px-1 py-[9px] text-[12.5px]" : "px-0 py-2.5 text-[13.5px]"
+              className={`flex-1 max-md:min-w-[calc(50%-4px)] cursor-pointer rounded-[4px] border border-beige text-center font-sans font-medium ${
+                compact ? "px-1 py-2 text-ui-xs" : "px-0 py-2.5 text-ui-sm"
               } ${
                 selected
                   ? "border-forest-black bg-forest-black text-paper"
@@ -482,10 +482,10 @@ function StepRow({
   last?: boolean;
 }) {
   return (
-    <div className={`flex items-start gap-3.5 ${last ? "" : "mb-[22px]"}`}>
+    <div className={`flex items-start gap-3.5 ${last ? "" : "mb-6"}`}>
       <span
         aria-hidden="true"
-        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-black font-sans text-[12px] font-bold text-paper"
+        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-black font-sans text-xs font-bold text-paper"
       >
         {index}
       </span>
@@ -576,7 +576,7 @@ function PurchaseCalculator() {
   return (
     <section
       aria-labelledby="calculator-heading"
-      className="mx-auto w-full max-w-none rounded-[8px] bg-wash-green px-[22px] pb-7 pt-6 md:max-w-[560px] md:px-7 md:pb-8 md:pt-7 lg:max-w-none"
+      className="mx-auto w-full max-w-none rounded-[8px] bg-wash-green px-6 pb-7 pt-6 md:max-w-[560px] md:px-7 md:pb-8 md:pt-7 lg:max-w-none"
     >
       <p className="mb-2.5 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[2px] text-gold-dark">
         Purchase calculator
@@ -584,7 +584,7 @@ function PurchaseCalculator() {
       <h2 id="calculator-heading" className="text-display-h4 mb-2 text-forest-black">
         See what your money could buy
       </h2>
-      <p className="mb-[26px] font-sans text-[13.5px] font-normal leading-[1.5] text-muted-ink">
+      <p className="mb-6 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
         Explore your gold or silver options and see the estimated costs, including fees,
         storage and delivery.
       </p>
@@ -593,12 +593,12 @@ function PurchaseCalculator() {
         <StepRow index={1}>
           <label
             htmlFor={amountId}
-            className="font-sans text-[13.5px] font-medium text-forest-black"
+            className="font-sans text-ui-sm font-medium text-forest-black"
           >
             How much do you want to spend? (USD)
           </label>
           <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 motion-safe:transition-[border-color,box-shadow] motion-safe:duration-[120ms] motion-safe:ease-standard focus-within:border-gold-dark has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
-            <span className="font-sans text-[15px] font-medium text-muted-ink">US$</span>
+            <span className="font-sans text-ui-lg font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
               ref={amountRef}
@@ -639,10 +639,10 @@ function PurchaseCalculator() {
                 commitAmount(text);
               }}
               onChange={(event) => commitAmount(event.target.value)}
-              className="w-full min-w-0 bg-transparent font-sans text-[15px] font-medium text-forest-black outline-none"
+              className="w-full min-w-0 bg-transparent font-sans text-ui-lg font-medium text-forest-black outline-none"
             />
           </div>
-          <p className="mt-0.5 font-sans text-[12px] font-normal text-muted-ink">
+          <p className="mt-0.5 font-sans text-xs font-normal text-muted-ink">
             Or pick a common amount:
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -655,7 +655,7 @@ function PurchaseCalculator() {
                   setCapHint(false);
                   track("calculator_amount_preset_clicked", { amount: preset });
                 }}
-                className={`rounded-[4px] border px-2.5 py-1 font-sans text-[12px] font-medium motion-safe:transition-colors motion-safe:duration-[120ms] motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold hover:border-gold-dark ${
+                className={`rounded-[4px] border px-2.5 py-1 font-sans text-xs font-medium motion-safe:transition-colors motion-safe:duration-[120ms] motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold hover:border-gold-dark ${
                   amount === preset
                     ? "border-forest-black bg-wash-forest text-forest-black"
                     : "border-beige bg-paper text-charcoal"
@@ -666,7 +666,7 @@ function PurchaseCalculator() {
             ))}
           </div>
           {capHint && (
-            <p className="mt-1.5 font-sans text-[12px] font-normal text-muted-ink">
+            <p className="mt-1.5 font-sans text-xs font-normal text-muted-ink">
               Amounts above US$1,000,000 — please contact us for private-client pricing.
             </p>
           )}
@@ -761,7 +761,7 @@ function PurchaseCalculator() {
         <button
           ref={submitRef}
           type="submit"
-          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-[14.5px] font-semibold text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
+          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-ui-md font-semibold text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
         >
           Show my estimate
           <ArrowRight size={16} aria-hidden="true" focusable="false" />
@@ -771,7 +771,7 @@ function PurchaseCalculator() {
           <p
             id={errorId}
             role="alert"
-            className="estimate-fade mt-2 font-sans text-[12.5px] font-medium text-error"
+            className="estimate-fade mt-2 font-sans text-ui-xs font-medium text-error"
           >
             {error}
           </p>
@@ -783,10 +783,10 @@ function PurchaseCalculator() {
               <p className="text-display-h5 text-[22px] text-forest-black">
                 {OZ.format(estimate.oz)} oz {estimate.metal}
               </p>
-              <p className="mt-1.5 font-sans text-[12.5px] font-normal text-muted-ink">
+              <p className="mt-1.5 font-sans text-ui-xs font-normal text-muted-ink">
                 You&apos;d pay approximately
               </p>
-              <p className="font-sans text-[14px] font-semibold text-forest-black">
+              <p className="font-sans text-sm font-semibold text-forest-black">
                 {USD.format(estimate.total)} in fees over the period
               </p>
               <button
@@ -795,7 +795,7 @@ function PurchaseCalculator() {
                   setEstimate(null);
                   amountRef.current?.focus();
                 }}
-                className={`mt-2 font-sans text-[12px] font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
+                className={`mt-2 font-sans text-xs font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
               >
                 Recalculate
               </button>
@@ -821,7 +821,7 @@ function TrustBar() {
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
       </h2>
-      <ul className="grid grid-cols-1 items-start gap-y-[22px] md:grid-cols-4 md:gap-7 lg:gap-12">
+      <ul className="grid grid-cols-1 items-start gap-y-6 md:grid-cols-4 md:gap-7 lg:gap-12">
         {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
           <li key={title} className="flex min-w-0 items-start gap-3.5 lg:gap-4">
             <Icon
@@ -831,10 +831,10 @@ function TrustBar() {
               className="mt-0.5 size-[26px] shrink-0 text-forest-black md:size-7 lg:size-8"
             />
             <span className="flex min-w-0 flex-col gap-1">
-              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-forest-black lg:text-[13.5px]">
+              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-forest-black lg:text-ui-sm">
                 {title}
               </strong>
-              <span className="font-sans text-[12px] font-normal leading-[1.45] text-muted-ink lg:text-[12.5px]">
+              <span className="font-sans text-xs font-normal leading-[1.45] text-muted-ink lg:text-ui-xs">
                 {description}
               </span>
             </span>
@@ -869,9 +869,9 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
     <details open={mounted} className="group border-b border-beige first:border-t">
       <summary
         onClick={toggle}
-        className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-[18px] [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
+        className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-5 [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
       >
-        <span className="font-sans text-[14px] font-medium leading-[1.4] text-forest-black lg:text-[14.5px]">
+        <span className="font-sans text-sm font-medium leading-[1.4] text-forest-black lg:text-ui-md">
           {question}
         </span>
         <span className="relative inline-flex size-5 shrink-0 items-center justify-center" aria-hidden="true">
@@ -895,7 +895,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
+          <p className="max-w-none pb-5 pr-6 font-sans text-ui-sm font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
             {answer}
           </p>
         </div>
@@ -958,14 +958,14 @@ function BottomCta() {
         >
           Ready to start?
         </h2>
-        <p className="mx-auto mb-7 max-w-none font-sans text-[15px] font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
+        <p className="mx-auto mb-7 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
           Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
           monthly subscription.
         </p>
         <Link
           to="/early-access"
           onClick={() => track("bottom_cta_click", { target: "get_started" })}
-          className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-[15px] font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-ui-lg font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
         >
           Get started
           <ArrowRight size={18} aria-hidden="true" focusable="false" className="shrink-0" />
@@ -974,7 +974,7 @@ function BottomCta() {
           <Link
             to="/precious-metal"
             onClick={() => track("bottom_cta_click", { target: "explore_products" })}
-            className={`inline-block border-b-[1.5px] border-gold-dark pb-[3px] font-sans text-[13.5px] font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
+            className={`inline-block border-b-[1.5px] border-gold-dark pb-1 font-sans text-ui-sm font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
           >
             Or explore products first →
           </Link>
@@ -1006,14 +1006,14 @@ function PricingPage() {
             </p>
             <h1
               id="pricing-hero-heading"
-              className="text-display-h1-sm mb-[22px] text-forest-black md:text-display-h1-md lg:text-display-h1"
+              className="text-display-h1-sm mb-6 text-forest-black md:text-display-h1-md lg:text-display-h1"
             >
               Simple pricing.<br className="hidden lg:block" /> Greater confidence.
             </h1>
-            <p className="mb-[34px] max-w-none font-sans text-[15px] font-normal leading-[1.6] text-muted-ink md:max-w-[38em] lg:text-[15.5px]">
+            <p className="mb-8 max-w-none font-sans text-ui-lg font-normal leading-[1.6] text-muted-ink md:max-w-[38em] lg:text-[15.5px]">
               Know exactly what it costs to buy, store, gift or take delivery of gold and silver. All prices and fees are shown in U.S. dollars (USD), so you can invest with clarity.
             </p>
-            <ul className="flex flex-col gap-[18px] md:flex-row md:items-stretch md:gap-5">
+            <ul className="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-5">
               {HERO_CHIPS.map(({ icon: Icon, title, description }, index) => (
                 <Fragment key={title}>
                   {index > 0 && (
@@ -1029,11 +1029,11 @@ function PricingPage() {
                       focusable="false"
                       className="mt-0.5 size-6 shrink-0 text-forest-black md:size-[26px] lg:size-7"
                     />
-                    <span className="flex min-w-0 flex-col gap-[3px]">
-                      <strong className="font-sans text-[13.5px] font-semibold leading-[1.35] text-forest-black">
+                    <span className="flex min-w-0 flex-col gap-1">
+                      <strong className="font-sans text-ui-sm font-semibold leading-[1.35] text-forest-black">
                         {title}
                       </strong>
-                      <span className="font-sans text-[12.5px] font-normal leading-[1.45] text-muted-ink">
+                      <span className="font-sans text-ui-xs font-normal leading-[1.45] text-muted-ink">
                         {description}
                       </span>
                     </span>
@@ -1094,13 +1094,13 @@ function PricingPage() {
                       <h3 className="text-display-h5 md:text-display-h5-md md:whitespace-nowrap lg:text-display-h5-lg text-forest-black">
                         {card.title}
                       </h3>
-                      <p className="mb-2 font-sans text-[13.5px] font-medium leading-normal text-forest-black md:whitespace-nowrap lg:text-sm">
+                      <p className="mb-2 font-sans text-ui-sm font-medium leading-normal text-forest-black md:whitespace-nowrap lg:text-sm">
                         {card.kicker}
                       </p>
                     </div>
 
                     <div className="mb-2 grid min-w-0 grid-cols-1 items-center gap-3 md:grid-cols-[1fr_46%] md:gap-4">
-                      <p className="font-sans text-[13.5px] font-normal leading-[1.55] text-muted-ink">
+                      <p className="font-sans text-ui-sm font-normal leading-[1.55] text-muted-ink">
                         {card.description}
                       </p>
                       <div className="flex items-center justify-center md:justify-end">
@@ -1116,7 +1116,7 @@ function PricingPage() {
                     <a
                       href={card.ctaHref}
                       onClick={() => track("pricing_cta_click", { product: card.id })}
-                      className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
+                      className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
                     >
                       {card.ctaLabel}
                       <ArrowRight
