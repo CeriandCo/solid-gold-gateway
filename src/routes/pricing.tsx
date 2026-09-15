@@ -5,7 +5,7 @@ import {
   ArrowRight,
   Lock,
   ShieldCheck,
-  Sparkles,
+  Sprout,
   type LucideIcon,
 } from "lucide-react";
 
