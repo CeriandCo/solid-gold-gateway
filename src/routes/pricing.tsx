@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
 import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
 import heroWebp2x from "@/assets/pricing/hero-vault-2x.webp.asset.json";
