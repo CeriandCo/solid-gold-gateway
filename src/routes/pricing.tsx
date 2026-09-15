@@ -406,6 +406,25 @@ function PricingPage() {
             </div>
           </div>
         </section>
+
+        <section aria-labelledby="fee-detail-heading" className="pb-0 pt-[54px]">
+          <div className="mx-auto max-w-[1120px] px-5 md:px-7 lg:px-8">
+            <div className="mb-[30px] max-w-[44em]">
+              <h2 id="fee-detail-heading" className="text-display-h3 mb-[9px] text-charcoal">
+                Every fee, in one place
+              </h2>
+              <p className="font-sans text-base font-normal leading-normal text-muted-ink">
+                The same two paths, with the numbers laid out side by side.
+              </p>
+            </div>
+
+            <div className="mt-1.5 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-[18px] lg:gap-6">
+              {FEE_TABLES.map((table) => (
+                <FeeTableCard key={table.title} table={table} />
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </div>
