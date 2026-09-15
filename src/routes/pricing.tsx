@@ -600,7 +600,7 @@ function PricingPage() {
   return (
     <div className="min-h-screen bg-background text-forest-black">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-[1180px] px-5 md:px-8 lg:px-10">
+      <main className="site-container">
         <section
           aria-labelledby="pricing-hero-heading"
           className="grid grid-cols-1 items-start gap-7 pb-7 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-8 md:pt-11 lg:gap-14 lg:pb-10 lg:pt-14"
