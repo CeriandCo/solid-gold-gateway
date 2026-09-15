@@ -708,6 +708,19 @@ function FaqSection() {
       >
         Frequently asked questions
       </h2>
+      {/*
+
+        FAQ uses native <details>, which is multi-open by default.
+
+        This is intentional — users often compare answers side by side.
+
+        Do not add JS to auto-close other items when one opens.
+
+        If single-open is ever requested, add name="pricing-faq" to every
+
+        <details> instead of JS — unsupported browsers fall back to multi-open.
+
+      */}
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 lg:gap-x-14">
         <div>
           {FAQ_ITEMS.slice(0, 4).map((item) => (
@@ -715,19 +728,6 @@ function FaqSection() {
           ))}
         </div>
         <div>
-        {/*
-
-          FAQ uses native <details>, which is multi-open by default.
-
-          This is intentional — users often compare answers side by side.
-
-          Do not add JS to auto-close other items when one opens.
-
-          If single-open is ever requested, add name="pricing-faq" to every
-
-          <details> instead of JS — unsupported browsers fall back to multi-open.
-
-        */}
           {FAQ_ITEMS.slice(4).map((item) => (
             <FaqRow key={item.question} {...item} />
           ))}
