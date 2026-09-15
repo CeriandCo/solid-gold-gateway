@@ -106,12 +106,11 @@ export function GoldButton({
   const classes = cn(
     "group inline-flex h-[54px] min-w-[200px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[2px] px-8 font-sans text-sm font-semibold leading-none tracking-[0.01em] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
     variant === "primary"
-      ? "bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] hover:-translate-y-px hover:from-gold hover:to-gold-dark"
-      : "border border-gold/70 bg-transparent text-warm-white hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-[#0B2015]",
+      ? "bg-gradient-to-b from-gold-soft to-gold text-forest-deep hover:-translate-y-px hover:from-gold hover:to-gold-dark"
+      : "border border-gold/70 bg-transparent text-warm-white hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
     disabled && "pointer-events-none opacity-60",
     className,
   );
-  const style: React.CSSProperties = { fontFamily: "Inter, Arial, sans-serif" };
   const content = (
     <>
       <span>{children}</span>
@@ -121,20 +120,20 @@ export function GoldButton({
   );
   if (to) {
     return (
-      <Link to={to} className={classes} style={style} aria-label={ariaLabel}>
+      <Link to={to} className={classes} aria-label={ariaLabel}>
         {content}
       </Link>
     );
   }
   if (href) {
     return (
-      <a href={href} className={classes} style={style} aria-label={ariaLabel}>
+      <a href={href} className={classes} aria-label={ariaLabel}>
         {content}
       </a>
     );
   }
   return (
-    <button type={type ?? "button"} className={classes} style={style} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
+    <button type={type ?? "button"} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
       {content}
     </button>
   );
@@ -186,7 +185,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
               className={cn(
                 "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
                 variant === "overlay"
-                  ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-[#0B2015] shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
               )}
             >
