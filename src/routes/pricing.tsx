@@ -603,7 +603,7 @@ function TrustBar() {
   return (
     <section
       aria-labelledby="trust-heading"
-      className="border-y border-beige py-7 md:py-10"
+      className="mt-10 border-y border-beige py-7 md:mt-14 md:py-10 lg:mt-[72px]"
     >
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
