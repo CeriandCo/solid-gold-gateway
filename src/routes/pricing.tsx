@@ -511,6 +511,14 @@ function PurchaseCalculator() {
       storageCost = Math.max(annual * (days / 365), (25 * days) / 365);
     }
     setEstimate({ oz, total: purchaseFee + storageCost, metal });
+    track("calculator_estimate_shown", {
+      amount: value,
+      metal,
+      product,
+      receive,
+      hold: receive === "vault" ? hold : "n/a",
+      gift,
+    });
   }
 
   return (
