@@ -597,7 +597,7 @@ function PurchaseCalculator() {
           >
             How much do you want to spend? (USD)
           </label>
-          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 motion-safe:transition-[border-color,box-shadow] motion-safe:duration-[120ms] motion-safe:ease-standard focus-within:border-gold-dark has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
+          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 motion-safe:transition-shadow motion-safe:duration-120 motion-safe:ease-standard">
             <span className="font-sans text-ui-lg font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
