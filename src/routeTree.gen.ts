@@ -18,6 +18,7 @@ import { Route as GiftingOldVerRouteImport } from './routes/gifting-old-ver'
 import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TrustCenterRouteImport } from './routes/trust-center'
@@ -72,6 +73,11 @@ const PreciousMetalRoute = PreciousMetalRouteImport.update({
   path: '/precious-metal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
   '/precious-metal': typeof PreciousMetalRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/gifting-old-ver': typeof GiftingOldVerRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/precious-metal': typeof PreciousMetalRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
   '/precious-metal': typeof PreciousMetalRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
+    | '/pricing'
     | '/privacy'
     | '/terms'
     | '/trust-center'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/gifting-old-ver'
     | '/home-old-ver'
     | '/precious-metal'
+    | '/pricing'
     | '/privacy'
     | '/terms'
     | '/trust-center'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/home-old-ver'
     | '/learn'
     | '/precious-metal'
+    | '/pricing'
     | '/privacy'
     | '/terms'
     | '/trust-center'
@@ -240,6 +252,7 @@ export interface RootRouteChildren {
   HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRouteWithChildren
   PreciousMetalRoute: typeof PreciousMetalRoute
+  PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
   TrustCenterRoute: typeof TrustCenterRoute
@@ -309,6 +322,13 @@ declare module '@tanstack/react-router' {
       path: '/precious-metal'
       fullPath: '/precious-metal'
       preLoaderRoute: typeof PreciousMetalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -396,6 +416,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRouteWithChildren,
   PreciousMetalRoute: PreciousMetalRoute,
+  PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
   TrustCenterRoute: TrustCenterRoute,

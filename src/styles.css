@@ -28,6 +28,7 @@
   --radius-4xl: 8px;
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", Arial, sans-serif;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -58,6 +59,15 @@
   --color-gold-soft: var(--gold-soft);
   --color-cream: var(--cream);
   --color-warm-white: var(--warm-white);
+  --color-paper: var(--paper);
+  --color-muted-ink: var(--muted-ink);
+  --color-placeholder-ink: var(--placeholder-ink);
+  --color-forest-black: var(--forest-black);
+  --color-parchment: var(--parchment);
+  --color-warm-ink: var(--warm-ink);
+  --color-warm-ink-soft: var(--warm-ink-soft);
+  --color-wash-forest: var(--wash-forest);
+  --color-wash-green: var(--wash-green);
 }
 
 :root {
@@ -75,6 +85,15 @@
   --ivory: oklch(0.955 0.013 82); /* #F6F0E8 */
   --beige: oklch(0.874 0.011 72); /* #DED6CC */
   --error: oklch(0.62 0.17 28);
+  --paper: oklch(1 0 0);
+  --muted-ink: oklch(0.44 0.008 155);
+  --placeholder-ink: oklch(0.58 0.007 155);
+  --forest-black: oklch(0.185 0.028 162);
+  --parchment: oklch(0.918 0.036 82);
+  --warm-ink: oklch(0.31 0.055 82);
+  --warm-ink-soft: oklch(0.42 0.068 82);
+  --wash-forest: oklch(0.992 0.006 150);
+  --wash-green: oklch(0.97 0.009 145);
 
   --background: var(--warm-white);
   --foreground: var(--charcoal);
@@ -213,6 +232,30 @@
   letter-spacing: 0.13em;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+@utility text-display-h1 {
+  font-family: var(--font-display);
+  font-size: 3.4375rem;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-h3 {
+  font-family: var(--font-display);
+  font-size: 2.1875rem;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+}
+
+@utility text-display-h5 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0;
 }
 
 @utility section-title {
