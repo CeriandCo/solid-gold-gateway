@@ -107,7 +107,7 @@ const PATH_CARDS: PathCard[] = [
 
 function PathLeadBadge() {
   return (
-    <span className="absolute -top-3 left-7 rounded-sm bg-forest-black px-[13px] py-1.5 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[1.6px] text-gold">
+    <span className="absolute -top-2.5 left-5 rounded-sm bg-forest-black px-[11px] py-[5px] font-sans text-[10px] font-bold uppercase leading-none tracking-[1.6px] text-gold md:-top-[11px] md:left-6 lg:-top-3 lg:left-7 lg:px-[13px] lg:py-1.5 lg:text-[10.5px]">
       Start here
     </span>
   );
