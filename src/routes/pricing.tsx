@@ -178,6 +178,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
                   width: mobilePos.width,
                   right: "auto",
                   transform: "none",
+                  translate: "none",
                   "--tip-arrow-x": `${mobilePos.arrowX}px`,
                 } as CSSProperties)
               : undefined
