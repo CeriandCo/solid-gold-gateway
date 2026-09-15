@@ -58,6 +58,7 @@ export const siteNav = [
   ["Fractional Gold", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
+  ["Pricing", "/pricing"],
   ["Trust Center", "/trust-center"],
   ["About Us", "/about-us"],
   ["Learn", "/learn"],
