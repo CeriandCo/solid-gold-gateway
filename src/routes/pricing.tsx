@@ -685,7 +685,7 @@ function PricingPage() {
                     key={card.title}
                     className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:grid md:grid-cols-[1fr_44%] md:items-stretch md:gap-4 md:border-l md:px-5 md:pb-6 md:pt-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:grid-cols-[1fr_46%] lg:px-6 lg:pb-7 lg:pt-8"
                   >
-                    <div className="flex min-w-0 max-md:contents">
+                    <div className="flex min-w-0 flex-col max-md:contents">
                       <h3 className="text-display-h5 order-1 md:order-none md:text-display-h5-md lg:text-display-h5-lg mb-1 text-forest-black">
                         {card.title}
                       </h3>
