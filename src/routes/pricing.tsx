@@ -615,13 +615,12 @@ function TrustBar() {
       </h2>
       <ul className="grid grid-cols-1 items-start gap-y-[22px] md:grid-cols-4 md:gap-7 lg:gap-12">
         {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
-          <li key={title} className="flex min-w-0 items-start gap-[14px]">
+          <li key={title} className="flex min-w-0 items-start gap-3.5 lg:gap-4">
             <Icon
-              size={22}
               strokeWidth={1.6}
               aria-hidden="true"
               focusable="false"
-              className="mt-0.5 shrink-0 text-forest-black lg:size-6"
+              className="mt-0.5 size-[26px] shrink-0 text-forest-black md:size-7 lg:size-8"
             />
             <span className="flex min-w-0 flex-col gap-1">
               <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-forest-black lg:text-[13.5px]">
@@ -768,13 +767,12 @@ function PricingPage() {
                       className="hidden w-px self-stretch bg-beige md:block"
                     />
                   )}
-                  <li className="flex min-w-0 flex-1 items-start gap-3 lg:max-w-[15em]">
+                  <li className="flex min-w-0 flex-1 items-start gap-3 lg:max-w-[15em] lg:gap-3.5">
                     <Icon
-                      size={22}
                       strokeWidth={1.6}
                       aria-hidden="true"
                       focusable="false"
-                      className="mt-0.5 shrink-0 text-forest-black"
+                      className="mt-0.5 size-6 shrink-0 text-forest-black md:size-[26px] lg:size-7"
                     />
                     <span className="flex min-w-0 flex-col gap-[3px]">
                       <strong className="font-sans text-[13.5px] font-semibold leading-[1.35] text-forest-black">
