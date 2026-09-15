@@ -12,25 +12,56 @@ import {
   type TransactionRow,
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Info, Minus, Plus } from "lucide-react";
+
+const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
+const PRICING_URL = `${SITE_ORIGIN}/pricing`;
+const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Gold & Silver Pricing and Fees | SQOOT Pure" },
+      { title: "Pricing & Fees | SQOOT Pure" },
       {
         name: "description",
         content:
-          "See transparent pricing for allocated gold and silver, coins, bars, secure storage, and delivery.",
-      },
-      { property: "og:title", content: "Gold & Silver Pricing and Fees | SQOOT Pure" },
-      {
-        property: "og:description",
-        content: "Clear, upfront costs and flexible ways to own gold and silver.",
+          "Simple pricing for gold and silver. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
+      {
+        property: "og:description",
+        content:
+          "Transparent fees for gold and silver: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
+      },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:url", content: PRICING_URL },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
+      {
+        name: "twitter:description",
+        content:
+          "Transparent fees for gold and silver. Storage, delivery, and gifting costs shown upfront.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: PRICING_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(FAQ_SCHEMA),
+      },
     ],
   }),
   component: PricingPage,
