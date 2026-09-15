@@ -135,8 +135,10 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
       // block), so convert the viewport-clamped position into wrapper space.
       const left =
         Math.min(Math.max(16, center - width / 2), vw - 16 - width) - rect.left;
+      // The ::before triangle is centered on its `left` via translateX(-50%),
+      // so arrowX is the icon center's offset inside the tooltip directly.
       const arrowX = Math.min(
-        Math.max(8, center - (rect.left + left) - 6),
+        Math.max(8, center - (rect.left + left)),
         width - 12,
       );
       setMobilePos({ left, width, arrowX });
