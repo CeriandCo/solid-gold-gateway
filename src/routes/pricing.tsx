@@ -767,7 +767,7 @@ function PricingPage() {
                       className="hidden w-px self-stretch bg-beige md:block"
                     />
                   )}
-                  <li className="flex min-w-0 flex-1 items-start gap-3 lg:gap-3.5">
+                  <li className="flex min-w-0 flex-1 items-start gap-3 lg:max-w-[15em] lg:gap-3.5">
                     <Icon
                       strokeWidth={1.6}
                       aria-hidden="true"
