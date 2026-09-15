@@ -43,7 +43,7 @@ function ProductImage({ image, alt }: { image: string; alt: string }) {
     <img
       src={image}
       alt={alt}
-      className="h-auto max-h-full w-auto max-w-full object-contain object-bottom"
+      className="max-h-[140px] w-auto max-w-full object-contain object-center md:h-full md:max-h-full md:w-full md:object-right"
     />
   );
 }
