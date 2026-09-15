@@ -49,6 +49,91 @@ type PathCard = {
   isLead: boolean;
 };
 
+type FeeAmount =
+  | { kind: "text"; value: string }
+  | { kind: "highlight"; value: string; suffix?: string; footnote?: string }
+  | { kind: "zero"; value: string; suffix?: string; tag?: string };
+
+type FeeRow = { label: string; hint?: string; amount: FeeAmount };
+
+type FeeTable = { title: string; caption: string; rows: FeeRow[] };
+
+const FEE_TABLES: FeeTable[] = [
+  {
+    title: "Fractional — stored in the vault",
+    caption: "Own from $25. Allocated to you, insured, segregated.",
+    rows: [
+      {
+        label: "Purchase price",
+        amount: { kind: "text", value: "Weight × live spot price, plus product premium" },
+      },
+      {
+        label: "Purchase fee",
+        hint: "One-off, at the time you buy",
+        amount: { kind: "highlight", value: "3.00%", suffix: "of purchase amount" },
+      },
+      {
+        label: "Storage & insurance — year 1",
+        hint: "From your first purchase",
+        amount: { kind: "zero", value: "$0.00", tag: "Free" },
+      },
+      {
+        label: "Storage & insurance — after year 1",
+        hint: "Charged pro-rata for the exact number of days held",
+        amount: {
+          kind: "highlight",
+          value: "0.45%",
+          suffix: "of value per year",
+          footnote: "Insurance included — there is no separate insurance charge",
+        },
+      },
+      {
+        label: "Minimum storage fee",
+        hint: "Applies only after your first 12 months",
+        amount: { kind: "highlight", value: "$3.00", suffix: "per year" },
+      },
+      {
+        label: "Selling",
+        amount: { kind: "text", value: "Your sale price is shown in full before you confirm" },
+      },
+      {
+        label: "Taking delivery later",
+        amount: { kind: "text", value: "Insured delivery — cost varies by location and weight" },
+      },
+    ],
+  },
+  {
+    title: "Coins & bars — delivered to you",
+    caption: "Whole products from trusted mints, shipped insured.",
+    rows: [
+      {
+        label: "Purchase price",
+        amount: { kind: "text", value: "Weight × live spot price, plus product premium" },
+      },
+      { label: "Purchase fee", amount: { kind: "zero", value: "None" } },
+      {
+        label: "Storage & insurance",
+        amount: { kind: "zero", value: "None", suffix: "— you hold it" },
+      },
+      { label: "Minimum storage fee", amount: { kind: "zero", value: "None" } },
+      {
+        label: "Insured delivery",
+        amount: { kind: "text", value: "Varies by location and weight, shown before you pay" },
+      },
+      {
+        label: "Engraving",
+        hint: "Optional gift service",
+        amount: { kind: "text", value: "Shown at checkout" },
+      },
+      {
+        label: "Premium gift packaging",
+        hint: "Optional gift service",
+        amount: { kind: "text", value: "Shown at checkout" },
+      },
+    ],
+  },
+];
+
 const HERO_CHIPS: HeroChip[] = [
   { icon: Shield, title: "Transparent costs", description: "Every fee shown upfront" },
   { icon: Lock, title: "Insured storage", description: "Segregated U.S. depository" },
