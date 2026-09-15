@@ -683,7 +683,7 @@ function PricingPage() {
                 {PRODUCT_CARDS.map((card) => (
                   <article
                     key={card.title}
-                    className="grid min-w-0 grid-cols-[1fr_auto] items-start gap-4 border-beige px-0 pb-7 pt-6 max-md:not-first:border-t md:border-l md:px-[22px] md:pb-7 md:pt-6 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:px-5 lg:pb-6 lg:pt-5"
+                    className="grid min-w-0 grid-cols-[1fr_auto] items-start gap-4 border-beige px-0 pb-7 pt-6 max-md:not-first:border-t md:border-l md:px-[22px] md:pb-7 md:pt-6 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:grid-cols-1 lg:gap-3 lg:px-5 lg:pb-6 lg:pt-5"
                   >
                     <div className="flex h-full min-w-0 flex-col">
                       <h3 className="text-display-h5 mb-1.5 text-[26px] text-forest-black lg:text-[24px]">
@@ -708,7 +708,7 @@ function PricingPage() {
                         />
                       </a>
                     </div>
-                    <div className="w-24 shrink-0 md:w-28 lg:w-[100px]">
+                    <div className="w-24 shrink-0 md:w-28 lg:order-first lg:w-[100px] lg:justify-self-end">
                       <ProductImage image={card.image} alt={card.imageAlt} />
                     </div>
                   </article>
