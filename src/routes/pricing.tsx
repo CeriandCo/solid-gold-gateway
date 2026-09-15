@@ -107,7 +107,7 @@ const PATH_CARDS: PathCard[] = [
 
 function PathLeadBadge() {
   return (
-    <span className="absolute -top-3 left-7 rounded-sm bg-forest-black px-[13px] py-1.5 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[1.6px] text-gold">
+    <span className="absolute -top-2.5 left-5 rounded-sm bg-forest-black px-[11px] py-[5px] font-sans text-[10px] font-bold uppercase leading-none tracking-[1.6px] text-gold md:-top-[11px] md:left-6 lg:-top-3 lg:left-7 lg:px-[13px] lg:py-1.5 lg:text-[10.5px]">
       Start here
     </span>
   );
@@ -135,48 +135,48 @@ function PricingPage() {
     <div className="min-h-screen bg-background text-charcoal">
       <SiteHeader />
       <main>
-        <section aria-labelledby="pricing-title">
-          <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-5 py-11 pt-14 md:px-7 min-[900px]:grid-cols-2 lg:px-8">
+        <section aria-labelledby="pricing-hero-heading">
+          <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-7 px-5 pb-7 pt-8 md:grid-cols-2 md:gap-8 md:px-7 md:pb-8 md:pt-11 lg:gap-12 lg:px-8 lg:pb-11 lg:pt-14">
             <div>
               <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[2px] text-muted-ink">
                 Pricing &amp; Fees
               </p>
-              <h1 id="pricing-title" className="text-display-h1 my-3.5 mb-4 text-charcoal max-[899px]:text-[44px] max-[520px]:text-[38px]">
-                Simple pricing.<br className="max-[899px]:hidden" /> Greater confidence.
+              <h1 id="pricing-hero-heading" className="text-display-h1-sm my-3.5 mb-4 text-charcoal md:text-display-h1-md lg:text-display-h1">
+                Simple pricing.<br className="max-lg:hidden" /> Greater confidence.
               </h1>
-              <p className="max-w-[31em] font-sans text-[16.5px] font-normal leading-[1.55] text-muted-ink">
+              <p className="max-w-none font-sans text-[15px] font-normal leading-[1.55] text-muted-ink md:max-w-[31em] md:text-[16.5px]">
                 Know exactly what it costs to own gold and silver — whether you keep it in the vault or have it delivered. All prices and fees are shown in U.S. dollars.
               </p>
-              <ul className="mt-[26px] flex flex-wrap border-t border-beige pt-5 min-[900px]:flex-nowrap">
+              <ul className="mt-5 flex flex-wrap gap-[14px] md:mt-[26px] md:flex-nowrap md:gap-0 md:border-t md:border-beige md:pt-5">
                 {HERO_CHIPS.map(({ icon: Icon, title, description }) => (
-                  <li key={title} className="min-w-0 flex-[1_1_45%] py-2 pr-[18px] min-[900px]:border-r min-[900px]:border-beige min-[900px]:pl-[18px] min-[900px]:first:pl-0 min-[900px]:last:border-r-0 min-[900px]:last:pr-0">
-                    <Icon size={19} strokeWidth={1.6} aria-hidden="true" className="mb-[7px] block text-forest-black" />
+                  <li key={title} className="min-w-0 flex-[1_1_45%] p-0 md:py-2 md:pr-3 md:border-r md:border-beige md:pl-[18px] md:first:pl-0 md:last:border-r-0 md:last:pr-0 lg:pr-[18px]">
+                    <Icon size={19} strokeWidth={1.6} aria-hidden="true" focusable="false" className="mb-[7px] block text-forest-black" />
                     <strong className="mb-0.5 block font-sans text-[13.5px] font-semibold leading-tight text-charcoal">{title}</strong>
                     <span className="block font-sans text-[12.5px] font-normal leading-[1.4] text-muted-ink">{description}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="min-h-[330px] w-full overflow-hidden rounded-[6px]">
-              <img src={heroImage.url} alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface" className="h-full min-h-[330px] w-full object-cover object-center" />
+            <div className="max-h-[320px] min-h-[240px] w-full overflow-hidden rounded-[6px] md:max-h-none md:min-h-[280px] lg:min-h-[330px]">
+              <img src={heroImage.url} alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface" className="h-full min-h-[240px] w-full object-cover object-center md:min-h-[280px] lg:min-h-[330px]" />
             </div>
           </div>
         </section>
 
-        <section aria-labelledby="paths-title" className="pb-0 pt-[54px]">
+        <section aria-labelledby="paths-heading" className="pb-0 pt-[54px]">
           <div className="mx-auto max-w-[1120px] px-5 md:px-7 lg:px-8">
             <div className="mb-[30px] max-w-[44em]">
-              <h2 id="paths-title" className="text-display-h3 mb-[9px] text-charcoal">Two ways to own it</h2>
+              <h2 id="paths-heading" className="text-display-h3 mb-[9px] text-charcoal">Two ways to own it</h2>
               <p className="font-sans text-base font-normal leading-normal text-muted-ink">
                 Everything comes down to one question: do you want it in the vault, or in your hands?
               </p>
             </div>
 
-            <div className="grid grid-cols-1 items-stretch gap-[22px] min-[900px]:grid-cols-[1.22fr_1fr]">
+            <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1.15fr_1fr] md:gap-4 lg:grid-cols-[1.22fr_1fr] lg:gap-[22px]">
               {PATH_CARDS.map((card) => (
                 <article
                   key={card.title}
-                  className={`relative flex flex-col rounded-lg bg-paper px-[30px] pb-[26px] pt-[30px] ${
+                  className={`relative flex flex-col rounded-lg bg-paper px-[22px] pb-[22px] pt-6 md:px-6 md:pt-[26px] lg:px-[30px] lg:pb-[26px] lg:pt-[30px] ${
                     card.isLead
                       ? "border-2 border-forest-black bg-gradient-to-b from-wash-forest to-paper [background-size:100%_42%] [background-repeat:no-repeat]"
                       : "border border-beige"
@@ -185,11 +185,11 @@ function PricingPage() {
                   {card.isLead ? <PathLeadBadge /> : null}
                   <p className="mb-[9px] font-sans text-[11px] font-bold uppercase leading-none tracking-[1.8px] text-gold-dark">{card.kicker}</p>
                   <h3 className="text-display-h5 mb-[7px] text-charcoal">{card.title}</h3>
-                  <p className="mb-[18px] min-h-[44px] font-sans text-[14.5px] font-normal leading-[1.5] text-muted-ink">{card.subtitle}</p>
+                  <p className="mb-[18px] font-sans text-[14.5px] font-normal leading-[1.5] text-muted-ink lg:min-h-[44px]">{card.subtitle}</p>
                   <p
                     className={`mb-[18px] rounded-r-[4px] border-l-[3px] px-3.5 py-[11px] font-sans text-[13.5px] font-normal leading-[1.45] ${
                       card.freeNoteTone === "gold"
-                        ? "border-gold-dark bg-parchment text-warm-ink-soft"
+                        ? "border-gold-dark bg-parchment text-warm-ink"
                         : "border-forest-black bg-wash-green text-muted-ink"
                     }`}
                   >
@@ -206,10 +206,10 @@ function PricingPage() {
                   </ul>
                   <Link
                     to={card.ctaHref}
-                    className="group mt-auto inline-flex self-start items-center gap-[9px] border-b-[1.5px] border-gold-dark pb-1 font-sans text-[14.5px] font-semibold leading-none text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:border-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                    className="group mt-auto inline-flex min-h-[44px] self-start items-center gap-[9px] border-b-[1.5px] border-gold-dark pt-[10px] pb-1 font-sans text-[14.5px] font-semibold leading-none text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:border-gold focus-visible:rounded-[3px] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-gold md:min-h-0 md:pt-0"
                   >
                     {card.ctaLabel}
-                    <ArrowRight size={14} aria-hidden="true" className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard group-hover:translate-x-0.5" />
+                    <ArrowRight size={14} aria-hidden="true" focusable="false" className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard group-hover:translate-x-0.5" />
                   </Link>
                   <p className="mt-3.5 font-sans text-[12.5px] font-normal leading-[1.5] text-muted-ink">{card.footnote}</p>
                 </article>

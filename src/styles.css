@@ -242,6 +242,22 @@
   letter-spacing: -0.02em;
 }
 
+@utility text-display-h1-md {
+  font-family: var(--font-display);
+  font-size: 2.875rem;
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-h1-sm {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
 @utility text-display-h3 {
   font-family: var(--font-display);
   font-size: 2.1875rem;
