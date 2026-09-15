@@ -955,11 +955,11 @@ function BottomCta() {
       <div className="mx-auto max-w-[36em] text-center">
         <h2
           id="cta-heading"
-          className="text-display-h4 mb-3 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+          className="text-display-h4 mb-2 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
         >
           Ready to start?
         </h2>
-        <p className="mx-auto mb-7 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
+        <p className="mx-auto mb-5 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
           Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
           monthly subscription.
         </p>
@@ -972,7 +972,7 @@ function BottomCta() {
         >
           Get started
         </GoldButton>
-        <div className="mt-4">
+        <div className="mt-3">
           <Link
             to="/precious-metal"
             onClick={() => track("bottom_cta_click", { target: "explore_products" })}
