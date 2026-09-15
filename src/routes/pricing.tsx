@@ -134,7 +134,7 @@ function SpanCellContent({ cell }: { cell: SpanCell }) {
 function TransactionCostsSection() {
   const table = TRANSACTION_COSTS_TABLE;
   return (
-    <section aria-labelledby="transaction-costs-heading" className="pb-0 pt-12">
+    <section aria-labelledby="transaction-costs-heading" className="pb-6 pt-4 md:pb-4 md:pt-2.5 lg:pb-5 lg:pt-3">
       <h2
         id="transaction-costs-heading"
         className="text-display-h4 mb-1.5 text-forest-black"
@@ -231,7 +231,7 @@ function TransactionCostsSection() {
 function StorageSection() {
   const table = STORAGE_TABLE;
   return (
-    <section aria-labelledby="storage-heading" className="pb-0 pt-12">
+    <section aria-labelledby="storage-heading" className="pb-6 pt-4 md:pb-4 md:pt-2.5 lg:pb-5 lg:pt-3">
       <h2 id="storage-heading" className="text-display-h4 mb-1.5 text-forest-black">
         {table.title}
       </h2>
@@ -608,7 +608,7 @@ function TrustBar() {
   return (
     <section
       aria-labelledby="trust-heading"
-      className="mt-10 border-y border-beige py-7 md:mt-14 md:py-10 lg:mt-[72px]"
+      className="mt-6 border-y border-beige py-7 md:mt-7 md:py-10 lg:mt-10"
     >
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
@@ -695,7 +695,7 @@ function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="pb-[60px] pt-11 md:pb-20 md:pt-16"
+      className="pb-10 pt-5 md:pb-11 md:pt-5 lg:pb-14 lg:pt-6"
     >
       <h2
         id="faq-heading"
@@ -726,7 +726,7 @@ function PricingPage() {
       <main className="site-container">
         <section
           aria-labelledby="pricing-hero-heading"
-          className="grid grid-cols-1 items-start gap-7 pb-7 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-8 md:pt-11 lg:gap-14 lg:pb-10 lg:pt-14"
+          className="grid grid-cols-1 items-start gap-7 pb-6 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-4 md:pt-11 lg:gap-14 lg:pb-5 lg:pt-14"
         >
           <div>
             <p className="mb-5 font-sans text-[11px] font-bold uppercase leading-none tracking-[2.4px] text-gold-dark">
@@ -794,7 +794,7 @@ function PricingPage() {
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.7fr_1fr] lg:gap-12">
           <div className="min-w-0">
-            <section aria-labelledby="choose-heading" className="pb-0 pt-10">
+            <section aria-labelledby="choose-heading" className="pb-6 pt-3 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
               <h2 id="choose-heading" className="text-display-h2 mb-2.5 text-forest-black">
                 Choose what works for you
               </h2>
