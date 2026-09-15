@@ -106,7 +106,7 @@ function ProductImage({
         height={280}
         loading="lazy"
         decoding="async"
-        className="max-h-[140px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right lg:max-h-[140px]"
+        className="max-h-[100px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right"
       />
     </picture>
   );
