@@ -444,8 +444,13 @@ function StepRow({
 
 type Estimate = { oz: number; total: number; metal: string };
 
+const AMOUNT_PRESETS = [100, 500, 1000, 5000];
+const AMOUNT_MAX = 1_000_000;
+
 function PurchaseCalculator() {
-  const [amount, setAmount] = useState("500");
+  const [amount, setAmount] = useState<number | null>(500);
+  const [amountFocused, setAmountFocused] = useState(false);
+  const [capHint, setCapHint] = useState(false);
   const [metal, setMetal] = useState("gold");
   const [product, setProduct] = useState<string | null>(null);
   const [receive, setReceive] = useState("vault");
@@ -456,6 +461,26 @@ function PurchaseCalculator() {
   const amountId = useId();
   const errorId = useId();
   const submitRef = useRef<HTMLButtonElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+
+  const amountDisplay =
+    amount === null ? "" : amountFocused ? String(amount) : PLAIN.format(amount);
+
+  function commitAmount(raw: string) {
+    const digits = raw.replace(/[^\d]/g, "");
+    if (digits === "") {
+      setAmount(null);
+      setCapHint(false);
+      return;
+    }
+    const next = Number(digits);
+    if (next > AMOUNT_MAX) {
+      setCapHint(true);
+      return;
+    }
+    setCapHint(false);
+    setAmount(next);
+  }
 
   useEffect(() => {
     if (receive !== "vault") setHold("30d");
@@ -463,7 +488,7 @@ function PurchaseCalculator() {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const value = Number(amount);
+    const value = amount ?? Number.NaN;
     if (!product) {
       setEstimate(null);
       setError("Please pick a product.");
