@@ -13,7 +13,7 @@ import {
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Info, Plus } from "lucide-react";
+import { ArrowRight, Info, Minus, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -666,15 +666,20 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         <span className="font-sans text-[14px] font-medium leading-[1.4] text-forest-black lg:text-[14.5px]">
           {question}
         </span>
-        <Plus
-          size={20}
-          strokeWidth={1.75}
-          aria-hidden="true"
-          focusable="false"
-          className={`shrink-0 text-muted-ink motion-safe:transition-transform motion-safe:duration-[160ms] motion-safe:ease-standard ${
-            expanded ? "rotate-45" : "rotate-0"
-          }`}
-        />
+        <span className="relative inline-flex size-5 shrink-0 items-center justify-center" aria-hidden="true">
+          <Plus
+            size={20}
+            strokeWidth={1.75}
+            focusable="false"
+            className="absolute text-muted-ink motion-safe:transition-opacity motion-safe:duration-120 motion-safe:ease-standard group-open:opacity-0"
+          />
+          <Minus
+            size={20}
+            strokeWidth={1.75}
+            focusable="false"
+            className="absolute text-muted-ink opacity-0 motion-safe:transition-opacity motion-safe:duration-120 motion-safe:ease-standard group-open:opacity-100"
+          />
+        </span>
       </summary>
       <div
         className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
@@ -710,6 +715,19 @@ function FaqSection() {
           ))}
         </div>
         <div>
+        {/*
+
+          FAQ uses native <details>, which is multi-open by default.
+
+          This is intentional — users often compare answers side by side.
+
+          Do not add JS to auto-close other items when one opens.
+
+          If single-open is ever requested, add name="pricing-faq" to every
+
+          <details> instead of JS — unsupported browsers fall back to multi-open.
+
+        */}
           {FAQ_ITEMS.slice(4).map((item) => (
             <FaqRow key={item.question} {...item} />
           ))}
