@@ -639,9 +639,28 @@ function TrustBar() {
 }
 
 function FaqRow({ question, answer }: { question: string; answer: string }) {
+  const [mounted, setMounted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+
+  const toggle = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    if (timer.current) clearTimeout(timer.current);
+    if (!mounted) {
+      setMounted(true);
+      requestAnimationFrame(() => setExpanded(true));
+    } else {
+      setExpanded(false);
+      timer.current = setTimeout(() => setMounted(false), 200);
+    }
+  };
+
   return (
-    <details className="group border-b border-beige first:border-t">
+    <details open={mounted} className="group border-b border-beige first:border-t">
       <summary
+        onClick={toggle}
         className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-[18px] [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
       >
         <span className="font-sans text-[14px] font-medium leading-[1.4] text-forest-black lg:text-[14.5px]">
@@ -652,19 +671,22 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
           strokeWidth={1.75}
           aria-hidden="true"
           focusable="false"
-          className="shrink-0 text-muted-ink group-open:hidden motion-safe:transition-transform motion-safe:ease-standard"
-        />
-        <Minus
-          size={20}
-          strokeWidth={1.75}
-          aria-hidden="true"
-          focusable="false"
-          className="hidden shrink-0 text-muted-ink group-open:block"
+          className={`shrink-0 text-muted-ink motion-safe:transition-transform motion-safe:duration-[160ms] motion-safe:ease-standard ${
+            expanded ? "rotate-45" : "rotate-0"
+          }`}
         />
       </summary>
-      <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
-        {answer}
-      </p>
+      <div
+        className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
+          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
+            {answer}
+          </p>
+        </div>
+      </div>
     </details>
   );
 }
