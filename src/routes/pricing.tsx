@@ -158,7 +158,7 @@ function PricingPage() {
               </ul>
             </div>
             <div className="min-h-[330px] w-full overflow-hidden rounded-[6px]">
-              <img src={heroImage.url} alt="Allocated gold bar and coins" className="h-full min-h-[330px] w-full object-cover object-center" />
+              <img src={heroImage.url} alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface" className="h-full min-h-[330px] w-full object-cover object-center" />
             </div>
           </div>
         </section>
