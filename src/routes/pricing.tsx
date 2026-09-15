@@ -909,7 +909,7 @@ function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="pb-10 pt-5 md:pb-11 md:pt-5 lg:pb-14 lg:pt-6"
+      className="pb-5 pt-5 md:pb-4 md:pt-5 lg:pb-5 lg:pt-6"
     >
       <h2
         id="faq-heading"
@@ -950,7 +950,7 @@ function BottomCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="pb-12 pt-9 md:pb-14 md:pt-11 lg:pb-[72px] lg:pt-14"
+      className="pb-10 pt-4 md:pb-10 md:pt-4 lg:pb-12 lg:pt-5"
     >
       <div className="mx-auto max-w-[36em] text-center">
         <h2
