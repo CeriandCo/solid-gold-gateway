@@ -179,7 +179,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
                   right: "auto",
                   transform: "none",
                   "--tip-arrow-x": `${mobilePos.arrowX}px`,
-                } as React.CSSProperties)
+                } as CSSProperties)
               : undefined
           }
         >
