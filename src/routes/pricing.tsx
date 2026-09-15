@@ -185,7 +185,7 @@ function PricingPage() {
                   {card.isLead ? <PathLeadBadge /> : null}
                   <p className="mb-[9px] font-sans text-[11px] font-bold uppercase leading-none tracking-[1.8px] text-gold-dark">{card.kicker}</p>
                   <h3 className="text-display-h5 mb-[7px] text-charcoal">{card.title}</h3>
-                  <p className="mb-[18px] min-h-[44px] font-sans text-[14.5px] font-normal leading-[1.5] text-muted-ink">{card.subtitle}</p>
+                  <p className="mb-[18px] font-sans text-[14.5px] font-normal leading-[1.5] text-muted-ink lg:min-h-[44px]">{card.subtitle}</p>
                   <p
                     className={`mb-[18px] rounded-r-[4px] border-l-[3px] px-3.5 py-[11px] font-sans text-[13.5px] font-normal leading-[1.45] ${
                       card.freeNoteTone === "gold"
