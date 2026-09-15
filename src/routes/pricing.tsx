@@ -172,11 +172,11 @@ function PricingPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 items-stretch gap-[22px] min-[900px]:grid-cols-[1.22fr_1fr]">
+            <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1.15fr_1fr] md:gap-4 lg:grid-cols-[1.22fr_1fr] lg:gap-[22px]">
               {PATH_CARDS.map((card) => (
                 <article
                   key={card.title}
-                  className={`relative flex flex-col rounded-lg bg-paper px-[30px] pb-[26px] pt-[30px] ${
+                  className={`relative flex flex-col rounded-lg bg-paper px-[22px] pb-[22px] pt-6 md:px-6 md:pt-[26px] lg:px-[30px] lg:pb-[26px] lg:pt-[30px] ${
                     card.isLead
                       ? "border-2 border-forest-black bg-gradient-to-b from-wash-forest to-paper [background-size:100%_42%] [background-repeat:no-repeat]"
                       : "border border-beige"
