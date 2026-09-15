@@ -337,7 +337,7 @@ function SegmentedGroup({
                 selected
                   ? "border-forest-black bg-forest-black text-paper"
                   : "bg-paper text-forest-black"
-              } has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold`}
+              } motion-safe:transition-[background-color,color,border-color] motion-safe:duration-[120ms] motion-safe:ease-standard has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold`}
             >
               <input
                 type="radio"
