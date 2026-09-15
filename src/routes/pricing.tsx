@@ -729,17 +729,20 @@ function PurchaseCalculator() {
           {estimate && (
             <div className="estimate-enter mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
               <p className="text-display-h5 text-[22px] text-forest-black">
-                {estimate.oz.toFixed(4)} oz {estimate.metal}
+                {OZ.format(estimate.oz)} oz {estimate.metal}
               </p>
               <p className="mt-1.5 font-sans text-[12.5px] font-normal text-muted-ink">
                 You&apos;d pay approximately
               </p>
               <p className="font-sans text-[14px] font-semibold text-forest-black">
-                ${estimate.total.toFixed(2)} in fees over the period
+                {USD.format(estimate.total)} in fees over the period
               </p>
               <button
                 type="button"
-                onClick={() => setEstimate(null)}
+                onClick={() => {
+                  setEstimate(null);
+                  amountRef.current?.focus();
+                }}
                 className={`mt-2 font-sans text-[12px] font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
               >
                 Recalculate
