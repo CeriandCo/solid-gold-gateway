@@ -314,11 +314,20 @@
   letter-spacing: -0.015em;
 }
 
+/* Compact step of h4 for dense two-column layouts (pricing left column). */
+@utility text-display-h4-sm {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
 @utility text-display-h3 {
   font-family: var(--font-display);
-  font-size: 2.1875rem;
+  font-size: 2.125rem;
   font-weight: 600;
-  line-height: 1.14;
+  line-height: 1.1;
   letter-spacing: -0.015em;
 }
 
