@@ -549,18 +549,75 @@ function PurchaseCalculator() {
             <span className="font-sans text-[15px] font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
-              type="number"
-              min={25}
-              step={25}
-              value={amount}
+              ref={amountRef}
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              value={amountDisplay}
               aria-describedby={error ? errorId : undefined}
-              onChange={(event) => setAmount(event.target.value)}
+              onFocus={() => setAmountFocused(true)}
+              onBlur={() => setAmountFocused(false)}
+              onKeyDown={(event) => {
+                const allowed = [
+                  "Backspace",
+                  "Delete",
+                  "Tab",
+                  "Enter",
+                  "Escape",
+                  "Home",
+                  "End",
+                  "ArrowLeft",
+                  "ArrowRight",
+                  "ArrowUp",
+                  "ArrowDown",
+                ];
+                if (
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  allowed.includes(event.key) ||
+                  /^\d$/.test(event.key)
+                ) {
+                  return;
+                }
+                event.preventDefault();
+              }}
+              onPaste={(event) => {
+                const text = event.clipboardData.getData("text");
+                event.preventDefault();
+                commitAmount(text);
+              }}
+              onChange={(event) => commitAmount(event.target.value)}
               className="w-full min-w-0 bg-transparent font-sans text-[15px] font-medium text-forest-black outline-none"
             />
           </div>
           <p className="mt-0.5 font-sans text-[12px] font-normal text-muted-ink">
-            Try an amount like US$500 or US$1,000.
+            Or pick a common amount:
           </p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {AMOUNT_PRESETS.map((preset) => (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => {
+                  setAmount(preset);
+                  setCapHint(false);
+                  track("calculator_amount_preset_clicked", { amount: preset });
+                }}
+                className={`rounded-[4px] border px-2.5 py-1 font-sans text-[12px] font-medium motion-safe:transition-colors motion-safe:duration-[120ms] motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold hover:border-gold-dark ${
+                  amount === preset
+                    ? "border-forest-black bg-wash-forest text-forest-black"
+                    : "border-beige bg-paper text-charcoal"
+                }`}
+              >
+                US${PLAIN.format(preset)}
+              </button>
+            ))}
+          </div>
+          {capHint && (
+            <p className="mt-1.5 font-sans text-[12px] font-normal text-muted-ink">
+              Amounts above US$1,000,000 — please contact us for private-client pricing.
+            </p>
+          )}
         </StepRow>
 
         <StepRow index={2}>
