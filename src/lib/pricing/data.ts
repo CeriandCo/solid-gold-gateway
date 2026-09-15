@@ -1,6 +1,12 @@
 import allocatedImage from "@/assets/pricing/card-allocated.png.asset.json";
+import allocatedWebp from "@/assets/pricing/card-allocated.webp.asset.json";
+import allocatedWebp2x from "@/assets/pricing/card-allocated-2x.webp.asset.json";
 import barsImage from "@/assets/pricing/card-bars.png.asset.json";
+import barsWebp from "@/assets/pricing/card-bars.webp.asset.json";
+import barsWebp2x from "@/assets/pricing/card-bars-2x.webp.asset.json";
 import coinsImage from "@/assets/pricing/card-coins.png.asset.json";
+import coinsWebp from "@/assets/pricing/card-coins.webp.asset.json";
+import coinsWebp2x from "@/assets/pricing/card-coins-2x.webp.asset.json";
 import { Lock, Shield, Sprout, type LucideIcon } from "lucide-react";
 
 export type HeroChip = {
@@ -10,10 +16,13 @@ export type HeroChip = {
 };
 
 export type ProductCard = {
+  id: "coins" | "bars" | "allocated";
   title: string;
   kicker: string;
   description: string;
   image: string;
+  imageWebp: string;
+  imageWebp2x: string;
   imageAlt: string;
   ctaLabel: string;
   ctaHref: string;
