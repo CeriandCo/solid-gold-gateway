@@ -173,7 +173,7 @@ function TransactionCostsSection() {
 
       <table
         aria-labelledby="transaction-costs-heading"
-        className="hidden w-full border-collapse border-y border-beige font-sans text-[13.5px] font-normal sm:table"
+        className="hidden w-full border-collapse border border-beige font-sans text-[13.5px] font-normal sm:table"
       >
         <thead>
           <tr className="bg-wash-green">
@@ -182,7 +182,7 @@ function TransactionCostsSection() {
                 key={column}
                 scope="col"
                 className={`border-b border-beige px-3.5 py-3 font-sans text-[12.5px] font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
-                  index === 0 ? "text-left" : "text-center"
+                  index === 0 ? "text-left" : "border-l border-beige text-center"
                 }`}
               >
                 {column}
@@ -205,7 +205,7 @@ function TransactionCostsSection() {
               {isSpanCell(row.cells) ? (
                 <td
                   colSpan={3}
-                  className="px-3.5 py-3.5 text-center align-top text-muted-ink md:px-4"
+                  className="border-l border-beige px-3.5 py-3.5 text-center align-top text-muted-ink md:px-4"
                 >
                   <SpanCellContent cell={row.cells} />
                 </td>
@@ -213,7 +213,7 @@ function TransactionCostsSection() {
                 row.cells.map((cell, index) => (
                   <td
                     key={table.columns[index + 1]}
-                    className="px-3.5 py-3.5 text-center align-top md:px-4"
+                    className="border-l border-beige px-3.5 py-3.5 text-center align-top md:px-4"
                   >
                     <CellValue cell={cell} />
                   </td>
@@ -239,15 +239,17 @@ function StorageSection() {
       </p>
       <table
         aria-labelledby="storage-heading"
-        className="w-full border-collapse border-y border-beige font-sans text-[13px] font-normal md:text-[13.5px]"
+        className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-[13.5px]"
       >
         <thead>
           <tr className="bg-wash-green">
-            {table.columns.map((column) => (
+            {table.columns.map((column, index) => (
               <th
                 key={column}
                 scope="col"
-                className="border-b border-beige px-3 py-3 text-left font-sans text-[12.5px] font-semibold tracking-[0.4px] text-charcoal md:px-4"
+                className={`border-b border-beige px-3 py-3 text-left font-sans text-[12.5px] font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
+                  index === 0 ? "" : "border-l border-beige"
+                }`}
               >
                 {column}
               </th>
@@ -266,7 +268,7 @@ function StorageSection() {
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
-              <td className="px-3 py-3 text-left align-top text-muted-ink md:px-4 md:py-3.5">
+              <td className="border-l border-beige px-3 py-3 text-left align-top text-muted-ink md:px-4 md:py-3.5">
                 {row.highlight ? (
                   <span className="font-bold text-forest-black">{row.highlight} </span>
                 ) : null}
