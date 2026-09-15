@@ -12,25 +12,56 @@ import {
   type TransactionRow,
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Info, Minus, Plus } from "lucide-react";
+
+const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
+const PRICING_URL = `${SITE_ORIGIN}/pricing`;
+const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Gold & Silver Pricing and Fees | SQOOT Pure" },
+      { title: "Pricing & Fees | SQOOT Pure" },
       {
         name: "description",
         content:
-          "See transparent pricing for allocated gold and silver, coins, bars, secure storage, and delivery.",
-      },
-      { property: "og:title", content: "Gold & Silver Pricing and Fees | SQOOT Pure" },
-      {
-        property: "og:description",
-        content: "Clear, upfront costs and flexible ways to own gold and silver.",
+          "Simple pricing for gold and silver. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
+      {
+        property: "og:description",
+        content:
+          "Transparent fees for gold and silver: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
+      },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:url", content: PRICING_URL },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
+      {
+        name: "twitter:description",
+        content:
+          "Transparent fees for gold and silver. Storage, delivery, and gifting costs shown upfront.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: PRICING_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(FAQ_SCHEMA),
+      },
     ],
   }),
   component: PricingPage,
@@ -736,11 +767,55 @@ function FaqSection() {
   );
 }
 
+function BottomCta() {
+  return (
+    <section
+      aria-labelledby="cta-heading"
+      className="pb-12 pt-9 md:pb-14 md:pt-11 lg:pb-[72px] lg:pt-14"
+    >
+      <div className="mx-auto max-w-[36em] text-center">
+        <h2
+          id="cta-heading"
+          className="text-display-h4 mb-3 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+        >
+          Ready to start?
+        </h2>
+        <p className="mx-auto mb-7 max-w-none font-sans text-[15px] font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
+          Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
+          monthly subscription.
+        </p>
+        <Link
+          to="/early-access"
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-[15px] font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
+        >
+          Get started
+          <ArrowRight size={18} aria-hidden="true" focusable="false" className="shrink-0" />
+        </Link>
+        <div className="mt-4">
+          <Link
+            to="/precious-metal"
+            className={`inline-block border-b-[1.5px] border-gold-dark pb-[3px] font-sans text-[13.5px] font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
+          >
+            Or explore products first →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingPage() {
   return (
     <div className="min-h-screen bg-background text-forest-black">
+      <a
+        href="#main-content"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-md focus-visible:bg-forest-black focus-visible:px-4 focus-visible:py-2 focus-visible:text-background focus-visible:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <SiteHeader />
-      <main className="site-container">
+      <main id="main-content" className="site-container">
+
         <section
           aria-labelledby="pricing-hero-heading"
           className="grid grid-cols-1 items-start gap-7 pb-6 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-4 md:pt-11 lg:gap-14 lg:pb-5 lg:pt-14"
@@ -870,6 +945,7 @@ function PricingPage() {
 
         <TrustBar />
         <FaqSection />
+        <BottomCta />
       </main>
       <SiteFooter />
     </div>
