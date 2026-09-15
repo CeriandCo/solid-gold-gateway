@@ -688,15 +688,15 @@ function PricingPage() {
                     className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-7 md:pt-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:px-6 lg:pb-7 lg:pt-8"
                   >
                     <div className="min-w-0">
-                      <h3 className="text-display-h5 md:text-display-h5-md md:whitespace-nowrap lg:text-display-h5-lg mb-1 text-forest-black">
+                      <h3 className="text-display-h5 md:text-display-h5-md md:whitespace-nowrap lg:text-display-h5-lg mb-[2px] text-forest-black">
                         {card.title}
                       </h3>
-                      <p className="mb-[22px] font-sans text-[13.5px] font-medium leading-normal text-forest-black md:whitespace-nowrap lg:text-sm">
+                      <p className="mb-3 font-sans text-[13.5px] font-medium leading-normal text-forest-black md:whitespace-nowrap lg:text-sm">
                         {card.kicker}
                       </p>
                     </div>
 
-                    <div className="grid min-w-0 grid-cols-1 items-center gap-4 md:grid-cols-[1fr_46%]">
+                    <div className="mb-3 grid min-w-0 grid-cols-1 items-center gap-3 md:grid-cols-[1fr_46%] md:gap-4">
                       <p className="font-sans text-[13.5px] font-normal leading-[1.55] text-muted-ink">
                         {card.description}
                       </p>
@@ -707,7 +707,7 @@ function PricingPage() {
 
                     <a
                       href={card.ctaHref}
-                      className={`group mt-7 inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
+                      className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
                     >
                       {card.ctaLabel}
                       <ArrowRight
