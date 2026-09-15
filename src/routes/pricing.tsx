@@ -4,7 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Lock,
-  ShieldCheck,
+  Shield,
   Sprout,
   type LucideIcon,
 } from "lucide-react";
@@ -50,7 +50,7 @@ type PathCard = {
 };
 
 const HERO_CHIPS: HeroChip[] = [
-  { icon: ShieldCheck, title: "Transparent costs", description: "Every fee shown upfront" },
+  { icon: Shield, title: "Transparent costs", description: "Every fee shown upfront" },
   { icon: Lock, title: "Insured storage", description: "Segregated U.S. depository" },
   { icon: Sprout, title: "Start from $25", description: "Own a fraction, not a whole coin" },
 ];
