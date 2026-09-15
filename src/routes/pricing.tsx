@@ -189,7 +189,7 @@ function PricingPage() {
                   <p
                     className={`mb-[18px] rounded-r-[4px] border-l-[3px] px-3.5 py-[11px] font-sans text-[13.5px] font-normal leading-[1.45] ${
                       card.freeNoteTone === "gold"
-                        ? "border-gold-dark bg-parchment text-warm-ink-soft"
+                        ? "border-gold-dark bg-parchment text-warm-ink"
                         : "border-forest-black bg-wash-green text-muted-ink"
                     }`}
                   >
