@@ -1,5 +1,8 @@
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
+import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
+import heroWebp2x from "@/assets/pricing/hero-vault-2x.webp.asset.json";
+import { track } from "@/lib/analytics";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import {
   HERO_CHIPS,
@@ -70,13 +73,42 @@ export const Route = createFileRoute("/pricing")({
 const FOCUS_RING =
   "focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-gold rounded-[3px]";
 
-function ProductImage({ image, alt }: { image: string; alt: string }) {
+const USD = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+const OZ = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 4,
+  maximumFractionDigits: 4,
+});
+const PLAIN = new Intl.NumberFormat("en-US");
+
+function ProductImage({
+  image,
+  webp,
+  webp2x,
+  alt,
+}: {
+  image: string;
+  webp: string;
+  webp2x: string;
+  alt: string;
+}) {
   return (
-    <img
-      src={image}
-      alt={alt}
-      className="max-h-[140px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right lg:max-h-[140px]"
-    />
+    <picture>
+      <source type="image/webp" srcSet={`${webp} 1x, ${webp2x} 2x`} />
+      <img
+        src={image}
+        alt={alt}
+        width={280}
+        height={280}
+        loading="lazy"
+        decoding="async"
+        className="max-h-[140px] w-auto max-w-full object-contain object-center md:max-h-[120px] md:object-right lg:max-h-[140px]"
+      />
+    </picture>
   );
 }
 
@@ -412,8 +444,13 @@ function StepRow({
 
 type Estimate = { oz: number; total: number; metal: string };
 
+const AMOUNT_PRESETS = [100, 500, 1000, 5000];
+const AMOUNT_MAX = 1_000_000;
+
 function PurchaseCalculator() {
-  const [amount, setAmount] = useState("500");
+  const [amount, setAmount] = useState<number | null>(500);
+  const [amountFocused, setAmountFocused] = useState(false);
+  const [capHint, setCapHint] = useState(false);
   const [metal, setMetal] = useState("gold");
   const [product, setProduct] = useState<string | null>(null);
   const [receive, setReceive] = useState("vault");
@@ -424,6 +461,26 @@ function PurchaseCalculator() {
   const amountId = useId();
   const errorId = useId();
   const submitRef = useRef<HTMLButtonElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+
+  const amountDisplay =
+    amount === null ? "" : amountFocused ? String(amount) : PLAIN.format(amount);
+
+  function commitAmount(raw: string) {
+    const digits = raw.replace(/[^\d]/g, "");
+    if (digits === "") {
+      setAmount(null);
+      setCapHint(false);
+      return;
+    }
+    const next = Number(digits);
+    if (next > AMOUNT_MAX) {
+      setCapHint(true);
+      return;
+    }
+    setCapHint(false);
+    setAmount(next);
+  }
 
   useEffect(() => {
     if (receive !== "vault") setHold("30d");
@@ -431,7 +488,7 @@ function PurchaseCalculator() {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const value = Number(amount);
+    const value = amount ?? Number.NaN;
     if (!product) {
       setEstimate(null);
       setError("Please pick a product.");
@@ -454,6 +511,14 @@ function PurchaseCalculator() {
       storageCost = Math.max(annual * (days / 365), (25 * days) / 365);
     }
     setEstimate({ oz, total: purchaseFee + storageCost, metal });
+    track("calculator_estimate_shown", {
+      amount: value,
+      metal,
+      product,
+      receive,
+      hold: receive === "vault" ? hold : "n/a",
+      gift,
+    });
   }
 
   return (
@@ -484,18 +549,75 @@ function PurchaseCalculator() {
             <span className="font-sans text-[15px] font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
-              type="number"
-              min={25}
-              step={25}
-              value={amount}
+              ref={amountRef}
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              value={amountDisplay}
               aria-describedby={error ? errorId : undefined}
-              onChange={(event) => setAmount(event.target.value)}
+              onFocus={() => setAmountFocused(true)}
+              onBlur={() => setAmountFocused(false)}
+              onKeyDown={(event) => {
+                const allowed = [
+                  "Backspace",
+                  "Delete",
+                  "Tab",
+                  "Enter",
+                  "Escape",
+                  "Home",
+                  "End",
+                  "ArrowLeft",
+                  "ArrowRight",
+                  "ArrowUp",
+                  "ArrowDown",
+                ];
+                if (
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  allowed.includes(event.key) ||
+                  /^\d$/.test(event.key)
+                ) {
+                  return;
+                }
+                event.preventDefault();
+              }}
+              onPaste={(event) => {
+                const text = event.clipboardData.getData("text");
+                event.preventDefault();
+                commitAmount(text);
+              }}
+              onChange={(event) => commitAmount(event.target.value)}
               className="w-full min-w-0 bg-transparent font-sans text-[15px] font-medium text-forest-black outline-none"
             />
           </div>
           <p className="mt-0.5 font-sans text-[12px] font-normal text-muted-ink">
-            Try an amount like US$500 or US$1,000.
+            Or pick a common amount:
           </p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {AMOUNT_PRESETS.map((preset) => (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => {
+                  setAmount(preset);
+                  setCapHint(false);
+                  track("calculator_amount_preset_clicked", { amount: preset });
+                }}
+                className={`rounded-[4px] border px-2.5 py-1 font-sans text-[12px] font-medium motion-safe:transition-colors motion-safe:duration-[120ms] motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold hover:border-gold-dark ${
+                  amount === preset
+                    ? "border-forest-black bg-wash-forest text-forest-black"
+                    : "border-beige bg-paper text-charcoal"
+                }`}
+              >
+                US${PLAIN.format(preset)}
+              </button>
+            ))}
+          </div>
+          {capHint && (
+            <p className="mt-1.5 font-sans text-[12px] font-normal text-muted-ink">
+              Amounts above US$1,000,000 — please contact us for private-client pricing.
+            </p>
+          )}
         </StepRow>
 
         <StepRow index={2}>
@@ -607,17 +729,20 @@ function PurchaseCalculator() {
           {estimate && (
             <div className="estimate-enter mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
               <p className="text-display-h5 text-[22px] text-forest-black">
-                {estimate.oz.toFixed(4)} oz {estimate.metal}
+                {OZ.format(estimate.oz)} oz {estimate.metal}
               </p>
               <p className="mt-1.5 font-sans text-[12.5px] font-normal text-muted-ink">
                 You&apos;d pay approximately
               </p>
               <p className="font-sans text-[14px] font-semibold text-forest-black">
-                ${estimate.total.toFixed(2)} in fees over the period
+                {USD.format(estimate.total)} in fees over the period
               </p>
               <button
                 type="button"
-                onClick={() => setEstimate(null)}
+                onClick={() => {
+                  setEstimate(null);
+                  amountRef.current?.focus();
+                }}
                 className={`mt-2 font-sans text-[12px] font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
               >
                 Recalculate
@@ -680,6 +805,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
     if (timer.current) clearTimeout(timer.current);
     if (!mounted) {
       setMounted(true);
+      track("faq_open", { question });
       requestAnimationFrame(() => setExpanded(true));
     } else {
       setExpanded(false);
@@ -786,6 +912,7 @@ function BottomCta() {
         </p>
         <Link
           to="/early-access"
+          onClick={() => track("bottom_cta_click", { target: "get_started" })}
           className={`inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black px-6 py-3.5 font-sans text-[15px] font-semibold text-background no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep md:w-auto md:px-6 md:py-3.5 lg:px-7 lg:py-4 ${FOCUS_RING}`}
         >
           Get started
@@ -794,6 +921,7 @@ function BottomCta() {
         <div className="mt-4">
           <Link
             to="/precious-metal"
+            onClick={() => track("bottom_cta_click", { target: "explore_products" })}
             className={`inline-block border-b-[1.5px] border-gold-dark pb-[3px] font-sans text-[13.5px] font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
           >
             Or explore products first →
@@ -864,11 +992,22 @@ function PricingPage() {
           </div>
 
           <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden rounded-[6px] md:min-h-[320px]">
-            <img
-              src={heroImage.url}
-              alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface"
-              className="h-full w-full object-cover object-center"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${heroWebp.url} 1x, ${heroWebp2x.url} 2x`}
+              />
+              <img
+                src={heroImage.url}
+                alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface"
+                width={560}
+                height={420}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover object-center"
+              />
+            </picture>
             <div
               role="text"
               aria-label="Real value for what matters"
@@ -913,12 +1052,18 @@ function PricingPage() {
                         {card.description}
                       </p>
                       <div className="flex items-center justify-center md:justify-end">
-                        <ProductImage image={card.image} alt={card.imageAlt} />
+                        <ProductImage
+                          image={card.image}
+                          webp={card.imageWebp}
+                          webp2x={card.imageWebp2x}
+                          alt={card.imageAlt}
+                        />
                       </div>
                     </div>
 
                     <a
                       href={card.ctaHref}
+                      onClick={() => track("pricing_cta_click", { product: card.id })}
                       className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
                     >
                       {card.ctaLabel}

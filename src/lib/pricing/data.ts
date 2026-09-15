@@ -1,6 +1,12 @@
 import allocatedImage from "@/assets/pricing/card-allocated.png.asset.json";
+import allocatedWebp from "@/assets/pricing/card-allocated.webp.asset.json";
+import allocatedWebp2x from "@/assets/pricing/card-allocated-2x.webp.asset.json";
 import barsImage from "@/assets/pricing/card-bars.png.asset.json";
+import barsWebp from "@/assets/pricing/card-bars.webp.asset.json";
+import barsWebp2x from "@/assets/pricing/card-bars-2x.webp.asset.json";
 import coinsImage from "@/assets/pricing/card-coins.png.asset.json";
+import coinsWebp from "@/assets/pricing/card-coins.webp.asset.json";
+import coinsWebp2x from "@/assets/pricing/card-coins-2x.webp.asset.json";
 import { Lock, Shield, Sprout, type LucideIcon } from "lucide-react";
 
 export type HeroChip = {
@@ -10,10 +16,13 @@ export type HeroChip = {
 };
 
 export type ProductCard = {
+  id: "coins" | "bars" | "allocated";
   title: string;
   kicker: string;
   description: string;
   image: string;
+  imageWebp: string;
+  imageWebp2x: string;
   imageAlt: string;
   ctaLabel: string;
   ctaHref: string;
@@ -27,28 +36,37 @@ export const HERO_CHIPS: HeroChip[] = [
 
 export const PRODUCT_CARDS: ProductCard[] = [
   {
+    id: "coins",
     title: "Coins",
     kicker: "Own a coin",
     description: "Iconic, globally recognised coins in a range of weights.",
     image: coinsImage.url,
+    imageWebp: coinsWebp.url,
+    imageWebp2x: coinsWebp2x.url,
     imageAlt: "Silver Walking Liberty coin overlapping a gold Canada Maple Leaf coin",
     ctaLabel: "View coins",
     ctaHref: "/products/coins",
   },
   {
+    id: "bars",
     title: "Bars",
     kicker: "Own a bar",
     description: "High-purity bars from trusted mints in a range of sizes.",
     image: barsImage.url,
+    imageWebp: barsWebp.url,
+    imageWebp2x: barsWebp2x.url,
     imageAlt: "PAMP Suisse 1oz gold bar",
     ctaLabel: "View bars",
     ctaHref: "/products/bars",
   },
   {
+    id: "allocated",
     title: "Allocated metal",
     kicker: "Start from US$25",
     description: "A flexible way to own gold or silver in secure vault storage.",
     image: allocatedImage.url,
+    imageWebp: allocatedWebp.url,
+    imageWebp2x: allocatedWebp2x.url,
     imageAlt: "Stack of gold and silver coins",
     ctaLabel: "View allocated metal",
     ctaHref: "/products/allocated",
