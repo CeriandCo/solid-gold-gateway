@@ -137,7 +137,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
         Math.min(Math.max(16, center - width / 2), vw - 16 - width) - rect.left;
       const arrowX = Math.min(
         Math.max(8, center - (rect.left + left) - 6),
-        width - 20,
+        width - 12,
       );
       setMobilePos({ left, width, arrowX });
     } else {
