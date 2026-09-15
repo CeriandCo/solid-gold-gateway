@@ -13,7 +13,7 @@ import {
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Info, Minus, Plus } from "lucide-react";
+import { ArrowRight, Info, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
