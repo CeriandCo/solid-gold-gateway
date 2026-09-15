@@ -5,7 +5,7 @@ import {
   ArrowRight,
   Lock,
   ShieldCheck,
-  Sparkles,
+  Sprout,
   type LucideIcon,
 } from "lucide-react";
 
@@ -52,7 +52,7 @@ type PathCard = {
 const HERO_CHIPS: HeroChip[] = [
   { icon: ShieldCheck, title: "Transparent costs", description: "Every fee shown upfront" },
   { icon: Lock, title: "Insured storage", description: "Segregated U.S. depository" },
-  { icon: Sparkles, title: "Start from $25", description: "Own a fraction, not a whole coin" },
+  { icon: Sprout, title: "Start from $25", description: "Own a fraction, not a whole coin" },
 ];
 
 const PATH_CARDS: PathCard[] = [
