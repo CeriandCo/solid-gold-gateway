@@ -138,7 +138,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
         <span
           role="tooltip"
           id={id}
-          className="absolute left-1/2 top-full z-20 mt-2 w-[240px] -translate-x-1/2 rounded-[6px] border border-beige bg-paper p-3 text-left font-sans text-[12px] font-normal leading-[1.5] text-muted-ink"
+          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-max max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)] max-md:left-auto max-md:right-0 max-md:translate-x-0"
         >
           {text}
         </span>
