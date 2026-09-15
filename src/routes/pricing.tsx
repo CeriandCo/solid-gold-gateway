@@ -176,7 +176,7 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
         <span
           role="tooltip"
           id={id}
-          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-max max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)]"
+          className="pricing-tooltip absolute top-full left-1/2 z-20 mt-1.5 w-[280px] max-w-[min(280px,calc(100vw-32px))] -translate-x-1/2 rounded-[4px] bg-forest-black p-3 text-left font-sans text-[12px] font-normal leading-[1.45] text-white shadow-[0_4px_16px_rgba(0,0,0,0.14)]"
           style={
             mobilePos
               ? ({
