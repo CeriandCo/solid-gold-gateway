@@ -598,6 +598,99 @@ function PurchaseCalculator() {
   );
 }
 
+function TrustBar() {
+  return (
+    <section
+      aria-labelledby="trust-heading"
+      className="border-y border-beige py-7 md:py-10"
+    >
+      <h2 id="trust-heading" className="sr-only">
+        Why customers trust us
+      </h2>
+      <ul className="grid grid-cols-1 items-start gap-y-[22px] md:grid-cols-4 md:gap-7 lg:gap-12">
+        {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
+          <li key={title} className="flex min-w-0 items-start gap-[14px]">
+            <Icon
+              size={22}
+              strokeWidth={1.6}
+              aria-hidden="true"
+              focusable="false"
+              className="mt-0.5 shrink-0 text-forest-black lg:size-6"
+            />
+            <span className="flex min-w-0 flex-col gap-1">
+              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-forest-black lg:text-[13.5px]">
+                {title}
+              </strong>
+              <span className="font-sans text-[12px] font-normal leading-[1.45] text-muted-ink lg:text-[12.5px]">
+                {description}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function FaqRow({ question, answer }: { question: string; answer: string }) {
+  return (
+    <details className="group border-b border-beige first:border-t">
+      <summary
+        className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-[18px] [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
+      >
+        <span className="font-sans text-[14px] font-medium leading-[1.4] text-forest-black lg:text-[14.5px]">
+          {question}
+        </span>
+        <Plus
+          size={20}
+          strokeWidth={1.75}
+          aria-hidden="true"
+          focusable="false"
+          className="shrink-0 text-muted-ink group-open:hidden motion-safe:transition-transform motion-safe:ease-standard"
+        />
+        <Minus
+          size={20}
+          strokeWidth={1.75}
+          aria-hidden="true"
+          focusable="false"
+          className="hidden shrink-0 text-muted-ink group-open:block"
+        />
+      </summary>
+      <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
+        {answer}
+      </p>
+    </details>
+  );
+}
+
+function FaqSection() {
+  return (
+    <section
+      aria-labelledby="faq-heading"
+      className="pb-[60px] pt-11 md:pb-20 md:pt-16"
+    >
+      <h2
+        id="faq-heading"
+        className="text-display-h4 mb-8 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+      >
+        Frequently asked questions
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 lg:gap-x-14">
+        <div>
+          {FAQ_ITEMS.slice(0, 4).map((item) => (
+            <FaqRow key={item.question} {...item} />
+          ))}
+        </div>
+        <div>
+          {FAQ_ITEMS.slice(4).map((item) => (
+            <FaqRow key={item.question} {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingPage() {
   return (
     <div className="min-h-screen bg-background text-forest-black">
