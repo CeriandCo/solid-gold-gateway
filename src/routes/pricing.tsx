@@ -956,12 +956,18 @@ function PricingPage() {
                         {card.description}
                       </p>
                       <div className="flex items-center justify-center md:justify-end">
-                        <ProductImage image={card.image} alt={card.imageAlt} />
+                        <ProductImage
+                          image={card.image}
+                          webp={card.imageWebp}
+                          webp2x={card.imageWebp2x}
+                          alt={card.imageAlt}
+                        />
                       </div>
                     </div>
 
                     <a
                       href={card.ctaHref}
+                      onClick={() => track("pricing_cta_click", { product: card.id })}
                       className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-[13.5px] font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
                     >
                       {card.ctaLabel}
