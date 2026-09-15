@@ -896,11 +896,22 @@ function PricingPage() {
           </div>
 
           <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden rounded-[6px] md:min-h-[320px]">
-            <img
-              src={heroImage.url}
-              alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface"
-              className="h-full w-full object-cover object-center"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${heroWebp.url} 1x, ${heroWebp2x.url} 2x`}
+              />
+              <img
+                src={heroImage.url}
+                alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface"
+                width={560}
+                height={420}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover object-center"
+              />
+            </picture>
             <div
               role="text"
               aria-label="Real value for what matters"
