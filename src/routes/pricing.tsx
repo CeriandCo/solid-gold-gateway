@@ -538,7 +538,7 @@ function PurchaseCalculator() {
               />
             </StepRow>
           </div>
-        )}
+        </div>
 
         <StepRow index={6} last>
           <SegmentedGroup
@@ -556,7 +556,7 @@ function PurchaseCalculator() {
         <button
           ref={submitRef}
           type="submit"
-          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-[14.5px] font-semibold text-paper motion-safe:transition-colors motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
+          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-[14.5px] font-semibold text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
         >
           Show my estimate
           <ArrowRight size={16} aria-hidden="true" focusable="false" />
@@ -566,7 +566,7 @@ function PurchaseCalculator() {
           <p
             id={errorId}
             role="alert"
-            className="mt-2 font-sans text-[12.5px] font-medium text-error"
+            className="estimate-fade mt-2 font-sans text-[12.5px] font-medium text-error"
           >
             {error}
           </p>
@@ -574,7 +574,7 @@ function PurchaseCalculator() {
 
         <div role="status" aria-live="polite">
           {estimate && (
-            <div className="mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
+            <div className="estimate-enter mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
               <p className="text-display-h5 text-[22px] text-forest-black">
                 {estimate.oz.toFixed(4)} oz {estimate.metal}
               </p>
