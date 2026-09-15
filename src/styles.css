@@ -142,6 +142,34 @@
   padding-inline: var(--gutter);
 }
 
+/* Pricing calculator: estimate + error entrances (motion-safe only). */
+@keyframes estimateEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes estimateFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .estimate-enter {
+    animation: estimateEnter 240ms var(--ease-standard) both;
+  }
+  .estimate-fade {
+    animation: estimateFade 160ms var(--ease-standard) both;
+  }
+}
+
 /* Paired CTA row: equal-width columns on desktop, full-width stack on mobile. */
 .cta-row {
   display: inline-grid;

@@ -13,7 +13,7 @@ import {
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Info, Minus, Plus } from "lucide-react";
+import { ArrowRight, Info, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -337,7 +337,7 @@ function SegmentedGroup({
                 selected
                   ? "border-forest-black bg-forest-black text-paper"
                   : "bg-paper text-forest-black"
-              } has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold`}
+              } motion-safe:transition-[background-color,color,border-color] motion-safe:duration-[120ms] motion-safe:ease-standard has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold`}
             >
               <input
                 type="radio"
@@ -449,7 +449,7 @@ function PurchaseCalculator() {
           >
             How much do you want to spend? (USD)
           </label>
-          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
+          <div className="flex items-center gap-1.5 rounded-[4px] border border-beige bg-paper px-3 py-2.5 motion-safe:transition-[border-color,box-shadow] motion-safe:duration-[120ms] motion-safe:ease-standard focus-within:border-gold-dark has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold">
             <span className="font-sans text-[15px] font-medium text-muted-ink">US$</span>
             <input
               id={amountId}
@@ -509,8 +509,13 @@ function PurchaseCalculator() {
           />
         </StepRow>
 
-        {receive === "vault" && (
-          <div className="motion-safe:transition-all motion-safe:duration-100 motion-safe:ease-standard">
+        <div
+          inert={receive !== "vault" ? true : undefined}
+          className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
+            receive === "vault" ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
             <StepRow index={5}>
               <SegmentedGroup
                 name="hold"
@@ -533,7 +538,7 @@ function PurchaseCalculator() {
               />
             </StepRow>
           </div>
-        )}
+        </div>
 
         <StepRow index={6} last>
           <SegmentedGroup
@@ -551,7 +556,7 @@ function PurchaseCalculator() {
         <button
           ref={submitRef}
           type="submit"
-          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-[14.5px] font-semibold text-paper motion-safe:transition-colors motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
+          className={`mt-6 flex w-full items-center justify-center gap-2 rounded-[6px] bg-forest-black py-3.5 font-sans text-[14.5px] font-semibold text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep ${FOCUS_RING}`}
         >
           Show my estimate
           <ArrowRight size={16} aria-hidden="true" focusable="false" />
@@ -561,7 +566,7 @@ function PurchaseCalculator() {
           <p
             id={errorId}
             role="alert"
-            className="mt-2 font-sans text-[12.5px] font-medium text-error"
+            className="estimate-fade mt-2 font-sans text-[12.5px] font-medium text-error"
           >
             {error}
           </p>
@@ -569,7 +574,7 @@ function PurchaseCalculator() {
 
         <div role="status" aria-live="polite">
           {estimate && (
-            <div className="mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
+            <div className="estimate-enter mt-3.5 rounded-[6px] border border-beige bg-paper p-4">
               <p className="text-display-h5 text-[22px] text-forest-black">
                 {estimate.oz.toFixed(4)} oz {estimate.metal}
               </p>
@@ -634,9 +639,28 @@ function TrustBar() {
 }
 
 function FaqRow({ question, answer }: { question: string; answer: string }) {
+  const [mounted, setMounted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+
+  const toggle = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    if (timer.current) clearTimeout(timer.current);
+    if (!mounted) {
+      setMounted(true);
+      requestAnimationFrame(() => setExpanded(true));
+    } else {
+      setExpanded(false);
+      timer.current = setTimeout(() => setMounted(false), 200);
+    }
+  };
+
   return (
-    <details className="group border-b border-beige first:border-t">
+    <details open={mounted} className="group border-b border-beige first:border-t">
       <summary
+        onClick={toggle}
         className={`flex cursor-pointer list-none items-center justify-between gap-4 py-4 md:py-4 lg:py-[18px] [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
       >
         <span className="font-sans text-[14px] font-medium leading-[1.4] text-forest-black lg:text-[14.5px]">
@@ -647,19 +671,22 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
           strokeWidth={1.75}
           aria-hidden="true"
           focusable="false"
-          className="shrink-0 text-muted-ink group-open:hidden motion-safe:transition-transform motion-safe:ease-standard"
-        />
-        <Minus
-          size={20}
-          strokeWidth={1.75}
-          aria-hidden="true"
-          focusable="false"
-          className="hidden shrink-0 text-muted-ink group-open:block"
+          className={`shrink-0 text-muted-ink motion-safe:transition-transform motion-safe:duration-[160ms] motion-safe:ease-standard ${
+            expanded ? "rotate-45" : "rotate-0"
+          }`}
         />
       </summary>
-      <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
-        {answer}
-      </p>
+      <div
+        className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
+          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="max-w-none pb-5 pr-6 font-sans text-[13.8px] font-normal leading-[1.6] text-muted-ink md:max-w-[36em] md:pr-7 lg:max-w-[40em] lg:pr-9">
+            {answer}
+          </p>
+        </div>
+      </div>
     </details>
   );
 }
