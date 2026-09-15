@@ -249,21 +249,21 @@ function SpanCellContent({ cell }: { cell: SpanCell }) {
 function TransactionCostsSection() {
   const table = TRANSACTION_COSTS_TABLE;
   return (
-    <section aria-labelledby="transaction-costs-heading" className="pb-6 pt-4 md:pb-4 md:pt-2.5 lg:pb-5 lg:pt-3">
+    <section aria-labelledby="transaction-costs-heading" className="pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
       <h2
         id="transaction-costs-heading"
-        className="text-display-h4 mb-1.5 text-forest-black"
+        className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
       >
         {table.title}
       </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink">
+      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
         {table.subtitle}
       </p>
 
       {/* Stacked view on narrow screens */}
       <dl className="border-t border-beige sm:hidden">
         {table.rows.map((row) => (
-          <div key={row.label} className="border-b border-beige py-3.5">
+          <div key={row.label} className="border-b border-beige py-2.5">
             <dt className="font-sans text-ui-sm font-medium text-forest-black">
               <RowLabel label={row.label} hint={row.hint} />
             </dt>
@@ -297,7 +297,7 @@ function TransactionCostsSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3.5 py-3 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
+                className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-3.5 ${
                   index === 0 ? "text-left" : "border-l border-beige text-center"
                 }`}
               >
@@ -314,14 +314,14 @@ function TransactionCostsSection() {
             >
               <th
                 scope="row"
-                className="px-3.5 py-3.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black md:px-4"
+                className="px-3 py-2.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black md:px-3.5"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
               {isSpanCell(row.cells) ? (
                 <td
                   colSpan={3}
-                  className="border-l border-beige px-3.5 py-3.5 text-center align-top text-muted-ink md:px-4"
+                  className="border-l border-beige px-3 py-2.5 text-center align-top text-muted-ink md:px-3.5"
                 >
                   <SpanCellContent cell={row.cells} />
                 </td>
@@ -329,7 +329,7 @@ function TransactionCostsSection() {
                 row.cells.map((cell, index) => (
                   <td
                     key={table.columns[index + 1]}
-                    className="border-l border-beige px-3.5 py-3.5 text-center align-top md:px-4"
+                    className="border-l border-beige px-3 py-2.5 text-center align-top md:px-3.5"
                   >
                     <CellValue cell={cell} />
                   </td>
@@ -346,11 +346,11 @@ function TransactionCostsSection() {
 function StorageSection() {
   const table = STORAGE_TABLE;
   return (
-    <section aria-labelledby="storage-heading" className="pb-6 pt-4 md:pb-4 md:pt-2.5 lg:pb-5 lg:pt-3">
-      <h2 id="storage-heading" className="text-display-h4 mb-1.5 text-forest-black">
+    <section aria-labelledby="storage-heading" className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
+      <h2 id="storage-heading" className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
         {table.title}
       </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink">
+      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
         {table.subtitle}
       </p>
       <table
@@ -363,7 +363,7 @@ function StorageSection() {
               <th
                 key={column}
                 scope="col"
-                className={`border-b border-beige px-3 py-3 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-4 ${
+                className={`border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal md:px-3.5 ${
                   index === 0 ? "" : "border-l border-beige"
                 }`}
               >
@@ -380,11 +380,11 @@ function StorageSection() {
             >
               <th
                 scope="row"
-                className="px-3 py-3 text-left align-top font-sans text-[13px] font-medium text-forest-black md:px-4 md:py-3.5 md:text-ui-sm"
+                className="px-3 py-2.5 text-left align-top font-sans text-[13px] font-medium text-forest-black md:px-3.5 md:py-2.5 md:text-ui-sm"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
-              <td className="border-l border-beige px-3 py-3 text-left align-top text-muted-ink md:px-4 md:py-3.5">
+              <td className="border-l border-beige px-3 py-2.5 text-left align-top text-muted-ink md:px-3.5 md:py-2.5">
                 {row.highlight ? (
                   <span className="font-bold text-forest-black">{row.highlight} </span>
                 ) : null}
@@ -1078,11 +1078,11 @@ function PricingPage() {
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.7fr_1fr] lg:gap-12">
           <div className="min-w-0">
-            <section aria-labelledby="choose-heading" className="pb-6 pt-3 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
-              <h2 id="choose-heading" className="text-display-h2 mb-2.5 text-forest-black">
+            <section aria-labelledby="choose-heading" className="pb-4 pt-3 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
+              <h2 id="choose-heading" className="text-display-h2 mb-2.5 text-forest-black md:text-display-h3">
                 Choose what works for you
               </h2>
-              <p className="mb-7 font-sans text-[15.5px] font-normal leading-[1.55] text-muted-ink">
+              <p className="mb-7 font-sans text-[15.5px] font-normal leading-[1.55] text-muted-ink md:mb-5">
                 Three ways to own gold and silver. Store it securely or have it delivered to you.
               </p>
 
@@ -1090,7 +1090,7 @@ function PricingPage() {
                 {PRODUCT_CARDS.map((card) => (
                   <article
                     key={card.title}
-                    className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-7 md:pt-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:px-6 lg:pb-7 lg:pt-8"
+                    className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-6 md:pt-5 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:pb-6 lg:pt-5"
                   >
                     <div className="min-w-0">
                       <h3 className="text-display-h5 md:text-display-h5-md md:whitespace-nowrap lg:text-display-h5-lg text-forest-black">
