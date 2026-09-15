@@ -1,17 +1,15 @@
-# Stabilize the About page responsive card sections
+# Build Pricing hero and Two Paths
 
-## Goal
-Fix the responsive reflow shown in the screenshot without changing the content or visual design.
+## Scope
+Create only the new `/pricing` page’s Hero and Two Paths sections. Leave all existing pages, shared chrome, and future Pricing sections unchanged.
 
-## Changes
-- Replace fixed section/card dimensions with fluid widths, automatic heights, and bounded minimum heights.
-- Keep the ownership paths in a centered three-column grid on desktop.
-- Switch the ownership paths to two columns at tablet widths, with the featured card spanning the available row without overlap.
-- Switch to full-width single-column cards on mobile.
-- Apply the same safe breakpoint logic to the adjacent “How it works” section so its label and text cannot clip.
-- Remove content-clipping overflow rules and layout transitions while retaining small interactive hover movement.
+## Implementation
+- Add the supplied pricing photograph through the project asset flow.
+- Define typed local data for the three hero chips and two ownership paths.
+- Build the page with the shared header/footer, required metadata, responsive hero, and responsive path-card grid.
+- Add only missing semantic color and reusable typography/easing tokens to the global design system.
+- Preserve plain CTA destinations and render iconography with Lucide.
 
-## Validation
-- Continuously resize through desktop, tablet, and mobile ranges.
-- Capture and inspect screenshots at 1440, 1200, 1024, 900, 768, and 390 pixels.
-- Confirm no body overflow, clipped content, overlapping cards, unstable spacing, or console errors.
+## Verification
+- Confirm desktop, tablet, and mobile layout, image crop, card alignment, CTA behavior, no overflow, no console errors, and a clean build.
+- Re-check that only the new Pricing route, its asset pointer, and required global token definitions changed.
