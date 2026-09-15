@@ -921,6 +921,7 @@ function BottomCta() {
         <div className="mt-4">
           <Link
             to="/precious-metal"
+            onClick={() => track("bottom_cta_click", { target: "explore_products" })}
             className={`inline-block border-b-[1.5px] border-gold-dark pb-[3px] font-sans text-[13.5px] font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
           >
             Or explore products first →
