@@ -252,6 +252,7 @@ function TransactionCostsSection() {
   const table = PAY_TODAY_TABLE;
   return (
     <section aria-labelledby="transaction-costs-heading" className="pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
+      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
       <h2
         id="transaction-costs-heading"
         className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
@@ -265,7 +266,7 @@ function TransactionCostsSection() {
       {/* Stacked view on narrow screens */}
       <dl className="border-t border-beige sm:hidden">
         {table.rows.map((row) => (
-          <div key={row.label} className="border-b border-beige py-2.5">
+          <div key={row.label} className="border-b border-beige py-3.5">
             <dt className="font-sans text-ui-sm font-medium text-forest-black">
               <RowLabel label={row.label} hint={row.hint} />
             </dt>
@@ -318,14 +319,14 @@ function TransactionCostsSection() {
             >
               <th
                 scope="row"
-                className="px-3 py-2.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black lg:px-3.5"
+                className="px-3 py-3.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black lg:px-3.5"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
               {isSpanCell(row.cells) ? (
                 <td
                   colSpan={3}
-                  className="border-l border-beige px-3 py-2.5 text-center align-top text-muted-ink lg:px-3.5"
+                  className="border-l border-beige px-3 py-3.5 text-center align-top text-muted-ink lg:px-3.5"
                 >
                   <SpanCellContent cell={row.cells} />
                 </td>
@@ -333,7 +334,7 @@ function TransactionCostsSection() {
                 row.cells.map((cell, index) => (
                   <td
                     key={table.columns[index + 1]}
-                    className="border-l border-beige px-3 py-2.5 text-center align-top lg:px-3.5"
+                    className="border-l border-beige px-3 py-3.5 text-center align-top lg:px-3.5"
                   >
                     <CellValue cell={cell} />
                   </td>
@@ -350,6 +351,7 @@ function TransactionCostsSection() {
 function FeeListSection({ table, idSuffix }: { table: StorageTableData; idSuffix: string }) {
   return (
     <section aria-labelledby={`fee-${idSuffix}-heading`} className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
+      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
       <h2 id={`fee-${idSuffix}-heading`} className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
         {table.title}
       </h2>
@@ -383,11 +385,11 @@ function FeeListSection({ table, idSuffix }: { table: StorageTableData; idSuffix
             >
               <th
                 scope="row"
-                className="px-3 py-2.5 text-left align-top font-sans text-[13px] font-medium text-forest-black lg:px-3.5 md:py-2.5 md:text-ui-sm"
+                className="px-3 py-3.5 text-left align-top font-sans text-[13px] font-medium text-forest-black lg:px-3.5 md:py-3.5 md:text-ui-sm"
               >
                 <RowLabel label={row.label} hint={row.hint} />
               </th>
-              <td className="border-l border-beige px-3 py-2.5 text-left align-top text-muted-ink lg:px-3.5 md:py-2.5">
+              <td className="border-l border-beige px-3 py-3.5 text-left align-top text-muted-ink lg:px-3.5 md:py-3.5">
                 {row.highlight ? (
                   <span className="font-bold text-forest-black">{row.highlight} </span>
                 ) : null}
