@@ -32,7 +32,7 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
       <main className="aurum-note-page">
         <div className="aurum-container">
           <h1 className="aurum-note-page__title">Note not found</h1>
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const }} hash="daily-note">
+          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined }} hash="daily-note">
             ← Back to the Daily Note
           </Link>
         </div>
@@ -59,7 +59,7 @@ function AurumNotePage() {
           <AurumNoteBody note={note} />
           <AurumNoteQuote note={note} />
           <AurumNoteSources note={note} idPrefix={`note-${note.slug}`} />
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const }} hash="daily-note">
+          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined }} hash="daily-note">
             ← Back to the Daily Note
           </Link>
         </article>
