@@ -500,12 +500,17 @@ type Estimate = { oz: number; total: number; metal: string };
 const AMOUNT_PRESETS = [100, 500, 1000, 5000];
 const AMOUNT_MAX = 1_000_000;
 
-function PurchaseCalculator() {
+function PurchaseCalculator({
+  product,
+  onProductChange,
+}: {
+  product: string | null;
+  onProductChange: (value: string) => void;
+}) {
   const [amount, setAmount] = useState<number | null>(500);
   const [amountFocused, setAmountFocused] = useState(false);
   const [capHint, setCapHint] = useState(false);
   const [metal, setMetal] = useState("gold");
-  const [product, setProduct] = useState<string | null>(null);
   const [receive, setReceive] = useState("vault");
   const [hold, setHold] = useState("30d");
   const [gift, setGift] = useState("no");
@@ -688,7 +693,7 @@ function PurchaseCalculator() {
             name="product"
             legend="Choose product"
             value={product}
-            onChange={setProduct}
+            onChange={onProductChange}
             compact
             describedBy={error ? errorId : undefined}
             options={[
