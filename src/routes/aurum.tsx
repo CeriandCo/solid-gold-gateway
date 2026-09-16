@@ -5,6 +5,7 @@ import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
 import { AurumPriceSection, AurumSampleChip } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
+import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
@@ -229,7 +230,7 @@ function AurumPageContent() {
             navigate({ search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }), hash: "weekly-brief" })
           }
         />
-        <AurumSection id="learn" tone="warm" />
+        <AurumLearnSection />
         <AurumCalculatorSection />
         <AurumSection id="gifts" tone="ivory" />
         <AurumSection id="community" tone="forest" />

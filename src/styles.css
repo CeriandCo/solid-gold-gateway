@@ -2536,3 +2536,166 @@ footer.site-footer a:focus-visible {
     transition: none;
   }
 }
+
+/* AURUM Learn (#learn) */
+.aurum-learn {
+  padding-block: 80px;
+  background: var(--warm-white);
+}
+
+.aurum-learn__cautions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.aurum-learn__caution {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-top: 1px solid var(--beige);
+  padding-top: 20px;
+}
+
+.aurum-learn__caution img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.aurum-learn__caution h3 {
+  margin-top: 20px;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+.aurum-learn__caution p {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--muted-ink);
+}
+
+.aurum-learn__guides {
+  margin-top: 72px;
+}
+
+.aurum-learn__guides-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.aurum-learn__guides-head p {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gold-dark);
+}
+
+.aurum-learn__guides-head span {
+  font-size: 13px;
+  color: var(--aurum-grey);
+}
+
+.aurum-learn__guide {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  min-height: 60px;
+  border-top: 1px solid var(--beige);
+  padding-block: 18px;
+  color: var(--charcoal);
+  text-decoration: none;
+}
+
+.aurum-learn__guide-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  color: var(--gold-dark);
+}
+
+.aurum-learn__guide-title {
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+.aurum-learn__guide-action {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+
+.aurum-learn__guide:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .aurum-learn__guide:hover .aurum-learn__guide-title,
+  .aurum-learn__guide:hover .aurum-learn__guide-action {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media (max-width: 899px) {
+  .aurum-learn__cautions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 40px;
+  }
+
+  .aurum-learn__guide {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+
+  .aurum-learn__guide-action {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 759px) {
+  .aurum-learn {
+    padding-block: 56px;
+  }
+
+  .aurum-learn__cautions {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 32px;
+  }
+
+  .aurum-learn__guides {
+    margin-top: 56px;
+  }
+
+  .aurum-learn__guides-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .aurum-learn__guide {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .aurum-learn__guide-action {
+    grid-column: 1;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
