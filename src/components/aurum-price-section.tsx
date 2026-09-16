@@ -1,4 +1,4 @@
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { AurumPriceResponse, AurumRange } from "@/lib/aurum-price.functions";
 import { Button } from "@/components/ui/button";
 
@@ -90,9 +90,16 @@ export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumP
                   <YAxis domain={["auto", "auto"]} tickFormatter={(value) => USD.format(value).replace(".00", "")} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} width={74} />
                   <Tooltip formatter={(value) => [USD.format(Number(value)), "Close"]} labelFormatter={(label) => formatDate(String(label))} />
                   <Area type="monotone" dataKey="close" stroke="var(--gold)" strokeWidth={2} fill="url(#aurum-chart-fill)" dot={false} activeDot={{ r: 4, fill: "var(--gold)" }} />
+                  <ReferenceDot
+                    x={data.series[data.series.length - 1]?.date}
+                    y={data.series[data.series.length - 1]?.close}
+                    r={4}
+                    fill="var(--gold)"
+                    stroke="var(--paper)"
+                    label={{ value: USD.format(data.series[data.series.length - 1]?.close ?? 0), position: "top", fill: "var(--charcoal)", fontSize: 11 }}
+                  />
                 </AreaChart>
               </ResponsiveContainer>
-              <span className="aurum-chart__latest">Latest close {USD.format(data.series[data.series.length - 1]?.close ?? 0)}</span>
             </div>
           ) : <p className="aurum-history__empty">No stored daily closes are available for this range.</p>}
         </div>
