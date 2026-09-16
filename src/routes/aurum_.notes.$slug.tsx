@@ -11,7 +11,15 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Note unavailable | AURUM" }, { name: "robots", content: "noindex" }] };
+      return { meta: [
+        { title: "Note unavailable | AURUM" },
+        { name: "description", content: "This AURUM Daily Note is unavailable." },
+        { property: "og:title", content: "Note unavailable | AURUM" },
+        { property: "og:description", content: "This AURUM Daily Note is unavailable." },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "robots", content: "noindex" },
+      ] };
     }
     const { note } = loaderData;
     return {
@@ -32,7 +40,7 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
       <main className="aurum-note-page">
         <div className="aurum-container">
           <h1 className="aurum-note-page__title">Note not found</h1>
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, priceState: undefined }} hash="daily-note">
+          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="daily-note">
             ← Back to the Daily Note
           </Link>
         </div>
@@ -59,7 +67,7 @@ function AurumNotePage() {
           <AurumNoteBody note={note} />
           <AurumNoteQuote note={note} />
           <AurumNoteSources note={note} idPrefix={`note-${note.slug}`} />
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, priceState: undefined }} hash="daily-note">
+          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="daily-note">
             ← Back to the Daily Note
           </Link>
         </article>
