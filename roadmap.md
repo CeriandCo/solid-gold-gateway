@@ -22,5 +22,6 @@
 - [x] Stabilize About Us responsive card sections (ownership paths, process, trust) across 390–1440px
 
 ## New (pending)
+- [x] Daily Note section (#daily-note) with expand-in-place notes and /aurum/notes/:slug pages
 - Replace Vault page hero image with uploaded secure allocation drawer image and restructure Vault hero to match shared InnerPageHero pattern.
 - Fix homepage FAQ accordion: split into two independent columns, animate height with grid-template-rows, replace icon swap with animated plus/minus bars.

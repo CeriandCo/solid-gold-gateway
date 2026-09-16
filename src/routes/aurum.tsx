@@ -3,6 +3,7 @@ import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
 import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
 import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
 import { AurumPriceSection } from "@/components/aurum-price-section";
+import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { getAurumPriceData, type AurumRange } from "@/lib/aurum-price.functions";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -11,6 +12,7 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
     range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
+    note: typeof search["note"] === "string" ? search["note"] : undefined,
   }),
   loaderDeps: ({ search: { range } }) => ({ range }),
   loader: ({ context, deps }) => context.queryClient.ensureQueryData(aurumPriceQuery(deps.range)),
@@ -83,7 +85,7 @@ function AurumPendingPage() {
 }
 
 function AurumPage() {
-  const { range } = Route.useSearch();
+  const { range, note: openNote } = Route.useSearch();
   const navigate = Route.useNavigate();
   const { data: priceData } = useSuspenseQuery(aurumPriceQuery(range));
   const subheaderRef = useRef<HTMLElement>(null);
@@ -216,7 +218,12 @@ function AurumPage() {
       <main className="aurum-main">
         <AurumHero />
         <AurumPriceSection data={priceData} range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
-        <AurumSection id="daily-note" tone="warm" />
+        <AurumDailyNoteSection
+          openSlug={openNote ?? null}
+          onToggle={(slug) =>
+            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined }), hash: "daily-note" })
+          }
+        />
         <AurumSection id="weekly-brief" tone="ivory" />
         <AurumSection id="learn" tone="warm" />
         <AurumSection id="calculator" tone="ivory" />
