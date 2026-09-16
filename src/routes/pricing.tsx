@@ -974,11 +974,11 @@ function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="pb-4 pt-4 md:pb-4 md:pt-4 lg:pb-4 lg:pt-4"
+      className="pricing-page pb-4 pt-4 md:pb-4 md:pt-4 lg:pb-4 lg:pt-4"
     >
       <h2
         id="faq-heading"
-        className="text-display-h4 mb-5 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+        className="pricing-section-title mb-5 text-forest-black"
       >
         Frequently asked questions
       </h2>
@@ -1086,7 +1086,7 @@ function PricingPage() {
 
         <section
           aria-labelledby="pricing-hero-heading"
-          className="grid grid-cols-1 items-start gap-7 pb-5 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-5 md:pt-8 lg:gap-14 lg:pb-4 lg:pt-9"
+          className="pricing-page grid grid-cols-1 items-start gap-7 pb-5 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-9 md:pb-5 md:pt-8 lg:gap-14 lg:pb-4 lg:pt-9"
         >
           <div>
             <p className="mb-5 font-sans text-[11px] font-bold uppercase leading-none tracking-[2.4px] text-gold-dark">
@@ -1094,7 +1094,7 @@ function PricingPage() {
             </p>
             <h1
               id="pricing-hero-heading"
-              className="text-display-h1-sm mb-5 text-forest-black md:mb-3 md:text-display-h1-md lg:mb-3.5 lg:text-display-h1"
+              className="pricing-hero-title mb-5 text-forest-black md:mb-3 lg:mb-3.5"
             >
               Simple pricing.<br className="hidden lg:block" /> Greater confidence.
             </h1>
@@ -1164,8 +1164,8 @@ function PricingPage() {
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.7fr_1fr] lg:gap-12">
           <div className="min-w-0">
-            <section aria-labelledby="choose-heading" className="pb-4 pt-3 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
-              <h2 id="choose-heading" className="text-display-h2 mb-2.5 text-forest-black md:text-display-h3">
+            <section aria-labelledby="choose-heading" className="pricing-page pb-4 pt-3 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
+              <h2 id="choose-heading" className="pricing-section-title mb-2.5 text-forest-black">
                 Choose what works for you
               </h2>
               <p className="mb-7 font-sans text-[15.5px] font-normal leading-[1.55] text-muted-ink md:mb-5">
