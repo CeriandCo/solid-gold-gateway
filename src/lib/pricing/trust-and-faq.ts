@@ -66,7 +66,7 @@ export const FAQ_ITEMS: FaqItem[] = [
       "Yes. You can convert your allocated metal into a coin or bar and have it shipped, insured, at any time. Delivery cost depends on location and weight and is shown before you confirm.",
   },
   {
-    question: "Can I gift gold or silver?",
+    question: "Can I gift gold?",
     answer:
       "Yes. Coins and bars can be shipped directly to a recipient with optional engraving and premium gift packaging, shown at checkout. Allocated metal can be transferred as a gift on request.",
   },
