@@ -232,7 +232,7 @@ function AurumPageContent() {
         <AurumLearnSection />
         <AurumCalculatorSection />
         <AurumGiftsSection />
-        <AurumSection id="community" tone="forest" />
+        <AurumCommunitySection />
         <AurumSection id="subscribe" tone="warm" />
       </main>
 
