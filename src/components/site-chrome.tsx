@@ -325,7 +325,7 @@ export function SiteFooter() {
       <div className="site-footer__grid">
         <div className="site-footer__brand">
           <Link to="/" aria-label="SQOOT Pure home" className="site-footer__logo-link">
-            <img src={logoImage} alt="SQOOT Pure" className="site-footer__logo" />
+            <img src={logoImage} alt="SQOOT Pure" width={567} height={200} className="site-footer__logo" />
           </Link>
           <p className="site-footer__tagline">
             A compliance-first platform for buying, storing, and redeeming real physical gold.
