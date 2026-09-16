@@ -146,7 +146,7 @@ export function GoldButton({
   }
   if (href) {
     return (
-      <a href={href} className={classes} aria-label={ariaLabel} onClick={onClick} ref={ref as React.Ref<HTMLAnchorElement>}>
+      <a href={href} target={target} rel={rel} className={classes} aria-label={ariaLabel} onClick={onClick} ref={ref as React.Ref<HTMLAnchorElement>}>
         {content}
       </a>
     );
