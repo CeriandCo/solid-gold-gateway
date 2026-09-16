@@ -3003,27 +3003,6 @@ footer.site-footer a:focus-visible {
   color: var(--warm-white);
 }
 
-.aurum-community__chip {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  background: var(--caution);
-  color: var(--warm-white);
-  font-family: var(--font-sans, Inter), sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  padding: 4px 8px;
-  white-space: nowrap;
-}
-
-.aurum-community__source {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-top: 20px;
-}
-
 .aurum-community__source-text {
   font-family: var(--font-sans, Inter), sans-serif;
   font-size: 12px;
@@ -3160,19 +3139,6 @@ footer.site-footer a:focus-visible {
 
 .aurum-community__room-url a:hover {
   text-decoration: underline;
-}
-
-.aurum-community__pending {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--caution);
-  color: var(--caution);
-  font-family: var(--font-sans, Inter), sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  padding: 3px 7px;
-  white-space: nowrap;
 }
 
 .aurum-community__cta {
