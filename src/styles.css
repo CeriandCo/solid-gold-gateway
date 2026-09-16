@@ -2279,102 +2279,294 @@ footer.site-footer a:focus-visible {
   color: var(--aurum-grey);
 }
 
-/* ── AURUM look-back calculator ─────────────────────────────── */
+/* ── AURUM look-back calculator (#calculator) ───────────────── */
+.aurum-page .aurum-calc {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 80px;
+  background: var(--ivory, #f4efe7);
+  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+}
+
+.aurum-page .aurum-calc__bg {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.aurum-page .aurum-calc::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: var(--ivory, #f4efe7);
+  opacity: 0.9;
+}
+
+.aurum-page .aurum-calc__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gold-dark, #945f06);
+}
+
+.aurum-page .aurum-calc__title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.12;
+  color: var(--charcoal, #091b13);
+}
+
 .aurum-page .aurum-calc__dek {
+  margin-top: 12px;
+  max-width: 700px;
+  font-family: var(--font-sans);
   font-size: 15px;
   color: var(--muted-ink, #4f5451);
-  max-width: 720px;
-  margin-top: 10px;
 }
 
 .aurum-page .aurum-calc__grid {
   display: grid;
-  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-  gap: 32px;
-  margin-top: 32px;
-  align-items: start;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 24px;
+  margin-top: 36px;
 }
 
-.aurum-page .aurum-calc__form {
-  display: grid;
-  gap: 16px;
+.aurum-page .aurum-calc__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border: 1px solid var(--beige, #dad4ce);
+  background: #fff;
 }
 
 .aurum-page .aurum-calc__field {
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
-.aurum-page .aurum-calc__field > span {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+.aurum-page .aurum-calc__field > label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--muted-ink, #4f5451);
+}
+
+.aurum-page .aurum-calc__box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 14px;
+  border: 1px solid var(--beige, #dad4ce);
+  background: var(--warm-white, #f6f3f1);
+}
+
+.aurum-page .aurum-calc__box:focus-within {
+  outline: 2px solid var(--gold, #c9a84c);
+  outline-offset: 2px;
+}
+
+.aurum-page .aurum-calc__box input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--charcoal, #091b13);
+}
+
+.aurum-page .aurum-calc__suffix {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--aurum-grey, #8a938d);
+}
+
+.aurum-page .aurum-calc__helper {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--aurum-grey, #8a938d);
+}
+
+.aurum-page .aurum-calc__submit {
+  width: 100%;
+  margin-top: auto;
+}
+
+.aurum-page .aurum-calc__notice {
+  font-family: var(--font-sans);
+  font-size: 13px;
   color: var(--gold-dark, #945f06);
 }
 
-.aurum-page .aurum-calc__field input {
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--beige, #dad4ce);
-  border-radius: 4px;
-  background: #fff;
-  color: var(--charcoal, #091b13);
-  font-size: 15px;
-}
-
-.aurum-page .aurum-calc__field input:disabled {
-  opacity: 0.55;
-}
-
 .aurum-page .aurum-calc__result {
-  border: 1px solid var(--beige, #dad4ce);
-  background: #fff;
-  border-radius: 4px;
-  padding: 28px 32px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  justify-items: start;
+  padding: 32px;
+  background: var(--forest-deep, #10251a);
+  color: var(--warm-white, #f6f3f1);
+}
+
+.aurum-page .aurum-calc__result-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.aurum-page .aurum-calc__result-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  color: var(--gold, #c9a84c);
+}
+
+.aurum-page .aurum-calc__result-stamp {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: color-mix(in oklab, #fff 50%, transparent);
+}
+
+.aurum-page .aurum-calc__chip {
+  align-self: flex-start;
+  padding: 4px 8px;
+  background: #b0741a;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--warm-white, #f6f3f1);
+}
+
+.aurum-page .aurum-calc__result-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 34px;
+  color: var(--warm-white, #f6f3f1);
+}
+
+.aurum-page .aurum-calc__result-reason {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: color-mix(in oklab, #fff 70%, transparent);
+}
+
+.aurum-page .aurum-calc__figure {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 62px;
+  line-height: 1;
+  color: var(--warm-white, #f6f3f1);
+}
+
+.aurum-page .aurum-calc__delta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.aurum-page .aurum-calc__delta-pct {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--gold, #c9a84c);
+}
+
+.aurum-page .aurum-calc__delta-period {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: color-mix(in oklab, #fff 70%, transparent);
+}
+
+.aurum-page .aurum-calc__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--warm-white, #f6f3f1) 14%, transparent);
 }
 
 .aurum-page .aurum-calc__rows {
   display: grid;
-  gap: 12px;
-  width: 100%;
 }
 
 .aurum-page .aurum-calc__rows > div {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   gap: 20px;
-  font-size: 14px;
-  color: var(--muted-ink, #4f5451);
+  padding: 12px 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--warm-white, #f6f3f1) 8%, transparent);
 }
 
-.aurum-page .aurum-calc__rows > div dd {
-  color: var(--charcoal, #091b13);
-  font-weight: 600;
+.aurum-page .aurum-calc__rows > div:last-child {
+  border-bottom: 0;
 }
 
-.aurum-page .aurum-calc__rows--total {
-  border-top: 1px solid var(--beige, #dad4ce);
-  padding-top: 12px;
-  font-size: 15px;
+.aurum-page .aurum-calc__rows dt {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, #fff 60%, transparent);
 }
 
-.aurum-page .aurum-calc__change {
+.aurum-page .aurum-calc__rows dd {
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--gold-dark, #945f06);
   font-weight: 600;
+  white-space: nowrap;
+  color: var(--warm-white, #f6f3f1);
 }
 
-.aurum-page .aurum-calc__disabled {
-  font-size: 15px;
-  color: var(--aurum-grey, #8a938d);
+.aurum-page .aurum-calc__disclaimer {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, #fff 55%, transparent);
+}
+
+.aurum-page .aurum-calc__freshness {
+  margin-top: 24px;
+}
+
+.aurum-page .aurum-calc__freshness-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: #b0741a;
+}
+
+.aurum-page .aurum-calc__freshness-text {
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--muted-ink, #4f5451);
 }
 
 @media (max-width: 899px) {
   .aurum-page .aurum-calc__grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aurum-page .aurum-calc__title {
+    font-size: 32px;
+  }
+
+  .aurum-page .aurum-calc__figure {
+    font-size: 44px;
   }
 }
 
