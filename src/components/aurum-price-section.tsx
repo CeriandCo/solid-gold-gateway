@@ -27,7 +27,7 @@ function formatAge(seconds: number) {
 
 
 export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
-  const { state, data, now, showLiveBadge, historyFor } = useAurumPrice();
+  const { state, data, now, showLiveBadge, showSampleChip, historyFor } = useAurumPrice();
   const facts = data?.facts ?? null;
   const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const latestClose = points.at(-1) ?? null;
