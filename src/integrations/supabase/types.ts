@@ -14,7 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      aurum_daily_closes: {
+        Row: {
+          close_price: number
+          created_at: string
+          currency: string
+          id: string
+          price_date: string
+          source: string | null
+          unit: string
+        }
+        Insert: {
+          close_price: number
+          created_at?: string
+          currency: string
+          id?: string
+          price_date: string
+          source?: string | null
+          unit: string
+        }
+        Update: {
+          close_price?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          price_date?: string
+          source?: string | null
+          unit?: string
+        }
+        Relationships: []
+      }
+      aurum_spot_prices: {
+        Row: {
+          change_amount: number
+          change_percent: number
+          created_at: string
+          currency: string
+          high_24h: number
+          id: string
+          low_24h: number
+          observed_at: string
+          previous_close: number
+          price: number
+          source: string | null
+          unit: string
+        }
+        Insert: {
+          change_amount: number
+          change_percent: number
+          created_at?: string
+          currency: string
+          high_24h: number
+          id?: string
+          low_24h: number
+          observed_at: string
+          previous_close: number
+          price: number
+          source?: string | null
+          unit: string
+        }
+        Update: {
+          change_amount?: number
+          change_percent?: number
+          created_at?: string
+          currency?: string
+          high_24h?: number
+          id?: string
+          low_24h?: number
+          observed_at?: string
+          previous_close?: number
+          price?: number
+          source?: string | null
+          unit?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

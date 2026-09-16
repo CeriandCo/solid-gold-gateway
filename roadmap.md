@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Done
+- Built `/aurum#price` with validated database-only live/unavailable states, computed historical facts, and re-querying range chart.
 - Built the `/aurum#top` editorial hero with its responsive photo scrim, educational copy, and Price/Learn anchor actions.
 - Added the `/aurum` route shell with its sticky subheader, anchor navigation, nine placeholders, unavailable price state, and shared footer link.
 - Shared 4-column footer (homepage design) used on all 8 pages via `SiteFooter`; styles live in `src/styles.css` (`footer.site-footer`) so page-scoped CSS cannot alter them.
