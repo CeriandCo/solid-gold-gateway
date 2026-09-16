@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AURUM_NOTES, AURUM_NOTE_COUNT, formatNoteDate } from "@/lib/aurum-notes";
-import { AurumNoteBody, AurumNoteQuote, AurumNoteSources } from "@/components/aurum-note-content";
+import { AURUM_NOTES, AURUM_NOTE_COUNT } from "@/lib/aurum-notes";
+import { AurumEditorialRow } from "@/components/aurum-editorial-row";
 
 const PAGE_SIZE = 3;
 
@@ -27,58 +27,18 @@ export function AurumDailyNoteSection({
         </p>
 
         <ul className="aurum-note-list">
-          {notes.map((note, index) => {
-            const isOpen = openSlug === note.slug;
-            const panelId = `aurum-note-panel-${note.slug}`;
-            return (
-              <li key={note.slug} className={`aurum-note-row${isOpen ? " is-open" : ""}`}>
-                <button
-                  type="button"
-                  className="aurum-note-trigger"
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
-                  onClick={() => onToggle(isOpen ? null : note.slug)}
-                >
-                  <span className="aurum-note-meta">
-                    {index === 0 ? <span className="aurum-note-chip">LATEST</span> : null}
-                    <span className="aurum-note-date">{formatNoteDate(note.publishedAt)}</span>
-                    <span className="aurum-note-read">{note.readMinutes} min read</span>
-                  </span>
-                  <span className="aurum-note-content">
-                    <span className="aurum-note-headline">{note.title}</span>
-                    <span className="aurum-note-summary">{note.summary}</span>
-                    <span className="aurum-note-count">
-                      {note.sources.length} {note.sources.length === 1 ? "SOURCE" : "SOURCES"}
-                    </span>
-                  </span>
-                  <span className="aurum-note-open" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
-                      {isOpen ? <path d="M5 15l7-7 7 7" /> : <path d="M5 12h13M13 6l6 6-6 6" />}
-                    </svg>
-                  </span>
-                </button>
-
-                <div id={panelId} className="aurum-note-panel" hidden={!isOpen}>
-                  <div className="aurum-note-panel__inner">
-                    <div className="aurum-note-panel__main">
-                      <AurumNoteBody note={note} />
-                      <AurumNoteQuote note={note} />
-                      <AurumNoteSources note={note} idPrefix={panelId} />
-                    </div>
-                    <aside className="aurum-note-panel__aside">
-                      <p className="aurum-note-aside__label">OPEN AS A PAGE</p>
-                      <a className="aurum-note-aside__link" href={`/aurum/notes/${note.slug}`}>
-                        /aurum/notes/{note.slug}
-                      </a>
-                      <button type="button" className="aurum-note-collapse" onClick={() => onToggle(null)}>
-                        Collapse ↑
-                      </button>
-                    </aside>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
+          {notes.map((note, index) => (
+            <AurumEditorialRow
+              key={note.slug}
+              article={note}
+              isOpen={openSlug === note.slug}
+              isLatest={index === 0}
+              panelId={`aurum-note-panel-${note.slug}`}
+              pagePath={`/aurum/notes/${note.slug}`}
+              closeLabel="Collapse ↑"
+              onToggle={() => onToggle(openSlug === note.slug ? null : note.slug)}
+            />
+          ))}
         </ul>
 
         <div className="aurum-note-footer">

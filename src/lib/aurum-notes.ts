@@ -1,20 +1,7 @@
-export type AurumNoteSource = {
-  publisher: string;
-  title: string;
-  date: string;
-  url: string;
-};
+import { formatEditorialDate, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
-export type AurumNote = {
-  slug: string;
-  title: string;
-  summary: string;
-  publishedAt: string;
-  readMinutes: number;
-  body: string[];
-  pullQuote?: string;
-  sources: AurumNoteSource[];
-};
+export type AurumNoteSource = AurumEditorialSource;
+export type AurumNote = AurumEditorial;
 
 const NOTES: AurumNote[] = [
   {
@@ -223,10 +210,5 @@ export function getAurumNote(slug: string): AurumNote | undefined {
 }
 
 export function formatNoteDate(value: string): string {
-  return new Intl.DateTimeFormat("en-GB", {
-    timeZone: "UTC",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(`${value}T00:00:00Z`));
+  return formatEditorialDate(value);
 }
