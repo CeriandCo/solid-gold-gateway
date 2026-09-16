@@ -553,7 +553,7 @@ function PurchaseCalculator() {
       return;
     }
     setError(null);
-    const spot = metal === "gold" ? SPOT_GOLD : SPOT_SILVER;
+    const spot = SPOT_GOLD;
     const purchaseFee = product === "allocated" ? value * 0.03 : 0;
     const toMetal = value - purchaseFee;
     const oz = toMetal / (spot * (1 + PREMIUM));
