@@ -104,6 +104,7 @@ function AurumPage() {
     if (!section) return;
 
     window.history.pushState(null, "", `#${id}`);
+    setActiveSection(id === "top" ? null : id);
     section.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       block: "start",

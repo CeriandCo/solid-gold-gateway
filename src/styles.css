@@ -1241,16 +1241,7 @@ footer.site-footer a:focus-visible {
   }
 
   .aurum-subscribe-button {
-    width: 44px;
-    padding-inline: 0;
-    overflow: hidden;
-    color: transparent;
-  }
-
-  .aurum-subscribe-button::before {
-    content: "+";
-    color: var(--forest-deep);
-    font-size: 20px;
+    padding-inline: 0.75rem;
   }
 
   .aurum-section {
