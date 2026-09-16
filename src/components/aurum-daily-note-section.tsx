@@ -1,32 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
-import { AURUM_NOTES, AURUM_NOTE_COUNT, formatNoteDate, type AurumNote } from "@/lib/aurum-notes";
+import { useState } from "react";
+import { AURUM_NOTES, AURUM_NOTE_COUNT, formatNoteDate } from "@/lib/aurum-notes";
 import { AurumNoteBody, AurumNoteQuote, AurumNoteSources } from "@/components/aurum-note-content";
 
 const PAGE_SIZE = 3;
 
-export function AurumDailyNoteSection() {
+export function AurumDailyNoteSection({
+  openSlug,
+  onToggle,
+}: {
+  openSlug: string | null;
+  onToggle: (slug: string | null) => void;
+}) {
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
-
-  useEffect(() => {
-    const onPopState = () => {
-      const match = /^\/aurum\/notes\/([^/]+)$/.exec(window.location.pathname);
-      setOpenSlug(match?.[1] ?? null);
-    };
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
-
-  const toggle = useCallback((note: AurumNote) => {
-    setOpenSlug((current) => {
-      const next = current === note.slug ? null : note.slug;
-      if (typeof window !== "undefined") {
-        window.history.pushState(null, "", next ? `/aurum/notes/${note.slug}` : "/aurum#daily-note");
-      }
-      return next;
-    });
-  }, []);
-
   const notes = AURUM_NOTES.slice(0, visible);
 
   return (
@@ -52,10 +37,10 @@ export function AurumDailyNoteSection() {
                   className="aurum-note-trigger"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  onClick={() => toggle(note)}
+                  onClick={() => onToggle(isOpen ? null : note.slug)}
                 >
                   <span className="aurum-note-meta">
-                    {index === 0 && visible >= PAGE_SIZE ? <span className="aurum-note-chip">LATEST</span> : null}
+                    {index === 0 ? <span className="aurum-note-chip">LATEST</span> : null}
                     <span className="aurum-note-date">{formatNoteDate(note.publishedAt)}</span>
                     <span className="aurum-note-read">{note.readMinutes} min read</span>
                   </span>
@@ -85,7 +70,7 @@ export function AurumDailyNoteSection() {
                       <a className="aurum-note-aside__link" href={`/aurum/notes/${note.slug}`}>
                         /aurum/notes/{note.slug}
                       </a>
-                      <button type="button" className="aurum-note-collapse" onClick={() => toggle(note)}>
+                      <button type="button" className="aurum-note-collapse" onClick={() => onToggle(null)}>
                         Collapse ↑
                       </button>
                     </aside>

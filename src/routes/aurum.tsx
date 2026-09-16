@@ -85,7 +85,7 @@ function AurumPendingPage() {
 }
 
 function AurumPage() {
-  const { range } = Route.useSearch();
+  const { range, note: openNote } = Route.useSearch();
   const navigate = Route.useNavigate();
   const { data: priceData } = useSuspenseQuery(aurumPriceQuery(range));
   const subheaderRef = useRef<HTMLElement>(null);
@@ -218,7 +218,12 @@ function AurumPage() {
       <main className="aurum-main">
         <AurumHero />
         <AurumPriceSection data={priceData} range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
-        <AurumDailyNoteSection />
+        <AurumDailyNoteSection
+          openSlug={openNote ?? null}
+          onToggle={(slug) =>
+            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined }), hash: "daily-note" })
+          }
+        />
         <AurumSection id="weekly-brief" tone="ivory" />
         <AurumSection id="learn" tone="warm" />
         <AurumSection id="calculator" tone="ivory" />
