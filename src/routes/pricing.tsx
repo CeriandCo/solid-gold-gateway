@@ -879,25 +879,28 @@ function TrustBar() {
   return (
     <section
       aria-labelledby="trust-heading"
-      className="mt-4 border-y border-beige py-5 md:mt-5 md:py-6 lg:mt-7"
+      className="pricing-page mt-4 bg-[var(--pricing-forest-900)] py-8 md:mt-5 md:py-9 lg:mt-7"
     >
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
       </h2>
-      <ul className="grid grid-cols-1 items-start gap-y-4 md:grid-cols-4 md:gap-6 lg:gap-7">
+      <ul className="grid grid-cols-1 items-start gap-y-4 md:grid-cols-4 md:gap-x-0 md:gap-y-0 md:divide-x md:divide-[var(--pricing-gold-border)] lg:gap-x-0">
         {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
-          <li key={title} className="flex min-w-0 items-start gap-3 lg:gap-3">
+          <li
+            key={title}
+            className="flex min-w-0 items-start gap-3 md:px-4 lg:gap-3 lg:px-5 first:md:pl-0 last:md:pr-0"
+          >
             <Icon
               strokeWidth={1.6}
               aria-hidden="true"
               focusable="false"
-              className="mt-0.5 size-[26px] shrink-0 text-forest-black md:size-7 lg:size-8"
+              className="mt-0.5 size-[26px] shrink-0 text-[var(--pricing-gold)] md:size-7 lg:size-8"
             />
             <span className="flex min-w-0 flex-col gap-1">
-              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-forest-black lg:text-ui-sm">
+              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-warm-white lg:text-ui-sm">
                 {title}
               </strong>
-              <span className="font-sans text-xs font-normal leading-[1.45] text-muted-ink lg:text-ui-xs">
+              <span className="font-sans text-xs font-normal leading-[1.45] text-warm-white/65 lg:text-ui-xs">
                 {description}
               </span>
             </span>
