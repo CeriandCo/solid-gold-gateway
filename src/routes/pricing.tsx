@@ -39,14 +39,14 @@ export const Route = createFileRoute("/pricing")({
       {
         name: "description",
         content:
-          "Simple pricing for gold and silver. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
+          "Simple pricing for gold. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
       },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
       {
         property: "og:description",
         content:
-          "Transparent fees for gold and silver: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
+          "Transparent fees for gold: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
       },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:url", content: PRICING_URL },
@@ -55,7 +55,7 @@ export const Route = createFileRoute("/pricing")({
       {
         name: "twitter:description",
         content:
-          "Transparent fees for gold and silver. Storage, delivery, and gifting costs shown upfront.",
+          "Transparent fees for gold. Storage, delivery, and gifting costs shown upfront.",
       },
       { name: "twitter:image", content: OG_IMAGE },
     ],
@@ -586,7 +586,7 @@ function PurchaseCalculator() {
         See what your money could buy
       </h2>
       <p className="mb-4.5 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
-        Explore your gold or silver options and see the estimated costs, including fees,
+        Explore your gold options and see the estimated costs, including fees,
         storage and delivery.
       </p>
 
@@ -958,7 +958,7 @@ function BottomCta() {
           Ready to start?
         </h2>
         <p className="mx-auto mb-5 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
-          Own your first fraction of gold or silver in minutes — from US$25, no minimum, no
+          Own your first fraction of gold in minutes — from US$25, no minimum, no
           monthly subscription.
         </p>
         <GoldButton
@@ -1011,7 +1011,7 @@ function PricingPage() {
               Simple pricing.<br className="hidden lg:block" /> Greater confidence.
             </h1>
             <p className="mb-6 max-w-none font-sans text-ui-lg font-normal leading-[1.6] text-muted-ink md:mb-4 md:max-w-[38em] lg:mb-5 lg:text-[15.5px]">
-              Know exactly what it costs to buy, store, gift or take delivery of gold and silver. All prices and fees are shown in U.S. dollars (USD), so you can invest with clarity.
+              Know exactly what it costs to buy, store, gift or take delivery of gold. All prices and fees are shown in U.S. dollars (USD), so you can invest with clarity.
             </p>
             <ul className="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-5">
               {HERO_CHIPS.map(({ icon: Icon, title, description }, index) => (
@@ -1051,7 +1051,7 @@ function PricingPage() {
               />
               <img
                 src={heroImage.url}
-                alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin and a Walking Liberty silver coin on a marble surface"
+                alt="Allocated PAMP Suisse gold bar with a Canada Maple Leaf gold coin on a marble surface"
                 width={560}
                 height={420}
                 loading="eager"
@@ -1081,7 +1081,7 @@ function PricingPage() {
                 Choose what works for you
               </h2>
               <p className="mb-7 font-sans text-[15.5px] font-normal leading-[1.55] text-muted-ink md:mb-5">
-                Three ways to own gold and silver. Store it securely or have it delivered to you.
+                Three ways to own gold. Store it securely or have it delivered to you.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3">
