@@ -1217,7 +1217,8 @@ function PricingPage() {
             </section>
 
             <TransactionCostsSection />
-            <StorageSection />
+            <FeeListSection table={ONGOING_TABLE} idSuffix="ongoing" />
+            <FeeListSection table={OPTIONAL_TABLE} idSuffix="optional" />
           </div>
 
           <div className="min-w-0 lg:self-start">
