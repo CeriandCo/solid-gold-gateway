@@ -134,9 +134,7 @@ function AurumPage() {
           </div>
 
           <div className="aurum-subheader__actions">
-            <div className="aurum-price" aria-live="polite">
-              <span>Price unavailable</span>
-            </div>
+            <AurumPriceChip state="unavailable" />
             <GoldButton
               href="#subscribe"
               variant="primary"
@@ -173,5 +171,13 @@ function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "d
     <section id={id} className={`aurum-section aurum-section--${tone}`} aria-label={id.replaceAll("-", " ")}>
       <div className="aurum-container" />
     </section>
+  );
+}
+
+function AurumPriceChip({ state }: { state: "loading" | "unavailable" }) {
+  return (
+    <div className="aurum-price" aria-live="polite" aria-busy={state === "loading"}>
+      <span>{state === "loading" ? "Loading price" : "Price unavailable"}</span>
+    </div>
   );
 }

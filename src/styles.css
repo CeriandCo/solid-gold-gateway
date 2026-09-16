@@ -1213,30 +1213,22 @@ footer.site-footer a:focus-visible {
 
 @media (max-width: 759px) {
   .aurum-subheader__inner {
-    min-height: 104px;
+    min-height: 52px;
     grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-rows: 52px 52px;
-    gap: 0 0.75rem;
+    gap: 0.5rem;
   }
 
   .aurum-subheader__brand {
     grid-column: 1;
-    grid-row: 1;
   }
 
   .aurum-subheader__actions {
-    grid-column: 2 / 4;
-    grid-row: 1;
+    grid-column: 3;
     justify-content: flex-end;
   }
 
   .aurum-subheader__scroller {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: calc(100% + 3rem);
-    margin-inline: -1.5rem;
-    border-top: 1px solid color-mix(in oklab, var(--gold) 18%, transparent);
-    padding-inline: 1.5rem;
+    grid-column: 2;
   }
 
   .aurum-subheader__links {
@@ -1245,7 +1237,20 @@ footer.site-footer a:focus-visible {
   }
 
   .aurum-price {
-    font-size: 11px;
+    display: none;
+  }
+
+  .aurum-subscribe-button {
+    width: 44px;
+    padding-inline: 0;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .aurum-subscribe-button::before {
+    content: "+";
+    color: var(--forest-deep);
+    font-size: 20px;
   }
 
   .aurum-section {
