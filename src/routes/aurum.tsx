@@ -80,13 +80,15 @@ function AurumPage() {
       const linkedSections = AURUM_LINKS.map(({ id }) => document.getElementById(id)).filter(
         (section): section is HTMLElement => Boolean(section),
       );
-      const passedSections = linkedSections.filter((section) => section.getBoundingClientRect().top <= offset + 1);
-      const current = passedSections.at(-1) ?? linkedSections.find((section) => section.getBoundingClientRect().top < window.innerHeight);
+      const current = linkedSections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= offset + 2 && rect.bottom > offset + 2;
+      });
       setActiveSection(current?.id ?? null);
     };
 
     const observer = new IntersectionObserver(
-      updateActiveSection,
+      () => requestAnimationFrame(updateActiveSection),
       {
         rootMargin: `-${subheaderRef.current?.getBoundingClientRect().height ?? 56}px 0px -55% 0px`,
         threshold: 0,
@@ -94,8 +96,12 @@ function AurumPage() {
     );
 
     sections.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
     updateActiveSection();
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateActiveSection);
+    };
   }, []);
 
   const scrollToSection = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
