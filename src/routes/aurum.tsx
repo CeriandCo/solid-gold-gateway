@@ -69,19 +69,24 @@ function AurumPage() {
       (section): section is HTMLElement => Boolean(section),
     );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const topEntry = entries.find((entry) => entry.target.id === "top");
-        if (topEntry?.isIntersecting) {
-          setActiveSection(null);
-          return;
-        }
+    const updateActiveSection = () => {
+      const offset = (subheaderRef.current?.getBoundingClientRect().height ?? 56) + 8;
+      const topSection = document.getElementById("top");
+      if (topSection && topSection.getBoundingClientRect().bottom > offset) {
+        setActiveSection(null);
+        return;
+      }
 
-        const visible = entries
-          .filter((entry) => entry.isIntersecting && entry.target.id !== "subscribe")
-          .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
-        if (visible[0]) setActiveSection(visible[0].target.id);
-      },
+      const linkedSections = AURUM_LINKS.map(({ id }) => document.getElementById(id)).filter(
+        (section): section is HTMLElement => Boolean(section),
+      );
+      const passedSections = linkedSections.filter((section) => section.getBoundingClientRect().top <= offset + 1);
+      const current = passedSections.at(-1) ?? linkedSections.find((section) => section.getBoundingClientRect().top < window.innerHeight);
+      setActiveSection(current?.id ?? null);
+    };
+
+    const observer = new IntersectionObserver(
+      updateActiveSection,
       {
         rootMargin: `-${subheaderRef.current?.getBoundingClientRect().height ?? 56}px 0px -55% 0px`,
         threshold: 0,
@@ -89,6 +94,7 @@ function AurumPage() {
     );
 
     sections.forEach((section) => observer.observe(section));
+    updateActiveSection();
     return () => observer.disconnect();
   }, []);
 
