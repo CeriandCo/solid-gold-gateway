@@ -680,10 +680,7 @@ function PurchaseCalculator() {
             legend="Choose metal"
             value={metal}
             onChange={setMetal}
-            options={[
-              { value: "gold", label: "Gold" },
-              { value: "silver", label: "Silver" },
-            ]}
+            options={[{ value: "gold", label: "Gold" }]}
           />
         </StepRow>
 
