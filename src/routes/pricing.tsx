@@ -990,6 +990,19 @@ function BottomCta() {
 }
 
 function PricingPage() {
+  const [product, setProduct] = useState<string | null>(null);
+
+  // Clicking a product card selects that product in the calculator. Guard
+  // against the card's own CTA link (and any control) so only the card
+  // surface itself toggles the selection.
+  function handleCardSelect(
+    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+    id: string,
+  ) {
+    if ((event.target as HTMLElement).closest("a, button, input")) return;
+    setProduct(id);
+  }
+
   return (
     <div className="min-h-screen bg-background text-forest-black">
       <a
@@ -1093,6 +1106,16 @@ function PricingPage() {
                 {PRODUCT_CARDS.map((card) => (
                   <article
                     key={card.title}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={product === card.id}
+                    onClick={(event) => handleCardSelect(event, card.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        handleCardSelect(event, card.id);
+                      }
+                    }}
                     className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-6 md:pt-5 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:pb-6 lg:pt-5"
                   >
                     <div className="min-w-0">
@@ -1141,7 +1164,7 @@ function PricingPage() {
           </div>
 
           <div className="min-w-0 lg:sticky lg:top-6 lg:self-start">
-            <PurchaseCalculator />
+            <PurchaseCalculator product={product} onProductChange={setProduct} />
           </div>
         </div>
 
