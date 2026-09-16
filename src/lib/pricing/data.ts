@@ -86,14 +86,17 @@ export type TransactionRow = {
 
 export type TransactionCostsTableData = {
   title: string;
+  category: string;
   subtitle: string;
   columns: string[];
   rows: TransactionRow[];
 };
 
-export const TRANSACTION_COSTS_TABLE: TransactionCostsTableData = {
-  title: "1. Transaction costs",
-  subtitle: "The costs that apply when you buy or sell gold.",
+// Group 1 — PAY TODAY: one-off costs charged at the moment of purchase.
+export const PAY_TODAY_TABLE: TransactionCostsTableData = {
+  title: "1. Pay today",
+  category: "ONE-OFF",
+  subtitle: "What you pay at the moment of purchase.",
   columns: ["Cost", "Coins", "Bars", "Allocated metal"],
   rows: [
     {
@@ -113,10 +116,6 @@ export const TRANSACTION_COSTS_TABLE: TransactionCostsTableData = {
         { kind: "highlight", value: "3.00%", suffix: "of purchase amount" },
       ],
     },
-    {
-      label: "Selling fee",
-      cells: { spanAllProducts: true, value: "To confirm (applies to all products)" },
-    },
   ],
 };
 
@@ -132,14 +131,17 @@ export type StorageRow = {
 
 export type StorageTableData = {
   title: string;
+  category: string;
   subtitle: string;
   columns: string[];
   rows: StorageRow[];
 };
 
-export const STORAGE_TABLE: StorageTableData = {
-  title: "2. Storage, delivery & gifting",
-  subtitle: "Optional costs depending on what you choose to do with your metal.",
+// Group 2 — ONGOING OWNERSHIP COSTS: charged while metal stays in the vault.
+export const ONGOING_TABLE: StorageTableData = {
+  title: "2. Ongoing ownership costs",
+  category: "ANNUAL",
+  subtitle: "Storage costs while your metal remains in the vault, charged pro-rata.",
   columns: ["Service", "Cost (applies to all products)"],
   rows: [
     {
@@ -160,6 +162,16 @@ export const STORAGE_TABLE: StorageTableData = {
       value: "(if calculated fee is lower)",
       highlight: "US$25",
     },
+  ],
+};
+
+// Group 3 — OPTIONAL SERVICES: only charged if the service is chosen.
+export const OPTIONAL_TABLE: StorageTableData = {
+  title: "3. Optional services",
+  category: "OPTIONAL",
+  subtitle: "Costs that only apply if you choose these services.",
+  columns: ["Service", "Cost (applies to all products)"],
+  rows: [
     {
       label: "Physical delivery",
       hint: "(if selected)",
@@ -171,6 +183,12 @@ export const STORAGE_TABLE: StorageTableData = {
       label: "Premium gift packaging",
       hint: "(gift option)",
       value: "To confirm",
+      highlight: "",
+    },
+    {
+      label: "Selling fee",
+      hint: "",
+      value: "To confirm (applies to all products)",
       highlight: "",
     },
   ],
