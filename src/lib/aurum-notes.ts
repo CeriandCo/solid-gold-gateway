@@ -210,5 +210,10 @@ export function getAurumNote(slug: string): AurumNote | undefined {
 }
 
 export function formatNoteDate(value: string): string {
-  return formatEditorialDate(value);
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: "UTC",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(`${value}T00:00:00Z`));
 }
