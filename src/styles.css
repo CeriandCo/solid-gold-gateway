@@ -3444,7 +3444,8 @@ footer.site-footer a:focus-visible {
 }
 
 .aurum-page .aurum-subscribe__card-foot {
-  margin-top: 32px;
+  margin-top: auto;
+  padding-top: 16px;
   padding-top: 16px;
   border-top: 1px solid color-mix(in srgb, #fff 14%, transparent);
 }
