@@ -43,7 +43,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
     image: coinsImage.url,
     imageWebp: coinsWebp.url,
     imageWebp2x: coinsWebp2x.url,
-    imageAlt: "Silver Walking Liberty coin overlapping a gold Canada Maple Leaf coin",
+    imageAlt: "Gold Canada Maple Leaf coin",
     ctaLabel: "View coins",
     ctaHref: "/products/coins",
   },
@@ -63,11 +63,11 @@ export const PRODUCT_CARDS: ProductCard[] = [
     id: "allocated",
     title: "Allocated metal",
     kicker: "Start from US$25",
-    description: "A flexible way to own gold or silver in secure vault storage.",
+    description: "A flexible way to own gold in secure vault storage.",
     image: allocatedImage.url,
     imageWebp: allocatedWebp.url,
     imageWebp2x: allocatedWebp2x.url,
-    imageAlt: "Stack of gold and silver coins",
+    imageAlt: "Stack of gold coins",
     ctaLabel: "View allocated metal",
     ctaHref: "/products/allocated",
   },
@@ -93,7 +93,7 @@ export type TransactionCostsTableData = {
 
 export const TRANSACTION_COSTS_TABLE: TransactionCostsTableData = {
   title: "1. Transaction costs",
-  subtitle: "The costs that apply when you buy or sell gold and silver.",
+  subtitle: "The costs that apply when you buy or sell gold.",
   columns: ["Cost", "Coins", "Bars", "Allocated metal"],
   rows: [
     {
