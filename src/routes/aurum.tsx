@@ -10,7 +10,7 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 
 export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
-    range: isAurumRange(search.range) ? search.range : "1Y" as AurumRange,
+    range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
   }),
   loaderDeps: ({ search: { range } }) => ({ range }),
   loader: ({ context, deps }) => context.queryClient.ensureQueryData(aurumPriceQuery(deps.range)),

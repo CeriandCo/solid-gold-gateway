@@ -1,5 +1,6 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { AurumPriceResponse, AurumRange } from "@/lib/aurum-price.functions";
+import { Button } from "@/components/ui/button";
 
 const USD = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });
 const PERCENT = new Intl.NumberFormat("en-US", { signDisplay: "always", minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -14,6 +15,7 @@ function formatDate(value: string) {
 
 export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumPriceResponse; range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
   const live = data.priceState.status === "live" ? data.priceState : null;
+  const unavailable = data.priceState.status === "unavailable" ? data.priceState : null;
   const secondsAgo = live ? Math.max(0, Math.floor((Date.parse(data.checkedAt) - Date.parse(live.observedAt)) / 1000)) : null;
 
   return (
@@ -47,8 +49,8 @@ export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumP
           ) : (
             <div className="aurum-price-unavailable" role="status">
               <p>Price unavailable</p>
-              <span>{data.priceState.reason}</span>
-              {data.priceState.lastGoodAt ? <span>Last good price time: {DATE.format(new Date(data.priceState.lastGoodAt))}, {TIME.format(new Date(data.priceState.lastGoodAt))} UTC</span> : null}
+              <span>{unavailable?.reason}</span>
+              {unavailable?.lastGoodAt ? <span>Last good price time: {DATE.format(new Date(unavailable.lastGoodAt))}, {TIME.format(new Date(unavailable.lastGoodAt))} UTC</span> : null}
             </div>
           )}
           <p className="aurum-price-footnote">Indicative reference prices, shown for education. Not a dealer quote, not a solicitation, not investment advice.</p>
@@ -74,7 +76,7 @@ export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumP
           <div className="aurum-history__head">
             <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">Twelve months of daily closes</h2></div>
             <div className="aurum-history__ranges" aria-label="History range">
-              {RANGES.map((item) => <button key={item} type="button" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</button>)}
+              {RANGES.map((item) => <Button key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
           {data.series.length ? (

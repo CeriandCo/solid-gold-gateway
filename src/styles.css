@@ -1393,6 +1393,337 @@ footer.site-footer a:focus-visible {
   }
 }
 
+/* AURUM price, facts, and stored history */
+.aurum-price-section {
+  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+}
+
+.aurum-price-current,
+.aurum-price-facts {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--warm-white);
+}
+
+.aurum-price-current {
+  padding-block: 88px 72px;
+  background: var(--forest);
+}
+
+.aurum-price-current::before,
+.aurum-price-current::after,
+.aurum-price-facts::before,
+.aurum-price-facts::after {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  content: "";
+}
+
+.aurum-price-current::before {
+  background: url("/__l5e/assets-v1/d366d310-1614-41a7-9e65-315ca960e36f/aurum-price-velvet.png") center / cover no-repeat;
+}
+
+.aurum-price-current::after {
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--forest) 97%, transparent) 0%,
+    color-mix(in oklab, var(--forest) 93%, transparent) 42%,
+    color-mix(in oklab, var(--forest) 80%, transparent) 74%,
+    color-mix(in oklab, var(--forest) 62%, transparent) 100%
+  );
+}
+
+.aurum-price-current__content {
+  max-width: 1200px;
+}
+
+.aurum-price-eyebrow,
+.aurum-history__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  color: var(--gold);
+}
+
+.aurum-price-stamp {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, var(--warm-white) 60%, transparent);
+}
+
+.aurum-live-badge {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  border-radius: 2px;
+  padding-inline: 0.5rem;
+  background: var(--aurum-positive);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--warm-white);
+}
+
+.aurum-price .aurum-live-badge {
+  min-height: 18px;
+  margin-right: 0.4rem;
+}
+
+.aurum-price-figure {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 150px;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0;
+  color: var(--warm-white);
+}
+
+.aurum-price-delta {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  color: var(--gold);
+}
+
+.aurum-price-delta strong {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.aurum-price-delta span {
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.aurum-price-delta small {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+}
+
+.aurum-price-rule {
+  height: 1px;
+  margin-top: 2rem;
+  background: color-mix(in oklab, var(--warm-white) 14%, transparent);
+}
+
+.aurum-price-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1.5rem;
+}
+
+.aurum-price-stats div + div {
+  border-left: 1px solid color-mix(in oklab, var(--warm-white) 14%, transparent);
+  padding-left: 2rem;
+}
+
+.aurum-price-stats dt,
+.aurum-fact > p {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+.aurum-price-stats dt {
+  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+}
+
+.aurum-price-stats dd {
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.aurum-price-unavailable {
+  display: flex;
+  min-height: 240px;
+  max-width: 560px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.aurum-price-unavailable p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--aurum-grey);
+}
+
+.aurum-price-unavailable span,
+.aurum-price-footnote,
+.aurum-facts-footnote {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+}
+
+.aurum-price-footnote {
+  margin-top: 2rem;
+}
+
+.aurum-price-facts {
+  padding-block: 64px 40px;
+  background: var(--forest-deep);
+}
+
+.aurum-price-facts::before {
+  background: url("/__l5e/assets-v1/78a1d033-62ef-4f7b-a0c1-185c30203d6b/aurum-facts-bg.png") center / cover no-repeat;
+}
+
+.aurum-price-facts::after {
+  z-index: -1;
+  background: color-mix(in oklab, var(--forest-deep) 82%, transparent);
+}
+
+.aurum-price-title,
+.aurum-history__title {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.aurum-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  background: color-mix(in oklab, var(--warm-white) 14%, transparent);
+}
+
+.aurum-fact {
+  min-width: 0;
+  padding: 1.5rem;
+  background: color-mix(in oklab, var(--forest-deep) 90%, transparent);
+}
+
+.aurum-fact > p { color: var(--gold); }
+.aurum-fact strong {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+}
+.aurum-fact span {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+}
+.aurum-facts-footnote { margin-top: 1.5rem; }
+
+.aurum-history {
+  padding-block: 40px 72px;
+  background: var(--warm-white);
+  color: var(--charcoal);
+}
+
+.aurum-history__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.aurum-history__eyebrow { color: var(--gold-dark); }
+.aurum-history__ranges { display: flex; gap: 0.5rem; }
+.aurum-history__ranges button {
+  height: 36px;
+  min-width: 48px;
+  border: 1px solid var(--beige);
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.aurum-history__ranges button[aria-pressed="true"] {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--forest-deep);
+}
+.aurum-history__ranges button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.aurum-chart,
+.aurum-history__empty {
+  position: relative;
+  margin-top: 2rem;
+  border: 1px solid var(--beige);
+  border-radius: 2px;
+  background: var(--paper);
+}
+.aurum-chart { padding: 1.5rem 1rem 0.75rem; }
+.aurum-chart__axis-label {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--aurum-grey);
+}
+.aurum-chart__latest {
+  display: block;
+  padding: 0 1rem 0.5rem;
+  text-align: right;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--aurum-grey);
+}
+.aurum-history__empty {
+  min-height: 280px;
+  padding: 7rem 2rem;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--aurum-grey);
+}
+
+@media (max-width: 759px) {
+  .aurum-price-current { padding-block: 64px 56px; }
+  .aurum-price-figure { font-size: 64px; }
+  .aurum-price-delta { flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+  .aurum-price-delta small { flex-basis: 100%; }
+  .aurum-price-stats { grid-template-columns: 1fr; gap: 1.25rem; }
+  .aurum-price-stats div + div { border-top: 1px solid color-mix(in oklab, var(--warm-white) 14%, transparent); border-left: 0; padding-top: 1.25rem; padding-left: 0; }
+  .aurum-facts-grid { grid-template-columns: 1fr; }
+  .aurum-history__head { align-items: stretch; flex-direction: column; }
+  .aurum-history__ranges { width: 100%; }
+  .aurum-history__ranges button { min-width: 0; flex: 1; }
+  .aurum-chart { padding-inline: 0; }
+}
+
 /* ============================================================
    PRICING PAGE — premium redesign tokens (scoped, additive only)
    ============================================================ */
