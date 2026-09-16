@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
+import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
 import heroWebp2x from "@/assets/pricing/hero-vault-2x.webp.asset.json";
 import { track } from "@/lib/analytics";
@@ -877,33 +878,29 @@ function PurchaseCalculator({
 
 function TrustBar() {
   return (
-    <section
-      aria-labelledby="trust-heading"
-      className="pricing-page mt-4 bg-[var(--pricing-forest-900)] py-8 md:mt-5 md:py-9 lg:mt-7"
-    >
+    <section aria-labelledby="trust-heading" className="pricing-page pricing-trust-band">
       <h2 id="trust-heading" className="sr-only">
         Why customers trust us
       </h2>
-      <ul className="grid grid-cols-1 items-start gap-y-4 md:grid-cols-4 md:gap-x-0 md:gap-y-0 md:divide-x md:divide-[var(--pricing-gold-border)] lg:gap-x-0">
+      <img src={sqootMandala.url} alt="" aria-hidden="true" className="pricing-trust-motif left-[-40px]" />
+      <img
+        src={sqootMandala.url}
+        alt=""
+        aria-hidden="true"
+        className="pricing-trust-motif right-[-40px]"
+        style={{ transform: "translateY(-50%) scaleX(-1)" }}
+      />
+      <ul className="pricing-trust-grid">
         {TRUST_ITEMS.map(({ icon: Icon, title, description }) => (
-          <li
-            key={title}
-            className="flex min-w-0 items-start gap-3 md:px-4 lg:gap-3 lg:px-5 first:md:pl-0 last:md:pr-0"
-          >
+          <li key={title} className="pricing-trust-item">
             <Icon
               strokeWidth={1.6}
               aria-hidden="true"
               focusable="false"
-              className="mt-0.5 size-[26px] shrink-0 text-[var(--pricing-gold)] md:size-7 lg:size-8"
+              className="size-7 shrink-0 text-[var(--pricing-gold)]"
             />
-            <span className="flex min-w-0 flex-col gap-1">
-              <strong className="font-sans text-[13px] font-semibold leading-[1.35] text-warm-white lg:text-ui-sm">
-                {title}
-              </strong>
-              <span className="font-sans text-xs font-normal leading-[1.45] text-warm-white/65 lg:text-ui-xs">
-                {description}
-              </span>
-            </span>
+            <strong className="font-sans text-sm font-semibold leading-[1.35] text-ivory">{title}</strong>
+            <span className="font-sans text-[13px] font-normal leading-[1.45] text-ivory/65">{description}</span>
           </li>
         ))}
       </ul>
