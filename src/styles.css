@@ -1101,6 +1101,14 @@ footer.site-footer a:focus-visible {
   margin-bottom: 12px;
 }
 
+.aurum-price-sample {
+  margin-top: 12px;
+}
+
+.aurum-calc__sample {
+  margin-bottom: 12px;
+}
+
 .aurum-subheader {
   position: sticky;
   z-index: 20;
