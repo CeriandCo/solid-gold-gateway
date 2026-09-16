@@ -1174,5 +1174,5 @@ footer.site-footer a:focus-visible {
   z-index: 0;
 }
 @media (max-width: 767px) {
-  .pricing-trust-motif { opacity: 0.025; }
+  .pricing-trust-motif { opacity: 0.025; height: 130%; }
 }
