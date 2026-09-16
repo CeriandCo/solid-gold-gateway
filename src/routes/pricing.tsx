@@ -1015,7 +1015,7 @@ function BottomCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="pricing-page relative overflow-hidden bg-[var(--pricing-forest-900)] py-16 md:py-20 lg:py-24"
+      className="pricing-page relative overflow-hidden bg-[var(--pricing-forest-900)] py-10 md:py-12 lg:py-8"
     >
       {/* Subtle radial gold glow behind the heading */}
       <div
