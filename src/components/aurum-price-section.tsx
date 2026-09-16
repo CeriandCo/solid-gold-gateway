@@ -38,6 +38,11 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-price-current">
         <div className="aurum-container aurum-price-current__content">
           <p id="aurum-price-heading" className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
+          {showSampleChip ? (
+            <p className="aurum-price-sample">
+              <span className="aurum-chip aurum-chip--sample">SAMPLE DATA — NOT A REAL PRICE</span>
+            </p>
+          ) : null}
 
 
           {state.status === "loading" ? (
