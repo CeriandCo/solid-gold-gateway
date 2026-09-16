@@ -1865,3 +1865,386 @@ footer.site-footer a:focus-visible {
 @media (max-width: 767px) {
   .pricing-trust-motif { display: none; }
 }
+
+/* AURUM daily note (#daily-note) */
+.aurum-daily-note {
+  background: var(--warm-white);
+  padding-block: 80px;
+}
+
+.aurum-note-eyebrow {
+  font-family: var(--font-sans, Inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gold-dark);
+}
+
+.aurum-note-title {
+  margin-top: 0.75rem;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.12;
+  color: var(--charcoal);
+}
+
+.aurum-note-dek {
+  margin-top: 0.75rem;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-ink);
+}
+
+.aurum-note-list {
+  margin-top: 2.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.aurum-note-row {
+  border-top: 1px solid var(--beige);
+}
+
+.aurum-note-row.is-open {
+  border: 1px solid var(--beige);
+  background: #fff;
+  padding-inline: 32px;
+}
+
+.aurum-note-trigger {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+  padding-block: 24px;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.aurum-note-trigger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.aurum-note-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.aurum-note-chip {
+  display: inline-block;
+  padding: 3px 7px;
+  background: var(--gold);
+  color: #0b2015;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.aurum-note-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.aurum-note-read {
+  font-size: 12px;
+  color: var(--aurum-grey);
+}
+
+.aurum-note-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.aurum-note-headline {
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+.aurum-note-summary {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted-ink);
+}
+
+.aurum-note-count {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--gold-dark);
+}
+
+.aurum-note-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -5px;
+}
+
+.aurum-note-open::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--beige);
+}
+
+.aurum-note-open {
+  position: relative;
+  color: var(--charcoal);
+}
+
+.aurum-note-open svg {
+  position: relative;
+}
+
+.aurum-note-row.is-open .aurum-note-open::before {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.aurum-note-panel {
+  padding-bottom: 32px;
+}
+
+.aurum-note-panel[hidden] {
+  display: none;
+}
+
+.aurum-note-panel__inner {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 200px;
+  gap: 24px;
+}
+
+.aurum-note-panel__inner > .aurum-note-panel__main {
+  grid-column: 2;
+}
+
+.aurum-note-body p {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--charcoal);
+  max-width: 680px;
+}
+
+.aurum-note-body p + p {
+  margin-top: 20px;
+}
+
+.aurum-note-quote {
+  margin-top: 24px;
+  max-width: 680px;
+  border-left: 3px solid var(--gold);
+  padding: 24px;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--charcoal);
+}
+
+.aurum-note-sources {
+  margin-top: 24px;
+  max-width: 680px;
+  background: var(--ivory);
+  padding: 24px;
+}
+
+.aurum-note-sources__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  color: var(--gold-dark);
+}
+
+.aurum-note-sources ol {
+  margin-top: 12px;
+  padding-left: 1.25rem;
+  list-style: decimal;
+  color: var(--gold-dark);
+}
+
+.aurum-note-sources li + li {
+  margin-top: 8px;
+}
+
+.aurum-note-sources a {
+  font-size: 13px;
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.aurum-note-sources a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.aurum-note-panel__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.aurum-note-aside__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  color: var(--aurum-grey);
+}
+
+.aurum-note-aside__link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold-dark);
+  word-break: break-all;
+}
+
+.aurum-note-collapse,
+.aurum-note-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+}
+
+.aurum-note-collapse {
+  margin-top: 8px;
+  border: 1px solid var(--beige);
+  color: var(--charcoal);
+}
+
+.aurum-note-more {
+  border: 0;
+  padding-inline: 0;
+  color: var(--gold-dark);
+}
+
+.aurum-note-collapse:focus-visible,
+.aurum-note-more:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.aurum-note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--beige);
+  padding-top: 16px;
+}
+
+.aurum-note-footer p {
+  font-size: 13px;
+  color: var(--aurum-grey);
+}
+
+.aurum-note-page {
+  background: var(--warm-white);
+  padding-block: 72px;
+}
+
+.aurum-note-page__title {
+  margin-top: 0.75rem;
+  max-width: 680px;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.12;
+  color: var(--charcoal);
+}
+
+.aurum-note-page__meta {
+  margin-top: 0.75rem;
+  font-size: 13px;
+  color: var(--aurum-grey);
+}
+
+.aurum-note-page__summary {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 680px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-ink);
+}
+
+.aurum-note-page__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 2rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+@media (max-width: 899px) {
+  .aurum-note-panel__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aurum-note-panel__inner > .aurum-note-panel__main {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 759px) {
+  .aurum-daily-note {
+    padding-block: 56px;
+  }
+
+  .aurum-note-title {
+    font-size: 30px;
+  }
+
+  .aurum-note-trigger {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+
+  .aurum-note-meta {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .aurum-note-row.is-open {
+    padding-inline: 16px;
+  }
+
+  .aurum-note-page__title {
+    font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurum-note-panel {
+    transition: none;
+  }
+}
