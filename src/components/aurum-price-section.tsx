@@ -17,6 +17,15 @@ const REASON_COPY: Record<UnavailableReason, string> = {
   "no-data": "No price has been recorded yet.",
 };
 
+function formatAge(seconds: number) {
+  if (seconds < 90) return `${Math.max(1, Math.round(seconds))} seconds`;
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 90) return `${minutes} minutes`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 48) return `${hours} hours`;
+  return `${Math.round(hours / 24)} days`;
+}
+
 function formatDate(value: string) {
   return DATE.format(new Date(`${value}T00:00:00Z`));
 }
@@ -60,7 +69,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
               </div>
               {state.status === "stale" ? (
                 <p className="aurum-price-stale-note" role="status">
-                  This price is {Math.round(priced.ageSeconds / 60)} minutes old and is not current.
+                  This price is {formatAge(priced.ageSeconds)} old and is not current.
                 </p>
               ) : null}
               <div className="aurum-price-rule" />
