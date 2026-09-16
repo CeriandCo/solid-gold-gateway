@@ -1,4 +1,5 @@
 import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
+import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/aurum")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "preload", as: "image", href: aurumHero.url, type: "image/webp" }],
   }),
   component: AurumPage,
 });
@@ -163,7 +165,7 @@ function AurumPage() {
       </nav>
 
       <main className="aurum-main">
-        <AurumSection id="top" tone="dark" />
+        <AurumHero />
         <AurumSection id="price" tone="dark" />
         <AurumSection id="daily-note" tone="warm" />
         <AurumSection id="weekly-brief" tone="ivory" />
@@ -176,6 +178,45 @@ function AurumPage() {
 
       <SiteFooter />
     </div>
+  );
+}
+
+function AurumHero() {
+  return (
+    <section id="top" className="aurum-section aurum-hero" aria-labelledby="aurum-hero-title">
+      <img
+        className="aurum-hero__image"
+        src={aurumHero.url}
+        alt="Gold bar, AURUM medallion, book, and glasses on a green marble table"
+        width={1586}
+        height={992}
+        fetchPriority="high"
+      />
+      <div className="aurum-container aurum-hero__container">
+        <div className="aurum-hero__content">
+          <p className="aurum-hero__eyebrow">THE AURUM BOARD</p>
+          <h1 id="aurum-hero-title" className="aurum-hero__title">
+            Understand gold before you own it.
+          </h1>
+          <div className="aurum-hero__ornament" aria-hidden="true">
+            <span />
+            <i />
+            <span />
+          </div>
+          <p className="aurum-hero__dek">
+            Facts, history and plain explanations of physical gold. AURUM is free, does not sell, and never gives advice.
+          </p>
+          <div className="aurum-hero__actions">
+            <GoldButton href="#price" variant="primary" size="hero" icon="none" className="aurum-hero__button">
+              See today&apos;s price <span aria-hidden="true">↓</span>
+            </GoldButton>
+            <GoldButton href="#learn" variant="secondary" size="hero" icon="none" className="aurum-hero__button aurum-hero__button--secondary">
+              Start with the basics
+            </GoldButton>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
