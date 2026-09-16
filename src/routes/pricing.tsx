@@ -8,8 +8,10 @@ import {
   HERO_CHIPS,
   PRODUCT_CARDS,
   PURCHASE_PRICE_TOOLTIP,
-  STORAGE_TABLE,
-  TRANSACTION_COSTS_TABLE,
+  OPTIONAL_TABLE,
+  ONGOING_TABLE,
+  PAY_TODAY_TABLE,
+  type StorageTableData,
   type RowCell,
   type SpanCell,
   type TransactionRow,
@@ -247,7 +249,7 @@ function SpanCellContent({ cell }: { cell: SpanCell }) {
 }
 
 function TransactionCostsSection() {
-  const table = TRANSACTION_COSTS_TABLE;
+  const table = PAY_TODAY_TABLE;
   return (
     <section aria-labelledby="transaction-costs-heading" className="pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
       <h2
