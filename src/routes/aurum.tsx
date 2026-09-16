@@ -294,6 +294,7 @@ function AurumPriceChip() {
       {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
       {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
       {data ? <span>{money(data.spot)}</span> : null}
+      {showSampleChip ? <span className="aurum-chip aurum-chip--sample">SAMPLE DATA — NOT A REAL PRICE</span> : null}
       {state.status === "unavailable" ? <span>Price unavailable</span> : null}
     </div>
   );
