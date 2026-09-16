@@ -1128,3 +1128,48 @@ footer.site-footer a:focus-visible {
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
+
+/* Pricing page — trust band (additive, scoped) */
+.pricing-trust-band {
+  position: relative;
+  min-height: 176px;
+  margin-top: 48px;
+  margin-bottom: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(135deg, #052D23 0%, #03251D 55%, #021D17 100%);
+  border: 1px solid rgba(202, 158, 55, 0.24);
+  box-shadow: inset 0 1px rgba(255,255,255,0.035), 0 16px 38px rgba(2, 25, 19, 0.10);
+}
+.pricing-trust-grid {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 767px) {
+  .pricing-trust-grid { grid-template-columns: 1fr; }
+}
+.pricing-trust-item {
+  min-width: 0;
+  padding: 30px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+}
+.pricing-trust-motif {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 220%;
+  width: auto;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
