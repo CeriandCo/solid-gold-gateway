@@ -13,7 +13,6 @@ const RANGES: AurumRange[] = ["30D", "90D", "1Y", "5Y"];
 const REASON_COPY: Record<UnavailableReason, string> = {
   network: "The price service could not be reached.",
   invalid: "The latest price record did not pass validation.",
-  "no-threshold": "No freshness limit is configured, so no price can be shown as current.",
   "no-data": "No price has been recorded yet.",
 };
 
@@ -26,25 +25,23 @@ function formatAge(seconds: number) {
   return `${Math.round(hours / 24)} days`;
 }
 
-function formatDate(value: string) {
-  return DATE.format(new Date(`${value}T00:00:00Z`));
-}
-
 export function AurumSampleChip() {
   return <span className="aurum-sample-chip">SAMPLE DATA — NOT A REAL PRICE</span>;
 }
 
 export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
-  const { state, derived, facts, history, isDemo } = useAurumPrice();
-  const priced = state.status === "live" || state.status === "stale" ? state : null;
-  const latestClose = history.status === "ready" ? history.points.at(-1) ?? null : null;
+  const { state, data, now, showLiveBadge, showSampleChip, historyFor } = useAurumPrice();
+  const facts = data?.facts ?? null;
+  const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
+  const latestClose = points.at(-1) ?? null;
+  const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
 
   return (
     <section id="price" className="aurum-price-section" aria-labelledby="aurum-price-heading">
       <div className="aurum-price-current">
         <div className="aurum-container aurum-price-current__content">
           <p id="aurum-price-heading" className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
-          {isDemo ? <AurumSampleChip /> : null}
+          {showSampleChip ? <AurumSampleChip /> : null}
 
           {state.status === "loading" ? (
             <div className="aurum-price-unavailable" role="status" aria-busy="true">
@@ -52,38 +49,36 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
             </div>
           ) : null}
 
-          {priced ? (
+          {data ? (
             <>
               <div className="aurum-price-stamp">
-                {state.status === "live" && !isDemo ? <span className="aurum-live-badge">LIVE</span> : null}
-                {state.status === "stale" ? <span className="aurum-stale-badge">STALE PRICE</span> : null}
+                {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
+                {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
                 <span>
-                  As of {TIME.format(priced.fetchedAt)} UTC · {DATE.format(priced.fetchedAt)}
+                  As of {TIME.format(data.asOf)} UTC · {formatAge(state.status === "stale" ? state.ageSeconds : ageSeconds)} ago
                 </span>
               </div>
-              <data className="aurum-price-figure" value={priced.spot}>{USD.format(priced.spot)}</data>
+              <data className="aurum-price-figure" value={data.spot}>{USD.format(data.spot)}</data>
               <div className="aurum-price-delta">
-                <strong>{PERCENT.format(priced.changePct)}%</strong>
-                {derived ? <span>{derived.changeAmount >= 0 ? "+" : "−"}{USD.format(Math.abs(derived.changeAmount))}</span> : null}
+                <strong>{PERCENT.format(data.changePct)}%</strong>
+                <span>{data.changeAmount >= 0 ? "+" : "−"}{USD.format(Math.abs(data.changeAmount))}</span>
                 <small>per troy ounce · USD</small>
               </div>
               {state.status === "stale" ? (
                 <p className="aurum-price-stale-note" role="status">
-                  This price is {formatAge(priced.ageSeconds)} old and is not current.
+                  This price is delayed. It was recorded {formatAge(state.ageSeconds)} ago and is not current.
                 </p>
               ) : null}
               <div className="aurum-price-rule" />
-              {derived ? (
-                <dl className="aurum-price-stats">
-                  {[
-                    ["24 HOUR HIGH", derived.high24h],
-                    ["24 HOUR LOW", derived.low24h],
-                    ["PREVIOUS CLOSE", derived.previousClose],
-                  ].map(([label, value]) => (
-                    <div key={String(label)}><dt>{label}</dt><dd>{USD.format(Number(value))}</dd></div>
-                  ))}
-                </dl>
-              ) : null}
+              <dl className="aurum-price-stats">
+                {[
+                  ["24 HOUR HIGH", data.dayHigh],
+                  ["24 HOUR LOW", data.dayLow],
+                  ["PREVIOUS CLOSE", data.previousClose],
+                ].map(([label, value]) => (
+                  <div key={String(label)}><dt>{label}</dt><dd>{USD.format(Number(value))}</dd></div>
+                ))}
+              </dl>
             </>
           ) : null}
 
@@ -91,9 +86,6 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
             <div className="aurum-price-unavailable" role="status">
               <p>Price unavailable</p>
               <span>{REASON_COPY[state.reason]}</span>
-              {state.lastGoodAt ? (
-                <span>Last good price time: {DATE.format(state.lastGoodAt)}, {TIME.format(state.lastGoodAt)} UTC</span>
-              ) : null}
             </div>
           ) : null}
 
@@ -105,13 +97,13 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
         <div className="aurum-price-facts">
           <div className="aurum-container">
             <p className="aurum-price-eyebrow">GOLD PRICE FACTS</p>
-            {isDemo ? <AurumSampleChip /> : null}
+            {showSampleChip ? <AurumSampleChip /> : null}
             <h2 className="aurum-price-title">Derived from real history, not estimates</h2>
             <div className="aurum-facts-grid">
-              <Fact label="MONTH TO DATE" value={`${PERCENT.format(facts.monthToDate.value)}%`} caption={`From ${formatDate(facts.monthToDate.referenceDate)} close`} />
-              <Fact label="YEAR TO DATE" value={`${PERCENT.format(facts.yearToDate.value)}%`} caption={`From ${formatDate(facts.yearToDate.referenceDate)} close`} />
-              <Fact label="52 WEEK HIGH" value={USD.format(facts.high52Week.value)} caption={`Recorded ${formatDate(facts.high52Week.date)}`} />
-              <Fact label="52 WEEK LOW" value={USD.format(facts.low52Week.value)} caption={`Recorded ${formatDate(facts.low52Week.date)}`} />
+              <Fact label="MONTH TO DATE" value={`${PERCENT.format(facts.monthToDatePct)}%`} caption={`From ${DATE.format(facts.monthToDateFrom)} close`} />
+              <Fact label="YEAR TO DATE" value={`${PERCENT.format(facts.yearToDatePct)}%`} caption={`From ${DATE.format(facts.yearToDateFrom)} close`} />
+              <Fact label="52 WEEK HIGH" value={USD.format(facts.high52.price)} caption={`Recorded ${DATE.format(facts.high52.date)}`} />
+              <Fact label="52 WEEK LOW" value={USD.format(facts.low52.price)} caption={`Recorded ${DATE.format(facts.low52.date)}`} />
             </div>
             <p className="aurum-facts-footnote">Figures are historical facts calculated from stored daily prices. They are not forecasts, signals or recommendations.</p>
           </div>
@@ -126,21 +118,16 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
               {RANGES.map((item) => <Button key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
-          {history.status === "ready" && history.outOfDate ? (
-            <p className="aurum-history__stale" role="status">
-              This chart is out of date. The most recent stored close is {formatDate(history.newestDate)}, so it does not show current prices.
-            </p>
-          ) : null}
-          {history.status === "ready" && latestClose ? (
+          {latestClose ? (
             <div className="aurum-chart" aria-label={`${range} gold closing price chart`}>
               <span className="aurum-chart__axis-label">USD PER TROY OUNCE</span>
               <ResponsiveContainer width="100%" height={360}>
-                <AreaChart data={history.points} margin={{ top: 34, right: 24, bottom: 8, left: 10 }}>
+                <AreaChart data={points} margin={{ top: 34, right: 24, bottom: 8, left: 10 }}>
                   <defs><linearGradient id="aurum-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--gold)" stopOpacity={0.12} /><stop offset="100%" stopColor="var(--gold)" stopOpacity={0} /></linearGradient></defs>
                   <CartesianGrid vertical={false} stroke="var(--border)" />
                   <XAxis dataKey="date" tickFormatter={(value) => MONTH.format(new Date(`${value}T00:00:00Z`))} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} minTickGap={36} />
                   <YAxis domain={["auto", "auto"]} tickFormatter={(value) => USD.format(value).replace(".00", "")} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} width={74} />
-                  <Tooltip formatter={(value) => [USD.format(Number(value)), "Close"]} labelFormatter={(label) => formatDate(String(label))} />
+                  <Tooltip formatter={(value) => [USD.format(Number(value)), "Close"]} labelFormatter={(label) => DATE.format(new Date(`${String(label)}T00:00:00Z`))} />
                   <Area type="monotone" dataKey="close" stroke="var(--gold)" strokeWidth={2} fill="url(#aurum-chart-fill)" dot={false} activeDot={{ r: 4, fill: "var(--gold)" }} />
                   <ReferenceDot
                     x={latestClose.date}
@@ -155,7 +142,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
             </div>
           ) : (
             <p className="aurum-history__empty">
-              {history.status === "loading" ? "Loading daily closes." : "No stored daily closes are available for this range."}
+              {state.status === "loading" ? "Loading daily closes." : "No daily closes are available for this range."}
             </p>
           )}
         </div>
