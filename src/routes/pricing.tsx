@@ -1015,33 +1015,41 @@ function BottomCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="pb-8 pt-3 md:pb-7 md:pt-3 lg:pb-8 lg:pt-4"
+      className="pricing-page relative overflow-hidden bg-[var(--pricing-forest-900)] py-16 md:py-20 lg:py-24"
     >
-      <div className="mx-auto max-w-[36em] text-center">
+      {/* Subtle radial gold glow behind the heading */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-[420px] max-w-[900px]"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklab, var(--pricing-gold) 7%, transparent), transparent)",
+        }}
+      />
+      <div className="relative mx-auto max-w-[36em] text-center">
         <h2
           id="cta-heading"
-          className="text-display-h4 mb-2 text-forest-black md:text-[34px] md:leading-[1.08] lg:text-display-h2"
+          className="text-display-h4 mb-2 text-warm-white md:text-[34px] md:leading-[1.08] lg:text-display-h2"
         >
-          Ready to start?
+          Ready to own gold with confidence?
         </h2>
-        <p className="mx-auto mb-5 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-muted-ink md:max-w-[30em] lg:text-base">
-          Own your first fraction of gold in minutes — from US$25, no minimum, no
-          monthly subscription.
+        <p className="mx-auto mb-5 max-w-none font-sans text-ui-lg font-normal leading-[1.55] text-warm-white/70 md:max-w-[30em] lg:text-base">
+          Start from US$25 and see every applicable fee before you confirm.
         </p>
         <GoldButton
           to="/early-access"
-          variant="forest"
+          variant="primary"
           size="lg"
           onClick={() => track("bottom_cta_click", { target: "get_started" })}
           className="w-full no-underline md:w-auto"
         >
-          Get started
+          Get Early Access
         </GoldButton>
         <div className="mt-3">
           <Link
             to="/precious-metal"
             onClick={() => track("bottom_cta_click", { target: "explore_products" })}
-            className={`inline-block border-b-[1.5px] border-gold-dark pb-1 font-sans text-ui-sm font-medium text-forest-black no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold-dark ${FOCUS_RING}`}
+            className={`inline-block border-b-[1.5px] border-gold pb-1 font-sans text-ui-sm font-medium text-warm-white no-underline motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
           >
             Or explore products first →
           </Link>
