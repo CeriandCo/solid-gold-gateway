@@ -401,7 +401,6 @@ function StorageSection() {
 }
 
 const SPOT_GOLD = 4310;
-const SPOT_SILVER = 63.23;
 const PREMIUM = 0.04;
 
 const HOLD_DAYS: Record<string, number> = {
