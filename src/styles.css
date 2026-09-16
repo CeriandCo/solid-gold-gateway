@@ -1063,52 +1063,6 @@ footer.site-footer a:focus-visible {
   padding-inline: 1.5rem;
 }
 
-.aurum-chip {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 2px;
-  padding: 3px 8px;
-  font-family: var(--font-sans, Inter), sans-serif;
-  font-weight: 600;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-
-.aurum-chip--solid {
-  margin-right: 10px;
-  background: var(--aurum-caution);
-  color: var(--warm-white);
-  font-size: 10px;
-  letter-spacing: 1.2px;
-}
-
-.aurum-chip--sample {
-  background: var(--aurum-caution);
-  color: var(--warm-white);
-  font-size: 9px;
-  letter-spacing: 1px;
-}
-
-.aurum-chip--outline {
-  border: 1px solid var(--aurum-caution);
-  background: transparent;
-  color: var(--aurum-caution);
-  font-size: 9px;
-  letter-spacing: 1px;
-}
-
-.aurum-community__room-flag {
-  margin-bottom: 12px;
-}
-
-.aurum-price-sample {
-  margin-top: 12px;
-}
-
-.aurum-calc__sample {
-  margin-bottom: 12px;
-}
-
 .aurum-subheader {
   position: sticky;
   z-index: 20;
@@ -3377,16 +3331,8 @@ footer.site-footer a:focus-visible {
 
 .aurum-page .aurum-subscribe__consent {
   margin-top: auto;
-  padding: 16px;
-  border: 1px solid var(--caution);
-}
-
-.aurum-page .aurum-subscribe__consent-label {
-  font-family: var(--font-sans, Inter), sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--caution);
+  padding: 16px 0 0;
+  border-top: 1px solid var(--border, #E5E2DD);
 }
 
 .aurum-page .aurum-subscribe__consent-text {
@@ -3462,14 +3408,6 @@ footer.site-footer a:focus-visible {
   font-size: 12px;
   font-weight: 500;
   color: color-mix(in srgb, #fff 70%, transparent);
-}
-
-.aurum-page .aurum-subscribe__card-caution {
-  margin-top: 8px;
-  font-family: var(--font-sans, Inter), sans-serif;
-  font-size: 11px;
-  line-height: 1.5;
-  color: var(--caution);
 }
 
 .aurum-page .aurum-subscribe :is(a, button, input):focus-visible {
