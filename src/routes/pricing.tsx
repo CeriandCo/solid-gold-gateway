@@ -452,7 +452,7 @@ function SegmentedGroup({
                 compact ? "px-1 py-2 text-ui-xs" : "px-0 py-2.5 text-ui-sm"
               } ${
                 selected
-                  ? "border-forest-black bg-forest-black text-paper"
+                  ? "border-gold bg-gradient-to-b from-gold-soft to-gold text-forest-deep"
                   : "bg-paper text-forest-black"
               } motion-safe:transition-[background-color,color,border-color] motion-safe:duration-[120ms] motion-safe:ease-standard has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-gold`}
             >
