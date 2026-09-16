@@ -401,7 +401,6 @@ function StorageSection() {
 }
 
 const SPOT_GOLD = 4310;
-const SPOT_SILVER = 63.23;
 const PREMIUM = 0.04;
 
 const HOLD_DAYS: Record<string, number> = {
@@ -554,7 +553,7 @@ function PurchaseCalculator() {
       return;
     }
     setError(null);
-    const spot = metal === "gold" ? SPOT_GOLD : SPOT_SILVER;
+    const spot = SPOT_GOLD;
     const purchaseFee = product === "allocated" ? value * 0.03 : 0;
     const toMetal = value - purchaseFee;
     const oz = toMetal / (spot * (1 + PREMIUM));
@@ -680,10 +679,7 @@ function PurchaseCalculator() {
             legend="Choose metal"
             value={metal}
             onChange={setMetal}
-            options={[
-              { value: "gold", label: "Gold" },
-              { value: "silver", label: "Silver" },
-            ]}
+            options={[{ value: "gold", label: "Gold" }]}
           />
         </StepRow>
 
