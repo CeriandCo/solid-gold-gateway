@@ -30,6 +30,7 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
         { property: "og:description", content: note.summary },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "robots", content: "noindex, nofollow" },
       ],
     };
   },

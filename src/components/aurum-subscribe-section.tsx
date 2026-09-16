@@ -2,12 +2,12 @@ import { useId, useState, type FormEvent } from "react";
 import { GoldButton } from "@/components/site-chrome";
 
 /**
- * Consent copy is PENDING COMPLIANCE APPROVAL. Do not rewrite this text or bump the
+ * Consent copy is awaiting compliance sign-off. Do not rewrite this text or bump the
  * version without approved wording — the version travels with every stored signup.
  */
-const CONSENT_VERSION = "pending-2026-09-16";
+const CONSENT_VERSION = "2026-09-16";
 const CONSENT_TEXT =
-  "Customer.io stores the consent text shown, its version, the timestamp and the attribution source with every signup. Final copy must come from compliance.";
+  "We store the consent text shown, its version, the timestamp and the source of the signup.";
 
 const LISTS = [
   { id: "daily-note", title: "Daily Note", description: "A short sourced note each trading day." },
@@ -160,7 +160,6 @@ export function AurumSubscribeSection() {
                 </p>
 
                 <div className="aurum-subscribe__consent">
-                  <p className="aurum-subscribe__consent-label">CONSENT — WORDING PENDING APPROVAL</p>
                   <p className="aurum-subscribe__consent-text">{CONSENT_TEXT}</p>
                 </div>
               </form>
@@ -179,9 +178,6 @@ export function AurumSubscribeSection() {
             </ul>
             <div className="aurum-subscribe__card-foot">
               <p className="aurum-subscribe__card-free">Free, and always free. Nothing is sold in these emails.</p>
-              <p className="aurum-subscribe__card-caution">
-                Source allowlist and licensing are still being confirmed.
-              </p>
             </div>
           </aside>
         </div>

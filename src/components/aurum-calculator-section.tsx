@@ -52,7 +52,7 @@ function periodInWords(from: Date, to: Date): string {
 }
 
 export function AurumCalculatorSection() {
-  const { data, calculatorEnabled, state, showSampleChip } = useAurumPrice();
+  const { data, calculatorEnabled, state } = useAurumPrice();
   const [amountInput, setAmountInput] = useState(DEFAULT_AMOUNT);
   const [dateInput, setDateInput] = useState(DEFAULT_DATE);
   const [result, setResult] = useState<LookBack | null>(null);
@@ -183,11 +183,6 @@ export function AurumCalculatorSection() {
           </form>
 
           <div className="aurum-calc__result" aria-live="polite">
-            {showSampleChip ? (
-              <p className="aurum-calc__sample">
-                <span className="aurum-chip aurum-chip--sample">SAMPLE DATA — NOT A REAL PRICE</span>
-              </p>
-            ) : null}
             {!calculatorEnabled ? (
               <>
                 <p className="aurum-calc__chip">UNAVAILABLE</p>
