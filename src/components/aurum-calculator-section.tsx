@@ -52,7 +52,7 @@ function periodInWords(from: Date, to: Date): string {
 }
 
 export function AurumCalculatorSection() {
-  const { data, calculatorEnabled, state } = useAurumPrice();
+  const { data, calculatorEnabled, state, showSampleChip } = useAurumPrice();
   const [amountInput, setAmountInput] = useState(DEFAULT_AMOUNT);
   const [dateInput, setDateInput] = useState(DEFAULT_DATE);
   const [result, setResult] = useState<LookBack | null>(null);
