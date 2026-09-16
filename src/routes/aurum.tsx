@@ -2,10 +2,10 @@ import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
 import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
 import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
-import { AurumPriceSection } from "@/components/aurum-price-section";
+import { AurumPriceSection, AurumSampleChip } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
-import { getAurumPriceData, type AurumRange } from "@/lib/aurum-price.functions";
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { isAurumRange, type AurumRange } from "@/lib/aurum/price-state";
+import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
@@ -14,8 +14,6 @@ export const Route = createFileRoute("/aurum")({
     range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
     note: typeof search["note"] === "string" ? search["note"] : undefined,
   }),
-  loaderDeps: ({ search: { range } }) => ({ range }),
-  loader: ({ context, deps }) => context.queryClient.ensureQueryData(aurumPriceQuery(deps.range)),
   head: () => ({
     meta: [
       { title: "AURUM Gold Education | SQOOT Pure" },
@@ -41,17 +39,6 @@ export const Route = createFileRoute("/aurum")({
   pendingComponent: AurumPendingPage,
   errorComponent: () => <div role="alert">AURUM price information is temporarily unavailable.</div>,
   notFoundComponent: () => <div role="alert">AURUM price information was not found.</div>,
-});
-
-function isAurumRange(value: unknown): value is AurumRange {
-  return value === "30D" || value === "90D" || value === "1Y" || value === "5Y";
-}
-
-const aurumPriceQuery = (range: AurumRange) => queryOptions({
-  queryKey: ["aurum-price", range],
-  queryFn: () => getAurumPriceData({ data: { range } }),
-  refetchInterval: 15_000,
-  staleTime: 10_000,
 });
 
 const AURUM_LINKS = [
@@ -85,9 +72,17 @@ function AurumPendingPage() {
 }
 
 function AurumPage() {
+  const { range } = Route.useSearch();
+  return (
+    <AurumPriceProvider range={range}>
+      <AurumPageContent />
+    </AurumPriceProvider>
+  );
+}
+
+function AurumPageContent() {
   const { range, note: openNote } = Route.useSearch();
   const navigate = Route.useNavigate();
-  const { data: priceData } = useSuspenseQuery(aurumPriceQuery(range));
   const subheaderRef = useRef<HTMLElement>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
@@ -200,7 +195,7 @@ function AurumPage() {
           </div>
 
           <div className="aurum-subheader__actions">
-            <AurumPriceChip state={priceData.priceState} />
+            <AurumPriceChip />
             <GoldButton
               href="#subscribe"
               variant="primary"
@@ -217,7 +212,7 @@ function AurumPage() {
 
       <main className="aurum-main">
         <AurumHero />
-        <AurumPriceSection data={priceData} range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
+        <AurumPriceSection range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
         <AurumDailyNoteSection
           openSlug={openNote ?? null}
           onToggle={(slug) =>
@@ -284,10 +279,26 @@ function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "d
   );
 }
 
-function AurumPriceChip({ state }: { state: import("@/lib/aurum-price.functions").AurumPriceResponse["priceState"] }) {
+function AurumPriceChip() {
+  const { state, isDemo } = useAurumPrice();
+  const money = (value: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+
   return (
     <div className="aurum-price" aria-live="polite">
-      {state.status === "live" ? <><span className="aurum-live-badge">LIVE</span><span>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(state.price)}</span></> : <span>Price unavailable</span>}
+      {state.status === "loading" ? <span>Loading price</span> : null}
+      {state.status === "live" ? (
+        <>
+          {isDemo ? <AurumSampleChip /> : <span className="aurum-live-badge">LIVE</span>}
+          <span>{money(state.spot)}</span>
+        </>
+      ) : null}
+      {state.status === "stale" ? (
+        <>
+          <span className="aurum-stale-badge">STALE</span>
+          <span>{money(state.spot)}</span>
+        </>
+      ) : null}
+      {state.status === "unavailable" ? <span>Price unavailable</span> : null}
     </div>
   );
 }

@@ -2248,3 +2248,49 @@ footer.site-footer a:focus-visible {
     transition: none;
   }
 }
+
+/* AURUM price state chips — demo labelling and stale marking */
+.aurum-page .aurum-sample-chip {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.25rem;
+  padding: 3px 7px;
+  border-radius: 2px;
+  background: #b0741a;
+  color: #f6f3f1;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.aurum-page .aurum-stale-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 7px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--warm-white) 16%, transparent);
+  color: var(--warm-white);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aurum-page .aurum-price-stale-note {
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, var(--warm-white) 62%, transparent);
+}
+
+.aurum-page .aurum-history__stale {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--aurum-grey);
+}
