@@ -74,9 +74,9 @@ function AurumPendingPage() {
 }
 
 function AurumPage() {
-  const { range } = Route.useSearch();
+  const { priceState } = Route.useSearch();
   return (
-    <AurumPriceProvider range={range}>
+    <AurumPriceProvider forcedStatus={priceState}>
       <AurumPageContent />
     </AurumPriceProvider>
   );
@@ -223,7 +223,7 @@ function AurumPageContent() {
         />
         <AurumSection id="weekly-brief" tone="ivory" />
         <AurumSection id="learn" tone="warm" />
-        <AurumSection id="calculator" tone="ivory" />
+        <AurumCalculatorSection />
         <AurumSection id="gifts" tone="ivory" />
         <AurumSection id="community" tone="forest" />
         <AurumSection id="subscribe" tone="warm" />
@@ -282,24 +282,16 @@ function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "d
 }
 
 function AurumPriceChip() {
-  const { state, isDemo } = useAurumPrice();
+  const { state, data, showLiveBadge, showSampleChip } = useAurumPrice();
   const money = (value: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
 
   return (
     <div className="aurum-price" aria-live="polite">
       {state.status === "loading" ? <span>Loading price</span> : null}
-      {state.status === "live" ? (
-        <>
-          {isDemo ? <AurumSampleChip /> : <span className="aurum-live-badge">LIVE</span>}
-          <span>{money(state.spot)}</span>
-        </>
-      ) : null}
-      {state.status === "stale" ? (
-        <>
-          <span className="aurum-stale-badge">STALE</span>
-          <span>{money(state.spot)}</span>
-        </>
-      ) : null}
+      {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
+      {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
+      {data ? <span>{money(data.spot)}</span> : null}
+      {showSampleChip ? <AurumSampleChip /> : null}
       {state.status === "unavailable" ? <span>Price unavailable</span> : null}
     </div>
   );
