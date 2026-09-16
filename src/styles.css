@@ -2250,22 +2250,6 @@ footer.site-footer a:focus-visible {
 }
 
 /* AURUM price state chips — demo labelling and stale marking */
-.aurum-page .aurum-sample-chip {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  gap: 0.25rem;
-  padding: 3px 7px;
-  border-radius: 2px;
-  background: #b0741a;
-  color: #f6f3f1;
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
 
 .aurum-page .aurum-stale-badge {
   display: inline-flex;

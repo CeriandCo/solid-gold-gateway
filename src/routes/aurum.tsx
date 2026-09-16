@@ -2,7 +2,7 @@ import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
 import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
 import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
-import { AurumPriceSection, AurumSampleChip } from "@/components/aurum-price-section";
+import { AurumPriceSection } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
 import { AurumLearnSection } from "@/components/aurum-learn-section";
@@ -179,8 +179,6 @@ function AurumPageContent() {
             <a href="#top" onClick={(event) => scrollToSection(event, "top")} className="aurum-wordmark">
               AURUM
             </a>
-            <span className="aurum-subheader__divider" aria-hidden="true" />
-            <span className="aurum-subheader__descriptor">Free gold education from SQOOT Pure</span>
           </div>
 
           <div className="aurum-subheader__scroller">
@@ -290,7 +288,7 @@ function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "d
 }
 
 function AurumPriceChip() {
-  const { state, data, showLiveBadge, showSampleChip } = useAurumPrice();
+  const { state, data, showLiveBadge } = useAurumPrice();
   const money = (value: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
 
   return (
@@ -299,7 +297,6 @@ function AurumPriceChip() {
       {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
       {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
       {data ? <span>{money(data.spot)}</span> : null}
-      {showSampleChip ? <AurumSampleChip /> : null}
       {state.status === "unavailable" ? <span>Price unavailable</span> : null}
     </div>
   );
