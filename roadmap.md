@@ -25,5 +25,6 @@
 - [x] Daily Note section (#daily-note) with expand-in-place notes and /aurum/notes/:slug pages
 - [x] Weekly Brief section (#weekly-brief) with shared expand-in-place reading and /aurum/briefs/:slug pages
 - [x] Learn section (#learn) with four first-buyer cautions and links to the three published guides
+- [x] Gifts section (#gifts) with three milestone cards (uploaded photos as WebP) and a /gifting handoff
 - Replace Vault page hero image with uploaded secure allocation drawer image and restructure Vault hero to match shared InnerPageHero pattern.
 - Fix homepage FAQ accordion: split into two independent columns, animate height with grid-template-rows, replace icon swap with animated plus/minus bars.
