@@ -283,13 +283,6 @@ function AurumHero() {
   );
 }
 
-function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "dark" | "forest" | "warm" | "ivory" }) {
-  return (
-    <section id={id} className={`aurum-section aurum-section--${tone}`} aria-label={id.replaceAll("-", " ")}>
-      <div className="aurum-container" />
-    </section>
-  );
-}
 
 function AurumPriceChip() {
   const { state, data, showLiveBadge } = useAurumPrice();
