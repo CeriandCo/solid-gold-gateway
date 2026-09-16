@@ -54,6 +54,7 @@ export function AurumCommunitySection() {
             </p>
             <p className="aurum-community__room-url">
               <a href={CIRCLE_URL} target="_blank" rel="noopener">aurum-be0064.circle.so</a>
+              <span className="aurum-chip aurum-chip--outline">URL PENDING VERIFICATION</span>
             </p>
           </div>
           <div className="aurum-community__room-action">
