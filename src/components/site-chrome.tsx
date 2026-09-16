@@ -62,7 +62,6 @@ export const siteNav = [
   ["Trust Center", "/trust-center"],
   ["About Us", "/about-us"],
   ["Learn", "/learn"],
-  ["AURUM", "/aurum"],
 ] as const;
 
 
@@ -287,7 +286,6 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
       { label: "Gifting", to: "/gifting" },
       { label: "Vault", to: "/vault" },
       { label: "Learn", to: "/learn" },
-      { label: "AURUM", to: "/aurum" },
     ],
   },
   {

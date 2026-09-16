@@ -37,6 +37,7 @@ export const Route = createFileRoute("/aurum")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
     links: [
       { rel: "preload", as: "image", href: aurumHero.url, type: "image/webp" },
@@ -285,7 +286,7 @@ function AurumHero() {
 
 
 function AurumPriceChip() {
-  const { state, data, showLiveBadge, showSampleChip } = useAurumPrice();
+  const { state, data, showLiveBadge } = useAurumPrice();
   const money = (value: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
 
   return (
@@ -294,7 +295,7 @@ function AurumPriceChip() {
       {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
       {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
       {data ? <span>{money(data.spot)}</span> : null}
-      {showSampleChip ? <span className="aurum-chip aurum-chip--sample">SAMPLE DATA — NOT A REAL PRICE</span> : null}
+      
       {state.status === "unavailable" ? <span>Price unavailable</span> : null}
     </div>
   );
