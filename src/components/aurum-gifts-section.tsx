@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { GoldButton } from "@/components/site-chrome";
 import weddingsImage from "@/assets/aurum/aurum-gift-weddings.webp.asset.json";
 import newArrivalsImage from "@/assets/aurum/aurum-gift-new-arrivals.webp.asset.json";
 import festivalsImage from "@/assets/aurum/aurum-gift-festivals.webp.asset.json";
