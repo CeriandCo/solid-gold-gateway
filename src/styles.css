@@ -1046,3 +1046,79 @@ footer.site-footer a:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
+
+/* ============================================================
+   PRICING PAGE — premium redesign tokens (scoped, additive only)
+   ============================================================ */
+.pricing-page {
+  --pricing-forest-950: #01140f;
+  --pricing-forest-900: #04251c;
+  --pricing-forest-850: #073126;
+  --pricing-forest-800: #0b3b2d;
+
+  --pricing-gold: #d4a23a;
+  --pricing-gold-dark: #af781e;
+  --pricing-gold-soft: #e7c77d;
+
+  --pricing-cream: #fcfaf6;
+  --pricing-paper: #f7f1e7;
+  --pricing-paper-deep: #efe5d5;
+
+  --pricing-ink: #10271f;
+  --pricing-body: #35443e;
+  --pricing-muted: #69736e;
+
+  --pricing-border: rgba(111, 87, 47, 0.18);
+  --pricing-gold-border: rgba(212, 162, 58, 0.30);
+
+  --pricing-shadow:
+    0 2px 8px rgba(18, 27, 23, 0.025),
+    0 18px 46px rgba(18, 27, 23, 0.075);
+
+  --pricing-shadow-hover:
+    0 4px 12px rgba(18, 27, 23, 0.04),
+    0 24px 54px rgba(18, 27, 23, 0.11);
+
+  --pricing-radius-large: 16px;
+  --pricing-radius-card: 12px;
+  --pricing-radius-small: 6px;
+}
+
+.pricing-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(58px, 5vw, 76px);
+  line-height: 0.96;
+  font-weight: 500;
+  letter-spacing: -0.028em;
+}
+
+.pricing-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 2.8vw, 42px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.022em;
+}
+
+.pricing-card-title {
+  font-family: var(--font-display);
+  font-size: 27px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.pricing-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.pricing-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
