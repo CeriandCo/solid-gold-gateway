@@ -479,7 +479,17 @@ function StepRow({ children, last }: { children: React.ReactNode; last?: boolean
   );
 }
 
-type Estimate = { oz: number; total: number; metal: string };
+type Estimate = {
+  oz: number;
+  total: number;
+  metal: string;
+  purchaseFee: number;
+  storageBreakdown: {
+    annualStorage: number;
+    annualInsurance: number;
+    flooredAt25: boolean;
+  } | null;
+};
 
 const AMOUNT_PRESETS = [100, 500, 1000, 5000];
 const AMOUNT_MAX = 1_000_000;
@@ -547,12 +557,29 @@ function PurchaseCalculator({
     const toMetal = value - purchaseFee;
     const oz = toMetal / (spot * (1 + PREMIUM));
     let storageCost = 0;
+    let storageBreakdown: Estimate["storageBreakdown"] = null;
     if (receive === "vault") {
       const days = HOLD_DAYS[hold] ?? 30;
-      const annual = value * (0.0035 + 0.0045);
-      storageCost = Math.max(annual * (days / 365), (25 * days) / 365);
+      const annualStorageRaw = value * 0.0035 * (days / 365);
+      const annualInsuranceRaw = value * 0.0045 * (days / 365);
+      const combinedRaw = annualStorageRaw + annualInsuranceRaw;
+      const minimum = (25 * days) / 365;
+      const flooredAt25 = combinedRaw < minimum;
+      // Same math as before — the $25 floor applies to the combined amount.
+      storageCost = Math.max(combinedRaw, minimum);
+      storageBreakdown = {
+        annualStorage: annualStorageRaw,
+        annualInsurance: annualInsuranceRaw,
+        flooredAt25,
+      };
     }
-    setEstimate({ oz, total: purchaseFee + storageCost, metal });
+    setEstimate({
+      oz,
+      total: purchaseFee + storageCost,
+      metal,
+      purchaseFee,
+      storageBreakdown,
+    });
     track("calculator_estimate_shown", {
       amount: value,
       metal,
@@ -789,6 +816,32 @@ function PurchaseCalculator({
                     product}
                 </span>
               </p>
+              <div className="mt-2 space-y-1 font-sans text-ui-xs font-normal text-muted-ink">
+                {estimate.purchaseFee > 0 && (
+                  <p>Purchase fee: {USD.format(estimate.purchaseFee)}</p>
+                )}
+                {estimate.storageBreakdown !== null &&
+                  (estimate.storageBreakdown.flooredAt25 ? (
+                    // The US$25/yr minimum applies to storage + insurance
+                    // combined, not to each part — so a split here would
+                    // misrepresent the fee. Show the combined amount only.
+                    <p>
+                      Storage &amp; insurance (US$25/year minimum applies):{" "}
+                      {USD.format(estimate.total - estimate.purchaseFee)}
+                    </p>
+                  ) : (
+                    <>
+                      <p>
+                        Annual storage:{" "}
+                        {USD.format(estimate.storageBreakdown.annualStorage)}
+                      </p>
+                      <p>
+                        Annual insurance:{" "}
+                        {USD.format(estimate.storageBreakdown.annualInsurance)}
+                      </p>
+                    </>
+                  ))}
+              </div>
               <div className="my-3 h-px w-full bg-[var(--pricing-gold-border)]" />
               <p className="font-sans text-sm font-semibold text-forest-black">
                 Estimated total fees: {USD.format(estimate.total)}
