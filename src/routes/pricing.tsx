@@ -759,7 +759,7 @@ function PurchaseCalculator() {
         <GoldButton
           ref={submitRef}
           type="submit"
-          variant="forest"
+          variant="primary"
           size="md"
           className="mt-6 w-full"
         >
@@ -963,7 +963,7 @@ function BottomCta() {
         </p>
         <GoldButton
           to="/early-access"
-          variant="forest"
+          variant="primary"
           size="lg"
           onClick={() => track("bottom_cta_click", { target: "get_started" })}
           className="w-full no-underline md:w-auto"
