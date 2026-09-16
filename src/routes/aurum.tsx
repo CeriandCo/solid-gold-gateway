@@ -8,6 +8,7 @@ import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section
 import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
 import { AurumCommunitySection } from "@/components/aurum-community-section";
+import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
 
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
@@ -235,7 +236,7 @@ function AurumPageContent() {
         <AurumCalculatorSection />
         <AurumGiftsSection />
         <AurumCommunitySection />
-        <AurumSection id="subscribe" tone="warm" />
+        <AurumSubscribeSection />
       </main>
 
       <SiteFooter />
@@ -282,13 +283,6 @@ function AurumHero() {
   );
 }
 
-function AurumSection({ id, tone }: { id: (typeof SECTION_IDS)[number]; tone: "dark" | "forest" | "warm" | "ivory" }) {
-  return (
-    <section id={id} className={`aurum-section aurum-section--${tone}`} aria-label={id.replaceAll("-", " ")}>
-      <div className="aurum-container" />
-    </section>
-  );
-}
 
 function AurumPriceChip() {
   const { state, data, showLiveBadge } = useAurumPrice();
