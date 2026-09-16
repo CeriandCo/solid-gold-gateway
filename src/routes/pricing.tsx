@@ -347,18 +347,17 @@ function TransactionCostsSection() {
   );
 }
 
-function StorageSection() {
-  const table = STORAGE_TABLE;
+function FeeListSection({ table, idSuffix }: { table: StorageTableData; idSuffix: string }) {
   return (
-    <section aria-labelledby="storage-heading" className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
-      <h2 id="storage-heading" className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
+    <section aria-labelledby={`fee-${idSuffix}-heading`} className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
+      <h2 id={`fee-${idSuffix}-heading`} className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
         {table.title}
       </h2>
       <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
         {table.subtitle}
       </p>
       <table
-        aria-labelledby="storage-heading"
+        aria-labelledby={`fee-${idSuffix}-heading`}
         className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-ui-sm"
       >
         <thead>
