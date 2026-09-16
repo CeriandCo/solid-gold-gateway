@@ -777,15 +777,24 @@ function PurchaseCalculator({
 
         <div role="status" aria-live="polite">
           {estimate && (
-            <div className="estimate-enter mt-2.5 rounded-[6px] border border-beige bg-paper p-4">
-              <p className="text-display-h5 text-[22px] text-forest-black">
+            <div className="estimate-enter mt-2.5 rounded-[var(--pricing-radius-card)] border border-[var(--pricing-gold-border)] bg-[var(--pricing-paper-deep)] p-4">
+              <p className="pricing-label text-gold-dark">Your estimate</p>
+              <p className="pricing-card-title mt-1.5 text-forest-black">
                 {OZ.format(estimate.oz)} oz {estimate.metal}
               </p>
-              <p className="mt-1.5 font-sans text-ui-xs font-normal text-muted-ink">
-                You&apos;d pay approximately
+              <p className="mt-1 font-sans text-ui-xs font-normal text-muted-ink">
+                Selected product:{" "}
+                <span className="font-medium text-forest-black">
+                  {PRODUCT_CARDS.find((card) => card.id === product)?.title ??
+                    product}
+                </span>
               </p>
+              <div className="my-3 h-px w-full bg-[var(--pricing-gold-border)]" />
               <p className="font-sans text-sm font-semibold text-forest-black">
-                {USD.format(estimate.total)} in fees over the period
+                Estimated total fees: {USD.format(estimate.total)}
+              </p>
+              <p className="mt-1 font-sans text-ui-xs font-normal text-muted-ink">
+                Final price shown before confirmation
               </p>
               <button
                 type="button"
@@ -793,7 +802,7 @@ function PurchaseCalculator({
                   setEstimate(null);
                   amountRef.current?.focus();
                 }}
-                className={`mt-2 font-sans text-xs font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
+                className={`mt-3 font-sans text-xs font-medium text-gold-dark underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold ${FOCUS_RING}`}
               >
                 Recalculate
               </button>
