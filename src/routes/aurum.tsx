@@ -4,7 +4,8 @@ import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
 import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
 import { AurumPriceSection, AurumSampleChip } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
-import { isAurumRange, type AurumRange } from "@/lib/aurum/price-state";
+import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
+import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
     range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
     note: typeof search["note"] === "string" ? search["note"] : undefined,
+    priceState: isForcedPriceStatus(search["priceState"]) ? (search["priceState"] as ForcedPriceStatus) : undefined,
   }),
   head: () => ({
     meta: [
