@@ -3004,6 +3004,7 @@ footer.site-footer a:focus-visible {
 }
 
 .aurum-community__source-text {
+  margin-top: 20px;
   font-family: var(--font-sans, Inter), sans-serif;
   font-size: 12px;
   line-height: 1.6;
@@ -3183,11 +3184,6 @@ footer.site-footer a:focus-visible {
 
   .aurum-community__question blockquote {
     font-size: 20px;
-  }
-
-  .aurum-community__source {
-    flex-direction: column;
-    gap: 10px;
   }
 
   .aurum-community__room {
