@@ -16,6 +16,7 @@ export function AurumCommunitySection() {
         <h2 id="aurum-community-title" className="aurum-community__title">What people are actually asking</h2>
 
         <p className="aurum-community__source-text">
+          <span className="aurum-chip aurum-chip--solid">SAMPLE · NOT LIVE DATA</span>
           Illustrative questions drawn from public Reddit threads. Live pulse is wired to aurum_community_pulse once
           moderation rules are signed off.
         </p>
