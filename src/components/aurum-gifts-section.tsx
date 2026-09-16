@@ -47,9 +47,15 @@ export function AurumGiftsSection() {
           <p>
             Buying, engraving and delivery happen on the gifting page. Nothing is sold in this section.
           </p>
-          <Link to="/gifting" className="aurum-gifts__cta">
+          <GoldButton
+            to="/gifting"
+            variant="primary"
+            size="md"
+            icon="none"
+            className="aurum-gifts__cta"
+          >
             See gifting options <span aria-hidden="true">→</span>
-          </Link>
+          </GoldButton>
         </div>
       </div>
     </section>
