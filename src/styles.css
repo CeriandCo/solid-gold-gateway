@@ -1577,6 +1577,18 @@ footer.site-footer a:focus-visible {
   color: color-mix(in oklab, var(--warm-white) 55%, transparent);
 }
 
+.aurum-price-loading {
+  min-height: 520px;
+}
+
+.aurum-price-loading .aurum-container > p:last-child {
+  margin-top: 4rem;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--aurum-grey);
+}
+
 .aurum-price-footnote {
   margin-top: 2rem;
 }

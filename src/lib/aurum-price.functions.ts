@@ -6,6 +6,18 @@ export type AurumRange = "30D" | "90D" | "1Y" | "5Y";
 
 type DailyClose = { date: string; close: number };
 
+type SpotRecord = {
+  price: number;
+  currency: string;
+  unit: string;
+  observed_at: string;
+  change_amount: number;
+  change_percent: number;
+  high_24h: number;
+  low_24h: number;
+  previous_close: number;
+};
+
 export type AurumPriceResponse = {
   checkedAt: string;
   priceState:
@@ -29,6 +41,48 @@ function isRange(value: unknown): value is AurumRange {
 
 function sanePrice(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value) && value > 100 && value < 100_000;
+}
+
+export function assessSpotRecord(spot: SpotRecord | null, checkedAt: Date, readFailed = false): AurumPriceResponse["priceState"] {
+  if (readFailed) return { status: "unavailable", reason: "The latest price could not be retrieved.", lastGoodAt: null };
+  if (!spot) return { status: "unavailable", reason: "No current price has been recorded.", lastGoodAt: null };
+
+  const observedTime = Date.parse(spot.observed_at);
+  const validSpot =
+    spot.currency === "USD" &&
+    spot.unit === "troy_ounce" &&
+    Number.isFinite(observedTime) &&
+    sanePrice(spot.price) &&
+    sanePrice(spot.high_24h) &&
+    sanePrice(spot.low_24h) &&
+    sanePrice(spot.previous_close) &&
+    Number.isFinite(spot.change_amount) &&
+    Number.isFinite(spot.change_percent);
+
+  if (!validSpot) {
+    return {
+      status: "unavailable",
+      reason: "The latest price record did not pass validation.",
+      lastGoodAt: Number.isFinite(observedTime) ? spot.observed_at : null,
+    };
+  }
+  if (checkedAt.getTime() - observedTime > FRESHNESS_MS || observedTime > checkedAt.getTime() + 5_000) {
+    return {
+      status: "unavailable",
+      reason: observedTime > checkedAt.getTime() + 5_000 ? "The latest price has an invalid timestamp." : "The latest price is more than 60 seconds old.",
+      lastGoodAt: spot.observed_at,
+    };
+  }
+  return {
+    status: "live",
+    price: spot.price,
+    changeAmount: spot.change_amount,
+    changePercent: spot.change_percent,
+    high24h: spot.high_24h,
+    low24h: spot.low_24h,
+    previousClose: spot.previous_close,
+    observedAt: spot.observed_at,
+  };
 }
 
 function percentChange(current: number, reference: number) {
@@ -77,50 +131,8 @@ export const getAurumPriceData = createServerFn({ method: "GET" })
         .order("price_date", { ascending: true }),
     ]);
 
-    let priceState: AurumPriceResponse["priceState"];
     const spot = spotResult.data;
-    const observedTime = spot ? Date.parse(spot.observed_at) : Number.NaN;
-    const validSpot = Boolean(
-      spot &&
-        spot.currency === "USD" &&
-        spot.unit === "troy_ounce" &&
-        Number.isFinite(observedTime) &&
-        sanePrice(spot.price) &&
-        sanePrice(spot.high_24h) &&
-        sanePrice(spot.low_24h) &&
-        sanePrice(spot.previous_close) &&
-        Number.isFinite(spot.change_amount) &&
-        Number.isFinite(spot.change_percent),
-    );
-
-    if (spotResult.error) {
-      priceState = { status: "unavailable", reason: "The latest price could not be retrieved.", lastGoodAt: null };
-    } else if (!spot) {
-      priceState = { status: "unavailable", reason: "No current price has been recorded.", lastGoodAt: null };
-    } else if (!validSpot) {
-      priceState = {
-        status: "unavailable",
-        reason: "The latest price record did not pass validation.",
-        lastGoodAt: Number.isFinite(observedTime) ? spot.observed_at : null,
-      };
-    } else if (checkedAt.getTime() - observedTime > FRESHNESS_MS || observedTime > checkedAt.getTime() + 5_000) {
-      priceState = {
-        status: "unavailable",
-        reason: observedTime > checkedAt.getTime() + 5_000 ? "The latest price has an invalid timestamp." : "The latest price is more than 60 seconds old.",
-        lastGoodAt: spot.observed_at,
-      };
-    } else {
-      priceState = {
-        status: "live",
-        price: spot.price,
-        changeAmount: spot.change_amount,
-        changePercent: spot.change_percent,
-        high24h: spot.high_24h,
-        low24h: spot.low_24h,
-        previousClose: spot.previous_close,
-        observedAt: spot.observed_at,
-      };
-    }
+    const priceState = assessSpotRecord(spot, checkedAt, Boolean(spotResult.error));
 
     const history = historyResult.error
       ? []

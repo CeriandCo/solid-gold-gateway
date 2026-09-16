@@ -36,6 +36,7 @@ export const Route = createFileRoute("/aurum")({
     ],
   }),
   component: AurumPage,
+  pendingComponent: AurumPendingPage,
   errorComponent: () => <div role="alert">AURUM price information is temporarily unavailable.</div>,
   notFoundComponent: () => <div role="alert">AURUM price information was not found.</div>,
 });
@@ -62,6 +63,24 @@ const AURUM_LINKS = [
 ] as const;
 
 const SECTION_IDS = ["top", ...AURUM_LINKS.map(({ id }) => id), "subscribe"] as const;
+
+function AurumPendingPage() {
+  return (
+    <div className="aurum-page">
+      <SiteHeader />
+      <div className="aurum-subheader" aria-hidden="true" />
+      <main>
+        <section className="aurum-price-current aurum-price-loading" aria-live="polite" aria-busy="true">
+          <div className="aurum-container">
+            <p className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
+            <p>Loading price</p>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
 
 function AurumPage() {
   const { range } = Route.useSearch();
