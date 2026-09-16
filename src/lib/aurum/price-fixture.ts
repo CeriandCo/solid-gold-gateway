@@ -1,42 +1,87 @@
 /**
- * DEMO FIXTURE — SAMPLE DATA, NOT REAL PRICES.
+ * MOCK FIXTURE — SAMPLE DATA, NOT REAL PRICES.
  *
  * This is the only file in the codebase that contains gold price numbers.
- * It is reachable exclusively through the demo adapter, which is off by default
- * and ignored in production builds. Delete this file when the real feed is fixed.
+ * It is reachable exclusively through the mock adapter. Everything derived
+ * (facts, 52 week extremes, calculator results) is computed from the series
+ * below, never typed in twice.
+ *
+ * The series is generated from a fixed seed, so it is byte-identical on every
+ * load and in every screenshot. No Math.random at render time.
  */
 
-export const DEMO_SPOT_USD = 2063.48;
-export const DEMO_CHANGE_PCT = 1.24;
-export const DEMO_CHANGE_AMOUNT = 25.32;
+export const FIXTURE_AS_OF = new Date("2026-09-16T14:32:07.000Z");
+/** The fixture's "now": the as-of stamp reads as 12 seconds ago. */
+export const FIXTURE_NOW = new Date(FIXTURE_AS_OF.getTime() + 12_000);
 
-export const DEMO_DERIVED = {
-  high24h: 2078.9,
-  low24h: 2034.1,
-  previousClose: 2038.16,
-};
+export const FIXTURE_SPOT = 2063.48;
+export const FIXTURE_PREVIOUS_CLOSE = 2038.16;
+export const FIXTURE_CHANGE_AMOUNT = 25.32;
+export const FIXTURE_CHANGE_PCT = 1.24;
+export const FIXTURE_DAY_HIGH = 2071.1;
+export const FIXTURE_DAY_LOW = 2038.94;
 
-export const DEMO_FACTS = {
-  monthToDate: { value: 3.1, referenceDate: "2026-09-01" },
-  yearToDate: { value: 18.42, referenceDate: "2025-12-31" },
-  high52Week: { value: 2214.6, date: "2026-04-14" },
-  low52Week: { value: 1742.05, date: "2025-11-03" },
-};
+/** Anchor point the look-back calculator example relies on. */
+export const FIXTURE_ANCHOR = { date: "2021-04-14", close: 1745.2 };
 
-/** A plausible daily series so the chart has shape. Generated, not observed. */
-export function buildDemoSeries(days: number, endDate: Date): Array<{ date: string; close: number }> {
-  const points: Array<{ date: string; close: number }> = [];
-  let value = DEMO_SPOT_USD * 0.86;
-  for (let index = days; index >= 0; index -= 1) {
-    const day = new Date(endDate.getTime() - index * 86_400_000);
-    const weekday = day.getUTCDay();
+const SERIES_START = "2021-04-14";
+const SERIES_END = "2026-09-16";
+
+export type FixturePoint = { date: string; close: number };
+
+function dayString(time: number) {
+  return new Date(time).toISOString().slice(0, 10);
+}
+
+/** Deterministic linear congruential generator. */
+function makeRandom(seed: number) {
+  let state = seed >>> 0;
+  return () => {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    return state / 0x100000000;
+  };
+}
+
+function buildSeries(): FixturePoint[] {
+  const start = Date.parse(`${SERIES_START}T00:00:00Z`);
+  const end = Date.parse(`${SERIES_END}T00:00:00Z`);
+  const dates: string[] = [];
+  for (let time = start; time <= end; time += 86_400_000) {
+    const weekday = new Date(time).getUTCDay();
     if (weekday === 0 || weekday === 6) continue;
-    const drift = (DEMO_SPOT_USD - value) / (index + 8);
-    const wobble = Math.sin(index / 6) * 7 + Math.cos(index / 2.5) * 3;
-    value = value + drift + wobble * 0.4;
-    points.push({ date: day.toISOString().slice(0, 10), close: Math.round(value * 100) / 100 });
+    dates.push(dayString(time));
   }
-  const last = points.at(-1);
-  if (last) last.close = DEMO_SPOT_USD;
+
+  const random = makeRandom(20260916);
+  const walk: number[] = [];
+  let wobble = 0;
+  for (let index = 0; index < dates.length; index += 1) {
+    wobble = wobble * 0.985 + (random() * 2 - 1) * 11;
+    walk.push(wobble);
+  }
+
+  const last = dates.length - 1;
+  const trendFrom = FIXTURE_ANCHOR.close;
+  const trendTo = FIXTURE_SPOT;
+  const tail = walk[last] ?? 0;
+
+  const points: FixturePoint[] = dates.map((date, index) => {
+    const progress = last === 0 ? 1 : index / last;
+    const trend = trendFrom + (trendTo - trendFrom) * progress;
+    const swing = Math.sin(progress * Math.PI * 1.7) * 96;
+    const noise = (walk[index] ?? 0) - tail * progress;
+    const close = trend + swing + noise;
+    return { date, close: Math.round(close * 100) / 100 };
+  });
+
+  const first = points[0];
+  if (first) first.close = FIXTURE_ANCHOR.close;
+  const penultimate = points[last - 1];
+  if (penultimate) penultimate.close = FIXTURE_PREVIOUS_CLOSE;
+  const final = points[last];
+  if (final) final.close = FIXTURE_SPOT;
+
   return points;
 }
+
+export const FIXTURE_SERIES: FixturePoint[] = buildSeries();

@@ -1,147 +1,68 @@
+/**
+ * Adapters own where price data comes from. Components never fetch.
+ * Moving to the real feed is a one-line change in `selectPriceAdapter`.
+ */
+
 import {
-  buildHistoryState,
-  RANGE_DAYS,
-  readMaxAgeSeconds,
-  resolvePriceState,
-  validateGoldPrice,
-  validateHistoryPoints,
-  type AurumRange,
-  type HistoryState,
+  computeFacts,
+  type HistoryPoint,
+  type PriceData,
   type PriceSource,
   type PriceState,
 } from "./price-state";
 import {
-  buildDemoSeries,
-  DEMO_CHANGE_AMOUNT,
-  DEMO_CHANGE_PCT,
-  DEMO_DERIVED,
-  DEMO_FACTS,
-  DEMO_SPOT_USD,
+  FIXTURE_AS_OF,
+  FIXTURE_CHANGE_AMOUNT,
+  FIXTURE_CHANGE_PCT,
+  FIXTURE_DAY_HIGH,
+  FIXTURE_DAY_LOW,
+  FIXTURE_NOW,
+  FIXTURE_PREVIOUS_CLOSE,
+  FIXTURE_SERIES,
+  FIXTURE_SPOT,
 } from "./price-fixture";
-
-export type PriceDerived = {
-  changeAmount: number;
-  high24h: number;
-  low24h: number;
-  previousClose: number;
-};
-
-export type PriceFacts = {
-  monthToDate: { value: number; referenceDate: string };
-  yearToDate: { value: number; referenceDate: string };
-  high52Week: { value: number; date: string };
-  low52Week: { value: number; date: string };
-};
-
-export type PriceSnapshot = {
-  state: PriceState;
-  /** null until the server derives and validates these; the UI must hide them. */
-  derived: PriceDerived | null;
-  facts: PriceFacts | null;
-};
 
 export type PriceAdapter = {
   source: PriceSource;
-  fetchPrice: (now: Date) => Promise<PriceSnapshot>;
-  fetchHistory: (range: AurumRange, now: Date) => Promise<HistoryState>;
+  /** The clock the adapter's data is expressed against. */
+  now: () => Date;
+  load: () => Promise<PriceState>;
 };
 
-const API_BASE =
-  (import.meta.env["VITE_AURUM_PRICE_API_URL"] as string | undefined) ??
-  "https://bdmtdwmwrnsrajgicxsp.supabase.co/functions/v1";
+function buildMockData(): PriceData | null {
+  const history: HistoryPoint[] = FIXTURE_SERIES.map((point) => ({
+    date: new Date(`${point.date}T00:00:00.000Z`),
+    close: point.close,
+  }));
+  const facts = computeFacts(history, FIXTURE_SPOT, FIXTURE_AS_OF);
+  if (!facts) return null;
 
-const REQUEST_TIMEOUT_MS = 12_000;
-
-async function getJson(path: string): Promise<unknown> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const response = await fetch(`${API_BASE}${path}`, {
-      headers: { accept: "application/json" },
-      signal: controller.signal,
-    });
-    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
-    return await response.json();
-  } finally {
-    clearTimeout(timer);
-  }
+  return {
+    spot: FIXTURE_SPOT,
+    changePct: FIXTURE_CHANGE_PCT,
+    changeAmount: FIXTURE_CHANGE_AMOUNT,
+    asOf: FIXTURE_AS_OF,
+    dayHigh: FIXTURE_DAY_HIGH,
+    dayLow: FIXTURE_DAY_LOW,
+    previousClose: FIXTURE_PREVIOUS_CLOSE,
+    facts,
+    history,
+  };
 }
 
-function toDateOnly(date: Date) {
-  return date.toISOString().slice(0, 10);
-}
-
-export const realPriceAdapter: PriceAdapter = {
-  source: "live",
-  async fetchPrice(now) {
-    const maxAgeSeconds = readMaxAgeSeconds();
-    let payload: unknown;
-    try {
-      payload = await getJson("/get-gold-price");
-    } catch (error) {
-      console.error("[aurum] price request failed", error);
-      return { state: { status: "unavailable", source: "live", reason: "network" }, derived: null, facts: null };
-    }
-
-    const validated = validateGoldPrice(payload, now);
-    const state = resolvePriceState(validated, { now, maxAgeSeconds, source: "live" });
-    // The feed returns no 24h high/low, previous close or absolute change.
-    // Nothing is invented here: the UI hides those elements while this is null.
-    return { state, derived: null, facts: null };
-  },
-  async fetchHistory(range, now) {
-    const from = new Date(now.getTime() - RANGE_DAYS[range] * 86_400_000);
-    let payload: unknown;
-    try {
-      payload = await getJson(`/get-history?from=${toDateOnly(from)}&to=${toDateOnly(now)}`);
-    } catch (error) {
-      console.error("[aurum] history request failed", error);
-      return { status: "unavailable", reason: "network" };
-    }
-
-    const points = validateHistoryPoints(payload);
-    if (!points) return { status: "unavailable", reason: "invalid" };
-
-    const windowed = points.filter((point) => point.date >= toDateOnly(from));
-    if (windowed.length === 0) return { status: "unavailable", reason: "no-data" };
-    return buildHistoryState(windowed, now, "live");
-  },
-};
-
-export const demoPriceAdapter: PriceAdapter = {
-  source: "demo",
-  async fetchPrice(now) {
-    const maxAgeSeconds = readMaxAgeSeconds();
-    const state = resolvePriceState(
-      { spot: DEMO_SPOT_USD, changePct: DEMO_CHANGE_PCT, fetchedAt: now },
-      { now, maxAgeSeconds, source: "demo" },
-    );
-    return {
-      state,
-      derived: {
-        changeAmount: DEMO_CHANGE_AMOUNT,
-        high24h: DEMO_DERIVED.high24h,
-        low24h: DEMO_DERIVED.low24h,
-        previousClose: DEMO_DERIVED.previousClose,
-      },
-      facts: DEMO_FACTS,
-    };
-  },
-  async fetchHistory(range, now) {
-    return buildHistoryState(buildDemoSeries(RANGE_DAYS[range], now), now, "demo");
+export const mockPriceAdapter: PriceAdapter = {
+  source: "mock",
+  now: () => FIXTURE_NOW,
+  async load() {
+    const data = buildMockData();
+    if (!data) return { status: "unavailable", reason: "no-data" };
+    return { status: "ready", source: "mock", data };
   },
 };
 
 /**
- * Demo mode is opt-in, off by default, and ignored in production builds.
+ * Mock data only for now. Connecting the real feed replaces this return value.
  */
 export function selectPriceAdapter(): PriceAdapter {
-  const flag = import.meta.env["VITE_AURUM_DEMO_PRICE"];
-  const enabled = flag === "true" || flag === "1";
-  if (!enabled) return realPriceAdapter;
-  if (import.meta.env.PROD) {
-    console.error("[aurum] VITE_AURUM_DEMO_PRICE is set in a production build and was ignored.");
-    return realPriceAdapter;
-  }
-  return demoPriceAdapter;
+  return mockPriceAdapter;
 }

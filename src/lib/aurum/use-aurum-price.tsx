@@ -1,103 +1,77 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { selectPriceAdapter, type PriceAdapter, type PriceSnapshot } from "./price-adapters";
-import type { AurumRange, HistoryState, PriceState } from "./price-state";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { selectPriceAdapter, type PriceAdapter } from "./price-adapters";
+import {
+  canCalculate,
+  historyForRange,
+  isLive,
+  isMock,
+  priceData,
+  type AurumRange,
+  type ForcedPriceStatus,
+  type HistoryPoint,
+  type PriceData,
+  type PriceState,
+} from "./price-state";
 
-type AurumPriceContextValue = PriceSnapshot & {
-  history: HistoryState;
-  range: AurumRange;
-  isDemo: boolean;
+type AurumPriceContextValue = {
+  state: PriceState;
+  data: PriceData | null;
+  /** The clock the current data is expressed against. */
+  now: Date;
+  showLiveBadge: boolean;
+  showSampleChip: boolean;
+  calculatorEnabled: boolean;
+  historyFor: (range: AurumRange) => HistoryPoint[];
 };
 
 const AurumPriceContext = createContext<AurumPriceContextValue | null>(null);
 
-const POLL_INTERVAL_MS = 60_000;
-const BACKOFF_STEPS_MS = [60_000, 120_000, 240_000, 480_000];
+/** Reviewer preview: force a status in non-production builds only. */
+function applyForcedStatus(state: PriceState, forced: ForcedPriceStatus | undefined): PriceState {
+  if (!forced || import.meta.env.PROD) return state;
+  if (forced === "loading") return { status: "loading" };
+  if (forced === "unavailable") return { status: "unavailable", reason: "no-data" };
 
-const LOADING_SNAPSHOT: PriceSnapshot = {
-  state: { status: "loading", source: "live" },
-  derived: null,
-  facts: null,
-};
+  const data = priceData(state);
+  if (!data) return state;
+  if (forced === "stale") return { status: "stale", source: state.status === "ready" ? state.source : "mock", data, ageSeconds: 3_600 };
+  return { status: "ready", source: "mock", data };
+}
 
-export function AurumPriceProvider({ range, children }: { range: AurumRange; children: ReactNode }) {
+export function AurumPriceProvider({
+  forcedStatus,
+  children,
+}: {
+  forcedStatus?: ForcedPriceStatus | undefined;
+  children: ReactNode;
+}) {
   const adapter = useMemo<PriceAdapter>(() => selectPriceAdapter(), []);
-  const [snapshot, setSnapshot] = useState<PriceSnapshot>(() => ({
-    ...LOADING_SNAPSHOT,
-    state: { status: "loading", source: adapter.source },
-  }));
-  const [history, setHistory] = useState<HistoryState>({ status: "loading" });
-  const lastGoodAt = useRef<Date | undefined>(undefined);
-  const failures = useRef(0);
+  const [state, setState] = useState<PriceState>({ status: "loading" });
 
   useEffect(() => {
     let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const schedule = (delay: number) => {
-      if (cancelled) return;
-      timer = setTimeout(run, delay);
-    };
-
-    async function run() {
-      if (cancelled) return;
-      if (typeof document !== "undefined" && document.visibilityState === "hidden") return;
-
-      const next = await adapter.fetchPrice(new Date());
-      if (cancelled) return;
-
-      if (next.state.status === "live" || next.state.status === "stale") {
-        lastGoodAt.current = next.state.fetchedAt;
-        failures.current = 0;
-      } else {
-        failures.current += 1;
-      }
-
-      const withLastGood: PriceState =
-        next.state.status === "unavailable" && lastGoodAt.current
-          ? { ...next.state, lastGoodAt: lastGoodAt.current }
-          : next.state;
-
-      setSnapshot({ ...next, state: withLastGood });
-
-      const backoff =
-        failures.current > 0
-          ? (BACKOFF_STEPS_MS[Math.min(failures.current - 1, BACKOFF_STEPS_MS.length - 1)] ?? POLL_INTERVAL_MS)
-          : POLL_INTERVAL_MS;
-      schedule(backoff);
-    }
-
-    const onVisibility = () => {
-      if (document.visibilityState !== "visible") {
-        if (timer) clearTimeout(timer);
-        return;
-      }
-      void run();
-    };
-
-    void run();
-    document.addEventListener("visibilitychange", onVisibility);
-    return () => {
-      cancelled = true;
-      if (timer) clearTimeout(timer);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
-  }, [adapter]);
-
-  useEffect(() => {
-    let cancelled = false;
-    setHistory({ status: "loading" });
-    void adapter.fetchHistory(range, new Date()).then((next) => {
-      if (!cancelled) setHistory(next);
+    void adapter.load().then((next) => {
+      if (!cancelled) setState(next);
     });
     return () => {
       cancelled = true;
     };
-  }, [adapter, range]);
+  }, [adapter]);
 
-  const value = useMemo<AurumPriceContextValue>(
-    () => ({ ...snapshot, history, range, isDemo: adapter.source === "demo" }),
-    [snapshot, history, range, adapter.source],
-  );
+  const value = useMemo<AurumPriceContextValue>(() => {
+    const resolved = applyForcedStatus(state, forcedStatus);
+    const data = priceData(resolved);
+    const now = adapter.now();
+    return {
+      state: resolved,
+      data,
+      now,
+      showLiveBadge: isLive(resolved),
+      showSampleChip: isMock(resolved),
+      calculatorEnabled: canCalculate(resolved),
+      historyFor: (range: AurumRange) => (data ? historyForRange(data.history, range, now) : []),
+    };
+  }, [state, forcedStatus, adapter]);
 
   return <AurumPriceContext.Provider value={value}>{children}</AurumPriceContext.Provider>;
 }

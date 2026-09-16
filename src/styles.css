@@ -2294,3 +2294,102 @@ footer.site-footer a:focus-visible {
   font-size: 13px;
   color: var(--aurum-grey);
 }
+
+/* ── AURUM look-back calculator ─────────────────────────────── */
+.aurum-page .aurum-calc__dek {
+  font-size: 15px;
+  color: var(--muted-ink, #4f5451);
+  max-width: 720px;
+  margin-top: 10px;
+}
+
+.aurum-page .aurum-calc__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: 32px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+.aurum-page .aurum-calc__form {
+  display: grid;
+  gap: 16px;
+}
+
+.aurum-page .aurum-calc__field {
+  display: grid;
+  gap: 6px;
+}
+
+.aurum-page .aurum-calc__field > span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--gold-dark, #945f06);
+}
+
+.aurum-page .aurum-calc__field input {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--beige, #dad4ce);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--charcoal, #091b13);
+  font-size: 15px;
+}
+
+.aurum-page .aurum-calc__field input:disabled {
+  opacity: 0.55;
+}
+
+.aurum-page .aurum-calc__result {
+  border: 1px solid var(--beige, #dad4ce);
+  background: #fff;
+  border-radius: 4px;
+  padding: 28px 32px;
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.aurum-page .aurum-calc__rows {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.aurum-page .aurum-calc__rows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--muted-ink, #4f5451);
+}
+
+.aurum-page .aurum-calc__rows > div dd {
+  color: var(--charcoal, #091b13);
+  font-weight: 600;
+}
+
+.aurum-page .aurum-calc__rows--total {
+  border-top: 1px solid var(--beige, #dad4ce);
+  padding-top: 12px;
+  font-size: 15px;
+}
+
+.aurum-page .aurum-calc__change {
+  font-size: 13px;
+  color: var(--gold-dark, #945f06);
+  font-weight: 600;
+}
+
+.aurum-page .aurum-calc__disabled {
+  font-size: 15px;
+  color: var(--aurum-grey, #8a938d);
+}
+
+@media (max-width: 899px) {
+  .aurum-page .aurum-calc__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
