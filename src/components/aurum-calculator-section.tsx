@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { closeOn } from "@/lib/aurum/price-state";
-import { AurumSampleChip } from "@/components/aurum-price-section";
+
 
 const USD = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });
 const OZ = new Intl.NumberFormat("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
@@ -12,7 +12,7 @@ const DEFAULT_AMOUNT = "5000";
 const DEFAULT_DATE = "2021-04-14";
 
 export function AurumCalculatorSection() {
-  const { data, calculatorEnabled, showSampleChip, state } = useAurumPrice();
+  const { data, calculatorEnabled, state } = useAurumPrice();
   const [amountInput, setAmountInput] = useState(DEFAULT_AMOUNT);
   const [dateInput, setDateInput] = useState(DEFAULT_DATE);
 
@@ -61,7 +61,7 @@ export function AurumCalculatorSection() {
           </form>
 
           <div className="aurum-calc__result" aria-live="polite">
-            {showSampleChip ? <AurumSampleChip /> : null}
+
             {!calculatorEnabled ? (
               <p className="aurum-calc__disabled">
                 {state.status === "stale"

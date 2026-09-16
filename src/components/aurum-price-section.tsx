@@ -25,12 +25,9 @@ function formatAge(seconds: number) {
   return `${Math.round(hours / 24)} days`;
 }
 
-export function AurumSampleChip() {
-  return <span className="aurum-sample-chip">SAMPLE DATA — NOT A REAL PRICE</span>;
-}
 
 export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
-  const { state, data, now, showLiveBadge, showSampleChip, historyFor } = useAurumPrice();
+  const { state, data, now, showLiveBadge, historyFor } = useAurumPrice();
   const facts = data?.facts ?? null;
   const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const latestClose = points.at(-1) ?? null;
@@ -41,7 +38,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-price-current">
         <div className="aurum-container aurum-price-current__content">
           <p id="aurum-price-heading" className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
-          {showSampleChip ? <AurumSampleChip /> : null}
+
 
           {state.status === "loading" ? (
             <div className="aurum-price-unavailable" role="status" aria-busy="true">
@@ -97,7 +94,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
         <div className="aurum-price-facts">
           <div className="aurum-container">
             <p className="aurum-price-eyebrow">GOLD PRICE FACTS</p>
-            {showSampleChip ? <AurumSampleChip /> : null}
+
             <h2 className="aurum-price-title">Derived from real history, not estimates</h2>
             <div className="aurum-facts-grid">
               <Fact label="MONTH TO DATE" value={`${PERCENT.format(facts.monthToDatePct)}%`} caption={`From ${DATE.format(facts.monthToDateFrom)} close`} />
