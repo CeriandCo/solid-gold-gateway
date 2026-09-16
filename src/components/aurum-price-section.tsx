@@ -16,6 +16,7 @@ function formatDate(value: string) {
 export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumPriceResponse; range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
   const live = data.priceState.status === "live" ? data.priceState : null;
   const unavailable = data.priceState.status === "unavailable" ? data.priceState : null;
+  const latestClose = data.series.at(-1) ?? null;
   const secondsAgo = live ? Math.max(0, Math.floor((Date.parse(data.checkedAt) - Date.parse(live.observedAt)) / 1000)) : null;
 
   return (
@@ -79,7 +80,7 @@ export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumP
               {RANGES.map((item) => <Button key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
-          {data.series.length ? (
+          {latestClose ? (
             <div className="aurum-chart" aria-label={`${range} gold closing price chart`}>
               <span className="aurum-chart__axis-label">USD PER TROY OUNCE</span>
               <ResponsiveContainer width="100%" height={360}>
@@ -91,12 +92,12 @@ export function AurumPriceSection({ data, range, onRangeChange }: { data: AurumP
                   <Tooltip formatter={(value) => [USD.format(Number(value)), "Close"]} labelFormatter={(label) => formatDate(String(label))} />
                   <Area type="monotone" dataKey="close" stroke="var(--gold)" strokeWidth={2} fill="url(#aurum-chart-fill)" dot={false} activeDot={{ r: 4, fill: "var(--gold)" }} />
                   <ReferenceDot
-                    x={data.series[data.series.length - 1]?.date}
-                    y={data.series[data.series.length - 1]?.close}
+                    x={latestClose.date}
+                    y={latestClose.close}
                     r={4}
                     fill="var(--gold)"
                     stroke="var(--paper)"
-                    label={{ value: USD.format(data.series[data.series.length - 1]?.close ?? 0), position: "top", fill: "var(--charcoal)", fontSize: 11 }}
+                    label={{ value: USD.format(latestClose.close), position: "top", fill: "var(--charcoal)", fontSize: 11 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
