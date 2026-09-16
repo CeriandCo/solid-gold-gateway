@@ -231,7 +231,7 @@ function AurumPageContent() {
         />
         <AurumLearnSection />
         <AurumCalculatorSection />
-        <AurumSection id="gifts" tone="ivory" />
+        <AurumGiftsSection />
         <AurumSection id="community" tone="forest" />
         <AurumSection id="subscribe" tone="warm" />
       </main>
