@@ -43,6 +43,9 @@ export function AurumCommunitySection() {
       <div className="aurum-community__room">
         <div className="aurum-container aurum-community__room-inner">
           <div className="aurum-community__room-copy">
+            <p className="aurum-community__room-flag">
+              <span className="aurum-chip aurum-chip--solid">NOT OPEN YET</span>
+            </p>
             <p className="aurum-community__room-eyebrow">WHERE THE ROOM LIVES</p>
             <h3 className="aurum-community__room-title">The community is hosted on Circle</h3>
             <p className="aurum-community__room-body">
