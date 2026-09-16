@@ -473,25 +473,9 @@ function SegmentedGroup({
   );
 }
 
-function StepRow({
-  index,
-  children,
-  last,
-}: {
-  index: number;
-  children: React.ReactNode;
-  last?: boolean;
-}) {
+function StepRow({ children, last }: { children: React.ReactNode; last?: boolean }) {
   return (
-    <div className={`flex items-start gap-3.5 ${last ? "" : "mb-3.5"}`}>
-      <span
-        aria-hidden="true"
-        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-black font-sans text-xs font-bold text-paper"
-      >
-        {index}
-      </span>
-      <div className="flex min-w-0 flex-1 flex-col gap-2">{children}</div>
-    </div>
+    <div className={`flex min-w-0 flex-col gap-2 ${last ? "" : "mb-3.5"}`}>{children}</div>
   );
 }
 
@@ -582,21 +566,24 @@ function PurchaseCalculator({
   return (
     <section
       aria-labelledby="calculator-heading"
-      className="mx-auto w-full max-w-none rounded-[8px] bg-wash-green px-5 pb-5 pt-4 md:max-w-[560px] md:px-6 md:pb-6 md:pt-5 lg:max-w-none lg:px-6 lg:pb-6.5 lg:pt-5.5"
+      className="pricing-page mx-auto w-full max-w-none rounded-[var(--pricing-radius-large)] border border-[var(--pricing-gold-border)] bg-[var(--pricing-paper)] px-5 pb-5 pt-4 shadow-[var(--pricing-shadow)] md:max-w-[560px] md:px-6 md:pb-6 md:pt-5 lg:max-w-none lg:sticky lg:top-[132px] lg:px-6 lg:pb-6.5 lg:pt-5.5"
     >
-      <p className="mb-2 font-sans text-[10.5px] font-bold uppercase leading-none tracking-[2px] text-gold-dark">
-        Purchase calculator
-      </p>
-      <h2 id="calculator-heading" className="text-display-h4 mb-1.5 text-forest-black">
+      <p className="pricing-label mb-2 text-gold-dark">Purchase calculator</p>
+      <h2 id="calculator-heading" className="pricing-card-title mb-1.5 text-forest-black">
         See what your money could buy
       </h2>
-      <p className="mb-4.5 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
+      <p className="mb-1.5 font-sans text-ui-sm font-normal leading-[1.5] text-muted-ink">
         Explore your gold options and see the estimated costs, including fees,
         storage and delivery.
       </p>
+      <p className="mb-4.5 font-sans text-ui-xs font-normal text-muted-ink">
+        Estimate in USD · Fees shown separately
+      </p>
 
       <form onSubmit={handleSubmit} noValidate>
-        <StepRow index={1}>
+        <div className="mb-3.5">
+          <p className="pricing-label mb-2 text-muted-ink">Budget</p>
+          <StepRow>
           <label
             htmlFor={amountId}
             className="font-sans text-ui-sm font-medium text-forest-black"
@@ -677,8 +664,11 @@ function PurchaseCalculator({
             </p>
           )}
         </StepRow>
+        </div>
 
-        <StepRow index={2}>
+        <div className="mb-3.5">
+          <p className="pricing-label mb-2 text-muted-ink">Ownership</p>
+          <StepRow>
           <SegmentedGroup
             name="metal"
             legend="Choose metal"
@@ -688,7 +678,7 @@ function PurchaseCalculator({
           />
         </StepRow>
 
-        <StepRow index={3}>
+        <StepRow>
           <SegmentedGroup
             name="product"
             legend="Choose product"
@@ -704,7 +694,7 @@ function PurchaseCalculator({
           />
         </StepRow>
 
-        <StepRow index={4}>
+        <StepRow>
           <SegmentedGroup
             name="receive"
             legend="How would you like to receive it?"
@@ -716,15 +706,18 @@ function PurchaseCalculator({
             ]}
           />
         </StepRow>
+        </div>
 
-        <div
+        <div className="mb-3.5">
+          <p className="pricing-label mb-2 text-muted-ink">Fulfilment</p>
+          <div
           inert={receive !== "vault" ? true : undefined}
           className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-safe:ease-standard ${
             receive === "vault" ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
           }`}
         >
           <div className="overflow-hidden">
-            <StepRow index={5}>
+            <StepRow>
               <SegmentedGroup
                 name="hold"
                 legend="How long will you store it?"
@@ -748,7 +741,7 @@ function PurchaseCalculator({
           </div>
         </div>
 
-        <StepRow index={6} last>
+        <StepRow last>
           <SegmentedGroup
             name="gift"
             legend="Is this a gift? (optional)"
@@ -760,6 +753,7 @@ function PurchaseCalculator({
             ]}
           />
         </StepRow>
+        </div>
 
         <GoldButton
           ref={submitRef}
@@ -1163,7 +1157,7 @@ function PricingPage() {
             <StorageSection />
           </div>
 
-          <div className="min-w-0 lg:sticky lg:top-6 lg:self-start">
+          <div className="min-w-0 lg:self-start">
             <PurchaseCalculator product={product} onProductChange={setProduct} />
           </div>
         </div>
