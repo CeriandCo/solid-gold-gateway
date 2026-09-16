@@ -18,7 +18,7 @@ import {
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Info, Minus, Plus } from "lucide-react";
+import { ArrowRight, Check, Info, Minus, Plus } from "lucide-react";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const PRICING_URL = `${SITE_ORIGIN}/pricing`;
@@ -1172,60 +1172,89 @@ function PricingPage() {
                 Three ways to own gold. Store it securely or have it delivered to you.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3">
-                {PRODUCT_CARDS.map((card) => (
-                  <article
-                    key={card.title}
-                    role="button"
-                    tabIndex={0}
-                    aria-pressed={product === card.id}
-                    onClick={(event) => handleCardSelect(event, card.id)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        handleCardSelect(event, card.id);
-                      }
-                    }}
-                    className="flex min-w-0 flex-col border-beige px-0 pb-6 pt-6 max-md:not-first:border-t md:border-l md:px-5 md:pb-6 md:pt-5 md:first:border-l-0 md:first:pl-0 md:last:pr-0 lg:pb-6 lg:pt-5"
-                  >
-                    <div className="min-w-0">
-                      <h3 className="text-display-h5 md:text-display-h5-md md:whitespace-nowrap lg:text-display-h5-lg text-forest-black">
-                        {card.title}
-                      </h3>
-                      <p className="mb-2 font-sans text-ui-sm font-medium leading-normal text-forest-black md:whitespace-nowrap lg:text-sm">
-                        {card.kicker}
-                      </p>
-                    </div>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+                {PRODUCT_CARDS.map((card) => {
+                  const selected = product === card.id;
+                  return (
+                    <article
+                      key={card.title}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={selected}
+                      onClick={(event) => handleCardSelect(event, card.id)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          handleCardSelect(event, card.id);
+                        }
+                      }}
+                      className={`relative flex min-h-[240px] min-w-0 flex-col overflow-hidden rounded-[var(--pricing-radius-card)] border bg-[var(--pricing-paper)] p-7 motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-[220ms] motion-safe:ease-standard ${
+                        selected
+                          ? "border-[var(--pricing-forest-900)] shadow-[inset_0_0_0_1px_var(--pricing-forest-900)]"
+                          : "group/tile border-[var(--pricing-border)] motion-safe:hover:-translate-y-[2px] motion-safe:hover:shadow-[var(--pricing-shadow-hover)]"
+                      } ${FOCUS_RING}`}
+                    >
+                      {selected && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-0 bg-[var(--pricing-forest-900)]/[0.05]"
+                        />
+                      )}
+                      {selected && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute right-5 top-5 z-10 flex size-6 items-center justify-center rounded-full bg-[var(--pricing-gold)]"
+                        >
+                          <Check
+                            size={13}
+                            strokeWidth={3}
+                            className="text-[var(--pricing-forest-900)]"
+                          />
+                        </span>
+                      )}
 
-                    <div className="mb-2 grid min-w-0 grid-cols-1 items-center gap-3 md:grid-cols-[1fr_46%] md:gap-4">
-                      <p className="font-sans text-ui-sm font-normal leading-[1.55] text-muted-ink">
+                      <div className="relative min-w-0">
+                        <h3 className="pricing-card-title text-forest-black">{card.title}</h3>
+                        <p className="mt-1.5 font-sans text-ui-sm font-medium leading-normal text-muted-ink">
+                          {card.kicker}
+                        </p>
+                      </div>
+
+                      <p className="relative mb-4 mt-2.5 font-sans text-ui-sm font-normal leading-[1.55] text-muted-ink">
                         {card.description}
                       </p>
-                      <div className="flex items-center justify-center md:justify-end">
-                        <ProductImage
-                          image={card.image}
-                          webp={card.imageWebp}
-                          webp2x={card.imageWebp2x}
-                          alt={card.imageAlt}
-                        />
-                      </div>
-                    </div>
 
-                    <a
-                      href={card.ctaHref}
-                      onClick={() => track("pricing_cta_click", { product: card.id })}
-                      className={`group inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
-                    >
-                      {card.ctaLabel}
-                      <ArrowRight
-                        size={14}
-                        aria-hidden="true"
-                        focusable="false"
-                        className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover:translate-x-[3px]"
-                      />
-                    </a>
-                  </article>
-                ))}
+                      <a
+                        href={card.ctaHref}
+                        onClick={() => track("pricing_cta_click", { product: card.id })}
+                        className={`group relative inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
+                      >
+                        {card.ctaLabel}
+                        <ArrowRight
+                          size={14}
+                          aria-hidden="true"
+                          focusable="false"
+                          className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover:translate-x-[3px]"
+                        />
+                      </a>
+
+                      <div className="relative mt-auto flex justify-end pt-2">
+                        <div
+                          className={`origin-bottom-right motion-safe:transition-transform motion-safe:duration-[220ms] motion-safe:ease-standard ${
+                            selected ? "" : "motion-safe:group-hover/tile:scale-[1.025]"
+                          }`}
+                        >
+                          <ProductImage
+                            image={card.image}
+                            webp={card.imageWebp}
+                            webp2x={card.imageWebp2x}
+                            alt={card.imageAlt}
+                          />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </section>
 
