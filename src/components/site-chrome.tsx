@@ -182,6 +182,8 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             <img
               src={logoImage}
               alt="SQOOT Pure"
+              width={567}
+              height={200}
               className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
             />
           </Link>
@@ -323,7 +325,7 @@ export function SiteFooter() {
       <div className="site-footer__grid">
         <div className="site-footer__brand">
           <Link to="/" aria-label="SQOOT Pure home" className="site-footer__logo-link">
-            <img src={logoImage} alt="SQOOT Pure" className="site-footer__logo" />
+            <img src={logoImage} alt="SQOOT Pure" width={567} height={200} className="site-footer__logo" />
           </Link>
           <p className="site-footer__tagline">
             A compliance-first platform for buying, storing, and redeeming real physical gold.

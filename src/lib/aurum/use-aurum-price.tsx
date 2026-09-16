@@ -50,11 +50,21 @@ export function AurumPriceProvider({
 
   useEffect(() => {
     let cancelled = false;
-    void adapter.load().then((next) => {
-      if (!cancelled) setState(next);
-    });
+    /** Loading has a deadline: a permanent spinner is treated as unavailable. */
+    const deadline = setTimeout(() => {
+      if (!cancelled) setState((current) => (current.status === "loading" ? { status: "unavailable", reason: "network" } : current));
+    }, 10_000);
+    void adapter
+      .load()
+      .then((next) => {
+        if (!cancelled) setState(next);
+      })
+      .catch(() => {
+        if (!cancelled) setState({ status: "unavailable", reason: "network" });
+      });
     return () => {
       cancelled = true;
+      clearTimeout(deadline);
     };
   }, [adapter]);
 

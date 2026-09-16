@@ -16,6 +16,7 @@ export function AurumCommunitySection() {
         <h2 id="aurum-community-title" className="aurum-community__title">What people are actually asking</h2>
 
         <p className="aurum-community__source-text">
+          <span className="aurum-chip aurum-chip--solid">SAMPLE · NOT LIVE DATA</span>
           Illustrative questions drawn from public Reddit threads. Live pulse is wired to aurum_community_pulse once
           moderation rules are signed off.
         </p>
@@ -42,6 +43,9 @@ export function AurumCommunitySection() {
       <div className="aurum-community__room">
         <div className="aurum-container aurum-community__room-inner">
           <div className="aurum-community__room-copy">
+            <p className="aurum-community__room-flag">
+              <span className="aurum-chip aurum-chip--solid">NOT OPEN YET</span>
+            </p>
             <p className="aurum-community__room-eyebrow">WHERE THE ROOM LIVES</p>
             <h3 className="aurum-community__room-title">The community is hosted on Circle</h3>
             <p className="aurum-community__room-body">
@@ -50,6 +54,7 @@ export function AurumCommunitySection() {
             </p>
             <p className="aurum-community__room-url">
               <a href={CIRCLE_URL} target="_blank" rel="noopener">aurum-be0064.circle.so</a>
+              <span className="aurum-chip aurum-chip--outline">URL PENDING VERIFICATION</span>
             </p>
           </div>
           <div className="aurum-community__room-action">
