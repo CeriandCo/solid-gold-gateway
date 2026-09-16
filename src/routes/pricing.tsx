@@ -1215,7 +1215,7 @@ function PricingPage() {
 
                       <div className="relative min-w-0">
                         <h3 className="pricing-card-title text-forest-black">{card.title}</h3>
-                        <p className="mt-1.5 font-sans text-ui-sm font-medium leading-normal text-muted-ink">
+                        <p className="mt-1.5 font-sans text-ui-sm font-medium leading-normal text-forest-black">
                           {card.kicker}
                         </p>
                       </div>
