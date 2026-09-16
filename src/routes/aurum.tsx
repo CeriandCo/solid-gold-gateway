@@ -7,6 +7,8 @@ import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
 import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
+import { AurumCommunitySection } from "@/components/aurum-community-section";
+
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";

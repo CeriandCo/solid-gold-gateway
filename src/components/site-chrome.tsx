@@ -92,6 +92,8 @@ export function GoldButton({
   onClick,
   disabled,
   ref,
+  target,
+  rel,
   "aria-label": ariaLabel,
   className = "",
 }: {
@@ -105,6 +107,8 @@ export function GoldButton({
   onClick?: () => void;
   disabled?: boolean;
   ref?: React.Ref<HTMLButtonElement>;
+  target?: string;
+  rel?: string;
   "aria-label"?: string;
   className?: string;
 }) {
