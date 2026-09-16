@@ -267,7 +267,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | "/terms" | "/privacy" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | "/privacy" | "/aurum" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
@@ -280,6 +280,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
       { label: "Gifting", to: "/gifting" },
       { label: "Vault", to: "/vault" },
       { label: "Learn", to: "/learn" },
+      { label: "AURUM", to: "/aurum" },
     ],
   },
   {
