@@ -4,6 +4,7 @@ import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
 import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
 import { AurumPriceSection, AurumSampleChip } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
+import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
@@ -14,6 +15,7 @@ export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
     range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
     note: typeof search["note"] === "string" ? search["note"] : undefined,
+    brief: typeof search["brief"] === "string" ? search["brief"] : undefined,
     priceState: isForcedPriceStatus(search["priceState"]) ? (search["priceState"] as ForcedPriceStatus) : undefined,
   }),
   head: () => ({
@@ -83,7 +85,7 @@ function AurumPage() {
 }
 
 function AurumPageContent() {
-  const { range, note: openNote } = Route.useSearch();
+  const { range, note: openNote, brief: openBrief } = Route.useSearch();
   const navigate = Route.useNavigate();
   const subheaderRef = useRef<HTMLElement>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -218,10 +220,15 @@ function AurumPageContent() {
         <AurumDailyNoteSection
           openSlug={openNote ?? null}
           onToggle={(slug) =>
-            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined }), hash: "daily-note" })
+            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }), hash: "daily-note" })
           }
         />
-        <AurumSection id="weekly-brief" tone="ivory" />
+        <AurumWeeklyBriefSection
+          openSlug={openBrief ?? null}
+          onToggle={(slug) =>
+            navigate({ search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }), hash: "weekly-brief" })
+          }
+        />
         <AurumSection id="learn" tone="warm" />
         <AurumCalculatorSection />
         <AurumSection id="gifts" tone="ivory" />

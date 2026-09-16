@@ -1,20 +1,7 @@
-export type AurumNoteSource = {
-  publisher: string;
-  title: string;
-  date: string;
-  url: string;
-};
+import { formatEditorialDate, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
-export type AurumNote = {
-  slug: string;
-  title: string;
-  summary: string;
-  publishedAt: string;
-  readMinutes: number;
-  body: string[];
-  pullQuote?: string;
-  sources: AurumNoteSource[];
-};
+export type AurumNoteSource = AurumEditorialSource;
+export type AurumNote = AurumEditorial;
 
 const NOTES: AurumNote[] = [
   {

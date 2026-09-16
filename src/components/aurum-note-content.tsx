@@ -1,35 +1,14 @@
 import type { AurumNote } from "@/lib/aurum-notes";
+import { AurumEditorialBody, AurumEditorialQuote, AurumEditorialSources } from "@/components/aurum-editorial-content";
 
 export function AurumNoteBody({ note }: { note: AurumNote }) {
-  return (
-    <div className="aurum-note-body">
-      {note.body.map((paragraph, index) => (
-        <p key={index}>{paragraph}</p>
-      ))}
-    </div>
-  );
+  return <AurumEditorialBody article={note} />;
 }
 
 export function AurumNoteQuote({ note }: { note: AurumNote }) {
-  if (!note.pullQuote) return null;
-  return <blockquote className="aurum-note-quote">{note.pullQuote}</blockquote>;
+  return <AurumEditorialQuote article={note} />;
 }
 
 export function AurumNoteSources({ note, idPrefix }: { note: AurumNote; idPrefix: string }) {
-  return (
-    <div className="aurum-note-sources">
-      <p className="aurum-note-sources__label" id={`${idPrefix}-sources`}>
-        SOURCES
-      </p>
-      <ol aria-labelledby={`${idPrefix}-sources`}>
-        {note.sources.map((source) => (
-          <li key={source.url + source.title}>
-            <a href={source.url} target="_blank" rel="noopener noreferrer">
-              {source.publisher} — {source.title}, {source.date}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </div>
-  );
+  return <AurumEditorialSources article={note} idPrefix={idPrefix} />;
 }

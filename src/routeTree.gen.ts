@@ -28,6 +28,7 @@ import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnGiftingGoldGuideRouteImport } from './routes/learn.gifting-gold-guide'
 import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
+import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
 import { Route as AurumNotesSlugRouteImport } from './routes/aurum_.notes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -126,6 +127,11 @@ const LearnPhysicalGoldVsGoldEtfRoute =
     path: '/physical-gold-vs-gold-etf',
     getParentRoute: () => LearnRoute,
   } as any)
+const AurumBriefsSlugRoute = AurumBriefsSlugRouteImport.update({
+  id: '/aurum_/briefs/$slug',
+  path: '/aurum/briefs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AurumNotesSlugRoute = AurumNotesSlugRouteImport.update({
   id: '/aurum_/notes/$slug',
   path: '/aurum/notes/$slug',
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
+  '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn': typeof LearnIndexRoute
+  '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
 }
 export interface FileRoutesById {
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
+  '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
+    | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -241,6 +251,7 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn'
+    | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
   id:
     | '__root__'
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
+    | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -282,6 +294,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrustCenterRoute: typeof TrustCenterRoute
   VaultRoute: typeof VaultRoute
+  AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
 }
 
@@ -420,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnPhysicalGoldVsGoldEtfRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/aurum_/briefs/$slug': {
+      id: '/aurum_/briefs/$slug'
+      path: '/aurum/briefs/$slug'
+      fullPath: '/aurum/briefs/$slug'
+      preLoaderRoute: typeof AurumBriefsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aurum_/notes/$slug': {
       id: '/aurum_/notes/$slug'
       path: '/aurum/notes/$slug'
@@ -462,6 +482,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrustCenterRoute: TrustCenterRoute,
   VaultRoute: VaultRoute,
+  AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
 }
 export const routeTree = rootRouteImport
