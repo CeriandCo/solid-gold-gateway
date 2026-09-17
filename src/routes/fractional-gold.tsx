@@ -19,6 +19,12 @@ import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
 import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
 import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
+import { track } from "@/lib/analytics";
+
+const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
+const FRACTIONAL_GOLD_URL = `${SITE_ORIGIN}/fractional-gold`;
+const OG_IMAGE = `${SITE_ORIGIN}/og/fractional-gold.png`;
+
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -35,7 +41,16 @@ export const Route = createFileRoute("/fractional-gold")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: FRACTIONAL_GOLD_URL },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:title", content: "Fractional Gold Allocation | SQOOT Pure" },
+      {
+        name: "twitter:description",
+        content: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
+    links: [{ rel: "canonical", href: FRACTIONAL_GOLD_URL }],
   }),
   component: Index,
 });
