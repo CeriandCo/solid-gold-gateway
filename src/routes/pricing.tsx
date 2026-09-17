@@ -1011,7 +1011,8 @@ function PricingPage() {
   }
 
   const activePricing =
-    PRODUCT_PRICING.find((entry) => entry.id === product) ?? PRODUCT_PRICING[0];
+    PRODUCT_PRICING.find((entry) => entry.id === product) ??
+    PRODUCT_PRICING.find((entry) => entry.id === "allocated")!;
 
   return (
     <div className="min-h-screen bg-background text-forest-black">
