@@ -1196,9 +1196,7 @@ function PricingPage() {
               </div>
             </section>
 
-            <TransactionCostsSection />
-            <FeeListSection table={ONGOING_TABLE} idSuffix="ongoing" />
-            <FeeListSection table={OPTIONAL_TABLE} idSuffix="optional" />
+            <ProductPricingSection ref={pricingSectionRef} pricing={activePricing} />
           </div>
 
           <div className="min-w-0 lg:self-start">
