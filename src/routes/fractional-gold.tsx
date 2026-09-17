@@ -51,6 +51,12 @@ export const Route = createFileRoute("/fractional-gold")({
       { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: FRACTIONAL_GOLD_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(FAQ_SCHEMA),
+      },
+    ],
   }),
   component: Index,
 });
