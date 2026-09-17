@@ -154,6 +154,7 @@ function FaqColumn({
       {items.map(([question, answer], index) => {
         const flatIndex = offset + index;
         const isOpen = openFaq === flatIndex;
+        const answerId = `fractional-faq-answer-${flatIndex}`;
         return (
           <div key={question} className="border-b border-beige">
             <button
@@ -161,12 +162,13 @@ function FaqColumn({
               onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
               className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
               aria-expanded={isOpen}
+              aria-controls={answerId}
             >
               <span>{question}</span>
               <PlusIcon open={isOpen} />
             </button>
             {isOpen && (
-              <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>
+              <p id={answerId} className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>
             )}
           </div>
         );
@@ -463,5 +465,10 @@ function List({ items, bad = false }: { items: string[]; bad?: boolean }) {
 }
 
 function PlusIcon({ open }: { open: boolean }) {
-  return <span className="relative block h-4 w-4 text-gold"><span className="absolute left-0 top-[7px] h-px w-4 bg-current" /><span className={cn("absolute left-[7px] top-0 h-4 w-px bg-current transition-transform", open && "rotate-90 opacity-0")} /></span>;
+  return (
+    <span aria-hidden="true" className="relative block h-4 w-4 text-gold">
+      <span className="absolute left-0 top-[7px] h-px w-4 bg-current" />
+      <span className={cn("absolute left-[7px] top-0 h-4 w-px bg-current transition-transform", open && "rotate-90 opacity-0")} />
+    </span>
+  );
 }
