@@ -136,20 +136,29 @@ const faqs = [
   ],
 ] as const;
 
-function Mandala({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 80 80" aria-hidden="true" className={className}>
-      <g fill="none" stroke="currentColor" strokeWidth="1.25">
-        <path d="M40 3 49 9l11-1 5 10 10 5-1 11 6 9-6 9 1 11-10 5-5 10-11-1-9 6-9-6-11 1-5-10-10-5 1-11-6-9 6-9-1-11 10-5 5-10 11 1Z" />
-        <circle cx="40" cy="40" r="27" /><circle cx="40" cy="40" r="20" /><circle cx="40" cy="40" r="13" /><circle cx="40" cy="40" r="6" />
-        <path d="m40 13 7 14 16-2-10 13 10 12-16-1-7 15-7-15-16 1 10-12-10-13 16 2Z" />
-      </g>
-    </svg>
-  );
-}
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
 
 function OfficialMandala({ className }: { className?: string }) {
-  return <img src={sqootPureMandala.url} alt="" aria-hidden="true" className={cn("object-contain", className)} />;
+  return (
+    <img
+      src={sqootPureMandala.url}
+      alt=""
+      aria-hidden="true"
+      width={512}
+      height={512}
+      loading="lazy"
+      decoding="async"
+      className={cn("object-contain", className)}
+    />
+  );
 }
 
 
@@ -174,7 +183,10 @@ function FaqColumn({
           <div key={question} className="border-b border-beige">
             <button
               type="button"
-              onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
+              onClick={() => {
+                if (!isOpen) track("fractional_faq_open", { question });
+                setOpenFaq(isOpen ? null : flatIndex);
+              }}
               className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
               aria-expanded={isOpen}
               aria-controls={answerId}
