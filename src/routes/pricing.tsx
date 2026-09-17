@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { forwardRef, Fragment, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import heroImage from "@/assets/pricing/hero-vault.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import heroWebp from "@/assets/pricing/hero-vault.webp.asset.json";
@@ -8,14 +8,10 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import {
   HERO_CHIPS,
   PRODUCT_CARDS,
+  PRODUCT_PRICING,
   PURCHASE_PRICE_TOOLTIP,
-  OPTIONAL_TABLE,
-  ONGOING_TABLE,
-  PAY_TODAY_TABLE,
-  type StorageTableData,
-  type RowCell,
-  type SpanCell,
-  type TransactionRow,
+  type PricingFeeRow,
+  type ProductPricing,
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -202,207 +198,140 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
   );
 }
 
-function RowLabel({ label, hint }: { label: string; hint?: string | undefined }) {
-  return (
-    <>
-      {label}
-      {hint ? (
-        <span className="font-sans text-ui-xs font-normal text-muted-ink"> {hint}</span>
-      ) : null}
-    </>
-  );
-}
-
-function CellValue({ cell }: { cell: RowCell }) {
-  if (cell.kind === "dash") {
-    return <span className="text-muted-ink">—</span>;
+function AmountCell({ row }: { row: PricingFeeRow }) {
+  if (row.description) {
+    return (
+      <span className="font-sans text-ui-sm font-normal text-muted-ink">
+        {row.description}
+      </span>
+    );
   }
   return (
     <span className="block">
-      <span className="block font-sans text-ui-sm font-bold text-forest-black">
-        {cell.value}
+      <span className="inline-flex flex-wrap items-center gap-2 sm:justify-center">
+        <span className="font-sans text-ui-sm font-bold text-forest-black">
+          {row.amount}
+        </span>
+        {row.badge ? (
+          <span className="rounded-[3px] bg-gold px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-[1.2px] text-forest-deep">
+            {row.badge}
+          </span>
+        ) : null}
       </span>
-      {cell.suffix ? (
+      {row.amountNote ? (
         <span className="mt-1 block font-sans text-ui-xs font-normal text-muted-ink">
-          {cell.suffix}
+          {row.amountNote}
         </span>
       ) : null}
     </span>
   );
 }
 
-function isSpanCell(cells: TransactionRow["cells"]): cells is SpanCell {
-  return !Array.isArray(cells);
-}
-
-function SpanCellContent({ cell }: { cell: SpanCell }) {
+function CostLabel({ row }: { row: PricingFeeRow }) {
   return (
-    <span className="inline-flex items-center justify-center gap-2 text-muted-ink">
-      <span>{cell.value}</span>
-      {cell.info ? (
-        <InfoTooltip
-          label="More information about purchase price"
-          text={PURCHASE_PRICE_TOOLTIP}
-        />
+    <>
+      <span className="font-sans text-ui-sm font-medium text-forest-black">
+        {row.label}
+        {row.label === "Purchase price" ? (
+          <>
+            {" "}
+            <InfoTooltip
+              label="More information about purchase price"
+              text={PURCHASE_PRICE_TOOLTIP}
+            />
+          </>
+        ) : null}
+      </span>
+      {row.note ? (
+        <span className="mt-1 block font-sans text-ui-xs font-normal text-muted-ink">
+          {row.note}
+        </span>
       ) : null}
-    </span>
+    </>
   );
 }
 
-function TransactionCostsSection() {
-  const table = PAY_TODAY_TABLE;
-  return (
-    <section aria-labelledby="transaction-costs-heading" className="pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
-      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
-      <h2
-        id="transaction-costs-heading"
-        className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
+// One contextual pricing table for the selected product — replaces the old
+// three-way comparison tables. Keyed by product so the fade replays on change.
+const ProductPricingSection = forwardRef<HTMLElement, { pricing: ProductPricing }>(
+  function ProductPricingSection({ pricing }, ref) {
+    return (
+      <section
+        ref={ref}
+        aria-labelledby="product-pricing-heading"
+        aria-live="polite"
+        className="scroll-mt-[132px] pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2"
       >
-        {table.title}
-      </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
-        {table.subtitle}
-      </p>
+        <div key={pricing.id} className="estimate-fade">
+          <p className="pricing-label mb-1 text-muted-ink">Pricing</p>
+          <h2
+            id="product-pricing-heading"
+            className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
+          >
+            {pricing.heading}
+          </h2>
+          <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
+            {pricing.copy}
+          </p>
 
-      {/* Stacked view on narrow screens */}
-      <dl className="border-t border-beige sm:hidden">
-        {table.rows.map((row) => (
-          <div key={row.label} className="border-b border-beige py-3.5">
-            <dt className="font-sans text-ui-sm font-medium text-forest-black">
-              <RowLabel label={row.label} hint={row.hint} />
-            </dt>
-            <dd className="mt-2 font-sans text-[13px] font-normal text-muted-ink">
-              {isSpanCell(row.cells) ? (
-                <SpanCellContent cell={row.cells} />
-              ) : (
-                <span className="grid grid-cols-3 gap-2 text-center">
-                  {row.cells.map((cell, index) => (
-                    <span key={table.columns[index + 1]} className="block">
-                      <span className="mb-1 block font-sans text-[11.5px] font-semibold text-charcoal">
-                        {table.columns[index + 1]}
-                      </span>
-                      <CellValue cell={cell} />
-                    </span>
-                  ))}
-                </span>
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      <table
-        aria-labelledby="transaction-costs-heading"
-        className="hidden w-full border-collapse border border-beige font-sans text-ui-sm font-normal sm:table"
-      >
-        <thead>
-          <tr className="bg-wash-green">
-            {table.columns.map((column, index) => (
-              <th
-                key={column}
-                scope="col"
-                className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
-                  index === 0
-                    ? "w-[32%] text-left"
-                    : "w-[22.66%] border-l border-beige text-center"
-                }`}
-              >
-                {column}
-              </th>
+          {/* Stacked view on narrow screens: cost label above its amount */}
+          <dl className="border-t border-beige sm:hidden">
+            {pricing.rows.map((row) => (
+              <div key={row.label} className="border-b border-beige py-3.5">
+                <dt>
+                  <CostLabel row={row} />
+                </dt>
+                <dd className="mt-2">
+                  <AmountCell row={row} />
+                </dd>
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, rowIndex) => (
-            <tr
-              key={row.label}
-              className={rowIndex < table.rows.length - 1 ? "border-b border-beige" : ""}
-            >
-              <th
-                scope="row"
-                className="px-3 py-3.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black lg:px-3.5"
-              >
-                <RowLabel label={row.label} hint={row.hint} />
-              </th>
-              {isSpanCell(row.cells) ? (
-                <td
-                  colSpan={3}
-                  className="border-l border-beige px-3 py-3.5 text-center align-top text-muted-ink lg:px-3.5"
+          </dl>
+
+          <table
+            aria-labelledby="product-pricing-heading"
+            className="hidden w-full border-collapse border border-beige font-sans text-ui-sm font-normal sm:table"
+          >
+            <thead>
+              <tr className="bg-wash-green">
+                <th
+                  scope="col"
+                  className="w-[42%] border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5"
                 >
-                  <SpanCellContent cell={row.cells} />
-                </td>
-              ) : (
-                row.cells.map((cell, index) => (
-                  <td
-                    key={table.columns[index + 1]}
-                    className="border-l border-beige px-3 py-3.5 text-center align-top lg:px-3.5"
+                  {pricing.columns[0]}
+                </th>
+                <th
+                  scope="col"
+                  className="border-b border-l border-beige px-3 py-2.5 text-center font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5"
+                >
+                  {pricing.columns[1]}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pricing.rows.map((row, rowIndex) => (
+                <tr
+                  key={row.label}
+                  className={rowIndex < pricing.rows.length - 1 ? "border-b border-beige" : ""}
+                >
+                  <th
+                    scope="row"
+                    className="px-3 py-3.5 text-left align-top font-normal lg:px-3.5"
                   >
-                    <CellValue cell={cell} />
+                    <CostLabel row={row} />
+                  </th>
+                  <td className="border-l border-beige px-3 py-3.5 text-center align-top lg:px-3.5">
+                    <AmountCell row={row} />
                   </td>
-                ))
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-}
-
-function FeeListSection({ table, idSuffix }: { table: StorageTableData; idSuffix: string }) {
-  return (
-    <section aria-labelledby={`fee-${idSuffix}-heading`} className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
-      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
-      <h2 id={`fee-${idSuffix}-heading`} className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
-        {table.title}
-      </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
-        {table.subtitle}
-      </p>
-      <table
-        aria-labelledby={`fee-${idSuffix}-heading`}
-        className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-ui-sm"
-      >
-        <thead>
-          <tr className="bg-wash-green">
-            {table.columns.map((column, index) => (
-              <th
-                key={column}
-                scope="col"
-                className={`border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
-                  index === 0 ? "" : "border-l border-beige"
-                }`}
-              >
-                {column}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, rowIndex) => (
-            <tr
-              key={row.label}
-              className={rowIndex < table.rows.length - 1 ? "border-b border-beige" : ""}
-            >
-              <th
-                scope="row"
-                className="px-3 py-3.5 text-left align-top font-sans text-[13px] font-medium text-forest-black lg:px-3.5 md:py-3.5 md:text-ui-sm"
-              >
-                <RowLabel label={row.label} hint={row.hint} />
-              </th>
-              <td className="border-l border-beige px-3 py-3.5 text-left align-top text-muted-ink lg:px-3.5 md:py-3.5">
-                {row.highlight ? (
-                  <span className="font-bold text-forest-black">{row.highlight} </span>
-                ) : null}
-                {row.value}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    );
+  },
+);
 
 const SPOT_GOLD = 4310;
 const PREMIUM = 0.04;
@@ -1057,18 +986,33 @@ function BottomCta() {
 }
 
 function PricingPage() {
-  const [product, setProduct] = useState<string | null>(null);
+  // Allocated metal is the default selection; the same state drives the cards,
+  // the contextual pricing table and the calculator.
+  const [product, setProduct] = useState<string>("allocated");
+  const pricingSectionRef = useRef<HTMLElement>(null);
 
-  // Clicking a product card selects that product in the calculator. Guard
-  // against the card's own CTA link (and any control) so only the card
-  // surface itself toggles the selection.
-  function handleCardSelect(
-    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
-    id: string,
-  ) {
-    if ((event.target as HTMLElement).closest("a, button, input")) return;
+  // Clicking a product card selects that product. The cards are pure
+  // selectors — they never navigate away from the page.
+  function handleCardSelect(id: string) {
     setProduct(id);
+    track("pricing_product_selected", { product: id, source: "card" });
+    // Below the lg breakpoint the table sits under the cards, so bring it
+    // into view after a selection.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 1023px)").matches
+    ) {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      pricingSectionRef.current?.scrollIntoView({
+        behavior: reduced ? "auto" : "smooth",
+        block: "start",
+      });
+    }
   }
+
+  const activePricing =
+    PRODUCT_PRICING.find((entry) => entry.id === product) ??
+    PRODUCT_PRICING.find((entry) => entry.id === "allocated")!;
 
   return (
     <div className="min-h-screen bg-background text-forest-black">
@@ -1178,25 +1122,20 @@ function PricingPage() {
                       role="button"
                       tabIndex={0}
                       aria-pressed={selected}
-                      onClick={(event) => handleCardSelect(event, card.id)}
+                      aria-label={`${card.title} — show ${card.title.toLowerCase()} pricing`}
+                      onClick={() => handleCardSelect(card.id)}
                       onKeyDown={(event) => {
                         if (event.key === "Enter" || event.key === " ") {
                           event.preventDefault();
-                          handleCardSelect(event, card.id);
+                          handleCardSelect(card.id);
                         }
                       }}
-                      className={`relative flex min-h-[240px] min-w-0 flex-col overflow-hidden rounded-[var(--pricing-radius-card)] border bg-[var(--pricing-paper)] p-7 motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-[220ms] motion-safe:ease-standard ${
+                      className={`relative flex min-h-[240px] min-w-0 cursor-pointer flex-col overflow-hidden rounded-[var(--pricing-radius-card)] border p-7 motion-safe:transition-[transform,box-shadow,border-color,background-color] motion-safe:duration-[220ms] motion-safe:ease-standard ${
                         selected
-                          ? "border-[var(--pricing-forest-900)] shadow-[inset_0_0_0_1px_var(--pricing-forest-900)]"
-                          : "group/tile border-[var(--pricing-border)] motion-safe:hover:-translate-y-[2px] motion-safe:hover:shadow-[var(--pricing-shadow-hover)]"
+                          ? "border-[var(--pricing-forest-900)] bg-wash-green shadow-[inset_0_0_0_1px_var(--pricing-forest-900)]"
+                          : "group/tile border-[var(--pricing-border)] bg-[var(--pricing-paper)] motion-safe:hover:-translate-y-[2px] motion-safe:hover:shadow-[var(--pricing-shadow-hover)]"
                       } ${FOCUS_RING}`}
                     >
-                      {selected && (
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute inset-0 bg-[var(--pricing-forest-900)]/[0.05]"
-                        />
-                      )}
                       {selected && (
                         <span
                           aria-hidden="true"
@@ -1221,19 +1160,22 @@ function PricingPage() {
                         {card.description}
                       </p>
 
-                      <a
-                        href={card.ctaHref}
-                        onClick={() => track("pricing_cta_click", { product: card.id })}
-                        className={`group relative inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
-                      >
-                        {card.ctaLabel}
-                        <ArrowRight
-                          size={14}
-                          aria-hidden="true"
-                          focusable="false"
-                          className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover:translate-x-[3px]"
-                        />
-                      </a>
+                      {selected ? (
+                        <span className="relative inline-flex items-center gap-2 self-start font-sans text-ui-sm font-semibold leading-normal text-forest-black">
+                          <Check size={14} strokeWidth={3} aria-hidden="true" focusable="false" className="shrink-0 text-[var(--pricing-forest-900)]" />
+                          Selected
+                        </span>
+                      ) : (
+                        <span className="group relative inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard group-hover/tile:text-gold-dark max-md:whitespace-normal">
+                          {card.ctaLabel}
+                          <ArrowRight
+                            size={14}
+                            aria-hidden="true"
+                            focusable="false"
+                            className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover/tile:translate-x-[3px]"
+                          />
+                        </span>
+                      )}
 
                       <div className="relative mt-auto flex justify-end pt-2">
                         <div
@@ -1255,9 +1197,7 @@ function PricingPage() {
               </div>
             </section>
 
-            <TransactionCostsSection />
-            <FeeListSection table={ONGOING_TABLE} idSuffix="ongoing" />
-            <FeeListSection table={OPTIONAL_TABLE} idSuffix="optional" />
+            <ProductPricingSection ref={pricingSectionRef} pricing={activePricing} />
           </div>
 
           <div className="min-w-0 lg:self-start">

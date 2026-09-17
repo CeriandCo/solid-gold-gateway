@@ -72,124 +72,135 @@ export const PRODUCT_CARDS: ProductCard[] = [
     ctaHref: "/products/allocated",
   },
 ];
-export type RowCell =
-  | { kind: "dash" }
-  | { kind: "highlight"; value: string; suffix?: string };
-
-export type SpanCell = { spanAllProducts: true; value: string; info?: boolean };
-
-export type TransactionRow = {
-  label: string;
-  hint?: string;
-  cells: RowCell[] | SpanCell;
-};
-
-export type TransactionCostsTableData = {
-  title: string;
-  category: string;
-  subtitle: string;
-  columns: string[];
-  rows: TransactionRow[];
-};
-
-// Group 1 — PAY TODAY: one-off costs charged at the moment of purchase.
-export const PAY_TODAY_TABLE: TransactionCostsTableData = {
-  title: "1. Pay today",
-  category: "ONE-OFF",
-  subtitle: "What you pay at the moment of purchase.",
-  columns: ["Cost", "Coins", "Bars", "Allocated metal"],
-  rows: [
-    {
-      label: "Purchase price",
-      cells: {
-        spanAllProducts: true,
-        value: "Based on weight and live spot price, plus a product premium",
-        info: true,
-      },
-    },
-    {
-      label: "Allocated metal purchase fee",
-      hint: "(one-off, at purchase)",
-      cells: [
-        { kind: "dash" },
-        { kind: "dash" },
-        { kind: "highlight", value: "3.00%", suffix: "of purchase amount" },
-      ],
-    },
-  ],
-};
-
 export const PURCHASE_PRICE_TOOLTIP =
   "The product premium reflects minting, refining and handling and varies by product. It is always shown before you confirm.";
 
-export type StorageRow = {
+// Contextual per-product pricing. Each product owns its full fee list so the
+// Pricing page renders exactly one table for the selected product — never a
+// three-way comparison. Update figures here; the page reads this data only.
+export type PricingFeeRow = {
   label: string;
-  hint?: string;
-  value: string;
-  highlight?: string;
+  /** Supporting note under the cost label. */
+  note?: string;
+  /** Bold figure in the Amount column; omit for descriptive rows. */
+  amount?: string;
+  /** Secondary note under the amount. */
+  amountNote?: string;
+  /** Muted descriptive sentence in the Amount column (no figure). */
+  description?: string;
+  /** Small badge beside the amount, e.g. "FREE". */
+  badge?: string;
 };
 
-export type StorageTableData = {
-  title: string;
-  category: string;
-  subtitle: string;
-  columns: string[];
-  rows: StorageRow[];
+export type ProductPricing = {
+  id: ProductCard["id"];
+  heading: string;
+  copy: string;
+  columns: [string, string];
+  rows: PricingFeeRow[];
 };
 
-// Group 2 — ONGOING OWNERSHIP COSTS: charged while metal stays in the vault.
-export const ONGOING_TABLE: StorageTableData = {
-  title: "2. Ongoing ownership costs",
-  category: "ANNUAL",
-  subtitle: "Storage costs while your metal remains in the vault, charged pro-rata.",
-  columns: ["Service", "Cost (applies to all products)"],
-  rows: [
-    {
-      label: "Annual storage fee",
-      hint: "(pro-rata)",
-      value: "of value per year (charged for the exact number of days)",
-      highlight: "0.35%",
-    },
-    {
-      label: "Insured storage fee",
-      hint: "(pro-rata)",
-      value: "of value per year (charged for the exact number of days)",
-      highlight: "0.45%",
-    },
-    {
-      label: "Minimum storage fee",
-      hint: "",
-      value: "(if calculated fee is lower)",
-      highlight: "US$25",
-    },
-  ],
+const PURCHASE_PRICE_ROW: PricingFeeRow = {
+  label: "Purchase price",
+  description: "Weight × live spot price, plus product premium",
 };
 
-// Group 3 — OPTIONAL SERVICES: only charged if the service is chosen.
-export const OPTIONAL_TABLE: StorageTableData = {
-  title: "3. Optional services",
-  category: "OPTIONAL",
-  subtitle: "Costs that only apply if you choose these services.",
-  columns: ["Service", "Cost (applies to all products)"],
-  rows: [
-    {
-      label: "Physical delivery",
-      hint: "(if selected)",
-      value: "Insured delivery. Cost varies by location and weight.",
-      highlight: "",
-    },
-    { label: "Engraving", hint: "(gift option)", value: "To confirm", highlight: "" },
-    {
-      label: "Premium gift packaging",
-      hint: "(gift option)",
-      value: "To confirm",
-      highlight: "",
-    },
-    {
-      label: "Selling fee",
-      hint: "",
-      value: "To confirm (applies to all products)",
-      highlight: "",
-    },
-  ],
-};
+const COST_AMOUNT_COLUMNS: [string, string] = ["Cost", "Amount"];
+
+export const PRODUCT_PRICING: ProductPricing[] = [
+  {
+    id: "allocated",
+    heading: "Allocated metal — stored in the vault",
+    copy: "Own from US$25. Allocated to you, insured and segregated.",
+    columns: COST_AMOUNT_COLUMNS,
+    rows: [
+      PURCHASE_PRICE_ROW,
+      {
+        label: "Purchase fee",
+        note: "One-off, at the time you buy",
+        amount: "3.00%",
+        amountNote: "of purchase amount",
+      },
+      {
+        label: "Storage & insurance — year 1",
+        note: "From your first purchase",
+        amount: "US$0.00",
+        badge: "FREE",
+      },
+      {
+        label: "Storage & insurance — after year 1",
+        note: "Charged pro-rata for the exact number of days held",
+        amount: "0.45%",
+        amountNote:
+          "of value per year — insurance included, there is no separate insurance charge",
+      },
+      {
+        label: "Minimum storage fee",
+        note: "Applies only after your first 12 months",
+        amount: "US$3.00",
+        amountNote: "per year",
+      },
+      {
+        label: "Selling",
+        description: "Your sale price is shown in full before you confirm.",
+      },
+      {
+        label: "Taking delivery later",
+        description: "Insured delivery — cost varies by location and weight.",
+      },
+    ],
+  },
+  {
+    id: "coins",
+    heading: "Coins — delivered to you",
+    copy: "Whole coins from trusted mints, shipped insured.",
+    columns: COST_AMOUNT_COLUMNS,
+    rows: [
+      PURCHASE_PRICE_ROW,
+      { label: "Purchase fee", amount: "None" },
+      { label: "Storage & insurance", amount: "None — you hold it" },
+      { label: "Minimum storage fee", amount: "None" },
+      {
+        label: "Insured delivery",
+        description: "Varies by location and weight, shown before you pay.",
+      },
+      {
+        label: "Engraving",
+        note: "Optional gift service",
+        amount: "Shown at checkout",
+      },
+      {
+        label: "Premium gift packaging",
+        note: "Optional gift service",
+        amount: "Shown at checkout",
+      },
+    ],
+  },
+  {
+    id: "bars",
+    heading: "Bars — delivered to you",
+    copy: "High-purity bars from trusted mints, shipped insured.",
+    columns: COST_AMOUNT_COLUMNS,
+    rows: [
+      PURCHASE_PRICE_ROW,
+      { label: "Purchase fee", amount: "None" },
+      { label: "Storage & insurance", amount: "None — you hold it" },
+      { label: "Minimum storage fee", amount: "None" },
+      {
+        label: "Insured delivery",
+        description: "Varies by location and weight, shown before you pay.",
+      },
+      {
+        label: "Engraving",
+        note: "Optional gift service",
+        amount: "Shown at checkout",
+      },
+      {
+        label: "Premium gift packaging",
+        note: "Optional gift service",
+        amount: "Shown at checkout",
+      },
+    ],
+  },
+];
+
