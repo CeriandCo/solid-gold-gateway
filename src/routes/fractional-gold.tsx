@@ -223,7 +223,7 @@ function Index() {
         eyebrow="Real Gold. Real Allocation."
         title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
         body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
-        actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
+        actions={<GoldButton to="/early-access" onClick={() => track("fractional_cta_click", { target: "early_access" })}>Get Early Access</GoldButton>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
@@ -367,7 +367,7 @@ function Index() {
               Each purchase may be small, but together they can become something durable: a personal reserve, family wealth and an asset recognised across borders.
             </p>
             <p className="mt-5 max-w-[540px] font-['DM_Sans',_sans-serif] text-base leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
-              SQOOT brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
+              SQOOT Pure brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
             </p>
             <p className="mt-8 max-w-[560px] font-['DM_Sans',_sans-serif] text-[0.8rem] leading-[1.6] text-charcoal/55 sm:text-[0.85rem]">
               Gold is not presented as guaranteed appreciation or a replacement for productive investments. It is a distinct reserve, built gradually, held for the long term and available for sale or eligible physical redemption when needed.
@@ -400,12 +400,16 @@ function Index() {
                       aria-selected={isSelected}
                       aria-controls="fractional-step-detail"
                       tabIndex={isSelected ? 0 : -1}
-                      onClick={() => setStep(index)}
+                      onClick={() => {
+                        setStep(index);
+                        track("fractional_step_selected", { step: title });
+                      }}
                       onKeyDown={(event) => {
                         if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
                         event.preventDefault();
                         const next = event.key === "Home" ? 0 : event.key === "End" ? steps.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + steps.length) % steps.length;
                         setStep(next);
+                        track("fractional_step_selected", { step: steps[next].title });
                         document.getElementById(`fractional-step-tab-${next}`)?.focus();
                       }}
                       className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
@@ -445,7 +449,10 @@ function Index() {
                       type="button"
                       aria-expanded={isSelected}
                       aria-controls={`fractional-step-mobile-detail-${index}`}
-                      onClick={() => setStep(index)}
+                      onClick={() => {
+                        setStep(index);
+                        track("fractional_step_selected", { step: title });
+                      }}
                       className="grid w-full grid-cols-[64px_minmax(0,1fr)] items-center gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                     >
                       <span className="relative inline-block h-[64px] w-[64px]">
@@ -477,7 +484,7 @@ function Index() {
       <section data-reveal className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
-          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
+          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
           <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
