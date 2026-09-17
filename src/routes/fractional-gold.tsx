@@ -138,6 +138,43 @@ function OfficialMandala({ className }: { className?: string }) {
 }
 
 
+function FaqColumn({
+  items,
+  offset,
+  openFaq,
+  setOpenFaq,
+}: {
+  items: readonly (readonly [string, string])[];
+  offset: number;
+  openFaq: number | null;
+  setOpenFaq: (value: number | null) => void;
+}) {
+  return (
+    <>
+      {items.map(([question, answer], index) => {
+        const flatIndex = offset + index;
+        const isOpen = openFaq === flatIndex;
+        return (
+          <div key={question} className="border-b border-beige">
+            <button
+              type="button"
+              onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
+              className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
+              aria-expanded={isOpen}
+            >
+              <span>{question}</span>
+              <PlusIcon open={isOpen} />
+            </button>
+            {isOpen && (
+              <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>
+            )}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
