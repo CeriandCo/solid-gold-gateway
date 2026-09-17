@@ -447,7 +447,7 @@ function Index() {
         <div className="site-container grid gap-14 lg:grid-cols-2">
           <div id="faq" className="lg:col-span-2">
             <h2 className="section-title mt-3 text-forest">Frequently asked questions</h2>
-            <div className="mt-5 grid gap-14 lg:grid-cols-2">
+            <div className="mt-5 grid gap-0 lg:gap-14 lg:grid-cols-2">
               <div><FaqColumn items={faqs.slice(0, 5)} offset={0} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>
               <div><FaqColumn items={faqs.slice(5)} offset={5} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>
             </div>
