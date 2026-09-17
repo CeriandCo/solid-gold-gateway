@@ -409,7 +409,7 @@ function Index() {
                         event.preventDefault();
                         const next = event.key === "Home" ? 0 : event.key === "End" ? steps.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + steps.length) % steps.length;
                         setStep(next);
-                        track("fractional_step_selected", { step: steps[next].title });
+                        track("fractional_step_selected", { step: steps[next]!.title });
                         document.getElementById(`fractional-step-tab-${next}`)?.focus();
                       }}
                       className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
