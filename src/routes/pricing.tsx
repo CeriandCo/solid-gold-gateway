@@ -198,207 +198,140 @@ function InfoTooltip({ label, text }: { label: string; text: string }) {
   );
 }
 
-function RowLabel({ label, hint }: { label: string; hint?: string | undefined }) {
-  return (
-    <>
-      {label}
-      {hint ? (
-        <span className="font-sans text-ui-xs font-normal text-muted-ink"> {hint}</span>
-      ) : null}
-    </>
-  );
-}
-
-function CellValue({ cell }: { cell: RowCell }) {
-  if (cell.kind === "dash") {
-    return <span className="text-muted-ink">—</span>;
+function AmountCell({ row }: { row: PricingFeeRow }) {
+  if (row.description) {
+    return (
+      <span className="font-sans text-ui-sm font-normal text-muted-ink">
+        {row.description}
+      </span>
+    );
   }
   return (
     <span className="block">
-      <span className="block font-sans text-ui-sm font-bold text-forest-black">
-        {cell.value}
+      <span className="inline-flex flex-wrap items-center gap-2 sm:justify-center">
+        <span className="font-sans text-ui-sm font-bold text-forest-black">
+          {row.amount}
+        </span>
+        {row.badge ? (
+          <span className="rounded-[3px] bg-gold px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-[1.2px] text-forest-deep">
+            {row.badge}
+          </span>
+        ) : null}
       </span>
-      {cell.suffix ? (
+      {row.amountNote ? (
         <span className="mt-1 block font-sans text-ui-xs font-normal text-muted-ink">
-          {cell.suffix}
+          {row.amountNote}
         </span>
       ) : null}
     </span>
   );
 }
 
-function isSpanCell(cells: TransactionRow["cells"]): cells is SpanCell {
-  return !Array.isArray(cells);
-}
-
-function SpanCellContent({ cell }: { cell: SpanCell }) {
+function CostLabel({ row }: { row: PricingFeeRow }) {
   return (
-    <span className="inline-flex items-center justify-center gap-2 text-muted-ink">
-      <span>{cell.value}</span>
-      {cell.info ? (
-        <InfoTooltip
-          label="More information about purchase price"
-          text={PURCHASE_PRICE_TOOLTIP}
-        />
+    <>
+      <span className="font-sans text-ui-sm font-medium text-forest-black">
+        {row.label}
+        {row.label === "Purchase price" ? (
+          <>
+            {" "}
+            <InfoTooltip
+              label="More information about purchase price"
+              text={PURCHASE_PRICE_TOOLTIP}
+            />
+          </>
+        ) : null}
+      </span>
+      {row.note ? (
+        <span className="mt-1 block font-sans text-ui-xs font-normal text-muted-ink">
+          {row.note}
+        </span>
       ) : null}
-    </span>
+    </>
   );
 }
 
-function TransactionCostsSection() {
-  const table = PAY_TODAY_TABLE;
-  return (
-    <section aria-labelledby="transaction-costs-heading" className="pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2">
-      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
-      <h2
-        id="transaction-costs-heading"
-        className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
+// One contextual pricing table for the selected product — replaces the old
+// three-way comparison tables. Keyed by product so the fade replays on change.
+const ProductPricingSection = forwardRef<HTMLElement, { pricing: ProductPricing }>(
+  function ProductPricingSection({ pricing }, ref) {
+    return (
+      <section
+        ref={ref}
+        aria-labelledby="product-pricing-heading"
+        aria-live="polite"
+        className="scroll-mt-[132px] pb-4 pt-1 md:pb-2.5 md:pt-1.5 lg:pb-3 lg:pt-2"
       >
-        {table.title}
-      </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
-        {table.subtitle}
-      </p>
+        <div key={pricing.id} className="estimate-fade">
+          <p className="pricing-label mb-1 text-muted-ink">Pricing</p>
+          <h2
+            id="product-pricing-heading"
+            className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm"
+          >
+            {pricing.heading}
+          </h2>
+          <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
+            {pricing.copy}
+          </p>
 
-      {/* Stacked view on narrow screens */}
-      <dl className="border-t border-beige sm:hidden">
-        {table.rows.map((row) => (
-          <div key={row.label} className="border-b border-beige py-3.5">
-            <dt className="font-sans text-ui-sm font-medium text-forest-black">
-              <RowLabel label={row.label} hint={row.hint} />
-            </dt>
-            <dd className="mt-2 font-sans text-[13px] font-normal text-muted-ink">
-              {isSpanCell(row.cells) ? (
-                <SpanCellContent cell={row.cells} />
-              ) : (
-                <span className="grid grid-cols-3 gap-2 text-center">
-                  {row.cells.map((cell, index) => (
-                    <span key={table.columns[index + 1]} className="block">
-                      <span className="mb-1 block font-sans text-[11.5px] font-semibold text-charcoal">
-                        {table.columns[index + 1]}
-                      </span>
-                      <CellValue cell={cell} />
-                    </span>
-                  ))}
-                </span>
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      <table
-        aria-labelledby="transaction-costs-heading"
-        className="hidden w-full border-collapse border border-beige font-sans text-ui-sm font-normal sm:table"
-      >
-        <thead>
-          <tr className="bg-wash-green">
-            {table.columns.map((column, index) => (
-              <th
-                key={column}
-                scope="col"
-                className={`border-b border-beige px-3 py-2.5 font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
-                  index === 0
-                    ? "w-[32%] text-left"
-                    : "w-[22.66%] border-l border-beige text-center"
-                }`}
-              >
-                {column}
-              </th>
+          {/* Stacked view on narrow screens: cost label above its amount */}
+          <dl className="border-t border-beige sm:hidden">
+            {pricing.rows.map((row) => (
+              <div key={row.label} className="border-b border-beige py-3.5">
+                <dt>
+                  <CostLabel row={row} />
+                </dt>
+                <dd className="mt-2">
+                  <AmountCell row={row} />
+                </dd>
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, rowIndex) => (
-            <tr
-              key={row.label}
-              className={rowIndex < table.rows.length - 1 ? "border-b border-beige" : ""}
-            >
-              <th
-                scope="row"
-                className="px-3 py-3.5 text-left align-top font-sans text-ui-sm font-medium text-forest-black lg:px-3.5"
-              >
-                <RowLabel label={row.label} hint={row.hint} />
-              </th>
-              {isSpanCell(row.cells) ? (
-                <td
-                  colSpan={3}
-                  className="border-l border-beige px-3 py-3.5 text-center align-top text-muted-ink lg:px-3.5"
+          </dl>
+
+          <table
+            aria-labelledby="product-pricing-heading"
+            className="hidden w-full border-collapse border border-beige font-sans text-ui-sm font-normal sm:table"
+          >
+            <thead>
+              <tr className="bg-wash-green">
+                <th
+                  scope="col"
+                  className="w-[42%] border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5"
                 >
-                  <SpanCellContent cell={row.cells} />
-                </td>
-              ) : (
-                row.cells.map((cell, index) => (
-                  <td
-                    key={table.columns[index + 1]}
-                    className="border-l border-beige px-3 py-3.5 text-center align-top lg:px-3.5"
+                  {pricing.columns[0]}
+                </th>
+                <th
+                  scope="col"
+                  className="border-b border-l border-beige px-3 py-2.5 text-center font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5"
+                >
+                  {pricing.columns[1]}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pricing.rows.map((row, rowIndex) => (
+                <tr
+                  key={row.label}
+                  className={rowIndex < pricing.rows.length - 1 ? "border-b border-beige" : ""}
+                >
+                  <th
+                    scope="row"
+                    className="px-3 py-3.5 text-left align-top font-normal lg:px-3.5"
                   >
-                    <CellValue cell={cell} />
+                    <CostLabel row={row} />
+                  </th>
+                  <td className="border-l border-beige px-3 py-3.5 text-center align-top lg:px-3.5">
+                    <AmountCell row={row} />
                   </td>
-                ))
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-}
-
-function FeeListSection({ table, idSuffix }: { table: StorageTableData; idSuffix: string }) {
-  return (
-    <section aria-labelledby={`fee-${idSuffix}-heading`} className="pb-6 pt-1 md:pb-4 md:pt-1.5 lg:pb-5 lg:pt-2">
-      <p className="pricing-label mb-1 text-muted-ink">{table.category}</p>
-      <h2 id={`fee-${idSuffix}-heading`} className="text-display-h4 mb-1.5 text-forest-black md:text-display-h4-sm">
-        {table.title}
-      </h2>
-      <p className="mb-5 font-sans text-ui-md font-normal leading-[1.55] text-muted-ink md:mb-3.5">
-        {table.subtitle}
-      </p>
-      <table
-        aria-labelledby={`fee-${idSuffix}-heading`}
-        className="w-full border-collapse border border-beige font-sans text-[13px] font-normal md:text-ui-sm"
-      >
-        <thead>
-          <tr className="bg-wash-green">
-            {table.columns.map((column, index) => (
-              <th
-                key={column}
-                scope="col"
-                className={`border-b border-beige px-3 py-2.5 text-left font-sans text-ui-xs font-semibold tracking-[0.4px] text-charcoal lg:px-3.5 ${
-                  index === 0 ? "" : "border-l border-beige"
-                }`}
-              >
-                {column}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, rowIndex) => (
-            <tr
-              key={row.label}
-              className={rowIndex < table.rows.length - 1 ? "border-b border-beige" : ""}
-            >
-              <th
-                scope="row"
-                className="px-3 py-3.5 text-left align-top font-sans text-[13px] font-medium text-forest-black lg:px-3.5 md:py-3.5 md:text-ui-sm"
-              >
-                <RowLabel label={row.label} hint={row.hint} />
-              </th>
-              <td className="border-l border-beige px-3 py-3.5 text-left align-top text-muted-ink lg:px-3.5 md:py-3.5">
-                {row.highlight ? (
-                  <span className="font-bold text-forest-black">{row.highlight} </span>
-                ) : null}
-                {row.value}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  );
-}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    );
+  },
+);
 
 const SPOT_GOLD = 4310;
 const PREMIUM = 0.04;
