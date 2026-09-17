@@ -986,18 +986,32 @@ function BottomCta() {
 }
 
 function PricingPage() {
-  const [product, setProduct] = useState<string | null>(null);
+  // Allocated metal is the default selection; the same state drives the cards,
+  // the contextual pricing table and the calculator.
+  const [product, setProduct] = useState<string>("allocated");
+  const pricingSectionRef = useRef<HTMLElement>(null);
 
-  // Clicking a product card selects that product in the calculator. Guard
-  // against the card's own CTA link (and any control) so only the card
-  // surface itself toggles the selection.
-  function handleCardSelect(
-    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
-    id: string,
-  ) {
-    if ((event.target as HTMLElement).closest("a, button, input")) return;
+  // Clicking a product card selects that product. The cards are pure
+  // selectors — they never navigate away from the page.
+  function handleCardSelect(id: string) {
     setProduct(id);
+    track("pricing_product_selected", { product: id, source: "card" });
+    // Below the lg breakpoint the table sits under the cards, so bring it
+    // into view after a selection.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 1023px)").matches
+    ) {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      pricingSectionRef.current?.scrollIntoView({
+        behavior: reduced ? "auto" : "smooth",
+        block: "start",
+      });
+    }
   }
+
+  const activePricing =
+    PRODUCT_PRICING.find((entry) => entry.id === product) ?? PRODUCT_PRICING[0];
 
   return (
     <div className="min-h-screen bg-background text-forest-black">
