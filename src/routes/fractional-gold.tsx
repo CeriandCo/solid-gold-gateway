@@ -91,6 +91,34 @@ const faqs = [
     "Are there additional fees if I redeem physical gold?",
     "Fractional holdings redeem to cash first. If you then want a physical coin, that's a separate purchase, subject to the coin's current price, product premium, shipping, insurance, and any applicable taxes, all shown before you confirm."
   ],
+  [
+    "What am I buying when I buy vaulted gold?",
+    "You are buying in physical gold held through Sqoot's custody arrangement. It is not an ETF, cryptocurrency, or digital token."
+  ],
+  [
+    "Is vaulted gold the same as buying a physical coin?",
+    "No. They are separate products. Vaulted gold is a fractional interest in physical gold held through Sqoot's custody arrangement. A physical coin is a specific retail product bought through a separate checkout and shipped to an eligible address. At launch, vaulted gold will not convert directly into a coin for delivery."
+  ],
+  [
+    "How do I buy vaulted gold?",
+    "Complete verification, select Buy, enter the dollar or gold amount, choose an available bank-payment method, review the live price, quantity, fees, and total, then confirm. The order will appear in Portfolio and Activity with its current status."
+  ],
+  [
+    "Is the gold real?",
+    "Yes. Sqoot is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch."
+  ],
+  [
+    "Is Sqoot an ETF, cryptocurrency, or digital token?",
+    "No. Sqoot is being designed around real physical gold, not an ETF, cryptocurrency, or digital token. We will publish the precise ownership and custody structure before customers can buy."
+  ],
+  [
+    "Where does the gold come from?",
+    "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+  ],
+  [
+    "Is gold guaranteed to increase in value?",
+    "No. Gold prices can rise or fall, and you may receive less when you sell than you paid. Fees and the difference between buy and sell prices can also affect your return. Sqoot does not provide investment, legal, or tax advice."
+  ],
 ] as const;
 
 function Mandala({ className }: { className?: string }) {
