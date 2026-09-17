@@ -84,7 +84,7 @@ const features: Feature[] = [
   { icon: HandHeart, title: "Personalised", description: "Add a name, message or special date" },
   { icon: Truck, title: "Beautifully Delivered", description: "Premium packaging, ready to gift" },
   { icon: RefreshCw, title: "Redeemable", description: "Redeem or upgrade anytime" },
-  { icon: Globe2, title: "Global Access", description: "Send love anywhere in the world" },
+  { icon: Globe2, title: "Vaulted Gifting", description: "Gift allocated gold held securely in insured U.S. vaults" },
 ];
 
 const occasions = [
@@ -101,7 +101,7 @@ const assurances: Feature[] = [
   { icon: ShieldCheck, title: "Secure Vaulted", description: "Stored in fully insured U.S. vaults" },
   { icon: LockKeyhole, title: "Fully Insured", description: "Your gold is protected every step of the way" },
   { icon: RefreshCw, title: "Redeem or Upgrade", description: "Redeem, sell or upgrade at any time" },
-  { icon: Send, title: "Send Anywhere", description: "Delivered globally with care and discretion" },
+  { icon: Send, title: "Simple to Gift", description: "Allocated to the recipient — no international shipping" },
 ];
 
 function GiftingNewPage() {
