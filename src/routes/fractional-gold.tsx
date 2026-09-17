@@ -220,7 +220,7 @@ function Index() {
       <section data-reveal className="bg-background py-12 sm:py-14" aria-label="Memberships and custody credentials">
         <div className="site-container">
           <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
-          <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 lg:grid-cols-4 lg:gap-y-0">
+          <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 md:grid-cols-4 lg:gap-y-0">
             {/* JBT — SQOOT Pure industry membership */}
             <a
               href="https://www.jewelersboard.com/were-legit"
@@ -345,9 +345,9 @@ function Index() {
           </div>
 
           <div aria-label="Five-step gold allocation process">
-            {/* Desktop: all five steps in one horizontal row */}
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-5 gap-6" role="tablist" aria-label="Select a process step">
+            {/* Tablet & desktop: all five steps in one horizontal row */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-5 gap-3 lg:gap-6" role="tablist" aria-label="Select a process step">
                 {steps.map(({ title, summary, icon: Icon }, index) => {
                   const isSelected = step === index;
                   return (
@@ -370,22 +370,23 @@ function Index() {
                       className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
                     >
                       <span className="relative inline-block">
-                        <span className={cn("grid h-[84px] w-[84px] place-items-center rounded-full border transition-colors", isSelected ? "border-gold bg-forest-deep text-gold" : "border-gold/55 bg-warm-white text-gold group-hover:border-gold")}>
-                          <Icon size={32} strokeWidth={1.4} aria-hidden="true" />
+                        <span className={cn("grid h-[64px] w-[64px] place-items-center rounded-full border transition-colors lg:h-[84px] lg:w-[84px]", isSelected ? "border-gold bg-forest-deep text-gold" : "border-gold/55 bg-warm-white text-gold group-hover:border-gold")}>
+                          <Icon size={26} strokeWidth={1.4} aria-hidden="true" className="lg:hidden" />
+                          <Icon size={32} strokeWidth={1.4} aria-hidden="true" className="hidden lg:block" />
                         </span>
                         <span className="absolute -bottom-1 left-1 grid h-[22px] w-[22px] place-items-center rounded-full bg-gold text-[11px] font-semibold text-forest-deep">
                           {index + 1}
                         </span>
                       </span>
                       <span className={cn("mt-4 inline-block min-h-[2.4em] border-b-2 pb-1 text-sm font-semibold leading-[1.2] text-charcoal", isSelected ? "border-gold" : "border-transparent")}>{title}</span>
-                      <span className="mt-2 block min-h-[76px] text-[13px] leading-[1.45] text-charcoal/70">{summary}</span>
+                      <span className="mt-2 block min-h-[60px] text-[13px] leading-[1.45] text-charcoal/70 lg:min-h-[76px]">{summary}</span>
                     </button>
                   );
                 })}
               </div>
 
-              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex h-[188px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
-                <div className="w-[220px] shrink-0 border-r border-beige pr-8">
+              <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex h-[188px] items-center gap-5 rounded-[8px] border border-beige bg-warm-white px-5 py-6 lg:gap-8 lg:px-9">
+                <div className="w-[180px] shrink-0 border-r border-beige pr-5 lg:w-[220px] lg:pr-8">
                   <p className="eyebrow text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
                   <p className="mt-2 font-display text-[1.4rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
                 </div>
@@ -394,7 +395,7 @@ function Index() {
             </div>
 
             {/* Mobile: intro above, steps vertical, detail beneath the selected step */}
-            <div className="space-y-0 lg:hidden">
+            <div className="space-y-0 md:hidden">
               {steps.map(({ title, summary, detail, icon: Icon }, index) => {
                 const isSelected = step === index;
                 return (
