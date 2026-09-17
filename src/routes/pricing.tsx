@@ -1121,25 +1121,20 @@ function PricingPage() {
                       role="button"
                       tabIndex={0}
                       aria-pressed={selected}
-                      onClick={(event) => handleCardSelect(event, card.id)}
+                      aria-label={`${card.title} — show ${card.title.toLowerCase()} pricing`}
+                      onClick={() => handleCardSelect(card.id)}
                       onKeyDown={(event) => {
                         if (event.key === "Enter" || event.key === " ") {
                           event.preventDefault();
-                          handleCardSelect(event, card.id);
+                          handleCardSelect(card.id);
                         }
                       }}
-                      className={`relative flex min-h-[240px] min-w-0 flex-col overflow-hidden rounded-[var(--pricing-radius-card)] border bg-[var(--pricing-paper)] p-7 motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-[220ms] motion-safe:ease-standard ${
+                      className={`relative flex min-h-[240px] min-w-0 cursor-pointer flex-col overflow-hidden rounded-[var(--pricing-radius-card)] border p-7 motion-safe:transition-[transform,box-shadow,border-color,background-color] motion-safe:duration-[220ms] motion-safe:ease-standard ${
                         selected
-                          ? "border-[var(--pricing-forest-900)] shadow-[inset_0_0_0_1px_var(--pricing-forest-900)]"
-                          : "group/tile border-[var(--pricing-border)] motion-safe:hover:-translate-y-[2px] motion-safe:hover:shadow-[var(--pricing-shadow-hover)]"
+                          ? "border-[var(--pricing-forest-900)] bg-wash-green shadow-[inset_0_0_0_1px_var(--pricing-forest-900)]"
+                          : "group/tile border-[var(--pricing-border)] bg-[var(--pricing-paper)] motion-safe:hover:-translate-y-[2px] motion-safe:hover:shadow-[var(--pricing-shadow-hover)]"
                       } ${FOCUS_RING}`}
                     >
-                      {selected && (
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute inset-0 bg-[var(--pricing-forest-900)]/[0.05]"
-                        />
-                      )}
                       {selected && (
                         <span
                           aria-hidden="true"
@@ -1164,19 +1159,22 @@ function PricingPage() {
                         {card.description}
                       </p>
 
-                      <a
-                        href={card.ctaHref}
-                        onClick={() => track("pricing_cta_click", { product: card.id })}
-                        className={`group relative inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard hover:text-gold-dark max-md:whitespace-normal ${FOCUS_RING}`}
-                      >
-                        {card.ctaLabel}
-                        <ArrowRight
-                          size={14}
-                          aria-hidden="true"
-                          focusable="false"
-                          className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover:translate-x-[3px]"
-                        />
-                      </a>
+                      {selected ? (
+                        <span className="relative inline-flex items-center gap-2 self-start font-sans text-ui-sm font-semibold leading-normal text-forest-black">
+                          <Check size={14} strokeWidth={3} aria-hidden="true" focusable="false" className="shrink-0 text-[var(--pricing-forest-900)]" />
+                          Selected
+                        </span>
+                      ) : (
+                        <span className="group relative inline-flex self-start items-center gap-2 whitespace-nowrap font-sans text-ui-sm font-medium leading-normal text-forest-black no-underline motion-safe:transition-colors motion-safe:ease-standard group-hover/tile:text-gold-dark max-md:whitespace-normal">
+                          {card.ctaLabel}
+                          <ArrowRight
+                            size={14}
+                            aria-hidden="true"
+                            focusable="false"
+                            className="shrink-0 motion-safe:transition-transform motion-safe:ease-standard motion-safe:group-hover/tile:translate-x-[3px]"
+                          />
+                        </span>
+                      )}
 
                       <div className="relative mt-auto flex justify-end pt-2">
                         <div
