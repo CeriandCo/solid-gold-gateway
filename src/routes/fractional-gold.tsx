@@ -206,7 +206,7 @@ function Index() {
               <p className="fg-price-detail">≈ 0.0104 oz</p>
             </div>
             <style>{`
-.fg-price-badge{position:absolute;z-index:3;right:5%;bottom:40px;display:grid;place-items:center;width:clamp(112px,11.1vw,160px);height:clamp(112px,11.1vw,160px);border:2px solid rgba(250,245,234,.8);border-radius:9999px;background:transparent;color:var(--warm-white);text-align:center}
+.fg-price-badge{position:absolute;z-index:3;right:5%;bottom:40px;display:grid;place-items:center;width:clamp(112px,11.1vw,160px);height:clamp(112px,11.1vw,160px);border:2px solid color-mix(in oklab, var(--warm-white) 80%, transparent);border-radius:9999px;background:transparent;color:var(--warm-white);text-align:center}
 .fg-price-badge>div{display:flex;flex-direction:column;align-items:center}
 .fg-price-label{margin:0;font-family:var(--font-sans);font-size:clamp(.525rem,.52vw,.75rem);font-weight:700;line-height:normal;letter-spacing:.12em}
 .fg-price-value{margin:clamp(6px,.55vw,8px) 0 0;font-family:var(--font-display);font-size:clamp(1.925rem,1.91vw,2.75rem);font-weight:600;line-height:normal}
@@ -386,7 +386,7 @@ function Index() {
 
               <div id="fractional-step-detail" role="tabpanel" aria-labelledby={`fractional-step-tab-${step}`} className="mt-10 flex h-[188px] items-center gap-8 rounded-[8px] border border-beige bg-warm-white px-9 py-6">
                 <div className="w-[220px] shrink-0 border-r border-beige pr-8">
-                  <p className="step-number text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
+                  <p className="eyebrow text-gold">STEP {String(step + 1).padStart(2, "0")} / 05</p>
                   <p className="mt-2 font-display text-[1.4rem] font-semibold leading-[1.15] text-forest">{currentStep.title}</p>
                 </div>
                 <p className="max-w-[720px] text-[0.95rem] leading-relaxed text-charcoal">{currentStep.detail}</p>
@@ -434,16 +434,16 @@ function Index() {
 
       <section data-reveal className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
-          <div><h2 className="comparison-left-title">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
+          <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
           <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
-          <div className="lg:pl-8"><h2 className="comparison-right-title">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
+          <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
 
       <section data-reveal id="fees" className="bg-background py-16 sm:py-20">
         <div className="site-container grid gap-14 lg:grid-cols-2">
           <div id="faq" className="lg:col-span-2">
-            <h2 className="fees-faq-title mt-3 text-forest">Frequently asked questions</h2>
+            <h2 className="section-title mt-3 text-forest">Frequently asked questions</h2>
             <div className="mt-5 grid gap-14 lg:grid-cols-2">
               <div><FaqColumn items={faqs.slice(0, 5)} offset={0} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>
               <div><FaqColumn items={faqs.slice(5)} offset={5} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>

@@ -872,6 +872,64 @@ input {
   }
 }
 
+/* Inline emphasis inside a section-title heading: inherits the heading's
+   responsive sizing, only adds the italic style. */
+.fractional-legacy .comparison-emphasis {
+  font-style: italic;
+}
+
+/* Comparison card lists (dark forest card): body-scale text with a touch
+   more line-height for readability against the dark surface. */
+.fractional-legacy .comparison-left-list,
+.fractional-legacy .comparison-right-list {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (min-width: 48rem) {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+}
+
+/* FAQ answer body text. */
+.fractional-legacy .step-body {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.625;
+
+  @media (min-width: 48rem) {
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+}
+
+/* FAQ accordion question label. */
+.fractional-legacy .faq-question {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--forest);
+
+  @media (min-width: 48rem) {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 64rem) {
+    font-size: 1.05rem;
+  }
+}
+
 
 /* --- Pricing info tooltips (src/routes/pricing.tsx InfoTooltip) ---
    Dark surface with an upward pointer. Desktop centers the tooltip under
