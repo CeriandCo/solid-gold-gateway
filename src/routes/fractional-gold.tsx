@@ -261,6 +261,10 @@ function Index() {
                 <img
                   src={jbtMemberBadge.url}
                   alt="Jewelers Board of Trade — Retail Member"
+                  width={500}
+                  height={500}
+                  loading="lazy"
+                  decoding="async"
                   className="h-[68px] w-auto object-contain mix-blend-multiply"
                 />
               </span>
@@ -282,6 +286,10 @@ function Index() {
                 <img
                   src={ncbaMemberBadge.url}
                   alt="National Coin &amp; Bullion Association — Member"
+                  width={942}
+                  height={882}
+                  loading="lazy"
+                  decoding="async"
                   className="h-[72px] w-auto object-contain"
                 />
               </span>
@@ -298,6 +306,10 @@ function Index() {
                 <img
                   src={idsLogoClean.url}
                   alt="International Depository Services"
+                  width={1920}
+                  height={477}
+                  loading="lazy"
+                  decoding="async"
                   className="h-9 w-auto max-w-[190px] object-contain"
                 />
               </span>
