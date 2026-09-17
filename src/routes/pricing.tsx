@@ -8,14 +8,10 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import {
   HERO_CHIPS,
   PRODUCT_CARDS,
+  PRODUCT_PRICING,
   PURCHASE_PRICE_TOOLTIP,
-  OPTIONAL_TABLE,
-  ONGOING_TABLE,
-  PAY_TODAY_TABLE,
-  type StorageTableData,
-  type RowCell,
-  type SpanCell,
-  type TransactionRow,
+  type PricingFeeRow,
+  type ProductPricing,
 } from "@/lib/pricing/data";
 import { FAQ_ITEMS, TRUST_ITEMS } from "@/lib/pricing/trust-and-faq";
 import { createFileRoute, Link } from "@tanstack/react-router";
