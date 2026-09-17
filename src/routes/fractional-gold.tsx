@@ -19,6 +19,12 @@ import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
 import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
 import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
+import { track } from "@/lib/analytics";
+
+const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
+const FRACTIONAL_GOLD_URL = `${SITE_ORIGIN}/fractional-gold`;
+const OG_IMAGE = `${SITE_ORIGIN}/og/fractional-gold.png`;
+
 
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
@@ -35,6 +41,21 @@ export const Route = createFileRoute("/fractional-gold")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: FRACTIONAL_GOLD_URL },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:title", content: "Fractional Gold Allocation | SQOOT Pure" },
+      {
+        name: "twitter:description",
+        content: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: FRACTIONAL_GOLD_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(FAQ_SCHEMA),
+      },
     ],
   }),
   component: Index,
@@ -121,20 +142,29 @@ const faqs = [
   ],
 ] as const;
 
-function Mandala({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 80 80" aria-hidden="true" className={className}>
-      <g fill="none" stroke="currentColor" strokeWidth="1.25">
-        <path d="M40 3 49 9l11-1 5 10 10 5-1 11 6 9-6 9 1 11-10 5-5 10-11-1-9 6-9-6-11 1-5-10-10-5 1-11-6-9 6-9-1-11 10-5 5-10 11 1Z" />
-        <circle cx="40" cy="40" r="27" /><circle cx="40" cy="40" r="20" /><circle cx="40" cy="40" r="13" /><circle cx="40" cy="40" r="6" />
-        <path d="m40 13 7 14 16-2-10 13 10 12-16-1-7 15-7-15-16 1 10-12-10-13 16 2Z" />
-      </g>
-    </svg>
-  );
-}
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
 
 function OfficialMandala({ className }: { className?: string }) {
-  return <img src={sqootPureMandala.url} alt="" aria-hidden="true" className={cn("object-contain", className)} />;
+  return (
+    <img
+      src={sqootPureMandala.url}
+      alt=""
+      aria-hidden="true"
+      width={512}
+      height={512}
+      loading="lazy"
+      decoding="async"
+      className={cn("object-contain", className)}
+    />
+  );
 }
 
 
@@ -159,7 +189,10 @@ function FaqColumn({
           <div key={question} className="border-b border-beige">
             <button
               type="button"
-              onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
+              onClick={() => {
+                if (!isOpen) track("fractional_faq_open", { question });
+                setOpenFaq(isOpen ? null : flatIndex);
+              }}
               className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
               aria-expanded={isOpen}
               aria-controls={answerId}
@@ -196,7 +229,7 @@ function Index() {
         eyebrow="Real Gold. Real Allocation."
         title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
         body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
-        actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
+        actions={<GoldButton to="/early-access" onClick={() => track("fractional_cta_click", { target: "early_access" })}>Get Early Access</GoldButton>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
@@ -234,6 +267,10 @@ function Index() {
                 <img
                   src={jbtMemberBadge.url}
                   alt="Jewelers Board of Trade — Retail Member"
+                  width={500}
+                  height={500}
+                  loading="lazy"
+                  decoding="async"
                   className="h-[68px] w-auto object-contain mix-blend-multiply"
                 />
               </span>
@@ -255,6 +292,10 @@ function Index() {
                 <img
                   src={ncbaMemberBadge.url}
                   alt="National Coin &amp; Bullion Association — Member"
+                  width={942}
+                  height={882}
+                  loading="lazy"
+                  decoding="async"
                   className="h-[72px] w-auto object-contain"
                 />
               </span>
@@ -271,6 +312,10 @@ function Index() {
                 <img
                   src={idsLogoClean.url}
                   alt="International Depository Services"
+                  width={1920}
+                  height={477}
+                  loading="lazy"
+                  decoding="async"
                   className="h-9 w-auto max-w-[190px] object-contain"
                 />
               </span>
@@ -328,7 +373,7 @@ function Index() {
               Each purchase may be small, but together they can become something durable: a personal reserve, family wealth and an asset recognised across borders.
             </p>
             <p className="mt-5 max-w-[540px] font-['DM_Sans',_sans-serif] text-base leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
-              SQOOT brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
+              SQOOT Pure brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
             </p>
             <p className="mt-8 max-w-[560px] font-['DM_Sans',_sans-serif] text-[0.8rem] leading-[1.6] text-charcoal/55 sm:text-[0.85rem]">
               Gold is not presented as guaranteed appreciation or a replacement for productive investments. It is a distinct reserve, built gradually, held for the long term and available for sale or eligible physical redemption when needed.
@@ -361,12 +406,16 @@ function Index() {
                       aria-selected={isSelected}
                       aria-controls="fractional-step-detail"
                       tabIndex={isSelected ? 0 : -1}
-                      onClick={() => setStep(index)}
+                      onClick={() => {
+                        setStep(index);
+                        track("fractional_step_selected", { step: title });
+                      }}
                       onKeyDown={(event) => {
                         if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
                         event.preventDefault();
                         const next = event.key === "Home" ? 0 : event.key === "End" ? steps.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + steps.length) % steps.length;
                         setStep(next);
+                        track("fractional_step_selected", { step: steps[next]!.title });
                         document.getElementById(`fractional-step-tab-${next}`)?.focus();
                       }}
                       className="group flex flex-col items-center text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
@@ -406,7 +455,10 @@ function Index() {
                       type="button"
                       aria-expanded={isSelected}
                       aria-controls={`fractional-step-mobile-detail-${index}`}
-                      onClick={() => setStep(index)}
+                      onClick={() => {
+                        setStep(index);
+                        track("fractional_step_selected", { step: title });
+                      }}
                       className="grid w-full grid-cols-[64px_minmax(0,1fr)] items-center gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                     >
                       <span className="relative inline-block h-[64px] w-[64px]">
@@ -438,7 +490,7 @@ function Index() {
       <section data-reveal className="bg-ivory px-5 pb-16 sm:px-7 sm:pb-20">
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
-          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
+          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
           <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>

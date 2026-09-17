@@ -8,7 +8,10 @@ type EventName =
   | "calculator_estimate_shown"
   | "calculator_amount_preset_clicked"
   | "faq_open"
-  | "bottom_cta_click";
+  | "bottom_cta_click"
+  | "fractional_cta_click"
+  | "fractional_step_selected"
+  | "fractional_faq_open";
 
 type EventProps = Record<string, string | number | boolean | null>;
 
