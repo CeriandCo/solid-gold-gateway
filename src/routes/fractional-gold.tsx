@@ -138,36 +138,51 @@ function OfficialMandala({ className }: { className?: string }) {
 }
 
 
+function FaqColumn({
+  items,
+  offset,
+  openFaq,
+  setOpenFaq,
+}: {
+  items: readonly (readonly [string, string])[];
+  offset: number;
+  openFaq: number | null;
+  setOpenFaq: (value: number | null) => void;
+}) {
+  return (
+    <>
+      {items.map(([question, answer], index) => {
+        const flatIndex = offset + index;
+        const isOpen = openFaq === flatIndex;
+        return (
+          <div key={question} className="border-b border-beige">
+            <button
+              type="button"
+              onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
+              className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
+              aria-expanded={isOpen}
+            >
+              <span>{question}</span>
+              <PlusIcon open={isOpen} />
+            </button>
+            {isOpen && (
+              <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>
+            )}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 function Index() {
   const [step, setStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const currentStep = steps[step] ?? steps[0];
   const scope = useReveal<HTMLElement>();
 
-  const renderFaqColumn = (
-    items: readonly (readonly [string, string])[],
-    offset: number,
-  ) =>
-    items.map(([question, answer], index) => {
-      const flatIndex = offset + index;
-      const isOpen = openFaq === flatIndex;
-      return (
-        <div key={question} className="border-b border-beige">
-          <button
-            type="button"
-            onClick={() => setOpenFaq(isOpen ? null : flatIndex)}
-            className="faq-question grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-gold"
-            aria-expanded={isOpen}
-          >
-            <span>{question}</span>
-            <PlusIcon open={isOpen} />
-          </button>
-          {isOpen && (
-            <p className="step-body pb-4 pr-8 text-muted-foreground">{answer}</p>
-          )}
-        </div>
-      );
-    });
+
+
 
   return (
     <main ref={scope} id="top" className="fractional-legacy overflow-hidden bg-background">
@@ -430,8 +445,8 @@ function Index() {
           <div id="faq" className="lg:col-span-2">
             <h2 className="fees-faq-title mt-3 text-forest">Frequently asked questions</h2>
             <div className="mt-5 grid gap-14 lg:grid-cols-2">
-              <div>{renderFaqColumn(faqs.slice(0, 5), 0)}</div>
-              <div>{renderFaqColumn(faqs.slice(5), 5)}</div>
+              <div><FaqColumn items={faqs.slice(0, 5)} offset={0} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>
+              <div><FaqColumn items={faqs.slice(5)} offset={5} openFaq={openFaq} setOpenFaq={setOpenFaq} /></div>
             </div>
           </div>
         </div>
