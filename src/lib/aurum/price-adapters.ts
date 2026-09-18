@@ -1,6 +1,13 @@
 /**
  * Adapters own where price data comes from. Components never fetch.
- * Moving to the real feed is a one-line change in `selectPriceAdapter`.
+ *
+ * PROVENANCE — READ BEFORE TOUCHING THE CHANGE FIGURES
+ * ----------------------------------------------------
+ * `change_amount` / `change_pct` come from the price provider (Dillon Gage
+ * spot) and are the AUTHORITATIVE intraday move — display these as-is.
+ * `previous_close` currently comes from Yahoo `GC=F`, gold FUTURES, a
+ * different instrument (see `previous_close_source`). NEVER derive the
+ * displayed change from it; the basis would show a move that never happened.
  */
 
 import {
@@ -10,17 +17,6 @@ import {
   type PriceSource,
   type PriceState,
 } from "./price-state";
-import {
-  FIXTURE_AS_OF,
-  FIXTURE_CHANGE_AMOUNT,
-  FIXTURE_CHANGE_PCT,
-  FIXTURE_DAY_HIGH,
-  FIXTURE_DAY_LOW,
-  FIXTURE_NOW,
-  FIXTURE_PREVIOUS_CLOSE,
-  FIXTURE_SERIES,
-  FIXTURE_SPOT,
-} from "./price-fixture";
 
 export type PriceAdapter = {
   source: PriceSource;
@@ -29,40 +25,122 @@ export type PriceAdapter = {
   load: () => Promise<PriceState>;
 };
 
-function buildMockData(): PriceData | null {
-  const history: HistoryPoint[] = FIXTURE_SERIES.map((point) => ({
-    date: new Date(`${point.date}T00:00:00.000Z`),
-    close: point.close,
-  }));
-  const facts = computeFacts(history, FIXTURE_SPOT, FIXTURE_AS_OF);
-  if (!facts) return null;
+/** Relative paths only: the same code must work in preview and production. */
+const PRICE_URL = "/api/public/get-gold-price";
+const HISTORY_URL = "/api/public/get-history?range=5y";
 
-  return {
-    spot: FIXTURE_SPOT,
-    changePct: FIXTURE_CHANGE_PCT,
-    changeAmount: FIXTURE_CHANGE_AMOUNT,
-    asOf: FIXTURE_AS_OF,
-    dayHigh: FIXTURE_DAY_HIGH,
-    dayLow: FIXTURE_DAY_LOW,
-    previousClose: FIXTURE_PREVIOUS_CLOSE,
-    facts,
-    history,
-  };
+type Freshness = "fresh" | "stale" | "unavailable";
+
+function finitePositive(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value) && value > 0;
 }
 
-export const mockPriceAdapter: PriceAdapter = {
-  source: "mock",
-  now: () => FIXTURE_NOW,
+function finiteOrZero(value: unknown): number {
+  return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+
+function finiteOrNull(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+async function loadHistory(): Promise<HistoryPoint[]> {
+  try {
+    const response = await fetch(HISTORY_URL, { headers: { accept: "application/json" } });
+    if (!response.ok) return [];
+    const body: unknown = await response.json();
+    const points = (body as { points?: unknown })?.points;
+    if (!Array.isArray(points)) return [];
+    return points
+      .map((point) => {
+        const row = point as { date?: unknown; close?: unknown };
+        const date = typeof row.date === "string" ? new Date(`${row.date}T00:00:00.000Z`) : null;
+        const close = finiteOrNull(row.close);
+        if (!date || Number.isNaN(date.getTime()) || close === null) return null;
+        return { date, close } satisfies HistoryPoint;
+      })
+      .filter((point): point is HistoryPoint => point !== null)
+      .sort((a, b) => a.date.getTime() - b.date.getTime());
+  } catch {
+    // History is optional: the price can render without it (the calculator cannot).
+    return [];
+  }
+}
+
+export const livePriceAdapter: PriceAdapter = {
+  source: "live",
+  now: () => new Date(),
   async load() {
-    const data = buildMockData();
-    if (!data) return { status: "unavailable", reason: "no-data" };
-    return { status: "ready", source: "mock", data };
+    let body: Record<string, unknown>;
+    let history: HistoryPoint[];
+
+    try {
+      const [priceResponse, historyPoints] = await Promise.all([
+        fetch(PRICE_URL, { headers: { accept: "application/json" }, cache: "no-store" }),
+        loadHistory(),
+      ]);
+      history = historyPoints;
+      body = (await priceResponse.json()) as Record<string, unknown>;
+    } catch {
+      return { status: "unavailable", reason: "network" };
+    }
+
+    if (!body || typeof body !== "object") return { status: "unavailable", reason: "invalid" };
+
+    const freshness = body["freshness"] as Freshness | undefined;
+    if (freshness !== "fresh" && freshness !== "stale" && freshness !== "unavailable") {
+      return { status: "unavailable", reason: "invalid" };
+    }
+    if (freshness === "unavailable") return { status: "unavailable", reason: "no-data" };
+
+    // Re-validate at the client boundary regardless of what the server said.
+    const spot = body["price_usd"];
+    if (!finitePositive(spot)) return { status: "unavailable", reason: "invalid" };
+
+    const stamp = body["provider_timestamp"];
+    const asOf = typeof stamp === "string" ? new Date(stamp) : null;
+    if (!asOf || Number.isNaN(asOf.getTime())) return { status: "unavailable", reason: "invalid" };
+
+    const data: PriceData = {
+      spot,
+      // Authoritative provider move. Never derived from previous_close.
+      changePct: finiteOrZero(body["change_pct"]),
+      changeAmount: finiteOrZero(body["change_amount"]),
+      asOf,
+      dayHigh: finiteOrNull(body["day_high"]) ?? spot,
+      dayLow: finiteOrNull(body["day_low"]) ?? spot,
+      previousClose: finiteOrNull(body["previous_close"]),
+      facts: computeFacts(history, spot, asOf),
+      history,
+    };
+
+    if (freshness === "stale") {
+      const ageSeconds = Math.max(0, Math.round(finiteOrZero(body["age_seconds"])));
+      return { status: "stale", source: "live", data, ageSeconds };
+    }
+    return { status: "ready", source: "live", data };
   },
 };
 
 /**
- * Mock data only for now. Connecting the real feed replaces this return value.
+ * Live feed by default. The fixture is reachable only in a dev build with an
+ * explicit `?priceSource=mock` opt-in; the whole branch is dead code in
+ * production, so the fixture never enters the shipped bundle.
  */
 export function selectPriceAdapter(): PriceAdapter {
-  return mockPriceAdapter;
+  if (import.meta.env.DEV && typeof window !== "undefined") {
+    const requested = new URLSearchParams(window.location.search).get("priceSource");
+    if (requested === "mock") {
+      let mockNow: Date | null = null;
+      return {
+        source: "mock",
+        now: () => mockNow ?? new Date(),
+        async load() {
+          const module = await import("./price-mock-adapter");
+          mockNow = module.mockPriceAdapter.now();
+          return module.mockPriceAdapter.load();
+        },
+      };
+    }
+  }
+  return livePriceAdapter;
 }
