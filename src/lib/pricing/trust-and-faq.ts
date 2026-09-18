@@ -53,7 +53,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How are storage fees charged?",
     answer:
-      "Pro-rata, for the exact number of days you hold — not a flat annual charge. Annual storage is 0.35% and insured storage is 0.45% of value per year, applied to the number of days your metal sits in the vault.",
+      "Storage and insurance are free for your first 12 months. After that they are charged pro-rata, for the exact number of days you hold — not a flat annual charge — at 0.45% of value per year, with insurance included. There is no separate insurance charge.",
   },
   {
     question: "What is the minimum storage fee?",
