@@ -38,7 +38,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What fees do I pay?",
     answer:
-      "It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a 3.00% one-off purchase fee, then annual storage 0.35% plus insured storage 0.45% per year, charged pro-rata for the exact days you hold.",
+      "It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a 3.00% one-off purchase fee, then storage and insurance free for your first 12 months and 0.45% of value per year after that, charged pro-rata for the exact days you hold.",
   },
   {
     question: "How is the purchase price calculated?",
