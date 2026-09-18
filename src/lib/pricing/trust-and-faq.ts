@@ -38,7 +38,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What fees do I pay?",
     answer:
-      "It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a 3.00% one-off purchase fee, then annual storage 0.35% plus insured storage 0.45% per year, charged pro-rata for the exact days you hold.",
+      "It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a 3.00% one-off purchase fee, then storage and insurance free for your first 12 months and 0.45% of value per year after that, charged pro-rata for the exact days you hold.",
   },
   {
     question: "How is the purchase price calculated?",
@@ -53,12 +53,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How are storage fees charged?",
     answer:
-      "Pro-rata, for the exact number of days you hold — not a flat annual charge. Annual storage is 0.35% and insured storage is 0.45% of value per year, applied to the number of days your metal sits in the vault.",
+      "Storage and insurance are free for your first 12 months. After that they are charged pro-rata, for the exact number of days you hold — not a flat annual charge — at 0.45% of value per year, with insurance included. There is no separate insurance charge.",
   },
   {
     question: "What is the minimum storage fee?",
     answer:
-      "US$25 per year, applied only if the calculated pro-rata storage fee is lower. On balances above roughly US$3,125 the 0.80% combined rate exceeds the minimum, so the minimum no longer applies.",
+      "US$3.00 per year, applied only after your first 12 months and only if the calculated pro-rata fee is lower. On balances above roughly US$667 the 0.45% rate exceeds the minimum, so the minimum no longer applies.",
   },
   {
     question: "Can I take physical delivery?",

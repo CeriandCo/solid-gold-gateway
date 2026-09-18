@@ -418,9 +418,8 @@ type Estimate = {
   metal: string;
   purchaseFee: number;
   storageBreakdown: {
-    annualStorage: number;
-    annualInsurance: number;
-    flooredAt25: boolean;
+    /** All selectable holding periods fall inside the free first 12 months. */
+    freeYearOne: boolean;
   } | null;
 };
 
@@ -492,19 +491,12 @@ function PurchaseCalculator({
     let storageCost = 0;
     let storageBreakdown: Estimate["storageBreakdown"] = null;
     if (receive === "vault") {
+      // Storage & insurance is free for the first 12 months, and every
+      // selectable holding period (30d–1yr) sits inside that window.
       const days = HOLD_DAYS[hold] ?? 30;
-      const annualStorageRaw = value * 0.0035 * (days / 365);
-      const annualInsuranceRaw = value * 0.0045 * (days / 365);
-      const combinedRaw = annualStorageRaw + annualInsuranceRaw;
-      const minimum = (25 * days) / 365;
-      const flooredAt25 = combinedRaw < minimum;
-      // Same math as before — the $25 floor applies to the combined amount.
-      storageCost = Math.max(combinedRaw, minimum);
-      storageBreakdown = {
-        annualStorage: annualStorageRaw,
-        annualInsurance: annualInsuranceRaw,
-        flooredAt25,
-      };
+      const freeYearOne = days <= 365;
+      storageCost = freeYearOne ? 0 : value * 0.0045 * (days / 365);
+      storageBreakdown = { freeYearOne };
     }
     setEstimate({
       oz,
@@ -754,25 +746,17 @@ function PurchaseCalculator({
                   <p>Purchase fee: {USD.format(estimate.purchaseFee)}</p>
                 )}
                 {estimate.storageBreakdown !== null &&
-                  (estimate.storageBreakdown.flooredAt25 ? (
-                    // The US$25/yr minimum applies to storage + insurance
-                    // combined, not to each part — so a split here would
-                    // misrepresent the fee. Show the combined amount only.
+                  (estimate.storageBreakdown.freeYearOne ? (
                     <p>
-                      Storage &amp; insurance (US$25/year minimum applies):{" "}
-                      {USD.format(estimate.total - estimate.purchaseFee)}
+                      Storage &amp; insurance: {USD.format(0)} — free for your
+                      first 12 months
                     </p>
                   ) : (
-                    <>
-                      <p>
-                        Annual storage:{" "}
-                        {USD.format(estimate.storageBreakdown.annualStorage)}
-                      </p>
-                      <p>
-                        Annual insurance:{" "}
-                        {USD.format(estimate.storageBreakdown.annualInsurance)}
-                      </p>
-                    </>
+                    <p>
+                      Storage &amp; insurance (0.45% a year, insurance
+                      included):{" "}
+                      {USD.format(estimate.total - estimate.purchaseFee)}
+                    </p>
                   ))}
               </div>
               <div className="my-3 h-px w-full bg-[var(--pricing-gold-border)]" />
