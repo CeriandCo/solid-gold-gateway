@@ -74,6 +74,12 @@ function num(value: unknown): number | null {
   return typeof parsed === 'number' && Number.isFinite(parsed) ? parsed : null
 }
 
+/** Defensive rounding — upstream history carries float32 artifacts. */
+function round2(value: number): number {
+  return Math.round(value * 100) / 100
+}
+
+
 async function handle() {
   const maxAge = Number(process.env['AURUM_PRICE_MAX_AGE_SECONDS'] ?? DEFAULT_MAX_AGE_SECONDS)
   const maxAgeSeconds = Number.isFinite(maxAge) && maxAge > 0 ? maxAge : DEFAULT_MAX_AGE_SECONDS
