@@ -102,7 +102,7 @@ const steps = [
 const faqs = [
   [
     "What are the fees?",
-    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Allocation fee: 3.00% of the amount allocated ($3 per $100). This is charged when you purchase and allocate gold to your account. Annual storage fee: 0.35% of the value of your allocated gold per year. Insurance: 0.45% of the value of your allocated gold per year, covering your gold while it is held in secure storage. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
+    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Allocation fee: 3.00% of the amount allocated (US$3 per US$100), charged when you purchase and allocate gold to your account. Storage and insurance: free for your first 12 months, then 0.45% of the value of your allocated gold per year, charged pro-rata for the exact days held. Insurance is included — there is no separate insurance charge. A minimum storage fee of US$3.00 per year applies after your first 12 months. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
   ],
   [
     "Do I pay a fee when I sell my gold?",
