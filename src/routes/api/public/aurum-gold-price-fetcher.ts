@@ -18,7 +18,7 @@ const UPSTREAM_TIMEOUT_MS = 8000
 const MAX_RETRIES = 2
 /** Sanity window for observed_at relative to server time. */
 const MAX_FUTURE_MS = 5 * 60 * 1000
-const MAX_PAST_MS = 60 * 60 * 1000
+const MAX_PAST_MS = 20 * 60 * 1000
 
 type Outcome =
   | { outcome: 'inserted'; price: number; observed_at: string; source: string }
@@ -82,6 +82,9 @@ function parseSpotTime(value: unknown): Date | null {
     const sign = suffix[0] === '-' ? -1 : 1
     offsetMs = sign * (Number(suffix.slice(1, 3)) * 60 + Number(suffix.slice(3, 5))) * 60_000
   } else {
+    // RE-VERIFY ON 1 NOVEMBER 2026: if the provider actually emits a fixed
+    // -0500 rather than true US Central local time, this silently shifts by an
+    // hour when DST ends. The 20-minute past guard below is what catches it.
     offsetMs = zoneOffsetMs('America/Chicago', new Date(ms))
     if (!loggedMissingOffset) {
       loggedMissingOffset = true
@@ -220,7 +223,7 @@ async function handle(request: Request) {
     return json(
       {
         outcome: 'rejected-invalid',
-        reason: `observed_at (${observedAt.toISOString()}) drifts ${minutes} minutes from server time; outside the allowed window (-5min to +60min)`,
+        reason: `observed_at (${observedAt.toISOString()}) drifts ${minutes} minutes from server time; outside the allowed window (-5min to +20min)`,
       },
       422,
     )
