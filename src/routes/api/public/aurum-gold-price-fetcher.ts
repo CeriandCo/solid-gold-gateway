@@ -75,12 +75,6 @@ async function handle(request: Request) {
   let payload: Record<string, unknown>
   try {
     const response = await fetch(`${FIZ_BASE}/${token}`, { headers: { accept: 'application/json' } })
-    // Temporary diagnostic: dump every response header to check for rate-limit signals.
-    const headerDump: Record<string, string> = {}
-    response.headers.forEach((value, key) => {
-      headerDump[key] = value
-    })
-    console.log('[aurum-gold-price-fetcher] upstream response headers:', JSON.stringify(headerDump))
     if (!response.ok) {
       console.error(`[aurum-gold-price-fetcher] ${redactedUrl} returned HTTP ${response.status}`)
       return json({ outcome: 'error', reason: `Upstream HTTP ${response.status}` }, 502)
