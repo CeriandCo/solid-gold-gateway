@@ -28,8 +28,10 @@ export type PriceData = {
   asOf: Date;
   dayHigh: number;
   dayLow: number;
-  previousClose: number;
-  facts: PriceFacts;
+  /** Null when no settled daily close exists. Never used to derive the change. */
+  previousClose: number | null;
+  /** Null when stored history is missing or too short; the price still renders. */
+  facts: PriceFacts | null;
   history: HistoryPoint[];
 };
 
@@ -62,9 +64,9 @@ export function isMock(state: PriceState): boolean {
   return (state.status === "ready" || state.status === "stale") && state.source === "mock";
 }
 
-/** The calculator only computes against a current price. */
+/** The calculator only computes against a current price and real history. */
 export function canCalculate(state: PriceState): boolean {
-  return state.status === "ready";
+  return state.status === "ready" && state.data.history.length > 0 && state.data.facts !== null;
 }
 
 export function priceData(state: PriceState): PriceData | null {

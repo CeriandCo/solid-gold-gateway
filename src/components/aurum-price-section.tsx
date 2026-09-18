@@ -68,13 +68,15 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
               ) : null}
               <div className="aurum-price-rule" />
               <dl className="aurum-price-stats">
-                {[
+                {([
                   ["24 HOUR HIGH", data.dayHigh],
                   ["24 HOUR LOW", data.dayLow],
                   ["PREVIOUS CLOSE", data.previousClose],
-                ].map(([label, value]) => (
-                  <div key={String(label)}><dt>{label}</dt><dd>{USD.format(Number(value))}</dd></div>
-                ))}
+                ] as const)
+                  .filter(([, value]) => typeof value === "number")
+                  .map(([label, value]) => (
+                    <div key={label}><dt>{label}</dt><dd>{USD.format(Number(value))}</dd></div>
+                  ))}
               </dl>
             </>
           ) : null}
