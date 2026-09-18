@@ -48,6 +48,7 @@ async function handle(request: Request) {
   const points = (data ?? [])
     .map((row) => ({ date: row.price_date, close: Number(row.close_price) }))
     .filter((point) => Number.isFinite(point.close))
+    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
 
   return json(
     {
