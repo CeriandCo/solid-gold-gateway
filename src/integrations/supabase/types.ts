@@ -44,6 +44,33 @@ export type Database = {
         }
         Relationships: []
       }
+      aurum_fetcher_runs: {
+        Row: {
+          detail: string | null
+          id: number
+          outcome: string | null
+          request_id: number | null
+          requested_at: string
+          status_code: number | null
+        }
+        Insert: {
+          detail?: string | null
+          id?: number
+          outcome?: string | null
+          request_id?: number | null
+          requested_at?: string
+          status_code?: number | null
+        }
+        Update: {
+          detail?: string | null
+          id?: number
+          outcome?: string | null
+          request_id?: number | null
+          requested_at?: string
+          status_code?: number | null
+        }
+        Relationships: []
+      }
       aurum_spot_prices: {
         Row: {
           change_amount: number
@@ -94,7 +121,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      aurum_fetcher_tick: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
