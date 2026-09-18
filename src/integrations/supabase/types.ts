@@ -121,6 +121,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      aurum_backfill_tick: { Args: never; Returns: undefined }
       aurum_fetcher_tick: { Args: never; Returns: undefined }
       aurum_prune_old_rows: { Args: never; Returns: undefined }
     }
