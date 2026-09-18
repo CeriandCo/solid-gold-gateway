@@ -31,11 +31,13 @@ async function handle(request: Request) {
   const from = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
 
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
+  // Newest-first so a row cap can never silently drop the most recent year,
+  // then re-sorted ascending for the chart.
   const { data, error } = await supabaseAdmin
     .from('aurum_daily_closes')
     .select('price_date, close_price, source')
     .gte('price_date', from)
-    .order('price_date', { ascending: true })
+    .order('price_date', { ascending: false })
     .limit(days + 1)
 
   if (error) {
