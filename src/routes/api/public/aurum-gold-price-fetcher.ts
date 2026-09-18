@@ -91,6 +91,9 @@ async function handle(request: Request) {
     return json({ outcome: 'error', reason: String(payload['error']) }, 502)
   }
 
+  // TEMPORARY diagnostic: raw spotTime format (not a secret).
+  console.log('[aurum-gold-price-fetcher] raw spotTime:', JSON.stringify(payload['spotTime']))
+
   const goldAsk = payload['goldAsk']
   const goldChange = payload['goldChange']
   const goldChangePercent = payload['goldChangePercent']
