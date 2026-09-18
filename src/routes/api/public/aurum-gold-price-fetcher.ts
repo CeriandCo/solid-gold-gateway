@@ -236,6 +236,15 @@ async function handle(request: Request) {
 
   // previous_close: latest stored daily close strictly before today (UTC).
   // No fabrication: when no close exists we store null.
+  //
+  // PROVENANCE WARNING: aurum_daily_closes is currently sourced from Yahoo
+  // `GC=F`, COMEX gold FUTURES — a DIFFERENT INSTRUMENT from the Dillon Gage
+  // SPOT price written to `price` on this same row. The futures basis is tens
+  // of dollars. `change_amount` / `change_percent` below come from the
+  // provider and are the authoritative intraday move; previous_close must
+  // NEVER be used to derive a displayed change until the history source is
+  // confirmed to match the spot feed.
+
   const todayUtc = new Date().toISOString().slice(0, 10)
   const { data: closeRows, error: closeError } = await supabaseAdmin
     .from('aurum_daily_closes')
