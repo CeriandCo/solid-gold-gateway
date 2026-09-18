@@ -418,9 +418,8 @@ type Estimate = {
   metal: string;
   purchaseFee: number;
   storageBreakdown: {
-    annualStorage: number;
-    annualInsurance: number;
-    flooredAt25: boolean;
+    /** All selectable holding periods fall inside the free first 12 months. */
+    freeYearOne: boolean;
   } | null;
 };
 
