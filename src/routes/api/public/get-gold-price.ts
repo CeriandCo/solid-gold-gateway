@@ -6,7 +6,20 @@ import { createFileRoute } from '@tanstack/react-router'
  * Reads only the AURUM tables in this project's database — it never calls
  * Dillon Gage and never requires the cron secret. Freshness is computed here,
  * on the server, from observed_at; the browser clock is never trusted.
+ *
+ * PROVENANCE — READ BEFORE USING THESE FIELDS
+ * -------------------------------------------
+ * `change_amount` and `change_pct` come straight from the price provider
+ * (Dillon Gage spot) and are the AUTHORITATIVE intraday move. Display these.
+ *
+ * `previous_close` comes from a DIFFERENT SERIES — currently Yahoo `GC=F`,
+ * COMEX gold FUTURES — exposed here as `previous_close_source`. Futures carry
+ * a basis of tens of dollars against spot, so deriving a change from it
+ * (`(price_usd - previous_close) / previous_close`) produces a daily move that
+ * never happened. NEVER derive the displayed change from `previous_close`
+ * until the history source is confirmed to match the spot feed.
  */
+
 
 /**
  * Working default: 900s = 15 minutes = three 5-minute fetch intervals.
