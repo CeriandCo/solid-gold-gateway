@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789746805720,
+      "tag": "0000_aurum_spot_prices_unique_observed_at",
+      "breakpoints": true
+    }
+  ]
+}

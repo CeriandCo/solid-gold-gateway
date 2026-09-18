@@ -5,13 +5,28 @@ import { createFileRoute } from '@tanstack/react-router'
  * and inserts one row into aurum_spot_prices. Manually invokable; no scheduling.
  */
 
-const FIZ_BASE = 'https://stage-connect.fiztrade.com/FizServices/GetExtendedSpotPriceData'
+/**
+ * NOTE: the default below is Dillon Gage's STAGING host. The production host is
+ * still unconfirmed and pending from Jay. Set FIZCONNECT_BASE_URL to switch
+ * hosts without a code change.
+ */
+const FIZ_BASE_DEFAULT = 'https://stage-connect.fiztrade.com/FizServices/GetExtendedSpotPriceData'
 /** Guard against abusive repeat writes on this open endpoint. */
 const MIN_SECONDS_BETWEEN_INSERTS = 60
+/** Upstream request budget. Whole run incl. retries stays well inside 20s. */
+const UPSTREAM_TIMEOUT_MS = 8000
+const MAX_RETRIES = 2
+/** Sanity window for observed_at relative to server time. */
+const MAX_FUTURE_MS = 5 * 60 * 1000
+const MAX_PAST_MS = 60 * 60 * 1000
 
 type Outcome =
   | { outcome: 'inserted'; price: number; observed_at: string; source: string }
-  | { outcome: 'skipped-stale' | 'rejected-invalid' | 'error' | 'throttled'; reason: string }
+  | { outcome: 'duplicate'; observed_at: string }
+  | {
+      outcome: 'skipped-stale' | 'rejected-invalid' | 'error' | 'throttled'
+      reason: string
+    }
 
 function json(body: Outcome, status: number) {
   return new Response(JSON.stringify(body), {
@@ -24,13 +39,109 @@ function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value)
 }
 
-/** Legacy ASP.NET date format: /Date(1427750042076)/ */
+/**
+ * Offset of a named IANA zone at a given instant, in milliseconds
+ * (e.g. US Central in summer -> -5h).
+ */
+function zoneOffsetMs(timeZone: string, at: Date): number {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    timeZoneName: 'longOffset',
+  }).formatToParts(at)
+  const name = parts.find((part) => part.type === 'timeZoneName')?.value ?? 'GMT+00:00'
+  const match = /GMT([+-])(\d{2}):?(\d{2})?/.exec(name)
+  if (!match) return 0
+  const sign = match[1] === '-' ? -1 : 1
+  const hours = Number(match[2] ?? 0)
+  const minutes = Number(match[3] ?? 0)
+  return sign * (hours * 60 + minutes) * 60_000
+}
+
+let loggedMissingOffset = false
+
+/**
+ * Legacy ASP.NET date format, with an optional timezone suffix:
+ *   /Date(1427750042076-0500)/
+ * The number is wall-clock milliseconds in the stated offset, so the true UTC
+ * instant is `ms - offset` (with -0500 the instant is 5 hours LATER).
+ *
+ * Observed reality on the staging feed: no suffix is sent, yet the number is
+ * US Central wall clock, not UTC. When the suffix is absent we therefore apply
+ * the DST-aware America/Chicago offset and log it once.
+ */
 function parseSpotTime(value: unknown): Date | null {
   if (typeof value !== 'string') return null
-  const match = /\/Date\((-?\d+)/.exec(value)
+  const match = /\/Date\((-?\d+)([+-]\d{4})?\)/.exec(value)
   if (!match?.[1]) return null
-  const date = new Date(Number(match[1]))
+  const ms = Number(match[1])
+  if (!Number.isFinite(ms)) return null
+
+  let offsetMs: number
+  const suffix = match[2]
+  if (suffix) {
+    const sign = suffix[0] === '-' ? -1 : 1
+    offsetMs = sign * (Number(suffix.slice(1, 3)) * 60 + Number(suffix.slice(3, 5))) * 60_000
+  } else {
+    offsetMs = zoneOffsetMs('America/Chicago', new Date(ms))
+    if (!loggedMissingOffset) {
+      loggedMissingOffset = true
+      console.warn(
+        `[aurum-gold-price-fetcher] spotTime has no offset suffix; treating it as US Central wall clock (offset ${offsetMs / 3_600_000}h)`,
+      )
+    }
+  }
+
+  const date = new Date(ms - offsetMs)
   return Number.isNaN(date.getTime()) ? null : date
+}
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+type FetchResult =
+  | { ok: true; payload: Record<string, unknown> }
+  | { ok: false; status: number; reason: string }
+
+const TRANSIENT_STATUSES = new Set([429, 502, 503, 504])
+
+/** Fetch with an 8s abort timeout and bounded retries for transient failures only. */
+async function fetchSpotData(url: string, redactedUrl: string): Promise<FetchResult> {
+  let last: FetchResult = { ok: false, status: 502, reason: 'Upstream request failed' }
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    let transient = false
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS)
+    try {
+      const response = await fetch(url, {
+        headers: { accept: 'application/json' },
+        signal: controller.signal,
+      })
+      if (!response.ok) {
+        console.error(`[aurum-gold-price-fetcher] ${redactedUrl} returned HTTP ${response.status}`)
+        last = { ok: false, status: 502, reason: `Upstream HTTP ${response.status}` }
+        transient = TRANSIENT_STATUSES.has(response.status)
+      } else {
+        return { ok: true, payload: (await response.json()) as Record<string, unknown> }
+      }
+    } catch (cause) {
+      const aborted = cause instanceof Error && cause.name === 'AbortError'
+      console.error(`[aurum-gold-price-fetcher] request to ${redactedUrl} failed`, cause)
+      last = {
+        ok: false,
+        status: 504,
+        reason: aborted ? `Upstream timed out after ${UPSTREAM_TIMEOUT_MS}ms` : 'Upstream request failed',
+      }
+      transient = aborted
+    } finally {
+      clearTimeout(timer)
+    }
+
+    if (!transient || attempt === MAX_RETRIES) return last
+    // Exponential backoff with jitter: ~0.5s then ~1s. Worst case stays under 20s.
+    await sleep(500 * 2 ** attempt + Math.floor(Math.random() * 250))
+  }
+
+  return last
 }
 
 async function handle(request: Request) {
@@ -51,7 +162,8 @@ async function handle(request: Request) {
     return json({ outcome: 'error', reason: 'Missing DILLON_GAGE_API_TOKEN secret' }, 500)
   }
 
-  const redactedUrl = `${FIZ_BASE}/***REDACTED***`
+  const fizBase = process.env['FIZCONNECT_BASE_URL'] || FIZ_BASE_DEFAULT
+  const redactedUrl = `${fizBase}/***REDACTED***`
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
 
   // Secondary layer: throttle repeat writes.
@@ -72,20 +184,13 @@ async function handle(request: Request) {
     )
   }
 
-  let payload: Record<string, unknown>
-  try {
-    const response = await fetch(`${FIZ_BASE}/${token}`, { headers: { accept: 'application/json' } })
-    if (!response.ok) {
-      console.error(`[aurum-gold-price-fetcher] ${redactedUrl} returned HTTP ${response.status}`)
-      return json({ outcome: 'error', reason: `Upstream HTTP ${response.status}` }, 502)
-    }
-    payload = (await response.json()) as Record<string, unknown>
-  } catch (cause) {
-    console.error(`[aurum-gold-price-fetcher] request to ${redactedUrl} failed`, cause)
-    return json({ outcome: 'error', reason: 'Upstream request failed' }, 502)
+  const result = await fetchSpotData(`${fizBase}/${token}`, redactedUrl)
+  if (!result.ok) {
+    return json({ outcome: 'error', reason: result.reason }, result.status)
   }
+  const payload = result.payload
 
-  // The API answers 200 even for errors.
+  // The API answers 200 even for errors. Never retried.
   if (typeof payload?.['error'] === 'string' && payload['error'].length > 0) {
     console.error('[aurum-gold-price-fetcher] upstream error:', payload['error'])
     return json({ outcome: 'error', reason: String(payload['error']) }, 502)
@@ -107,12 +212,27 @@ async function handle(request: Request) {
   if (!observedAt) {
     return json({ outcome: 'rejected-invalid', reason: 'spotTime is missing or unparseable' }, 422)
   }
+
+  // Sanity guard: catches a timezone regression in either direction before any insert.
+  const driftMs = Date.now() - observedAt.getTime()
+  if (driftMs < -MAX_FUTURE_MS || driftMs > MAX_PAST_MS) {
+    const minutes = (driftMs / 60000).toFixed(1)
+    return json(
+      {
+        outcome: 'rejected-invalid',
+        reason: `observed_at (${observedAt.toISOString()}) drifts ${minutes} minutes from server time; outside the allowed window (-5min to +60min)`,
+      },
+      422,
+    )
+  }
+
   if (areStale !== 0) {
     console.warn(`[aurum-gold-price-fetcher] upstream reports areStale=${String(areStale)}; not inserting`)
     return json({ outcome: 'skipped-stale', reason: `Upstream flagged the quote as stale (areStale=${String(areStale)})` }, 200)
   }
 
   // previous_close: latest stored daily close strictly before today (UTC).
+  // No fabrication: when no close exists we store null.
   const todayUtc = new Date().toISOString().slice(0, 10)
   const { data: closeRows, error: closeError } = await supabaseAdmin
     .from('aurum_daily_closes')
@@ -124,10 +244,10 @@ async function handle(request: Request) {
     console.error('[aurum-gold-price-fetcher] daily close read failed', closeError.message)
     return json({ outcome: 'error', reason: 'Database read failed' }, 500)
   }
-  let previousClose = closeRows?.[0]?.close_price
-  if (!isFiniteNumber(previousClose)) {
-    console.warn('[aurum-gold-price-fetcher] no prior daily close found; falling back to current goldAsk')
-    previousClose = goldAsk
+  const rawPreviousClose = closeRows?.[0]?.close_price
+  const previousClose = isFiniteNumber(rawPreviousClose) ? rawPreviousClose : null
+  if (previousClose === null) {
+    console.warn('[aurum-gold-price-fetcher] no prior daily close found; storing previous_close = null')
   }
 
   // high_24h / low_24h from the rolling 24-hour window, including the current quote.
@@ -158,6 +278,10 @@ async function handle(request: Request) {
     source,
   })
   if (insertError) {
+    // Unique violation on observed_at: the provider has not published a new quote.
+    if (insertError.code === '23505') {
+      return json({ outcome: 'duplicate', observed_at: observedAt.toISOString() }, 200)
+    }
     console.error('[aurum-gold-price-fetcher] insert failed', insertError.message)
     return json({ outcome: 'error', reason: 'Insert failed' }, 500)
   }
