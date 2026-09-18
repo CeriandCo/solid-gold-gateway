@@ -122,6 +122,7 @@ export type Database = {
     }
     Functions: {
       aurum_fetcher_tick: { Args: never; Returns: undefined }
+      aurum_prune_old_rows: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
