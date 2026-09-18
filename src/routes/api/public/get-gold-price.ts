@@ -36,6 +36,9 @@ type PriceResponse = {
   day_high: number | null
   day_low: number | null
   previous_close: number | null
+  /** Series the previous close came from (e.g. `yahoo:GC=F`). Not the spot feed. */
+  previous_close_source: string | null
+
   provider: string | null
   provider_timestamp: string | null
   fetched_at: string | null
