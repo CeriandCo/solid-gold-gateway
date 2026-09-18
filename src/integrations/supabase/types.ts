@@ -81,7 +81,7 @@ export type Database = {
           id: string
           low_24h: number
           observed_at: string
-          previous_close: number
+          previous_close: number | null
           price: number
           source: string | null
           unit: string
@@ -95,7 +95,7 @@ export type Database = {
           id?: string
           low_24h: number
           observed_at: string
-          previous_close: number
+          previous_close?: number | null
           price: number
           source?: string | null
           unit: string
@@ -109,7 +109,7 @@ export type Database = {
           id?: string
           low_24h?: number
           observed_at?: string
-          previous_close?: number
+          previous_close?: number | null
           price?: number
           source?: string | null
           unit?: string
