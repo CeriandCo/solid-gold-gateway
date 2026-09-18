@@ -491,19 +491,12 @@ function PurchaseCalculator({
     let storageCost = 0;
     let storageBreakdown: Estimate["storageBreakdown"] = null;
     if (receive === "vault") {
+      // Storage & insurance is free for the first 12 months, and every
+      // selectable holding period (30d–1yr) sits inside that window.
       const days = HOLD_DAYS[hold] ?? 30;
-      const annualStorageRaw = value * 0.0035 * (days / 365);
-      const annualInsuranceRaw = value * 0.0045 * (days / 365);
-      const combinedRaw = annualStorageRaw + annualInsuranceRaw;
-      const minimum = (25 * days) / 365;
-      const flooredAt25 = combinedRaw < minimum;
-      // Same math as before — the $25 floor applies to the combined amount.
-      storageCost = Math.max(combinedRaw, minimum);
-      storageBreakdown = {
-        annualStorage: annualStorageRaw,
-        annualInsurance: annualInsuranceRaw,
-        flooredAt25,
-      };
+      const freeYearOne = days <= 365;
+      storageCost = freeYearOne ? 0 : value * 0.0045 * (days / 365);
+      storageBreakdown = { freeYearOne };
     }
     setEstimate({
       oz,
