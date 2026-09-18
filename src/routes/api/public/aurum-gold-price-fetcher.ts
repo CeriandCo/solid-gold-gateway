@@ -33,7 +33,18 @@ function parseSpotTime(value: unknown): Date | null {
   return Number.isNaN(date.getTime()) ? null : date
 }
 
-async function handle() {
+async function handle(request: Request) {
+  // Primary gate: shared secret header. Rejects before any database or upstream call.
+  // The header value is never logged.
+  const cronSecret = process.env['AURUM_FETCHER_CRON_SECRET']
+  if (!cronSecret) {
+    console.error('[aurum-gold-price-fetcher] AURUM_FETCHER_CRON_SECRET is not configured')
+    return json({ outcome: 'error', reason: 'Endpoint is not configured' }, 500)
+  }
+  if (request.headers.get('x-cron-secret') !== cronSecret) {
+    return json({ outcome: 'error', reason: 'Unauthorized' }, 401)
+  }
+
   const token = process.env['DILLON_GAGE_API_TOKEN']
   if (!token) {
     console.error('[aurum-gold-price-fetcher] DILLON_GAGE_API_TOKEN is not configured')
@@ -43,7 +54,7 @@ async function handle() {
   const redactedUrl = `${FIZ_BASE}/***REDACTED***`
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
 
-  // Throttle: this endpoint is publicly invokable for manual testing.
+  // Secondary layer: throttle repeat writes.
   const throttleSince = new Date(Date.now() - MIN_SECONDS_BETWEEN_INSERTS * 1000).toISOString()
   const { data: recent, error: recentError } = await supabaseAdmin
     .from('aurum_spot_prices')
@@ -157,8 +168,8 @@ async function handle() {
 export const Route = createFileRoute('/api/public/aurum-gold-price-fetcher')({
   server: {
     handlers: {
-      GET: handle,
-      POST: handle,
+      GET: ({ request }) => handle(request),
+      POST: ({ request }) => handle(request),
     },
   },
 })
