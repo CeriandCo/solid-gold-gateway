@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { selectPriceAdapter, type PriceAdapter } from "./price-adapters";
 import {
   canCalculate,
@@ -16,7 +16,7 @@ import {
 type AurumPriceContextValue = {
   state: PriceState;
   data: PriceData | null;
-  /** The clock the current data is expressed against. */
+  /** The clock the current data is expressed against; ticks for the live feed. */
   now: Date;
   showLiveBadge: boolean;
   showSampleChip: boolean;
@@ -26,6 +26,11 @@ type AurumPriceContextValue = {
 
 const AurumPriceContext = createContext<AurumPriceContextValue | null>(null);
 
+/** Current price re-fetch cadence. */
+const POLL_MS = 60_000;
+/** Relative-time label refresh, so "x seconds ago" can never sit frozen. */
+const TICK_MS = 30_000;
+
 /** Reviewer preview: force a status in non-production builds only. */
 function applyForcedStatus(state: PriceState, forced: ForcedPriceStatus | undefined): PriceState {
   if (!forced || import.meta.env.PROD) return state;
@@ -34,8 +39,9 @@ function applyForcedStatus(state: PriceState, forced: ForcedPriceStatus | undefi
 
   const data = priceData(state);
   if (!data) return state;
-  if (forced === "stale") return { status: "stale", source: state.status === "ready" ? state.source : "mock", data, ageSeconds: 3_600 };
-  return { status: "ready", source: "mock", data };
+  const source = state.status === "ready" || state.status === "stale" ? state.source : "live";
+  if (forced === "stale") return { status: "stale", source, data, ageSeconds: 3_600 };
+  return { status: "ready", source, data };
 }
 
 export function AurumPriceProvider({
@@ -47,31 +53,81 @@ export function AurumPriceProvider({
 }) {
   const adapter = useMemo<PriceAdapter>(() => selectPriceAdapter(), []);
   const [state, setState] = useState<PriceState>({ status: "loading" });
+  const [now, setNow] = useState<Date>(() => adapter.now());
+  const cancelled = useRef(false);
+
+  const refresh = useCallback(async () => {
+    try {
+      const next = await adapter.load();
+      if (cancelled.current) return;
+      setState((current) => {
+        // A failed poll must not wipe a good value: keep the last good data and
+        // let the freshness state degrade instead.
+        if (next.status === "unavailable") {
+          const kept = priceData(current);
+          if (kept) {
+            const ageSeconds = Math.max(0, Math.round((adapter.now().getTime() - kept.asOf.getTime()) / 1000));
+            return { status: "stale", source: adapter.source, data: kept, ageSeconds };
+          }
+        }
+        return next;
+      });
+      setNow(adapter.now());
+    } catch {
+      if (!cancelled.current) {
+        setState((current) => (priceData(current) ? current : { status: "unavailable", reason: "network" }));
+      }
+    }
+  }, [adapter]);
 
   useEffect(() => {
-    let cancelled = false;
+    cancelled.current = false;
     /** Loading has a deadline: a permanent spinner is treated as unavailable. */
     const deadline = setTimeout(() => {
-      if (!cancelled) setState((current) => (current.status === "loading" ? { status: "unavailable", reason: "network" } : current));
+      if (!cancelled.current) {
+        setState((current) => (current.status === "loading" ? { status: "unavailable", reason: "network" } : current));
+      }
     }, 10_000);
-    void adapter
-      .load()
-      .then((next) => {
-        if (!cancelled) setState(next);
-      })
-      .catch(() => {
-        if (!cancelled) setState({ status: "unavailable", reason: "network" });
-      });
-    return () => {
-      cancelled = true;
-      clearTimeout(deadline);
+
+    void refresh();
+
+    let poll: ReturnType<typeof setInterval> | null = null;
+    const startPolling = () => {
+      if (poll === null) poll = setInterval(() => void refresh(), POLL_MS);
     };
-  }, [adapter]);
+    const stopPolling = () => {
+      if (poll !== null) {
+        clearInterval(poll);
+        poll = null;
+      }
+    };
+    startPolling();
+
+    // The relative-time label recomputes on its own, not only on fetch.
+    const tick = setInterval(() => setNow(adapter.now()), TICK_MS);
+
+    // A backgrounded tab stops hitting the endpoint and refreshes once on return.
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") stopPolling();
+      else {
+        startPolling();
+        void refresh();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      cancelled.current = true;
+      clearTimeout(deadline);
+      clearInterval(tick);
+      stopPolling();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [adapter, refresh]);
 
   const value = useMemo<AurumPriceContextValue>(() => {
     const resolved = applyForcedStatus(state, forcedStatus);
     const data = priceData(resolved);
-    const now = adapter.now();
     return {
       state: resolved,
       data,
@@ -81,7 +137,7 @@ export function AurumPriceProvider({
       calculatorEnabled: canCalculate(resolved),
       historyFor: (range: AurumRange) => (data ? historyForRange(data.history, range, now) : []),
     };
-  }, [state, forcedStatus, adapter]);
+  }, [state, forcedStatus, now]);
 
   return <AurumPriceContext.Provider value={value}>{children}</AurumPriceContext.Provider>;
 }
