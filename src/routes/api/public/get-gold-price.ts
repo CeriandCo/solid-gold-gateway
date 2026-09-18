@@ -60,6 +60,8 @@ const UNAVAILABLE: PriceResponse = {
   day_high: null,
   day_low: null,
   previous_close: null,
+  previous_close_source: null,
+
   provider: null,
   provider_timestamp: null,
   fetched_at: null,
