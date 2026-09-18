@@ -746,25 +746,17 @@ function PurchaseCalculator({
                   <p>Purchase fee: {USD.format(estimate.purchaseFee)}</p>
                 )}
                 {estimate.storageBreakdown !== null &&
-                  (estimate.storageBreakdown.flooredAt25 ? (
-                    // The US$25/yr minimum applies to storage + insurance
-                    // combined, not to each part — so a split here would
-                    // misrepresent the fee. Show the combined amount only.
+                  (estimate.storageBreakdown.freeYearOne ? (
                     <p>
-                      Storage &amp; insurance (US$25/year minimum applies):{" "}
-                      {USD.format(estimate.total - estimate.purchaseFee)}
+                      Storage &amp; insurance: {USD.format(0)} — free for your
+                      first 12 months
                     </p>
                   ) : (
-                    <>
-                      <p>
-                        Annual storage:{" "}
-                        {USD.format(estimate.storageBreakdown.annualStorage)}
-                      </p>
-                      <p>
-                        Annual insurance:{" "}
-                        {USD.format(estimate.storageBreakdown.annualInsurance)}
-                      </p>
-                    </>
+                    <p>
+                      Storage &amp; insurance (0.45% a year, insurance
+                      included):{" "}
+                      {USD.format(estimate.total - estimate.purchaseFee)}
+                    </p>
                   ))}
               </div>
               <div className="my-3 h-px w-full bg-[var(--pricing-gold-border)]" />
