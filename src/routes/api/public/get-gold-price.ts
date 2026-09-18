@@ -6,7 +6,20 @@ import { createFileRoute } from '@tanstack/react-router'
  * Reads only the AURUM tables in this project's database — it never calls
  * Dillon Gage and never requires the cron secret. Freshness is computed here,
  * on the server, from observed_at; the browser clock is never trusted.
+ *
+ * PROVENANCE — READ BEFORE USING THESE FIELDS
+ * -------------------------------------------
+ * `change_amount` and `change_pct` come straight from the price provider
+ * (Dillon Gage spot) and are the AUTHORITATIVE intraday move. Display these.
+ *
+ * `previous_close` comes from a DIFFERENT SERIES — currently Yahoo `GC=F`,
+ * COMEX gold FUTURES — exposed here as `previous_close_source`. Futures carry
+ * a basis of tens of dollars against spot, so deriving a change from it
+ * (`(price_usd - previous_close) / previous_close`) produces a daily move that
+ * never happened. NEVER derive the displayed change from `previous_close`
+ * until the history source is confirmed to match the spot feed.
  */
+
 
 /**
  * Working default: 900s = 15 minutes = three 5-minute fetch intervals.
@@ -23,6 +36,9 @@ type PriceResponse = {
   day_high: number | null
   day_low: number | null
   previous_close: number | null
+  /** Series the previous close came from (e.g. `yahoo:GC=F`). Not the spot feed. */
+  previous_close_source: string | null
+
   provider: string | null
   provider_timestamp: string | null
   fetched_at: string | null
@@ -44,6 +60,8 @@ const UNAVAILABLE: PriceResponse = {
   day_high: null,
   day_low: null,
   previous_close: null,
+  previous_close_source: null,
+
   provider: null,
   provider_timestamp: null,
   fetched_at: null,
@@ -55,6 +73,12 @@ function num(value: unknown): number | null {
   const parsed = typeof value === 'string' ? Number(value) : value
   return typeof parsed === 'number' && Number.isFinite(parsed) ? parsed : null
 }
+
+/** Defensive rounding — upstream history carries float32 artifacts. */
+function round2(value: number): number {
+  return Math.round(value * 100) / 100
+}
+
 
 async function handle() {
   const maxAge = Number(process.env['AURUM_PRICE_MAX_AGE_SECONDS'] ?? DEFAULT_MAX_AGE_SECONDS)
@@ -89,6 +113,23 @@ async function handle() {
   // Provider name only; never the raw provider payload or the token.
   const provider = typeof row.source === 'string' ? (row.source.split(':')[0] ?? null) : null
 
+  // Provenance for previous_close: look up the daily-close row it came from.
+  // Different instrument from the spot price above — see the header comment.
+  const rawPreviousClose = num(row.previous_close)
+  let previousClose: number | null = null
+  let previousCloseSource: string | null = null
+  if (rawPreviousClose !== null) {
+    const today = new Date().toISOString().slice(0, 10)
+    const { data: closeRows } = await supabaseAdmin
+      .from('aurum_daily_closes')
+      .select('source')
+      .lt('price_date', today)
+      .order('price_date', { ascending: false })
+      .limit(1)
+    previousClose = round2(rawPreviousClose)
+    previousCloseSource = closeRows?.[0]?.source ?? null
+  }
+
   return json(
     {
       price_usd: price,
@@ -96,7 +137,9 @@ async function handle() {
       change_pct: num(row.change_percent),
       day_high: num(row.high_24h),
       day_low: num(row.low_24h),
-      previous_close: num(row.previous_close),
+      previous_close: previousClose,
+      previous_close_source: previousCloseSource,
+
       provider,
       provider_timestamp: observedAt.toISOString(),
       fetched_at: row.created_at ? new Date(row.created_at).toISOString() : null,

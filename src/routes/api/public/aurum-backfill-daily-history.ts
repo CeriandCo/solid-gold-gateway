@@ -93,6 +93,10 @@ async function handle(request: Request) {
 
   const rows: { price_date: string; close_price: number; currency: string; unit: string; source: string }[] = []
   const seen = new Set<string>()
+  // Today's session has not settled — Yahoo's last bar is a partial intraday
+  // bar, not a daily close. Only settled sessions are stored.
+  const todayUtc = new Date().toISOString().slice(0, 10)
+
   for (let i = 0; i < timestamps.length; i++) {
     const close = closes[i]
     const ts = timestamps[i]
@@ -100,16 +104,19 @@ async function handle(request: Request) {
     if (typeof close !== 'number' || !Number.isFinite(close) || close <= 0) continue
     if (typeof ts !== 'number' || !Number.isFinite(ts)) continue
     const date = new Date(ts * 1000).toISOString().slice(0, 10)
+    if (date >= todayUtc) continue
     if (seen.has(date)) continue
     seen.add(date)
     rows.push({
       price_date: date,
-      close_price: close,
+      // Yahoo returns single-precision floats (4399.7001953125); round on ingest.
+      close_price: Math.round(close * 100) / 100,
       currency: 'USD',
       unit: 'troy_ounce',
       source: 'yahoo:GC=F',
     })
   }
+
 
   if (rows.length === 0) return json({ outcome: 'error', reason: 'No usable history points' }, 502)
 
