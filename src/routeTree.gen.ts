@@ -28,7 +28,10 @@ import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnGiftingGoldGuideRouteImport } from './routes/learn.gifting-gold-guide'
 import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
+import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
+import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
+import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
 import { Route as AurumNotesSlugRouteImport } from './routes/aurum_.notes.$slug'
 
@@ -128,12 +131,28 @@ const LearnPhysicalGoldVsGoldEtfRoute =
     path: '/physical-gold-vs-gold-etf',
     getParentRoute: () => LearnRoute,
   } as any)
+const ApiPublicAurumBackfillDailyHistoryRoute =
+  ApiPublicAurumBackfillDailyHistoryRouteImport.update({
+    id: '/api/public/aurum-backfill-daily-history',
+    path: '/api/public/aurum-backfill-daily-history',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicAurumGoldPriceFetcherRoute =
   ApiPublicAurumGoldPriceFetcherRouteImport.update({
     id: '/api/public/aurum-gold-price-fetcher',
     path: '/api/public/aurum-gold-price-fetcher',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicGetGoldPriceRoute = ApiPublicGetGoldPriceRouteImport.update({
+  id: '/api/public/get-gold-price',
+  path: '/api/public/get-gold-price',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicGetHistoryRoute = ApiPublicGetHistoryRouteImport.update({
+  id: '/api/public/get-history',
+  path: '/api/public/get-history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AurumBriefsSlugRoute = AurumBriefsSlugRouteImport.update({
   id: '/aurum_/briefs/$slug',
   path: '/aurum/briefs/$slug',
@@ -165,7 +184,10 @@ export interface FileRoutesByFullPath {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
+  '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
+  '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
 }
@@ -188,7 +210,10 @@ export interface FileRoutesByTo {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn': typeof LearnIndexRoute
+  '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
+  '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
 }
@@ -213,7 +238,10 @@ export interface FileRoutesById {
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/learn/': typeof LearnIndexRoute
+  '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
+  '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
 }
@@ -239,7 +267,10 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
+    | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/get-gold-price'
+    | '/api/public/get-history'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -262,7 +293,10 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn'
+    | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/get-gold-price'
+    | '/api/public/get-history'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
   id:
@@ -286,7 +320,10 @@ export interface FileRouteTypes {
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/learn/'
+    | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/get-gold-price'
+    | '/api/public/get-history'
     | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
   fileRoutesById: FileRoutesById
@@ -307,7 +344,10 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrustCenterRoute: typeof TrustCenterRoute
   VaultRoute: typeof VaultRoute
+  ApiPublicAurumBackfillDailyHistoryRoute: typeof ApiPublicAurumBackfillDailyHistoryRoute
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
+  ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
+  ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
 }
@@ -447,11 +487,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnPhysicalGoldVsGoldEtfRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/api/public/aurum-backfill-daily-history': {
+      id: '/api/public/aurum-backfill-daily-history'
+      path: '/api/public/aurum-backfill-daily-history'
+      fullPath: '/api/public/aurum-backfill-daily-history'
+      preLoaderRoute: typeof ApiPublicAurumBackfillDailyHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/aurum-gold-price-fetcher': {
       id: '/api/public/aurum-gold-price-fetcher'
       path: '/api/public/aurum-gold-price-fetcher'
       fullPath: '/api/public/aurum-gold-price-fetcher'
       preLoaderRoute: typeof ApiPublicAurumGoldPriceFetcherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/get-gold-price': {
+      id: '/api/public/get-gold-price'
+      path: '/api/public/get-gold-price'
+      fullPath: '/api/public/get-gold-price'
+      preLoaderRoute: typeof ApiPublicGetGoldPriceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/get-history': {
+      id: '/api/public/get-history'
+      path: '/api/public/get-history'
+      fullPath: '/api/public/get-history'
+      preLoaderRoute: typeof ApiPublicGetHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aurum_/briefs/$slug': {
@@ -503,7 +564,11 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrustCenterRoute: TrustCenterRoute,
   VaultRoute: VaultRoute,
+  ApiPublicAurumBackfillDailyHistoryRoute:
+    ApiPublicAurumBackfillDailyHistoryRoute,
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,
+  ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
+  ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
 }
