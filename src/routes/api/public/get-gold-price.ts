@@ -107,6 +107,23 @@ async function handle() {
   // Provider name only; never the raw provider payload or the token.
   const provider = typeof row.source === 'string' ? (row.source.split(':')[0] ?? null) : null
 
+  // Provenance for previous_close: look up the daily-close row it came from.
+  // Different instrument from the spot price above — see the header comment.
+  const rawPreviousClose = num(row.previous_close)
+  let previousClose: number | null = null
+  let previousCloseSource: string | null = null
+  if (rawPreviousClose !== null) {
+    const today = new Date().toISOString().slice(0, 10)
+    const { data: closeRows } = await supabaseAdmin
+      .from('aurum_daily_closes')
+      .select('source')
+      .lt('price_date', today)
+      .order('price_date', { ascending: false })
+      .limit(1)
+    previousClose = round2(rawPreviousClose)
+    previousCloseSource = closeRows?.[0]?.source ?? null
+  }
+
   return json(
     {
       price_usd: price,
@@ -114,7 +131,9 @@ async function handle() {
       change_pct: num(row.change_percent),
       day_high: num(row.high_24h),
       day_low: num(row.low_24h),
-      previous_close: num(row.previous_close),
+      previous_close: previousClose,
+      previous_close_source: previousCloseSource,
+
       provider,
       provider_timestamp: observedAt.toISOString(),
       fetched_at: row.created_at ? new Date(row.created_at).toISOString() : null,
