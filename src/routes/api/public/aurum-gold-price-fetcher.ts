@@ -168,8 +168,8 @@ async function handle(request: Request) {
 export const Route = createFileRoute('/api/public/aurum-gold-price-fetcher')({
   server: {
     handlers: {
-      GET: handle,
-      POST: handle,
+      GET: ({ request }) => handle(request),
+      POST: ({ request }) => handle(request),
     },
   },
 })
