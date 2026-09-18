@@ -58,7 +58,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is the minimum storage fee?",
     answer:
-      "US$25 per year, applied only if the calculated pro-rata storage fee is lower. On balances above roughly US$3,125 the 0.80% combined rate exceeds the minimum, so the minimum no longer applies.",
+      "US$3.00 per year, applied only after your first 12 months and only if the calculated pro-rata fee is lower. On balances above roughly US$667 the 0.45% rate exceeds the minimum, so the minimum no longer applies.",
   },
   {
     question: "Can I take physical delivery?",
