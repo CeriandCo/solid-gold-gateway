@@ -4,7 +4,6 @@
 
 type EventName =
   | "pricing_cta_click"
-  | "pricing_product_selected"
   | "calculator_estimate_shown"
   | "calculator_switch_to_vault"
   | "calculator_amount_preset_clicked"

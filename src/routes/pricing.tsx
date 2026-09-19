@@ -1,17 +1,20 @@
 import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
+import pricingHeroWebpAsset from "@/assets/pricing/pricing-hero.webp.asset.json";
+import pricingHeroAvifAsset from "@/assets/pricing/pricing-hero.avif.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
 import { Gift, Globe, Shield, User } from "lucide-react";
 import { PRICING } from "@/config/pricing";
+import { track } from "@/lib/analytics";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { WaitlistCta } from "@/components/waitlist-cta";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
-const PRICING_URL = `${SITE_ORIGIN}/pricing`;
+const CANONICAL_URL = "https://getsqoot.com/pricing";
 const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
 
 const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;
@@ -110,34 +113,57 @@ const faqItems: readonly FaqItem[] = [
   },
 ];
 
+const META_DESCRIPTION = `Every cost to buy, store, gift or take delivery of gold, in U.S. dollars: no purchase fee on coins and bars, ${vaultPurchaseFee} on vault metal, storage free for the first year.`;
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing & Fees | SQOOT Pure" },
       {
         name: "description",
-        content:
-          "Simple pricing for gold. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
+        content: META_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
-      {
-        property: "og:description",
-        content:
-          "Transparent fees for gold: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
-      },
+      { property: "og:description", content: META_DESCRIPTION },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:url", content: PRICING_URL },
+      { property: "og:url", content: CANONICAL_URL },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
-      {
-        name: "twitter:description",
-        content:
-          "Transparent fees for gold. Storage, delivery, and gifting costs shown upfront.",
-      },
+      { name: "twitter:description", content: META_DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: PRICING_URL }],
+    links: [
+      { rel: "canonical", href: CANONICAL_URL },
+      {
+        rel: "preload",
+        as: "image",
+        href: pricingHeroAvifAsset.url,
+        type: "image/avif",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: pricingHeroWebpAsset.url,
+        type: "image/webp",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqStructuredData),
+      },
+    ],
   }),
   component: PricingPage,
 });
@@ -185,13 +211,20 @@ function PricingPage() {
       <SiteHeader />
       <main className="bg-cream">
         <section id="pricing-hero" className="pricing-v2-hero">
-          <img
-            src={pricingHeroAsset.url}
-            alt=""
-            className="pricing-v2-hero-image"
-            fetchPriority="high"
-            loading="eager"
-          />
+          <picture>
+            <source srcSet={pricingHeroAvifAsset.url} type="image/avif" />
+            <source srcSet={pricingHeroWebpAsset.url} type="image/webp" />
+            <img
+              src={pricingHeroAsset.url}
+              alt=""
+              width={1881}
+              height={836}
+              className="pricing-v2-hero-image"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
           <div className="pricing-v2-hero-scrim" aria-hidden="true" />
           <div className="pricing-v2-hero-inner">
             <div className="pricing-v2-hero-copy">
@@ -463,7 +496,12 @@ function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean })
           id={buttonId}
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() =>
+            setOpen((value) => {
+              if (!value) track("faq_open", { question: item.question });
+              return !value;
+            })
+          }
         >
           <span>{item.question}</span>
           <span className="pricing-v2-faq-icon" aria-hidden="true">

@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+import { track } from "@/lib/analytics";
 import curtainAsset from "@/assets/pricing/cta-curtain.png.asset.json";
 import phoneSellPngAsset from "@/assets/pricing/phone-sell-quote.png.asset.json";
 import phoneSellWebpAsset from "@/assets/pricing/phone-sell-quote.webp.asset.json";
@@ -21,6 +22,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
 
   async function submitWaitlist(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    track("bottom_cta_click", { section: "pricing_cta" });
     const trimmed = email.trim();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed) && trimmed.length <= 254;
     if (!valid) {
