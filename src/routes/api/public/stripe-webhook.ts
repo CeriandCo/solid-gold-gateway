@@ -9,7 +9,19 @@ export const Route = createFileRoute("/api/public/stripe-webhook")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        // Stripe events are a few KB at most. Refuse anything larger before
+        // spending CPU on a signature check.
+        const MAX_BODY_BYTES = 256 * 1024;
+        const declared = Number(request.headers.get("content-length") ?? "0");
+        if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+          return new Response("payload too large", { status: 413 });
+        }
+
         const raw = await request.text();
+        if (raw.length > MAX_BODY_BYTES) {
+          return new Response("payload too large", { status: 413 });
+        }
+
 
         const { default: Stripe } = await import("stripe");
         const { getStripeSecretKey, isLiveKey, createStripeClient } = await import(

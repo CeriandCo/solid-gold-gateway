@@ -298,6 +298,57 @@ export type Database = {
         }
         Relationships: []
       }
+      commerce_alerts: {
+        Row: {
+          created_at: string
+          gift_card_id: string | null
+          id: string
+          kind: string
+          message: string
+          order_id: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          severity: string
+        }
+        Insert: {
+          created_at?: string
+          gift_card_id?: string | null
+          id?: string
+          kind: string
+          message: string
+          order_id?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity: string
+        }
+        Update: {
+          created_at?: string
+          gift_card_id?: string | null
+          id?: string
+          kind?: string
+          message?: string
+          order_id?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commerce_alerts_gift_card_id_fkey"
+            columns: ["gift_card_id"]
+            isOneToOne: false
+            referencedRelation: "gift_cards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commerce_alerts_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "gift_card_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       commerce_settings: {
         Row: {
           allowed_origins: string[]
@@ -418,6 +469,7 @@ export type Database = {
           paid_at: string | null
           recipient_email: string | null
           recipient_name: string | null
+          review_reasons: string[]
           status: string
           stripe_payment_intent_id: string | null
           stripe_session_id: string | null
@@ -438,6 +490,7 @@ export type Database = {
           paid_at?: string | null
           recipient_email?: string | null
           recipient_name?: string | null
+          review_reasons?: string[]
           status?: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
@@ -458,6 +511,7 @@ export type Database = {
           paid_at?: string | null
           recipient_email?: string | null
           recipient_name?: string | null
+          review_reasons?: string[]
           status?: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
@@ -585,11 +639,12 @@ export type Database = {
           _card_fingerprint_hash?: string
           _event_id: string
           _gift_message?: string
-          _needs_review: boolean
           _order_id: string
           _payment_intent_id?: string
           _recipient_email?: string
           _recipient_name?: string
+          _review_reasons?: string[]
+          _three_ds_ok?: boolean
         }
         Returns: Json
       }
