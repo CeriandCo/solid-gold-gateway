@@ -376,7 +376,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
 .gift-amount-option { position: relative; min-width: 0; cursor: pointer; }.gift-amount-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .gift-amount-label { position: relative; height: 76px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--light-divider); border-radius: 2px; color: var(--forest-900); background: transparent; transition: border-color .18s,background-color .18s,box-shadow .18s; }
 .gift-amount-price { display: inline-flex; align-items: flex-start; justify-content: center; font-family: "Cormorant Garamond",Georgia,serif; font-size: 30px; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
-.gift-amount-currency { margin-right: 2px; padding-top: .08em; color: var(--gold-deep); font-size: .55em; line-height: 1; }
+.gift-amount-currency { margin-right: 2px; padding-top: .08em; color: var(--gold-dark); font-size: .55em; line-height: 1; }
 .gift-amount-check { position: absolute; top: 9px; right: 9px; width: 12px; height: 12px; visibility: hidden; color: var(--gold-deep); stroke-width: 2; }
 .gift-amount-option input:checked + .gift-amount-label { border-color: var(--gold-deep); background: var(--cream-50); box-shadow: inset 0 0 0 1px var(--gold-deep); }.gift-amount-option input:checked + .gift-amount-label .gift-amount-check { visibility: visible; }
 .gift-amount-option input:focus-visible + .gift-amount-label { outline: 2px solid var(--forest-700); outline-offset: 3px; }

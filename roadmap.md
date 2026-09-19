@@ -43,6 +43,6 @@
 
 ## Gifting
 - [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
-- [ ] Refine the Gift Card left column typography, amount controls, summary, CTA, and trust line.
+- [x] Refine the Gift Card left column typography, amount controls, summary, CTA, and trust line.
 
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
