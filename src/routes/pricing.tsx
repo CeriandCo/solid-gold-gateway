@@ -18,6 +18,10 @@ const deliveryFee = `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`;
 const vaultPurchaseFee = `${(PRICING.vault.purchaseFeeRate * 100).toFixed(2)}%`;
 const vaultStorageFee = `${(PRICING.vault.storageRatePerYear * 100).toFixed(2)}%`;
 const freeStorageMonths = Math.round((PRICING.vault.freeStorageDays / 365) * 12);
+const storageMinimumLabel = `${currencyPrefix}${PRICING.vault.storageMinimumPerYearUsd.toFixed(2)}`;
+const breakEvenUsd = Math.round(
+  PRICING.vault.storageMinimumPerYearUsd / PRICING.vault.storageRatePerYear,
+);
 
 const sharedComparisonRows = [
   {
