@@ -475,7 +475,7 @@ function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean })
   const panelId = useId();
 
   return (
-    <li className="pricing-v2-faq-item" data-open={open}>
+    <li className="pricing-v2-faq-item" data-open={open} data-reveal>
       <h3 className="pricing-v2-faq-question">
         <button
           type="button"

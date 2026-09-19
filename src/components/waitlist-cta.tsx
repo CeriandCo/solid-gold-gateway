@@ -1,4 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from "react";
+import { useReveal } from "@/hooks/use-reveal";
 import { Link } from "@tanstack/react-router";
 import { track } from "@/lib/analytics";
 import curtainAsset from "@/assets/pricing/cta-curtain.png.asset.json";
@@ -50,7 +51,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
             src={phoneDeliverPngAsset.url}
             alt=""
             loading="lazy"
-            className="waitlist-cta-phone waitlist-cta-phone-right"
+            className="waitlist-cta-phone waitlist-cta-phone-right pricing-cta-phone" data-reveal
           />
         </picture>
         <picture>
@@ -59,27 +60,27 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
             src={phoneSellPngAsset.url}
             alt=""
             loading="lazy"
-            className="waitlist-cta-phone waitlist-cta-phone-left"
+            className="waitlist-cta-phone waitlist-cta-phone-left pricing-cta-phone" data-reveal
           />
         </picture>
       </div>
 
-      <div className="waitlist-cta-inner">
+      <div className="waitlist-cta-inner site-container">
         <div className="waitlist-cta-copy">
-          <p className="waitlist-cta-eyebrow">{eyebrow}</p>
-          <h2 className="waitlist-cta-title">
+          <p className="waitlist-cta-eyebrow" data-reveal>{eyebrow}</p>
+          <h2 className="waitlist-cta-title" data-reveal>
             <span>{title}</span>
             <em>{titleAccent}</em>
           </h2>
-          <p className="waitlist-cta-body">{body}</p>
+          <p className="waitlist-cta-body" data-reveal>{body}</p>
 
           {formState === "success" ? (
-            <p role="status" className="waitlist-cta-success">
+            <p role="status" className="waitlist-cta-success" data-reveal>
               You’re on the list. Thank you for joining the SQOOT Pure waitlist — we’ll let you
               know when access becomes available.
             </p>
           ) : (
-            <form onSubmit={submitWaitlist} noValidate className="waitlist-cta-form">
+            <form onSubmit={submitWaitlist} noValidate className="waitlist-cta-form" data-reveal>
               <label htmlFor="waitlist-cta-email" className="sr-only">
                 Email address
               </label>
@@ -115,7 +116,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
             </form>
           )}
 
-          <p className="waitlist-cta-fineprint">
+          <p className="waitlist-cta-fineprint" data-reveal>
             No payment or bank details. Unsubscribe any time. See our{" "}
             <Link to="/privacy">Privacy Policy</Link>.
           </p>
