@@ -134,11 +134,7 @@ export const Route = createFileRoute("/pricing")({
       },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
-      {
-        property: "og:description",
-        content:
-          "Transparent fees for gold: coins, bars, and allocated metal. Storage, delivery, and gifting costs shown upfront.",
-      },
+      { property: "og:description", content: META_DESCRIPTION },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:url", content: PRICING_URL },
       { name: "twitter:card", content: "summary_large_image" },
