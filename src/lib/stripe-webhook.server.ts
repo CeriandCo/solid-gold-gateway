@@ -156,17 +156,21 @@ async function handleCompleted(
       ? (charge.payment_method_details?.card?.fingerprint ?? null)
       : null;
 
+  const buyerEmail = session.customer_details?.email?.toLowerCase() ?? null;
+  const fingerprintHash = fingerprint ? await peppered(fingerprint) : null;
+
   const settle = await supabaseAdmin.rpc("gift_card_order_settle", {
     _order_id: order.id,
     _event_id: event.id,
     _needs_review: needsReview,
-    _payment_intent_id: intentId ?? undefined,
-    _recipient_name: recipientName ?? undefined,
-    _recipient_email: recipientEmail ?? undefined,
-    _gift_message: giftMessage ?? undefined,
-    _buyer_email: session.customer_details?.email?.toLowerCase() ?? undefined,
-    _card_fingerprint_hash: fingerprint ? await peppered(fingerprint) : undefined,
+    ...(intentId ? { _payment_intent_id: intentId } : {}),
+    ...(recipientName ? { _recipient_name: recipientName } : {}),
+    ...(recipientEmail ? { _recipient_email: recipientEmail } : {}),
+    ...(giftMessage ? { _gift_message: giftMessage } : {}),
+    ...(buyerEmail ? { _buyer_email: buyerEmail } : {}),
+    ...(fingerprintHash ? { _card_fingerprint_hash: fingerprintHash } : {}),
   });
+
 
   if (settle.error) throw settle.error;
   return { result: "processed", ...(needsReview ? { category: "needs_review" } : {}) };
