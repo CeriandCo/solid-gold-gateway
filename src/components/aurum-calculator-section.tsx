@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { closeOn, type HistoryPoint } from "@/lib/aurum/price-state";
 import { GoldButton } from "@/components/site-chrome";
@@ -11,9 +11,12 @@ const DATE = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric",
 const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
 
 const DEFAULT_AMOUNT = "5000";
-const DEFAULT_DATE = "2021-04-14";
-const EARLIEST = "2000-01-01";
 const PLACEHOLDER = "——";
+
+/** ISO yyyy-mm-dd for a UTC-anchored date. */
+function isoDay(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
 
 type LookBack = {
   amount: number;
