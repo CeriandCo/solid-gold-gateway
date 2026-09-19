@@ -18,8 +18,9 @@ export function AurumEditorialSources({ article, idPrefix }: { article: AurumEdi
     <div className="aurum-note-sources">
       <p className="aurum-note-sources__label" id={`${idPrefix}-sources`}>SOURCES</p>
       <ol aria-labelledby={`${idPrefix}-sources`}>
-        {article.sources.map((source) => (
-          <li key={source.url + source.title}>
+        {article.sources.map((source, index) => (
+          <li key={`${index}-${source.url}`}>
+
             <a href={source.url} target="_blank" rel="noopener noreferrer">
               {source.publisher} — {source.title}, {source.date}
             </a>
