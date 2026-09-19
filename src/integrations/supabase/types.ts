@@ -579,6 +579,20 @@ export type Database = {
         Returns: undefined
       }
       commerce_prune_checkout_attempts: { Args: never; Returns: undefined }
+      gift_card_order_settle: {
+        Args: {
+          _buyer_email?: string
+          _card_fingerprint_hash?: string
+          _event_id: string
+          _gift_message?: string
+          _needs_review: boolean
+          _order_id: string
+          _payment_intent_id: string
+          _recipient_email?: string
+          _recipient_name?: string
+        }
+        Returns: Json
+      }
       gift_card_record: {
         Args: {
           _actor: string
