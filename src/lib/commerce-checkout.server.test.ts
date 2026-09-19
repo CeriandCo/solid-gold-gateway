@@ -33,10 +33,11 @@ async function denominations() {
   return data ?? [];
 }
 
-async function orderCount() {
-  const { count } = await supabaseAdmin
-    .from("gift_card_orders")
-    .select("id", { count: "exact", head: true });
+/** Counts only this test's own orders, so parallel test files cannot interfere. */
+async function orderCount(attemptId?: string) {
+  let query = supabaseAdmin.from("gift_card_orders").select("id", { count: "exact", head: true });
+  query = attemptId ? query.eq("attempt_id", attemptId) : query.eq("client_ip_hash", "none");
+  const { count } = await query;
   return count ?? 0;
 }
 
@@ -56,26 +57,20 @@ describe("gift card checkout", () => {
   it("refuses while the kill switch is off", async () => {
     await setSettings({ checkout_enabled: false, currency: null, allowed_origins: [] });
     const [denom] = await denominations();
-    const before = await orderCount();
-    const result = await runGiftCardCheckout({
-      denominationId: denom!.id,
-      attemptId: uuid(),
-    });
+    const attemptId = uuid();
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
     expect(result).toEqual({ ok: false, code: "unavailable" });
-    expect(await orderCount()).toBe(before);
+    expect(await orderCount(attemptId)).toBe(0);
   });
 
   it("refuses when enabled but no Stripe key is configured, writing no order", async () => {
     await setSettings({ checkout_enabled: true, currency: "usd", allowed_origins: [ORIGIN] });
     delete process.env["STRIPE_SECRET_KEY"];
     const [denom] = await denominations();
-    const before = await orderCount();
-    const result = await runGiftCardCheckout({
-      denominationId: denom!.id,
-      attemptId: uuid(),
-    });
+    const attemptId = uuid();
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
     expect(result).toEqual({ ok: false, code: "unavailable" });
-    expect(await orderCount()).toBe(before);
+    expect(await orderCount(attemptId)).toBe(0);
   });
 
   it("rejects unexpected fields and malformed ids", async () => {
@@ -113,10 +108,10 @@ describe("gift card checkout", () => {
 
     // First use creates exactly one order. The placeholder key makes the Stripe
     // call fail, which is the point: the order exists without a session.
-    const before = await orderCount();
+    expect(await orderCount(attemptId)).toBe(0);
     const initial = await runGiftCardCheckout({ denominationId: first.id, attemptId });
     expect(initial).toEqual({ ok: false, code: "checkout_failed" });
-    expect(await orderCount()).toBe(before + 1);
+    expect(await orderCount(attemptId)).toBe(1);
 
     const created = await supabaseAdmin
       .from("gift_card_orders")
@@ -136,7 +131,7 @@ describe("gift card checkout", () => {
       .single();
     expect(afterSwap.data?.denomination_id).toBe(first.id);
     expect(afterSwap.data?.amount_cents).toBe(first.amount_cents);
-    expect(await orderCount()).toBe(before + 1);
+    expect(await orderCount(attemptId)).toBe(1);
 
     // Replay with the SAME amount reuses the same order, never a second one.
     const replay = await runGiftCardCheckout({ denominationId: first.id, attemptId });
@@ -147,7 +142,7 @@ describe("gift card checkout", () => {
       .eq("attempt_id", attemptId)
       .single();
     expect(afterReplay.data?.id).toBe(created.data?.id);
-    expect(await orderCount()).toBe(before + 1);
+    expect(await orderCount(attemptId)).toBe(1);
   }, 60000);
 
   it("rate limits checkout at the 11th attempt while status polls still work", async () => {
