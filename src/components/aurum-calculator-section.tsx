@@ -191,13 +191,22 @@ export function AurumCalculatorSection() {
                 <input
                   id="aurum-calc-date"
                   type="date"
-                  min={EARLIEST}
+                  min={earliest ? isoDay(earliest) : undefined}
+                  max={latest ? isoDay(latest) : undefined}
                   value={dateInput}
                   aria-invalid={dateError ? true : undefined}
-                  onChange={(event) => setDateInput(event.target.value)}
+                  onChange={(event) => {
+                    setDateTouched(true);
+                    setDateInput(event.target.value);
+                  }}
                 />
               </div>
-              <p className="aurum-calc__helper">{dateError ?? "Any date from 1 Jan 2000 onward."}</p>
+              <p className="aurum-calc__helper">
+                {dateError ??
+                  (earliest
+                    ? `Any date from ${DATE.format(earliest)} onward.`
+                    : "Loading available dates…")}
+              </p>
             </div>
 
             <GoldButton type="submit" size="hero" disabled={!canRun} className="aurum-calc__submit">
