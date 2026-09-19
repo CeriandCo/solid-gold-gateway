@@ -36,7 +36,6 @@
   --text-ui-sm: 0.84375rem; /* 13.5px */
   --text-ui-md: 0.90625rem; /* 14.5px */
   --text-ui-lg: 0.9375rem; /* 15px */
-  --shadow-tooltip: 0 4px 16px oklch(0 0 0 / 0.14);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -81,8 +80,6 @@
   --color-parchment: var(--parchment);
   --color-warm-ink: var(--warm-ink);
   --color-warm-ink-soft: var(--warm-ink-soft);
-  --color-wash-forest: var(--wash-forest);
-  --color-wash-green: var(--wash-green);
 }
 
 :root {
@@ -114,8 +111,6 @@
   --parchment: oklch(0.918 0.036 82);
   --warm-ink: oklch(0.31 0.055 82);
   --warm-ink-soft: oklch(0.42 0.068 82);
-  --wash-forest: oklch(0.992 0.006 150);
-  --wash-green: oklch(0.97 0.009 145);
 
   --background: var(--warm-white);
   --foreground: var(--charcoal);
