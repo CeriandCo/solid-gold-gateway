@@ -283,6 +283,7 @@ export type Database = {
     }
     Functions: {
       aurum_backfill_tick: { Args: never; Returns: undefined }
+      aurum_can_edit_draft: { Args: { _author_id: string }; Returns: boolean }
       aurum_current_editor_role: { Args: never; Returns: string }
       aurum_fetcher_tick: { Args: never; Returns: undefined }
       aurum_link_current_editor: { Args: never; Returns: string }
