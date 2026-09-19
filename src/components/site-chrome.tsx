@@ -61,6 +61,7 @@ export const siteNav = [
   ["Pricing", "/pricing"],
   ["Trust Center", "/trust-center"],
   ["About Us", "/about-us"],
+  ["AURUM", "/aurum"],
   ["Learn", "/learn"],
 ] as const;
 
@@ -285,6 +286,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
       { label: "Fractional", to: "/fractional-gold" },
       { label: "Gifting", to: "/gifting" },
       { label: "Vault", to: "/vault" },
+      { label: "AURUM", to: "/aurum" },
       { label: "Learn", to: "/learn" },
     ],
   },
