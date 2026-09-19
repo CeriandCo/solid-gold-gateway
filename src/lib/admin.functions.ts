@@ -175,3 +175,243 @@ export const setAllowSelfApproval = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+// ---------------------------------------------------------------------------
+// Posts (read-only for now; creating and editing arrive in the next step)
+// ---------------------------------------------------------------------------
+
+export type AdminPostTypeFilter = "all" | "daily_note" | "weekly_brief";
+export type AdminStatusTab =
+  | "all"
+  | "draft"
+  | "in_review"
+  | "scheduled"
+  | "published"
+  | "archived";
+
+/** The lifecycle shown in the admin; "scheduled" is derived, never stored. */
+export type AdminPostStatus = Exclude<AdminStatusTab, "all">;
+
+export type AdminPostRow = {
+  id: string;
+  title: string;
+  type: string;
+  status: AdminPostStatus;
+  publishedAt: string | null;
+  updatedAt: string;
+  sourceCount: number;
+};
+
+export type AdminPostsPage = {
+  rows: AdminPostRow[];
+  total: number;
+  page: number;
+  pageSize: number;
+  counts: Record<AdminStatusTab, number>;
+};
+
+export type AdminPostDetail = {
+  id: string;
+  title: string;
+  type: string;
+  status: AdminPostStatus;
+  summary: string;
+  publishedAt: string | null;
+  updatedAt: string;
+  sources: { publisher: string; title: string; date: string; url: string }[];
+};
+
+export const ADMIN_POSTS_PAGE_SIZE = 25;
+
+const POST_TYPES = ["daily_note", "weekly_brief"] as const;
+const STATUS_TABS: AdminStatusTab[] = [
+  "all",
+  "draft",
+  "in_review",
+  "scheduled",
+  "published",
+  "archived",
+];
+
+function parseTypeFilter(value: unknown): AdminPostTypeFilter {
+  if (value === "all") return "all";
+  const type = POST_TYPES.find((candidate) => candidate === value);
+  if (!type) throw new Error("Unsupported type filter.");
+  return type;
+}
+
+function parseStatusTab(value: unknown): AdminStatusTab {
+  const tab = STATUS_TABS.find((candidate) => candidate === value);
+  if (!tab) throw new Error("Unsupported status filter.");
+  return tab;
+}
+
+/** PostgREST treats % and _ in like patterns as wildcards; strip them from search. */
+function cleanSearch(value: string): string {
+  return value.trim().replace(/[%_]/g, "").slice(0, 120);
+}
+
+/** Type + search filters shared by the row query and every tab count. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function applyListFilters(query: any, type: AdminPostTypeFilter, search: string): any {
+  if (type !== "all") query = query.eq("type", type);
+  if (search) query = query.ilike("title", `%${search}%`);
+  return query;
+}
+
+/** Status-tab filter. Scheduled = published with a future publication time. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function applyStatusTab(query: any, tab: AdminStatusTab, now: string): any {
+  switch (tab) {
+    case "all":
+      return query;
+    case "scheduled":
+      return query.eq("status", "published").gt("published_at", now);
+    case "published":
+      return query.eq("status", "published").lte("published_at", now);
+    default:
+      return query.eq("status", tab);
+  }
+}
+
+function deriveStatus(status: string, publishedAt: string | null, now: string): AdminPostStatus {
+  if (status === "published" && publishedAt && publishedAt > now) return "scheduled";
+  return status as AdminPostStatus;
+}
+
+export const listAdminPosts = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    const page = Number(input["page"] ?? 1);
+    return {
+      type: parseTypeFilter(input["type"]),
+      status: parseStatusTab(input["status"]),
+      search: cleanSearch(String(input["search"] ?? "")),
+      page: Number.isFinite(page) ? Math.max(Math.trunc(page), 1) : 1,
+    };
+  })
+  .handler(async ({ data, context }): Promise<AdminPostsPage> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const now = new Date().toISOString();
+    const from = (data.page - 1) * ADMIN_POSTS_PAGE_SIZE;
+
+    const counts = Object.fromEntries(
+      await Promise.all(
+        STATUS_TABS.map(async (tab) => {
+          const query = applyStatusTab(
+            applyListFilters(
+              context.supabase
+                .from("aurum_posts")
+                .select("id", { count: "exact", head: true }),
+              data.type,
+              data.search,
+            ),
+            tab,
+            now,
+          );
+          const { count, error } = await query;
+          if (error) throw new Error(error.message);
+          return [tab, count ?? 0];
+        }),
+      ),
+    ) as Record<AdminStatusTab, number>;
+
+    const { data: posts, error } = await applyStatusTab(
+      applyListFilters(
+        context.supabase
+          .from("aurum_posts")
+          .select("id, title, type, status, published_at, updated_at"),
+        data.type,
+        data.search,
+      ),
+      data.status,
+      now,
+    )
+      .order("updated_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(from, from + ADMIN_POSTS_PAGE_SIZE - 1);
+    if (error) throw new Error(error.message);
+
+    type PostRow = {
+      id: string;
+      title: string;
+      type: string;
+      status: string;
+      published_at: string | null;
+      updated_at: string;
+    };
+    const postRows = (posts ?? []) as PostRow[];
+    const ids = postRows.map((post) => post.id);
+    const sourceCounts = new Map<string, number>();
+    if (ids.length > 0) {
+      const { data: sources, error: sourceError } = await context.supabase
+        .from("aurum_post_sources")
+        .select("post_id")
+        .in("post_id", ids);
+      if (sourceError) throw new Error(sourceError.message);
+      for (const source of sources ?? []) {
+        sourceCounts.set(source.post_id, (sourceCounts.get(source.post_id) ?? 0) + 1);
+      }
+    }
+
+    return {
+      rows: postRows.map((post) => ({
+        id: post.id,
+        title: post.title,
+        type: post.type,
+        status: deriveStatus(post.status, post.published_at, now),
+        publishedAt: post.published_at,
+        updatedAt: post.updated_at,
+        sourceCount: sourceCounts.get(post.id) ?? 0,
+      })),
+      total: counts[data.status],
+      page: data.page,
+      pageSize: ADMIN_POSTS_PAGE_SIZE,
+      counts,
+    };
+  });
+
+export const getAdminPost = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => ({
+    id: String(((data ?? {}) as Record<string, unknown>)["id"] ?? ""),
+  }))
+  .handler(async ({ data, context }): Promise<AdminPostDetail | null> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const { data: post, error } = await context.supabase
+      .from("aurum_posts")
+      .select("id, title, type, status, summary, published_at, updated_at")
+      .eq("id", data.id)
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    if (!post) return null;
+
+    const { data: sources, error: sourceError } = await context.supabase
+      .from("aurum_post_sources")
+      .select("publisher, title, source_date, url")
+      .eq("post_id", post.id)
+      .order("position", { ascending: true });
+    if (sourceError) throw new Error(sourceError.message);
+
+    const now = new Date().toISOString();
+    return {
+      id: post.id,
+      title: post.title,
+      type: post.type,
+      status: deriveStatus(post.status, post.published_at, now),
+      summary: post.summary,
+      publishedAt: post.published_at,
+      updatedAt: post.updated_at,
+      sources: (sources ?? []).map((source) => ({
+        publisher: source.publisher,
+        title: source.title,
+        date: source.source_date,
+        url: source.url,
+      })),
+    };
+  });
