@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Award,
   Baby,
+  Check,
   Gem,
   Gift,
   Globe2,
