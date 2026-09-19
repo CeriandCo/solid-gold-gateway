@@ -40,6 +40,7 @@ import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
+import { Route as ApiPublicGiftCardDeliveryTickRouteImport } from './routes/api/public/gift-card-delivery-tick'
 import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe-webhook'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
 import { Route as AurumNotesSlugRouteImport } from './routes/aurum_.notes.$slug'
@@ -202,6 +203,12 @@ const ApiPublicGetHistoryRoute = ApiPublicGetHistoryRouteImport.update({
   path: '/api/public/get-history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGiftCardDeliveryTickRoute =
+  ApiPublicGiftCardDeliveryTickRouteImport.update({
+    id: '/api/public/gift-card-delivery-tick',
+    path: '/api/public/gift-card-delivery-tick',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicStripeWebhookRoute = ApiPublicStripeWebhookRouteImport.update({
   id: '/api/public/stripe-webhook',
   path: '/api/public/stripe-webhook',
@@ -249,6 +256,7 @@ export interface FileRoutesByFullPath {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
@@ -282,6 +290,7 @@ export interface FileRoutesByTo {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
@@ -319,6 +328,7 @@ export interface FileRoutesById {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
@@ -357,6 +367,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/gift-card-delivery-tick'
     | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/gift-card-delivery-tick'
     | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
@@ -426,6 +438,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/gift-card-delivery-tick'
     | '/api/public/stripe-webhook'
     | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
@@ -453,6 +466,7 @@ export interface RootRouteChildren {
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
   ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
   ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
+  ApiPublicGiftCardDeliveryTickRoute: typeof ApiPublicGiftCardDeliveryTickRoute
   ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
@@ -677,6 +691,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicGetHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/gift-card-delivery-tick': {
+      id: '/api/public/gift-card-delivery-tick'
+      path: '/api/public/gift-card-delivery-tick'
+      fullPath: '/api/public/gift-card-delivery-tick'
+      preLoaderRoute: typeof ApiPublicGiftCardDeliveryTickRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/stripe-webhook': {
       id: '/api/public/stripe-webhook'
       path: '/api/public/stripe-webhook'
@@ -771,6 +792,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,
   ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
   ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
+  ApiPublicGiftCardDeliveryTickRoute: ApiPublicGiftCardDeliveryTickRoute,
   ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
