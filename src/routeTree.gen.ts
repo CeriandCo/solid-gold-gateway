@@ -27,11 +27,13 @@ import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminPeopleRouteImport } from './routes/admin.people'
+import { Route as AdminPostsRouteImport } from './routes/admin.posts'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnGiftingGoldGuideRouteImport } from './routes/learn.gifting-gold-guide'
 import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
+import { Route as AdminPostsPostIdRouteImport } from './routes/admin.posts.$postId'
 import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
@@ -129,6 +131,11 @@ const AdminPeopleRoute = AdminPeopleRouteImport.update({
   path: '/people',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminPostsRoute = AdminPostsRouteImport.update({
+  id: '/posts',
+  path: '/posts',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -155,6 +162,11 @@ const LearnPhysicalGoldVsGoldEtfRoute =
     path: '/physical-gold-vs-gold-etf',
     getParentRoute: () => LearnRoute,
   } as any)
+const AdminPostsPostIdRoute = AdminPostsPostIdRouteImport.update({
+  id: '/$postId',
+  path: '/$postId',
+  getParentRoute: () => AdminPostsRoute,
+} as any)
 const ApiPublicAurumBackfillDailyHistoryRoute =
   ApiPublicAurumBackfillDailyHistoryRouteImport.update({
     id: '/api/public/aurum-backfill-daily-history',
@@ -206,12 +218,14 @@ export interface FileRoutesByFullPath {
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/admin/people': typeof AdminPeopleRoute
+  '/admin/posts': typeof AdminPostsRouteWithChildren
   '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
+  '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -235,12 +249,14 @@ export interface FileRoutesByTo {
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/admin/people': typeof AdminPeopleRoute
+  '/admin/posts': typeof AdminPostsRouteWithChildren
   '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/admin': typeof AdminIndexRoute
   '/learn': typeof LearnIndexRoute
+  '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -267,12 +283,14 @@ export interface FileRoutesById {
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
   '/admin/people': typeof AdminPeopleRoute
+  '/admin/posts': typeof AdminPostsRouteWithChildren
   '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
   '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
+  '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -300,12 +318,14 @@ export interface FileRouteTypes {
     | '/trust-center'
     | '/vault'
     | '/admin/people'
+    | '/admin/posts'
     | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/admin/'
     | '/learn/'
+    | '/admin/posts/$postId'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -329,12 +349,14 @@ export interface FileRouteTypes {
     | '/trust-center'
     | '/vault'
     | '/admin/people'
+    | '/admin/posts'
     | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/admin'
     | '/learn'
+    | '/admin/posts/$postId'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -360,12 +382,14 @@ export interface FileRouteTypes {
     | '/trust-center'
     | '/vault'
     | '/admin/people'
+    | '/admin/posts'
     | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
     | '/admin/'
     | '/learn/'
+    | '/admin/posts/$postId'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -527,6 +551,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPeopleRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/posts': {
+      id: '/admin/posts'
+      path: '/posts'
+      fullPath: '/admin/posts'
+      preLoaderRoute: typeof AdminPostsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/settings': {
       id: '/admin/settings'
       path: '/settings'
@@ -561,6 +592,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/learn/physical-gold-vs-gold-etf'
       preLoaderRoute: typeof LearnPhysicalGoldVsGoldEtfRouteImport
       parentRoute: typeof LearnRoute
+    }
+    '/admin/posts/$postId': {
+      id: '/admin/posts/$postId'
+      path: '/$postId'
+      fullPath: '/admin/posts/$postId'
+      preLoaderRoute: typeof AdminPostsPostIdRouteImport
+      parentRoute: typeof AdminPostsRoute
     }
     '/api/public/aurum-backfill-daily-history': {
       id: '/api/public/aurum-backfill-daily-history'
@@ -607,14 +645,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminPostsRouteChildren {
+  AdminPostsPostIdRoute: typeof AdminPostsPostIdRoute
+}
+
+const AdminPostsRouteChildren: AdminPostsRouteChildren = {
+  AdminPostsPostIdRoute: AdminPostsPostIdRoute,
+}
+
+const AdminPostsRouteWithChildren = AdminPostsRoute._addFileChildren(
+  AdminPostsRouteChildren,
+)
+
 interface AdminRouteChildren {
   AdminPeopleRoute: typeof AdminPeopleRoute
+  AdminPostsRoute: typeof AdminPostsRouteWithChildren
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminPeopleRoute: AdminPeopleRoute,
+  AdminPostsRoute: AdminPostsRouteWithChildren,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
