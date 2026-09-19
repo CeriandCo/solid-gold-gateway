@@ -174,7 +174,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   try {
     const stripe = createStripeClient(secretKey);
     const session = await stripe.checkout.sessions.create(params, {
-      idempotencyKey: `gift-card-${attemptId}`,
+      idempotencyKey: `gift-card-${attemptId}-${denom.id}`,
     });
     if (!session.url || new URL(session.url).host !== "checkout.stripe.com") {
       await failOrder();
