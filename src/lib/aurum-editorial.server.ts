@@ -26,6 +26,11 @@ const DEEP_LINK_MAX = 60;
 /** "2026-09-08" -> "8 Sep 2026", exactly the strings the site shows today. */
 const formatSourceDate = formatShortDate;
 
+/** timestamptz -> the UTC calendar date as YYYY-MM-DD. */
+function toUtcDate(value: string): string {
+  return new Date(value).toISOString().slice(0, 10);
+}
+
 
 function deriveReadMinutes(body: string[]): number {
   const words = body.join(" ").trim().split(/\s+/).filter(Boolean).length;
