@@ -884,7 +884,7 @@ function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="pricing-page pb-4 pt-4 md:pb-4 md:pt-4 lg:pb-4 lg:pt-4"
+      className="pricing-page pb-14 pt-0"
     >
       <h2
         id="faq-heading"
