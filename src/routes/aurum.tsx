@@ -220,17 +220,28 @@ function AurumPageContent() {
 
       <main className="aurum-main">
         <AurumHero />
-        <AurumPriceSection range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
+        <AurumPriceSection
+          range={range}
+          onRangeChange={(nextRange) =>
+            navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true, resetScroll: false })
+          }
+        />
         <AurumDailyNoteSection
           openSlug={openNote ?? null}
           onToggle={(slug) =>
-            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }), hash: "daily-note" })
+            navigate({
+              search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }),
+              resetScroll: false,
+            })
           }
         />
         <AurumWeeklyBriefSection
           openSlug={openBrief ?? null}
           onToggle={(slug) =>
-            navigate({ search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }), hash: "weekly-brief" })
+            navigate({
+              search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }),
+              resetScroll: false,
+            })
           }
         />
         <AurumLearnSection />
