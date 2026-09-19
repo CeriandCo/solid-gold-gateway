@@ -438,6 +438,13 @@ export type AdminPostEditable = {
   sources: { publisher: string; title: string; date: string; url: string }[];
 };
 
+export type AdminSourceInput = {
+  publisher: string;
+  title: string;
+  date: string;
+  url: string;
+};
+
 export type AdminDraftInput = {
   title: string;
   slug: string;
@@ -447,7 +454,9 @@ export type AdminDraftInput = {
   reviewLine: string | null;
   readMinutes: number | null;
   publishedAt: string | null;
+  sources: AdminSourceInput[];
 };
+
 
 export const WEEKLY_BRIEF_REVIEW_LINE =
   "Drafted with AI assistance from approved sources, and reviewed by a person before publication and before sending.";
@@ -510,8 +519,40 @@ function parseDraftInput(input: Record<string, unknown>): AdminDraftInput {
     reviewLine: optionalText(input["reviewLine"]),
     readMinutes,
     publishedAt,
+    sources: parseSources(input["sources"]),
   };
 }
+
+/** Same rules the form enforces inline, repeated here because the form cannot be trusted. */
+function parseSources(value: unknown): AdminSourceInput[] {
+  const list = Array.isArray(value) ? value : [];
+  const today = new Date().toISOString().slice(0, 10);
+  return list.map((raw, index) => {
+    const item = (raw ?? {}) as Record<string, unknown>;
+    const where = `Source ${index + 1}`;
+    const publisher = String(item["publisher"] ?? "").trim();
+    if (!publisher) throw new Error(`${where}: a publisher is required.`);
+    const title = String(item["title"] ?? "").trim();
+    if (!title) throw new Error(`${where}: a title is required.`);
+    const date = String(item["date"] ?? "").trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(new Date(`${date}T00:00:00Z`).getTime())) {
+      throw new Error(`${where}: a valid date is required.`);
+    }
+    if (date > today) throw new Error(`${where}: the date cannot be in the future.`);
+    const url = String(item["url"] ?? "").trim();
+    let parsed: URL | null = null;
+    try {
+      parsed = new URL(url);
+    } catch {
+      parsed = null;
+    }
+    if (!parsed || parsed.protocol !== "https:") {
+      throw new Error(`${where}: the web link must be a full address starting with https://.`);
+    }
+    return { publisher, title, date, url };
+  });
+}
+
 
 function writeError(error: { code?: string; message: string }): Error {
   if (error.code === "23505") {
@@ -605,8 +646,26 @@ export const createDraft = createServerFn({ method: "POST" })
       .select("id")
       .single();
     if (error) throw writeError(error);
+
+    try {
+      await saveSources(context.supabase, row.id, data.draft.sources);
+    } catch (cause) {
+      // Never leave a post behind without the sources the person just entered.
+      await context.supabase.from("aurum_posts").delete().eq("id", row.id);
+      throw cause;
+    }
     return { id: row.id };
   });
+
+/** One statement, one transaction: the whole source list is replaced or nothing is. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function saveSources(supabase: any, postId: string, sources: AdminSourceInput[]) {
+  const { error } = await supabase.rpc("aurum_replace_post_sources", {
+    _post_id: postId,
+    _sources: sources,
+  });
+  if (error) throw writeError(error);
+}
 
 export const updateDraft = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -636,8 +695,10 @@ export const updateDraft = createServerFn({ method: "POST" })
     if (!rows || rows.length === 0) {
       throw new Error("That post cannot be changed here. Only drafts you may edit can be saved.");
     }
+    await saveSources(context.supabase, data.id, data.draft.sources);
     return { ok: true };
   });
+
 
 export const deleteDraft = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
