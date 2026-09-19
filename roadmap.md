@@ -44,5 +44,9 @@
 ## Gifting
 - [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
 - [x] Refine the Gift Card left column typography, amount controls, summary, CTA, and trust line.
+- [x] B1 — commerce database foundation (settings kill switch, denominations, orders, cards, ledger, Stripe events, rate-limit attempts) and server-loaded amounts.
+- [ ] B2 — secure checkout session creation (origins, rate limiting, server-decided amounts).
+- [ ] B3 — Stripe webhook with replay protection, daily limits and card issuance.
+
 
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
