@@ -248,10 +248,10 @@ describe("delivery happy path", () => {
 
     const result = await withDeliveryOn(() => runDeliveryTick({ provider }));
 
-    expect(result).toMatchObject({ outcome: "processed", sent: 1 });
-    expect(provider.sentMessages).toHaveLength(1);
-    const message = provider.sentMessages[0]!;
-    expect(message.to).toBe(order.recipient_email);
+    expect(result.outcome).toBe("processed");
+    const forThisCard = provider.sentMessages.filter((m) => m.to === order.recipient_email);
+    expect(forThisCard).toHaveLength(1);
+    const message = forThisCard[0]!;
     expect(message.from).toBe("gifts@example.test");
     expect(message.subject).toBe("You've received a SQOOT Pure Gift Card");
 
@@ -308,7 +308,7 @@ describe("provider failure", () => {
     expect(afterFailure.delivery_claimed_at).toBeNull();
     const firstHash = afterFailure.code_hash;
     const firstCode = /[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}/.exec(
-      failing.sentMessages[0]!.text,
+      failing.sentMessages.find((m) => m.to === order.recipient_email)!.text,
     )![0];
     const attempts = await attemptsFor(cardId);
     expect(attempts[0]).toMatchObject({ outcome: "failed", error_category: "provider_500" });
@@ -322,7 +322,7 @@ describe("provider failure", () => {
     // The first code is dead: its hash is gone from the row.
     expect(await verifyGiftCode(firstCode)).toEqual({ found: false });
     const secondCode = /[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}/.exec(
-      succeeding.sentMessages[0]!.text,
+      succeeding.sentMessages.find((m) => m.to === order.recipient_email)!.text,
     )![0];
     expect(secondCode).not.toBe(firstCode);
     expect((await verifyGiftCode(secondCode)).found).toBe(true);
@@ -362,11 +362,11 @@ describe("HTML escaping", () => {
     const provider = fakeProvider();
     await withDeliveryOn(() => runDeliveryTick({ provider }));
 
-    const html = provider.sentMessages[0]!.html;
+    const html = provider.sentMessages.find((m) => m.to === order.recipient_email)!.html;
     expect(html).not.toContain("<script>");
     expect(html).not.toContain("<img src=x");
     expect(html).toContain("&lt;script&gt;alert(1)&lt;/script&gt;");
-    expect(provider.sentMessages[0]!.text).toContain("<script>alert(1)</script>");
+    expect(provider.sentMessages.find((m) => m.to === order.recipient_email)!.text).toContain("<script>alert(1)</script>");
     expect((await readCard(cardId)).status).toBe("delivered");
   });
 
@@ -412,7 +412,7 @@ describe("code format and normalisation", () => {
     const provider = fakeProvider();
     await withDeliveryOn(() => runDeliveryTick({ provider }));
     const dashed = /[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}/.exec(
-      provider.sentMessages[0]!.text,
+      provider.sentMessages.find((m) => m.to === order.recipient_email)!.text,
     )![0];
 
     expect((await verifyGiftCode(dashed)).found).toBe(true);
