@@ -402,6 +402,7 @@ export type Database = {
       gift_card_orders: {
         Row: {
           amount_cents: number
+          attempt_id: string | null
           buyer_email: string | null
           card_fingerprint_hash: string | null
           client_ip_hash: string | null
@@ -421,6 +422,7 @@ export type Database = {
         }
         Insert: {
           amount_cents: number
+          attempt_id?: string | null
           buyer_email?: string | null
           card_fingerprint_hash?: string | null
           client_ip_hash?: string | null
@@ -440,6 +442,7 @@ export type Database = {
         }
         Update: {
           amount_cents?: number
+          attempt_id?: string | null
           buyer_email?: string | null
           card_fingerprint_hash?: string | null
           client_ip_hash?: string | null
