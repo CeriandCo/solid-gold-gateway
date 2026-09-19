@@ -4826,3 +4826,144 @@ footer.site-footer a:focus-visible {
     border-radius: 0 2px 2px 0;
   }
 }
+
+/* ============= Pricing v2 — phase 9 motion ============= */
+
+.reveal-ready tr[data-reveal] > :is(td, th) {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--reveal-index, 0) * var(--reveal-step));
+}
+
+.reveal-ready tr[data-reveal].is-visible > :is(td, th) {
+  opacity: 1;
+  transform: none;
+}
+
+.pricing-cta-phone[data-reveal] {
+  --reveal-rise: 32px;
+}
+
+.pricing-calculator-option,
+.pricing-calculator-quick-options button,
+.pricing-calculator-toggle {
+  transition:
+    background-color 0.16s var(--reveal-ease),
+    border-color 0.16s var(--reveal-ease),
+    color 0.16s var(--reveal-ease);
+}
+
+.pricing-calculator-cta,
+.waitlist-cta-button {
+  transition:
+    background-color 0.2s var(--reveal-ease),
+    transform 0.2s var(--reveal-ease);
+}
+
+.pricing-calculator-cta:hover,
+.waitlist-cta-button:hover {
+  background: color-mix(in oklab, var(--gold) 88%, white);
+  transform: translateY(-1px);
+}
+
+.pricing-calculator-cta:active,
+.waitlist-cta-button:active {
+  transform: translateY(0);
+}
+
+.waitlist-cta-input,
+.waitlist-cta-button {
+  transition-property: background-color, border-color, transform, outline-color;
+  transition-duration: 0.16s;
+  transition-timing-function: var(--reveal-ease);
+}
+
+.waitlist-cta-input:focus-visible,
+.waitlist-cta-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.pricing-calculator-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 220ms var(--reveal-ease),
+    opacity 220ms var(--reveal-ease);
+}
+
+.pricing-calculator-collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.pricing-calculator-collapse > div {
+  display: grid;
+  gap: 18px;
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.pricing-calculator-collapse[data-open="true"] > div {
+  visibility: visible;
+}
+
+.pricing-calculator-result {
+  transition: opacity 180ms var(--reveal-ease);
+}
+
+.pricing-calculator-result.is-updating {
+  opacity: 0.55;
+}
+
+.pricing-calculator-error:not(:empty),
+.pricing-calculator-result.is-not-enough {
+  animation: pricingFadeIn 160ms var(--reveal-ease) both;
+}
+
+@keyframes pricingFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready tr[data-reveal] > :is(td, th),
+  .pricing-calculator-option,
+  .pricing-calculator-quick-options button,
+  .pricing-calculator-toggle,
+  .pricing-calculator-cta,
+  .pricing-calculator-collapse,
+  .pricing-calculator-result,
+  .waitlist-cta-input,
+  .waitlist-cta-button {
+    transition: none !important;
+  }
+
+  .reveal-ready tr[data-reveal] > :is(td, th) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pricing-calculator-cta:hover,
+  .waitlist-cta-button:hover {
+    transform: none;
+  }
+
+  .pricing-calculator-error:not(:empty),
+  .pricing-calculator-result.is-not-enough {
+    animation: none;
+  }
+
+  .pricing-calculator-result.is-updating {
+    opacity: 1;
+  }
+}
