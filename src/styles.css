@@ -4983,3 +4983,26 @@ footer.site-footer a:focus-visible {
     font-size: 64px;
   }
 }
+
+@media (min-width: 1024px) {
+  .waitlist-cta-control {
+    flex-direction: row;
+    gap: 0;
+    max-width: none;
+    width: max-content;
+  }
+
+  .waitlist-cta-input {
+    height: 56px;
+    width: 340px;
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+  }
+
+  .waitlist-cta-button {
+    height: 56px;
+    width: auto;
+    white-space: nowrap;
+    border-radius: 0 2px 2px 0;
+  }
+}
