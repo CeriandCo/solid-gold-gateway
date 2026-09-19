@@ -57,9 +57,29 @@ function periodInWords(from: Date, to: Date): string {
 export function AurumCalculatorSection() {
   const { data, calculatorEnabled, state } = useAurumPrice();
   const [amountInput, setAmountInput] = useState(DEFAULT_AMOUNT);
-  const [dateInput, setDateInput] = useState(DEFAULT_DATE);
+  const [dateInput, setDateInput] = useState("");
+  const [dateTouched, setDateTouched] = useState(false);
   const [result, setResult] = useState<LookBack | null>(null);
   const [noClose, setNoClose] = useState<string | null>(null);
+  const defaultApplied = useRef(false);
+
+  // All date boundaries come from the stored history — never a constant.
+  const history = data?.history ?? [];
+  const earliest = history.length > 0 ? history[0]!.date : null;
+  const latest = history.length > 0 ? history[history.length - 1]!.date : null;
+
+  // Apply the default date once, when history first becomes available. A date
+  // the visitor has already typed is never overwritten.
+  useEffect(() => {
+    if (defaultApplied.current || dateTouched) return;
+    if (history.length === 0 || !latest) return;
+    const fiveYearsBefore = new Date(
+      Date.UTC(latest.getUTCFullYear() - 5, latest.getUTCMonth(), latest.getUTCDate()),
+    );
+    const fallback = history.find((point) => point.date.getTime() >= fiveYearsBefore.getTime()) ?? history[0]!;
+    defaultApplied.current = true;
+    setDateInput(isoDay(fallback.date));
+  }, [history, latest, dateTouched]);
 
   const amount = Number(amountInput);
   const requested = dateInput ? new Date(`${dateInput}T00:00:00.000Z`) : null;
@@ -72,8 +92,11 @@ export function AurumCalculatorSection() {
 
   let dateError: string | null = null;
   if (!requested || Number.isNaN(requested.getTime())) dateError = "Enter a valid date.";
-  else if (requested.getTime() > today.getTime()) dateError = "That date is in the future.";
-  else if (dateInput < EARLIEST) dateError = "Choose a date from 1 January 2000 onward.";
+  else if (earliest && requested.getTime() < earliest.getTime()) {
+    dateError = `Choose a date from ${DATE.format(earliest)} onward.`;
+  } else if (latest && requested.getTime() > latest.getTime()) {
+    dateError = `Choose a date on or before ${DATE.format(latest)}.`;
+  }
 
   const inputsValid = !amountError && !dateError;
   const canRun = calculatorEnabled && inputsValid && Boolean(data);
