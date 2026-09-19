@@ -38,5 +38,5 @@
 - [x] Step 2 — public site reads notes and briefs from the database.
 - [x] Step 3a — allowlist sign-in, roles, admin shell with People and Settings.
 - [x] Step 3b-1 — read-only Posts list in the admin (filters, tabs, search, detail).
-- [ ] Step 3b-2 — creating and editing posts in the admin.
+- [x] Step 3b-2 — creating, editing and deleting drafts in the admin (drafts only; publishing arrives with the review workflow).
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
