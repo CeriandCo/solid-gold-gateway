@@ -42,7 +42,7 @@ function PricingPage() {
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
       <main className="bg-cream">
-        <div className="mx-auto w-full max-w-[1440px] px-6 min-[1440px]:px-[120px]">
+        <div className="mx-auto w-full max-w-[1248px] px-6 min-[1440px]:max-w-[1440px] min-[1440px]:px-[120px]">
           <section id="pricing-hero" />
           <section id="pricing-compare" />
           <section id="pricing-trust" />
