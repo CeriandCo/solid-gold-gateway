@@ -100,17 +100,24 @@ async function hydrate(rows: Record<string, unknown>[]): Promise<AurumEditorial[
   return rows.map((row) => mapPost(row, sources.get(row["id"] as string) ?? []));
 }
 
-/** How many visible posts of this type are newer than the given slug (0 = newest). */
+/**
+ * How many visible posts of this type sort before the given slug (0 = newest).
+ * Tie-aware: matches the list order (published_at desc, id desc), so two posts
+ * sharing a timestamp can never swap between requests and be repeated or skipped.
+ */
 async function rankOfSlug(type: AurumEditorialType, slug: string): Promise<number | null> {
   const { data, error } = await visible(
-    supabaseAdmin.from("aurum_posts").select("published_at").eq("type", type).eq("slug", slug),
+    supabaseAdmin.from("aurum_posts").select("id, published_at").eq("type", type).eq("slug", slug),
   ).maybeSingle();
   if (error) throw new Error(`Failed to locate editorial post: ${error.message}`);
   if (!data) return null;
 
+  const post = data as { id: string; published_at: string };
   const { count, error: countError } = await visible(
     supabaseAdmin.from("aurum_posts").select("id", { count: "exact", head: true }).eq("type", type),
-  ).gt("published_at", (data as { published_at: string }).published_at);
+  ).or(
+    `published_at.gt.${post.published_at},and(published_at.eq.${post.published_at},id.gt.${post.id})`,
+  );
   if (countError) throw new Error(`Failed to locate editorial post: ${countError.message}`);
   return count ?? 0;
 }
@@ -122,11 +129,16 @@ export async function loadEditorialPage(input: {
   includeSlug?: string | null;
 }): Promise<EditorialPage> {
   let limit = input.limit;
+  let deepLinkOverflow = false;
 
-  // A shared link must open its note even when it sits past the first page.
+  // A shared link must open its note even when it sits past the first page — but only
+  // up to DEEP_LINK_MAX. Anything deeper is redirected to the post's own page instead.
   if (input.includeSlug && input.offset === 0) {
     const rank = await rankOfSlug(input.type, input.includeSlug);
-    if (rank !== null && rank + 1 > limit) limit = rank + 1;
+    if (rank !== null && rank + 1 > limit) {
+      if (rank + 1 > DEEP_LINK_MAX) deepLinkOverflow = true;
+      else limit = rank + 1;
+    }
   }
 
   const { data, count, error } = await visible(
@@ -136,14 +148,17 @@ export async function loadEditorialPage(input: {
       .eq("type", input.type),
   )
     .order("published_at", { ascending: false })
+    .order("id", { ascending: false })
     .range(input.offset, input.offset + limit - 1);
   if (error) throw new Error(`Failed to load editorial posts: ${error.message}`);
 
   return {
     items: await hydrate((data ?? []) as Record<string, unknown>[]),
     total: count ?? 0,
+    deepLinkOverflow,
   };
 }
+
 
 export async function loadEditorialBySlug(
   type: AurumEditorialType,
