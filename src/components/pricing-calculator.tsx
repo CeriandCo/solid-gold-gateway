@@ -106,7 +106,7 @@ function RadioGroup<T extends string | number>({
 
 export function PricingCalculator() {
   const [budgetInput, setBudgetInput] = useState(formatBudgetInput(PRICING.calculator.defaultBudgetUsd));
-  const [budget, setBudget] = useState(PRICING.calculator.defaultBudgetUsd);
+  const [budget, setBudget] = useState<number>(PRICING.calculator.defaultBudgetUsd);
   const [ownership, setOwnership] = useState<Ownership>("vault");
   const [holdDays, setHoldDays] = useState<HoldPeriod>(PRICING.calculator.defaultHoldDays);
   const [deliveryKind, setDeliveryKind] = useState<DeliveryKind>("coin");
@@ -195,7 +195,7 @@ export function PricingCalculator() {
             label="Quick budget amount"
             onChange={selectBudget}
             options={quickBudgetOptions}
-            value={PRICING.calculator.quickBudgetsUsd.includes(parsedInput) ? parsedInput : -1}
+            value={PRICING.calculator.quickBudgetsUsd.some((amount) => amount === parsedInput) ? parsedInput : -1}
           />
         </div>
 
