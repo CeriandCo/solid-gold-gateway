@@ -258,7 +258,6 @@ function AurumPageContent() {
           }
         />
         <AurumDailyNoteSection
-          key={notes ? notes.items.length : "unavailable"}
           initial={notes}
           openSlug={openNote ?? null}
           onToggle={(slug) =>

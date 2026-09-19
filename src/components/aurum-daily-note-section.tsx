@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
 import type { AurumEditorial } from "@/lib/aurum-editorial";
@@ -19,6 +19,20 @@ export function AurumDailyNoteSection({
   const [notes, setNotes] = useState<AurumEditorial[]>(initial?.items ?? []);
   const [total, setTotal] = useState(initial?.total ?? 0);
   const [loading, setLoading] = useState(false);
+
+  // Loader data can widen (a shared ?note= link loads enough pages to include that
+  // note). Merge it in rather than replacing, so an expanded list stays expanded.
+  useEffect(() => {
+    if (!initial) return;
+    setTotal(initial.total);
+    setNotes((current) => {
+      const merged = [...current];
+      for (const item of initial.items) {
+        if (!merged.some((note) => note.slug === item.slug)) merged.push(item);
+      }
+      return merged.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+    });
+  }, [initial]);
 
   const showOlder = async () => {
     setLoading(true);
