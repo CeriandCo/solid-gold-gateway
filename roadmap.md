@@ -42,6 +42,6 @@
 - [x] Step 3b-3 — sources editor and live preview for drafts.
 
 ## Gifting
-- [ ] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
+- [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
 
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
