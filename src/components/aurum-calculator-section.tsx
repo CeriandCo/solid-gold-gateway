@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { closeOn, type HistoryPoint } from "@/lib/aurum/price-state";
 import { GoldButton } from "@/components/site-chrome";
@@ -11,9 +11,12 @@ const DATE = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric",
 const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
 
 const DEFAULT_AMOUNT = "5000";
-const DEFAULT_DATE = "2021-04-14";
-const EARLIEST = "2000-01-01";
 const PLACEHOLDER = "——";
+
+/** ISO yyyy-mm-dd for a UTC-anchored date. */
+function isoDay(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
 
 type LookBack = {
   amount: number;
@@ -54,13 +57,32 @@ function periodInWords(from: Date, to: Date): string {
 export function AurumCalculatorSection() {
   const { data, calculatorEnabled, state } = useAurumPrice();
   const [amountInput, setAmountInput] = useState(DEFAULT_AMOUNT);
-  const [dateInput, setDateInput] = useState(DEFAULT_DATE);
+  const [dateInput, setDateInput] = useState("");
+  const [dateTouched, setDateTouched] = useState(false);
   const [result, setResult] = useState<LookBack | null>(null);
   const [noClose, setNoClose] = useState<string | null>(null);
+  const defaultApplied = useRef(false);
+
+  // All date boundaries come from the stored history — never a constant.
+  const history = data?.history ?? [];
+  const earliest = history.length > 0 ? history[0]!.date : null;
+  const latest = history.length > 0 ? history[history.length - 1]!.date : null;
+
+  // Apply the default date once, when history first becomes available. A date
+  // the visitor has already typed is never overwritten.
+  useEffect(() => {
+    if (defaultApplied.current || dateTouched) return;
+    if (history.length === 0 || !latest) return;
+    const fiveYearsBefore = new Date(
+      Date.UTC(latest.getUTCFullYear() - 5, latest.getUTCMonth(), latest.getUTCDate()),
+    );
+    const fallback = history.find((point) => point.date.getTime() >= fiveYearsBefore.getTime()) ?? history[0]!;
+    defaultApplied.current = true;
+    setDateInput(isoDay(fallback.date));
+  }, [history, latest, dateTouched]);
 
   const amount = Number(amountInput);
   const requested = dateInput ? new Date(`${dateInput}T00:00:00.000Z`) : null;
-  const today = new Date();
 
   let amountError: string | null = null;
   if (amountInput.trim() === "" || !Number.isFinite(amount) || amount <= 0) {
@@ -69,8 +91,11 @@ export function AurumCalculatorSection() {
 
   let dateError: string | null = null;
   if (!requested || Number.isNaN(requested.getTime())) dateError = "Enter a valid date.";
-  else if (requested.getTime() > today.getTime()) dateError = "That date is in the future.";
-  else if (dateInput < EARLIEST) dateError = "Choose a date from 1 January 2000 onward.";
+  else if (earliest && requested.getTime() < earliest.getTime()) {
+    dateError = `Choose a date from ${DATE.format(earliest)} onward.`;
+  } else if (latest && requested.getTime() > latest.getTime()) {
+    dateError = `Choose a date on or before ${DATE.format(latest)}.`;
+  }
 
   const inputsValid = !amountError && !dateError;
   const canRun = calculatorEnabled && inputsValid && Boolean(data);
@@ -166,13 +191,22 @@ export function AurumCalculatorSection() {
                 <input
                   id="aurum-calc-date"
                   type="date"
-                  min={EARLIEST}
+                  min={earliest ? isoDay(earliest) : undefined}
+                  max={latest ? isoDay(latest) : undefined}
                   value={dateInput}
                   aria-invalid={dateError ? true : undefined}
-                  onChange={(event) => setDateInput(event.target.value)}
+                  onChange={(event) => {
+                    setDateTouched(true);
+                    setDateInput(event.target.value);
+                  }}
                 />
               </div>
-              <p className="aurum-calc__helper">{dateError ?? "Any date from 1 Jan 2000 onward."}</p>
+              <p className="aurum-calc__helper">
+                {dateError ??
+                  (earliest
+                    ? `Any date from ${DATE.format(earliest)} onward.`
+                    : "Loading available dates…")}
+              </p>
             </div>
 
             <GoldButton type="submit" size="hero" disabled={!canRun} className="aurum-calc__submit">
