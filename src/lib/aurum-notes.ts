@@ -1,4 +1,4 @@
-import { formatEditorialDate, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
+import { formatEditorialDate, type AurumEditorial, type AurumEditorialSource } from "/dev-server/src/lib/aurum-editorial";
 
 export type AurumNoteSource = AurumEditorialSource;
 export type AurumNote = AurumEditorial;
