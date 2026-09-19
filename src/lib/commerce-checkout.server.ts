@@ -85,9 +85,9 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   }
   const currency = row.currency;
 
-  // 2. Rate limit by salted IP hash.
+  // 2. Rate limit by salted IP hash, in the checkout bucket.
   const ipHash = await clientIpHash();
-  if (await recordAndCheckRate(ipHash)) return { ok: false, code: "rate_limited" };
+  if (await recordAndCheckRate(ipHash, "checkout")) return { ok: false, code: "rate_limited" };
 
   // 3. Origin allowlist — redirects are built only from the matched entry.
   const origin = getRequestHeader("origin") ?? "";
@@ -106,12 +106,19 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     return { ok: false, code: "invalid_request" };
   }
 
-  // 5. A repeated attempt id never creates a second session.
+  // 5. A repeated attempt id never creates a second session, and never
+  // switches amount: an attempt id is bound to the denomination it was
+  // first used with.
   const existing = await supabaseAdmin
     .from("gift_card_orders")
-    .select("id, stripe_session_id")
+    .select("id, stripe_session_id, status, denomination_id")
     .eq("attempt_id", attemptId)
     .maybeSingle();
+
+  if (existing.data && existing.data.denomination_id !== denom.id) {
+    return { ok: false, code: "invalid_request" };
+  }
+
   if (existing.data?.stripe_session_id) {
     try {
       const stripe = createStripeClient(secretKey);
@@ -126,8 +133,15 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   }
 
   // 6. Create the order, then the session with an idempotency key.
-  let orderId = existing.data?.id ?? null;
-  if (!orderId) {
+  let orderId: string | null = null;
+  if (existing.data) {
+    // Only a still-unpaid attempt may be picked up again.
+    if (existing.data.status !== "open" && existing.data.status !== "failed") {
+      return { ok: false, code: "invalid_request" };
+    }
+    orderId = existing.data.id;
+    await supabaseAdmin.from("gift_card_orders").update({ status: "open" }).eq("id", orderId);
+  } else {
     const inserted = await supabaseAdmin
       .from("gift_card_orders")
       .insert({
@@ -144,6 +158,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     if (inserted.error || !inserted.data) return { ok: false, code: "checkout_failed" };
     orderId = inserted.data.id;
   }
+
 
   const failOrder = async () => {
     await supabaseAdmin.from("gift_card_orders").update({ status: "failed" }).eq("id", orderId!);
