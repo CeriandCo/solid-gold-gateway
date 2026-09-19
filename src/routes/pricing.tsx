@@ -7,6 +7,7 @@ import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
 import { Gift, Globe, Shield, User } from "lucide-react";
 import { PRICING } from "@/config/pricing";
 import { PricingCalculator } from "@/components/pricing-calculator";
+import { WaitlistCta } from "@/components/waitlist-cta";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
@@ -391,8 +392,14 @@ function PricingPage() {
               </ul>
             </div>
           </section>
-          <section id="pricing-cta" />
         </div>
+
+        <WaitlistCta
+          eyebrow="Ready when you are"
+          title="Own gold with"
+          titleAccent="confidence."
+          body={`Start from ${currencyPrefix}${PRICING.vault.minimumPurchaseUsd} and see every fee before you confirm. Join the waitlist — it is free, and it is not a purchase.`}
+        />
       </main>
       <SiteFooter />
     </div>
