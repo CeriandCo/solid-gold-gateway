@@ -71,6 +71,13 @@
       "when": 1789816019619,
       "tag": "0009_commerce_foundation",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789816920938,
+      "tag": "0010_commerce_order_attempt_id",
+      "breakpoints": true
     }
   ]
 }

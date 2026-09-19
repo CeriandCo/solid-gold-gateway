@@ -38,6 +38,7 @@ import { Route as AdminPostsPostIdRouteImport } from './routes/admin.posts.$post
 import { Route as AdminPostsNewRouteImport } from './routes/admin.posts.new'
 import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
+import { Route as ApiPublicB2ProbeRouteImport } from './routes/api/public/b2-probe'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
@@ -191,6 +192,11 @@ const ApiPublicAurumGoldPriceFetcherRoute =
     path: '/api/public/aurum-gold-price-fetcher',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicB2ProbeRoute = ApiPublicB2ProbeRouteImport.update({
+  id: '/api/public/b2-probe',
+  path: '/api/public/b2-probe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicGetGoldPriceRoute = ApiPublicGetGoldPriceRouteImport.update({
   id: '/api/public/get-gold-price',
   path: '/api/public/get-gold-price',
@@ -241,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/b2-probe': typeof ApiPublicB2ProbeRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
@@ -273,6 +280,7 @@ export interface FileRoutesByTo {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/b2-probe': typeof ApiPublicB2ProbeRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
@@ -309,6 +317,7 @@ export interface FileRoutesById {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/b2-probe': typeof ApiPublicB2ProbeRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
@@ -346,6 +355,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/b2-probe'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/aurum/briefs/$slug'
@@ -378,6 +388,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/b2-probe'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/aurum/briefs/$slug'
@@ -413,6 +424,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/b2-probe'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/aurum_/briefs/$slug'
@@ -439,6 +451,7 @@ export interface RootRouteChildren {
   VaultRoute: typeof VaultRoute
   ApiPublicAurumBackfillDailyHistoryRoute: typeof ApiPublicAurumBackfillDailyHistoryRoute
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
+  ApiPublicB2ProbeRoute: typeof ApiPublicB2ProbeRoute
   ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
   ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
@@ -650,6 +663,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAurumGoldPriceFetcherRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/b2-probe': {
+      id: '/api/public/b2-probe'
+      path: '/api/public/b2-probe'
+      fullPath: '/api/public/b2-probe'
+      preLoaderRoute: typeof ApiPublicB2ProbeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/get-gold-price': {
       id: '/api/public/get-gold-price'
       path: '/api/public/get-gold-price'
@@ -749,6 +769,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicAurumBackfillDailyHistoryRoute:
     ApiPublicAurumBackfillDailyHistoryRoute,
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,
+  ApiPublicB2ProbeRoute: ApiPublicB2ProbeRoute,
   ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
   ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,

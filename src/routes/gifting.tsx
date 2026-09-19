@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
-import { getGiftCardOffering } from "@/lib/commerce.functions";
+import { useServerFn } from "@tanstack/react-start";
+import {
+  createGiftCardCheckout,
+  getGiftCardCheckoutStatus,
+  getGiftCardOffering,
+} from "@/lib/commerce.functions";
+
 
 import type { LucideIcon } from "lucide-react";
 import {
@@ -144,14 +150,112 @@ function giftCardCurrencyMark(currency: string | null) {
   return parts.find((part) => part.type === "currency")?.value ?? "$";
 }
 
+const CHECKOUT_MESSAGES: Record<string, string> = {
+  unavailable: "Secure checkout is not available yet. Please try again shortly.",
+  rate_limited: "Too many attempts. Please wait a few minutes and try again.",
+  failed: "We couldn't start checkout. Please try again.",
+  cancelled: "Checkout was cancelled. You have not been charged.",
+  confirming: "Confirming your payment…",
+  paid: "Thank you. Your payment is confirmed. The gift card will be sent to your recipient once it clears our standard security checks.",
+  pending:
+    "Your payment is being confirmed. You'll receive an email receipt from Stripe.",
+};
+
 function GiftingNewPage() {
   const scope = useReveal<HTMLElement>();
   const offering = Route.useLoaderData();
   const { currency, denominations } = offering;
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checkoutMessage, setCheckoutMessage] = useState("");
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const attemptIdRef = useRef<string | null>(null);
+  const messageRef = useRef<HTMLParagraphElement>(null);
+  const startCheckout = useServerFn(createGiftCardCheckout);
+  const readCheckoutStatus = useServerFn(getGiftCardCheckoutStatus);
   const selected = denominations.find((option) => option.id === selectedId) ?? null;
   const currencyMark = giftCardCurrencyMark(currency);
+
+  const announce = (message: string) => {
+    setCheckoutMessage(message);
+    window.requestAnimationFrame(() => messageRef.current?.focus());
+  };
+
+  const handleCheckout = async () => {
+    if (!selected || checkoutBusy) return;
+    if (!attemptIdRef.current) attemptIdRef.current = crypto.randomUUID();
+    setCheckoutBusy(true);
+    setCheckoutMessage("");
+    try {
+      const result = await startCheckout({
+        data: { denominationId: selected.id, attemptId: attemptIdRef.current },
+      });
+      if (result.ok) {
+        // Trust nothing but the expected Stripe host, on this side too.
+        if (new URL(result.url).host === "checkout.stripe.com") {
+          window.location.assign(result.url);
+          return;
+        }
+        announce(CHECKOUT_MESSAGES["failed"]!);
+      } else {
+        announce(
+          CHECKOUT_MESSAGES[result.code] ?? CHECKOUT_MESSAGES["failed"]!,
+        );
+      }
+    } catch {
+      announce(CHECKOUT_MESSAGES["failed"]!);
+    }
+    setCheckoutBusy(false);
+  };
+
+  // Return from Stripe: confirm against our own records, never the redirect.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const outcome = params.get("checkout");
+    if (!outcome) return;
+    const sessionId = params.get("session_id");
+
+    const clean = () => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("checkout");
+      url.searchParams.delete("session_id");
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    };
+
+    if (outcome === "cancelled" || !sessionId) {
+      announce(CHECKOUT_MESSAGES[outcome === "cancelled" ? "cancelled" : "pending"]!);
+      clean();
+      return;
+    }
+
+    let cancelled = false;
+    announce(CHECKOUT_MESSAGES["confirming"]!);
+    void (async () => {
+      for (let attempt = 0; attempt < 6 && !cancelled; attempt += 1) {
+        try {
+          const status = await readCheckoutStatus({ data: { sessionId } });
+          if (cancelled) return;
+          if (status.status === "paid") {
+            announce(CHECKOUT_MESSAGES["paid"]!);
+            clean();
+            return;
+          }
+        } catch {
+          /* keep polling; the final message covers it */
+        }
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      }
+      if (!cancelled) {
+        announce(CHECKOUT_MESSAGES["pending"]!);
+        clean();
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
 
   return (
@@ -240,7 +344,9 @@ function GiftingNewPage() {
                         onChange={() => {
                           setSelectedId(id);
                           setCheckoutMessage("");
+                          attemptIdRef.current = null;
                         }}
+
                       />
                       <span className="gift-amount-label">
                         <span className="gift-amount-price" aria-hidden="true">
@@ -264,14 +370,24 @@ function GiftingNewPage() {
 
             <GoldButton
               type="button"
-              disabled={selected === null}
+              disabled={selected === null || checkoutBusy}
+              aria-busy={checkoutBusy}
               className="gift-card-checkout"
-              onClick={() => setCheckoutMessage("Secure checkout is not available yet. Please try again shortly.")}
+              onClick={() => void handleCheckout()}
             >
-              Continue to Secure Checkout
+              {checkoutBusy ? "Starting secure checkout…" : "Continue to Secure Checkout"}
             </GoldButton>
             <p className="gift-card-security"><LockKeyhole aria-hidden="true" />Secure payment powered by Stripe</p>
-            <p className="gift-card-message" role="status" aria-live="polite">{checkoutMessage}</p>
+            <p
+              ref={messageRef}
+              tabIndex={-1}
+              className="gift-card-message"
+              role="status"
+              aria-live="polite"
+            >
+              {checkoutMessage}
+            </p>
+
           </div>
         </div>
 
