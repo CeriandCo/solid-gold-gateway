@@ -1184,7 +1184,7 @@ function PricingPage() {
             <ProductPricingSection ref={pricingSectionRef} pricing={activePricing} />
           </div>
 
-          <div className="min-w-0 lg:self-start">
+          <div className="min-w-0 lg:mt-5 lg:self-start">
             <PurchaseCalculator product={product} onProductChange={setProduct} />
           </div>
         </div>
