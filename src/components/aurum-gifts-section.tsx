@@ -44,9 +44,7 @@ export function AurumGiftsSection() {
         </div>
 
         <div className="aurum-gifts__handoff">
-          <p>
-            Buying, engraving and delivery happen on the gifting page. Nothing is sold in this section.
-          </p>
+
           <GoldButton
             to="/gifting"
             variant="primary"
