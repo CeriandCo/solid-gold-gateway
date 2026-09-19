@@ -39,4 +39,6 @@
 - [x] Step 3a — allowlist sign-in, roles, admin shell with People and Settings.
 - [x] Step 3b-1 — read-only Posts list in the admin (filters, tabs, search, detail).
 - [x] Step 3b-2 — creating, editing and deleting drafts in the admin (drafts only; publishing arrives with the review workflow).
+- [x] Step 3b-3 — sources editor and live preview for drafts.
+
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.

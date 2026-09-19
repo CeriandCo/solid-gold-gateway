@@ -8,6 +8,9 @@ import {
   WEEKLY_BRIEF_REVIEW_LINE,
   type AdminPostEditable,
 } from "@/lib/admin.functions";
+import { AurumEditorialPreview } from "@/components/aurum-editorial-preview";
+import { formatShortDate, type AurumEditorial } from "@/lib/aurum-editorial";
+
 
 export type AdminPostType = "daily_note" | "weekly_brief";
 
@@ -27,6 +30,15 @@ const STATUS_LABELS: Record<string, string> = {
 
 const SUMMARY_SOFT_LIMIT = 200;
 
+type SourceState = {
+  publisher: string;
+  title: string;
+  date: string;
+  url: string;
+};
+
+type SourceErrors = Partial<Record<keyof SourceState, string>>;
+
 type FormState = {
   type: AdminPostType;
   title: string;
@@ -38,6 +50,7 @@ type FormState = {
   reviewLine: string;
   readMinutesOverride: string;
   publishedAt: string;
+  sources: SourceState[];
 };
 
 /** timestamptz -> the value a datetime-local input expects, in UTC. */
@@ -50,6 +63,30 @@ function toLocalInput(iso: string | null): string {
 function readMinutesFromBody(body: string[]): number {
   const words = body.join(" ").trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / 200));
+}
+
+function todayUtc(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** Inline checks, mirroring the server rules so nothing is sent that would be refused. */
+function checkSource(source: SourceState): SourceErrors {
+  const errors: SourceErrors = {};
+  if (!source.publisher.trim()) errors.publisher = "A publisher is required.";
+  if (!source.title.trim()) errors.title = "A title is required.";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(source.date)) errors.date = "A date is required.";
+  else if (source.date > todayUtc()) errors.date = "The date cannot be in the future.";
+  const url = source.url.trim();
+  let parsed: URL | null = null;
+  try {
+    parsed = new URL(url);
+  } catch {
+    parsed = null;
+  }
+  if (!parsed || parsed.protocol !== "https:") {
+    errors.url = "Use a full web address starting with https://.";
+  }
+  return errors;
 }
 
 function initialState(post: AdminPostEditable | null, type: AdminPostType): FormState {
@@ -65,6 +102,7 @@ function initialState(post: AdminPostEditable | null, type: AdminPostType): Form
       reviewLine: type === "weekly_brief" ? WEEKLY_BRIEF_REVIEW_LINE : "",
       readMinutesOverride: "",
       publishedAt: "",
+      sources: [],
     };
   }
   return {
@@ -78,8 +116,15 @@ function initialState(post: AdminPostEditable | null, type: AdminPostType): Form
     reviewLine: post.reviewLine,
     readMinutesOverride: post.readMinutes === null ? "" : String(post.readMinutes),
     publishedAt: toLocalInput(post.publishedAt),
+    sources: post.sources.map((source) => ({
+      publisher: source.publisher,
+      title: source.title,
+      date: source.date,
+      url: source.url,
+    })),
   };
 }
+
 
 export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
   const navigate = useNavigate();
@@ -91,9 +136,38 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
   const [notice, setNotice] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [showSourceErrors, setShowSourceErrors] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
 
   const dirty = !readOnly && JSON.stringify(state) !== saved;
   const autoMinutes = useMemo(() => readMinutesFromBody(state.body), [state.body]);
+  const sourceErrors = useMemo(() => state.sources.map(checkSource), [state.sources]);
+  const hasSourceErrors = sourceErrors.some((errors) => Object.keys(errors).length > 0);
+
+  const previewArticle: AurumEditorial = useMemo(() => {
+    const body = state.body.map((paragraph) => paragraph.trim()).filter(Boolean);
+    const override = Number(state.readMinutesOverride);
+    return {
+      slug: state.slug,
+      title: state.title,
+      summary: state.summary,
+      publishedAt: (state.publishedAt ? state.publishedAt.slice(0, 10) : "") || todayUtc(),
+      readMinutes:
+        state.readMinutesOverride !== "" && Number.isFinite(override) && override >= 1
+          ? Math.trunc(override)
+          : readMinutesFromBody(state.body),
+      body,
+      ...(state.pullQuote.trim() ? { pullQuote: state.pullQuote.trim() } : {}),
+      ...(state.reviewLine.trim() ? { reviewLine: state.reviewLine.trim() } : {}),
+
+      sources: state.sources.map((source) => ({
+        publisher: source.publisher,
+        title: source.title,
+        date: /^\d{4}-\d{2}-\d{2}$/.test(source.date) ? formatShortDate(source.date) : source.date,
+        url: source.url,
+      })),
+    };
+  }, [state]);
 
   // Warn before a full page unload; in-app links ask for confirmation themselves.
   useEffect(() => {
@@ -137,6 +211,27 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
     });
   };
 
+  const setSource = (index: number, key: keyof SourceState, value: string) => {
+    setState((current) => ({
+      ...current,
+      sources: current.sources.map((source, i) =>
+        i === index ? { ...source, [key]: value } : source,
+      ),
+    }));
+  };
+
+  const moveSource = (index: number, delta: number) => {
+    setState((current) => {
+      const next = [...current.sources];
+      const target = index + delta;
+      if (target < 0 || target >= next.length) return current;
+      const moved = next[index] as SourceState;
+      next[index] = next[target] as SourceState;
+      next[target] = moved;
+      return { ...current, sources: next };
+    });
+  };
+
   const payload = () => ({
     title: state.title,
     slug: state.slug,
@@ -146,10 +241,24 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
     reviewLine: state.reviewLine,
     readMinutes: state.readMinutesOverride === "" ? null : state.readMinutesOverride,
     publishedAt: state.publishedAt ? new Date(`${state.publishedAt}Z`).toISOString() : null,
+    sources: state.sources.map((source) => ({
+      publisher: source.publisher.trim(),
+      title: source.title.trim(),
+      date: source.date,
+      url: source.url.trim(),
+    })),
   });
 
   const save = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (hasSourceErrors) {
+      // Nothing is sent, so neither the post nor its sources change.
+      setShowSourceErrors(true);
+      setNotice(null);
+      setError("Check the sources below. Nothing was saved.");
+      return;
+    }
+    setShowSourceErrors(false);
     setBusy(true);
     setError(null);
     setNotice(null);
@@ -168,6 +277,7 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
     } finally {
       setBusy(false);
     }
+
   };
 
   const remove = async () => {
@@ -227,7 +337,20 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
         </p>
       ) : null}
 
+      <div className="admin-form__actions">
+        <button
+          type="button"
+          className="admin-button admin-button--ghost"
+          aria-expanded={showPreview}
+          onClick={() => setShowPreview((current) => !current)}
+        >
+          {showPreview ? "Hide preview" : "Show preview"}
+        </button>
+      </div>
+
+      <div className={showPreview ? "admin-editor-layout" : "admin-editor-layout is-single"}>
       <form className="admin-form admin-post-form" onSubmit={save}>
+
         <div className="admin-field">
           <label className="admin-label" htmlFor="post-type">
             Type
@@ -382,6 +505,134 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
           </p>
         </fieldset>
 
+        <fieldset className="admin-field admin-fieldset">
+          <legend className="admin-label">Sources</legend>
+          {state.sources.length === 0 ? (
+            <p className="admin-help is-warning">
+              At least one source is required before this can be published.
+            </p>
+          ) : null}
+          {state.sources.map((source, index) => {
+            const errors = showSourceErrors ? (sourceErrors[index] ?? {}) : {};
+            return (
+              <div className="admin-source" key={index}>
+                <div className="admin-field">
+                  <label className="admin-label" htmlFor={`source-publisher-${index}`}>
+                    Publisher
+                  </label>
+                  <input
+                    id={`source-publisher-${index}`}
+                    className="admin-input"
+                    disabled={readOnly}
+                    value={source.publisher}
+                    onChange={(event) => setSource(index, "publisher", event.target.value)}
+                  />
+                  {errors.publisher ? (
+                    <p className="admin-help is-warning">{errors.publisher}</p>
+                  ) : null}
+                </div>
+                <div className="admin-field">
+                  <label className="admin-label" htmlFor={`source-title-${index}`}>
+                    Title
+                  </label>
+                  <input
+                    id={`source-title-${index}`}
+                    className="admin-input"
+                    disabled={readOnly}
+                    value={source.title}
+                    onChange={(event) => setSource(index, "title", event.target.value)}
+                  />
+                  {errors.title ? <p className="admin-help is-warning">{errors.title}</p> : null}
+                </div>
+                <div className="admin-field">
+                  <label className="admin-label" htmlFor={`source-date-${index}`}>
+                    Date
+                  </label>
+                  <input
+                    id={`source-date-${index}`}
+                    className="admin-input"
+                    type="date"
+                    max={todayUtc()}
+                    disabled={readOnly}
+                    value={source.date}
+                    onChange={(event) => setSource(index, "date", event.target.value)}
+                  />
+                  {errors.date ? <p className="admin-help is-warning">{errors.date}</p> : null}
+                </div>
+                <div className="admin-field">
+                  <label className="admin-label" htmlFor={`source-url-${index}`}>
+                    Web address
+                  </label>
+                  <input
+                    id={`source-url-${index}`}
+                    className="admin-input"
+                    type="url"
+                    placeholder="https://"
+                    disabled={readOnly}
+                    value={source.url}
+                    onChange={(event) => setSource(index, "url", event.target.value)}
+                  />
+                  {errors.url ? <p className="admin-help is-warning">{errors.url}</p> : null}
+                </div>
+                {readOnly ? null : (
+                  <div className="admin-paragraph__actions">
+                    <button
+                      type="button"
+                      className="admin-button admin-button--ghost"
+                      disabled={index === 0}
+                      onClick={() => moveSource(index, -1)}
+                    >
+                      Move up
+                    </button>
+                    <button
+                      type="button"
+                      className="admin-button admin-button--ghost"
+                      disabled={index === state.sources.length - 1}
+                      onClick={() => moveSource(index, 1)}
+                    >
+                      Move down
+                    </button>
+                    <button
+                      type="button"
+                      className="admin-button admin-button--ghost"
+                      onClick={() =>
+                        setState((current) => ({
+                          ...current,
+                          sources: current.sources.filter((_, i) => i !== index),
+                        }))
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          {readOnly ? null : (
+            <button
+              type="button"
+              className="admin-button admin-button--ghost"
+              onClick={() =>
+                setState((current) => ({
+                  ...current,
+                  sources: [
+                    ...current.sources,
+                    { publisher: "", title: "", date: "", url: "" },
+                  ],
+                }))
+              }
+            >
+              Add source
+            </button>
+          )}
+          <p className="admin-help">
+            Sources are saved with the draft, in the order shown here.
+          </p>
+        </fieldset>
+
+
+
         <div className="admin-field">
           <label className="admin-label" htmlFor="post-pull-quote">
             Pull quote (optional)
@@ -466,6 +717,16 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
         )}
       </form>
 
+      {showPreview ? (
+        <aside className="admin-preview" aria-label="Preview, not published">
+          <p className="admin-preview__label">Preview, not published</p>
+          <div className="admin-preview__frame">
+            <AurumEditorialPreview article={previewArticle} type={state.type} />
+          </div>
+        </aside>
+      ) : null}
+      </div>
+
       {confirmDelete ? (
         <div className="admin-confirm" role="alertdialog" aria-label="Delete this draft?">
           <p>Delete this draft? This cannot be undone.</p>
@@ -483,24 +744,7 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
           </div>
         </div>
       ) : null}
-
-      {post && post.sources.length > 0 ? (
-        <>
-          <h2 className="admin-subheading">Sources ({post.sources.length})</h2>
-          <ul className="admin-source-list">
-            {post.sources.map((source) => (
-              <li key={`${source.url}-${source.title}`}>
-                <a href={source.url} target="_blank" rel="noreferrer">
-                  {source.title}
-                </a>{" "}
-                <span className="admin-muted">
-                  — {source.publisher}, {source.date}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : null}
     </section>
   );
 }
+

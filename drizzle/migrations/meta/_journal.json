@@ -57,6 +57,13 @@
       "when": 1789804033493,
       "tag": "0007_admin_write_drafts",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789805194362,
+      "tag": "0008_admin_write_draft_sources",
+      "breakpoints": true
     }
   ]
 }
