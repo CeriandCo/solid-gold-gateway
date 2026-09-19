@@ -102,7 +102,7 @@ function AdminLayout() {
           <span className="admin-topbar__label">Editorial admin</span>
         </div>
         <nav className="admin-nav" aria-label="Admin">
-          <Link to="/admin" activeOptions={{ exact: true }} activeProps={{ className: "is-active" }}>
+          <Link to="/admin/posts" activeProps={{ className: "is-active" }}>
             Posts
           </Link>
           {isAdmin ? (
