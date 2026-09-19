@@ -355,6 +355,8 @@ export type Database = {
           checkout_enabled: boolean
           currency: string | null
           daily_limit_cents: number
+          delivery_enabled: boolean
+          email_from: string | null
           hold_hours: number
           id: boolean
           max_card_cents: number
@@ -367,6 +369,8 @@ export type Database = {
           checkout_enabled?: boolean
           currency?: string | null
           daily_limit_cents?: number
+          delivery_enabled?: boolean
+          email_from?: string | null
           hold_hours?: number
           id?: boolean
           max_card_cents?: number
@@ -379,6 +383,8 @@ export type Database = {
           checkout_enabled?: boolean
           currency?: string | null
           daily_limit_cents?: number
+          delivery_enabled?: boolean
+          email_from?: string | null
           hold_hours?: number
           id?: boolean
           max_card_cents?: number
@@ -387,6 +393,41 @@ export type Database = {
           updated_by?: string | null
         }
         Relationships: []
+      }
+      gift_card_delivery_attempts: {
+        Row: {
+          attempted_at: string
+          error_category: string | null
+          gift_card_id: string
+          id: number
+          outcome: string
+          provider_message_id: string | null
+        }
+        Insert: {
+          attempted_at?: string
+          error_category?: string | null
+          gift_card_id: string
+          id?: number
+          outcome: string
+          provider_message_id?: string | null
+        }
+        Update: {
+          attempted_at?: string
+          error_category?: string | null
+          gift_card_id?: string
+          id?: number
+          outcome?: string
+          provider_message_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_card_delivery_attempts_gift_card_id_fkey"
+            columns: ["gift_card_id"]
+            isOneToOne: false
+            referencedRelation: "gift_cards"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       gift_card_denominations: {
         Row: {
@@ -537,6 +578,7 @@ export type Database = {
           created_at: string
           currency: string
           delivered_at: string | null
+          delivery_claimed_at: string | null
           hold_until: string | null
           id: string
           order_id: string
@@ -552,6 +594,7 @@ export type Database = {
           created_at?: string
           currency: string
           delivered_at?: string | null
+          delivery_claimed_at?: string | null
           hold_until?: string | null
           id?: string
           order_id: string
@@ -567,6 +610,7 @@ export type Database = {
           created_at?: string
           currency?: string
           delivered_at?: string | null
+          delivery_claimed_at?: string | null
           hold_until?: string | null
           id?: string
           order_id?: string
@@ -633,6 +677,20 @@ export type Database = {
         Returns: undefined
       }
       commerce_prune_checkout_attempts: { Args: never; Returns: undefined }
+      commerce_prune_delivery_attempts: { Args: never; Returns: undefined }
+      gift_card_activate_due: { Args: never; Returns: number }
+      gift_card_claim_for_delivery: {
+        Args: { _lease_minutes?: number; _limit?: number }
+        Returns: {
+          amount_cents: number
+          currency: string
+          gift_card_id: string
+          gift_message: string
+          order_id: string
+          recipient_email: string
+          recipient_name: string
+        }[]
+      }
       gift_card_order_settle: {
         Args: {
           _buyer_email?: string
@@ -658,6 +716,14 @@ export type Database = {
           _reference?: string
         }
         Returns: number
+      }
+      gift_card_release_delivery_claim: {
+        Args: { _gift_card_id: string }
+        Returns: undefined
+      }
+      gift_card_set_code: {
+        Args: { _code_hash: string; _code_last4: string; _gift_card_id: string }
+        Returns: boolean
       }
     }
     Enums: {

@@ -106,6 +106,13 @@
       "when": 1789819997298,
       "tag": "0014_commerce_alerts_and_review_rules",
       "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1789821099573,
+      "tag": "0015_gift_card_activation_and_delivery",
+      "breakpoints": true
     }
   ]
 }
