@@ -1,11 +1,12 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { AurumNoteBody, AurumNoteQuote, AurumNoteSources } from "@/components/aurum-note-content";
-import { formatNoteDate, getAurumNote } from "@/lib/aurum-notes";
+import { formatNoteDate } from "@/lib/aurum-notes";
+import { fetchEditorialBySlug } from "@/lib/aurum-editorial.functions";
 
 export const Route = createFileRoute("/aurum_/notes/$slug")({
-  loader: ({ params }) => {
-    const note = getAurumNote(params.slug);
+  loader: async ({ params }) => {
+    const note = await fetchEditorialBySlug({ data: { type: "daily_note", slug: params.slug } });
     if (!note) throw notFound();
     return { note };
   },
