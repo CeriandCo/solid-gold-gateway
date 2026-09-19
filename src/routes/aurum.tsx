@@ -12,7 +12,7 @@ import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
