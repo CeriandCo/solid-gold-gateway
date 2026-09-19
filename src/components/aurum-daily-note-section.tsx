@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { AURUM_NOTES, AURUM_NOTE_COUNT } from "@/lib/aurum-notes";
+import { useServerFn } from "@tanstack/react-start";
+import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
+import type { AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialRow } from "@/components/aurum-editorial-row";
 
 const PAGE_SIZE = 3;
@@ -7,12 +9,34 @@ const PAGE_SIZE = 3;
 export function AurumDailyNoteSection({
   openSlug,
   onToggle,
+  initial,
 }: {
   openSlug: string | null;
   onToggle: (slug: string | null) => void;
+  initial: { items: AurumEditorial[]; total: number } | null;
 }) {
-  const [visible, setVisible] = useState(PAGE_SIZE);
-  const notes = AURUM_NOTES.slice(0, visible);
+  const loadPage = useServerFn(fetchEditorialPage);
+  const [notes, setNotes] = useState<AurumEditorial[]>(initial?.items ?? []);
+  const [total, setTotal] = useState(initial?.total ?? 0);
+  const [loading, setLoading] = useState(false);
+
+  const showOlder = async () => {
+    setLoading(true);
+    try {
+      const page = await loadPage({
+        data: { type: "daily_note", limit: PAGE_SIZE, offset: notes.length },
+      });
+      setNotes((current) => [
+        ...current,
+        ...page.items.filter((item) => !current.some((note) => note.slug === item.slug)),
+      ]);
+      setTotal(page.total);
+    } catch {
+      // Keep what is already on screen; the counter and button stay as they are.
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="daily-note" className="aurum-section aurum-daily-note" aria-labelledby="aurum-daily-note-title">
@@ -26,31 +50,37 @@ export function AurumDailyNoteSection({
           forecasts, no calls.
         </p>
 
-        <ul className="aurum-note-list">
-          {notes.map((note, index) => (
-            <AurumEditorialRow
-              key={note.slug}
-              article={note}
-              isOpen={openSlug === note.slug}
-              isLatest={index === 0}
-              panelId={`aurum-note-panel-${note.slug}`}
-              pagePath={`/aurum/notes/${note.slug}`}
-              closeLabel="Collapse ↑"
-              onToggle={() => onToggle(openSlug === note.slug ? null : note.slug)}
-            />
-          ))}
-        </ul>
+        {initial === null ? (
+          <p className="aurum-note-dek">Notes are temporarily unavailable.</p>
+        ) : (
+          <>
+            <ul className="aurum-note-list">
+              {notes.map((note, index) => (
+                <AurumEditorialRow
+                  key={note.slug}
+                  article={note}
+                  isOpen={openSlug === note.slug}
+                  isLatest={index === 0}
+                  panelId={`aurum-note-panel-${note.slug}`}
+                  pagePath={`/aurum/notes/${note.slug}`}
+                  closeLabel="Collapse ↑"
+                  onToggle={() => onToggle(openSlug === note.slug ? null : note.slug)}
+                />
+              ))}
+            </ul>
 
-        <div className="aurum-note-footer">
-          <p>
-            Latest {notes.length} of {AURUM_NOTE_COUNT} notes
-          </p>
-          {visible < AURUM_NOTE_COUNT ? (
-            <button type="button" className="aurum-note-more" onClick={() => setVisible((n) => n + PAGE_SIZE)}>
-              Show older notes ↓
-            </button>
-          ) : null}
-        </div>
+            <div className="aurum-note-footer">
+              <p>
+                Latest {notes.length} of {total} notes
+              </p>
+              {notes.length < total ? (
+                <button type="button" className="aurum-note-more" onClick={showOlder} disabled={loading}>
+                  Show older notes ↓
+                </button>
+              ) : null}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
