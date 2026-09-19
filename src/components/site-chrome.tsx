@@ -285,6 +285,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
       { label: "Fractional", to: "/fractional-gold" },
       { label: "Gifting", to: "/gifting" },
       { label: "Vault", to: "/vault" },
+      { label: "AURUM", to: "/aurum" },
       { label: "Learn", to: "/learn" },
     ],
   },
