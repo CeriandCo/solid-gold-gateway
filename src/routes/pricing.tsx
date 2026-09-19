@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
