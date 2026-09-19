@@ -2,10 +2,10 @@ import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   getAdminMe,
-  getAdminPost,
-  type AdminPostDetail,
+  getAdminPostForEdit,
+  type AdminPostEditable,
 } from "@/lib/admin.functions";
-import { formatShortDate } from "@/lib/aurum-editorial";
+import { AdminPostForm } from "@/components/admin-post-form";
 
 export const Route = createFileRoute("/admin/posts/$postId")({
   // UI guard only; the server functions and RLS are the real boundary.
@@ -21,9 +21,9 @@ export const Route = createFileRoute("/admin/posts/$postId")({
   head: () => ({
     meta: [
       { title: "Post | AURUM admin" },
-      { name: "description", content: "A read-only look at an AURUM editorial post." },
+      { name: "description", content: "Edit an AURUM editorial draft." },
       { property: "og:title", content: "Post | AURUM admin" },
-      { property: "og:description", content: "A read-only look at an AURUM editorial post." },
+      { property: "og:description", content: "Edit an AURUM editorial draft." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
@@ -32,34 +32,16 @@ export const Route = createFileRoute("/admin/posts/$postId")({
   component: PostDetailPage,
 });
 
-const STATUS_LABELS: Record<string, string> = {
-  draft: "Draft",
-  in_review: "In review",
-  scheduled: "Scheduled",
-  published: "Published",
-  archived: "Archived",
-};
-
-const TYPE_LABELS: Record<string, string> = {
-  daily_note: "Daily Note",
-  weekly_brief: "Weekly Brief",
-  article: "Article",
-};
-
-function formatDate(iso: string | null): string {
-  if (!iso) return "—";
-  return formatShortDate(new Date(iso).toISOString().slice(0, 10));
-}
-
 function PostDetailPage() {
   const { postId } = Route.useParams();
-  const [post, setPost] = useState<AdminPostDetail | null>(null);
+  const [post, setPost] = useState<AdminPostEditable | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
-    getAdminPost({ data: { id: postId } })
+    setLoading(true);
+    getAdminPostForEdit({ data: { id: postId } })
       .then((data) => {
         if (!active) return;
         if (!data) setError("That post could not be found.");
@@ -98,56 +80,5 @@ function PostDetailPage() {
     );
   }
 
-  return (
-    <section className="admin-card">
-      <p className="admin-muted">
-        <Link to="/admin/posts">← All posts</Link>
-      </p>
-      <h1 className="admin-heading">{post.title}</h1>
-      <p className="admin-note" role="note">
-        Editing arrives in the next step. This is a read-only summary.
-      </p>
-
-      <dl className="admin-detail">
-        <div className="admin-detail__row">
-          <dt>Type</dt>
-          <dd>{TYPE_LABELS[post.type] ?? post.type}</dd>
-        </div>
-        <div className="admin-detail__row">
-          <dt>Status</dt>
-          <dd>
-            <span className={`admin-badge admin-badge--${post.status.replace("_", "-")}`}>
-              {STATUS_LABELS[post.status] ?? post.status}
-            </span>
-          </dd>
-        </div>
-        <div className="admin-detail__row">
-          <dt>Publication date</dt>
-          <dd>{formatDate(post.publishedAt)}</dd>
-        </div>
-        <div className="admin-detail__row">
-          <dt>Summary</dt>
-          <dd>{post.summary}</dd>
-        </div>
-      </dl>
-
-      <h2 className="admin-subheading">Sources ({post.sources.length})</h2>
-      {post.sources.length === 0 ? (
-        <p className="admin-muted">No sources attached.</p>
-      ) : (
-        <ul className="admin-source-list">
-          {post.sources.map((source) => (
-            <li key={`${source.url}-${source.title}`}>
-              <a href={source.url} target="_blank" rel="noreferrer">
-                {source.title}
-              </a>{" "}
-              <span className="admin-muted">
-                — {source.publisher}, {formatShortDate(source.date)}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
-  );
+  return <AdminPostForm key={post.id} post={post} />;
 }
