@@ -415,3 +415,248 @@ export const getAdminPost = createServerFn({ method: "GET" })
       })),
     };
   });
+
+// ---------------------------------------------------------------------------
+// Draft editing (step 3b-2). Drafts only: RLS refuses anything else.
+// ---------------------------------------------------------------------------
+
+export type AdminPostEditable = {
+  id: string;
+  type: "daily_note" | "weekly_brief" | string;
+  status: AdminPostStatus;
+  slug: string;
+  title: string;
+  summary: string;
+  body: string[];
+  pullQuote: string;
+  reviewLine: string;
+  readMinutes: number | null;
+  publishedAt: string | null;
+  updatedAt: string;
+  /** False for published, scheduled and archived posts: the form opens read-only. */
+  editable: boolean;
+  sources: { publisher: string; title: string; date: string; url: string }[];
+};
+
+export type AdminDraftInput = {
+  title: string;
+  slug: string;
+  summary: string;
+  body: string[];
+  pullQuote: string | null;
+  reviewLine: string | null;
+  readMinutes: number | null;
+  publishedAt: string | null;
+};
+
+export const WEEKLY_BRIEF_REVIEW_LINE =
+  "Drafted with AI assistance from approved sources, and reviewed by a person before publication and before sending.";
+
+const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** Title -> slug; the form uses the same rule so the server never surprises the user. */
+export function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+function optionalText(value: unknown): string | null {
+  const text = String(value ?? "").trim();
+  return text.length > 0 ? text : null;
+}
+
+function parseDraftInput(input: Record<string, unknown>): AdminDraftInput {
+  const title = String(input["title"] ?? "").trim();
+  if (!title) throw new Error("A title is required.");
+
+  const slug = String(input["slug"] ?? "").trim().toLowerCase();
+  if (!SLUG_PATTERN.test(slug)) {
+    throw new Error("The web address can only use lowercase letters, numbers and hyphens.");
+  }
+
+  const summary = String(input["summary"] ?? "").trim();
+  if (!summary) throw new Error("A summary is required.");
+
+  const body = (Array.isArray(input["body"]) ? input["body"] : [])
+    .map((paragraph) => String(paragraph ?? "").trim())
+    .filter((paragraph) => paragraph.length > 0);
+  if (body.length === 0) throw new Error("Add at least one paragraph.");
+
+  const readMinutesRaw = input["readMinutes"];
+  let readMinutes: number | null = null;
+  if (readMinutesRaw !== null && readMinutesRaw !== undefined && readMinutesRaw !== "") {
+    const parsed = Math.trunc(Number(readMinutesRaw));
+    if (!Number.isFinite(parsed) || parsed < 1) throw new Error("Read time must be 1 or more.");
+    readMinutes = parsed;
+  }
+
+  const publishedAtRaw = optionalText(input["publishedAt"]);
+  let publishedAt: string | null = null;
+  if (publishedAtRaw) {
+    const date = new Date(publishedAtRaw);
+    if (Number.isNaN(date.getTime())) throw new Error("That publication date is not valid.");
+    publishedAt = date.toISOString();
+  }
+
+  return {
+    title,
+    slug,
+    summary,
+    body,
+    pullQuote: optionalText(input["pullQuote"]),
+    reviewLine: optionalText(input["reviewLine"]),
+    readMinutes,
+    publishedAt,
+  };
+}
+
+function writeError(error: { code?: string; message: string }): Error {
+  if (error.code === "23505") {
+    return new Error("That web address is already used by another post of this type.");
+  }
+  if (error.code === "42501" || /row-level security/i.test(error.message)) {
+    return new Error("That post cannot be changed here. Only drafts you may edit can be saved.");
+  }
+  return new Error(error.message);
+}
+
+export const getAdminPostForEdit = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => ({
+    id: String(((data ?? {}) as Record<string, unknown>)["id"] ?? ""),
+  }))
+  .handler(async ({ data, context }): Promise<AdminPostEditable | null> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const { data: post, error } = await context.supabase
+      .from("aurum_posts")
+      .select(
+        "id, type, status, slug, title, summary, body, pull_quote, review_line, read_minutes, published_at, updated_at, author_id",
+      )
+      .eq("id", data.id)
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    if (!post) return null;
+
+    const { data: sources, error: sourceError } = await context.supabase
+      .from("aurum_post_sources")
+      .select("publisher, title, source_date, url")
+      .eq("post_id", post.id)
+      .order("position", { ascending: true });
+    if (sourceError) throw new Error(sourceError.message);
+
+    const now = new Date().toISOString();
+    const status = deriveStatus(post.status, post.published_at, now);
+    const mayEditOwn = role !== "editor" || post.author_id === context.userId;
+
+    return {
+      id: post.id,
+      type: post.type,
+      status,
+      slug: post.slug,
+      title: post.title,
+      summary: post.summary,
+      body: Array.isArray(post.body) ? (post.body as string[]) : [],
+      pullQuote: post.pull_quote ?? "",
+      reviewLine: post.review_line ?? "",
+      readMinutes: post.read_minutes,
+      publishedAt: post.published_at,
+      updatedAt: post.updated_at,
+      editable: post.status === "draft" && mayEditOwn,
+      sources: (sources ?? []).map((source) => ({
+        publisher: source.publisher,
+        title: source.title,
+        date: source.source_date,
+        url: source.url,
+      })),
+    };
+  });
+
+export const createDraft = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    return { type: parseTypeFilter(input["type"]), draft: parseDraftInput(input) };
+  })
+  .handler(async ({ data, context }): Promise<{ id: string }> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+    if (data.type === "all") throw new Error("Choose a post type.");
+
+    const { data: row, error } = await context.supabase
+      .from("aurum_posts")
+      .insert({
+        type: data.type,
+        status: "draft",
+        author_id: context.userId,
+        slug: data.draft.slug,
+        title: data.draft.title,
+        summary: data.draft.summary,
+        body: data.draft.body,
+        pull_quote: data.draft.pullQuote,
+        review_line: data.draft.reviewLine,
+        read_minutes: data.draft.readMinutes,
+        published_at: data.draft.publishedAt,
+      })
+      .select("id")
+      .single();
+    if (error) throw writeError(error);
+    return { id: row.id };
+  });
+
+export const updateDraft = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    return { id: String(input["id"] ?? ""), draft: parseDraftInput(input) };
+  })
+  .handler(async ({ data, context }): Promise<{ ok: true }> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const { data: rows, error } = await context.supabase
+      .from("aurum_posts")
+      .update({
+        slug: data.draft.slug,
+        title: data.draft.title,
+        summary: data.draft.summary,
+        body: data.draft.body,
+        pull_quote: data.draft.pullQuote,
+        review_line: data.draft.reviewLine,
+        read_minutes: data.draft.readMinutes,
+        published_at: data.draft.publishedAt,
+      })
+      .eq("id", data.id)
+      .select("id");
+    if (error) throw writeError(error);
+    if (!rows || rows.length === 0) {
+      throw new Error("That post cannot be changed here. Only drafts you may edit can be saved.");
+    }
+    return { ok: true };
+  });
+
+export const deleteDraft = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => ({
+    id: String(((data ?? {}) as Record<string, unknown>)["id"] ?? ""),
+  }))
+  .handler(async ({ data, context }): Promise<{ ok: true }> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const { data: rows, error } = await context.supabase
+      .from("aurum_posts")
+      .delete()
+      .eq("id", data.id)
+      .select("id");
+    if (error) throw writeError(error);
+    if (!rows || rows.length === 0) {
+      throw new Error("That post cannot be deleted here. Only drafts you may edit can be removed.");
+    }
+    return { ok: true };
+  });
+

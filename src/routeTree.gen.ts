@@ -35,6 +35,7 @@ import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-
 import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.physical-gold-vs-gold-etf'
 import { Route as AdminPostsIndexRouteImport } from './routes/admin.posts.index'
 import { Route as AdminPostsPostIdRouteImport } from './routes/admin.posts.$postId'
+import { Route as AdminPostsNewRouteImport } from './routes/admin.posts.new'
 import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
@@ -173,6 +174,11 @@ const AdminPostsPostIdRoute = AdminPostsPostIdRouteImport.update({
   path: '/$postId',
   getParentRoute: () => AdminPostsRoute,
 } as any)
+const AdminPostsNewRoute = AdminPostsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminPostsRoute,
+} as any)
 const ApiPublicAurumBackfillDailyHistoryRoute =
   ApiPublicAurumBackfillDailyHistoryRouteImport.update({
     id: '/api/public/aurum-backfill-daily-history',
@@ -232,6 +238,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
+  '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -263,6 +270,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/learn': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
+  '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -298,6 +306,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
+  '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
@@ -334,6 +343,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/learn/'
     | '/admin/posts/$postId'
+    | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -365,6 +375,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/learn'
     | '/admin/posts/$postId'
+    | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -399,6 +410,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/learn/'
     | '/admin/posts/$postId'
+    | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
@@ -617,6 +629,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPostsPostIdRouteImport
       parentRoute: typeof AdminPostsRoute
     }
+    '/admin/posts/new': {
+      id: '/admin/posts/new'
+      path: '/new'
+      fullPath: '/admin/posts/new'
+      preLoaderRoute: typeof AdminPostsNewRouteImport
+      parentRoute: typeof AdminPostsRoute
+    }
     '/api/public/aurum-backfill-daily-history': {
       id: '/api/public/aurum-backfill-daily-history'
       path: '/api/public/aurum-backfill-daily-history'
@@ -664,11 +683,13 @@ declare module '@tanstack/react-router' {
 
 interface AdminPostsRouteChildren {
   AdminPostsPostIdRoute: typeof AdminPostsPostIdRoute
+  AdminPostsNewRoute: typeof AdminPostsNewRoute
   AdminPostsIndexRoute: typeof AdminPostsIndexRoute
 }
 
 const AdminPostsRouteChildren: AdminPostsRouteChildren = {
   AdminPostsPostIdRoute: AdminPostsPostIdRoute,
+  AdminPostsNewRoute: AdminPostsNewRoute,
   AdminPostsIndexRoute: AdminPostsIndexRoute,
 }
 

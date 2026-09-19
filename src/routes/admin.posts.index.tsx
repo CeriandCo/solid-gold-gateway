@@ -136,18 +136,14 @@ function PostsPage() {
         <div>
           <h1 className="admin-heading">Posts</h1>
           <p className="admin-muted">
-            Every Daily Note and Weekly Brief, including drafts. Read-only for now.
+            Every Daily Note and Weekly Brief, including drafts.
           </p>
         </div>
-        <button
-          type="button"
-          className="admin-button"
-          disabled
-          title="Creating posts arrives in the next step."
-        >
+        <Link to="/admin/posts/new" className="admin-button">
           New post
-        </button>
+        </Link>
       </div>
+
 
       {error ? (
         <p className="admin-alert" role="alert">
