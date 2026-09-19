@@ -63,7 +63,8 @@ function mapPost(row: Record<string, unknown>, sources: AurumEditorialSource[]):
  * passed. Applied in one place so every read path shares it; a future-dated published
  * post is therefore scheduled, not live.
  */
-function visible<T extends { eq: (c: string, v: unknown) => T; lte: (c: string, v: string) => T }>(query: T): T {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function visible(query: any): any {
   return query.eq("status", "published").lte("published_at", new Date().toISOString());
 }
 
@@ -99,13 +100,13 @@ async function hydrate(rows: Record<string, unknown>[]): Promise<AurumEditorial[
 /** How many visible posts of this type are newer than the given slug (0 = newest). */
 async function rankOfSlug(type: AurumEditorialType, slug: string): Promise<number | null> {
   const { data, error } = await visible(
-    supabaseAdmin.from("aurum_posts").select("published_at").eq("type", type).eq("slug", slug) as never,
+    supabaseAdmin.from("aurum_posts").select("published_at").eq("type", type).eq("slug", slug),
   ).maybeSingle();
   if (error) throw new Error(`Failed to locate editorial post: ${error.message}`);
   if (!data) return null;
 
   const { count, error: countError } = await visible(
-    supabaseAdmin.from("aurum_posts").select("id", { count: "exact", head: true }).eq("type", type) as never,
+    supabaseAdmin.from("aurum_posts").select("id", { count: "exact", head: true }).eq("type", type),
   ).gt("published_at", (data as { published_at: string }).published_at);
   if (countError) throw new Error(`Failed to locate editorial post: ${countError.message}`);
   return count ?? 0;
@@ -129,7 +130,7 @@ export async function loadEditorialPage(input: {
     supabaseAdmin
       .from("aurum_posts")
       .select(POST_COLUMNS, { count: "exact" })
-      .eq("type", input.type) as never,
+      .eq("type", input.type),
   )
     .order("published_at", { ascending: false })
     .range(input.offset, input.offset + limit - 1);
@@ -146,7 +147,7 @@ export async function loadEditorialBySlug(
   slug: string,
 ): Promise<AurumEditorial | null> {
   const { data, error } = await visible(
-    supabaseAdmin.from("aurum_posts").select(POST_COLUMNS).eq("type", type).eq("slug", slug) as never,
+    supabaseAdmin.from("aurum_posts").select(POST_COLUMNS).eq("type", type).eq("slug", slug),
   ).maybeSingle();
   if (error) throw new Error(`Failed to load editorial post: ${error.message}`);
   if (!data) return null;
