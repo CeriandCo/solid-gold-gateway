@@ -40,6 +40,7 @@ import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
+import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe-webhook'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
 import { Route as AurumNotesSlugRouteImport } from './routes/aurum_.notes.$slug'
 
@@ -201,6 +202,11 @@ const ApiPublicGetHistoryRoute = ApiPublicGetHistoryRouteImport.update({
   path: '/api/public/get-history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicStripeWebhookRoute = ApiPublicStripeWebhookRouteImport.update({
+  id: '/api/public/stripe-webhook',
+  path: '/api/public/stripe-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AurumBriefsSlugRoute = AurumBriefsSlugRouteImport.update({
   id: '/aurum_/briefs/$slug',
   path: '/aurum/briefs/$slug',
@@ -243,6 +249,7 @@ export interface FileRoutesByFullPath {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts/': typeof AdminPostsIndexRoute
@@ -275,6 +282,7 @@ export interface FileRoutesByTo {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts': typeof AdminPostsIndexRoute
@@ -311,6 +319,7 @@ export interface FileRoutesById {
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts/': typeof AdminPostsIndexRoute
@@ -348,6 +357,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
     | '/admin/posts/'
@@ -380,6 +390,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
     | '/admin/posts'
@@ -415,6 +426,7 @@ export interface FileRouteTypes {
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
+    | '/api/public/stripe-webhook'
     | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
     | '/admin/posts/'
@@ -441,6 +453,7 @@ export interface RootRouteChildren {
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
   ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
   ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
+  ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
 }
@@ -664,6 +677,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicGetHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/stripe-webhook': {
+      id: '/api/public/stripe-webhook'
+      path: '/api/public/stripe-webhook'
+      fullPath: '/api/public/stripe-webhook'
+      preLoaderRoute: typeof ApiPublicStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aurum_/briefs/$slug': {
       id: '/aurum_/briefs/$slug'
       path: '/aurum/briefs/$slug'
@@ -751,6 +771,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,
   ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
   ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
+  ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
 }
