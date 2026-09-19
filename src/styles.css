@@ -27,6 +27,8 @@
   --radius-3xl: 8px;
   --radius-4xl: 8px;
   --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-number: "Cormorant Infant", Georgia, serif;
+  --font-money: "Geist Mono", monospace;
   --font-sans: "Inter", Arial, sans-serif;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   /* UI text scale: recurring interface sizes between Tailwind's xs and base. */
@@ -55,6 +57,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-forest: var(--forest);
+  --color-forest-2: var(--forest-2);
   --color-forest-deep: var(--forest-deep);
   --color-charcoal: var(--charcoal);
   --color-ivory: var(--ivory);
@@ -64,6 +67,11 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-line: var(--line);
+  --color-white: var(--white);
+  --color-ink: var(--ink);
+  --color-muted-2: var(--muted-2);
   --color-warm-white: var(--warm-white);
   --color-paper: var(--paper);
   --color-muted-ink: var(--muted-ink);
@@ -81,21 +89,27 @@
   --radius: 2px;
 
   /* Brand — sampled from approved target */
-  --forest: oklch(0.185 0.028 162); /* #05140D header/footer dark */
+  --forest: oklch(0.242873 0.034668 159.452); /* #10251A */
+  --forest-2: oklch(0.222074 0.03495 158.831); /* #0B2015 */
   --forest-deep: oklch(0.243 0.035 160); /* #0B2015 dark cards */
   --charcoal: oklch(0.205 0.03 161); /* #081A12 main ink */
   --gold: oklch(0.743 0.117 89.5); /* #C9A84C */
   --gold-dark: oklch(0.53 0.112 71);
   --gold-soft: oklch(0.759 0.106 79); /* #D7AA4E */
   --warm-white: oklch(0.966 0.004 67); /* #F7F4F1 */
-  --cream: oklch(0.966 0.004 67);
+  --cream: oklch(0.965902 0.004193 56.375); /* #F6F3F1 */
+  --cream-2: oklch(0.953808 0.011938 79.784); /* #F4EFE7 */
+  --line: oklch(0.873024 0.010542 67.688); /* #DAD4CE */
+  --white: oklch(1 0 0); /* #FFFFFF */
   --ivory: oklch(0.955 0.013 82); /* #F6F0E8 */
   --beige: oklch(0.874 0.011 72); /* #DED6CC */
-  --error: oklch(0.62 0.17 28);
+  --error: oklch(0.559507 0.140913 33.003); /* #B84F3A */
   --paper: oklch(1 0 0);
-  --muted-ink: oklch(0.44 0.008 155);
-  --placeholder-ink: oklch(0.58 0.007 155);
-  --forest-black: oklch(0.185 0.028 162);
+  --ink: oklch(0.20357 0.029159 163.139); /* #091B13 */
+  --muted-ink: oklch(0.44036 0.00802 159.81); /* #4F5451 */
+  --muted-2: oklch(0.654066 0.013614 156.836); /* #8A938D */
+  --placeholder-ink: var(--muted-2);
+  --forest-black: oklch(0.186477 0.028937 162.031); /* #06170F */
   --forest-black-deep: oklch(0.13 0.026 162);
   --parchment: oklch(0.918 0.036 82);
   --warm-ink: oklch(0.31 0.055 82);
@@ -146,34 +160,6 @@
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
-}
-
-/* Pricing calculator: estimate + error entrances (motion-safe only). */
-@keyframes estimateEnter {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes estimateFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .estimate-enter {
-    animation: estimateEnter 240ms var(--ease-standard) both;
-  }
-  .estimate-fade {
-    animation: estimateFade 160ms var(--ease-standard) both;
-  }
 }
 
 /* Paired CTA row: equal-width columns on desktop, full-width stack on mobile. */
@@ -930,22 +916,6 @@ input {
   }
 }
 
-
-/* --- Pricing info tooltips (src/routes/pricing.tsx InfoTooltip) ---
-   Dark surface with an upward pointer. Desktop centers the tooltip under
-   the trigger icon; below md the tooltip is clamped to the viewport via an
-   inline style computed on open, and the pointer follows via
-   --tip-arrow-x (falls back to centered when no clamp is applied). */
-.pricing-tooltip::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: var(--tip-arrow-x, 50%);
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid var(--forest-black);
-}
 
 @keyframes vault-settle {
   from { transform: scale(1.02); opacity: 0; }
@@ -1792,136 +1762,6 @@ footer.site-footer a:focus-visible {
   .aurum-history__ranges { width: 100%; }
   .aurum-history__ranges button { min-width: 0; flex: 1; }
   .aurum-chart { padding-inline: 0; }
-}
-
-/* ============================================================
-   PRICING PAGE — premium redesign tokens (scoped, additive only)
-   ============================================================ */
-.pricing-page {
-  --pricing-forest-950: #01140f;
-  --pricing-forest-900: #04251c;
-  --pricing-forest-850: #073126;
-  --pricing-forest-800: #0b3b2d;
-
-  --pricing-gold: #d4a23a;
-  --pricing-gold-dark: #af781e;
-  --pricing-gold-soft: #e7c77d;
-
-  --pricing-cream: #fcfaf6;
-  --pricing-paper: #f7f1e7;
-  --pricing-paper-deep: #efe5d5;
-
-  --pricing-ink: #10271f;
-  --pricing-body: #35443e;
-  --pricing-muted: #69736e;
-
-  --pricing-border: rgba(111, 87, 47, 0.18);
-  --pricing-gold-border: rgba(212, 162, 58, 0.30);
-
-  --pricing-shadow:
-    0 2px 8px rgba(18, 27, 23, 0.025),
-    0 18px 46px rgba(18, 27, 23, 0.075);
-
-  --pricing-shadow-hover:
-    0 4px 12px rgba(18, 27, 23, 0.04),
-    0 24px 54px rgba(18, 27, 23, 0.11);
-
-  --pricing-radius-large: 16px;
-  --pricing-radius-card: 12px;
-  --pricing-radius-small: 6px;
-}
-
-.pricing-hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(58px, 5vw, 76px);
-  line-height: 0.96;
-  font-weight: 500;
-  letter-spacing: -0.028em;
-}
-
-@media (max-width: 767px) {
-  .pricing-hero-title {
-    font-size: 52px;
-  }
-}
-
-.pricing-section-title {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 2.8vw, 42px);
-  line-height: 1.05;
-  font-weight: 500;
-  letter-spacing: -0.022em;
-}
-
-.pricing-card-title {
-  font-family: var(--font-display);
-  font-size: 29px;
-  line-height: 1.1;
-  font-weight: 500;
-}
-
-.pricing-body {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.55;
-  font-weight: 400;
-}
-
-.pricing-label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-/* Pricing page — trust band (additive, scoped) */
-.pricing-trust-band {
-  position: relative;
-  min-height: 176px;
-  margin-top: 48px;
-  margin-bottom: 56px;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  background: linear-gradient(135deg, #052D23 0%, #03251D 55%, #021D17 100%);
-  border: 1px solid rgba(202, 158, 55, 0.24);
-  box-shadow: inset 0 1px rgba(255,255,255,0.035), 0 16px 38px rgba(2, 25, 19, 0.10);
-}
-.pricing-trust-grid {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-@media (max-width: 767px) {
-  .pricing-trust-grid { grid-template-columns: 1fr; }
-}
-.pricing-trust-item {
-  min-width: 0;
-  padding: 30px 28px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  gap: 14px;
-}
-.pricing-trust-motif {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 220%;
-  width: auto;
-  opacity: 0.035;
-  pointer-events: none;
-  z-index: 0;
-}
-@media (max-width: 767px) {
-  .pricing-trust-motif { display: none; }
 }
 
 /* AURUM daily note (#daily-note) */
