@@ -47,7 +47,7 @@
 - [x] B1 — commerce database foundation (settings kill switch, denominations, orders, cards, ledger, Stripe events, rate-limit attempts) and server-loaded amounts.
 - [x] B2 — secure checkout session creation (origins, rate limiting, server-decided amounts).
 - [x] B3a — Stripe webhook: signature verification, replay protection, payment settlement.
-- [ ] B3b — refunds and disputes.
+- [x] B3b — refunds, disputes, fraud review rules and alerts.
 
 
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
