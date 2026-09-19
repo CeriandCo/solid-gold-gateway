@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      aurum_admin_link_requests: {
+        Row: {
+          email: string
+          last_requested_at: string
+        }
+        Insert: {
+          email: string
+          last_requested_at?: string
+        }
+        Update: {
+          email?: string
+          last_requested_at?: string
+        }
+        Relationships: []
+      }
       aurum_cms_settings: {
         Row: {
           allow_self_approval: boolean
