@@ -112,14 +112,25 @@ const faqItems: readonly FaqItem[] = [
   },
 ];
 
+const METch_DESCRIPTION = `Every cost to buy, store, gift or take delivery of gold, in U.S. dollars: no purchase fee on coins and bars, ${vaultPurchaseFee} on vault metal, storage free for the first year.`;
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing & Fees | SQOOT Pure" },
       {
         name: "description",
-        content:
-          "Simple pricing for gold. See fees for coins, bars, and allocated metal, plus a purchase calculator that estimates your total cost.",
+        content: METch_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
