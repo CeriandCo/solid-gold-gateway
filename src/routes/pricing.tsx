@@ -373,7 +373,24 @@ function PricingPage() {
               ))}
             </ul>
           </section>
-          <section id="pricing-faq" />
+          <section id="pricing-faq" className="pricing-v2-faq">
+            <div className="pricing-v2-faq-grid">
+              <div className="pricing-v2-faq-intro">
+                <p className="pricing-v2-faq-eyebrow">FAQ</p>
+                <h2>Fees, answered plainly.</h2>
+                <p className="pricing-v2-faq-lead">
+                  Still unsure about a cost? Write to{" "}
+                  <a href="mailto:support@getsqoot.com">support@getsqoot.com</a> and we will show
+                  you the full breakdown.
+                </p>
+              </div>
+              <ul className="pricing-v2-faq-list">
+                {faqItems.map((item, index) => (
+                  <FaqItem key={item.question} item={item} defaultOpen={index === 0} />
+                ))}
+              </ul>
+            </div>
+          </section>
           <section id="pricing-cta" />
         </div>
       </main>
