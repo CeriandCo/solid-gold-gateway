@@ -676,6 +676,7 @@ export type Database = {
         Args: { _post_id: string; _sources: Json }
         Returns: undefined
       }
+      commerce_delivery_tick: { Args: never; Returns: undefined }
       commerce_prune_checkout_attempts: { Args: never; Returns: undefined }
       commerce_prune_delivery_attempts: { Args: never; Returns: undefined }
       gift_card_activate_due: { Args: never; Returns: number }
@@ -724,6 +725,17 @@ export type Database = {
       gift_card_set_code: {
         Args: { _code_hash: string; _code_last4: string; _gift_card_id: string }
         Returns: boolean
+      }
+      security_function_grants: {
+        Args: never
+        Returns: {
+          anon_execute: boolean
+          arguments: string
+          authenticated_execute: boolean
+          function_name: string
+          security_definer: boolean
+          service_role_execute: boolean
+        }[]
       }
     }
     Enums: {
