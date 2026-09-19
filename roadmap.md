@@ -30,5 +30,5 @@
 - [x] Subscribe section (#subscribe) — The Melt signup with consent version/timestamp/attribution payload
 - Replace Vault page hero image with uploaded secure allocation drawer image and restructure Vault hero to match shared InnerPageHero pattern.
 - Fix homepage FAQ accordion: split into two independent columns, animate height with grid-template-rows, replace icon swap with animated plus/minus bars.
-- [ ] Add AURUM immediately before Learn in shared top/mobile navigation and footer Discover More links.
-- [ ] Verify six desktop widths, active state, mobile ordering/navigation, footer order, screenshots, and build.
+- [x] Add AURUM before Learn in the footer; top/mobile insertion was reverted by the approved overflow gate after failing at 1024px.
+- [x] Verify all six desktop widths, footer order, screenshots, and build.
