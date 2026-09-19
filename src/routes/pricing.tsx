@@ -14,6 +14,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const PRICING_URL = `${SITE_ORIGIN}/pricing`;
+const CANONICAL_URL = "https://getsqoot.com/pricing";
 const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
 
 const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;
