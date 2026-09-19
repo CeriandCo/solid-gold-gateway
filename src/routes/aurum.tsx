@@ -109,6 +109,7 @@ function AurumPage() {
 
 function AurumPageContent() {
   const { range, note: openNote, brief: openBrief } = Route.useSearch();
+  const { notes, briefs } = Route.useLoaderData();
   const navigate = Route.useNavigate();
   const subheaderRef = useRef<HTMLElement>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -257,6 +258,8 @@ function AurumPageContent() {
           }
         />
         <AurumDailyNoteSection
+          key={notes ? notes.items.length : "unavailable"}
+          initial={notes}
           openSlug={openNote ?? null}
           onToggle={(slug) =>
             navigate({
@@ -266,6 +269,7 @@ function AurumPageContent() {
           }
         />
         <AurumWeeklyBriefSection
+          briefs={briefs}
           openSlug={openBrief ?? null}
           onToggle={(slug) =>
             navigate({
