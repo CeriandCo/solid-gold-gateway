@@ -40,8 +40,10 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
     }
   }
 
+  const ctaRef = useReveal<HTMLElement>();
+
   return (
-    <section id="pricing-cta" className="waitlist-cta">
+    <section id="pricing-cta" className="waitlist-cta" ref={ctaRef}>
       <img src={curtainAsset.url} alt="" className="waitlist-cta-image" loading="lazy" />
 
       <div className="waitlist-cta-stage" aria-hidden="true">
