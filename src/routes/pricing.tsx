@@ -4,6 +4,7 @@ import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
 import { PRICING } from "@/config/pricing";
+import { PricingCalculator } from "@/components/pricing-calculator";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
@@ -278,7 +279,9 @@ function PricingPage() {
                   </div>
                 </div>
               </div>
-              <div className="pricing-v2-calculator-column" aria-hidden="true" />
+              <div className="pricing-v2-calculator-column">
+                <PricingCalculator />
+              </div>
             </div>
           </div>
         </section>
