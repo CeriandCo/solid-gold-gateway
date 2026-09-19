@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
@@ -5,7 +6,6 @@ import {
   ArrowRight,
   Award,
   Baby,
-  Check,
   Gem,
   Gift,
   Globe2,
@@ -29,9 +29,8 @@ import birthdayPhoto from "@/assets/occasion-birthdays.jpg";
 import achievementPhoto from "@/assets/occasion-achievements.jpg";
 import festivalPhoto from "@/assets/occasion-festivals.jpg";
 import familyPhoto from "@/assets/occasion-family.jpg";
-import engravedGold from "@/assets/personal-engraved-bar.jpg";
-import giftCard from "@/assets/personal-note-card.jpg";
-import boxedGold from "@/assets/personal-boxed-bar.jpg";
+import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
+import sqootLogo from "@/assets/sqoot-pure-logo.png";
 import closingGift from "@/assets/gifting-closing-banner.jpg";
 
 export const Route = createFileRoute("/gifting")({
@@ -104,8 +103,20 @@ const assurances: Feature[] = [
   { icon: Send, title: "Simple to Gift", description: "Allocated to the recipient — no international shipping" },
 ];
 
+const giftCardAmounts = [50, 100, 250, 500, 1000, 2000] as const;
+
+function formatGiftCardAmount(amount: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
 function GiftingNewPage() {
   const scope = useReveal<HTMLElement>();
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [checkoutMessage, setCheckoutMessage] = useState("");
 
   return (
     <main ref={scope} id="top" className="gifting-new">
@@ -116,7 +127,7 @@ function GiftingNewPage() {
         eyebrow="Gifting gold"
         title={<>Celebrate love<span>with a gift</span><span>that lasts.</span></>}
         body={<>Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.</>}
-        actions={<CtaRow><GoldButton href="#occasions">Explore Gifting</GoldButton><GoldButton href="#personalise" variant="secondary">How It Works</GoldButton></CtaRow>}
+        actions={<CtaRow><GoldButton href="#gift-card">Buy a Gift Card</GoldButton><GoldButton href="#occasions" variant="secondary">Explore Gold Gifts</GoldButton></CtaRow>}
         imageSrc={heroGift}
         imageAlt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar"
         imageVariant="gifting"
@@ -164,61 +175,86 @@ function GiftingNewPage() {
             ))}
           </div>
 
-          <a href="#personalise" className="gift-view-all">View all occasions <ArrowRight /></a>
+          <a href="#gift-card" className="gift-view-all">View all occasions <ArrowRight /></a>
         </div>
       </section>
 
-      <section id="personalise" className="gift-personal" data-reveal>
-        <div className="gift-personal-copy">
-          <BotanicalLine />
-          <div>
-            <div className="gift-personal-overline"><p>Make it personal</p><Mandala /></div>
-            <h2>Add a personal touch<span>that will be remembered</span><span>forever.</span></h2>
-            <p className="gift-personal-body">
-              Engrave a name, date or message to make your gift truly unique and unforgettable.
+      <section id="gift-card" className="gift-card-section" data-reveal aria-labelledby="gift-card-title">
+        <div className="gift-card-copy">
+          <div className="gift-card-copy-inner">
+            <div className="gift-card-overline"><p>SQOOT Pure Gift Card</p><Mandala /></div>
+            <h2 id="gift-card-title">Give them the freedom to choose.</h2>
+            <p className="gift-card-intro">
+              A meaningful gift for every occasion. Choose an amount and let someone special begin their journey with SQOOT Pure.
             </p>
-            <ul>
-              {["Name, initial, date or short message", "Beautiful engraving on gold", "Premium gift packaging", "Include a personalised note"].map((item) => (
-                <li key={item}>
-                  <span><Check strokeWidth={2.5} /></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a href="#closing-gift" className="gift-button gift-button-dark">
-              Personalise Your Gift <ArrowRight />
-            </a>
+
+            <fieldset className="gift-amount-fieldset">
+              <legend>Choose your gift amount</legend>
+              <div className="gift-amount-grid">
+                {giftCardAmounts.map((amount) => {
+                  const formattedAmount = formatGiftCardAmount(amount);
+                  return (
+                    <label key={amount} className="gift-amount-option">
+                      <input
+                        type="radio"
+                        name="gift-card-amount"
+                        value={amount}
+                        checked={selectedAmount === amount}
+                        onChange={() => {
+                          setSelectedAmount(amount);
+                          setCheckoutMessage("");
+                        }}
+                      />
+                      <span className="gift-amount-label">
+                        <span>{formattedAmount}</span>
+                        <Check className="gift-amount-check" aria-hidden="true" />
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <GoldButton
+              type="button"
+              disabled={selectedAmount === null}
+              icon="none"
+              className="gift-card-checkout"
+              onClick={() => setCheckoutMessage("Secure checkout is not available yet. Please try again shortly.")}
+            >
+              Continue to Secure Checkout
+            </GoldButton>
+            <p className="gift-card-security"><LockKeyhole aria-hidden="true" />Secure payment powered by Stripe</p>
+            <p className="gift-card-message" role="status" aria-live="polite">{checkoutMessage}</p>
           </div>
         </div>
 
-        <div className="gift-mosaic-main">
+        <div
+          className="gift-card-visual"
+          role="img"
+          aria-label="SQOOT Pure gift card resting on green velvet with cream paper and ribbon"
+        >
           <img
-            src={engravedGold}
-            alt="Gold gift bar engraved for Aanya on dark green velvet"
-            width={1200}
-            height={1600}
+            className="gift-card-background"
+            src={giftCardBackground}
+            alt=""
+            width={1536}
+            height={1280}
             loading="lazy"
           />
-        </div>
-        <div className="gift-mosaic-side">
-          <div>
-          <img
-            src={giftCard}
-            alt="SQOOT Pure presentation card with a handwritten personal note"
-            width={1200}
-            height={912}
-            loading="lazy"
-          />
+          <div className="gift-card-object" aria-hidden="true">
+            <img src={sqootLogo} alt="" width={567} height={200} />
+            <Mandala className="gift-card-mandala" />
+            <div className="gift-card-object-copy">
+              <p>Gift Card</p>
+              <span key={selectedAmount ?? "placeholder"} className={selectedAmount === null ? "is-placeholder" : ""}>
+                {selectedAmount === null ? "Select amount" : formatGiftCardAmount(selectedAmount)}
+              </span>
+            </div>
           </div>
-          <div>
-          <img
-            src={boxedGold}
-            alt="Small gold bar inside an open forest green presentation box"
-            width={1200}
-            height={912}
-            loading="lazy"
-          />
-          </div>
+          <span className="sr-only" aria-live="polite">
+            {selectedAmount === null ? "No gift card amount selected" : `${formatGiftCardAmount(selectedAmount)} gift card selected`}
+          </span>
         </div>
       </section>
 
@@ -261,15 +297,6 @@ function GiftingNewPage() {
   );
 }
 
-function BotanicalLine() {
-  return (
-    <svg className="gift-botanical" viewBox="0 0 150 332" aria-hidden="true" fill="none">
-      <path d="M11 332C19 272 23 217 50 169C71 132 108 103 128 40" />
-      <path d="M37 199C15 186 4 168 4 145C28 149 43 164 49 184M57 159C48 132 53 111 71 94C84 116 80 137 63 154M85 121C79 96 87 75 107 61C117 84 110 105 91 118M109 80C112 54 125 37 147 29C150 54 137 71 113 81M29 242C50 227 69 225 89 235C72 253 51 256 29 242M18 286C38 272 57 272 75 282C59 299 39 301 18 286" />
-    </svg>
-  );
-}
-
 const giftingStyles = `
 .gifting-new {
   --forest-950: var(--forest-deep); --forest-900: #112118; --forest-800: #173126; --forest-700: #244637;
@@ -281,13 +308,14 @@ const giftingStyles = `
   color: var(--body-dark); background: var(--cream-50); font-family: "Inter", system-ui, sans-serif;
   font-synthesis: none; -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
+html:has(.gifting-new) { scroll-behavior: smooth; }
 .gifting-new h1,.gifting-new h2,.gifting-new h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
 .gift-hero { position: relative; height: clamp(384px,37.5vw,960px); overflow: hidden; color: var(--cream-text); background: var(--forest-950); }
 .gift-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: giftHeroImage 1.1s cubic-bezier(.22,1,.36,1) both; }
 .gift-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.94) 27%,rgba(8,34,24,.70) 42%,rgba(8,34,24,.20) 61%,rgba(8,34,24,0) 76%); }
 .gift-hero-inner { position: relative; height: 100%; max-width: var(--page-max); margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }
 .gift-hero-copy { width: clamp(360px,35.16vw,900px); margin-top: -4px; margin-left: clamp(36px,3.515625vw,90px); }
-.gift-overline,.gift-section-overline,.gift-personal-overline,.gift-closing-overline { display: flex; align-items: center; text-transform: uppercase; color: var(--gold-400); }
+.gift-overline,.gift-section-overline,.gift-card-overline,.gift-closing-overline { display: flex; align-items: center; text-transform: uppercase; color: var(--gold-400); }
 .gift-overline { gap:8px; margin-bottom: 17px; }
 .gift-overline > span { width: 28px; height: 1px; background: var(--gold-500); }
 .gift-overline p { font-size: clamp(11px,.97vw,25px); line-height: 1; font-weight: 600; letter-spacing: .18em; }
@@ -322,15 +350,30 @@ const giftingStyles = `
 .gift-occasion-icon { position: absolute; left: 50%; top: 67.57%; width: clamp(36px,2.78vw,72px); height: clamp(36px,2.78vw,72px); display: grid; flex: none; place-items: center; border: 1px solid var(--gold-500); border-radius: 50%; color: var(--gold-400); background: var(--forest-900); transform: translate(-50%,-50%); transition: border-color .42s; }.gift-occasion-icon svg { width: 18px; height: 18px; flex: none; }
 .gift-occasion-card:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(18,33,24,.16); }.gift-occasion-card:hover img { transform: scale(1.045); }.gift-occasion-card:hover .gift-occasion-icon { border-color: var(--gold-300); }
 .gift-view-all { display: inline-flex; align-items: center; gap:4px; margin-top: clamp(10px,1.18vw,31px); color: var(--gold-deep); font-size: 12px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }.gift-view-all svg { width: 15px; height: 15px; }
-.gift-personal { height: clamp(332px,32.36vw,829px); min-height: 0; display: grid; grid-template-columns: 43% 27% 30%; overflow: hidden; background: var(--cream-200); }
-.gift-personal > * { min-width: 0; min-height: 0; height: 100%; }.gift-personal-copy { position: relative; display: flex; align-items: center; }.gift-personal-copy > div { position: relative; width: 68.2%; margin-left: 27.7%; }
-.gift-botanical { position: absolute; inset-block: 0; left: 0; width: 35%; height: 100%; color: var(--gold-deep); opacity: .5; }.gift-botanical path { stroke: currentColor; stroke-width: .9; vector-effect: non-scaling-stroke; }
-.gift-personal-overline { gap:8px; color: var(--gold-deep); }.gift-personal-overline p { font-size: clamp(10px,.76vw,20px); font-weight: 600; letter-spacing: .2em; }.gift-personal-overline svg { width: 14px; height: 14px; }
-.gift-personal h2 { margin-top: 7px; color: var(--forest-900); font-size: clamp(32px,3.2vw,82px); font-weight: 500; line-height: 1.02; letter-spacing: -.02em; }.gift-personal h2 span { display: block; }
-.gift-personal-body { max-width: 90%; margin-top: clamp(9px,1.04vw,27px); font-size: clamp(12px,1.04vw,27px); line-height: 1.5; }
-.gift-personal ul { display: grid; gap: clamp(4px,.48vw,13px); margin-top: clamp(8px,.7vw,18px); }.gift-personal li { display: flex; align-items: center; gap:8px; font-size: clamp(11px,.9vw,23px); line-height: 1.15; }.gift-personal li > span { width: clamp(14px,1.18vw,31px); height: clamp(14px,1.18vw,31px); flex: none; display: grid; place-items: center; border-radius: 50%; color: var(--cream-text); background: var(--forest-900); }.gift-personal li svg { width: 65%; height: 65%; }
-.gift-mosaic-main,.gift-mosaic-side > div { overflow: hidden; }.gift-mosaic-main img,.gift-mosaic-side img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22,1,.36,1); }.gift-mosaic-main img { object-position: center 64%; }.gift-mosaic-main:hover img,.gift-mosaic-side > div:hover img { transform: scale(1.025); }
-.gift-mosaic-side { display: grid; grid-template-rows: 1fr 1fr; gap:4px; padding-left: 2px; background: var(--cream-200); }.gift-mosaic-side img { object-position: center; }
+.gift-card-section { display: grid; grid-template-columns: minmax(0,52%) minmax(0,48%); background: var(--cream-200); }
+.gift-card-copy { min-width: 0; display: flex; align-items: center; padding: clamp(56px,6.25vw,90px) var(--page-padding); }
+.gift-card-copy-inner { width: min(100%,650px); margin-left: auto; margin-right: clamp(18px,3.4vw,49px); }
+.gift-card-overline { gap:8px; color: var(--gold-deep); }.gift-card-overline p { font-size: clamp(10px,.76vw,12px); font-weight: 600; letter-spacing: .2em; }.gift-card-overline svg { width: 14px; height: 14px; }
+.gift-card-copy h2 { max-width: 620px; margin-top: 8px; color: var(--forest-900); font-size: clamp(42px,4vw,58px); font-weight: 500; line-height: 1; }
+.gift-card-intro { max-width: 590px; margin-top: 18px; font-size: clamp(14px,1.12vw,17px); line-height: 1.6; }
+.gift-amount-fieldset { margin-top: 28px; border: 0; padding: 0; }.gift-amount-fieldset legend { margin-bottom: 12px; color: var(--forest-900); font-size: 14px; font-weight: 600; }
+.gift-amount-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.gift-amount-option { position: relative; min-width: 0; cursor: pointer; }.gift-amount-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.gift-amount-label { height: 48px; display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--light-divider); border-radius: 4px; color: var(--forest-900); background: var(--cream-50); font-size: 15px; font-weight: 600; transition: border-color .18s,background-color .18s,box-shadow .18s; }
+.gift-amount-check { width: 15px; height: 15px; display: none; flex: none; stroke-width: 2.5; }
+.gift-amount-option input:checked + .gift-amount-label { border-color: var(--gold-deep); background: var(--cream-100); box-shadow: inset 0 0 0 1px var(--gold-deep); }.gift-amount-option input:checked + .gift-amount-label .gift-amount-check { display: block; }
+.gift-amount-option input:focus-visible + .gift-amount-label { outline: 3px solid var(--forest-700); outline-offset: 3px; }
+.gift-amount-option:hover .gift-amount-label { border-color: var(--gold-deep); }
+.gift-card-checkout { width: 100%; margin-top: 20px; }.gift-card-checkout:disabled { transform: none; }
+.gift-card-security { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; color: var(--body-dark); font-size: 12px; opacity: .72; }.gift-card-security svg { width: 14px; height: 14px; }
+.gift-card-message { min-height: 38px; padding-top: 8px; color: var(--forest-800); font-size: 13px; line-height: 1.4; text-align: center; }
+.gift-card-visual { position: relative; min-width: 0; min-height: 610px; overflow: hidden; display: grid; place-items: center; padding: clamp(44px,5vw,72px); isolation: isolate; }
+.gift-card-background { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.gift-card-object { position: relative; width: min(100%,560px); aspect-ratio: 1.63; overflow: hidden; border: 1px solid var(--gold-400); border-radius: 7px; color: var(--gold-300); background: var(--forest-900); box-shadow: 0 24px 44px rgba(8,34,24,.28); transform: rotate(-2deg); }
+.gift-card-object::after { content:""; position:absolute; inset:9px; border:1px solid rgba(217,178,96,.32); border-radius:4px; pointer-events:none; }
+.gift-card-object > img { position: absolute; top: 9%; left: 7%; width: 38%; height: auto; }
+.gift-card-mandala { position: absolute; right: -8%; top: -15%; width: 58%; height: 92%; color: var(--gold-400); opacity: .16; }
+.gift-card-object-copy { position: absolute; left: 8%; right: 8%; bottom: 12%; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }.gift-card-object-copy p { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }.gift-card-object-copy > span { min-width: 145px; color: var(--cream-text); font-family: "Cormorant Garamond",Georgia,serif; font-size: clamp(31px,3vw,43px); font-weight: 500; line-height: 1; text-align: right; animation: giftCardAmount .2s ease-out both; }.gift-card-object-copy > span.is-placeholder { color: var(--muted-cream); font-family: "Inter",sans-serif; font-size: 13px; font-weight: 400; }
 .gift-trust { height: clamp(119px,calc(11.67vw - .5px),298px); color: var(--cream-text); background:
     radial-gradient(ellipse 42% 30% at 18% 22%, rgba(23,49,38,.07), transparent 60%),
     radial-gradient(ellipse 34% 26% at 78% 30%, rgba(23,49,38,.06), transparent 55%),
@@ -342,17 +385,14 @@ const giftingStyles = `
     var(--forest-950); }
 .gift-trust-inner { width: min(78.13%,2000px); height: 100%; margin: auto; display: grid; grid-template-columns: repeat(5,1fr); align-items: center; }.gift-trust article { min-width: 0; height: clamp(76px,7.4vw,190px); padding-inline: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:first-child { border-left: 0; }.gift-trust svg { width: clamp(28px,2.22vw,57px); height: clamp(28px,2.22vw,57px); color: var(--gold-400); }.gift-trust h2 { margin-top: 5px; color: var(--gold-400); font-family: "Inter",sans-serif; font-size: clamp(12px,.9vw,23px); font-weight: 600; line-height: 1.1; }.gift-trust p { max-width: 80%; margin-top: 3px; color: rgba(250,245,234,.82); font-size: clamp(9.5px,.73vw,19px); line-height: 1.35; }
 .gift-closing { position: relative; height: clamp(210px,19.44vw,498px); overflow: hidden; color: var(--cream-text); }.gift-closing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% center; }.gift-closing-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(63,31,12,.92) 0%,rgba(63,31,12,.79) 31%,rgba(25,39,26,.34) 57%,rgba(15,31,22,.06) 78%); }.gift-closing-inner { position: relative; max-width: var(--page-max); height: 100%; margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }.gift-closing-inner > div { width: clamp(340px,33.2vw,850px); margin-left: calc(5% + clamp(36px,3.515625vw,90px)); }.gift-closing-overline { gap:8px; color: var(--gold-400); }.gift-closing-overline > span { width: 42px; height: 1px; background: var(--gold-500); }.gift-closing-overline p { font-size: clamp(10px,.76vw,20px); font-weight: 600; letter-spacing: .18em; }.gift-closing h2 { margin-top: 7px; color: var(--cream-text); font-size: clamp(34px,3.35vw,86px); font-weight: 500; line-height: .98; }.gift-closing h2 span { display: block; }.gift-closing-inner > div > p { max-width: 88%; margin-top: 7px; color: rgba(250,245,234,.86); font-size: clamp(11px,.97vw,25px); line-height: 1.45; }.gift-closing .gift-button { margin-top: 10px; height: clamp(42px,3.61vw,93px); }
-@keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} }
+@keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} } @keyframes giftCardAmount { from{opacity:.15}to{opacity:1} }
 @media (min-width: 1025px) {
-  .gift-personal-body { margin-top: min(14px,calc(10.67px + (100vw - 1024px) * .002)); }
-  .gift-personal ul { gap: min(5px,calc(4.92px + (100vw - 1024px) * .0002)); margin-top: 8px; }
-  .gift-button-dark { margin-top: max(7px,calc(17px - (100vw - 1024px) * .024)); }
 }
 @media (max-width: 1023px) {
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
-  .gift-personal { height: auto; grid-template-columns: 45% 32% 23%; min-height: 520px; }.gift-personal-copy > div { width: 76%; margin-left: 18%; }.gift-personal h2 { font-size: 38px; }.gift-personal-copy { padding-block: 30px; }
+  .gift-card-copy { padding-inline: 38px 28px; }.gift-card-copy-inner { margin-right: 0; }.gift-card-visual { min-height: 570px; padding: 36px; }.gift-card-copy h2 { font-size: 44px; }
   .gift-trust { height: auto; }.gift-trust-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 14px 30px; }.gift-trust article { height: 112px; }.gift-trust article:nth-child(4) { border-left: 0; }
   .gift-closing { height: 300px; }.gift-closing-inner > div { margin-left: 0; }
 }
@@ -361,9 +401,10 @@ const giftingStyles = `
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
   .gift-benefits-inner { grid-template-columns: repeat(2,1fr); padding: 12px 14px; }.gift-benefit { height: 122px; }.gift-benefit:nth-child(3n+1) { border-left: 1px solid var(--light-divider); }.gift-benefit:nth-child(odd) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(n+5) { border-bottom: 0; }
   .gift-occasions { padding-inline: 0; }.gift-occasions header { padding-inline: 20px; }.gift-occasions h2 { font-size: 34px; }.gift-occasion-grid { width: 100%; display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }.gift-occasion-grid::-webkit-scrollbar { display:none; }.gift-occasion-card { flex: 0 0 82%; height: 330px; scroll-snap-align: start; }.gift-view-all { margin-top: 2px; }
-  .gift-personal { display: flex; flex-direction: column; }.gift-personal-copy { min-height: 445px; padding: 44px 20px; }.gift-personal-copy > div { width: min(100%,350px); margin: auto; }.gift-personal h2 { font-size: 40px; }.gift-personal-body { font-size: 14px; }.gift-personal li { font-size: 13px; }.gift-botanical { width: 42%; }.gift-mosaic-main { height: 520px; }.gift-mosaic-side { height: 520px; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; padding-left: 0; padding-top: 2px; gap: 2px; }
+  .gift-card-section { display: flex; flex-direction: column; }.gift-card-visual { order: -1; min-height: 360px; padding: 34px 28px; }.gift-card-copy { padding: 42px 20px 38px; }.gift-card-copy-inner { width: min(100%,520px); margin: auto; }.gift-card-copy h2 { font-size: 40px; }.gift-card-intro { font-size: 14px; }.gift-amount-fieldset { margin-top: 24px; }.gift-card-checkout { min-height: 54px; }.gift-card-object-copy > span { min-width: 120px; font-size: 34px; }
   .gift-trust-inner { grid-template-columns: repeat(2,1fr); padding: 14px; }.gift-trust article { height: 125px; }.gift-trust article:nth-child(odd) { border-left: 0; }.gift-trust article:nth-child(4) { border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:last-child { grid-column: 1/-1; }
   .gift-closing { height: 440px; }.gift-closing > img { object-position: 66% bottom; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
 }
-@media (prefers-reduced-motion: reduce) { .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } }
+@media (max-width: 359px) { .gift-amount-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (prefers-reduced-motion: reduce) { html:has(.gifting-new) { scroll-behavior: auto; } .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } }
 `;
