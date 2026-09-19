@@ -2,32 +2,30 @@
 // The browser never queries aurum_posts / aurum_post_sources directly: RLS has no
 // policies at all, so the service-role client on the server is the only way in.
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import type { AurumEditorial, AurumEditorialSource } from "@/lib/aurum-editorial";
+import { formatShortDate, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
 export type AurumEditorialType = "daily_note" | "weekly_brief" | "article";
 
 export type EditorialPage = {
   items: AurumEditorial[];
   total: number;
+  /** True when a deep-linked slug sits deeper than DEEP_LINK_MAX; the caller redirects to its own page. */
+  deepLinkOverflow: boolean;
 };
 
 const POST_COLUMNS =
   "id, slug, title, summary, body, pull_quote, review_line, read_minutes, published_at";
 
-// Fixed month table on purpose: some en-GB runtimes render "Sept" via Intl, which
-// would silently change the source lines already published on the site.
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/**
+ * Hard ceiling on how far a shared ?note= link may expand the first page. Without it
+ * a link to an old note would load every newer note in one request, and past 1000
+ * rows the Data API silently truncates.
+ */
+const DEEP_LINK_MAX = 60;
 
 /** "2026-09-08" -> "8 Sep 2026", exactly the strings the site shows today. */
-function formatSourceDate(value: string): string {
-  const [year, month, day] = value.split("-");
-  return `${Number(day)} ${MONTHS[Number(month) - 1]} ${year}`;
-}
+const formatSourceDate = formatShortDate;
 
-/** timestamptz -> the UTC calendar date as YYYY-MM-DD. */
-function toUtcDate(value: string): string {
-  return new Date(value).toISOString().slice(0, 10);
-}
 
 function deriveReadMinutes(body: string[]): number {
   const words = body.join(" ").trim().split(/\s+/).filter(Boolean).length;
