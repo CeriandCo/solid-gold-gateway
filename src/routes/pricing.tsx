@@ -442,3 +442,39 @@ function ComparisonCard({
     </article>
   );
 }
+
+function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const buttonId = useId();
+  const panelId = useId();
+
+  return (
+    <li className="pricing-v2-faq-item" data-open={open}>
+      <h3 className="pricing-v2-faq-question">
+        <button
+          type="button"
+          id={buttonId}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span>{item.question}</span>
+          <span className="pricing-v2-faq-icon" aria-hidden="true">
+            <i />
+            <i />
+          </span>
+        </button>
+      </h3>
+      <div
+        className="pricing-v2-faq-panel"
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+      >
+        <div className="pricing-v2-faq-panel-inner">
+          <p>{item.answer}</p>
+        </div>
+      </div>
+    </li>
+  );
+}
