@@ -3805,3 +3805,330 @@ footer.site-footer a:focus-visible {
     padding-inline: 24px;
   }
 }
+
+/* Pricing v2 comparison */
+.pricing-v2-compare {
+  background: var(--cream);
+  padding-block: 72px;
+}
+
+.pricing-v2-compare-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.pricing-v2-compare-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.pricing-v2-compare-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.pricing-v2-compare-heading h2 {
+  max-width: 650px;
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.pricing-v2-compare-currency {
+  flex: 0 0 auto;
+  padding-bottom: 4px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.pricing-v2-compare-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.pricing-v2-table-wrap {
+  display: none;
+}
+
+.pricing-v2-mobile-comparison {
+  display: grid;
+  gap: 24px;
+}
+
+.pricing-v2-mobile-shared,
+.pricing-v2-mobile-other,
+.pricing-v2-mobile-card {
+  border-top: 1px solid color-mix(in oklab, var(--ink) 50%, transparent);
+}
+
+.pricing-v2-mobile-shared > div {
+  padding-block: 16px;
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+.pricing-v2-mobile-shared h3,
+.pricing-v2-mobile-other h3 {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pricing-v2-mobile-shared p {
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.pricing-v2-mobile-card {
+  background: var(--white);
+  border-right: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  border-left: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+.pricing-v2-mobile-card-head {
+  padding: 20px 18px;
+}
+
+.pricing-v2-table-thumbnails {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  gap: 8px;
+}
+
+.pricing-v2-table-thumbnails img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.pricing-v2-mobile-card-head h3,
+.pricing-v2-table-title {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.pricing-v2-mobile-card-head p,
+.pricing-v2-table-subtitle {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.pricing-v2-mobile-card dl > div {
+  display: grid;
+  grid-template-columns: minmax(105px, 0.42fr) minmax(0, 0.58fr);
+  gap: 16px;
+  padding: 16px 18px;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+.pricing-v2-mobile-card dt {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pricing-v2-mobile-card dd {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.pricing-v2-table-number {
+  display: block;
+  font-family: var(--font-number);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.pricing-v2-table-note {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.pricing-v2-mobile-other {
+  padding-top: 16px;
+}
+
+.pricing-v2-other-fees {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pricing-v2-mobile-other .pricing-v2-other-fees {
+  margin-top: 12px;
+}
+
+.pricing-v2-other-fees > div {
+  min-width: 0;
+  padding: 8px 10px 8px 0;
+}
+
+.pricing-v2-other-fees span {
+  display: block;
+  font-family: var(--font-number);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-dark);
+}
+
+.pricing-v2-other-fees small {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.pricing-v2-calculator-column {
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .pricing-v2-compare-heading {
+    display: block;
+  }
+
+  .pricing-v2-compare-heading h2 {
+    font-size: 40px;
+  }
+
+  .pricing-v2-compare-currency {
+    margin-top: 16px;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pricing-v2-compare {
+    padding-block: 96px;
+  }
+
+  .pricing-v2-compare-inner {
+    padding-inline: 0;
+  }
+
+  .pricing-v2-compare-grid {
+    grid-template-columns: 740px minmax(0, 424px);
+    gap: 36px;
+  }
+
+  .pricing-v2-table-wrap {
+    display: block;
+  }
+
+  .pricing-v2-mobile-comparison {
+    display: none;
+  }
+
+  .pricing-v2-table {
+    width: 740px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted-ink);
+  }
+
+  .pricing-v2-table-label-col {
+    width: 164px;
+  }
+
+  .pricing-v2-table-value-col {
+    width: 288px;
+  }
+
+  .pricing-v2-table th,
+  .pricing-v2-table td {
+    padding: 16px 18px;
+    border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .pricing-v2-table tbody th {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .pricing-v2-table thead th {
+    padding: 20px 18px;
+    border-top: 0;
+    vertical-align: bottom;
+  }
+
+  .pricing-v2-table thead th:first-child {
+    padding-inline: 0;
+  }
+
+  .pricing-v2-table-final-row th,
+  .pricing-v2-table-final-row td {
+    border-top-color: color-mix(in oklab, var(--ink) 50%, transparent);
+  }
+
+  .pricing-v2-table-final-row td {
+    padding-inline: 0;
+  }
+
+  .pricing-v2-table .pricing-v2-other-fees {
+    grid-template-columns: repeat(4, 144px);
+  }
+
+  .pricing-v2-table .pricing-v2-other-fees > div {
+    padding-inline: 18px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1247px) {
+  .pricing-v2-compare-inner {
+    padding-inline: 24px;
+  }
+
+  .pricing-v2-compare-grid {
+    grid-template-columns: minmax(0, 740px) minmax(0, 1fr);
+  }
+}

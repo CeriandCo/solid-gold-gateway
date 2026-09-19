@@ -1,11 +1,38 @@
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
+import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
+import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
+import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
 import { PRICING } from "@/config/pricing";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const PRICING_URL = `${SITE_ORIGIN}/pricing`;
 const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
+
+const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;
+const deliveryFee = `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`;
+const vaultPurchaseFee = `${(PRICING.vault.purchaseFeeRate * 100).toFixed(2)}%`;
+const vaultStorageFee = `${(PRICING.vault.storageRatePerYear * 100).toFixed(2)}%`;
+const freeStorageMonths = Math.round((PRICING.vault.freeStorageDays / 365) * 12);
+
+const sharedComparisonRows = [
+  {
+    label: "Purchase price",
+    value: "Weight × live spot price, plus a product premium — shown before you confirm.",
+  },
+  {
+    label: "Selling",
+    value: "Your sale price is shown in full before you confirm.",
+  },
+] as const;
+
+const otherFeeItems = [
+  { label: "Account fee", value: PRICING.otherFees.account },
+  { label: "Monthly fee", value: PRICING.otherFees.monthly },
+  { label: "Inactivity fee", value: PRICING.otherFees.inactivity },
+  { label: "Closing fee", value: PRICING.otherFees.closing },
+] as const;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -55,6 +82,28 @@ function PricingPage() {
     },
   ];
 
+  const deliveryRows = [
+    { label: "Minimum", value: "One coin or bar" },
+    { label: "Purchase fee", value: deliveryFee, numeric: true },
+    { label: "Storage & insurance", value: "None — the gold is with you" },
+    { label: "Delivery", value: "Insured shipping, shown at checkout" },
+    { label: "Gifting", value: "Engraving and gift packaging" },
+  ] as const;
+
+  const vaultRows = [
+    {
+      label: "Minimum",
+      value: `From ${currencyPrefix}${PRICING.vault.minimumPurchaseUsd}`,
+    },
+    { label: "Purchase fee", value: vaultPurchaseFee, caption: "one-off", numeric: true },
+    {
+      label: "Storage & insurance",
+      value: `Free for ${freeStorageMonths} months, then ${vaultStorageFee} a year (min. ${currencyPrefix}${PRICING.vault.storageMinimumPerYearUsd})`,
+    },
+    { label: "Delivery", value: "Convert to a coin or bar and ship any time" },
+    { label: "Gifting", value: "Transfer as a gift on request" },
+  ] as const;
+
   return (
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
@@ -92,8 +141,149 @@ function PricingPage() {
           </div>
         </section>
 
+        <section id="pricing-compare" className="pricing-v2-compare">
+          <div className="pricing-v2-compare-inner">
+            <div className="pricing-v2-compare-heading">
+              <div>
+                <p className="pricing-v2-compare-eyebrow">Compare</p>
+                <h2>Two ways to own. One clear list of costs.</h2>
+              </div>
+              <p className="pricing-v2-compare-currency">All prices in {PRICING.currency}</p>
+            </div>
+
+            <div className="pricing-v2-compare-grid">
+              <div className="pricing-v2-table-column">
+                <div className="pricing-v2-table-wrap">
+                  <table className="pricing-v2-table">
+                    <caption className="sr-only">Costs for each way to own gold</caption>
+                    <colgroup>
+                      <col className="pricing-v2-table-label-col" />
+                      <col className="pricing-v2-table-value-col" />
+                      <col className="pricing-v2-table-value-col" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" aria-label="Cost" />
+                        <th scope="col">
+                          <div className="pricing-v2-table-thumbnails">
+                            <img src={coinThumbnailAsset.url} alt="" />
+                            <img src={barThumbnailAsset.url} alt="" />
+                          </div>
+                          <span className="pricing-v2-table-title">Take delivery</span>
+                          <span className="pricing-v2-table-subtitle">
+                            Coins or bars, shipped to you insured.
+                          </span>
+                        </th>
+                        <th scope="col">
+                          <div className="pricing-v2-table-thumbnails">
+                            <img src={vaultThumbnailAsset.url} alt="" />
+                          </div>
+                          <span className="pricing-v2-table-title">Store in the vault</span>
+                          <span className="pricing-v2-table-subtitle">
+                            Allocated metal, recorded in your name.
+                          </span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Minimum</th>
+                        <td>One coin or bar</td>
+                        <td>From {currencyPrefix}{PRICING.vault.minimumPurchaseUsd}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{sharedComparisonRows[0].label}</th>
+                        <td colSpan={2}>{sharedComparisonRows[0].value}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Purchase fee</th>
+                        <td><span className="pricing-v2-table-number">{deliveryFee}</span></td>
+                        <td>
+                          <span className="pricing-v2-table-number">{vaultPurchaseFee}</span>
+                          <span className="pricing-v2-table-note">one-off</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Storage &amp; insurance</th>
+                        <td>None — the gold is with you</td>
+                        <td>
+                          Free for {freeStorageMonths} months, then {vaultStorageFee} a year
+                          (min. {currencyPrefix}{PRICING.vault.storageMinimumPerYearUsd})
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Delivery</th>
+                        <td>Insured shipping, shown at checkout</td>
+                        <td>Convert to a coin or bar and ship any time</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{sharedComparisonRows[1].label}</th>
+                        <td colSpan={2}>{sharedComparisonRows[1].value}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Gifting</th>
+                        <td>Engraving and gift packaging</td>
+                        <td>Transfer as a gift on request</td>
+                      </tr>
+                      <tr className="pricing-v2-table-final-row">
+                        <th scope="row">Nothing else</th>
+                        <td colSpan={2}>
+                          <div className="pricing-v2-other-fees">
+                            {otherFeeItems.map((fee) => (
+                              <div key={fee.label}>
+                                <span>{currencyPrefix}{fee.value}</span>
+                                <small>{fee.label}</small>
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="pricing-v2-mobile-comparison">
+                  <div className="pricing-v2-mobile-shared">
+                    {sharedComparisonRows.map((row) => (
+                      <div key={row.label}>
+                        <h3>{row.label}</h3>
+                        <p>{row.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <ComparisonCard
+                    description="Coins or bars, shipped to you insured."
+                    images={[coinThumbnailAsset.url, barThumbnailAsset.url]}
+                    rows={deliveryRows}
+                    title="Take delivery"
+                  />
+                  <ComparisonCard
+                    description="Allocated metal, recorded in your name."
+                    images={[vaultThumbnailAsset.url]}
+                    rows={vaultRows}
+                    title="Store in the vault"
+                  />
+
+                  <div className="pricing-v2-mobile-other">
+                    <h3>Nothing else</h3>
+                    <div className="pricing-v2-other-fees">
+                      {otherFeeItems.map((fee) => (
+                        <div key={fee.label}>
+                          <span>{currencyPrefix}{fee.value}</span>
+                          <small>{fee.label}</small>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pricing-v2-calculator-column" aria-hidden="true" />
+            </div>
+          </div>
+        </section>
+
         <div className="mx-auto w-full max-w-[1248px] px-6 min-[1440px]:max-w-[1440px] min-[1440px]:px-[120px]">
-          <section id="pricing-compare" />
           <section id="pricing-trust" />
           <section id="pricing-faq" />
           <section id="pricing-cta" />
@@ -101,5 +291,49 @@ function PricingPage() {
       </main>
       <SiteFooter />
     </div>
+  );
+}
+
+type ComparisonRow = {
+  readonly label: string;
+  readonly value: string;
+  readonly caption?: string;
+  readonly numeric?: boolean;
+};
+
+function ComparisonCard({
+  description,
+  images,
+  rows,
+  title,
+}: {
+  description: string;
+  images: readonly string[];
+  rows: readonly ComparisonRow[];
+  title: string;
+}) {
+  return (
+    <article className="pricing-v2-mobile-card">
+      <div className="pricing-v2-mobile-card-head">
+        <div className="pricing-v2-table-thumbnails">
+          {images.map((image) => <img src={image} alt="" key={image} />)}
+        </div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+      <dl>
+        {rows.map((row) => (
+          <div key={row.label}>
+            <dt>{row.label}</dt>
+            <dd>
+              <span className={row.numeric ? "pricing-v2-table-number" : undefined}>
+                {row.value}
+              </span>
+              {row.caption ? <span className="pricing-v2-table-note">{row.caption}</span> : null}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </article>
   );
 }
