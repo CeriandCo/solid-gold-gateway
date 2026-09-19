@@ -4913,11 +4913,11 @@ footer.site-footer a:focus-visible {
   visibility: visible;
 }
 
-.pricing-calculator-result {
+.pricing-calculator-result-fade {
   transition: opacity 180ms var(--reveal-ease);
 }
 
-.pricing-calculator-result.is-updating {
+.pricing-calculator-result-fade.is-updating {
   opacity: 0.55;
 }
 
@@ -4942,7 +4942,7 @@ footer.site-footer a:focus-visible {
   .pricing-calculator-toggle,
   .pricing-calculator-cta,
   .pricing-calculator-collapse,
-  .pricing-calculator-result,
+  .pricing-calculator-result-fade,
   .waitlist-cta-input,
   .waitlist-cta-button {
     transition: none !important;
@@ -4963,7 +4963,7 @@ footer.site-footer a:focus-visible {
     animation: none;
   }
 
-  .pricing-calculator-result.is-updating {
+  .pricing-calculator-result-fade.is-updating {
     opacity: 1;
   }
 }
