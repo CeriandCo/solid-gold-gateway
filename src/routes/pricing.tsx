@@ -1,6 +1,8 @@
 import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
+import pricingHeroWebpAsset from "@/assets/pricing/pricing-hero.webp.asset.json";
+import pricingHeroAvifAsset from "@/assets/pricing/pricing-hero.avif.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
@@ -185,13 +187,20 @@ function PricingPage() {
       <SiteHeader />
       <main className="bg-cream">
         <section id="pricing-hero" className="pricing-v2-hero">
-          <img
-            src={pricingHeroAsset.url}
-            alt=""
-            className="pricing-v2-hero-image"
-            fetchPriority="high"
-            loading="eager"
-          />
+          <picture>
+            <source srcSet={pricingHeroAvifAsset.url} type="image/avif" />
+            <source srcSet={pricingHeroWebpAsset.url} type="image/webp" />
+            <img
+              src={pricingHeroAsset.url}
+              alt=""
+              width={1881}
+              height={836}
+              className="pricing-v2-hero-image"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
           <div className="pricing-v2-hero-scrim" aria-hidden="true" />
           <div className="pricing-v2-hero-inner">
             <div className="pricing-v2-hero-copy">
