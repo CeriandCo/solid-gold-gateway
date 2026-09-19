@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
+import { getGiftCardOffering } from "@/lib/commerce.functions";
+
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -35,6 +37,7 @@ import sqootLogo from "@/assets/sqoot-pure-logo.png";
 import closingGift from "@/assets/gifting-closing-banner.jpg";
 
 export const Route = createFileRoute("/gifting")({
+  loader: () => getGiftCardOffering(),
   head: () => ({
     meta: [
       { title: "Gift Real Gold — SQOOT Pure" },
@@ -56,6 +59,7 @@ export const Route = createFileRoute("/gifting")({
   }),
   component: GiftingNewPage,
 });
+
 
 function Mandala({ className = "" }: { className?: string }) {
   return (
@@ -104,24 +108,51 @@ const assurances: Feature[] = [
   { icon: Send, title: "Simple to Gift", description: "Allocated to the recipient — no international shipping" },
 ];
 
-const giftCardAmounts = [50, 100, 250, 500, 1000, 2000] as const;
-
-function formatGiftCardAmount(amount: number) {
+function formatGiftCardAmount(amountCents: number, currency: string | null) {
+  const amount = amountCents / 100;
+  const fractionDigits = amountCents % 100 === 0 ? 0 : 2;
+  if (!currency) {
+    return `$${new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+    }).format(amount)}`;
+  }
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
+    currency: currency.toUpperCase(),
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
   }).format(amount);
 }
 
-function formatGiftCardNumeral(amount: number) {
-  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(amount);
+function formatGiftCardNumeral(amountCents: number) {
+  const amount = amountCents / 100;
+  const fractionDigits = amountCents % 100 === 0 ? 0 : 2;
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  }).format(amount);
+}
+
+function giftCardCurrencyMark(currency: string | null) {
+  if (!currency) return "$";
+  const parts = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency.toUpperCase(),
+    maximumFractionDigits: 0,
+  }).formatToParts(1);
+  return parts.find((part) => part.type === "currency")?.value ?? "$";
 }
 
 function GiftingNewPage() {
   const scope = useReveal<HTMLElement>();
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const offering = Route.useLoaderData();
+  const { currency, denominations } = offering;
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checkoutMessage, setCheckoutMessage] = useState("");
+  const selected = denominations.find((option) => option.id === selectedId) ?? null;
+  const currencyMark = giftCardCurrencyMark(currency);
+
 
   return (
     <main ref={scope} id="top" className="gifting-new">
@@ -196,25 +227,25 @@ function GiftingNewPage() {
             <fieldset className="gift-amount-fieldset">
               <legend>Choose your gift amount</legend>
               <div className="gift-amount-grid">
-                {giftCardAmounts.map((amount) => {
-                  const formattedAmount = formatGiftCardAmount(amount);
+                {denominations.map(({ id, amountCents }) => {
+                  const formattedAmount = formatGiftCardAmount(amountCents, currency);
                   return (
-                    <label key={amount} className="gift-amount-option">
+                    <label key={id} className="gift-amount-option">
                       <input
                         type="radio"
                         name="gift-card-amount"
-                        value={amount}
+                        value={id}
                         aria-label={formattedAmount}
-                        checked={selectedAmount === amount}
+                        checked={selectedId === id}
                         onChange={() => {
-                          setSelectedAmount(amount);
+                          setSelectedId(id);
                           setCheckoutMessage("");
                         }}
                       />
                       <span className="gift-amount-label">
                         <span className="gift-amount-price" aria-hidden="true">
-                          <span className="gift-amount-currency">$</span>
-                          <span>{formatGiftCardNumeral(amount)}</span>
+                          <span className="gift-amount-currency">{currencyMark}</span>
+                          <span>{formatGiftCardNumeral(amountCents)}</span>
                         </span>
                         <Check className="gift-amount-check" aria-hidden="true" />
                       </span>
@@ -226,14 +257,14 @@ function GiftingNewPage() {
 
             <div className="gift-card-value" aria-hidden="true">
               <span>Gift card value</span>
-              <strong className={selectedAmount === null ? "is-placeholder" : ""}>
-                {selectedAmount === null ? "Select an amount" : formatGiftCardAmount(selectedAmount)}
+              <strong className={selected === null ? "is-placeholder" : ""}>
+                {selected === null ? "Select an amount" : formatGiftCardAmount(selected.amountCents, currency)}
               </strong>
             </div>
 
             <GoldButton
               type="button"
-              disabled={selectedAmount === null}
+              disabled={selected === null}
               className="gift-card-checkout"
               onClick={() => setCheckoutMessage("Secure checkout is not available yet. Please try again shortly.")}
             >
@@ -262,15 +293,18 @@ function GiftingNewPage() {
             <Mandala className="gift-card-mandala" />
             <div className="gift-card-object-copy">
               <p>Gift Card</p>
-              <span key={selectedAmount ?? "placeholder"} className={selectedAmount === null ? "is-placeholder" : ""}>
-                {selectedAmount === null ? "Select amount" : formatGiftCardAmount(selectedAmount)}
+              <span key={selected?.id ?? "placeholder"} className={selected === null ? "is-placeholder" : ""}>
+                {selected === null ? "Select amount" : formatGiftCardAmount(selected.amountCents, currency)}
               </span>
             </div>
           </div>
           <span className="sr-only" aria-live="polite">
-            {selectedAmount === null ? "No gift card amount selected" : `${formatGiftCardAmount(selectedAmount)} gift card selected`}
+            {selected === null
+              ? "No gift card amount selected"
+              : `${formatGiftCardAmount(selected.amountCents, currency)} gift card selected`}
           </span>
         </div>
+
       </section>
 
       <section className="gift-trust" data-reveal aria-label="Gold ownership assurances">

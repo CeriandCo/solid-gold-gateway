@@ -277,6 +277,282 @@ export type Database = {
         }
         Relationships: []
       }
+      checkout_attempts: {
+        Row: {
+          created_at: string
+          id: number
+          ip_hash: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          ip_hash: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          ip_hash?: string
+        }
+        Relationships: []
+      }
+      commerce_settings: {
+        Row: {
+          allowed_origins: string[]
+          checkout_enabled: boolean
+          currency: string | null
+          daily_limit_cents: number
+          hold_hours: number
+          id: boolean
+          max_card_cents: number
+          review_threshold_cents: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          allowed_origins?: string[]
+          checkout_enabled?: boolean
+          currency?: string | null
+          daily_limit_cents?: number
+          hold_hours?: number
+          id?: boolean
+          max_card_cents?: number
+          review_threshold_cents?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          allowed_origins?: string[]
+          checkout_enabled?: boolean
+          currency?: string | null
+          daily_limit_cents?: number
+          hold_hours?: number
+          id?: boolean
+          max_card_cents?: number
+          review_threshold_cents?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      gift_card_denominations: {
+        Row: {
+          active: boolean
+          amount_cents: number
+          created_at: string
+          id: string
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          amount_cents: number
+          created_at?: string
+          id?: string
+          sort_order?: number
+        }
+        Update: {
+          active?: boolean
+          amount_cents?: number
+          created_at?: string
+          id?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      gift_card_ledger: {
+        Row: {
+          actor: string
+          amount_cents: number
+          balance_after: number
+          created_at: string
+          entry_type: string
+          gift_card_id: string
+          id: number
+          reference: string | null
+        }
+        Insert: {
+          actor: string
+          amount_cents?: number
+          balance_after: number
+          created_at?: string
+          entry_type: string
+          gift_card_id: string
+          id?: number
+          reference?: string | null
+        }
+        Update: {
+          actor?: string
+          amount_cents?: number
+          balance_after?: number
+          created_at?: string
+          entry_type?: string
+          gift_card_id?: string
+          id?: number
+          reference?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_card_ledger_gift_card_id_fkey"
+            columns: ["gift_card_id"]
+            isOneToOne: false
+            referencedRelation: "gift_cards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gift_card_orders: {
+        Row: {
+          amount_cents: number
+          buyer_email: string | null
+          card_fingerprint_hash: string | null
+          client_ip_hash: string | null
+          created_at: string
+          currency: string
+          denomination_id: string | null
+          gift_message: string | null
+          id: string
+          livemode: boolean | null
+          paid_at: string | null
+          recipient_email: string | null
+          recipient_name: string | null
+          status: string
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          buyer_email?: string | null
+          card_fingerprint_hash?: string | null
+          client_ip_hash?: string | null
+          created_at?: string
+          currency: string
+          denomination_id?: string | null
+          gift_message?: string | null
+          id?: string
+          livemode?: boolean | null
+          paid_at?: string | null
+          recipient_email?: string | null
+          recipient_name?: string | null
+          status?: string
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          buyer_email?: string | null
+          card_fingerprint_hash?: string | null
+          client_ip_hash?: string | null
+          created_at?: string
+          currency?: string
+          denomination_id?: string | null
+          gift_message?: string | null
+          id?: string
+          livemode?: boolean | null
+          paid_at?: string | null
+          recipient_email?: string | null
+          recipient_name?: string | null
+          status?: string
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_card_orders_denomination_id_fkey"
+            columns: ["denomination_id"]
+            isOneToOne: false
+            referencedRelation: "gift_card_denominations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gift_cards: {
+        Row: {
+          activated_at: string | null
+          amount_cents: number
+          balance_cents: number
+          code_hash: string | null
+          code_last4: string | null
+          created_at: string
+          currency: string
+          delivered_at: string | null
+          hold_until: string | null
+          id: string
+          order_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          activated_at?: string | null
+          amount_cents: number
+          balance_cents: number
+          code_hash?: string | null
+          code_last4?: string | null
+          created_at?: string
+          currency: string
+          delivered_at?: string | null
+          hold_until?: string | null
+          id?: string
+          order_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          activated_at?: string | null
+          amount_cents?: number
+          balance_cents?: number
+          code_hash?: string | null
+          code_last4?: string | null
+          created_at?: string
+          currency?: string
+          delivered_at?: string | null
+          hold_until?: string | null
+          id?: string
+          order_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_cards_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: true
+            referencedRelation: "gift_card_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      stripe_events: {
+        Row: {
+          error: string | null
+          event_id: string
+          livemode: boolean | null
+          processed_at: string | null
+          received_at: string
+          status: string
+          type: string | null
+        }
+        Insert: {
+          error?: string | null
+          event_id: string
+          livemode?: boolean | null
+          processed_at?: string | null
+          received_at?: string
+          status?: string
+          type?: string | null
+        }
+        Update: {
+          error?: string | null
+          event_id?: string
+          livemode?: boolean | null
+          processed_at?: string | null
+          received_at?: string
+          status?: string
+          type?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -295,6 +571,18 @@ export type Database = {
       aurum_replace_post_sources: {
         Args: { _post_id: string; _sources: Json }
         Returns: undefined
+      }
+      commerce_prune_checkout_attempts: { Args: never; Returns: undefined }
+      gift_card_record: {
+        Args: {
+          _actor: string
+          _amount_cents?: number
+          _entry_type: string
+          _gift_card_id: string
+          _new_status?: string
+          _reference?: string
+        }
+        Returns: number
       }
     }
     Enums: {
