@@ -3,6 +3,7 @@ import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
+import { Gift, Globe, Shield, User } from "lucide-react";
 import { PRICING } from "@/config/pricing";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { createFileRoute } from "@tanstack/react-router";
@@ -33,6 +34,29 @@ const otherFeeItems = [
   { label: "Monthly fee", value: PRICING.otherFees.monthly },
   { label: "Inactivity fee", value: PRICING.otherFees.inactivity },
   { label: "Closing fee", value: PRICING.otherFees.closing },
+] as const;
+
+const trustItems = [
+  {
+    icon: Shield,
+    title: "Insured, segregated storage",
+    text: "Held in U.S. vaults at IDS or Vaultify PMC",
+  },
+  {
+    icon: Globe,
+    title: "Globally recognised products",
+    text: "Coins and bars from trusted mints",
+  },
+  {
+    icon: User,
+    title: "Allocated to you",
+    text: "Your metal is recorded in your name",
+  },
+  {
+    icon: Gift,
+    title: "Optional gifting service",
+    text: "Engraving and premium packaging for delivery to friends or family",
+  },
 ] as const;
 
 export const Route = createFileRoute("/pricing")({
@@ -287,7 +311,18 @@ function PricingPage() {
         </section>
 
         <div className="mx-auto w-full max-w-[1248px] px-6 min-[1440px]:max-w-[1440px] min-[1440px]:px-[120px]">
-          <section id="pricing-trust" />
+          <section id="pricing-trust" className="pricing-v2-trust">
+            <h2 className="sr-only">Why customers trust SQOOT Pure</h2>
+            <ul className="pricing-v2-trust-list">
+              {trustItems.map((item) => (
+                <li className="pricing-v2-trust-item" key={item.title}>
+                  <item.icon aria-hidden="true" strokeWidth={1.5} size={28} />
+                  <h3 className="pricing-v2-trust-title">{item.title}</h3>
+                  <p className="pricing-v2-trust-text">{item.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
           <section id="pricing-faq" />
           <section id="pricing-cta" />
         </div>
