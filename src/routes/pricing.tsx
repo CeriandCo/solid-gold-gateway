@@ -150,14 +150,14 @@ export const Route = createFileRoute("/pricing")({
         as: "image",
         href: pricingHeroAvifAsset.url,
         type: "image/avif",
-        fetchpriority: "high",
+        fetchPriority: "high",
       },
       {
         rel: "preload",
         as: "image",
         href: pricingHeroWebpAsset.url,
         type: "image/webp",
-        fetchpriority: "high",
+        fetchPriority: "high",
       },
     ],
     scripts: [
