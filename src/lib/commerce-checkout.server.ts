@@ -201,7 +201,9 @@ export async function runGiftCardCheckoutStatus(data: unknown): Promise<Checkout
   if (!parsed.success) return { status: "not_found" };
 
   const ipHash = await clientIpHash();
-  if (await recordAndCheckRate(ipHash)) return { status: "not_found" };
+  // A throttled poll must never look like a missing order to the buyer.
+  if (await recordAndCheckRate(ipHash, "status")) return { status: "confirming" };
+
 
   const order = await supabaseAdmin
     .from("gift_card_orders")
