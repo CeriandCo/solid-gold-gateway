@@ -112,7 +112,7 @@ const faqItems: readonly FaqItem[] = [
   },
 ];
 
-const METch_DESCRIPTION = `Every cost to buy, store, gift or take delivery of gold, in U.S. dollars: no purchase fee on coins and bars, ${vaultPurchaseFee} on vault metal, storage free for the first year.`;
+const META_DESCRIPTION = `Every cost to buy, store, gift or take delivery of gold, in U.S. dollars: no purchase fee on coins and bars, ${vaultPurchaseFee} on vault metal, storage free for the first year.`;
 
 const faqStructuredData = {
   "@context": "https://schema.org",
@@ -130,7 +130,7 @@ export const Route = createFileRoute("/pricing")({
       { title: "Pricing & Fees | SQOOT Pure" },
       {
         name: "description",
-        content: METch_DESCRIPTION,
+        content: META_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
