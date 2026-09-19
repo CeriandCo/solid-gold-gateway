@@ -18,6 +18,12 @@ export type PricingConfig = {
     closing: number;
   };
   maxBudgetUsd: number;
+  calculator: {
+    defaultBudgetUsd: number;
+    quickBudgetsUsd: readonly number[];
+    defaultHoldDays: 90 | 365 | 730 | 1825;
+    holdOptionsDays: readonly (90 | 365 | 730 | 1825)[];
+  };
   sample: {
     spotUsdPerOz: number;
     vaultPremiumRate: number;
@@ -54,6 +60,12 @@ export const PRICING = {
     closing: 0,
   },
   maxBudgetUsd: 1_000_000,
+  calculator: {
+    defaultBudgetUsd: 500,
+    quickBudgetsUsd: [100, 500, 1_000, 5_000],
+    defaultHoldDays: 730,
+    holdOptionsDays: [90, 365, 730, 1825],
+  },
   sample: {
     spotUsdPerOz: 3412.8,
     vaultPremiumRate: 0.04,
