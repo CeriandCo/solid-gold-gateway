@@ -3608,215 +3608,57 @@ footer.site-footer a:focus-visible {
   max-height: 80vh;
 }
 
-/* Pricing v2 hero */
-.pricing-v2-hero {
-  position: relative;
-  min-height: 640px;
-  overflow: hidden;
-  background: var(--pricing-hero);
-  color: var(--cream);
-}
-
-.pricing-v2-hero-image,
-.pricing-v2-hero-scrim {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.pricing-v2-hero-image {
-  object-fit: cover;
-  object-position: 80% 50%;
-}
-
-.pricing-v2-hero-scrim {
-  background: linear-gradient(
-    to bottom,
-    color-mix(in oklab, var(--forest) 30%, transparent) 0%,
-    color-mix(in oklab, var(--forest) 92%, transparent) 100%
-  );
-}
-
-.pricing-v2-hero-inner {
-  position: relative;
-  z-index: 1;
+/* Pricing v2 hero figures (inside the shared inner-page hero) */
+.pricing-hero-figures {
   display: flex;
-  min-height: 640px;
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding: 72px 24px 56px;
-  flex-direction: column;
 }
 
-.pricing-v2-hero-copy {
-  max-width: 560px;
+.pricing-hero-figures > div {
+  padding-inline: 28px;
+  border-left: 1px solid color-mix(in srgb, var(--warm-white) 18%, transparent);
 }
 
-.pricing-v2-hero-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
+.pricing-hero-figures > div:first-child {
+  padding-left: 0;
+  border-left: 0;
 }
 
-.pricing-v2-hero-title {
-  margin-top: 24px;
-  font-family: var(--font-display);
-  font-size: 44px;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--cream);
-}
-
-.pricing-v2-hero-title span,
-.pricing-v2-hero-title em {
+.pricing-hero-figures strong {
   display: block;
-}
-
-.pricing-v2-hero-title em {
+  font-family: "Cormorant Infant", Georgia, serif;
   font-weight: 600;
-  font-style: italic;
-  color: var(--gold);
-}
-
-.pricing-v2-hero-description {
-  max-width: 520px;
-  margin-top: 24px;
-  font-family: var(--font-sans);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: color-mix(in oklab, var(--cream) 75%, transparent);
-}
-
-.pricing-v2-hero-figures {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  margin-top: 48px;
-}
-
-.pricing-v2-hero-figure {
-  padding-block: 20px;
-  border-top: 1px solid color-mix(in oklab, var(--cream) 18%, transparent);
-}
-
-.pricing-v2-hero-figure:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.pricing-v2-hero-number {
-  font-family: var(--font-number);
-  font-size: 40px;
-  font-weight: 600;
+  font-size: clamp(40px, 3.9vw, 72px);
   line-height: 1;
-  color: var(--cream);
+  color: var(--warm-white);
 }
 
-.pricing-v2-hero-caption {
-  margin-top: 8px;
-  max-width: 156px;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: color-mix(in oklab, var(--cream) 65%, transparent);
+.pricing-hero-figures span {
+  display: block;
+  margin-top: 6px;
+  font: 400 13px/1.5 Inter, sans-serif;
+  color: color-mix(in srgb, var(--warm-white) 65%, transparent);
+  max-width: 170px;
 }
 
-@media (min-width: 560px) and (max-width: 1023px) {
-  .pricing-v2-hero-figures {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (max-width: 767px) {
+  .pricing-hero-figures > div {
+    padding-inline: 14px;
   }
 
-  .pricing-v2-hero-figure {
-    padding: 0 20px;
-    border-top: 0;
-    border-left: 1px solid color-mix(in oklab, var(--cream) 18%, transparent);
+  .pricing-hero-figures strong {
+    font-size: 32px;
   }
 
-  .pricing-v2-hero-figure:first-child {
-    padding-left: 0;
-    border-left: 0;
+  .pricing-hero-figures span {
+    font-size: 11px;
   }
 }
 
-@media (min-width: 1024px) {
-  .pricing-v2-hero {
-    height: 640px;
-    min-height: 640px;
-  }
-
-  .pricing-v2-hero-image {
-    object-position: 62% 50%;
-  }
-
-  .pricing-v2-hero-scrim {
-    background: linear-gradient(
-      to right,
-      color-mix(in oklab, var(--forest) 90%, transparent) 0%,
-      color-mix(in oklab, var(--forest) 55%, transparent) 36%,
-      transparent 61%
-    );
-  }
-
-  .pricing-v2-hero-inner {
-    height: 640px;
-    min-height: 640px;
-    padding: 104px 0 52px;
-  }
-
-  .pricing-v2-hero-title {
-    font-size: 68px;
-  }
-
-  .pricing-v2-hero-figures {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 760px;
-    margin-top: auto;
-  }
-
-  .pricing-v2-hero-figure {
-    padding: 0 28px;
-    border-top: 0;
-    border-left: 1px solid color-mix(in oklab, var(--cream) 18%, transparent);
-  }
-
-  .pricing-v2-hero-figure:first-child {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .pricing-v2-hero-figure:last-child {
-    padding-right: 0;
-  }
-
-  .pricing-v2-hero-number {
-    font-size: 56px;
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1247px) {
-  .pricing-v2-hero-inner {
-    padding-inline: 24px;
-  }
-}
 
 /* Pricing v2 comparison */
 .pricing-v2-compare {
   background: var(--cream);
-  padding-block: 72px;
-}
-
-.pricing-v2-compare-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 24px;
+  padding-block: clamp(64px, 6.7vw, 96px);
 }
 
 .pricing-v2-compare-heading {
@@ -4422,14 +4264,6 @@ footer.site-footer a:focus-visible {
 }
 
 @media (min-width: 1024px) {
-  .pricing-v2-compare {
-    padding-block: 96px;
-  }
-
-  .pricing-v2-compare-inner {
-    padding-inline: 0;
-  }
-
   .pricing-v2-table-wrap {
     display: block;
   }
@@ -4439,7 +4273,7 @@ footer.site-footer a:focus-visible {
   }
 
   .pricing-v2-table {
-    width: 740px;
+    width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     font-family: var(--font-sans);
@@ -4449,11 +4283,11 @@ footer.site-footer a:focus-visible {
   }
 
   .pricing-v2-table-label-col {
-    width: 164px;
+    width: 22%;
   }
 
   .pricing-v2-table-value-col {
-    width: 288px;
+    width: 39%;
   }
 
   .pricing-v2-table th,
@@ -4489,7 +4323,7 @@ footer.site-footer a:focus-visible {
   }
 
   .pricing-v2-table .pricing-v2-other-fees {
-    grid-template-columns: repeat(4, 144px);
+    grid-template-columns: repeat(4, 19.5%);
   }
 
   .pricing-v2-table .pricing-v2-other-fees > div {
@@ -4498,26 +4332,19 @@ footer.site-footer a:focus-visible {
 }
 
 @media (min-width: 1024px) and (max-width: 1247px) {
-  .pricing-v2-compare-inner {
-    padding-inline: 24px;
-  }
-
-  .pricing-v2-compare-grid {
-    grid-template-columns: minmax(0, 740px);
-  }
-
   .pricing-v2-calculator-column {
-    width: min(424px, 100%);
+    width: min(440px, 100%);
   }
 }
 
 @media (min-width: 1248px) {
   .pricing-v2-compare-grid {
-    grid-template-columns: 740px minmax(0, 424px);
+    grid-template-columns: minmax(0, 1fr) clamp(380px, 34%, 440px);
     gap: 36px;
   }
 
   .pricing-v2-calculator-column {
+    width: 100%;
     margin-top: 0;
   }
 }
@@ -4601,13 +4428,13 @@ footer.site-footer a:focus-visible {
 /* ============= Pricing v2 — FAQ (#pricing-faq) ============= */
 
 .pricing-v2-faq {
-  padding-block: 96px;
+  padding-block: clamp(64px, 6.7vw, 96px);
 }
 
 .pricing-v2-faq-grid {
   display: grid;
-  grid-template-columns: 380px minmax(0, 1fr);
-  column-gap: 96px;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  column-gap: clamp(48px, 6.7vw, 96px);
   align-items: start;
 }
 
@@ -4760,10 +4587,6 @@ footer.site-footer a:focus-visible {
 }
 
 @media (max-width: 1023px) {
-  .pricing-v2-faq {
-    padding-block: 72px;
-  }
-
   .pricing-v2-faq-grid {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 48px;
@@ -4780,7 +4603,7 @@ footer.site-footer a:focus-visible {
   overflow: hidden;
   background: var(--forest-black);
   color: var(--cream);
-  padding: 72px 24px 0;
+  padding: 72px 0 0;
 }
 
 .waitlist-cta-image {
@@ -4799,9 +4622,6 @@ footer.site-footer a:focus-visible {
 .waitlist-cta-inner {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
 }
 
 .waitlist-cta-copy {
@@ -4939,7 +4759,7 @@ footer.site-footer a:focus-visible {
 @media (min-width: 1024px) {
   .waitlist-cta {
     height: 600px;
-    padding: 0 24px;
+    padding: 0;
     display: flex;
     align-items: center;
   }
@@ -4965,8 +4785,8 @@ footer.site-footer a:focus-visible {
 
   .waitlist-cta-phone-right {
     z-index: 1;
-    width: calc(295cqw / 14.4);
-    left: calc(1068cqw / 14.4);
+    width: 20.49%;
+    left: 74.2%;
     top: calc(170cqw / 14.4);
     transform-origin: top left;
     transform: rotate(-6deg);
@@ -4974,8 +4794,8 @@ footer.site-footer a:focus-visible {
 
   .waitlist-cta-phone-left {
     z-index: 2;
-    width: calc(275cqw / 14.4);
-    left: calc(818cqw / 14.4);
+    width: 19.1%;
+    left: 56.8%;
     top: calc(104cqw / 14.4);
   }
 
@@ -5004,5 +4824,146 @@ footer.site-footer a:focus-visible {
     width: auto;
     white-space: nowrap;
     border-radius: 0 2px 2px 0;
+  }
+}
+
+/* ============= Pricing v2 — phase 9 motion ============= */
+
+.reveal-ready tr[data-reveal] > :is(td, th) {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--reveal-index, 0) * var(--reveal-step));
+}
+
+.reveal-ready tr[data-reveal].is-visible > :is(td, th) {
+  opacity: 1;
+  transform: none;
+}
+
+.pricing-cta-phone[data-reveal] {
+  --reveal-rise: 32px;
+}
+
+.pricing-calculator-option,
+.pricing-calculator-quick-options button,
+.pricing-calculator-toggle {
+  transition:
+    background-color 0.16s var(--reveal-ease),
+    border-color 0.16s var(--reveal-ease),
+    color 0.16s var(--reveal-ease);
+}
+
+.pricing-calculator-cta,
+.waitlist-cta-button {
+  transition:
+    background-color 0.2s var(--reveal-ease),
+    transform 0.2s var(--reveal-ease);
+}
+
+.pricing-calculator-cta:hover,
+.waitlist-cta-button:hover {
+  background: color-mix(in oklab, var(--gold) 88%, white);
+  transform: translateY(-1px);
+}
+
+.pricing-calculator-cta:active,
+.waitlist-cta-button:active {
+  transform: translateY(0);
+}
+
+.waitlist-cta-input,
+.waitlist-cta-button {
+  transition-property: background-color, border-color, transform, outline-color;
+  transition-duration: 0.16s;
+  transition-timing-function: var(--reveal-ease);
+}
+
+.waitlist-cta-input:focus-visible,
+.waitlist-cta-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.pricing-calculator-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 220ms var(--reveal-ease),
+    opacity 220ms var(--reveal-ease);
+}
+
+.pricing-calculator-collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.pricing-calculator-collapse > div {
+  display: grid;
+  gap: 18px;
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.pricing-calculator-collapse[data-open="true"] > div {
+  visibility: visible;
+}
+
+.pricing-calculator-result-fade {
+  transition: opacity 180ms var(--reveal-ease);
+}
+
+.pricing-calculator-result-fade.is-updating {
+  opacity: 0.55;
+}
+
+.pricing-calculator-error:not(:empty),
+.pricing-calculator-result.is-not-enough {
+  animation: pricingFadeIn 160ms var(--reveal-ease) both;
+}
+
+@keyframes pricingFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready tr[data-reveal] > :is(td, th),
+  .pricing-calculator-option,
+  .pricing-calculator-quick-options button,
+  .pricing-calculator-toggle,
+  .pricing-calculator-cta,
+  .pricing-calculator-collapse,
+  .pricing-calculator-result-fade,
+  .waitlist-cta-input,
+  .waitlist-cta-button {
+    transition: none !important;
+  }
+
+  .reveal-ready tr[data-reveal] > :is(td, th) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pricing-calculator-cta:hover,
+  .waitlist-cta-button:hover {
+    transform: none;
+  }
+
+  .pricing-calculator-error:not(:empty),
+  .pricing-calculator-result.is-not-enough {
+    animation: none;
+  }
+
+  .pricing-calculator-result-fade.is-updating {
+    opacity: 1;
   }
 }

@@ -145,6 +145,17 @@ export function PricingCalculator() {
     return () => window.clearTimeout(timer);
   }, [budget, deliveryKind, gift, holdDays, ownership, valid]);
 
+  const signature = JSON.stringify([budget, ownership, holdDays, deliveryKind, gift]);
+  const [updating, setUpdating] = useState(false);
+  const previousSignature = useRef(signature);
+  useEffect(() => {
+    if (previousSignature.current === signature) return;
+    previousSignature.current = signature;
+    setUpdating(true);
+    const timer = window.setTimeout(() => setUpdating(false), 180);
+    return () => window.clearTimeout(timer);
+  }, [signature]);
+
   const quickBudgetOptions = PRICING.calculator.quickBudgetsUsd.map((amount) => ({
     label: `$${amount.toLocaleString("en-US")}`,
     value: amount,
@@ -207,19 +218,23 @@ export function PricingCalculator() {
           <RadioGroup label="How would you like to own it?" onChange={setOwnership} options={ownershipOptions} value={ownership} />
         </div>
 
-        {ownership === "vault" ? (
-          <div className="pricing-calculator-field">
-            <span className="pricing-calculator-label">Hold for</span>
-            <RadioGroup
-              className="pricing-calculator-hold-options"
-              label="Hold for"
-              onChange={setHoldDays}
-              options={holdOptions}
-              value={holdDays}
-            />
+        <div className="pricing-calculator-collapse" data-open={ownership === "vault"}>
+          <div>
+            <div className="pricing-calculator-field">
+              <span className="pricing-calculator-label">Hold for</span>
+              <RadioGroup
+                className="pricing-calculator-hold-options"
+                label="Hold for"
+                onChange={setHoldDays}
+                options={holdOptions}
+                value={holdDays}
+              />
+            </div>
           </div>
-        ) : (
-          <>
+        </div>
+
+        <div className="pricing-calculator-collapse" data-open={ownership === "delivery"}>
+          <div>
             <div className="pricing-calculator-field">
               <span className="pricing-calculator-label">Coin or bar?</span>
               <RadioGroup label="Coin or bar?" onChange={setDeliveryKind} options={deliveryOptions} value={deliveryKind} />
@@ -241,11 +256,12 @@ export function PricingCalculator() {
                 <span aria-hidden="true" />
               </Button>
             </div>
-          </>
-        )}
+          </div>
+        </div>
       </div>
 
-      <CalculatorResult
+      <div className={`pricing-calculator-result-fade${updating ? " is-updating" : ""}`}>
+        <CalculatorResult
         budget={budget}
         deliveryEstimate={deliveryEstimate}
         deliveryKind={deliveryKind}
@@ -259,7 +275,8 @@ export function PricingCalculator() {
           track("calculator_switch_to_vault", { amount: budget, item: deliveryKind });
         }}
         vaultEstimate={vaultEstimate}
-      />
+        />
+      </div>
     </aside>
   );
 }
@@ -307,7 +324,7 @@ function CalculatorResult({
 
   if (notEnough && minimumItem) {
     return (
-      <div className="pricing-calculator-result is-muted" aria-live="polite">
+      <div className="pricing-calculator-result is-muted is-not-enough" aria-live="polite">
         <ResultHeading kicker="Not quite enough" />
         <p className="pricing-calculator-headline is-sentence">
           {formatMoney(budget).replace(".00", "")} does not cover the smallest {deliveryKind}.

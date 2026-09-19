@@ -1,8 +1,6 @@
 import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
-import pricingHeroWebpAsset from "@/assets/pricing/pricing-hero.webp.asset.json";
-import pricingHeroAvifAsset from "@/assets/pricing/pricing-hero.avif.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
@@ -12,6 +10,8 @@ import { track } from "@/lib/analytics";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { WaitlistCta } from "@/components/waitlist-cta";
 import { createFileRoute } from "@tanstack/react-router";
+import { InnerPageHero } from "@/components/inner-page-hero";
+import { useReveal } from "@/hooks/use-reveal";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const CANONICAL_URL = "https://getsqoot.com/pricing";
@@ -145,18 +145,7 @@ export const Route = createFileRoute("/pricing")({
     ],
     links: [
       { rel: "canonical", href: CANONICAL_URL },
-      {
-        rel: "preload",
-        as: "image",
-        href: pricingHeroAvifAsset.url,
-        type: "image/avif",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: pricingHeroWebpAsset.url,
-        type: "image/webp",
-      },
+      { rel: "preload", as: "image", href: pricingHeroAsset.url },
     ],
     scripts: [
       {
@@ -169,6 +158,9 @@ export const Route = createFileRoute("/pricing")({
 });
 
 function PricingPage() {
+  const compareRef = useReveal<HTMLElement>();
+  const trustRef = useReveal<HTMLElement>();
+  const faqRef = useReveal<HTMLElement>();
   const heroFigures = [
     {
       value: `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`,
@@ -210,54 +202,46 @@ function PricingPage() {
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
       <main className="bg-cream">
-        <section id="pricing-hero" className="pricing-v2-hero">
-          <picture>
-            <source srcSet={pricingHeroAvifAsset.url} type="image/avif" />
-            <source srcSet={pricingHeroWebpAsset.url} type="image/webp" />
-            <img
-              src={pricingHeroAsset.url}
-              alt=""
-              width={1881}
-              height={836}
-              className="pricing-v2-hero-image"
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
-          <div className="pricing-v2-hero-scrim" aria-hidden="true" />
-          <div className="pricing-v2-hero-inner">
-            <div className="pricing-v2-hero-copy">
-              <p className="pricing-v2-hero-eyebrow">Pricing &amp; fees</p>
-              <h1 className="pricing-v2-hero-title">
-                <span>Every fee, shown</span>
+        <InnerPageHero
+          id="pricing-hero"
+          titleId="pricing-hero-title"
+          eyebrow="Pricing & fees"
+          title={
+            <>
+              <span>Every fee, shown</span>
+              <span>
                 <em>before you confirm.</em>
-              </h1>
-              <p className="pricing-v2-hero-description">
-                What it costs to buy, store, gift or take delivery of gold — in U.S. dollars,
-                with nothing added after checkout.
-              </p>
-            </div>
-
-            <dl className="pricing-v2-hero-figures">
+              </span>
+            </>
+          }
+          body="What it costs to buy, store, gift or take delivery of gold — in U.S. dollars, with nothing added after checkout."
+          imageSrc={pricingHeroAsset.url}
+          imageAlt=""
+          imageVariant="pricing"
+          actions={
+            <dl className="pricing-hero-figures">
               {heroFigures.map((figure) => (
-                <div className="pricing-v2-hero-figure" key={figure.caption}>
-                  <dt className="pricing-v2-hero-number">{figure.value}</dt>
-                  <dd className="pricing-v2-hero-caption">{figure.caption}</dd>
+                <div key={figure.caption}>
+                  <dt>
+                    <strong>{figure.value}</strong>
+                  </dt>
+                  <dd>
+                    <span>{figure.caption}</span>
+                  </dd>
                 </div>
               ))}
             </dl>
-          </div>
-        </section>
+          }
+        />
 
-        <section id="pricing-compare" className="pricing-v2-compare">
-          <div className="pricing-v2-compare-inner">
+        <section id="pricing-compare" className="pricing-v2-compare" ref={compareRef}>
+          <div className="site-container pricing-v2-compare-inner">
             <div className="pricing-v2-compare-heading">
-              <div>
+              <div data-reveal>
                 <p className="pricing-v2-compare-eyebrow">Compare</p>
                 <h2>Two ways to own. One clear list of costs.</h2>
               </div>
-              <p className="pricing-v2-compare-currency">All prices in {PRICING.currency}</p>
+              <p className="pricing-v2-compare-currency" data-reveal>All prices in {PRICING.currency}</p>
             </div>
 
             <div className="pricing-v2-compare-grid">
@@ -271,7 +255,7 @@ function PricingPage() {
                       <col className="pricing-v2-table-value-col" />
                     </colgroup>
                     <thead>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="col" aria-label="Cost" />
                         <th scope="col">
                           <div className="pricing-v2-table-thumbnails">
@@ -295,16 +279,16 @@ function PricingPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">Minimum</th>
                         <td>One coin or bar</td>
                         <td>From {currencyPrefix}{PRICING.vault.minimumPurchaseUsd}</td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">{sharedComparisonRows[0].label}</th>
                         <td colSpan={2}>{sharedComparisonRows[0].value}</td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">Purchase fee</th>
                         <td><span className="pricing-v2-table-number">{deliveryFee}</span></td>
                         <td>
@@ -312,7 +296,7 @@ function PricingPage() {
                           <span className="pricing-v2-table-note">one-off</span>
                         </td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">Storage &amp; insurance</th>
                         <td>None — the gold is with you</td>
                         <td>
@@ -320,21 +304,21 @@ function PricingPage() {
                           (min. {currencyPrefix}{PRICING.vault.storageMinimumPerYearUsd})
                         </td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">Delivery</th>
                         <td>Insured shipping, shown at checkout</td>
                         <td>Convert to a coin or bar and ship any time</td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">{sharedComparisonRows[1].label}</th>
                         <td colSpan={2}>{sharedComparisonRows[1].value}</td>
                       </tr>
-                      <tr>
+                      <tr data-reveal>
                         <th scope="row">Gifting</th>
                         <td>Engraving and gift packaging</td>
                         <td>Transfer as a gift on request</td>
                       </tr>
-                      <tr className="pricing-v2-table-final-row">
+                      <tr className="pricing-v2-table-final-row" data-reveal>
                         <th scope="row">Nothing else</th>
                         <td colSpan={2}>
                           <div className="pricing-v2-other-fees">
@@ -387,29 +371,31 @@ function PricingPage() {
                   </div>
                 </div>
               </div>
-              <div className="pricing-v2-calculator-column">
+              <div className="pricing-v2-calculator-column" data-reveal>
                 <PricingCalculator />
               </div>
             </div>
           </div>
         </section>
 
-        <div className="mx-auto w-full max-w-[1248px] px-6 min-[1440px]:max-w-[1440px] min-[1440px]:px-[120px]">
-          <section id="pricing-trust" className="pricing-v2-trust">
+        <section id="pricing-trust" className="pricing-v2-trust" ref={trustRef}>
+          <div className="site-container">
             <h2 className="sr-only">Why customers trust SQOOT Pure</h2>
-            <ul className="pricing-v2-trust-list">
+            <ul className="pricing-v2-trust-list" data-reveal>
               {trustItems.map((item) => (
-                <li className="pricing-v2-trust-item" key={item.title}>
+                <li className="pricing-v2-trust-item" key={item.title} data-reveal>
                   <item.icon aria-hidden="true" strokeWidth={1.5} size={28} />
                   <h3 className="pricing-v2-trust-title">{item.title}</h3>
                   <p className="pricing-v2-trust-text">{item.text}</p>
                 </li>
               ))}
             </ul>
-          </section>
-          <section id="pricing-faq" className="pricing-v2-faq">
+          </div>
+        </section>
+        <section id="pricing-faq" className="pricing-v2-faq" ref={faqRef}>
+          <div className="site-container">
             <div className="pricing-v2-faq-grid">
-              <div className="pricing-v2-faq-intro">
+              <div className="pricing-v2-faq-intro" data-reveal>
                 <p className="pricing-v2-faq-eyebrow">FAQ</p>
                 <h2>Fees, answered plainly.</h2>
                 <p className="pricing-v2-faq-lead">
@@ -424,8 +410,8 @@ function PricingPage() {
                 ))}
               </ul>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
         <WaitlistCta
           eyebrow="Ready when you are"
@@ -489,7 +475,7 @@ function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean })
   const panelId = useId();
 
   return (
-    <li className="pricing-v2-faq-item" data-open={open}>
+    <li className="pricing-v2-faq-item" data-open={open} data-reveal>
       <h3 className="pricing-v2-faq-question">
         <button
           type="button"
