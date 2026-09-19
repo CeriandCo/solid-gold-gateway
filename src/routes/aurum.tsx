@@ -13,7 +13,11 @@ import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceSta
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute } from "@tanstack/react-router";
+import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
+
+const NOTE_PAGE_SIZE = 3;
+const BRIEF_LIMIT = 12;
 
 export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -22,6 +26,20 @@ export const Route = createFileRoute("/aurum")({
     brief: typeof search["brief"] === "string" ? search["brief"] : undefined,
     priceState: isForcedPriceStatus(search["priceState"]) ? (search["priceState"] as ForcedPriceStatus) : undefined,
   }),
+  loaderDeps: ({ search }) => ({ note: search.note ?? null, brief: search.brief ?? null }),
+  loader: async ({ deps }) => {
+    // Editorial content is server-rendered so there is no loading flash.
+    // A read failure degrades the two sections only; the rest of the page still renders.
+    const [notes, briefs] = await Promise.all([
+      fetchEditorialPage({
+        data: { type: "daily_note", limit: NOTE_PAGE_SIZE, offset: 0, includeSlug: deps.note },
+      }).catch(() => null),
+      fetchEditorialPage({
+        data: { type: "weekly_brief", limit: BRIEF_LIMIT, offset: 0, includeSlug: deps.brief },
+      }).catch(() => null),
+    ]);
+    return { notes, briefs: briefs ? briefs.items : null };
+  },
   head: () => ({
     meta: [
       { title: "AURUM Gold Education | SQOOT Pure" },
@@ -91,6 +109,7 @@ function AurumPage() {
 
 function AurumPageContent() {
   const { range, note: openNote, brief: openBrief } = Route.useSearch();
+  const { notes, briefs } = Route.useLoaderData();
   const navigate = Route.useNavigate();
   const subheaderRef = useRef<HTMLElement>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -239,6 +258,7 @@ function AurumPageContent() {
           }
         />
         <AurumDailyNoteSection
+          initial={notes}
           openSlug={openNote ?? null}
           onToggle={(slug) =>
             navigate({
@@ -248,6 +268,7 @@ function AurumPageContent() {
           }
         />
         <AurumWeeklyBriefSection
+          briefs={briefs}
           openSlug={openBrief ?? null}
           onToggle={(slug) =>
             navigate({

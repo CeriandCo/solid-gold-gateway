@@ -2,11 +2,11 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { AurumEditorialBody, AurumEditorialQuote, AurumEditorialSources } from "@/components/aurum-editorial-content";
 import { formatEditorialDate } from "@/lib/aurum-editorial";
-import { getAurumBrief } from "@/lib/aurum-briefs";
+import { fetchEditorialBySlug } from "@/lib/aurum-editorial.functions";
 
 export const Route = createFileRoute("/aurum_/briefs/$slug")({
-  loader: ({ params }) => {
-    const brief = getAurumBrief(params.slug);
+  loader: async ({ params }) => {
+    const brief = await fetchEditorialBySlug({ data: { type: "weekly_brief", slug: params.slug } });
     if (!brief) throw notFound();
     return { brief };
   },
