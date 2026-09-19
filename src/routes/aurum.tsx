@@ -114,6 +114,19 @@ function AurumPageContent() {
     const hashId = window.location.hash.slice(1);
     if (SECTION_IDS.some((id) => id === hashId)) {
       requestAnimationFrame(() => document.getElementById(hashId)?.scrollIntoView({ behavior: "auto" }));
+      return;
+    }
+
+    // Shared links (?note=slug / ?brief=slug) land on the open row once on load.
+    // Interactive toggles never scroll — they pass resetScroll: false instead.
+    const openSlug = openNote ?? openBrief;
+    if (openSlug) {
+      const kind = openNote ? "note" : "brief";
+      requestAnimationFrame(() => {
+        document
+          .querySelector<HTMLElement>(`[aria-controls="aurum-${kind}-panel-${openSlug}"]`)
+          ?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
     }
 
     return () => {
@@ -220,17 +233,28 @@ function AurumPageContent() {
 
       <main className="aurum-main">
         <AurumHero />
-        <AurumPriceSection range={range} onRangeChange={(nextRange) => navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true })} />
+        <AurumPriceSection
+          range={range}
+          onRangeChange={(nextRange) =>
+            navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true, resetScroll: false })
+          }
+        />
         <AurumDailyNoteSection
           openSlug={openNote ?? null}
           onToggle={(slug) =>
-            navigate({ search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }), hash: "daily-note" })
+            navigate({
+              search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }),
+              resetScroll: false,
+            })
           }
         />
         <AurumWeeklyBriefSection
           openSlug={openBrief ?? null}
           onToggle={(slug) =>
-            navigate({ search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }), hash: "weekly-brief" })
+            navigate({
+              search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }),
+              resetScroll: false,
+            })
           }
         />
         <AurumLearnSection />
