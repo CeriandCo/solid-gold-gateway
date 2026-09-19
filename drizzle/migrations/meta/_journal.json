@@ -78,6 +78,13 @@
       "when": 1789816920938,
       "tag": "0010_commerce_order_attempt_id",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1789818189460,
+      "tag": "0011_checkout_attempts_kind",
+      "breakpoints": true
     }
   ]
 }

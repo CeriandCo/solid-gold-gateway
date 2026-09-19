@@ -16,40 +16,52 @@ const sessionIdInput = z
   .strict();
 
 const RATE_SHORT_WINDOW_MS = 15 * 60 * 1000;
-const RATE_SHORT_MAX = 10;
 const RATE_DAY_WINDOW_MS = 24 * 60 * 60 * 1000;
-const RATE_DAY_MAX = 30;
+const CHECKOUT_SHORT_MAX = 10;
+const CHECKOUT_DAY_MAX = 30;
+const STATUS_SHORT_MAX = 60;
+
+type AttemptKind = "checkout" | "status";
 
 /**
  * Cloudflare sets CF-Connecting-IP at its own edge and overwrites whatever the
  * caller sent, so it cannot be spoofed the way an X-Forwarded-For chain can.
- * Requests arriving without it (local dev) share a single bucket.
+ * It is the only header trusted here; if it is ever absent the request falls
+ * into a shared bucket and we say so once, without any request data.
  */
 async function clientIpHash(): Promise<string> {
-  const ip = getRequestHeader("cf-connecting-ip") ?? getRequestHeader("x-real-ip") ?? "unknown";
+  const ip = getRequestHeader("cf-connecting-ip");
+  if (!ip) {
+    console.warn("[commerce] cf-connecting-ip missing; using the shared rate-limit bucket");
+    return peppered("unknown");
+  }
   return peppered(ip);
 }
 
-/** Records the attempt, then reports whether this caller is over either limit. */
-async function recordAndCheckRate(ipHash: string): Promise<boolean> {
-  await supabaseAdmin.from("checkout_attempts").insert({ ip_hash: ipHash });
+/** Records the attempt in its own bucket, then reports whether this caller is over a limit. */
+async function recordAndCheckRate(ipHash: string, kind: AttemptKind): Promise<boolean> {
+  await supabaseAdmin.from("checkout_attempts").insert({ ip_hash: ipHash, kind });
 
   const now = Date.now();
-  const [shortWindow, dayWindow] = await Promise.all([
-    supabaseAdmin
-      .from("checkout_attempts")
-      .select("id", { count: "exact", head: true })
-      .eq("ip_hash", ipHash)
-      .gte("created_at", new Date(now - RATE_SHORT_WINDOW_MS).toISOString()),
-    supabaseAdmin
-      .from("checkout_attempts")
-      .select("id", { count: "exact", head: true })
-      .eq("ip_hash", ipHash)
-      .gte("created_at", new Date(now - RATE_DAY_WINDOW_MS).toISOString()),
-  ]);
+  const shortWindow = await supabaseAdmin
+    .from("checkout_attempts")
+    .select("id", { count: "exact", head: true })
+    .eq("ip_hash", ipHash)
+    .eq("kind", kind)
+    .gte("created_at", new Date(now - RATE_SHORT_WINDOW_MS).toISOString());
 
-  return (shortWindow.count ?? 0) > RATE_SHORT_MAX || (dayWindow.count ?? 0) > RATE_DAY_MAX;
+  if (kind === "status") return (shortWindow.count ?? 0) > STATUS_SHORT_MAX;
+
+  const dayWindow = await supabaseAdmin
+    .from("checkout_attempts")
+    .select("id", { count: "exact", head: true })
+    .eq("ip_hash", ipHash)
+    .eq("kind", kind)
+    .gte("created_at", new Date(now - RATE_DAY_WINDOW_MS).toISOString());
+
+  return (shortWindow.count ?? 0) > CHECKOUT_SHORT_MAX || (dayWindow.count ?? 0) > CHECKOUT_DAY_MAX;
 }
+
 
 /**
  * Hardened Stripe Checkout Session creation.
@@ -73,9 +85,9 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   }
   const currency = row.currency;
 
-  // 2. Rate limit by salted IP hash.
+  // 2. Rate limit by salted IP hash, in the checkout bucket.
   const ipHash = await clientIpHash();
-  if (await recordAndCheckRate(ipHash)) return { ok: false, code: "rate_limited" };
+  if (await recordAndCheckRate(ipHash, "checkout")) return { ok: false, code: "rate_limited" };
 
   // 3. Origin allowlist — redirects are built only from the matched entry.
   const origin = getRequestHeader("origin") ?? "";
@@ -94,12 +106,19 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     return { ok: false, code: "invalid_request" };
   }
 
-  // 5. A repeated attempt id never creates a second session.
+  // 5. A repeated attempt id never creates a second session, and never
+  // switches amount: an attempt id is bound to the denomination it was
+  // first used with.
   const existing = await supabaseAdmin
     .from("gift_card_orders")
-    .select("id, stripe_session_id")
+    .select("id, stripe_session_id, status, denomination_id")
     .eq("attempt_id", attemptId)
     .maybeSingle();
+
+  if (existing.data && existing.data.denomination_id !== denom.id) {
+    return { ok: false, code: "invalid_request" };
+  }
+
   if (existing.data?.stripe_session_id) {
     try {
       const stripe = createStripeClient(secretKey);
@@ -114,8 +133,15 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   }
 
   // 6. Create the order, then the session with an idempotency key.
-  let orderId = existing.data?.id ?? null;
-  if (!orderId) {
+  let orderId: string | null = null;
+  if (existing.data) {
+    // Only a still-unpaid attempt may be picked up again.
+    if (existing.data.status !== "open" && existing.data.status !== "failed") {
+      return { ok: false, code: "invalid_request" };
+    }
+    orderId = existing.data.id;
+    await supabaseAdmin.from("gift_card_orders").update({ status: "open" }).eq("id", orderId);
+  } else {
     const inserted = await supabaseAdmin
       .from("gift_card_orders")
       .insert({
@@ -133,6 +159,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     orderId = inserted.data.id;
   }
 
+
   const failOrder = async () => {
     await supabaseAdmin.from("gift_card_orders").update({ status: "failed" }).eq("id", orderId!);
   };
@@ -147,7 +174,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   try {
     const stripe = createStripeClient(secretKey);
     const session = await stripe.checkout.sessions.create(params, {
-      idempotencyKey: `gift-card-${attemptId}`,
+      idempotencyKey: `gift-card-${attemptId}-${denom.id}`,
     });
     if (!session.url || new URL(session.url).host !== "checkout.stripe.com") {
       await failOrder();
@@ -174,7 +201,9 @@ export async function runGiftCardCheckoutStatus(data: unknown): Promise<Checkout
   if (!parsed.success) return { status: "not_found" };
 
   const ipHash = await clientIpHash();
-  if (await recordAndCheckRate(ipHash)) return { status: "not_found" };
+  // A throttled poll must never look like a missing order to the buyer.
+  if (await recordAndCheckRate(ipHash, "status")) return { status: "confirming" };
+
 
   const order = await supabaseAdmin
     .from("gift_card_orders")
