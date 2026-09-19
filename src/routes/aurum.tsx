@@ -114,6 +114,19 @@ function AurumPageContent() {
     const hashId = window.location.hash.slice(1);
     if (SECTION_IDS.some((id) => id === hashId)) {
       requestAnimationFrame(() => document.getElementById(hashId)?.scrollIntoView({ behavior: "auto" }));
+      return;
+    }
+
+    // Shared links (?note=slug / ?brief=slug) land on the open row once on load.
+    // Interactive toggles never scroll — they pass resetScroll: false instead.
+    const openSlug = openNote ?? openBrief;
+    if (openSlug) {
+      const kind = openNote ? "note" : "brief";
+      requestAnimationFrame(() => {
+        document
+          .querySelector<HTMLElement>(`[aria-controls="aurum-${kind}-panel-${openSlug}"]`)
+          ?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
     }
 
     return () => {
