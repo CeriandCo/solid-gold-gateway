@@ -159,13 +159,13 @@ async function handleCompleted(
   const settle = await supabaseAdmin.rpc("gift_card_order_settle", {
     _order_id: order.id,
     _event_id: event.id,
-    _payment_intent_id: intentId,
     _needs_review: needsReview,
-    _recipient_name: recipientName,
-    _recipient_email: recipientEmail,
-    _gift_message: giftMessage,
-    _buyer_email: session.customer_details?.email?.toLowerCase() ?? null,
-    _card_fingerprint_hash: fingerprint ? await peppered(fingerprint) : null,
+    _payment_intent_id: intentId ?? undefined,
+    _recipient_name: recipientName ?? undefined,
+    _recipient_email: recipientEmail ?? undefined,
+    _gift_message: giftMessage ?? undefined,
+    _buyer_email: session.customer_details?.email?.toLowerCase() ?? undefined,
+    _card_fingerprint_hash: fingerprint ? await peppered(fingerprint) : undefined,
   });
 
   if (settle.error) throw settle.error;

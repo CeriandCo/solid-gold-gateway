@@ -8,7 +8,7 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 const TEST_WEBHOOK_SECRET = "whsec_test_only_local_value_not_a_real_secret";
 const TEST_KEY = "sk_test_placeholder_for_tests";
 
-const stripe = new Stripe(TEST_KEY, { apiVersion: "2025-08-27.basil" });
+const stripe = new Stripe(TEST_KEY);
 
 const createdOrders: string[] = [];
 const createdEvents: string[] = [];
