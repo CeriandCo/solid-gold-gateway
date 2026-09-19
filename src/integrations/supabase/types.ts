@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      aurum_admin_link_requests: {
+        Row: {
+          email: string
+          last_requested_at: string
+        }
+        Insert: {
+          email: string
+          last_requested_at?: string
+        }
+        Update: {
+          email?: string
+          last_requested_at?: string
+        }
+        Relationships: []
+      }
+      aurum_cms_settings: {
+        Row: {
+          allow_self_approval: boolean
+          id: boolean
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          allow_self_approval?: boolean
+          id?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          allow_self_approval?: boolean
+          id?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       aurum_daily_closes: {
         Row: {
           close_price: number
@@ -41,6 +77,33 @@ export type Database = {
           price_date?: string
           source?: string | null
           unit?: string
+        }
+        Relationships: []
+      }
+      aurum_editors: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          email: string
+          id: string
+          role: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          email: string
+          id?: string
+          role: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          email?: string
+          id?: string
+          role?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -220,7 +283,9 @@ export type Database = {
     }
     Functions: {
       aurum_backfill_tick: { Args: never; Returns: undefined }
+      aurum_current_editor_role: { Args: never; Returns: string }
       aurum_fetcher_tick: { Args: never; Returns: undefined }
+      aurum_link_current_editor: { Args: never; Returns: string }
       aurum_prune_old_rows: { Args: never; Returns: undefined }
     }
     Enums: {

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AurumRouteImport } from './routes/aurum'
 import { Route as EarlyAccessRouteImport } from './routes/early-access'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
@@ -24,6 +25,9 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TrustCenterRouteImport } from './routes/trust-center'
 import { Route as VaultRouteImport } from './routes/vault'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminPeopleRouteImport } from './routes/admin.people'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnGiftingGoldGuideRouteImport } from './routes/learn.gifting-gold-guide'
 import { Route as LearnHowToBuyGoldSafelyRouteImport } from './routes/learn.how-to-buy-gold-safely'
@@ -43,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AurumRoute = AurumRouteImport.update({
@@ -110,6 +119,21 @@ const VaultRoute = VaultRouteImport.update({
   path: '/vault',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPeopleRoute = AdminPeopleRouteImport.update({
+  id: '/people',
+  path: '/people',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -167,6 +191,7 @@ const AurumNotesSlugRoute = AurumNotesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
@@ -180,9 +205,12 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/admin/people': typeof AdminPeopleRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
@@ -206,9 +234,12 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/admin/people': typeof AdminPeopleRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/admin': typeof AdminIndexRoute
   '/learn': typeof LearnIndexRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
@@ -221,6 +252,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
@@ -234,9 +266,12 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/trust-center': typeof TrustCenterRoute
   '/vault': typeof VaultRoute
+  '/admin/people': typeof AdminPeopleRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/learn/gifting-gold-guide': typeof LearnGiftingGoldGuideRoute
   '/learn/how-to-buy-gold-safely': typeof LearnHowToBuyGoldSafelyRoute
   '/learn/physical-gold-vs-gold-etf': typeof LearnPhysicalGoldVsGoldEtfRoute
+  '/admin/': typeof AdminIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
@@ -250,6 +285,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/admin'
     | '/aurum'
     | '/early-access'
     | '/fractional-gold'
@@ -263,9 +299,12 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust-center'
     | '/vault'
+    | '/admin/people'
+    | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/admin/'
     | '/learn/'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
@@ -289,9 +328,12 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust-center'
     | '/vault'
+    | '/admin/people'
+    | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/admin'
     | '/learn'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
@@ -303,6 +345,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-us'
+    | '/admin'
     | '/aurum'
     | '/early-access'
     | '/fractional-gold'
@@ -316,9 +359,12 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust-center'
     | '/vault'
+    | '/admin/people'
+    | '/admin/settings'
     | '/learn/gifting-gold-guide'
     | '/learn/how-to-buy-gold-safely'
     | '/learn/physical-gold-vs-gold-etf'
+    | '/admin/'
     | '/learn/'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
@@ -331,6 +377,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AurumRoute: typeof AurumRoute
   EarlyAccessRoute: typeof EarlyAccessRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
@@ -366,6 +413,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aurum': {
@@ -459,6 +513,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VaultRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/people': {
+      id: '/admin/people'
+      path: '/people'
+      fullPath: '/admin/people'
+      preLoaderRoute: typeof AdminPeopleRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/learn/': {
       id: '/learn/'
       path: '/'
@@ -532,6 +607,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminPeopleRoute: typeof AdminPeopleRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminPeopleRoute: AdminPeopleRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface LearnRouteChildren {
   LearnGiftingGoldGuideRoute: typeof LearnGiftingGoldGuideRoute
   LearnHowToBuyGoldSafelyRoute: typeof LearnHowToBuyGoldSafelyRoute
@@ -551,6 +640,7 @@ const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  AdminRoute: AdminRouteWithChildren,
   AurumRoute: AurumRoute,
   EarlyAccessRoute: EarlyAccessRoute,
   FractionalGoldRoute: FractionalGoldRoute,

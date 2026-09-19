@@ -1,4 +1,4 @@
-import { type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
+import { MONTH_ABBR, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
 // Daily Note content lives in the database (aurum_posts) and is read server-side.
 // No static copy is kept here on purpose: a fallback array would reintroduce the
@@ -6,11 +6,9 @@ import { type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-edit
 export type AurumNoteSource = AurumEditorialSource;
 export type AurumNote = AurumEditorial;
 
+/** "2026-09-10" -> "10 Sep 2026". Fixed month table, never Intl ("Sept" risk). */
 export function formatNoteDate(value: string): string {
-  return new Intl.DateTimeFormat("en-GB", {
-    timeZone: "UTC",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(`${value}T00:00:00Z`));
+  const [year, month, day] = value.split("-");
+  return `${String(day).padStart(2, "0")} ${MONTH_ABBR[Number(month) - 1]} ${year}`;
 }
+

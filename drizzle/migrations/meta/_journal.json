@@ -29,6 +29,20 @@
       "when": 1789795848368,
       "tag": "0003_fix_aurum_require_source_trigger",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789798412189,
+      "tag": "0004_create_aurum_cms_editors_and_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789798540276,
+      "tag": "0005_create_aurum_admin_link_requests",
+      "breakpoints": true
     }
   ]
 }

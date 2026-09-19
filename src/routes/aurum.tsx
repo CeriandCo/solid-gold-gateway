@@ -12,7 +12,7 @@ import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
@@ -38,8 +38,16 @@ export const Route = createFileRoute("/aurum")({
         data: { type: "weekly_brief", limit: BRIEF_LIMIT, offset: 0, includeSlug: deps.brief },
       }).catch(() => null),
     ]);
+    // A deep link to a post far past the capped expansion opens that post's own page.
+    if (notes?.deepLinkOverflow && deps.note) {
+      throw redirect({ to: "/aurum/notes/$slug", params: { slug: deps.note } });
+    }
+    if (briefs?.deepLinkOverflow && deps.brief) {
+      throw redirect({ to: "/aurum/briefs/$slug", params: { slug: deps.brief } });
+    }
     return { notes, briefs: briefs ? briefs.items : null };
   },
+
   head: () => ({
     meta: [
       { title: "AURUM Gold Education | SQOOT Pure" },

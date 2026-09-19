@@ -32,3 +32,10 @@
 - Fix homepage FAQ accordion: split into two independent columns, animate height with grid-template-rows, replace icon swap with animated plus/minus bars.
 - [x] Add AURUM before Learn in the footer; top/mobile insertion was reverted by the approved overflow gate after failing at 1024px.
 - [x] Verify all six desktop widths, footer order, screenshots, and build.
+
+## CMS (AURUM editorial)
+- [x] Step 1 — database tables for posts and sources, sourcing rule, seed.
+- [x] Step 2 — public site reads notes and briefs from the database.
+- [x] Step 3a — allowlist sign-in, roles, admin shell with People and Settings.
+- [ ] Step 3b — post editing in the admin.
+- [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
