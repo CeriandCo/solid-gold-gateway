@@ -71,6 +71,104 @@ export type Database = {
         }
         Relationships: []
       }
+      aurum_post_sources: {
+        Row: {
+          id: string
+          position: number
+          post_id: string
+          publisher: string
+          source_date: string
+          title: string
+          url: string
+        }
+        Insert: {
+          id?: string
+          position: number
+          post_id: string
+          publisher: string
+          source_date: string
+          title: string
+          url: string
+        }
+        Update: {
+          id?: string
+          position?: number
+          post_id?: string
+          publisher?: string
+          source_date?: string
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aurum_post_sources_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "aurum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      aurum_posts: {
+        Row: {
+          author_id: string | null
+          body: Json
+          created_at: string
+          id: string
+          published_at: string | null
+          pull_quote: string | null
+          read_minutes: number | null
+          review_line: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          slug: string
+          status: string
+          submitted_at: string | null
+          summary: string
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          body: Json
+          created_at?: string
+          id?: string
+          published_at?: string | null
+          pull_quote?: string | null
+          read_minutes?: number | null
+          review_line?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          slug: string
+          status?: string
+          submitted_at?: string | null
+          summary: string
+          title: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          body?: Json
+          created_at?: string
+          id?: string
+          published_at?: string | null
+          pull_quote?: string | null
+          read_minutes?: number | null
+          review_line?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          slug?: string
+          status?: string
+          submitted_at?: string | null
+          summary?: string
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       aurum_spot_prices: {
         Row: {
           change_amount: number
