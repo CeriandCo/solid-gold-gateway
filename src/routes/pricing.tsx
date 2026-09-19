@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
@@ -17,6 +18,10 @@ const deliveryFee = `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`;
 const vaultPurchaseFee = `${(PRICING.vault.purchaseFeeRate * 100).toFixed(2)}%`;
 const vaultStorageFee = `${(PRICING.vault.storageRatePerYear * 100).toFixed(2)}%`;
 const freeStorageMonths = Math.round((PRICING.vault.freeStorageDays / 365) * 12);
+const storageMinimumLabel = `${currencyPrefix}${PRICING.vault.storageMinimumPerYearUsd.toFixed(2)}`;
+const breakEvenUsd = Math.round(
+  PRICING.vault.storageMinimumPerYearUsd / PRICING.vault.storageRatePerYear,
+);
 
 const sharedComparisonRows = [
   {
@@ -58,6 +63,51 @@ const trustItems = [
     text: "Engraving and premium packaging for delivery to friends or family",
   },
 ] as const;
+
+type FaqItem = {
+  readonly question: string;
+  readonly answer: string;
+};
+
+const faqItems: readonly FaqItem[] = [
+  {
+    question: "What fees do I pay?",
+    answer: `It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a ${vaultPurchaseFee} one-off purchase fee, then storage and insurance free for your first ${freeStorageMonths} months and ${vaultStorageFee} of value per year after that, charged pro-rata for the exact days you hold.`,
+  },
+  {
+    question: "How is the purchase price calculated?",
+    answer:
+      "Weight multiplied by the live spot price at the moment your order is placed, plus a product premium that reflects minting, refining and handling. The premium varies by product and is always shown before you confirm.",
+  },
+  {
+    question: 'What does "allocated metal" mean?',
+    answer:
+      "When your purchase completes, a specific quantity of metal is allocated to you and recorded in your name in our ledger, which is reconciled to the depository. It is your property, held in custody for you — not a claim on the company, and never lent, pledged or used as collateral.",
+  },
+  {
+    question: "How are storage fees charged?",
+    answer: `Storage and insurance are free for your first ${freeStorageMonths} months. After that they are charged pro-rata, for the exact number of days you hold — not a flat annual charge — at ${vaultStorageFee} of value per year, with insurance included. There is no separate insurance charge.`,
+  },
+  {
+    question: "What is the minimum storage fee?",
+    answer: `${storageMinimumLabel} per year, applied only after your first ${freeStorageMonths} months and only if the calculated pro-rata fee is lower. On balances above roughly ${currencyPrefix}${breakEvenUsd} the ${vaultStorageFee} rate exceeds the minimum, so the minimum no longer applies.`,
+  },
+  {
+    question: "Can I take physical delivery?",
+    answer:
+      "Yes. You can convert your allocated metal into a coin or bar and have it shipped, insured, at any time. Delivery cost depends on location and weight and is shown before you confirm.",
+  },
+  {
+    question: "Can I gift gold?",
+    answer:
+      "Yes. Coins and bars can be shipped directly to a recipient with optional engraving and premium gift packaging, shown at checkout. Allocated metal can be transferred as a gift on request.",
+  },
+  {
+    question: "Are there any other fees?",
+    answer:
+      "No. There is no account fee, no monthly subscription, no inactivity fee and no fee to close your account. The costs on this page are the complete list.",
+  },
+];
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -323,7 +373,24 @@ function PricingPage() {
               ))}
             </ul>
           </section>
-          <section id="pricing-faq" />
+          <section id="pricing-faq" className="pricing-v2-faq">
+            <div className="pricing-v2-faq-grid">
+              <div className="pricing-v2-faq-intro">
+                <p className="pricing-v2-faq-eyebrow">FAQ</p>
+                <h2>Fees, answered plainly.</h2>
+                <p className="pricing-v2-faq-lead">
+                  Still unsure about a cost? Write to{" "}
+                  <a href="mailto:support@getsqoot.com">support@getsqoot.com</a> and we will show
+                  you the full breakdown.
+                </p>
+              </div>
+              <ul className="pricing-v2-faq-list">
+                {faqItems.map((item, index) => (
+                  <FaqItem key={item.question} item={item} defaultOpen={index === 0} />
+                ))}
+              </ul>
+            </div>
+          </section>
           <section id="pricing-cta" />
         </div>
       </main>
@@ -373,5 +440,41 @@ function ComparisonCard({
         ))}
       </dl>
     </article>
+  );
+}
+
+function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const buttonId = useId();
+  const panelId = useId();
+
+  return (
+    <li className="pricing-v2-faq-item" data-open={open}>
+      <h3 className="pricing-v2-faq-question">
+        <button
+          type="button"
+          id={buttonId}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span>{item.question}</span>
+          <span className="pricing-v2-faq-icon" aria-hidden="true">
+            <i />
+            <i />
+          </span>
+        </button>
+      </h3>
+      <div
+        className="pricing-v2-faq-panel"
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+      >
+        <div className="pricing-v2-faq-panel-inner">
+          <p>{item.answer}</p>
+        </div>
+      </div>
+    </li>
   );
 }
