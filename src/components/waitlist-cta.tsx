@@ -119,6 +119,17 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
           </p>
         </div>
       </div>
+
+      <picture>
+        <source srcSet={phoneSellWebpAsset.url} type="image/webp" />
+        <img
+          src={phoneSellPngAsset.url}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="waitlist-cta-mobile-phone"
+        />
+      </picture>
     </section>
   );
 }
