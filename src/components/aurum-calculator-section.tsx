@@ -83,7 +83,6 @@ export function AurumCalculatorSection() {
 
   const amount = Number(amountInput);
   const requested = dateInput ? new Date(`${dateInput}T00:00:00.000Z`) : null;
-  const today = new Date();
 
   let amountError: string | null = null;
   if (amountInput.trim() === "" || !Number.isFinite(amount) || amount <= 0) {
