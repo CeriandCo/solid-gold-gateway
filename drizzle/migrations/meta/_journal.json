@@ -43,6 +43,13 @@
       "when": 1789798540276,
       "tag": "0005_create_aurum_admin_link_requests",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1789802634070,
+      "tag": "0006_admin_read_posts_for_editors",
+      "breakpoints": true
     }
   ]
 }
