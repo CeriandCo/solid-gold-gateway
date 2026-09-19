@@ -335,7 +335,16 @@ export const listAdminPosts = createServerFn({ method: "GET" })
       .range(from, from + ADMIN_POSTS_PAGE_SIZE - 1);
     if (error) throw new Error(error.message);
 
-    const ids = (posts ?? []).map((post) => post.id);
+    type PostRow = {
+      id: string;
+      title: string;
+      type: string;
+      status: string;
+      published_at: string | null;
+      updated_at: string;
+    };
+    const postRows = (posts ?? []) as PostRow[];
+    const ids = postRows.map((post) => post.id);
     const sourceCounts = new Map<string, number>();
     if (ids.length > 0) {
       const { data: sources, error: sourceError } = await context.supabase
@@ -349,7 +358,7 @@ export const listAdminPosts = createServerFn({ method: "GET" })
     }
 
     return {
-      rows: (posts ?? []).map((post) => ({
+      rows: postRows.map((post) => ({
         id: post.id,
         title: post.title,
         type: post.type,
