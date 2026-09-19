@@ -108,24 +108,51 @@ const assurances: Feature[] = [
   { icon: Send, title: "Simple to Gift", description: "Allocated to the recipient — no international shipping" },
 ];
 
-const giftCardAmounts = [50, 100, 250, 500, 1000, 2000] as const;
-
-function formatGiftCardAmount(amount: number) {
+function formatGiftCardAmount(amountCents: number, currency: string | null) {
+  const amount = amountCents / 100;
+  const fractionDigits = amountCents % 100 === 0 ? 0 : 2;
+  if (!currency) {
+    return `$${new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+    }).format(amount)}`;
+  }
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
+    currency: currency.toUpperCase(),
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
   }).format(amount);
 }
 
-function formatGiftCardNumeral(amount: number) {
-  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(amount);
+function formatGiftCardNumeral(amountCents: number) {
+  const amount = amountCents / 100;
+  const fractionDigits = amountCents % 100 === 0 ? 0 : 2;
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  }).format(amount);
+}
+
+function giftCardCurrencyMark(currency: string | null) {
+  if (!currency) return "$";
+  const parts = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency.toUpperCase(),
+    maximumFractionDigits: 0,
+  }).formatToParts(1);
+  return parts.find((part) => part.type === "currency")?.value ?? "$";
 }
 
 function GiftingNewPage() {
   const scope = useReveal<HTMLElement>();
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const offering = Route.useLoaderData();
+  const { currency, denominations } = offering;
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checkoutMessage, setCheckoutMessage] = useState("");
+  const selected = denominations.find((option) => option.id === selectedId) ?? null;
+  const currencyMark = giftCardCurrencyMark(currency);
+
 
   return (
     <main ref={scope} id="top" className="gifting-new">
