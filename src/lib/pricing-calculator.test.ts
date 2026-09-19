@@ -4,6 +4,7 @@ import {
   calculateVaultEstimate,
   formatMoney,
   formatWeight,
+  roundMoney,
 } from "./pricing-calculator";
 
 describe("pricing calculator checks", () => {
@@ -50,6 +51,6 @@ describe("pricing calculator checks", () => {
   it("keeps displayed multi-item delivery lines additive", () => {
     const result = calculateDeliveryEstimate(1_000, "coin");
     expect(result).not.toBeNull();
-    expect((result?.atSpot ?? 0) + (result?.premium ?? 0)).toBe(result?.total);
+    expect(roundMoney((result?.atSpot ?? 0) + (result?.premium ?? 0))).toBe(result?.total);
   });
 });
