@@ -2988,12 +2988,13 @@ footer.site-footer a:focus-visible {
 .aurum-gifts__handoff {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 24px;
   margin-top: 40px;
   border-top: 1px solid var(--beige);
   padding-top: 24px;
 }
+
 
 .aurum-gifts__handoff p {
   max-width: 640px;
