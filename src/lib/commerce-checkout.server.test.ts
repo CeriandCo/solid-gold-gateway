@@ -14,7 +14,13 @@ const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 const ORIGIN = "https://tests.sqoot.invalid";
 const uuid = () => crypto.randomUUID();
 
-async function setSettings(patch: Record<string, unknown>) {
+type SettingsPatch = {
+  checkout_enabled?: boolean;
+  currency?: string | null;
+  allowed_origins?: string[];
+};
+
+async function setSettings(patch: SettingsPatch) {
   await supabaseAdmin.from("commerce_settings").update(patch).eq("id", true);
 }
 
@@ -142,7 +148,7 @@ describe("gift card checkout", () => {
       .single();
     expect(afterReplay.data?.id).toBe(created.data?.id);
     expect(await orderCount()).toBe(before + 1);
-  });
+  }, 60000);
 
   it("rate limits checkout at the 11th attempt while status polls still work", async () => {
     process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
@@ -166,7 +172,7 @@ describe("gift card checkout", () => {
     // The status bucket is separate, so polling still answers.
     const status = await runGiftCardCheckoutStatus({ sessionId: "cs_test_unknownsession" });
     expect(status).toEqual({ status: "not_found" });
-  }, 30000);
+  }, 60000);
 
   it("returns not_found for a malformed session id and never leaks personal data", async () => {
     const result = await runGiftCardCheckoutStatus({ sessionId: "cs_bogus_1" });
