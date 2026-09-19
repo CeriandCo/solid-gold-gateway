@@ -139,14 +139,32 @@ export const Route = createFileRoute("/pricing")({
       { property: "og:url", content: PRICING_URL },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
-      {
-        name: "twitter:description",
-        content:
-          "Transparent fees for gold. Storage, delivery, and gifting costs shown upfront.",
-      },
+      { name: "twitter:description", content: META_DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: PRICING_URL }],
+    links: [
+      { rel: "canonical", href: CANONICAL_URL },
+      {
+        rel: "preload",
+        as: "image",
+        href: pricingHeroAvifAsset.url,
+        type: "image/avif",
+        fetchpriority: "high",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: pricingHeroWebpAsset.url,
+        type: "image/webp",
+        fetchpriority: "high",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqStructuredData),
+      },
+    ],
   }),
   component: PricingPage,
 });
