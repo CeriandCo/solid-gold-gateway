@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
+import { getGiftCardOffering } from "@/lib/commerce.functions";
+
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
