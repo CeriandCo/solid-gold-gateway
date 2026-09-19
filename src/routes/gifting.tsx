@@ -114,6 +114,10 @@ function formatGiftCardAmount(amount: number) {
   }).format(amount);
 }
 
+function formatGiftCardNumeral(amount: number) {
+  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(amount);
+}
+
 function GiftingNewPage() {
   const scope = useReveal<HTMLElement>();
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
@@ -183,8 +187,8 @@ function GiftingNewPage() {
       <section id="gift-card" className="gift-card-section" data-reveal aria-labelledby="gift-card-title">
         <div className="gift-card-copy">
           <div className="gift-card-copy-inner">
-            <div className="gift-card-overline"><p>SQOOT Pure Gift Card</p><Mandala /></div>
-            <h2 id="gift-card-title">Give them the freedom to choose.</h2>
+            <div className="gift-card-overline"><span /><p>SQOOT Pure Gift Card</p><Mandala /></div>
+            <h2 id="gift-card-title"><span>Give them the freedom</span><span>to choose.</span></h2>
             <p className="gift-card-intro">
               A meaningful gift for every occasion. Choose an amount and let someone special begin their journey with SQOOT Pure.
             </p>
@@ -200,6 +204,7 @@ function GiftingNewPage() {
                         type="radio"
                         name="gift-card-amount"
                         value={amount}
+                        aria-label={formattedAmount}
                         checked={selectedAmount === amount}
                         onChange={() => {
                           setSelectedAmount(amount);
@@ -207,7 +212,10 @@ function GiftingNewPage() {
                         }}
                       />
                       <span className="gift-amount-label">
-                        <span>{formattedAmount}</span>
+                        <span className="gift-amount-price" aria-hidden="true">
+                          <span className="gift-amount-currency">$</span>
+                          <span>{formatGiftCardNumeral(amount)}</span>
+                        </span>
                         <Check className="gift-amount-check" aria-hidden="true" />
                       </span>
                     </label>
@@ -216,10 +224,16 @@ function GiftingNewPage() {
               </div>
             </fieldset>
 
+            <div className="gift-card-value" aria-hidden="true">
+              <span>Gift card value</span>
+              <strong className={selectedAmount === null ? "is-placeholder" : ""}>
+                {selectedAmount === null ? "Select an amount" : formatGiftCardAmount(selectedAmount)}
+              </strong>
+            </div>
+
             <GoldButton
               type="button"
               disabled={selectedAmount === null}
-              icon="none"
               className="gift-card-checkout"
               onClick={() => setCheckoutMessage("Secure checkout is not available yet. Please try again shortly.")}
             >
@@ -354,20 +368,23 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
 .gift-card-section { display: grid; grid-template-columns: minmax(0,52%) minmax(0,48%); background: var(--cream-200); }
 .gift-card-copy { min-width: 0; display: flex; align-items: center; padding: clamp(56px,6.25vw,90px) var(--page-padding); }
 .gift-card-copy-inner { width: min(100%,650px); margin-left: auto; margin-right: clamp(18px,3.4vw,49px); }
-.gift-card-overline { gap:8px; color: var(--gold-deep); }.gift-card-overline p { font-size: clamp(10px,.76vw,12px); font-weight: 600; letter-spacing: .2em; }.gift-card-overline svg { width: 14px; height: 14px; }
-.gift-card-copy h2 { max-width: 620px; margin-top: 8px; color: var(--forest-900); font-size: clamp(42px,4vw,58px); font-weight: 500; line-height: 1; }
-.gift-card-intro { max-width: 590px; margin-top: 18px; font-size: clamp(14px,1.12vw,17px); line-height: 1.6; }
-.gift-amount-fieldset { margin-top: 28px; border: 0; padding: 0; }.gift-amount-fieldset legend { margin-bottom: 12px; color: var(--forest-900); font-size: 14px; font-weight: 600; }
-.gift-amount-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.gift-card-overline { gap:8px; color: var(--gold-deep); }.gift-card-overline > span { width: 28px; height: 1px; background: var(--gold-500); }.gift-card-overline p { font-size: clamp(10px,.76vw,12px); line-height: 1; font-weight: 600; letter-spacing: .2em; }.gift-card-overline svg { width: 14px; height: 14px; }
+.gift-card-copy h2 { max-width: 650px; margin-top: 16px; color: var(--forest-900); font-size: clamp(42px,4vw,58px); font-weight: 500; line-height: .96; text-wrap: balance; }.gift-card-copy h2 span { display: block; white-space: nowrap; }.gift-card-copy h2 span:last-child { color: var(--gold-deep); }
+.gift-card-intro { max-width: 46ch; margin-top: 20px; color: var(--body-dark); font-size: clamp(14px,1.12vw,17px); line-height: 1.68; opacity: .82; }
+.gift-amount-fieldset { margin-top: 40px; border: 0; padding: 0; }.gift-amount-fieldset legend { width: 100%; margin-bottom: 16px; color: var(--body-dark); font-size: 10px; font-weight: 600; line-height: 1; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }.gift-amount-fieldset legend::after { content:""; display: inline-block; width: calc(100% - 190px); height: 1px; margin-left: 14px; vertical-align: middle; background: var(--light-divider); }
+.gift-amount-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .gift-amount-option { position: relative; min-width: 0; cursor: pointer; }.gift-amount-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.gift-amount-label { height: 48px; display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--light-divider); border-radius: 4px; color: var(--forest-900); background: var(--cream-50); font-size: 15px; font-weight: 600; transition: border-color .18s,background-color .18s,box-shadow .18s; }
-.gift-amount-check { width: 15px; height: 15px; display: none; flex: none; stroke-width: 2.5; }
-.gift-amount-option input:checked + .gift-amount-label { border-color: var(--gold-deep); background: var(--cream-100); box-shadow: inset 0 0 0 1px var(--gold-deep); }.gift-amount-option input:checked + .gift-amount-label .gift-amount-check { display: block; }
-.gift-amount-option input:focus-visible + .gift-amount-label { outline: 3px solid var(--forest-700); outline-offset: 3px; }
-.gift-amount-option:hover .gift-amount-label { border-color: var(--gold-deep); }
-.gift-card-checkout { width: 100%; margin-top: 20px; }.gift-card-checkout:disabled { transform: none; }
-.gift-card-security { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; color: var(--body-dark); font-size: 12px; opacity: .72; }.gift-card-security svg { width: 14px; height: 14px; }
-.gift-card-message { min-height: 38px; padding-top: 8px; color: var(--forest-800); font-size: 13px; line-height: 1.4; text-align: center; }
+.gift-amount-label { position: relative; height: 76px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--light-divider); border-radius: 2px; color: var(--forest-900); background: transparent; transition: border-color .18s,background-color .18s,box-shadow .18s; }
+.gift-amount-price { display: inline-flex; align-items: flex-start; justify-content: center; font-family: "Cormorant Garamond",Georgia,serif; font-size: 30px; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.gift-amount-currency { margin-right: 2px; padding-top: .08em; color: var(--gold-deep); font-size: .55em; line-height: 1; }
+.gift-amount-check { position: absolute; top: 9px; right: 9px; width: 12px; height: 12px; visibility: hidden; color: var(--gold-deep); stroke-width: 2; }
+.gift-amount-option input:checked + .gift-amount-label { border-color: var(--gold-deep); background: var(--cream-50); box-shadow: inset 0 0 0 1px var(--gold-deep); }.gift-amount-option input:checked + .gift-amount-label .gift-amount-check { visibility: visible; }
+.gift-amount-option input:focus-visible + .gift-amount-label { outline: 2px solid var(--forest-700); outline-offset: 3px; }
+.gift-amount-option:hover .gift-amount-label { border-color: var(--gold-deep); background: var(--cream-50); }
+.gift-card-value { height: 46px; margin-top: 28px; border-block: 1px solid var(--light-divider); display: flex; align-items: center; justify-content: space-between; gap: 16px; }.gift-card-value > span { color: var(--body-dark); font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }.gift-card-value strong { color: var(--forest-900); font-family: "Cormorant Garamond",Georgia,serif; font-size: 23px; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums tabular-nums; }.gift-card-value strong.is-placeholder { color: var(--body-dark); font-family: "Inter",sans-serif; font-size: 12px; font-weight: 400; opacity: .58; }
+.gift-card-checkout { width: auto; margin-top: 24px; }.gift-card-checkout:disabled { transform: none; }
+.gift-card-security { display: flex; align-items: center; justify-content: flex-start; gap: 6px; margin-top: 14px; color: var(--body-dark); font-size: 12px; opacity: .68; }.gift-card-security svg { width: 14px; height: 14px; color: var(--gold-deep); }
+.gift-card-message { min-height: 38px; padding-top: 8px; color: var(--forest-800); font-size: 13px; line-height: 1.4; text-align: left; }
 .gift-card-visual { position: relative; min-width: 0; min-height: 610px; overflow: hidden; display: grid; place-items: center; padding: clamp(44px,5vw,72px); isolation: isolate; }
 .gift-card-background { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .gift-card-object { position: relative; width: min(100%,560px); aspect-ratio: 1.63; overflow: hidden; border: 1px solid var(--gold-400); border-radius: 7px; color: var(--gold-300); background: var(--forest-900); box-shadow: 0 24px 44px rgba(8,34,24,.28); transform: rotate(-2deg); }
@@ -402,7 +419,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
   .gift-benefits-inner { grid-template-columns: repeat(2,1fr); padding: 12px 14px; }.gift-benefit { height: 122px; }.gift-benefit:nth-child(3n+1) { border-left: 1px solid var(--light-divider); }.gift-benefit:nth-child(odd) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(n+5) { border-bottom: 0; }
   .gift-occasions { padding-inline: 0; }.gift-occasions header { padding-inline: 20px; }.gift-occasions h2 { font-size: 34px; }.gift-occasion-grid { width: 100%; display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }.gift-occasion-grid::-webkit-scrollbar { display:none; }.gift-occasion-card { flex: 0 0 82%; height: 330px; scroll-snap-align: start; }.gift-view-all { margin-top: 2px; }
-  .gift-card-section { display: flex; flex-direction: column; }.gift-card-visual { order: -1; min-height: 360px; padding: 34px 28px; }.gift-card-copy { padding: 42px 20px 38px; }.gift-card-copy-inner { width: min(100%,520px); margin: auto; }.gift-card-copy h2 { font-size: 40px; }.gift-card-intro { font-size: 14px; }.gift-amount-fieldset { margin-top: 24px; }.gift-card-checkout { min-height: 54px; }.gift-card-object-copy > span { min-width: 120px; font-size: 34px; }
+  .gift-card-section { display: flex; flex-direction: column; }.gift-card-visual { order: -1; min-height: 360px; padding: 34px 28px; }.gift-card-copy { padding: 42px 20px 38px; }.gift-card-copy-inner { width: min(100%,520px); margin: auto; }.gift-card-copy h2 { font-size: 38px; }.gift-card-intro { font-size: 14px; }.gift-amount-label { height: 64px; }.gift-amount-price { font-size: 24px; }.gift-card-checkout { width: 100%; min-height: 54px; }.gift-card-security { justify-content: center; }.gift-card-message { text-align: center; }.gift-card-object-copy > span { min-width: 120px; font-size: 34px; }
   .gift-trust-inner { grid-template-columns: repeat(2,1fr); padding: 14px; }.gift-trust article { height: 125px; }.gift-trust article:nth-child(odd) { border-left: 0; }.gift-trust article:nth-child(4) { border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:last-child { grid-column: 1/-1; }
   .gift-closing { height: 440px; }.gift-closing > img { object-position: 66% bottom; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
 }
