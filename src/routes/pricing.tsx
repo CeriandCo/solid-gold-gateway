@@ -8,12 +8,12 @@ import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
 import { Gift, Globe, Shield, User } from "lucide-react";
 import { PRICING } from "@/config/pricing";
+import { track } from "@/lib/analytics";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { WaitlistCta } from "@/components/waitlist-cta";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
-const PRICING_URL = `${SITE_ORIGIN}/pricing`;
 const CANONICAL_URL = "https://getsqoot.com/pricing";
 const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
 
@@ -498,7 +498,12 @@ function FaqItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean })
           id={buttonId}
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() =>
+            setOpen((value) => {
+              if (!value) track("faq_open", { question: item.question });
+              return !value;
+            })
+          }
         >
           <span>{item.question}</span>
           <span className="pricing-v2-faq-icon" aria-hidden="true">
