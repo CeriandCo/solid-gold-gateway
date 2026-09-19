@@ -36,6 +36,29 @@ const otherFeeItems = [
   { label: "Closing fee", value: PRICING.otherFees.closing },
 ] as const;
 
+const trustItems = [
+  {
+    icon: Shield,
+    title: "Insured, segregated storage",
+    text: "Held in U.S. vaults at IDS or Vaultify PMC",
+  },
+  {
+    icon: Globe,
+    title: "Globally recognised products",
+    text: "Coins and bars from trusted mints",
+  },
+  {
+    icon: User,
+    title: "Allocated to you",
+    text: "Your metal is recorded in your name",
+  },
+  {
+    icon: Gift,
+    title: "Optional gifting service",
+    text: "Engraving and premium packaging for delivery to friends or family",
+  },
+] as const;
+
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
