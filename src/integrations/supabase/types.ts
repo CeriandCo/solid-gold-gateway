@@ -587,7 +587,7 @@ export type Database = {
           _gift_message?: string
           _needs_review: boolean
           _order_id: string
-          _payment_intent_id: string
+          _payment_intent_id?: string
           _recipient_email?: string
           _recipient_name?: string
         }
