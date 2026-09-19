@@ -31,21 +31,41 @@ async function handle(request: Request) {
   const from = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
 
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
-  // Newest-first so a row cap can never silently drop the most recent year,
-  // then re-sorted ascending for the chart.
-  const { data, error } = await supabaseAdmin
-    .from('aurum_daily_closes')
-    .select('price_date, close_price, source')
-    .gte('price_date', from)
-    .order('price_date', { ascending: false })
-    .limit(days + 1)
 
-  if (error) {
-    console.error('[get-history] read failed', error.message)
-    return json({ points: [], source: null, latest_date: null }, 503)
+  // Supabase caps every response at 1000 rows regardless of .limit(), and a
+  // 5y window holds ~1258 closes — page through in chunks of 1000 with
+  // .range() until a short chunk signals the end. Newest-first within the
+  // window, re-sorted ascending for the chart below.
+  // MAX_PAGES is a hard bound so a bad query can never loop unbounded
+  // (5 chunks of 1000 is far beyond the largest 5y window).
+  const PAGE_SIZE = 1000
+  const MAX_PAGES = 5
+  const rows: { price_date: string; close_price: number; source: string | null }[] = []
+  let source: string | null = null
+
+  for (let page = 0; page < MAX_PAGES; page++) {
+    const { data, error } = await supabaseAdmin
+      .from('aurum_daily_closes')
+      .select('price_date, close_price, source')
+      .gte('price_date', from)
+      .order('price_date', { ascending: false })
+      .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)
+
+    if (error) {
+      console.error('[get-history] read failed', error.message)
+      return json({ points: [], source: null, latest_date: null }, 503)
+    }
+
+    const chunk = data ?? []
+    if (page === 0) source = chunk[0]?.source ?? null
+    rows.push(...chunk)
+    if (chunk.length < PAGE_SIZE) break
+    if (page === MAX_PAGES - 1) {
+      console.warn('[get-history] page bound reached; response may be truncated', { range: rangeParam, rows: rows.length })
+    }
   }
 
-  const points = (data ?? [])
+  const points = rows
     .map((row) => ({ date: row.price_date, close: Number(row.close_price) }))
     .filter((point) => Number.isFinite(point.close))
     .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
@@ -53,7 +73,7 @@ async function handle(request: Request) {
   return json(
     {
       points,
-      source: data?.[0]?.source ?? null,
+      source,
       latest_date: points.length > 0 ? points[points.length - 1]?.date ?? null : null,
     },
     200,
