@@ -118,7 +118,6 @@ export async function loadEditorialPage(input: {
   offset: number;
   includeSlug?: string | null;
 }): Promise<EditorialPage> {
-  throw new Error("temp failure test");
   let limit = input.limit;
 
   // A shared link must open its note even when it sits past the first page.
