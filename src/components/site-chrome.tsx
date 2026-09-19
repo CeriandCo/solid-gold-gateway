@@ -61,7 +61,6 @@ export const siteNav = [
   ["Pricing", "/pricing"],
   ["Trust Center", "/trust-center"],
   ["About Us", "/about-us"],
-  ["AURUM", "/aurum"],
   ["Learn", "/learn"],
 ] as const;
 
