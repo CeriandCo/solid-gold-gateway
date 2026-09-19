@@ -137,7 +137,7 @@ export const Route = createFileRoute("/pricing")({
       { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
       { property: "og:description", content: META_DESCRIPTION },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:url", content: PRICING_URL },
+      { property: "og:url", content: CANONICAL_URL },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
       { name: "twitter:description", content: META_DESCRIPTION },
