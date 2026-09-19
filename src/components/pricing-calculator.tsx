@@ -180,7 +180,10 @@ export function PricingCalculator() {
               aria-describedby={invalid ? "pricing-budget-error" : undefined}
               aria-invalid={invalid}
               onBlur={() => setBudgetInput(parsedInput ? formatBudgetInput(parsedInput) : "")}
-              onChange={(event) => setBudgetInput(event.target.value.replace(/[^0-9,]/g, ""))}
+              onChange={(event) => {
+                const next = parseBudget(event.target.value);
+                setBudgetInput(event.target.value.replace(/[^0-9]/g, "") === "" ? "" : formatBudgetInput(next));
+              }}
             />
           </div>
           <p id="pricing-budget-error" className="pricing-calculator-error" aria-live="polite">
@@ -249,6 +252,7 @@ export function PricingCalculator() {
         gift={gift}
         holdDays={holdDays}
         invalid={invalid}
+        minimumError={minimumError}
         notEnough={notEnough}
         onSwitchToVault={() => {
           setOwnership("vault");
@@ -267,6 +271,7 @@ function CalculatorResult({
   gift,
   holdDays,
   invalid,
+  minimumError,
   notEnough,
   onSwitchToVault,
   vaultEstimate,
@@ -277,6 +282,7 @@ function CalculatorResult({
   gift: boolean;
   holdDays: HoldPeriod;
   invalid: boolean;
+  minimumError: boolean;
   notEnough: boolean;
   onSwitchToVault: () => void;
   vaultEstimate: ReturnType<typeof calculateVaultEstimate> | null;
@@ -290,7 +296,9 @@ function CalculatorResult({
         <ResultHeading kicker="Your estimate" />
         <p className="pricing-calculator-headline is-sentence">—</p>
         <p className="pricing-calculator-subline">
-          Enter at least {formatMoney(PRICING.vault.minimumPurchaseUsd).replace(".00", "")} to see an estimate.
+          {minimumError
+            ? `Enter at least ${formatMoney(PRICING.vault.minimumPurchaseUsd).replace(".00", "")} to see an estimate.`
+            : `Enter no more than ${formatMoney(PRICING.maxBudgetUsd).replace(".00", "")} to see an estimate.`}
         </p>
         <Button className="pricing-calculator-cta" disabled aria-disabled="true">Join the waitlist to buy →</Button>
       </div>
@@ -361,7 +369,7 @@ function CalculatorResult({
         {deliveryEstimate.item.name} — the largest whole {typeWord} your budget covers.
       </p>
       <div className="pricing-calculator-lines">
-        <ResultLine label={`Gold at spot · ${formatWeight(deliveryEstimate.item.weightOz)} oz`} value={formatMoney(deliveryEstimate.atSpot)} />
+        <ResultLine label={`Gold at spot · ${formatWeight(deliveryEstimate.quantity * deliveryEstimate.item.weightOz)} oz`} value={formatMoney(deliveryEstimate.atSpot)} />
         <ResultLine label={`Product premium · ${(deliveryEstimate.item.premiumRate * 100).toFixed(0)}%`} value={formatMoney(deliveryEstimate.premium)} />
         <ResultLine label="Purchase fee" value={formatMoney(PRICING.delivery.purchaseFeeRate)} />
         {deliveryKind === "coin" ? <ResultLine label="Storage" value="None — it is with you" subdued /> : null}
@@ -374,7 +382,7 @@ function CalculatorResult({
       <p className="pricing-calculator-note">
         {deliveryKind === "bar" && gift
           ? "Gift options and shipping are priced at checkout, before you pay."
-          : "Coins are sold whole. Shipping depends on your address and is shown before you pay."}
+          : `${deliveryKind === "coin" ? "Coins" : "Bars"} are sold whole. Shipping depends on your address and is shown before you pay.`}
       </p>
     </div>
   );

@@ -93,8 +93,7 @@ function deliveryProducts(kind: DeliveryKind) {
 }
 
 export function getDeliveryItemPrice(item: PricingSampleProduct) {
-  // Product totals settle to a whole cent before quantity selection.
-  return Math.ceil(item.weightOz * PRICING.sample.spotUsdPerOz * (1 + item.premiumRate) * 100) / 100;
+  return roundMoney(item.weightOz * PRICING.sample.spotUsdPerOz * (1 + item.premiumRate));
 }
 
 export function getCheapestDeliveryItem(kind: DeliveryKind) {
@@ -115,9 +114,9 @@ export function calculateDeliveryEstimate(
   if (!selected) return null;
 
   const quantity = Math.floor(budget / selected.price);
-  const atSpot = roundMoney(selected.item.weightOz * PRICING.sample.spotUsdPerOz);
-  const premium = roundMoney(selected.price - atSpot);
   const total = roundMoney(quantity * selected.price);
+  const atSpot = roundMoney(quantity * selected.item.weightOz * PRICING.sample.spotUsdPerOz);
+  const premium = roundMoney(total - atSpot);
 
   return {
     kind: "delivery",

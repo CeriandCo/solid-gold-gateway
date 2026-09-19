@@ -46,4 +46,10 @@ describe("pricing calculator checks", () => {
     const result = calculateVaultEstimate(500, 730);
     expect(result.atSpot + result.premium + result.purchaseFee).toBe(500);
   });
+
+  it("keeps displayed multi-item delivery lines additive", () => {
+    const result = calculateDeliveryEstimate(1_000, "coin");
+    expect(result).not.toBeNull();
+    expect((result?.atSpot ?? 0) + (result?.premium ?? 0)).toBe(result?.total);
+  });
 });

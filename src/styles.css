@@ -4430,21 +4430,12 @@ footer.site-footer a:focus-visible {
     padding-inline: 0;
   }
 
-  .pricing-v2-compare-grid {
-    grid-template-columns: 740px minmax(0, 424px);
-    gap: 36px;
-  }
-
   .pricing-v2-table-wrap {
     display: block;
   }
 
   .pricing-v2-mobile-comparison {
     display: none;
-  }
-
-  .pricing-v2-calculator-column {
-    margin-top: 0;
   }
 
   .pricing-v2-table {
@@ -4512,6 +4503,21 @@ footer.site-footer a:focus-visible {
   }
 
   .pricing-v2-compare-grid {
-    grid-template-columns: minmax(0, 740px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 740px);
+  }
+
+  .pricing-v2-calculator-column {
+    width: min(424px, 100%);
+  }
+}
+
+@media (min-width: 1248px) {
+  .pricing-v2-compare-grid {
+    grid-template-columns: 740px minmax(0, 424px);
+    gap: 36px;
+  }
+
+  .pricing-v2-calculator-column {
+    margin-top: 0;
   }
 }
