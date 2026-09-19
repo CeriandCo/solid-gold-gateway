@@ -925,7 +925,9 @@ function BottomCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="pricing-page relative overflow-hidden bg-[var(--pricing-forest-900)] py-10 md:py-12 lg:py-8"
+      // mb-14 keeps a 56px cream band between this block and the footer, so
+      // the dark block sits framed on the page background at every width.
+      className="pricing-page relative mb-14 overflow-hidden bg-[var(--pricing-forest-900)] py-10 md:py-12 lg:py-8"
     >
       {/* Subtle radial gold glow behind the heading */}
       <div
