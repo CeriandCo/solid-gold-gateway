@@ -4773,3 +4773,213 @@ footer.site-footer a:focus-visible {
     font-size: 36px;
   }
 }
+
+/* ---- Waitlist CTA (pricing v2 phase 7) ---- */
+.waitlist-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest-black);
+  color: var(--cream);
+  padding: 72px 24px 0;
+}
+
+.waitlist-cta-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.waitlist-cta-stage {
+  display: none;
+}
+
+.waitlist-cta-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.waitlist-cta-copy {
+  max-width: 560px;
+}
+
+.waitlist-cta-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.waitlist-cta-title {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.02;
+  color: var(--cream);
+}
+
+.waitlist-cta-title span,
+.waitlist-cta-title em {
+  display: block;
+}
+
+.waitlist-cta-title em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.waitlist-cta-body {
+  max-width: 500px;
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--cream) 72%, transparent);
+}
+
+.waitlist-cta-form {
+  margin-top: 22px;
+}
+
+.waitlist-cta-control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 480px;
+}
+
+.waitlist-cta-input {
+  height: 52px;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent);
+  background: color-mix(in oklab, var(--cream) 7%, transparent);
+  padding-inline: 18px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--cream);
+  outline: none;
+}
+
+.waitlist-cta-input::placeholder {
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+}
+
+.waitlist-cta-input:focus-visible,
+.waitlist-cta-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.waitlist-cta-button {
+  height: 52px;
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  background: var(--gold);
+  padding-inline: 28px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink, #091b13);
+  cursor: pointer;
+}
+
+.waitlist-cta-error {
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: #f0a898;
+}
+
+.waitlist-cta-success {
+  max-width: 500px;
+  margin-top: 22px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--cream);
+}
+
+.waitlist-cta-fineprint {
+  margin-top: 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+}
+
+.waitlist-cta-fineprint a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .waitlist-cta-mobile-phone {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 220px;
+    margin: 40px auto -40px;
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.45)) drop-shadow(0 8px 12px rgb(0 0 0 / 0.25));
+  }
+}
+
+@media (min-width: 1024px) {
+  .waitlist-cta {
+    height: 600px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .waitlist-cta-mobile-phone {
+    display: none;
+  }
+
+  .waitlist-cta-stage {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: min(100%, 1440px);
+    margin-inline: auto;
+    container-type: inline-size;
+    pointer-events: none;
+  }
+
+  .waitlist-cta-phone {
+    position: absolute;
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.45)) drop-shadow(0 8px 12px rgb(0 0 0 / 0.25));
+  }
+
+  .waitlist-cta-phone-right {
+    z-index: 1;
+    width: calc(295cqw / 14.4);
+    left: calc(1068cqw / 14.4);
+    top: calc(170cqw / 14.4);
+    transform-origin: top left;
+    transform: rotate(-6deg);
+  }
+
+  .waitlist-cta-phone-left {
+    z-index: 2;
+    width: calc(275cqw / 14.4);
+    left: calc(818cqw / 14.4);
+    top: calc(104cqw / 14.4);
+  }
+
+  .waitlist-cta-title {
+    font-size: 64px;
+  }
+}
