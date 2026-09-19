@@ -99,6 +99,13 @@
       "when": 1789819209916,
       "tag": "0013_gift_card_order_settle_nullable_args",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1789819997298,
+      "tag": "0014_commerce_alerts_and_review_rules",
+      "breakpoints": true
     }
   ]
 }

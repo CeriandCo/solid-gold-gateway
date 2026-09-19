@@ -30,5 +30,5 @@ Tests: `bunx vitest run` — 26 tests across 3 files, all green (12 webhook test
 - Endpoint path: `POST /api/public/stripe-webhook`
 - Events handled today: `checkout.session.completed`, `checkout.session.expired`
 - Events to subscribe once B3b lands: `checkout.session.completed`, `checkout.session.expired`,
-  `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`,
-  `payment_intent.payment_failed`
+  `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`
+  (superseded by B3b: those five events only)
