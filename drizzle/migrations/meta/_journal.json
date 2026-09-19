@@ -15,6 +15,20 @@
       "when": 1789747993713,
       "tag": "0001_aurum_drop_public_read_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789795784672,
+      "tag": "0002_create_aurum_editorial_cms_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789795848368,
+      "tag": "0003_fix_aurum_require_source_trigger",
+      "breakpoints": true
     }
   ]
 }
