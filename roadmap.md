@@ -41,4 +41,7 @@
 - [x] Step 3b-2 — creating, editing and deleting drafts in the admin (drafts only; publishing arrives with the review workflow).
 - [x] Step 3b-3 — sources editor and live preview for drafts.
 
+## Gifting
+- [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
+
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
