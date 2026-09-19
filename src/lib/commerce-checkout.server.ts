@@ -16,40 +16,52 @@ const sessionIdInput = z
   .strict();
 
 const RATE_SHORT_WINDOW_MS = 15 * 60 * 1000;
-const RATE_SHORT_MAX = 10;
 const RATE_DAY_WINDOW_MS = 24 * 60 * 60 * 1000;
-const RATE_DAY_MAX = 30;
+const CHECKOUT_SHORT_MAX = 10;
+const CHECKOUT_DAY_MAX = 30;
+const STATUS_SHORT_MAX = 60;
+
+type AttemptKind = "checkout" | "status";
 
 /**
  * Cloudflare sets CF-Connecting-IP at its own edge and overwrites whatever the
  * caller sent, so it cannot be spoofed the way an X-Forwarded-For chain can.
- * Requests arriving without it (local dev) share a single bucket.
+ * It is the only header trusted here; if it is ever absent the request falls
+ * into a shared bucket and we say so once, without any request data.
  */
 async function clientIpHash(): Promise<string> {
-  const ip = getRequestHeader("cf-connecting-ip") ?? getRequestHeader("x-real-ip") ?? "unknown";
+  const ip = getRequestHeader("cf-connecting-ip");
+  if (!ip) {
+    console.warn("[commerce] cf-connecting-ip missing; using the shared rate-limit bucket");
+    return peppered("unknown");
+  }
   return peppered(ip);
 }
 
-/** Records the attempt, then reports whether this caller is over either limit. */
-async function recordAndCheckRate(ipHash: string): Promise<boolean> {
-  await supabaseAdmin.from("checkout_attempts").insert({ ip_hash: ipHash });
+/** Records the attempt in its own bucket, then reports whether this caller is over a limit. */
+async function recordAndCheckRate(ipHash: string, kind: AttemptKind): Promise<boolean> {
+  await supabaseAdmin.from("checkout_attempts").insert({ ip_hash: ipHash, kind });
 
   const now = Date.now();
-  const [shortWindow, dayWindow] = await Promise.all([
-    supabaseAdmin
-      .from("checkout_attempts")
-      .select("id", { count: "exact", head: true })
-      .eq("ip_hash", ipHash)
-      .gte("created_at", new Date(now - RATE_SHORT_WINDOW_MS).toISOString()),
-    supabaseAdmin
-      .from("checkout_attempts")
-      .select("id", { count: "exact", head: true })
-      .eq("ip_hash", ipHash)
-      .gte("created_at", new Date(now - RATE_DAY_WINDOW_MS).toISOString()),
-  ]);
+  const shortWindow = await supabaseAdmin
+    .from("checkout_attempts")
+    .select("id", { count: "exact", head: true })
+    .eq("ip_hash", ipHash)
+    .eq("kind", kind)
+    .gte("created_at", new Date(now - RATE_SHORT_WINDOW_MS).toISOString());
 
-  return (shortWindow.count ?? 0) > RATE_SHORT_MAX || (dayWindow.count ?? 0) > RATE_DAY_MAX;
+  if (kind === "status") return (shortWindow.count ?? 0) > STATUS_SHORT_MAX;
+
+  const dayWindow = await supabaseAdmin
+    .from("checkout_attempts")
+    .select("id", { count: "exact", head: true })
+    .eq("ip_hash", ipHash)
+    .eq("kind", kind)
+    .gte("created_at", new Date(now - RATE_DAY_WINDOW_MS).toISOString());
+
+  return (shortWindow.count ?? 0) > CHECKOUT_SHORT_MAX || (dayWindow.count ?? 0) > CHECKOUT_DAY_MAX;
 }
+
 
 /**
  * Hardened Stripe Checkout Session creation.
