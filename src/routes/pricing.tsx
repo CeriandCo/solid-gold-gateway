@@ -1,8 +1,6 @@
 import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
-import pricingHeroWebpAsset from "@/assets/pricing/pricing-hero.webp.asset.json";
-import pricingHeroAvifAsset from "@/assets/pricing/pricing-hero.avif.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
@@ -147,18 +145,7 @@ export const Route = createFileRoute("/pricing")({
     ],
     links: [
       { rel: "canonical", href: CANONICAL_URL },
-      {
-        rel: "preload",
-        as: "image",
-        href: pricingHeroAvifAsset.url,
-        type: "image/avif",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: pricingHeroWebpAsset.url,
-        type: "image/webp",
-      },
+      { rel: "preload", as: "image", href: pricingHeroAsset.url },
     ],
     scripts: [
       {
