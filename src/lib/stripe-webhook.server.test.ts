@@ -141,15 +141,14 @@ describe("stripe webhook route guards", () => {
   };
 
   it("rejects a bad signature with 400 and writes nothing", async () => {
-    const before = await supabaseAdmin
-      .from("stripe_events")
-      .select("event_id", { count: "exact", head: true });
+    // Scoped to this event id: other suites write their own events in parallel.
     const response = await routeHandler(JSON.stringify({ id: "evt_fake" }), "t=1,v1=deadbeef");
     expect(response.status).toBe(400);
     const after = await supabaseAdmin
       .from("stripe_events")
-      .select("event_id", { count: "exact", head: true });
-    expect(after.count).toBe(before.count);
+      .select("event_id", { count: "exact", head: true })
+      .eq("event_id", "evt_fake");
+    expect(after.count).toBe(0);
   });
 
   it("rejects a livemode mismatch with 400", async () => {

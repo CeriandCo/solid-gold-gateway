@@ -8,5 +8,8 @@ export default defineConfig({
   test: {
     testTimeout: 60_000,
     hookTimeout: 60_000,
+    // Every suite writes to the same real database, and the fraud rules count
+    // rows per buyer per day, so suites must not overlap.
+    fileParallelism: false,
   },
 });
