@@ -3,6 +3,7 @@ import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
+import { Gift, Globe, Shield, User } from "lucide-react";
 import { PRICING } from "@/config/pricing";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { createFileRoute } from "@tanstack/react-router";
@@ -287,7 +288,18 @@ function PricingPage() {
         </section>
 
         <div className="mx-auto w-full max-w-[1248px] px-6 min-[1440px]:max-w-[1440px] min-[1440px]:px-[120px]">
-          <section id="pricing-trust" />
+          <section id="pricing-trust" className="pricing-v2-trust">
+            <h2 className="sr-only">Why customers trust SQOOT Pure</h2>
+            <ul className="pricing-v2-trust-list">
+              {trustItems.map((item) => (
+                <li className="pricing-v2-trust-item" key={item.title}>
+                  <item.icon aria-hidden="true" strokeWidth={1.5} size={28} />
+                  <h3 className="pricing-v2-trust-title">{item.title}</h3>
+                  <p className="pricing-v2-trust-text">{item.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
           <section id="pricing-faq" />
           <section id="pricing-cta" />
         </div>
