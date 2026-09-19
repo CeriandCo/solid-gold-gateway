@@ -7,7 +7,6 @@ import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
 import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
-import { AurumCommunitySection } from "@/components/aurum-community-section";
 import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
 
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
@@ -58,7 +57,7 @@ const AURUM_LINKS = [
   { label: "Learn", id: "learn" },
   { label: "Calculator", id: "calculator" },
   { label: "Gifts", id: "gifts" },
-  { label: "Community", id: "community" },
+
 ] as const;
 
 const SECTION_IDS = ["top", ...AURUM_LINKS.map(({ id }) => id), "subscribe"] as const;
@@ -260,7 +259,7 @@ function AurumPageContent() {
         <AurumLearnSection />
         <AurumCalculatorSection />
         <AurumGiftsSection />
-        <AurumCommunitySection />
+
         <AurumSubscribeSection />
       </main>
 
