@@ -1,7 +1,7 @@
 # B3a verification — Stripe webhook, part 1
 
 Run: 2026-09-19, local dev, no Stripe key and no webhook secret configured on the project.
-Tests: `bunx vitest run` (`src/lib/stripe-webhook.server.test.ts`, 12 tests, all green).
+Tests: `bunx vitest run` — 26 tests across 3 files, all green (12 webhook tests here).
 
 | # | Check | Result | Note |
 |---|-------|--------|------|
