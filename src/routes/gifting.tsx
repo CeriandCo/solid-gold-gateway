@@ -35,6 +35,7 @@ import sqootLogo from "@/assets/sqoot-pure-logo.png";
 import closingGift from "@/assets/gifting-closing-banner.jpg";
 
 export const Route = createFileRoute("/gifting")({
+  loader: () => getGiftCardOffering(),
   head: () => ({
     meta: [
       { title: "Gift Real Gold — SQOOT Pure" },
@@ -56,6 +57,7 @@ export const Route = createFileRoute("/gifting")({
   }),
   component: GiftingNewPage,
 });
+
 
 function Mandala({ className = "" }: { className?: string }) {
   return (
