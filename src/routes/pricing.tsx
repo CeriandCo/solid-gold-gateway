@@ -12,6 +12,8 @@ import { track } from "@/lib/analytics";
 import { PricingCalculator } from "@/components/pricing-calculator";
 import { WaitlistCta } from "@/components/waitlist-cta";
 import { createFileRoute } from "@tanstack/react-router";
+import { InnerPageHero } from "@/components/inner-page-hero";
+import { useReveal } from "@/hooks/use-reveal";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const CANONICAL_URL = "https://getsqoot.com/pricing";
@@ -210,45 +212,37 @@ function PricingPage() {
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
       <main className="bg-cream">
-        <section id="pricing-hero" className="pricing-v2-hero">
-          <picture>
-            <source srcSet={pricingHeroAvifAsset.url} type="image/avif" />
-            <source srcSet={pricingHeroWebpAsset.url} type="image/webp" />
-            <img
-              src={pricingHeroAsset.url}
-              alt=""
-              width={1881}
-              height={836}
-              className="pricing-v2-hero-image"
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
-          <div className="pricing-v2-hero-scrim" aria-hidden="true" />
-          <div className="pricing-v2-hero-inner">
-            <div className="pricing-v2-hero-copy">
-              <p className="pricing-v2-hero-eyebrow">Pricing &amp; fees</p>
-              <h1 className="pricing-v2-hero-title">
-                <span>Every fee, shown</span>
+        <InnerPageHero
+          id="pricing-hero"
+          titleId="pricing-hero-title"
+          eyebrow="Pricing & fees"
+          title={
+            <>
+              <span>Every fee, shown</span>
+              <span>
                 <em>before you confirm.</em>
-              </h1>
-              <p className="pricing-v2-hero-description">
-                What it costs to buy, store, gift or take delivery of gold — in U.S. dollars,
-                with nothing added after checkout.
-              </p>
-            </div>
-
-            <dl className="pricing-v2-hero-figures">
+              </span>
+            </>
+          }
+          body="What it costs to buy, store, gift or take delivery of gold — in U.S. dollars, with nothing added after checkout."
+          imageSrc={pricingHeroAsset.url}
+          imageAlt=""
+          imageVariant="pricing"
+          actions={
+            <dl className="pricing-hero-figures">
               {heroFigures.map((figure) => (
-                <div className="pricing-v2-hero-figure" key={figure.caption}>
-                  <dt className="pricing-v2-hero-number">{figure.value}</dt>
-                  <dd className="pricing-v2-hero-caption">{figure.caption}</dd>
+                <div key={figure.caption}>
+                  <dt>
+                    <strong>{figure.value}</strong>
+                  </dt>
+                  <dd>
+                    <span>{figure.caption}</span>
+                  </dd>
                 </div>
               ))}
             </dl>
-          </div>
-        </section>
+          }
+        />
 
         <section id="pricing-compare" className="pricing-v2-compare">
           <div className="pricing-v2-compare-inner">
