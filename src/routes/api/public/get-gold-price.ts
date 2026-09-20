@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { derivePriceChange } from '@/lib/aurum/price-change'
 
 /**
  * Public, read-only current gold price.
@@ -7,17 +8,8 @@ import { createFileRoute } from '@tanstack/react-router'
  * Dillon Gage and never requires the cron secret. Freshness is computed here,
  * on the server, from observed_at; the browser clock is never trusted.
  *
- * PROVENANCE — READ BEFORE USING THESE FIELDS
- * -------------------------------------------
- * `change_amount` and `change_pct` come straight from the price provider
- * (Dillon Gage spot) and are the AUTHORITATIVE intraday move. Display these.
- *
- * `previous_close` comes from a DIFFERENT SERIES — currently Yahoo `GC=F`,
- * COMEX gold FUTURES — exposed here as `previous_close_source`. Futures carry
- * a basis of tens of dollars against spot, so deriving a change from it
- * (`(price_usd - previous_close) / previous_close`) produces a daily move that
- * never happened. NEVER derive the displayed change from `previous_close`
- * until the history source is confirmed to match the spot feed.
+ * Day change is derived only from two observations of the exact same provider
+ * feed. Persisted derivatives are validated before they can reach a browser.
  */
 
 
@@ -36,7 +28,6 @@ type PriceResponse = {
   day_high: number | null
   day_low: number | null
   previous_close: number | null
-  /** Series the previous close came from (e.g. `yahoo:GC=F`). Not the spot feed. */
   previous_close_source: string | null
 
   provider: string | null
@@ -87,7 +78,7 @@ async function handle() {
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
   const { data, error } = await supabaseAdmin
     .from('aurum_spot_prices')
-    .select('price, change_amount, change_percent, high_24h, low_24h, previous_close, source, observed_at, created_at')
+    .select('price, change_amount, change_percent, source, observed_at, created_at')
     .order('observed_at', { ascending: false })
     .limit(1)
 
@@ -110,35 +101,57 @@ async function handle() {
   // `fresh` — the comparison is `<=`, so the boundary is deterministic.
   const freshness: Freshness = ageSeconds <= maxAgeSeconds ? 'fresh' : 'stale'
 
-  // Provider name only; never the raw provider payload or the token.
-  const provider = typeof row.source === 'string' ? (row.source.split(':')[0] ?? null) : null
-
-  // Provenance for previous_close: look up the daily-close row it came from.
-  // Different instrument from the spot price above — see the header comment.
-  const rawPreviousClose = num(row.previous_close)
-  let previousClose: number | null = null
-  let previousCloseSource: string | null = null
-  if (rawPreviousClose !== null) {
-    const today = new Date().toISOString().slice(0, 10)
-    const { data: closeRows } = await supabaseAdmin
-      .from('aurum_daily_closes')
-      .select('source')
-      .lt('price_date', today)
-      .order('price_date', { ascending: false })
+  const provider = typeof row.source === 'string' ? row.source : null
+  const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
+  const priorDayStart = new Date(Date.parse(observedDayStart) - 24 * 60 * 60 * 1000).toISOString()
+  const { data: priorRows, error: priorError } = provider
+    ? await supabaseAdmin
+      .from('aurum_spot_prices')
+      .select('price, source')
+      .eq('source', provider)
+      .gte('observed_at', priorDayStart)
+      .lt('observed_at', observedDayStart)
+      .order('observed_at', { ascending: false })
       .limit(1)
-    previousClose = round2(rawPreviousClose)
-    previousCloseSource = closeRows?.[0]?.source ?? null
+    : { data: null, error: null }
+  if (priorError) console.error('[get-gold-price] same-feed baseline read failed', priorError.message)
+  const rawPreviousClose = priorError ? null : num(priorRows?.[0]?.price)
+  const previousCloseSource = rawPreviousClose !== null ? priorRows?.[0]?.source ?? null : null
+  const change = derivePriceChange({
+    price,
+    baseline: rawPreviousClose,
+    priceSource: provider,
+    baselineSource: previousCloseSource,
+    suppliedAmount: num(row.change_amount) ?? undefined,
+    suppliedPercent: num(row.change_percent) ?? undefined,
+  })
+  if (rawPreviousClose !== null && !change) {
+    console.error('[get-gold-price] stored day-change fields contradict the same-feed price baseline')
   }
+
+  const windowStart = new Date(observedAt.getTime() - 24 * 60 * 60 * 1000).toISOString()
+  const { data: windowRows, error: windowError } = provider
+    ? await supabaseAdmin
+      .from('aurum_spot_prices')
+      .select('price')
+      .eq('source', provider)
+      .gte('observed_at', windowStart)
+      .lte('observed_at', observedAt.toISOString())
+    : { data: null, error: null }
+  if (windowError) console.error('[get-gold-price] rolling range read failed', windowError.message)
+  const windowPrices = (windowRows ?? []).map((item) => num(item.price)).filter((item): item is number => item !== null)
+  const dayHigh = !windowError && windowPrices.length > 0 ? Math.max(...windowPrices) : null
+  const dayLow = !windowError && windowPrices.length > 0 ? Math.min(...windowPrices) : null
 
   return json(
     {
       price_usd: price,
-      change_amount: num(row.change_amount),
-      change_pct: num(row.change_percent),
-      day_high: num(row.high_24h),
-      day_low: num(row.low_24h),
-      previous_close: previousClose,
-      previous_close_source: previousCloseSource,
+      change_amount: change?.amount ?? null,
+      change_pct: change?.percent ?? null,
+      day_high: dayHigh,
+      day_low: dayLow,
+      previous_close: change && rawPreviousClose !== null ? round2(rawPreviousClose) : null,
+      previous_close_source: change ? previousCloseSource : null,
 
       provider,
       provider_timestamp: observedAt.toISOString(),

@@ -11,10 +11,9 @@ import {
   type PriceState,
 } from "./price-state";
 import type { PriceAdapter } from "./price-adapters";
+import { derivePriceChange } from "./price-change";
 import {
   FIXTURE_AS_OF,
-  FIXTURE_CHANGE_AMOUNT,
-  FIXTURE_CHANGE_PCT,
   FIXTURE_DAY_HIGH,
   FIXTURE_DAY_LOW,
   FIXTURE_NOW,
@@ -29,15 +28,24 @@ function buildMockData(): PriceData | null {
     close: point.close,
   }));
   const facts = computeFacts(history, FIXTURE_SPOT, FIXTURE_AS_OF);
+  const provider = "mock:gold_spot";
+  const change = derivePriceChange({
+    price: FIXTURE_SPOT,
+    baseline: FIXTURE_PREVIOUS_CLOSE,
+    priceSource: provider,
+    baselineSource: provider,
+  });
 
   return {
     spot: FIXTURE_SPOT,
-    changePct: FIXTURE_CHANGE_PCT,
-    changeAmount: FIXTURE_CHANGE_AMOUNT,
+    changePct: change?.percent ?? null,
+    changeAmount: change?.amount ?? null,
     asOf: FIXTURE_AS_OF,
     dayHigh: FIXTURE_DAY_HIGH,
     dayLow: FIXTURE_DAY_LOW,
     previousClose: FIXTURE_PREVIOUS_CLOSE,
+    provider,
+    previousCloseSource: provider,
     facts,
     history,
     historyStatus: "ready",

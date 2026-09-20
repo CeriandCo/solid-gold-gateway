@@ -34,6 +34,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
   const points = rangeHistory.map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const rangeHeading = chartRangeHeading(range, rangeHistory);
   const latestClose = points.at(-1) ?? null;
+  const hasChange = data?.changeAmount !== null && data?.changePct !== null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
   const rangeRowRef = useRef<HTMLDivElement>(null);
   const activeRangeRef = useRef<HTMLButtonElement>(null);
@@ -69,11 +70,13 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                 </span>
               </div>
               <data className="aurum-price-figure" value={data.spot}>{AURUM_USD.format(data.spot)}</data>
-              <div className={`aurum-price-delta aurum-price-delta--${data.changePct >= 0 ? "positive" : "negative"}`}>
-                <strong>{PERCENT.format(data.changePct)}%</strong>
-                <span>{data.changeAmount >= 0 ? "+" : "−"}{AURUM_USD.format(Math.abs(data.changeAmount))}</span>
-                <small>per troy ounce · USD</small>
-              </div>
+              {hasChange && data.changeAmount !== null && data.changePct !== null ? (
+                <div className={`aurum-price-delta aurum-price-delta--${data.changePct >= 0 ? "positive" : "negative"}`}>
+                  <strong>{PERCENT.format(data.changePct)}%</strong>
+                  <span>{data.changeAmount >= 0 ? "+" : "−"}{AURUM_USD.format(Math.abs(data.changeAmount))}</span>
+                  <small>per troy ounce · USD</small>
+                </div>
+              ) : <p className="aurum-price-change-unavailable">Day change is unavailable for this feed.</p>}
               {state.status === "stale" ? (
                 <p className="aurum-price-stale-note" role="status">
                   This price is delayed. It was recorded {formatAge(state.ageSeconds)} ago and is not current.
@@ -91,6 +94,11 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                      <div key={label}><dt>{label}</dt><dd>{AURUM_USD.format(Number(value))}</dd></div>
                   ))}
               </dl>
+              <p className="aurum-price-provenance">
+                Spot from {data.provider}. {data.previousCloseSource
+                  ? `Previous close from ${data.previousCloseSource}.`
+                  : "Previous close unavailable for this feed."}
+              </p>
             </>
           ) : null}
 

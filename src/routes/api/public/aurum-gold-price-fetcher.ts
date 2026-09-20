@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { derivePriceChange } from '@/lib/aurum/price-change'
 
 /**
  * Fetches the current gold spot price from Dillon Gage FizConnect, validates it,
@@ -200,17 +201,12 @@ async function handle(request: Request) {
   }
 
   const goldAsk = payload['goldAsk']
-  const goldChange = payload['goldChange']
-  const goldChangePercent = payload['goldChangePercent']
   const observedAt = parseSpotTime(payload['spotTime'])
   const areStale = payload['areStale']
   const activeFeed = typeof payload['activeFeed'] === 'string' ? payload['activeFeed'] : 'unknown'
 
   if (!isFiniteNumber(goldAsk) || goldAsk <= 0) {
     return json({ outcome: 'rejected-invalid', reason: 'goldAsk is not a finite positive number' }, 422)
-  }
-  if (!isFiniteNumber(goldChange) || !isFiniteNumber(goldChangePercent)) {
-    return json({ outcome: 'rejected-invalid', reason: 'goldChange/goldChangePercent are not finite numbers' }, 422)
   }
   if (!observedAt) {
     return json({ outcome: 'rejected-invalid', reason: 'spotTime is missing or unparseable' }, 422)
@@ -234,32 +230,31 @@ async function handle(request: Request) {
     return json({ outcome: 'skipped-stale', reason: `Upstream flagged the quote as stale (areStale=${String(areStale)})` }, 200)
   }
 
-  // previous_close: latest stored daily close strictly before today (UTC).
-  // No fabrication: when no close exists we store null.
-  //
-  // PROVENANCE WARNING: aurum_daily_closes is currently sourced from Yahoo
-  // `GC=F`, COMEX gold FUTURES — a DIFFERENT INSTRUMENT from the Dillon Gage
-  // SPOT price written to `price` on this same row. The futures basis is tens
-  // of dollars. `change_amount` / `change_percent` below come from the
-  // provider and are the authoritative intraday move; previous_close must
-  // NEVER be used to derive a displayed change until the history source is
-  // confirmed to match the spot feed.
-
-  const todayUtc = new Date().toISOString().slice(0, 10)
+  const source = `dillon_gage:${activeFeed}`
+  const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
+  const priorDayStart = new Date(Date.parse(observedDayStart) - 24 * 60 * 60 * 1000).toISOString()
   const { data: closeRows, error: closeError } = await supabaseAdmin
-    .from('aurum_daily_closes')
-    .select('close_price')
-    .lt('price_date', todayUtc)
-    .order('price_date', { ascending: false })
+    .from('aurum_spot_prices')
+    .select('price, source')
+    .eq('source', source)
+    .gte('observed_at', priorDayStart)
+    .lt('observed_at', observedDayStart)
+    .order('observed_at', { ascending: false })
     .limit(1)
   if (closeError) {
     console.error('[aurum-gold-price-fetcher] daily close read failed', closeError.message)
     return json({ outcome: 'error', reason: 'Database read failed' }, 500)
   }
-  const rawPreviousClose = closeRows?.[0]?.close_price
+  const rawPreviousClose = closeRows?.[0]?.price
   const previousClose = isFiniteNumber(rawPreviousClose) ? rawPreviousClose : null
+  const change = derivePriceChange({
+    price: goldAsk,
+    baseline: previousClose,
+    priceSource: source,
+    baselineSource: closeRows?.[0]?.source,
+  })
   if (previousClose === null) {
-    console.warn('[aurum-gold-price-fetcher] no prior daily close found; storing previous_close = null')
+    console.warn('[aurum-gold-price-fetcher] no prior same-feed close found; day change is unavailable')
   }
 
   // high_24h / low_24h from the rolling 24-hour window, including the current quote.
@@ -267,6 +262,7 @@ async function handle(request: Request) {
   const { data: windowRows, error: windowError } = await supabaseAdmin
     .from('aurum_spot_prices')
     .select('price')
+    .eq('source', source)
     .gte('observed_at', windowStart)
   if (windowError) {
     console.error('[aurum-gold-price-fetcher] 24h window read failed', windowError.message)
@@ -276,14 +272,13 @@ async function handle(request: Request) {
   const high24h = Math.max(...prices)
   const low24h = Math.min(...prices)
 
-  const source = `dillon_gage:${activeFeed}`
   const { error: insertError } = await supabaseAdmin.from('aurum_spot_prices').insert({
     price: goldAsk,
     currency: 'USD',
     unit: 'troy_ounce',
     observed_at: observedAt.toISOString(),
-    change_amount: goldChange,
-    change_percent: goldChangePercent,
+    change_amount: change?.amount ?? 0,
+    change_percent: change?.percent ?? 0,
     high_24h: high24h,
     low_24h: low24h,
     previous_close: previousClose,
