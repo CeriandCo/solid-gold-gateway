@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteNav } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
 import heroPhone from "@/assets/home/phone-hero-vault-holdings.png.asset.json";
@@ -69,9 +69,9 @@ function Index() {
             </p>
 
             <div className="home-hero-actions">
-              <a href="/early-access" className="home-hero-button home-hero-button-primary">
+              <Link to="/early-access" className="home-hero-button home-hero-button-primary">
                 Join the waitlist <span aria-hidden="true">→</span>
-              </a>
+              </Link>
               <a href="#how-it-works" className="home-hero-button home-hero-button-secondary">
                 How it works
               </a>
