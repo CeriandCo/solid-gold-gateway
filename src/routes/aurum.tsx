@@ -8,13 +8,14 @@ import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section
 import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
 import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
+import { AurumFloatingNav } from "@/components/aurum-floating-nav";
 
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
-import { AurumPriceProvider, useAurumPrice } from "@/lib/aurum/use-aurum-price";
+import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect } from "react";
 
 const NOTE_PAGE_SIZE = 3;
 const BRIEF_LIMIT = 12;
@@ -76,23 +77,12 @@ export const Route = createFileRoute("/aurum")({
   notFoundComponent: () => <div role="alert">AURUM price information was not found.</div>,
 });
 
-const AURUM_LINKS = [
-  { label: "Price", id: "price" },
-  { label: "Daily Note", id: "daily-note" },
-  { label: "Weekly Brief", id: "weekly-brief" },
-  { label: "Learn", id: "learn" },
-  { label: "Calculator", id: "calculator" },
-  { label: "Gifts", id: "gifts" },
-
-] as const;
-
-const SECTION_IDS = ["top", ...AURUM_LINKS.map(({ id }) => id), "subscribe"] as const;
+const SECTION_IDS = ["top", "price", "daily-note", "weekly-brief", "learn", "calculator", "gifts", "subscribe"] as const;
 
 function AurumPendingPage() {
   return (
     <div className="aurum-page">
       <SiteHeader />
-      <div className="aurum-subheader" aria-hidden="true" />
       <main>
         <section className="aurum-price-current aurum-price-loading" aria-live="polite" aria-busy="true">
           <div className="aurum-container">
@@ -119,24 +109,8 @@ function AurumPageContent() {
   const { range, note: openNote, brief: openBrief } = Route.useSearch();
   const { notes, briefs } = Route.useLoaderData();
   const navigate = Route.useNavigate();
-  const subheaderRef = useRef<HTMLElement>(null);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const subheader = subheaderRef.current;
-    if (!subheader) return;
-
-    const updateHeight = () => {
-      document.documentElement.style.setProperty(
-        "--aurum-subheader-height",
-        `${subheader.getBoundingClientRect().height}px`,
-      );
-    };
-
-    updateHeight();
-    const resizeObserver = new ResizeObserver(updateHeight);
-    resizeObserver.observe(subheader);
-
     const hashId = window.location.hash.slice(1);
     if (SECTION_IDS.some((id) => id === hashId)) {
       requestAnimationFrame(() => document.getElementById(hashId)?.scrollIntoView({ behavior: "auto" }));
@@ -155,107 +129,11 @@ function AurumPageContent() {
       });
     }
 
-    return () => {
-      resizeObserver.disconnect();
-      document.documentElement.style.removeProperty("--aurum-subheader-height");
-    };
   }, []);
-
-  useEffect(() => {
-    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
-      (section): section is HTMLElement => Boolean(section),
-    );
-
-    const updateActiveSection = () => {
-      const offset = (subheaderRef.current?.getBoundingClientRect().height ?? 56) + 8;
-      const topSection = document.getElementById("top");
-      if (topSection && topSection.getBoundingClientRect().bottom > offset) {
-        setActiveSection(null);
-        return;
-      }
-
-      const linkedSections = AURUM_LINKS.map(({ id }) => document.getElementById(id)).filter(
-        (section): section is HTMLElement => Boolean(section),
-      );
-      const current = linkedSections.find((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= offset + 2 && rect.bottom > offset + 2;
-      });
-      setActiveSection(current?.id ?? null);
-    };
-
-    const observer = new IntersectionObserver(
-      () => requestAnimationFrame(updateActiveSection),
-      {
-        rootMargin: `-${subheaderRef.current?.getBoundingClientRect().height ?? 56}px 0px -55% 0px`,
-        threshold: 0,
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    updateActiveSection();
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", updateActiveSection);
-    };
-  }, []);
-
-  const scrollToSection = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-    event.preventDefault();
-    const section = document.getElementById(id);
-    if (!section) return;
-
-    window.history.pushState(null, "", `#${id}`);
-    setActiveSection(id === "top" ? null : id);
-    section.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-      block: "start",
-    });
-  };
 
   return (
     <div className="aurum-page">
       <SiteHeader />
-      <nav ref={subheaderRef} className="aurum-subheader" aria-label="AURUM sections">
-        <div className="aurum-container aurum-subheader__inner">
-          <div className="aurum-subheader__brand">
-            <a href="#top" onClick={(event) => scrollToSection(event, "top")} className="aurum-wordmark">
-              AURUM
-            </a>
-          </div>
-
-          <div className="aurum-subheader__scroller">
-            <ul className="aurum-subheader__links">
-              {AURUM_LINKS.map(({ label, id }) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    aria-current={activeSection === id ? "location" : undefined}
-                    onClick={(event) => scrollToSection(event, id)}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="aurum-subheader__actions">
-            <AurumPriceChip />
-            <GoldButton
-              href="#subscribe"
-              variant="primary"
-              size="sm"
-              icon="none"
-              onClick={() => undefined}
-              className="aurum-subscribe-button"
-            >
-              Subscribe
-            </GoldButton>
-          </div>
-        </div>
-      </nav>
 
       <main className="aurum-main">
         <AurumHero />
@@ -292,6 +170,7 @@ function AurumPageContent() {
         <AurumSubscribeSection />
       </main>
 
+      <AurumFloatingNav />
       <SiteFooter />
     </div>
   );
@@ -333,22 +212,5 @@ function AurumHero() {
         </div>
       </div>
     </section>
-  );
-}
-
-
-function AurumPriceChip() {
-  const { state, data, showLiveBadge } = useAurumPrice();
-  const money = (value: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
-
-  return (
-    <div className="aurum-price" aria-live="polite">
-      {state.status === "loading" ? <span>Loading price</span> : null}
-      {showLiveBadge ? <span className="aurum-live-badge">LIVE</span> : null}
-      {state.status === "stale" ? <span className="aurum-stale-badge">DELAYED</span> : null}
-      {data ? <span>{money(data.spot)}</span> : null}
-      
-      {state.status === "unavailable" ? <span>Price unavailable</span> : null}
-    </div>
   );
 }
