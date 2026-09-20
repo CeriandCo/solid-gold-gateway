@@ -232,10 +232,12 @@ async function handle(request: Request) {
 
   const source = `dillon_gage:${activeFeed}`
   const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
+  const priorDayStart = new Date(Date.parse(observedDayStart) - 24 * 60 * 60 * 1000).toISOString()
   const { data: closeRows, error: closeError } = await supabaseAdmin
     .from('aurum_spot_prices')
     .select('price, source')
     .eq('source', source)
+    .gte('observed_at', priorDayStart)
     .lt('observed_at', observedDayStart)
     .order('observed_at', { ascending: false })
     .limit(1)

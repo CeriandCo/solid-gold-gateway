@@ -103,11 +103,13 @@ async function handle() {
 
   const provider = typeof row.source === 'string' ? row.source : null
   const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
+  const priorDayStart = new Date(Date.parse(observedDayStart) - 24 * 60 * 60 * 1000).toISOString()
   const { data: priorRows, error: priorError } = provider
     ? await supabaseAdmin
       .from('aurum_spot_prices')
       .select('price, source')
       .eq('source', provider)
+      .gte('observed_at', priorDayStart)
       .lt('observed_at', observedDayStart)
       .order('observed_at', { ascending: false })
       .limit(1)

@@ -1,7 +1,7 @@
 # Roadmap
 
 ## In progress
-- [ ] Make AURUM day change, prior close, and rolling range use one validated same-provider spot source.
+- [x] Make AURUM day change, prior close, and rolling range use one validated same-provider spot source.
 
 ## Done
 - [x] Derived AURUM calculator bounds, validation, provenance, and chart labels from the real history extent.
