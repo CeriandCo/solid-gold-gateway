@@ -14,6 +14,10 @@ import {
   generateGiftCode,
   normaliseGiftCode,
 } from "@/lib/commerce/gift-code";
+import {
+  restoreCommerceSettings,
+  snapshotCommerceSettings,
+} from "@/lib/commerce/settings-fixture";
 
 const AMOUNT = 25_000;
 const createdOrders: string[] = [];
