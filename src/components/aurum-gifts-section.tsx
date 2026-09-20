@@ -24,7 +24,7 @@ const GIFTS = [
 export function AurumGiftsSection() {
   return (
     <section id="gifts" className="aurum-section aurum-gifts" aria-labelledby="aurum-gifts-title">
-      <div className="aurum-container">
+      <div className="site-container">
         <p className="aurum-note-eyebrow">GIFTS THAT LAST</p>
         <h2 id="aurum-gifts-title" className="aurum-note-title">Why gold marks a milestone</h2>
         <p className="aurum-note-dek">

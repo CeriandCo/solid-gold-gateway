@@ -50,7 +50,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
   return (
     <section id="price" className="aurum-price-section" aria-labelledby="aurum-price-heading">
       <div className="aurum-price-current">
-        <div className="aurum-container aurum-price-current__content">
+        <div className="site-container aurum-price-current__content">
           <p id="aurum-price-heading" className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
 
 
@@ -115,7 +115,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
 
       {facts ? (
         <div className="aurum-price-facts">
-          <div className="aurum-container">
+          <div className="site-container">
             <p className="aurum-price-eyebrow">GOLD PRICE FACTS</p>
 
             <h2 className="aurum-price-title">Derived from real history, not estimates</h2>
@@ -131,7 +131,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       ) : null}
 
       <div className="aurum-history">
-        <div className="aurum-container">
+        <div className="site-container">
           <div className="aurum-history__head">
             <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{rangeHeading}</h2></div>
             <div ref={rangeRowRef} className="aurum-history__ranges" aria-label="History range">

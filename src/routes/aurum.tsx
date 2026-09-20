@@ -7,6 +7,7 @@ import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
 import { AurumSubscribeSection } from "@/components/aurum-subscribe-section";
 import { AurumFloatingNav } from "@/components/aurum-floating-nav";
+import { InnerPageHero } from "@/components/inner-page-hero";
 
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
@@ -74,7 +75,7 @@ function AurumPendingPage() {
       <SiteHeader />
       <main>
         <section className="aurum-price-current aurum-price-loading" aria-live="polite" aria-busy="true">
-          <div className="aurum-container">
+          <div className="site-container">
             <p className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
             <p>Loading price</p>
           </div>
@@ -158,39 +159,24 @@ function AurumPageContent() {
 
 function AurumHero() {
   return (
-    <section id="top" className="aurum-section aurum-hero" aria-labelledby="aurum-hero-title">
-      <img
-        className="aurum-hero__image"
-        src={aurumHero.url}
-        alt="Gold bar, AURUM medallion, book, and glasses on a green marble table"
-        width={1586}
-        height={992}
-        fetchPriority="high"
-      />
-      <div className="aurum-container aurum-hero__container">
-        <div className="aurum-hero__content">
-          <p className="aurum-hero__eyebrow">THE AURUM BOARD</p>
-          <h1 id="aurum-hero-title" className="aurum-hero__title">
-            Understand gold before you own it.
-          </h1>
-          <div className="aurum-hero__ornament" aria-hidden="true">
-            <span />
-            <i />
-            <span />
-          </div>
-          <p className="aurum-hero__dek">
-            Facts, history and plain explanations of physical gold. AURUM is free, does not sell, and never gives advice.
-          </p>
-          <div className="aurum-hero__actions">
-            <GoldButton href="#price" variant="primary" size="hero" icon="none" className="aurum-hero__button">
-              See today&apos;s price <span aria-hidden="true">↓</span>
-            </GoldButton>
-            <GoldButton href="#learn" variant="secondary" size="hero" icon="none" className="aurum-hero__button aurum-hero__button--secondary">
-              Start with the basics
-            </GoldButton>
-          </div>
-        </div>
-      </div>
-    </section>
+    <InnerPageHero
+      id="top"
+      titleId="aurum-hero-title"
+      eyebrow="THE AURUM BOARD"
+      title="Understand gold before you own it."
+      body={<>Facts, history and plain explanations of physical gold. AURUM is free, does not sell, and never gives advice.</>}
+      imageSrc={aurumHero.url}
+      imageAlt="Gold bar, AURUM medallion, book, and glasses on a green marble table"
+      actions={
+        <>
+          <GoldButton href="#price" variant="primary" size="hero" icon="none">
+            See today&apos;s price <span aria-hidden="true">↓</span>
+          </GoldButton>
+          <GoldButton href="#learn" variant="secondary" size="hero" icon="none">
+            Start with the basics
+          </GoldButton>
+        </>
+      }
+    />
   );
 }

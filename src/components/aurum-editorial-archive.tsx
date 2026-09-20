@@ -41,7 +41,7 @@ export function AurumEditorialArchive({
 
   return (
     <main className="aurum-archive">
-      <div className="aurum-container">
+      <div className="site-container">
         <a className="aurum-archive__back" href={`/aurum#${sectionHash}`}>← Back to AURUM</a>
         <p className="aurum-note-eyebrow">AURUM</p>
         <h1 className="aurum-archive__title">{kind === "notes" ? "Daily Note archive" : "Weekly Brief archive"}</h1>

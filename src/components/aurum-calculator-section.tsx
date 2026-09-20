@@ -145,7 +145,7 @@ export function AurumCalculatorSection() {
         style={{ backgroundImage: `url("${calculatorBg.url}")` }}
         aria-hidden="true"
       />
-      <div className="aurum-container aurum-calc__inner">
+      <div className="site-container aurum-calc__inner">
         <p className="aurum-calc__eyebrow">LOOK BACK CALCULATOR</p>
         <h2 id="aurum-calc-title" className="aurum-calc__title">What would that have been worth?</h2>
         <p className="aurum-calc__dek">

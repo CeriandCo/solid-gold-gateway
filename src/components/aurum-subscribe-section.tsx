@@ -87,7 +87,7 @@ export function AurumSubscribeSection() {
 
   return (
     <section id="subscribe" className="aurum-section aurum-subscribe" aria-labelledby="aurum-subscribe-title">
-      <div className="aurum-container">
+      <div className="site-container">
         <p className="aurum-subscribe__eyebrow">THE MELT</p>
         <h2 id="aurum-subscribe-title" className="aurum-subscribe__title">
           Gold, explained on a schedule

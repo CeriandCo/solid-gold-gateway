@@ -22,7 +22,7 @@ export function AurumDailyNoteSection({
 
   return (
     <section id="daily-note" className="aurum-section aurum-daily-note" aria-labelledby="aurum-daily-note-title">
-      <div className="aurum-container">
+      <div className="site-container">
         <p className="aurum-note-eyebrow">DAILY NOTE</p>
         <h2 id="aurum-daily-note-title" className="aurum-note-title">
           What moved, and why

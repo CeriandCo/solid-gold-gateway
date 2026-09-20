@@ -19,7 +19,7 @@ export function AurumWeeklyBriefSection({
 
   return (
     <section id="weekly-brief" className="aurum-section aurum-weekly-brief" aria-labelledby="aurum-weekly-brief-title">
-      <div className="aurum-container">
+      <div className="site-container">
         <p className="aurum-note-eyebrow">WEEKLY BRIEF</p>
         <h2 id="aurum-weekly-brief-title" className="aurum-note-title">A weekly brief, not a hot take</h2>
         <p className="aurum-note-dek">One longer read each Monday. What moved, what it means, and what it does not mean.</p>

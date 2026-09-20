@@ -55,7 +55,7 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
     <div className="aurum-page">
       <SiteHeader />
       <main className="aurum-note-page">
-        <div className="aurum-container">
+        <div className="site-container">
           <h1 className="aurum-note-page__title">Note not found</h1>
           <Link className="aurum-note-page__back" to="/aurum/notes" search={{ page: 1 }}>
             ← Back to the notes archive
@@ -74,7 +74,7 @@ function AurumNotePage() {
     <div className="aurum-page">
       <SiteHeader />
       <main className="aurum-note-page">
-        <article className="aurum-container">
+        <article className="site-container">
           <p className="aurum-note-eyebrow">DAILY NOTE</p>
           <h1 className="aurum-note-page__title">{note.title}</h1>
           <p className="aurum-note-page__meta">
