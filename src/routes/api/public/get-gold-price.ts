@@ -138,7 +138,7 @@ async function handle() {
       day_high: dayHigh,
       day_low: dayLow,
       previous_close: change && rawPreviousClose !== null ? round2(rawPreviousClose) : null,
-      previous_close_source: previousCloseSource,
+      previous_close_source: change ? previousCloseSource : null,
 
       provider,
       provider_timestamp: observedAt.toISOString(),
