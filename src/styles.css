@@ -2454,6 +2454,8 @@ footer.site-footer a:focus-visible {
 .aurum-weekly-brief .aurum-note-eyebrow,
 .aurum-weekly-brief .aurum-brief-feature__meta,
 .aurum-weekly-brief .aurum-note-count,
+.aurum-weekly-brief .aurum-note-sources__label,
+.aurum-weekly-brief .aurum-note-sources ol,
 .aurum-weekly-brief .aurum-note-aside__link,
 .aurum-weekly-brief .aurum-brief-feature__action {
   color: var(--gold);
@@ -2475,6 +2477,7 @@ footer.site-footer a:focus-visible {
 .aurum-weekly-brief .aurum-editorial-review,
 .aurum-weekly-brief .aurum-note-read,
 .aurum-weekly-brief .aurum-note-summary,
+.aurum-weekly-brief .aurum-note-footer p,
 .aurum-weekly-brief .aurum-note-aside__label {
   color: color-mix(in oklab, var(--cream) 78%, transparent);
 }
