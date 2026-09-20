@@ -59,3 +59,38 @@ export async function withCommerceSettings<T>(body: () => Promise<T>): Promise<T
     await restoreCommerceSettings(snapshot);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Stripe price mapping — the other operator-owned state a suite can wipe.
+// ---------------------------------------------------------------------------
+
+export type PriceMappingSnapshot = {
+  test: Record<string, string>;
+  live: Record<string, string>;
+};
+
+export async function snapshotPriceMapping(): Promise<PriceMappingSnapshot> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data, error } = await supabaseAdmin
+    .from("gift_card_denominations")
+    .select("id, stripe_price_id_test, stripe_price_id_live");
+  if (error) throw new Error(`Could not snapshot price mapping: ${error.message}`);
+
+  const snapshot: PriceMappingSnapshot = { test: {}, live: {} };
+  for (const row of data ?? []) {
+    if (row.stripe_price_id_test) snapshot.test[row.id] = row.stripe_price_id_test;
+    if (row.stripe_price_id_live) snapshot.live[row.id] = row.stripe_price_id_live;
+  }
+  return snapshot;
+}
+
+export async function restorePriceMapping(snapshot: PriceMappingSnapshot): Promise<void> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  for (const mode of ["test", "live"] as const) {
+    const { error } = await supabaseAdmin.rpc("gift_card_set_stripe_prices", {
+      _mode: mode,
+      _map: snapshot[mode],
+    });
+    if (error) throw new Error(`Could not restore ${mode} price mapping: ${error.message}`);
+  }
+}

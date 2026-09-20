@@ -1,6 +1,11 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 
-import { restoreCommerceSettings, snapshotCommerceSettings } from "./settings-fixture";
+import {
+  restoreCommerceSettings,
+  restorePriceMapping,
+  snapshotCommerceSettings,
+  snapshotPriceMapping,
+} from "./settings-fixture";
 
 import {
   catalogStatus,
@@ -16,6 +21,7 @@ const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
 // The suite runs against the real project database: keep the operator's row and put it back.
 const SETTINGS_SNAPSHOT = await snapshotCommerceSettings();
+const MAPPING_SNAPSHOT = await snapshotPriceMapping();
 
 const CURRENCY = "usd";
 const PRODUCT = { id: "prod_sqoot_gift", active: true, metadata: { purpose: "sqoot_gift_card" } };
@@ -79,7 +85,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await clearMapping();
+  await restorePriceMapping(MAPPING_SNAPSHOT);
   await supabaseAdmin.from("commerce_alerts").delete().eq("kind", "catalog_sync");
   await restoreCommerceSettings(SETTINGS_SNAPSHOT);
 });
