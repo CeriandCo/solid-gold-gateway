@@ -10,8 +10,8 @@ const CONSENT_TEXT =
   "We store the consent text shown, its version, the timestamp and the source of the signup.";
 
 const LISTS = [
-  { id: "daily-note", title: "Daily Note", description: "Short sourced notes, published when there is something worth recording." },
-  { id: "weekly-brief", title: "Weekly Brief", description: "One longer read each Monday." },
+  { id: "daily-note", key: "dailyNote", title: "Daily Note", description: "Short sourced notes, published as they are written." },
+  { id: "weekly-brief", key: "weeklyBrief", title: "Weekly Brief", description: "One longer read each Monday." },
 ] as const;
 
 const BENEFITS = [
@@ -40,28 +40,41 @@ function attributionSource() {
 
 export function AurumSubscribeSection() {
   const statusId = useId();
-  const [selected, setSelected] = useState<ListId[]>(["daily-note", "weekly-brief"]);
+  const [selected, setSelected] = useState<ListId[]>([]);
+  const [attempted, setAttempted] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
   const noListSelected = selected.length === 0;
-  const canSubmit = !noListSelected && status !== "submitting";
+  const canSubmit = status !== "submitting";
 
   const toggle = (id: ListId) =>
-    setSelected((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
+    setSelected((current) => {
+      const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
+      if (next.length > 0) setAttempted(false);
+      return next;
+    });
 
   const chosenLabels = LISTS.filter(({ id }) => selected.includes(id)).map(({ title }) => title);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!canSubmit) return;
+    if (noListSelected) {
+      setAttempted(true);
+      return;
+    }
+    setAttempted(false);
     setStatus("submitting");
 
     const payload = {
-      subscriber: { email, lists: selected },
-      consent: { text: CONSENT_TEXT, version: CONSENT_VERSION, status: "pending-approval" },
-      consentedAt: new Date().toISOString(),
-      attribution: attributionSource(),
+      email,
+      dailyNote: selected.includes("daily-note"),
+      weeklyBrief: selected.includes("weekly-brief"),
+      consentText: CONSENT_TEXT,
+      consentVersion: CONSENT_VERSION,
+      timestamp: new Date().toISOString(),
+      source: attributionSource(),
     };
 
     try {
@@ -81,19 +94,18 @@ export function AurumSubscribeSection() {
         ? "We could not save that just now. Your email is still here — press Subscribe again in a moment."
         : status === "success"
           ? `You are signed up for ${chosenLabels.join(" and ")}.`
-          : noListSelected
-            ? "Choose at least one list to subscribe."
-            : "";
+          : "";
 
   return (
     <section id="subscribe" className="aurum-section aurum-subscribe" aria-labelledby="aurum-subscribe-title">
       <div className="site-container">
-        <p className="aurum-subscribe__eyebrow">THE MELT</p>
+        <p className="aurum-subscribe__eyebrow">STAY IN TOUCH</p>
         <h2 id="aurum-subscribe-title" className="aurum-subscribe__title">
           Gold, explained on a schedule
         </h2>
         <p className="aurum-subscribe__dek">
-          Choose the Daily Note, the Weekly Brief, or both. Sourced, plain and free — no forecasts, no calls, no sales.
+          Pick what you want. Each one is separate, and you can take just one. Sourced, plain and free — no forecasts,
+          no calls, no sales.
         </p>
 
         <div className="aurum-subscribe__grid">
@@ -110,9 +122,11 @@ export function AurumSubscribeSection() {
                 <fieldset className="aurum-subscribe__fieldset">
                   <legend className="aurum-subscribe__label">WHAT WOULD YOU LIKE TO RECEIVE</legend>
                   <div className="aurum-subscribe__choices">
-                    {LISTS.map(({ id, title, description }) => (
-                      <label key={id} className="aurum-subscribe__choice">
+                    {LISTS.map(({ id, key, title, description }) => (
+                      <label key={id} className="aurum-subscribe__choice" htmlFor={`aurum-subscribe-${id}`}>
                         <input
+                          id={`aurum-subscribe-${id}`}
+                          name={key}
                           type="checkbox"
                           checked={selected.includes(id)}
                           onChange={() => toggle(id)}
@@ -125,6 +139,9 @@ export function AurumSubscribeSection() {
                       </label>
                     ))}
                   </div>
+                  <p aria-live="polite" className="aurum-subscribe__status">
+                    {attempted && noListSelected ? "Choose at least one thing to receive." : ""}
+                  </p>
                 </fieldset>
 
                 <div className="aurum-subscribe__field">
@@ -150,6 +167,9 @@ export function AurumSubscribeSection() {
                   size="hero"
                   icon="none"
                   disabled={!canSubmit}
+                  onClick={() => {
+                    if (noListSelected) setAttempted(true);
+                  }}
                   className="aurum-subscribe__submit"
                 >
                   {status === "submitting" ? "Subscribing…" : "Subscribe"}
