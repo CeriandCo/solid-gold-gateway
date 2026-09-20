@@ -4,6 +4,7 @@
 - [x] Make AURUM day change, prior close, and rolling range use one validated same-provider spot source.
 
 ## Done
+- [x] Aligned AURUM containers, hero height, and desktop section rhythm with the shared inner-page system.
 - [x] Derived AURUM calculator bounds, validation, provenance, and chart labels from the real history extent.
 - [x] Sourced AURUM Daily Notes from published Learn articles and added searchable Notes and Briefs archives.
 - [x] Stopped AURUM chart and editorial controls from changing scroll position or clearing the current hash.
