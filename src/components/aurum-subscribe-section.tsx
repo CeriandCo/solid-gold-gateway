@@ -46,23 +46,35 @@ export function AurumSubscribeSection() {
   const [status, setStatus] = useState<Status>("idle");
 
   const noListSelected = selected.length === 0;
-  const canSubmit = !noListSelected && status !== "submitting";
+  const canSubmit = status !== "submitting";
 
   const toggle = (id: ListId) =>
-    setSelected((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
+    setSelected((current) => {
+      const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
+      if (next.length > 0) setAttempted(false);
+      return next;
+    });
 
   const chosenLabels = LISTS.filter(({ id }) => selected.includes(id)).map(({ title }) => title);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!canSubmit) return;
+    if (noListSelected) {
+      setAttempted(true);
+      return;
+    }
+    setAttempted(false);
     setStatus("submitting");
 
     const payload = {
-      subscriber: { email, lists: selected },
-      consent: { text: CONSENT_TEXT, version: CONSENT_VERSION, status: "pending-approval" },
-      consentedAt: new Date().toISOString(),
-      attribution: attributionSource(),
+      email,
+      dailyNote: selected.includes("daily-note"),
+      weeklyBrief: selected.includes("weekly-brief"),
+      consentText: CONSENT_TEXT,
+      consentVersion: CONSENT_VERSION,
+      timestamp: new Date().toISOString(),
+      source: attributionSource(),
     };
 
     try {
