@@ -41,17 +41,29 @@ async function orderCount(attemptId?: string) {
   return count ?? 0;
 }
 
-beforeAll(() => {
+/** Binds every active denomination to a placeholder sandbox price id. */
+async function mapPrices(on: boolean) {
+  const list = await denominations();
+  const map = on
+    ? Object.fromEntries(list.map((row) => [row.id, `price_test_fake_${row.amount_cents}`]))
+    : {};
+  await supabaseAdmin.rpc("gift_card_set_stripe_prices", { _mode: "test", _map: map });
+}
+
+beforeAll(async () => {
   headers["cf-connecting-ip"] = `test-${uuid()}`;
   headers["origin"] = ORIGIN;
+  await mapPrices(true);
 });
 
 afterAll(async () => {
   delete process.env["STRIPE_SECRET_KEY"];
+  await mapPrices(false);
   await supabaseAdmin.from("gift_card_orders").delete().not("attempt_id", "is", null);
   await supabaseAdmin.from("checkout_attempts").delete().neq("ip_hash", "");
   await setSettings({ checkout_enabled: false, currency: null, allowed_origins: [] });
 });
+
 
 describe("gift card checkout", () => {
   it("refuses while the kill switch is off", async () => {
