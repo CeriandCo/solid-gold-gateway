@@ -43,14 +43,14 @@ function finiteOrNull(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-async function loadHistory(): Promise<HistoryPoint[]> {
+async function loadHistory(): Promise<{ points: HistoryPoint[]; status: "ready" | "unavailable" }> {
   try {
     const response = await fetch(HISTORY_URL, { headers: { accept: "application/json" } });
-    if (!response.ok) return [];
+    if (!response.ok) return { points: [], status: "unavailable" };
     const body: unknown = await response.json();
     const points = (body as { points?: unknown })?.points;
-    if (!Array.isArray(points)) return [];
-    return points
+    if (!Array.isArray(points)) return { points: [], status: "unavailable" };
+    const parsed = points
       .map((point) => {
         const row = point as { date?: unknown; close?: unknown };
         const date = typeof row.date === "string" ? new Date(`${row.date}T00:00:00.000Z`) : null;
@@ -60,9 +60,9 @@ async function loadHistory(): Promise<HistoryPoint[]> {
       })
       .filter((point): point is HistoryPoint => point !== null)
       .sort((a, b) => a.date.getTime() - b.date.getTime());
+    return { points: parsed, status: parsed.length > 0 ? "ready" : "unavailable" };
   } catch {
-    // History is optional: the price can render without it (the calculator cannot).
-    return [];
+    return { points: [], status: "unavailable" };
   }
 }
 
@@ -78,7 +78,7 @@ export const livePriceAdapter: PriceAdapter = {
         fetch(PRICE_URL, { headers: { accept: "application/json" }, cache: "no-store" }),
         loadHistory(),
       ]);
-      history = historyPoints;
+      history = historyPoints.points;
       body = (await priceResponse.json()) as Record<string, unknown>;
     } catch {
       return { status: "unavailable", reason: "network" };
@@ -111,6 +111,7 @@ export const livePriceAdapter: PriceAdapter = {
       previousClose: finiteOrNull(body["previous_close"]),
       facts: computeFacts(history, spot, asOf),
       history,
+      historyStatus: historyPoints.status,
     };
 
     if (freshness === "stale") {
