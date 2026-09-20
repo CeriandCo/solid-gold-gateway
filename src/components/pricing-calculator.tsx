@@ -334,7 +334,7 @@ function CalculatorResult({
           Raise your budget, or store gold in the vault from {formatMoney(PRICING.vault.minimumPurchaseUsd).replace(".00", "")}.
         </p>
         <Button className="pricing-calculator-cta is-outline" onClick={onSwitchToVault} variant="outline">
-          Store in the vault instead →
+          Buy, vault and sell instead →
         </Button>
       </div>
     );
