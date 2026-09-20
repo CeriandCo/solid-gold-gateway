@@ -1,6 +1,13 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdminMe, getCmsSettings, setAllowSelfApproval } from "@/lib/admin.functions";
+import {
+  getStripeCatalogStatus,
+  runStripeCatalogSync,
+  type CatalogStatus,
+  type CatalogSyncResult,
+} from "@/lib/commerce-admin.functions";
+
 
 export const Route = createFileRoute("/admin/settings")({
   // UI guard only; the server functions and RLS are the real boundary.
