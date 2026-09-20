@@ -27,8 +27,8 @@ import {
 type RadioOption<T extends string | number> = { label: string; value: T };
 
 const ownershipOptions: readonly RadioOption<Ownership>[] = [
-  { label: "Store in the vault", value: "vault" },
-  { label: "Take delivery", value: "delivery" },
+  { label: "Buy, vault and sell", value: "vault" },
+  { label: "Buy and take delivery", value: "delivery" },
 ];
 
 const deliveryOptions: readonly RadioOption<DeliveryKind>[] = [

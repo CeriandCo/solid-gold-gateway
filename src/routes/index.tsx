@@ -86,7 +86,7 @@ function Index() {
               <em>meant to be.</em>
             </h1>
             <p className="home-hero-body">
-              Buy a coin delivered to your door, build a holding by weight, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
+              Two clear paths: buy, vault and sell your gold from the app — or buy a coin or bar and have it delivered to your door. Priced live, held in your name.
             </p>
 
             <div className="home-hero-actions">
