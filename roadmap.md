@@ -1,6 +1,7 @@
 # Roadmap
 
 ## In progress
+- [ ] Stop AURUM chart and editorial controls from changing scroll position or clearing the current hash.
 
 ## Done
 - [x] Rebalanced `/aurum` with light price/facts bands, a dark Weekly Brief anchor, shared stat-card geometry, and retired background assets removed.
