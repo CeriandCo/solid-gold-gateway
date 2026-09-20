@@ -130,8 +130,11 @@ async function withDeliveryOn<T>(run: () => Promise<T>): Promise<T> {
   }
 }
 
+// Real database: restore the operator's switches, never blank defaults.
+const SWITCHES_SNAPSHOT = await snapshotCommerceSettings();
+
 afterAll(async () => {
-  await setSwitches(false, null);
+  await restoreCommerceSettings(SWITCHES_SNAPSHOT);
   await purgeTrackedOrders();
 });
 
