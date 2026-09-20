@@ -29,6 +29,30 @@ export type Database = {
         }
         Relationships: []
       }
+      aurum_admin_login_attempts: {
+        Row: {
+          created_at: string
+          email_hash: string
+          id: number
+          ip_hash: string
+          succeeded: boolean
+        }
+        Insert: {
+          created_at?: string
+          email_hash: string
+          id?: number
+          ip_hash: string
+          succeeded?: boolean
+        }
+        Update: {
+          created_at?: string
+          email_hash?: string
+          id?: number
+          ip_hash?: string
+          succeeded?: boolean
+        }
+        Relationships: []
+      }
       aurum_cms_settings: {
         Row: {
           allow_self_approval: boolean
@@ -677,6 +701,7 @@ export type Database = {
       aurum_current_editor_role: { Args: never; Returns: string }
       aurum_fetcher_tick: { Args: never; Returns: undefined }
       aurum_link_current_editor: { Args: never; Returns: string }
+      aurum_prune_admin_login_attempts: { Args: never; Returns: undefined }
       aurum_prune_old_rows: { Args: never; Returns: undefined }
       aurum_replace_post_sources: {
         Args: { _post_id: string; _sources: Json }
