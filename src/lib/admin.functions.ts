@@ -721,3 +721,44 @@ export const deleteDraft = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+
+/**
+ * Public: email + password sign-in for the admin area.
+ *
+ * Every refusal returns the same message, so the endpoint cannot be used to
+ * discover who is on the allowlist. Rate limiting, allowlist checks and the
+ * immediate sign-out of a non-allowlisted account all happen server side.
+ */
+export const adminSignInWithPassword = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    return { email: String(input["email"] ?? ""), password: String(input["password"] ?? "") };
+  })
+  .handler(async ({ data }) => {
+    const { adminPasswordSignIn } = await import("@/lib/admin-password.server");
+    const result = await adminPasswordSignIn(data.email, data.password);
+    if (!result.ok) {
+      console.info("[admin] password sign-in refused");
+      return { ok: false as const, message: result.message };
+    }
+    return {
+      ok: true as const,
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
+    };
+  });
+
+/** Admin only: set or reset the password of an allowlisted account. */
+export const setEditorPassword = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    return { email: String(input["email"] ?? ""), password: String(input["password"] ?? "") };
+  })
+  .handler(async ({ data, context }) => {
+    await requireAdmin(context.supabase);
+    const { setAdminPassword } = await import("@/lib/admin-password.server");
+    const result = await setAdminPassword(data.email, data.password);
+    if (!result.ok) throw new Error(result.message);
+    return { created: result.created };
+  });
