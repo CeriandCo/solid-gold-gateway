@@ -34,7 +34,7 @@ export async function snapshotCommerceSettings(): Promise<CommerceSettingsSnapsh
     .maybeSingle();
   if (error) throw new Error(`Could not snapshot commerce_settings: ${error.message}`);
   if (!data) throw new Error("commerce_settings has no singleton row to snapshot.");
-  return data as CommerceSettingsSnapshot;
+  return data as unknown as CommerceSettingsSnapshot;
 }
 
 /** Writes the snapshot back verbatim. */
