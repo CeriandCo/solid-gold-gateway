@@ -5,12 +5,12 @@ import { GoldButton } from "@/components/site-chrome";
  * Consent copy is awaiting compliance sign-off. Do not rewrite this text or bump the
  * version without approved wording — the version travels with every stored signup.
  */
-const CONSENT_VERSION = "2026-09-16";
+const CONSENT_VERSION = "2026-09-20";
 const CONSENT_TEXT =
   "We store the consent text shown, its version, the timestamp and the source of the signup.";
 
 const LISTS = [
-  { id: "daily-note", title: "Daily Note", description: "A short sourced note each trading day." },
+  { id: "daily-note", title: "Daily Note", description: "Short sourced notes, published when there is something worth recording." },
   { id: "weekly-brief", title: "Weekly Brief", description: "One longer read each Monday." },
 ] as const;
 

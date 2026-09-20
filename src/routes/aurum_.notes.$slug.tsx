@@ -2,11 +2,13 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { AurumNoteBody, AurumNoteQuote, AurumNoteSources } from "@/components/aurum-note-content";
 import { formatNoteDate } from "@/lib/aurum-notes";
-import { fetchEditorialBySlug } from "@/lib/aurum-editorial.functions";
+import { fetchPublishedLearnNoteBySlug } from "@/lib/aurum-editorial.functions";
+
+const origin = "https://solid-gold-gateway.lovable.app";
 
 export const Route = createFileRoute("/aurum_/notes/$slug")({
   loader: async ({ params }) => {
-    const note = await fetchEditorialBySlug({ data: { type: "daily_note", slug: params.slug } });
+    const note = await fetchPublishedLearnNoteBySlug({ data: { slug: params.slug } });
     if (!note) throw notFound();
     return { note };
   },
@@ -31,8 +33,21 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
         { property: "og:description", content: note.summary },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "robots", content: "noindex, nofollow" },
+        { property: "og:url", content: `${origin}/aurum/notes/${note.slug}` },
       ],
+      links: [{ rel: "canonical", href: `${origin}/aurum/notes/${note.slug}` }],
+      scripts: [{
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: note.title,
+          description: note.summary,
+          datePublished: note.publishedAt,
+          mainEntityOfPage: `${origin}/aurum/notes/${note.slug}`,
+          publisher: { "@type": "Organization", name: "SQOOT Pure" },
+        }),
+      }],
     };
   },
   component: AurumNotePage,
@@ -42,8 +57,8 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
       <main className="aurum-note-page">
         <div className="aurum-container">
           <h1 className="aurum-note-page__title">Note not found</h1>
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="daily-note">
-            ← Back to the Daily Note
+          <Link className="aurum-note-page__back" to="/aurum/notes" search={{ page: 1 }}>
+            ← Back to the notes archive
           </Link>
         </div>
       </main>
@@ -69,8 +84,8 @@ function AurumNotePage() {
           <AurumNoteBody note={note} />
           <AurumNoteQuote note={note} />
           <AurumNoteSources note={note} idPrefix={`note-${note.slug}`} />
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="daily-note">
-            ← Back to the Daily Note
+          <Link className="aurum-note-page__back" to="/aurum/notes" search={{ page: 1 }}>
+            ← Back to the notes archive
           </Link>
         </article>
       </main>

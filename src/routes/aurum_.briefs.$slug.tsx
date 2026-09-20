@@ -4,6 +4,8 @@ import { AurumEditorialBody, AurumEditorialQuote, AurumEditorialSources } from "
 import { formatEditorialDate } from "@/lib/aurum-editorial";
 import { fetchEditorialBySlug } from "@/lib/aurum-editorial.functions";
 
+const origin = "https://solid-gold-gateway.lovable.app";
+
 export const Route = createFileRoute("/aurum_/briefs/$slug")({
   loader: async ({ params }) => {
     const brief = await fetchEditorialBySlug({ data: { type: "weekly_brief", slug: params.slug } });
@@ -33,8 +35,15 @@ export const Route = createFileRoute("/aurum_/briefs/$slug")({
         { property: "og:description", content: brief.summary },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "robots", content: "noindex, nofollow" },
+        { property: "og:url", content: `${origin}/aurum/briefs/${brief.slug}` },
       ],
+      links: [{ rel: "canonical", href: `${origin}/aurum/briefs/${brief.slug}` }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify({
+        "@context": "https://schema.org", "@type": "Article", headline: brief.title,
+        description: brief.summary, datePublished: brief.publishedAt,
+        mainEntityOfPage: `${origin}/aurum/briefs/${brief.slug}`,
+        publisher: { "@type": "Organization", name: "SQOOT Pure" },
+      }) }],
     };
   },
   component: AurumBriefPage,
@@ -48,8 +57,8 @@ function BriefNotFound() {
       <main className="aurum-note-page">
         <div className="aurum-container">
           <h1 className="aurum-note-page__title">Brief not found</h1>
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="weekly-brief">
-            ← Back to the Weekly Brief
+          <Link className="aurum-note-page__back" to="/aurum/briefs" search={{ page: 1 }}>
+            ← Back to the briefs archive
           </Link>
         </div>
       </main>
@@ -73,8 +82,8 @@ function AurumBriefPage() {
           <AurumEditorialQuote article={brief} />
           <AurumEditorialSources article={brief} idPrefix={`brief-${brief.slug}`} />
           {brief.reviewLine ? <p className="aurum-editorial-review aurum-editorial-review--closing">{brief.reviewLine}</p> : null}
-          <Link className="aurum-note-page__back" to="/aurum" search={{ range: "1Y" as const, note: undefined, brief: undefined, priceState: undefined }} hash="weekly-brief">
-            ← Back to the Weekly Brief
+          <Link className="aurum-note-page__back" to="/aurum/briefs" search={{ page: 1 }}>
+            ← Back to the briefs archive
           </Link>
         </article>
       </main>

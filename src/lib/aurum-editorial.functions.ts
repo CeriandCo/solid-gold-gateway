@@ -39,3 +39,33 @@ export const fetchEditorialBySlug = createServerFn({ method: "GET" })
     const { loadEditorialBySlug } = await import("@/lib/aurum-editorial.server");
     return loadEditorialBySlug(data.type, data.slug);
   });
+
+export const fetchPublishedLearnNotes = createServerFn({ method: "GET" })
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    const limit = Number(input["limit"] ?? 20);
+    const offset = Number(input["offset"] ?? 0);
+    return {
+      limit: Number.isFinite(limit) ? Math.min(Math.max(Math.trunc(limit), 1), 20) : 20,
+      offset: Number.isFinite(offset) ? Math.max(Math.trunc(offset), 0) : 0,
+    };
+  })
+  .handler(async ({ data }): Promise<EditorialPage> => {
+    const { getPublishedLearnArticles } = await import("@/lib/learn-articles");
+    const items = getPublishedLearnArticles();
+    return {
+      items: items.slice(data.offset, data.offset + data.limit),
+      total: items.length,
+      deepLinkOverflow: false,
+    };
+  });
+
+export const fetchPublishedLearnNoteBySlug = createServerFn({ method: "GET" })
+  .inputValidator((data: unknown) => {
+    const input = (data ?? {}) as Record<string, unknown>;
+    return { slug: String(input["slug"] ?? "") };
+  })
+  .handler(async ({ data }): Promise<AurumEditorial | null> => {
+    const { getPublishedLearnArticle } = await import("@/lib/learn-articles");
+    return getPublishedLearnArticle(data.slug);
+  });

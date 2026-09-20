@@ -12,7 +12,7 @@ import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceSta
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
+import { fetchEditorialPage, fetchPublishedLearnNotes } from "@/lib/aurum-editorial.functions";
 import { useEffect, useState } from "react";
 
 const NOTE_PAGE_SIZE = 3;
@@ -30,17 +30,12 @@ export const Route = createFileRoute("/aurum")({
     // Editorial content is server-rendered so there is no loading flash.
     // A read failure degrades the two sections only; the rest of the page still renders.
     const [notes, briefs] = await Promise.all([
-      fetchEditorialPage({
-        data: { type: "daily_note", limit: NOTE_PAGE_SIZE, offset: 0, includeSlug: deps.note },
-      }).catch(() => null),
+      fetchPublishedLearnNotes({ data: { limit: NOTE_PAGE_SIZE, offset: 0 } }).catch(() => null),
       fetchEditorialPage({
         data: { type: "weekly_brief", limit: BRIEF_LIMIT, offset: 0, includeSlug: deps.brief },
       }).catch(() => null),
     ]);
     // A deep link to a post far past the capped expansion opens that post's own page.
-    if (notes?.deepLinkOverflow && deps.note) {
-      throw redirect({ to: "/aurum/notes/$slug", params: { slug: deps.note } });
-    }
     if (briefs?.deepLinkOverflow && deps.brief) {
       throw redirect({ to: "/aurum/briefs/$slug", params: { slug: deps.brief } });
     }

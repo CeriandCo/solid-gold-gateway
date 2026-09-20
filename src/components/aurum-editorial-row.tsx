@@ -32,7 +32,7 @@ export function AurumEditorialRow({
         <span className="aurum-note-content">
           <span className="aurum-note-headline">{article.title}</span>
           <span className="aurum-note-summary">{article.summary}</span>
-          <span className="aurum-note-count">{article.sources.length} {article.sources.length === 1 ? "SOURCE" : "SOURCES"}</span>
+          {article.sources.length > 0 ? <span className="aurum-note-count">{article.sources.length} {article.sources.length === 1 ? "SOURCE" : "SOURCES"}</span> : null}
         </span>
         <span className="aurum-note-open" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
