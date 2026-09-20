@@ -3,6 +3,7 @@
 ## In progress
 
 ## Done
+- [x] Rebalanced `/aurum` with light price/facts bands, a dark Weekly Brief anchor, shared stat-card geometry, and retired background assets removed.
 - [x] Replaced the AURUM double menu with a shared-nav AURUM entry and route-scoped floating section navigator.
 - Built `/aurum#price` with validated database-only live/unavailable states, computed historical facts, and re-querying range chart.
 - Built the `/aurum#top` editorial hero with its responsive photo scrim, educational copy, and Price/Learn anchor actions.

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import type { AurumRange, UnavailableReason } from "@/lib/aurum/price-state";
 import { AURUM_USD } from "@/lib/aurum/price-format";
+import { useEffect, useRef } from "react";
 
 const PERCENT = new Intl.NumberFormat("en-US", { signDisplay: "always", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
@@ -32,6 +33,15 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
   const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const latestClose = points.at(-1) ?? null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
+  const restoredInitialHash = useRef(false);
+
+  useEffect(() => {
+    if (restoredInitialHash.current || state.status === "loading" || !window.location.hash) return;
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    if (!target) return;
+    restoredInitialHash.current = true;
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: "auto", block: "start" }));
+  }, [state.status]);
 
   return (
     <section id="price" className="aurum-price-section" aria-labelledby="aurum-price-heading">
@@ -56,7 +66,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                 </span>
               </div>
               <data className="aurum-price-figure" value={data.spot}>{AURUM_USD.format(data.spot)}</data>
-              <div className="aurum-price-delta">
+              <div className={`aurum-price-delta aurum-price-delta--${data.changePct >= 0 ? "positive" : "negative"}`}>
                 <strong>{PERCENT.format(data.changePct)}%</strong>
                 <span>{data.changeAmount >= 0 ? "+" : "−"}{AURUM_USD.format(Math.abs(data.changeAmount))}</span>
                 <small>per troy ounce · USD</small>

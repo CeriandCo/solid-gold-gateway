@@ -1,7 +1,5 @@
 import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
-import priceVelvet from "@/assets/aurum/aurum-price-velvet.png.asset.json";
-import factsBackground from "@/assets/aurum/aurum-facts-bg.png.asset.json";
 import { AurumPriceSection } from "@/components/aurum-price-section";
 import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
@@ -67,8 +65,6 @@ export const Route = createFileRoute("/aurum")({
     ],
     links: [
       { rel: "preload", as: "image", href: aurumHero.url, type: "image/webp" },
-      { rel: "preload", as: "image", href: priceVelvet.url, type: "image/png" },
-      { rel: "preload", as: "image", href: factsBackground.url, type: "image/png" },
     ],
   }),
   component: AurumPage,
