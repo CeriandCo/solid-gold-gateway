@@ -37,7 +37,7 @@ export function AurumEditorialSources({ article, idPrefix }: { article: AurumEdi
           <li key={`${index}-${source.url}`}>
 
             <a href={source.url} target="_blank" rel="noopener noreferrer">
-              {source.publisher} — {source.title}, {source.date}
+              {source.publisher} — {source.title}{source.date ? `, ${source.date}` : ""}
             </a>
           </li>
         ))}

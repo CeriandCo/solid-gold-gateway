@@ -1,7 +1,7 @@
 export type AurumEditorialSource = {
   publisher: string;
   title: string;
-  date: string;
+  date?: string;
   url: string;
 };
 

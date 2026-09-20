@@ -645,7 +645,6 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     {
       publisher: "London Bullion Market Association",
       title: "Good Delivery Current List — Gold",
-      date: "10 Sep 2026",
       url: "https://www.lbma.org.uk/good-delivery/gold-current-list"
     }
   ],
