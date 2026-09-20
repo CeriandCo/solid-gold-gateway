@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteNav } from "@/components/site-chrome";
+import homeHero from "@/assets/home/home-hero.png.asset.json";
+import heroPhone from "@/assets/home/phone-hero-vault-holdings.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +27,12 @@ export const Route = createFileRoute("/")({
 
 const STANDARD_SECTION = "py-[clamp(72px,8.3vw,120px)]";
 
+const HERO_SPOT = {
+  price: "$3,412.80",
+  change: "▲ 0.42%",
+  note: "Sample data — not a real price",
+} as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
@@ -32,11 +40,72 @@ function SectionContainer() {
 function Index() {
   return (
     <div className="min-h-screen bg-cream text-ink">
-      <section id="hero" className="bg-forest-black">
-        <header>
+      <section id="hero" className="home-hero">
+        <img
+          src={homeHero.url}
+          alt=""
+          width={1706}
+          height={922}
+          loading="eager"
+          fetchPriority="high"
+          className="home-hero-background"
+        />
+        <div className="home-hero-scrim" aria-hidden="true" />
+
+        <header className="home-hero-header">
           <SiteNav variant="overlay" />
         </header>
-        <SectionContainer />
+
+        <div className="home-hero-inner site-container">
+          <div className="home-hero-copy">
+            <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p>
+            <h1 className="home-hero-title">
+              <span>Own gold</span>
+              <span>the way it was</span>
+              <em>meant to be.</em>
+            </h1>
+            <p className="home-hero-body">
+              Buy a coin delivered to your door, build a holding by weight, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
+            </p>
+
+            <div className="home-hero-actions">
+              <Link to="/early-access" className="home-hero-button home-hero-button-primary">
+                Join the waitlist <span aria-hidden="true">→</span>
+              </Link>
+              <a href="#how-it-works" className="home-hero-button home-hero-button-secondary">
+                How it works
+              </a>
+            </div>
+
+            <div className="home-hero-stores" aria-label="Mobile apps coming soon">
+              {(["App Store", "Google Play"] as const).map((store) => (
+                <div key={store} className="home-hero-store-badge">
+                  <span>Coming soon on</span>
+                  <strong>{store}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="home-hero-phone-stage">
+            <img
+              src={heroPhone.url}
+              alt="SQOOT Pure app showing allocated vaulted gold holdings"
+              width={611}
+              height={1262}
+              className="home-hero-phone"
+            />
+          </div>
+
+          <aside className="home-hero-spot-card" aria-label="Sample gold spot price">
+            <p>GOLD SPOT · PER OZ</p>
+            <div>
+              <strong>{HERO_SPOT.price}</strong>
+              <span>{HERO_SPOT.change}</span>
+            </div>
+            <small>{HERO_SPOT.note}</small>
+          </aside>
+        </div>
       </section>
 
       <main>

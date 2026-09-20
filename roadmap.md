@@ -3,6 +3,7 @@
 ## In progress
 - [x] Make AURUM day change, prior close, and rolling range use one validated same-provider spot source.
 - [x] Rebuild homepage phase 1 with the shared tokens, container, and ordered empty section shell.
+- [x] Build homepage phase 2 hero with the supplied scene, phone, actions, store badges, and sample spot card.
 
 ## Done
 - [x] Aligned AURUM containers, hero height, and desktop section rhythm with the shared inner-page system.
