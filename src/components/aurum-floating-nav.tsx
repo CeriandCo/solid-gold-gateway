@@ -102,7 +102,7 @@ export function AurumFloatingNav() {
     const current = links.indexOf(document.activeElement as HTMLAnchorElement);
     const direction = event.key === "ArrowDown" ? 1 : -1;
     const next = current < 0 ? (direction > 0 ? 0 : links.length - 1) : (current + direction + links.length) % links.length;
-    links[next]?.focus();
+    links[next]?.focus({ preventScroll: true });
   };
 
   const onAnchorClick = (_event: MouseEvent<HTMLAnchorElement>) => {

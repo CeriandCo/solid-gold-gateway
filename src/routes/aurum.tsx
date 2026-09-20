@@ -13,7 +13,7 @@ import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const NOTE_PAGE_SIZE = 3;
 const BRIEF_LIMIT = 12;
@@ -102,22 +102,18 @@ function AurumPage() {
 function AurumPageContent() {
   const { range, note: openNote, brief: openBrief } = Route.useSearch();
   const { notes, briefs } = Route.useLoaderData();
-  const navigate = Route.useNavigate();
+  const [selectedRange, setSelectedRange] = useState<AurumRange>(range);
+  const [expandedNote, setExpandedNote] = useState<string | null>(openNote ?? null);
+  const [expandedBrief, setExpandedBrief] = useState<string | null>(openBrief ?? null);
 
   useEffect(() => {
-    // Shared links (?note=slug / ?brief=slug) land on the open row once on load.
-    // Interactive toggles never scroll — they pass resetScroll: false instead.
-    const openSlug = openNote ?? openBrief;
-    if (openSlug) {
-      const kind = openNote ? "note" : "brief";
-      requestAnimationFrame(() => {
-        document
-          .querySelector<HTMLElement>(`[aria-controls="aurum-${kind}-panel-${openSlug}"]`)
-          ?.scrollIntoView({ behavior: "auto", block: "start" });
-      });
-    }
+    setSelectedRange(range);
+  }, [range]);
 
-  }, []);
+  useEffect(() => {
+    setExpandedNote(openNote ?? null);
+    setExpandedBrief(openBrief ?? null);
+  }, [openNote, openBrief]);
 
   return (
     <div className="aurum-page">
@@ -126,30 +122,24 @@ function AurumPageContent() {
       <main className="aurum-main">
         <AurumHero />
         <AurumPriceSection
-          range={range}
-          onRangeChange={(nextRange) =>
-            navigate({ search: (previous) => ({ ...previous, range: nextRange }), replace: true, resetScroll: false })
-          }
+          range={selectedRange}
+          onRangeChange={setSelectedRange}
         />
         <AurumDailyNoteSection
           initial={notes}
-          openSlug={openNote ?? null}
-          onToggle={(slug) =>
-            navigate({
-              search: (previous) => ({ ...previous, note: slug ?? undefined, brief: undefined }),
-              resetScroll: false,
-            })
-          }
+          openSlug={expandedNote}
+          onToggle={(slug) => {
+            setExpandedNote(slug);
+            if (slug) setExpandedBrief(null);
+          }}
         />
         <AurumWeeklyBriefSection
           briefs={briefs}
-          openSlug={openBrief ?? null}
-          onToggle={(slug) =>
-            navigate({
-              search: (previous) => ({ ...previous, brief: slug ?? undefined, note: undefined }),
-              resetScroll: false,
-            })
-          }
+          openSlug={expandedBrief}
+          onToggle={(slug) => {
+            setExpandedBrief(slug);
+            if (slug) setExpandedNote(null);
+          }}
         />
         <AurumLearnSection />
         <AurumCalculatorSection />

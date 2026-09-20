@@ -2,6 +2,7 @@ import weeklyBriefImage from "@/assets/aurum/aurum-weekly-brief.webp.asset.json"
 import { formatEditorialDate, type AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialPanel } from "@/components/aurum-editorial-content";
 import { AurumEditorialRow } from "@/components/aurum-editorial-row";
+import { useEffect, useRef } from "react";
 
 export function AurumWeeklyBriefSection({
   openSlug,
@@ -63,6 +64,25 @@ function BriefFeature({
   onToggle: (slug: string | null) => void;
 }) {
   const featuredPanelId = `aurum-brief-panel-${featured.slug}`;
+  const panelRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(isOpen);
+
+  useEffect(() => {
+    const justOpened = isOpen && !wasOpen.current;
+    wasOpen.current = isOpen;
+    if (!justOpened) return;
+
+    const frame = requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const rect = panel.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight && rect.top > 0) {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        panel.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [isOpen]);
 
   return (
     <article className={`aurum-brief-feature${isOpen ? " is-open" : ""}`}>
@@ -84,7 +104,7 @@ function BriefFeature({
           </button>
         </div>
       </div>
-      <div id={featuredPanelId} className="aurum-brief-feature__panel" hidden={!isOpen}>
+      <div ref={panelRef} id={featuredPanelId} className="aurum-brief-feature__panel" hidden={!isOpen}>
         <AurumEditorialPanel
           article={featured}
           idPrefix={featuredPanelId}
