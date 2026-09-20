@@ -5200,3 +5200,70 @@ footer.site-footer a:focus-visible {
     opacity: 1;
   }
 }
+
+/* ============= Home #proof strip ============= */
+.home-proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-proof li {
+  display: flex;
+  gap: 16px;
+  padding: 32px 28px;
+}
+
+.home-proof li + li {
+  border-left: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+}
+
+.home-proof-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent);
+  border-radius: 9999px;
+  color: var(--gold);
+  font-family: var(--font-money);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.home-proof h3 {
+  color: var(--cream);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.home-proof p {
+  margin-top: 6px;
+  color: color-mix(in srgb, var(--cream) 62%, transparent);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .home-proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-proof li {
+    padding-block: 24px;
+  }
+
+  .home-proof li + li {
+    border-left: none;
+  }
+
+  .home-proof li:nth-child(n + 3) {
+    border-top: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+  }
+}
