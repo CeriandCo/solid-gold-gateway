@@ -27,7 +27,7 @@ export function AurumFloatingNav() {
 
   const closeAndReturnFocus = () => {
     setOpen(false);
-    requestAnimationFrame(() => triggerRef.current?.focus());
+    requestAnimationFrame(() => triggerRef.current?.focus({ preventScroll: true }));
   };
 
   useEffect(() => {
@@ -75,6 +75,7 @@ export function AurumFloatingNav() {
 
   useEffect(() => {
     if (!open) return;
+    requestAnimationFrame(() => panelRef.current?.querySelector<HTMLAnchorElement>("a[href]")?.focus({ preventScroll: true }));
     const onPointerDown = (event: PointerEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) closeAndReturnFocus();
     };
@@ -144,7 +145,7 @@ export function AurumFloatingNav() {
         className="aurum-floating-nav__trigger"
         aria-expanded={open}
         aria-controls="aurum-floating-panel"
-        aria-label="Open AURUM section navigation"
+        aria-label={`${open ? "Close" : "Open"} AURUM section navigation`}
         onClick={() => setOpen((current) => !current)}
       >
         <img src={mandala.url} alt="" aria-hidden="true" />
