@@ -180,7 +180,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
 
   const params = buildGiftCardSessionParams(
     { id: orderId, amountCents: denom.amount_cents },
-    { id: denom.id, amountCents: denom.amount_cents },
+    { id: denom.id, amountCents: denom.amount_cents, priceId },
     { currency },
     allowed,
   );
