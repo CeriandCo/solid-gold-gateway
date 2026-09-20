@@ -1,6 +1,7 @@
 # Roadmap
 
 ## In progress
+- [ ] Derive AURUM calculator bounds and chart labels from the real history extent.
 
 ## Done
 - [x] Sourced AURUM Daily Notes from published Learn articles and added searchable Notes and Briefs archives.
