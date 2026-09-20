@@ -55,7 +55,7 @@ function BriefNotFound() {
     <div className="aurum-page">
       <SiteHeader />
       <main className="aurum-note-page">
-        <div className="aurum-container">
+        <div className="site-container">
           <h1 className="aurum-note-page__title">Brief not found</h1>
           <Link className="aurum-note-page__back" to="/aurum/briefs" search={{ page: 1 }}>
             ← Back to the briefs archive
@@ -73,7 +73,7 @@ function AurumBriefPage() {
     <div className="aurum-page">
       <SiteHeader />
       <main className="aurum-note-page aurum-brief-page">
-        <article className="aurum-container">
+        <article className="site-container">
           <p className="aurum-note-eyebrow">WEEKLY BRIEF</p>
           <h1 className="aurum-note-page__title">{brief.title}</h1>
           <p className="aurum-note-page__meta">{formatEditorialDate(brief.publishedAt)} · {brief.readMinutes} min read</p>

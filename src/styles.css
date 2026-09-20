@@ -1455,7 +1455,7 @@ footer.site-footer a:focus-visible {
   min-height: 520px;
 }
 
-.aurum-price-loading .aurum-container > p:last-child {
+.aurum-price-loading .site-container > p:last-child {
   margin-top: 4rem;
   font-family: var(--font-sans);
   font-size: 15px;

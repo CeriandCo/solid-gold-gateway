@@ -75,7 +75,7 @@ function AurumPendingPage() {
       <SiteHeader />
       <main>
         <section className="aurum-price-current aurum-price-loading" aria-live="polite" aria-busy="true">
-          <div className="aurum-container">
+          <div className="site-container">
             <p className="aurum-price-eyebrow">TODAY&apos;S GOLD PRICE</p>
             <p>Loading price</p>
           </div>

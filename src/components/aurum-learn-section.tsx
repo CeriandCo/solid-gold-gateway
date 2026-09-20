@@ -48,7 +48,7 @@ const GUIDES = [
 export function AurumLearnSection() {
   return (
     <section id="learn" className="aurum-section aurum-learn" aria-labelledby="aurum-learn-title">
-      <div className="aurum-container">
+      <div className="site-container">
         <p className="aurum-note-eyebrow">LEARN</p>
         <h2 id="aurum-learn-title" className="aurum-note-title">Four things worth understanding first</h2>
         <p className="aurum-note-dek">Plain explanations for people buying physical gold for the first time.</p>

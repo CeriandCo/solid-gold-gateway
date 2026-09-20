@@ -21,7 +21,7 @@ export function AurumEditorialPreview({
   return (
     <div className="aurum-page">
       <main className={isBrief ? "aurum-note-page aurum-brief-page" : "aurum-note-page"}>
-        <article className="aurum-container">
+        <article className="site-container">
           <p className="aurum-note-eyebrow">{isBrief ? "WEEKLY BRIEF" : "DAILY NOTE"}</p>
           <h1 className="aurum-note-page__title">{article.title}</h1>
           <p className="aurum-note-page__meta">
