@@ -167,6 +167,9 @@ export function AurumSubscribeSection() {
                   size="hero"
                   icon="none"
                   disabled={!canSubmit}
+                  onClick={() => {
+                    if (noListSelected) setAttempted(true);
+                  }}
                   className="aurum-subscribe__submit"
                 >
                   {status === "submitting" ? "Subscribing…" : "Subscribe"}
