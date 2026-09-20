@@ -1,5 +1,6 @@
 import { formatEditorialDate, type AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialPanel } from "@/components/aurum-editorial-content";
+import { useNearestPanelScroll } from "@/lib/aurum/use-nearest-panel-scroll";
 
 export function AurumEditorialRow({
   article,
@@ -18,6 +19,8 @@ export function AurumEditorialRow({
   closeLabel: string;
   onToggle: () => void;
 }) {
+  const panelRef = useNearestPanelScroll<HTMLDivElement>(isOpen);
+
   return (
     <li className={`aurum-note-row${isOpen ? " is-open" : ""}`}>
       <button type="button" className="aurum-note-trigger" aria-expanded={isOpen} aria-controls={panelId} onClick={onToggle}>
@@ -37,7 +40,7 @@ export function AurumEditorialRow({
           </svg>
         </span>
       </button>
-      <div id={panelId} className="aurum-note-panel" hidden={!isOpen}>
+      <div ref={panelRef} id={panelId} className="aurum-note-panel" hidden={!isOpen}>
         <AurumEditorialPanel article={article} idPrefix={panelId} pagePath={pagePath} closeLabel={closeLabel} onClose={onToggle} />
       </div>
     </li>

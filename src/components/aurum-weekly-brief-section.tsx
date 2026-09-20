@@ -2,6 +2,7 @@ import weeklyBriefImage from "@/assets/aurum/aurum-weekly-brief.webp.asset.json"
 import { formatEditorialDate, type AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialPanel } from "@/components/aurum-editorial-content";
 import { AurumEditorialRow } from "@/components/aurum-editorial-row";
+import { useNearestPanelScroll } from "@/lib/aurum/use-nearest-panel-scroll";
 
 export function AurumWeeklyBriefSection({
   openSlug,
@@ -63,6 +64,7 @@ function BriefFeature({
   onToggle: (slug: string | null) => void;
 }) {
   const featuredPanelId = `aurum-brief-panel-${featured.slug}`;
+  const panelRef = useNearestPanelScroll<HTMLDivElement>(isOpen);
 
   return (
     <article className={`aurum-brief-feature${isOpen ? " is-open" : ""}`}>
@@ -84,7 +86,7 @@ function BriefFeature({
           </button>
         </div>
       </div>
-      <div id={featuredPanelId} className="aurum-brief-feature__panel" hidden={!isOpen}>
+      <div ref={panelRef} id={featuredPanelId} className="aurum-brief-feature__panel" hidden={!isOpen}>
         <AurumEditorialPanel
           article={featured}
           idPrefix={featuredPanelId}

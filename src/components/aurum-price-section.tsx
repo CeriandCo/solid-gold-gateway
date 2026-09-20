@@ -10,6 +10,12 @@ const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit"
 const DATE = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric", month: "short", year: "numeric" });
 const MONTH = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short" });
 const RANGES: AurumRange[] = ["30D", "90D", "1Y", "5Y"];
+const RANGE_HEADINGS: Record<AurumRange, string> = {
+  "30D": "Thirty days of daily closes",
+  "90D": "Ninety days of daily closes",
+  "1Y": "Twelve months of daily closes",
+  "5Y": "Five years of daily closes",
+};
 
 const REASON_COPY: Record<UnavailableReason, string> = {
   network: "The price service could not be reached.",
@@ -33,15 +39,16 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
   const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const latestClose = points.at(-1) ?? null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
-  const restoredInitialHash = useRef(false);
+  const rangeRowRef = useRef<HTMLDivElement>(null);
+  const activeRangeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (restoredInitialHash.current || state.status === "loading" || !window.location.hash) return;
-    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
-    if (!target) return;
-    restoredInitialHash.current = true;
-    requestAnimationFrame(() => target.scrollIntoView({ behavior: "auto", block: "start" }));
-  }, [state.status]);
+    const row = rangeRowRef.current;
+    const chip = activeRangeRef.current;
+    if (row && chip && row.scrollWidth > row.clientWidth) {
+      row.scrollLeft = chip.offsetLeft - (row.clientWidth - chip.clientWidth) / 2;
+    }
+  }, [range]);
 
   return (
     <section id="price" className="aurum-price-section" aria-labelledby="aurum-price-heading">
@@ -122,9 +129,9 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-history">
         <div className="aurum-container">
           <div className="aurum-history__head">
-            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">Twelve months of daily closes</h2></div>
-            <div className="aurum-history__ranges" aria-label="History range">
-              {RANGES.map((item) => <Button key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
+            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{RANGE_HEADINGS[range]}</h2></div>
+            <div ref={rangeRowRef} className="aurum-history__ranges" aria-label="History range">
+              {RANGES.map((item) => <Button ref={range === item ? activeRangeRef : undefined} key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
           {latestClose ? (
