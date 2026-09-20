@@ -94,9 +94,7 @@ export function AurumSubscribeSection() {
         ? "We could not save that just now. Your email is still here — press Subscribe again in a moment."
         : status === "success"
           ? `You are signed up for ${chosenLabels.join(" and ")}.`
-          : noListSelected
-            ? "Choose at least one list to subscribe."
-            : "";
+          : "";
 
   return (
     <section id="subscribe" className="aurum-section aurum-subscribe" aria-labelledby="aurum-subscribe-title">
