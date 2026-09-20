@@ -26,6 +26,15 @@ const STATUS_SHORT_MAX = 60;
 type AttemptKind = "checkout" | "status";
 
 /**
+ * TEMPORARY (task S-7): describes a Stripe failure by type/code/message only.
+ * Never touches the key or any request payload.
+ */
+function describeStripeError(cause: unknown): string {
+  const err = cause as { type?: string; code?: string; statusCode?: number; message?: string };
+  return `type=${err?.type ?? "unknown"} code=${err?.code ?? "unknown"} status=${err?.statusCode ?? "unknown"} message=${err?.message ?? String(cause)}`;
+}
+
+/**
  * Cloudflare sets CF-Connecting-IP at its own edge and overwrites whatever the
  * caller sent, so it cannot be spoofed the way an X-Forwarded-For chain can.
  * It is the only header trusted here; if it is ever absent the request falls
@@ -71,8 +80,13 @@ async function recordAndCheckRate(ipHash: string, kind: AttemptKind): Promise<bo
  * and redirect origin are all decided here, from the database.
  */
 export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult> {
+  const refuse = (reason: string) => console.warn(`[commerce-checkout] refused: ${reason}`);
+
   const parsed = checkoutInput.safeParse(data);
-  if (!parsed.success) return { ok: false, code: "invalid_request" };
+  if (!parsed.success) {
+    refuse("S7_BAD_INPUT");
+    return { ok: false, code: "invalid_request" };
+  }
   const { denominationId, attemptId } = parsed.data;
 
   // 1. Kill switch + configuration, before any write.
@@ -83,18 +97,27 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   const row = settings.data;
   const secretKey = getStripeSecretKey();
   if (!row || !row.checkout_enabled || !row.currency || !secretKey) {
+    refuse(
+      `S7_SETTINGS row=${Boolean(row)} enabled=${row?.checkout_enabled ?? null} currency=${row?.currency ? "set" : "null"} key=${Boolean(secretKey)} readError=${settings.error?.message ?? "none"}`,
+    );
     return { ok: false, code: "unavailable" };
   }
   const currency = row.currency;
 
   // 2. Rate limit by salted IP hash, in the checkout bucket.
   const ipHash = await clientIpHash();
-  if (await recordAndCheckRate(ipHash, "checkout")) return { ok: false, code: "rate_limited" };
+  if (await recordAndCheckRate(ipHash, "checkout")) {
+    refuse("S7_RATE_LIMIT");
+    return { ok: false, code: "rate_limited" };
+  }
 
   // 3. Origin allowlist — redirects are built only from the matched entry.
   const origin = getRequestHeader("origin") ?? "";
   const allowed = (row.allowed_origins ?? []).find((entry) => entry === origin);
-  if (!allowed) return { ok: false, code: "origin_not_allowed" };
+  if (!allowed) {
+    refuse(`S7_ORIGIN originPresent=${origin.length > 0} allowedCount=${(row.allowed_origins ?? []).length}`);
+    return { ok: false, code: "origin_not_allowed" };
+  }
 
   // 4. Denomination — the single source of truth for the amount, and the
   // Stripe price id it is bound to. Without a mapped price for the current
@@ -107,6 +130,9 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     .maybeSingle();
   const denom = denomination.data;
   if (!denom || denom.amount_cents > row.max_card_cents) {
+    refuse(
+      `S7_DENOMINATION found=${Boolean(denom)} amount=${denom?.amount_cents ?? null} max=${row.max_card_cents} readError=${denomination.error?.message ?? "none"}`,
+    );
     return { ok: false, code: "invalid_request" };
   }
 
@@ -117,7 +143,10 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       : mode === "test"
         ? denom.stripe_price_id_test
         : null;
-  if (!priceId) return { ok: false, code: "unavailable" };
+  if (!priceId) {
+    refuse(`S7_NO_PRICE mode=${mode} testMapped=${Boolean(denom.stripe_price_id_test)} liveMapped=${Boolean(denom.stripe_price_id_live)}`);
+    return { ok: false, code: "unavailable" };
+  }
 
 
   // 5. A repeated attempt id never creates a second session, and never
@@ -130,6 +159,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
     .maybeSingle();
 
   if (existing.data && existing.data.denomination_id !== denom.id) {
+    refuse("S7_ATTEMPT_REUSED_OTHER_DENOMINATION");
     return { ok: false, code: "invalid_request" };
   }
 
@@ -140,9 +170,11 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       if (session.url && new URL(session.url).host === "checkout.stripe.com") {
         return { ok: true, url: session.url };
       }
-    } catch {
+    } catch (cause) {
+      refuse(`S7_SESSION_RETRIEVE ${describeStripeError(cause)}`);
       return { ok: false, code: "checkout_failed" };
     }
+    refuse("S7_SESSION_RETRIEVE_NO_URL");
     return { ok: false, code: "checkout_failed" };
   }
 
@@ -151,6 +183,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   if (existing.data) {
     // Only a still-unpaid attempt may be picked up again.
     if (existing.data.status !== "open" && existing.data.status !== "failed") {
+      refuse(`S7_ATTEMPT_STATUS ${existing.data.status}`);
       return { ok: false, code: "invalid_request" };
     }
     orderId = existing.data.id;
@@ -169,7 +202,10 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       })
       .select("id")
       .single();
-    if (inserted.error || !inserted.data) return { ok: false, code: "checkout_failed" };
+    if (inserted.error || !inserted.data) {
+      refuse(`S7_ORDER_INSERT ${inserted.error?.message ?? "no row"}`);
+      return { ok: false, code: "checkout_failed" };
+    }
     orderId = inserted.data.id;
   }
 
@@ -191,6 +227,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       idempotencyKey: `gift-card-${attemptId}-${denom.id}`,
     });
     if (!session.url || new URL(session.url).host !== "checkout.stripe.com") {
+      refuse("S7_SESSION_BAD_URL");
       await failOrder();
       return { ok: false, code: "checkout_failed" };
     }
@@ -199,7 +236,8 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       .update({ stripe_session_id: session.id })
       .eq("id", orderId);
     return { ok: true, url: session.url };
-  } catch {
+  } catch (cause) {
+    refuse(`S7_SESSION_CREATE ${describeStripeError(cause)}`);
     await failOrder();
     return { ok: false, code: "checkout_failed" };
   }
