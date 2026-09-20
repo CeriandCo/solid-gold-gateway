@@ -3,6 +3,7 @@ import type Stripe from "stripe";
 import { processStripeEvent } from "./stripe-webhook.server";
 import type { ProcessDeps } from "./stripe-webhook.server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { purgeTrackedOrders, trackTestOrder } from "@/lib/commerce/test-orders";
 
 const uuid = () => crypto.randomUUID();
 const createdEvents: string[] = [];
@@ -26,7 +27,7 @@ async function createOrder(amountCents = CLEAN_AMOUNT) {
     .select("id, stripe_session_id")
     .single();
   if (error) throw error;
-  createdOrders.push(data.id);
+  createdOrders.push(trackTestOrder(data.id));
   return data;
 }
 
@@ -191,6 +192,7 @@ afterAll(async () => {
   if (createdEvents.length > 0) {
     await supabaseAdmin.from("stripe_events").delete().in("event_id", createdEvents);
   }
+  await purgeTrackedOrders();
 });
 
 describe("oversized bodies", () => {

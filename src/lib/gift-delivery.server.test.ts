@@ -1,5 +1,6 @@
 import { afterAll, describe, expect, it } from "vitest";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { purgeTrackedOrders, trackTestOrder } from "@/lib/commerce/test-orders";
 import {
   buildGiftEmail,
   hashGiftCode,
@@ -57,7 +58,7 @@ async function createOrder(status = "paid", recipientEmail?: string) {
     .select("id, recipient_email")
     .single();
   if (error) throw error;
-  createdOrders.push(data.id);
+  createdOrders.push(trackTestOrder(data.id));
   return data;
 }
 
@@ -131,6 +132,7 @@ async function withDeliveryOn<T>(run: () => Promise<T>): Promise<T> {
 
 afterAll(async () => {
   await setSwitches(false, null);
+  await purgeTrackedOrders();
 });
 
 // 1 -------------------------------------------------------------------------
