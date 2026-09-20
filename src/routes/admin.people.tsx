@@ -35,6 +35,7 @@ function PeoplePage() {
   const [rows, setRows] = useState<EditorRow[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<AdminRole>("editor");
   const [busy, setBusy] = useState(false);
@@ -50,8 +51,31 @@ function PeoplePage() {
   };
 
   useEffect(() => {
-    void reload();
+    let active = true;
+    void (async () => {
+      try {
+        const me = await getAdminMe();
+        if (!active) return;
+        if (me.role !== "admin") {
+          setIsAdmin(false);
+          setLoading(false);
+          return;
+        }
+        setIsAdmin(true);
+        await reload();
+      } catch {
+        if (!active) return;
+        setIsAdmin(false);
+        setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
   }, []);
+
+  if (isAdmin === false) return <AdminNoAccess />;
+
 
   const run = async (action: () => Promise<unknown>) => {
     setBusy(true);
