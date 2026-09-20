@@ -3,6 +3,7 @@
 ## In progress
 
 ## Done
+- [x] Derived AURUM calculator bounds, validation, provenance, and chart labels from the real history extent.
 - [x] Sourced AURUM Daily Notes from published Learn articles and added searchable Notes and Briefs archives.
 - [x] Stopped AURUM chart and editorial controls from changing scroll position or clearing the current hash.
 - [x] Rebalanced `/aurum` with light price/facts bands, a dark Weekly Brief anchor, shared stat-card geometry, and retired background assets removed.

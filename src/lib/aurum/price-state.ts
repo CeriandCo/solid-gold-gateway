@@ -11,6 +11,7 @@ export type PriceSource = "mock" | "live";
 export type UnavailableReason = "network" | "invalid" | "no-data";
 
 export type HistoryPoint = { date: Date; close: number };
+export type HistoryStatus = "ready" | "unavailable";
 
 export type PriceFacts = {
   monthToDatePct: number;
@@ -33,6 +34,7 @@ export type PriceData = {
   /** Null when stored history is missing or too short; the price still renders. */
   facts: PriceFacts | null;
   history: HistoryPoint[];
+  historyStatus: HistoryStatus;
 };
 
 export type PriceState =
@@ -66,7 +68,7 @@ export function isMock(state: PriceState): boolean {
 
 /** The calculator only computes against a current price and real history. */
 export function canCalculate(state: PriceState): boolean {
-  return state.status === "ready" && state.data.history.length > 0 && state.data.facts !== null;
+  return state.status === "ready" && state.data.historyStatus === "ready" && state.data.history.length > 0 && state.data.facts !== null;
 }
 
 export function priceData(state: PriceState): PriceData | null {
@@ -75,8 +77,62 @@ export function priceData(state: PriceState): PriceData | null {
 
 /** The slice of history a chart range actually needs. */
 export function historyForRange(history: HistoryPoint[], range: AurumRange, now: Date): HistoryPoint[] {
+  if (range === "5Y") return history;
   const cutoff = now.getTime() - RANGE_DAYS[range] * 86_400_000;
   return history.filter((point) => point.date.getTime() >= cutoff);
+}
+
+export type HistoryBounds = { earliest: Date; latest: Date; count: number };
+
+export function historyBounds(history: HistoryPoint[]): HistoryBounds | null {
+  const earliest = history[0]?.date;
+  const latest = history.at(-1)?.date;
+  return earliest && latest ? { earliest, latest, count: history.length } : null;
+}
+
+export function isRollingFiveYearWindow(bounds: HistoryBounds): boolean {
+  const expected = new Date(Date.UTC(
+    bounds.latest.getUTCFullYear() - 5,
+    bounds.latest.getUTCMonth(),
+    bounds.latest.getUTCDate(),
+  ));
+  const gapDays = Math.abs(bounds.earliest.getTime() - expected.getTime()) / 86_400_000;
+  return gapDays <= 4;
+}
+
+export function validateHistoryDate(
+  raw: string,
+  bounds: HistoryBounds | null,
+  format: (date: Date) => string,
+): string | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return "Enter a date in the format DD/MM/YYYY.";
+  const requested = new Date(`${raw}T00:00:00.000Z`);
+  if (Number.isNaN(requested.getTime()) || requested.toISOString().slice(0, 10) !== raw) {
+    return "Enter a date in the format DD/MM/YYYY.";
+  }
+  if (!bounds) return null;
+  if (requested.getTime() < bounds.earliest.getTime()) {
+    return `We only hold daily closes from ${format(bounds.earliest)} onward. Try a later date.`;
+  }
+  if (requested.getTime() > bounds.latest.getTime()) {
+    return `The most recent stored close is ${format(bounds.latest)}. Try an earlier date.`;
+  }
+  return null;
+}
+
+export function chartRangeHeading(range: AurumRange, points: HistoryPoint[]): string {
+  const labels: Record<AurumRange, string> = {
+    "30D": "Thirty days of daily closes",
+    "90D": "Ninety days of daily closes",
+    "1Y": "Twelve months of daily closes",
+    "5Y": "Five years of daily closes",
+  };
+  const bounds = historyBounds(points);
+  if (!bounds) return labels[range];
+  const expectedDays = RANGE_DAYS[range];
+  const actualDays = Math.round((bounds.latest.getTime() - bounds.earliest.getTime()) / 86_400_000);
+  if (actualDays >= expectedDays - 4) return labels[range];
+  return `Available daily closes from ${bounds.earliest.toLocaleDateString("en-GB", { timeZone: "UTC", day: "numeric", month: "long", year: "numeric" })}`;
 }
 
 function closeOnOrBefore(history: HistoryPoint[], target: Date): HistoryPoint | null {

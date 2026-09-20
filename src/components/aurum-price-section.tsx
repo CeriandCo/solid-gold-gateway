@@ -1,7 +1,7 @@
 import { Area, AreaChart, CartesianGrid, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Button } from "@/components/ui/button";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
-import type { AurumRange, UnavailableReason } from "@/lib/aurum/price-state";
+import { chartRangeHeading, type AurumRange, type UnavailableReason } from "@/lib/aurum/price-state";
 import { AURUM_USD } from "@/lib/aurum/price-format";
 import { useEffect, useRef } from "react";
 
@@ -10,12 +10,6 @@ const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit"
 const DATE = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric", month: "short", year: "numeric" });
 const MONTH = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short" });
 const RANGES: AurumRange[] = ["30D", "90D", "1Y", "5Y"];
-const RANGE_HEADINGS: Record<AurumRange, string> = {
-  "30D": "Thirty days of daily closes",
-  "90D": "Ninety days of daily closes",
-  "1Y": "Twelve months of daily closes",
-  "5Y": "Five years of daily closes",
-};
 
 const REASON_COPY: Record<UnavailableReason, string> = {
   network: "The price service could not be reached.",
@@ -36,7 +30,9 @@ function formatAge(seconds: number) {
 export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
   const { state, data, now, showLiveBadge, historyFor } = useAurumPrice();
   const facts = data?.facts ?? null;
-  const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
+  const rangeHistory = historyFor(range);
+  const points = rangeHistory.map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
+  const rangeHeading = chartRangeHeading(range, rangeHistory);
   const latestClose = points.at(-1) ?? null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
   const rangeRowRef = useRef<HTMLDivElement>(null);
@@ -129,13 +125,13 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-history">
         <div className="aurum-container">
           <div className="aurum-history__head">
-            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{RANGE_HEADINGS[range]}</h2></div>
+            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{rangeHeading}</h2></div>
             <div ref={rangeRowRef} className="aurum-history__ranges" aria-label="History range">
               {RANGES.map((item) => <Button ref={range === item ? activeRangeRef : undefined} key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
           {latestClose ? (
-            <div className="aurum-chart" aria-label={`${range} gold closing price chart`}>
+            <div className="aurum-chart" aria-label={`${rangeHeading} chart`}>
               <span className="aurum-chart__axis-label">USD PER TROY OUNCE</span>
               <ResponsiveContainer width="100%" height={360}>
                 <AreaChart data={points} margin={{ top: 34, right: 24, bottom: 8, left: 10 }}>

@@ -2307,6 +2307,7 @@ footer.site-footer a:focus-visible {
   font-size: 11px;
   color: var(--aurum-grey, #8a938d);
 }
+.aurum-page .aurum-calc__helper p + p { margin-top: 5px; }
 
 .aurum-page .aurum-calc__submit {
   width: 100%;
@@ -2442,6 +2443,17 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 12px;
   color: color-mix(in oklab, #fff 55%, transparent);
+}
+
+.aurum-page .aurum-calc__provenance {
+  display: grid;
+  gap: 5px;
+  border-top: 1px solid color-mix(in oklab, var(--warm-white, #f6f3f1) 14%, transparent);
+  padding-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: color-mix(in oklab, #fff 70%, transparent);
 }
 
 .aurum-page .aurum-calc__freshness {

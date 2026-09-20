@@ -40,6 +40,7 @@ function buildMockData(): PriceData | null {
     previousClose: FIXTURE_PREVIOUS_CLOSE,
     facts,
     history,
+    historyStatus: "ready",
   };
 }
 
