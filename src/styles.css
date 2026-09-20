@@ -71,6 +71,7 @@
   --color-white: var(--white);
   --color-ink: var(--ink);
   --color-muted-2: var(--muted-2);
+  --color-up: var(--up);
   --color-warm-white: var(--warm-white);
   --color-paper: var(--paper);
   --color-muted-ink: var(--muted-ink);
@@ -106,6 +107,7 @@
   --ink: oklch(0.20357 0.029159 163.139); /* #091B13 */
   --muted-ink: oklch(0.44036 0.00802 159.81); /* #4F5451 */
   --muted-2: oklch(0.654066 0.013614 156.836); /* #8A938D */
+  --up: oklch(0.476912 0.088057 153.611); /* #2F6B45 */
   --placeholder-ink: var(--muted-2);
   --forest-black: oklch(0.186477 0.028937 162.031); /* #06170F */
   --forest-black-deep: oklch(0.13 0.026 162);
