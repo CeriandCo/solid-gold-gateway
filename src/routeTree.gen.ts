@@ -41,7 +41,6 @@ import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
 import { Route as ApiPublicGiftCardDeliveryTickRouteImport } from './routes/api/public/gift-card-delivery-tick'
-import { Route as ApiPublicS7CheckoutProbeRouteImport } from './routes/api/public/s7-checkout-probe'
 import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe-webhook'
 import { Route as AurumBriefsIndexRouteImport } from './routes/aurum_.briefs.index'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
@@ -212,12 +211,6 @@ const ApiPublicGiftCardDeliveryTickRoute =
     path: '/api/public/gift-card-delivery-tick',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicS7CheckoutProbeRoute =
-  ApiPublicS7CheckoutProbeRouteImport.update({
-    id: '/api/public/s7-checkout-probe',
-    path: '/api/public/s7-checkout-probe',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const ApiPublicStripeWebhookRoute = ApiPublicStripeWebhookRouteImport.update({
   id: '/api/public/stripe-webhook',
   path: '/api/public/stripe-webhook',
@@ -276,7 +269,6 @@ export interface FileRoutesByFullPath {
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
-  '/api/public/s7-checkout-probe': typeof ApiPublicS7CheckoutProbeRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
@@ -313,7 +305,6 @@ export interface FileRoutesByTo {
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
-  '/api/public/s7-checkout-probe': typeof ApiPublicS7CheckoutProbeRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
@@ -354,7 +345,6 @@ export interface FileRoutesById {
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
-  '/api/public/s7-checkout-probe': typeof ApiPublicS7CheckoutProbeRoute
   '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
@@ -396,7 +386,6 @@ export interface FileRouteTypes {
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
-    | '/api/public/s7-checkout-probe'
     | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
@@ -433,7 +422,6 @@ export interface FileRouteTypes {
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
-    | '/api/public/s7-checkout-probe'
     | '/api/public/stripe-webhook'
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
@@ -473,7 +461,6 @@ export interface FileRouteTypes {
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
-    | '/api/public/s7-checkout-probe'
     | '/api/public/stripe-webhook'
     | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
@@ -504,7 +491,6 @@ export interface RootRouteChildren {
   ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
   ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
   ApiPublicGiftCardDeliveryTickRoute: typeof ApiPublicGiftCardDeliveryTickRoute
-  ApiPublicS7CheckoutProbeRoute: typeof ApiPublicS7CheckoutProbeRoute
   ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
@@ -738,13 +724,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicGiftCardDeliveryTickRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/s7-checkout-probe': {
-      id: '/api/public/s7-checkout-probe'
-      path: '/api/public/s7-checkout-probe'
-      fullPath: '/api/public/s7-checkout-probe'
-      preLoaderRoute: typeof ApiPublicS7CheckoutProbeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/public/stripe-webhook': {
       id: '/api/public/stripe-webhook'
       path: '/api/public/stripe-webhook'
@@ -854,7 +833,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
   ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
   ApiPublicGiftCardDeliveryTickRoute: ApiPublicGiftCardDeliveryTickRoute,
-  ApiPublicS7CheckoutProbeRoute: ApiPublicS7CheckoutProbeRoute,
   ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
