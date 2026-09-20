@@ -1207,6 +1207,23 @@ footer.site-footer a:focus-visible {
   border-radius: 2px;
 }
 
+.aurum-floating-nav__noscript {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--gold);
+  background: var(--forest);
+}
+
+.aurum-floating-nav__noscript a {
+  color: var(--cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 759px) {
   .aurum-floating-nav {
     right: 16px;

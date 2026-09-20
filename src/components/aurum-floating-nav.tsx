@@ -114,6 +114,7 @@ export function AurumFloatingNav() {
   const showDelayedPrice = state.status === "stale" && data;
 
   return (
+    <>
     <div ref={rootRef} className="aurum-floating-nav" data-visible={visible ? "true" : "false"}>
       {open ? (
         <nav
@@ -155,5 +156,11 @@ export function AurumFloatingNav() {
         ) : null}
       </Button>
     </div>
+    <noscript>
+      <nav className="aurum-floating-nav__noscript" aria-label="AURUM sections">
+        {LINKS.map(({ label, id }) => <a key={id} href={`#${id}`}>{label}</a>)}
+      </nav>
+    </noscript>
+    </>
   );
 }
