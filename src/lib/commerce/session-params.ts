@@ -8,7 +8,10 @@ export type GiftCardOrderRef = {
 export type GiftCardDenominationRef = {
   id: string;
   amountCents: number;
+  /** Verified Stripe price id for the current mode. The amount lives in Stripe. */
+  priceId: string;
 };
+
 
 export type CommerceSessionSettings = {
   currency: string;
@@ -19,8 +22,9 @@ export const CHECKOUT_SESSION_TTL_SECONDS = 30 * 60;
 /**
  * Pure builder for the Stripe Checkout Session parameters.
  * Kept free of any Stripe client, network call or secret so it can be unit
- * tested without a key. The amount ALWAYS comes from the denomination row and
- * the currency ALWAYS from commerce_settings — never from the browser.
+ * tested without a key. The line item ALWAYS references a Stripe price id that
+ * was verified against the denomination beforehand — never a browser amount,
+ * and no ad-hoc price_data.
  */
 export function buildGiftCardSessionParams(
   order: GiftCardOrderRef,
@@ -37,16 +41,14 @@ export function buildGiftCardSessionParams(
     submit_type: "pay",
     allow_promotion_codes: false,
     billing_address_collection: "required",
+    currency: settings.currency,
     line_items: [
       {
         quantity: 1,
-        price_data: {
-          currency: settings.currency,
-          unit_amount: denomination.amountCents,
-          product_data: { name: "SQOOT Pure Gift Card" },
-        },
+        price: denomination.priceId,
       },
     ],
+
     payment_method_options: {
       card: { request_three_d_secure: "any" },
     },

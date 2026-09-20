@@ -2,7 +2,11 @@ import { describe, expect, it } from "vitest";
 import { buildGiftCardSessionParams } from "./session-params";
 
 const order = { id: "11111111-1111-4111-8111-111111111111", amountCents: 25000 };
-const denomination = { id: "22222222-2222-4222-8222-222222222222", amountCents: 25000 };
+const denomination = {
+  id: "22222222-2222-4222-8222-222222222222",
+  amountCents: 25000,
+  priceId: "price_test_25000",
+};
 const settings = { currency: "usd" };
 const origin = "https://solid-gold-gateway.lovable.app";
 const now = new Date("2026-09-19T12:00:00Z");
@@ -10,14 +14,15 @@ const now = new Date("2026-09-19T12:00:00Z");
 const params = buildGiftCardSessionParams(order, denomination, settings, origin, now);
 
 describe("buildGiftCardSessionParams", () => {
-  it("takes the amount from the denomination and the currency from settings", () => {
+  it("references the verified Stripe price id, never an ad-hoc amount", () => {
     const item = params.line_items?.[0];
-    expect(item?.price_data?.unit_amount).toBe(25000);
-    expect(item?.price_data?.currency).toBe("usd");
-    expect(item?.price_data?.product_data?.name).toBe("SQOOT Pure Gift Card");
+    expect(item?.price).toBe("price_test_25000");
+    expect(item?.price_data).toBeUndefined();
+    expect(params.currency).toBe("usd");
     expect(item?.quantity).toBe(1);
     expect(item?.adjustable_quantity).toBeUndefined();
   });
+
 
   it("is card only, pay mode, no promotion codes, billing address required", () => {
     expect(params.mode).toBe("payment");

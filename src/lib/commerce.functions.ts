@@ -24,8 +24,9 @@ export type {
 export const getGiftCardOffering = createServerFn({ method: "GET" }).handler(
   async (): Promise<GiftCardOffering> => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { catalogStatus } = await import("./commerce/stripe-catalog.server");
 
-    const [settingsResult, denominationsResult] = await Promise.all([
+    const [settingsResult, denominationsResult, catalog] = await Promise.all([
       supabaseAdmin
         .from("commerce_settings")
         .select("checkout_enabled, currency")
@@ -35,6 +36,7 @@ export const getGiftCardOffering = createServerFn({ method: "GET" }).handler(
         .select("id, amount_cents")
         .eq("active", true)
         .order("sort_order", { ascending: true }),
+      catalogStatus(),
     ]);
 
     if (settingsResult.error) throw settingsResult.error;
@@ -44,7 +46,10 @@ export const getGiftCardOffering = createServerFn({ method: "GET" }).handler(
     const checkoutEnabled = settingsResult.data?.checkout_enabled ?? false;
 
     return {
-      available: checkoutEnabled && currency !== null,
+      // Buying is only offered once every denomination is bound to a verified
+      // Stripe price for the current mode.
+      available: checkoutEnabled && currency !== null && catalog.ready,
+
       currency,
       denominations: (denominationsResult.data ?? []).map((row) => ({
         id: row.id,

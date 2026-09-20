@@ -2,6 +2,8 @@ import { z } from "zod";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { createStripeClient, getStripeSecretKey, isLiveKey, peppered } from "./commerce.server";
+import { keyMode } from "./commerce/stripe-catalog.server";
+
 import { buildGiftCardSessionParams } from "./commerce/session-params";
 import type { CheckoutResult, CheckoutStatusResult } from "./commerce/types";
 
@@ -94,10 +96,12 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   const allowed = (row.allowed_origins ?? []).find((entry) => entry === origin);
   if (!allowed) return { ok: false, code: "origin_not_allowed" };
 
-  // 4. Denomination — the single source of truth for the amount.
+  // 4. Denomination — the single source of truth for the amount, and the
+  // Stripe price id it is bound to. Without a mapped price for the current
+  // mode the buyer just sees "unavailable"; no detail leaves the server.
   const denomination = await supabaseAdmin
     .from("gift_card_denominations")
-    .select("id, amount_cents")
+    .select("id, amount_cents, stripe_price_id_test, stripe_price_id_live")
     .eq("id", denominationId)
     .eq("active", true)
     .maybeSingle();
@@ -105,6 +109,16 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   if (!denom || denom.amount_cents > row.max_card_cents) {
     return { ok: false, code: "invalid_request" };
   }
+
+  const mode = keyMode();
+  const priceId =
+    mode === "live"
+      ? denom.stripe_price_id_live
+      : mode === "test"
+        ? denom.stripe_price_id_test
+        : null;
+  if (!priceId) return { ok: false, code: "unavailable" };
+
 
   // 5. A repeated attempt id never creates a second session, and never
   // switches amount: an attempt id is bound to the denomination it was
@@ -166,7 +180,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
 
   const params = buildGiftCardSessionParams(
     { id: orderId, amountCents: denom.amount_cents },
-    { id: denom.id, amountCents: denom.amount_cents },
+    { id: denom.id, amountCents: denom.amount_cents, priceId },
     { currency },
     allowed,
   );
