@@ -177,18 +177,18 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
       <div className="site-container">
-        <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 xl:min-h-[112px] xl:py-5">
+        <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 lg:min-h-[112px] lg:py-5">
           <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
             <img
               src={logoImage}
               alt="SQOOT Pure"
               width={567}
               height={200}
-              className="h-auto w-[200px] sm:w-[230px] xl:w-[210px] min-[1440px]:w-[290px]"
+              className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
             />
           </Link>
           <nav
-            className="hidden flex-1 items-center justify-center xl:flex xl:gap-3 min-[1440px]:gap-6"
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
             aria-label="Primary navigation"
           >
             {siteNav.map(([label, to]) => (
@@ -206,7 +206,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             <Link
               to="/early-access"
               className={cn(
-                "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 xl:inline-flex xl:px-5 xl:text-[13px] min-[1440px]:px-6",
+                "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
                 variant === "overlay"
                   ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
@@ -219,7 +219,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
               aria-label="Toggle navigation menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold xl:hidden"
+              className="rounded-sm border border-warm-white/25 p-2.5 text-warm-white/80 transition-colors hover:border-gold hover:text-gold lg:hidden"
             >
               {menuOpen ? (
                 <X strokeWidth={1.25} className="h-5 w-5" />
@@ -235,7 +235,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
         <nav
           aria-label="Mobile navigation"
           className={cn(
-            "border-t border-warm-white/10 xl:hidden",
+            "border-t border-warm-white/10 lg:hidden",
             variant === "solid" ? "bg-forest-deep" : "bg-forest-deep",
           )}
         >
