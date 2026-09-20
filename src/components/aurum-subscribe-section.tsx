@@ -10,8 +10,8 @@ const CONSENT_TEXT =
   "We store the consent text shown, its version, the timestamp and the source of the signup.";
 
 const LISTS = [
-  { id: "daily-note", title: "Daily Note", description: "Short sourced notes, published when there is something worth recording." },
-  { id: "weekly-brief", title: "Weekly Brief", description: "One longer read each Monday." },
+  { id: "daily-note", key: "dailyNote", title: "Daily Note", description: "Short sourced notes, published as they are written." },
+  { id: "weekly-brief", key: "weeklyBrief", title: "Weekly Brief", description: "One longer read each Monday." },
 ] as const;
 
 const BENEFITS = [
