@@ -33,6 +33,29 @@ const HERO_SPOT = {
   note: "Sample data — not a real price",
 } as const;
 
+const PROOF_ITEMS = [
+  {
+    number: "01",
+    title: "Real, physical gold",
+    line: "Coins and bullion — never a token, note or ETF.",
+  },
+  {
+    number: "02",
+    title: "Held in your name",
+    line: "Allocated to you and shown on every statement.",
+  },
+  {
+    number: "03",
+    title: "Priced live",
+    line: "Spot and premium shown before you confirm.",
+  },
+  {
+    number: "04",
+    title: "Deliver or sell back",
+    line: "Take it home or sell it back from the app.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
@@ -107,8 +130,22 @@ function Index() {
       </section>
 
       <main>
-        <section id="proof" className="bg-forest-2">
-          <SectionContainer />
+        <section id="proof" className="bg-forest-2" aria-label="Why SQOOT gold">
+          <div className="site-container">
+            <ul className="home-proof">
+              {PROOF_ITEMS.map((item) => (
+                <li key={item.number}>
+                  <span className="home-proof-number" aria-hidden="true">
+                    {item.number}
+                  </span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.line}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
         <section id="three-ways" className={`bg-cream ${STANDARD_SECTION}`}>
           <SectionContainer />
