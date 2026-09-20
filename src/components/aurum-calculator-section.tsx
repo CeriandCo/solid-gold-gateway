@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
-import { closeOn, type HistoryPoint } from "@/lib/aurum/price-state";
+import { closeOn, historyBounds, isRollingFiveYearWindow, validateHistoryDate, type HistoryPoint } from "@/lib/aurum/price-state";
 import { GoldButton } from "@/components/site-chrome";
 import calculatorBg from "@/assets/aurum/aurum-calculator-bg.webp.asset.json";
 
@@ -63,23 +63,19 @@ export function AurumCalculatorSection() {
   const [noClose, setNoClose] = useState<string | null>(null);
   const defaultApplied = useRef(false);
 
-  // All date boundaries come from the stored history — never a constant.
   const history = data?.history ?? [];
-  const earliest = history.length > 0 ? history[0]!.date : null;
-  const latest = history.length > 0 ? history[history.length - 1]!.date : null;
+  const bounds = historyBounds(history);
+  const historyAvailable = data?.historyStatus === "ready" && bounds !== null;
+  const rollingWindow = bounds ? isRollingFiveYearWindow(bounds) : false;
 
   // Apply the default date once, when history first becomes available. A date
   // the visitor has already typed is never overwritten.
   useEffect(() => {
     if (defaultApplied.current || dateTouched) return;
-    if (history.length === 0 || !latest) return;
-    const fiveYearsBefore = new Date(
-      Date.UTC(latest.getUTCFullYear() - 5, latest.getUTCMonth(), latest.getUTCDate()),
-    );
-    const fallback = history.find((point) => point.date.getTime() >= fiveYearsBefore.getTime()) ?? history[0]!;
+    if (!bounds) return;
     defaultApplied.current = true;
-    setDateInput(isoDay(fallback.date));
-  }, [history, latest, dateTouched]);
+    setDateInput(isoDay(bounds.earliest));
+  }, [bounds, dateTouched]);
 
   const amount = Number(amountInput);
   const requested = dateInput ? new Date(`${dateInput}T00:00:00.000Z`) : null;
@@ -89,20 +85,16 @@ export function AurumCalculatorSection() {
     amountError = "Enter an amount above zero.";
   }
 
-  let dateError: string | null = null;
-  if (!requested || Number.isNaN(requested.getTime())) dateError = "Enter a valid date.";
-  else if (earliest && requested.getTime() < earliest.getTime()) {
-    dateError = `Choose a date from ${DATE.format(earliest)} onward.`;
-  } else if (latest && requested.getTime() > latest.getTime()) {
-    dateError = `Choose a date on or before ${DATE.format(latest)}.`;
-  }
+  const dateError = dateTouched ? validateHistoryDate(dateInput, bounds, (date) => DATE.format(date)) : null;
 
   const inputsValid = !amountError && !dateError;
-  const canRun = calculatorEnabled && inputsValid && Boolean(data);
+  const canRun = calculatorEnabled && historyAvailable && inputsValid && Boolean(data);
 
   const lastGood = data ? `${TIME.format(data.asOf)} UTC on ${DATE.format(data.asOf)}` : null;
   const unavailableReason =
-    state.status === "loading"
+    data && data.historyStatus === "unavailable"
+      ? "Stored daily-close history could not be loaded."
+      : state.status === "loading"
       ? "Waiting for a current price."
       : state.status === "stale"
         ? "The stored price is older than the freshness limit, so no look back can be run against it."
@@ -191,22 +183,23 @@ export function AurumCalculatorSection() {
                 <input
                   id="aurum-calc-date"
                   type="date"
-                  min={earliest ? isoDay(earliest) : undefined}
-                  max={latest ? isoDay(latest) : undefined}
+                  min={bounds ? isoDay(bounds.earliest) : undefined}
+                  max={bounds ? isoDay(bounds.latest) : undefined}
                   value={dateInput}
                   aria-invalid={dateError ? true : undefined}
+                  aria-describedby="aurum-calc-date-help"
                   onChange={(event) => {
                     setDateTouched(true);
                     setDateInput(event.target.value);
                   }}
                 />
               </div>
-              <p className="aurum-calc__helper">
+              <div id="aurum-calc-date-help" className="aurum-calc__helper" aria-live="polite">
                 {dateError ??
-                  (earliest
-                    ? `Any date from ${DATE.format(earliest)} onward.`
-                    : "Loading available dates…")}
-              </p>
+                  (bounds
+                    ? <><p>Any date from {DATE.format(bounds.earliest)} onward.</p>{rollingWindow ? <p>AURUM stores the last five years of daily closes, so the earliest available date moves forward each day.</p> : null}</>
+                    : data?.historyStatus === "unavailable" ? "Stored daily-close history is unavailable." : "Loading available dates…")}
+              </div>
             </div>
 
             <GoldButton type="submit" size="hero" disabled={!canRun} className="aurum-calc__submit">
@@ -217,7 +210,7 @@ export function AurumCalculatorSection() {
           </form>
 
           <div className="aurum-calc__result" aria-live="polite">
-            {!calculatorEnabled ? (
+            {!calculatorEnabled || !historyAvailable ? (
               <>
                 <p className="aurum-calc__chip">UNAVAILABLE</p>
                 <p className="aurum-calc__result-title">Cannot run right now</p>
@@ -267,6 +260,10 @@ export function AurumCalculatorSection() {
                   Past performance is not a prediction and no outcome is guaranteed. Figures exclude any dealer
                   premium, storage fee or tax.
                 </p>
+                {showResult && result ? <div className="aurum-calc__provenance">
+                  <p>Purchase-date price: close of {DATE.format(result.then.date)} from stored daily closes.</p>
+                  <p>Today&apos;s price: live spot, as of {TIME.format(result.asOf)} UTC.</p>
+                </div> : null}
               </>
             )}
           </div>
