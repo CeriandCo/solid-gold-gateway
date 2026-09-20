@@ -61,6 +61,7 @@ export const siteNav = [
   ["Pricing", "/pricing"],
   ["Trust Center", "/trust-center"],
   ["About Us", "/about-us"],
+  ["AURUM", "/aurum"],
   ["Learn", "/learn"],
 ] as const;
 
@@ -187,13 +188,14 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             />
           </Link>
           <nav
-            className="hidden flex-1 items-center justify-center lg:flex lg:gap-5 xl:gap-8 min-[1440px]:gap-[54px]"
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
             aria-label="Primary navigation"
           >
             {siteNav.map(([label, to]) => (
               <Link
                 key={label}
                 to={to}
+                activeOptions={{ exact: false }}
                 className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
               >
                 {label}
@@ -242,6 +244,7 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
               <li key={label} className="border-b border-warm-white/10 last:border-b-0">
                 <Link
                   to={to}
+                  activeOptions={{ exact: false }}
                   onClick={() => setMenuOpen(false)}
                   className="block py-4 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
                 >
@@ -273,7 +276,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | "/terms" | "/privacy" | "/aurum" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | "/privacy" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
