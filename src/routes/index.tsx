@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter, SiteNav } from "@/components/site-chrome";
+import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
 import heroPhone from "@/assets/home/phone-hero-vault-holdings.png.asset.json";
 
@@ -40,6 +40,8 @@ function SectionContainer() {
 function Index() {
   return (
     <div className="min-h-screen bg-cream text-ink">
+      <SiteHeader />
+
       <section id="hero" className="home-hero">
         <img
           src={homeHero.url}
@@ -51,10 +53,6 @@ function Index() {
           className="home-hero-background"
         />
         <div className="home-hero-scrim" aria-hidden="true" />
-
-        <header className="home-hero-header">
-          <SiteNav variant="overlay" />
-        </header>
 
         <div className="home-hero-inner site-container">
           <div className="home-hero-copy">

@@ -195,11 +195,6 @@
   );
 }
 
-.home-hero-header {
-  position: relative;
-  z-index: 3;
-}
-
 .home-hero-inner {
   position: absolute;
   z-index: 2;
