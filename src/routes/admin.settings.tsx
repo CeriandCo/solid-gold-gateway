@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdminMe, getCmsSettings, setAllowSelfApproval } from "@/lib/admin.functions";
 import {
@@ -7,19 +7,13 @@ import {
   type CatalogStatus,
   type CatalogSyncResult,
 } from "@/lib/commerce-admin.functions";
+import { AdminNoAccess } from "@/components/admin-no-access";
 
 
 export const Route = createFileRoute("/admin/settings")({
-  // UI guard only; the server functions and RLS are the real boundary.
-  beforeLoad: async () => {
-    try {
-      const me = await getAdminMe();
-      if (me.role !== "admin") throw redirect({ to: "/admin" });
-    } catch (error) {
-      if (error && typeof error === "object" && "to" in error) throw error;
-      throw redirect({ to: "/admin" });
-    }
-  },
+  // No route guard here: the /admin layout gates rendering and the component checks the
+  // admin role in place. Server functions and RLS remain the real boundary.
+
   head: () => ({
     meta: [
       { title: "Settings | AURUM admin" },
@@ -38,17 +32,34 @@ function SettingsPage() {
   const [allow, setAllow] = useState<boolean | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
+    let active = true;
     void (async () => {
       try {
+        const me = await getAdminMe();
+        if (!active) return;
+        if (me.role !== "admin") {
+          setIsAdmin(false);
+          return;
+        }
+        setIsAdmin(true);
         const settings = await getCmsSettings();
+        if (!active) return;
         setAllow(settings.allowSelfApproval);
       } catch (cause) {
+        if (!active) return;
         setError(cause instanceof Error ? cause.message : "Could not load settings.");
       }
     })();
+    return () => {
+      active = false;
+    };
   }, []);
+
+  if (isAdmin === false) return <AdminNoAccess />;
+
 
   const toggle = async (next: boolean) => {
     setBusy(true);
