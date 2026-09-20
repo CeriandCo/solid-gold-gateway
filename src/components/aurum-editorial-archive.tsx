@@ -42,7 +42,7 @@ export function AurumEditorialArchive({
   return (
     <main className="aurum-archive">
       <div className="aurum-container">
-        <Link className="aurum-archive__back" to="/aurum" search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }} hash={sectionHash}>← Back to AURUM</Link>
+        <a className="aurum-archive__back" href={`/aurum#${sectionHash}`}>← Back to AURUM</a>
         <p className="aurum-note-eyebrow">AURUM</p>
         <h1 className="aurum-archive__title">{kind === "notes" ? "Daily Note archive" : "Weekly Brief archive"}</h1>
         <p className="aurum-archive__dek">{kind === "notes" ? "Short, sourced notes published when there is something worth recording." : "Longer reads on what moved in gold, what it means, and what it does not mean."}</p>

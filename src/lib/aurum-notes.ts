@@ -1,8 +1,7 @@
 import { MONTH_ABBR, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
-// Daily Note content lives in the database (aurum_posts) and is read server-side.
-// No static copy is kept here on purpose: a fallback array would reintroduce the
-// stale-content problem the CMS exists to fix.
+// Daily Note content comes from the shared published Learn article registry.
+// This module keeps only the compatible public type and deterministic date format.
 export type AurumNoteSource = AurumEditorialSource;
 export type AurumNote = AurumEditorial;
 
