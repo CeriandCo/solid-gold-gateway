@@ -38,6 +38,8 @@ function buildMockData(): PriceData | null {
     dayHigh: FIXTURE_DAY_HIGH,
     dayLow: FIXTURE_DAY_LOW,
     previousClose: FIXTURE_PREVIOUS_CLOSE,
+    provider: "mock:gold_spot",
+    previousCloseSource: "mock:gold_spot",
     facts,
     history,
     historyStatus: "ready",

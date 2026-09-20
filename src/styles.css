@@ -1522,6 +1522,19 @@ footer.site-footer a:focus-visible {
   color: var(--muted-ink);
 }
 
+.aurum-price-change-unavailable,
+.aurum-price-provenance {
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted-ink);
+}
+
+.aurum-price-provenance {
+  margin-top: 1.25rem;
+}
+
 .aurum-price-rule {
   height: 1px;
   margin-top: 2rem;

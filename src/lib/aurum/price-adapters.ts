@@ -3,11 +3,8 @@
  *
  * PROVENANCE — READ BEFORE TOUCHING THE CHANGE FIGURES
  * ----------------------------------------------------
- * `change_amount` / `change_pct` come from the price provider (Dillon Gage
- * spot) and are the AUTHORITATIVE intraday move — display these as-is.
- * `previous_close` currently comes from Yahoo `GC=F`, gold FUTURES, a
- * different instrument (see `previous_close_source`). NEVER derive the
- * displayed change from it; the basis would show a move that never happened.
+ * Day change is accepted only after the endpoint fields are independently
+ * checked against a same-feed baseline here.
  */
 
 import {
@@ -17,6 +14,7 @@ import {
   type PriceSource,
   type PriceState,
 } from "./price-state";
+import { derivePriceChange } from "./price-change";
 
 export type PriceAdapter = {
   source: PriceSource;
@@ -102,15 +100,30 @@ export const livePriceAdapter: PriceAdapter = {
     const asOf = typeof stamp === "string" ? new Date(stamp) : null;
     if (!asOf || Number.isNaN(asOf.getTime())) return { status: "unavailable", reason: "invalid" };
 
+    const provider = body["provider"];
+    if (typeof provider !== "string" || provider.length === 0) return { status: "unavailable", reason: "invalid" };
+    const previousClose = finiteOrNull(body["previous_close"]);
+    const previousCloseSource = typeof body["previous_close_source"] === "string" ? body["previous_close_source"] : null;
+    const change = derivePriceChange({
+      price: spot,
+      baseline: previousClose,
+      priceSource: provider,
+      baselineSource: previousCloseSource,
+      suppliedAmount: body["change_amount"] ?? undefined,
+      suppliedPercent: body["change_pct"] ?? undefined,
+    });
+    if (previousClose !== null && !change) console.error("[aurum-price] contradictory day-change payload; hiding change");
+
     const data: PriceData = {
       spot,
-      // Authoritative provider move. Never derived from previous_close.
-      changePct: finiteOrZero(body["change_pct"]),
-      changeAmount: finiteOrZero(body["change_amount"]),
+      changePct: change?.percent ?? null,
+      changeAmount: change?.amount ?? null,
       asOf,
-      dayHigh: finiteOrNull(body["day_high"]) ?? spot,
-      dayLow: finiteOrNull(body["day_low"]) ?? spot,
-      previousClose: finiteOrNull(body["previous_close"]),
+      dayHigh: finiteOrNull(body["day_high"]),
+      dayLow: finiteOrNull(body["day_low"]),
+      previousClose: change ? previousClose : null,
+      provider,
+      previousCloseSource: change ? previousCloseSource : null,
       facts: computeFacts(history, spot, asOf),
       history,
       historyStatus,

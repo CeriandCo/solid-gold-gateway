@@ -24,13 +24,15 @@ export type PriceFacts = {
 
 export type PriceData = {
   spot: number;
-  changePct: number;
-  changeAmount: number;
+  changePct: number | null;
+  changeAmount: number | null;
   asOf: Date;
-  dayHigh: number;
-  dayLow: number;
+  dayHigh: number | null;
+  dayLow: number | null;
   /** Null when no settled daily close exists. Never used to derive the change. */
   previousClose: number | null;
+  provider: string;
+  previousCloseSource: string | null;
   /** Null when stored history is missing or too short; the price still renders. */
   facts: PriceFacts | null;
   history: HistoryPoint[];
