@@ -50,7 +50,7 @@ export const Route = createFileRoute("/gifting")({
       {
         name: "description",
         content:
-          "Celebrate life's most precious moments with real gold, personalised and beautifully delivered by SQOOT Pure.",
+          "Celebrate life's most precious moments with real gold, thoughtfully and beautifully delivered by SQOOT Pure.",
       },
       { property: "og:title", content: "Gift Real Gold — SQOOT Pure" },
       {
@@ -91,7 +91,7 @@ type Feature = {
 const features: Feature[] = [
   { icon: Gift, title: "Meaningful", description: "A timeless symbol of love and blessings" },
   { icon: ShieldCheck, title: "Real & Secure", description: "Real gold, fully insured in U.S. vaults" },
-  { icon: HandHeart, title: "Personalised", description: "Add a name, message or special date" },
+  { icon: HandHeart, title: "Flexible", description: "Choose an amount and let them pick the gift" },
   { icon: Truck, title: "Beautifully Delivered", description: "Premium packaging, ready to gift" },
   { icon: RefreshCw, title: "Redeemable", description: "Redeem or upgrade anytime" },
   { icon: Globe2, title: "Vaulted Gifting", description: "Gift allocated gold held securely in insured U.S. vaults" },

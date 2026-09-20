@@ -209,7 +209,7 @@ function GiftingPage() {
               { icon: Gift, title: "Thoughtful & Timeless", description: "A gift they'll value today and for generations." },
               { icon: ShieldCheck, title: "100% Real Gold", description: "Allocated, insured, and fully backed." },
               { icon: Landmark, title: "Securely Vaulted", description: "Stored in insured U.S. vaults you can trust." },
-              { icon: CreditCard, title: "Beautifully Presented", description: "Premium packaging with a personal touch." },
+              { icon: CreditCard, title: "Beautifully Presented", description: "Premium packaging, ready to gift." },
               { icon: Smartphone, title: "Digital Convenience", description: "Send instantly or schedule for later." },
             ].map(({ icon: Icon, title, description }) => (
               <div key={title} className="flex flex-col items-center justify-start px-6 py-4 text-center">

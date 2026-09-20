@@ -242,7 +242,7 @@ export function PricingCalculator() {
             <div className="pricing-calculator-gift-row">
               <div>
                 <span>This is a gift</span>
-                <small>Engraving and gift packaging, priced at checkout</small>
+                <small>Premium gift packaging, priced at checkout</small>
               </div>
               <Button
                 className="pricing-calculator-toggle"
@@ -390,7 +390,7 @@ function CalculatorResult({
         <ResultLine label={`Product premium · ${(deliveryEstimate.item.premiumRate * 100).toFixed(0)}%`} value={formatMoney(deliveryEstimate.premium)} />
         <ResultLine label="Purchase fee" value={formatMoney(PRICING.delivery.purchaseFeeRate)} />
         {deliveryKind === "coin" ? <ResultLine label="Storage" value="None — it is with you" subdued /> : null}
-        {gift ? <ResultLine label="Engraving and gift packaging" value="Shown at checkout" subdued /> : null}
+        {gift ? <ResultLine label="Premium gift packaging" value="Shown at checkout" subdued /> : null}
         <ResultLine label="Insured shipping" value="Shown at checkout" subdued />
         <ResultLine label="Left from your budget" value={formatMoney(deliveryEstimate.remainder)} />
       </div>

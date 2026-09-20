@@ -64,7 +64,7 @@ const trustItems = [
   {
     icon: Gift,
     title: "Optional gifting service",
-    text: "Engraving and premium packaging for delivery to friends or family",
+    text: "Premium packaging for delivery to friends or family",
   },
 ] as const;
 
@@ -104,7 +104,7 @@ const faqItems: readonly FaqItem[] = [
   {
     question: "Can I gift gold?",
     answer:
-      "Yes. Coins and bars can be shipped directly to a recipient with optional engraving and premium gift packaging, shown at checkout. Allocated metal can be transferred as a gift on request.",
+      "Yes. Coins and bars can be shipped directly to a recipient with premium gift packaging, shown at checkout. Allocated metal can be transferred as a gift on request.",
   },
   {
     question: "Are there any other fees?",
@@ -181,7 +181,7 @@ function PricingPage() {
     { label: "Purchase fee", value: deliveryFee, numeric: true },
     { label: "Storage & insurance", value: "None — the gold is with you" },
     { label: "Delivery", value: "Insured shipping, shown at checkout" },
-    { label: "Gifting", value: "Engraving and gift packaging" },
+    { label: "Gifting", value: "Premium gift packaging" },
   ] as const;
 
   const vaultRows = [
@@ -315,7 +315,7 @@ function PricingPage() {
                       </tr>
                       <tr data-reveal>
                         <th scope="row">Gifting</th>
-                        <td>Engraving and gift packaging</td>
+                        <td>Premium gift packaging</td>
                         <td>Transfer as a gift on request</td>
                       </tr>
                       <tr className="pricing-v2-table-final-row" data-reveal>
