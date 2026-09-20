@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   addEditor,
@@ -9,18 +9,12 @@ import {
   type AdminRole,
   type EditorRow,
 } from "@/lib/admin.functions";
+import { AdminNoAccess } from "@/components/admin-no-access";
 
 export const Route = createFileRoute("/admin/people")({
-  // UI guard only; the server functions and RLS are the real boundary.
-  beforeLoad: async () => {
-    try {
-      const me = await getAdminMe();
-      if (me.role !== "admin") throw redirect({ to: "/admin" });
-    } catch (error) {
-      if (error && typeof error === "object" && "to" in error) throw error;
-      throw redirect({ to: "/admin" });
-    }
-  },
+  // No route guard here: the /admin layout gates rendering and the component checks the
+  // admin role in place. Server functions and RLS remain the real boundary.
+
   head: () => ({
     meta: [
       { title: "People | AURUM admin" },

@@ -1,7 +1,6 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  getAdminMe,
   listAdminPosts,
   type AdminPostRow,
   type AdminPostsPage,
@@ -12,16 +11,9 @@ import {
 import { formatShortDate } from "@/lib/aurum-editorial";
 
 export const Route = createFileRoute("/admin/posts/")({
-  // UI guard only; the server functions and RLS are the real boundary.
-  beforeLoad: async () => {
-    try {
-      const me = await getAdminMe();
-      if (!me.role) throw redirect({ to: "/admin" });
-    } catch (error) {
-      if (error && typeof error === "object" && "to" in error) throw error;
-      throw redirect({ to: "/admin" });
-    }
-  },
+  // No route guard here: the /admin layout renders the sign-in screen when signed out,
+  // and the server functions plus RLS are the real authorization boundary.
+
   head: () => ({
     meta: [
       { title: "Posts | AURUM admin" },

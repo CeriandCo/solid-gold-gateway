@@ -1,23 +1,11 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import {
-  getAdminMe,
-  getAdminPostForEdit,
-  type AdminPostEditable,
-} from "@/lib/admin.functions";
+import { getAdminPostForEdit, type AdminPostEditable } from "@/lib/admin.functions";
 import { AdminPostForm } from "@/components/admin-post-form";
 
 export const Route = createFileRoute("/admin/posts/$postId")({
-  // UI guard only; the server functions and RLS are the real boundary.
-  beforeLoad: async () => {
-    try {
-      const me = await getAdminMe();
-      if (!me.role) throw redirect({ to: "/admin" });
-    } catch (error) {
-      if (error && typeof error === "object" && "to" in error) throw error;
-      throw redirect({ to: "/admin" });
-    }
-  },
+  // No route guard here: the /admin layout gates rendering; server functions enforce access.
+
   head: () => ({
     meta: [
       { title: "Post | AURUM admin" },
