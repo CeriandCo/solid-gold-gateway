@@ -32,17 +32,34 @@ function SettingsPage() {
   const [allow, setAllow] = useState<boolean | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
+    let active = true;
     void (async () => {
       try {
+        const me = await getAdminMe();
+        if (!active) return;
+        if (me.role !== "admin") {
+          setIsAdmin(false);
+          return;
+        }
+        setIsAdmin(true);
         const settings = await getCmsSettings();
+        if (!active) return;
         setAllow(settings.allowSelfApproval);
       } catch (cause) {
+        if (!active) return;
         setError(cause instanceof Error ? cause.message : "Could not load settings.");
       }
     })();
+    return () => {
+      active = false;
+    };
   }, []);
+
+  if (isAdmin === false) return <AdminNoAccess />;
+
 
   const toggle = async (next: boolean) => {
     setBusy(true);
