@@ -12,6 +12,10 @@ export type AurumEditorial = {
   publishedAt: string;
   readMinutes: number;
   body: string[];
+  blocks?: Array<
+    | { type: "p" | "h2" | "h3" | "blockquote"; text: string }
+    | { type: "ul"; text: string; items: string[] }
+  >;
   pullQuote?: string;
   sources: AurumEditorialSource[];
   reviewLine?: string;

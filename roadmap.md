@@ -3,6 +3,7 @@
 ## In progress
 
 ## Done
+- [x] Sourced AURUM Daily Notes from published Learn articles and added searchable Notes and Briefs archives.
 - [x] Stopped AURUM chart and editorial controls from changing scroll position or clearing the current hash.
 - [x] Rebalanced `/aurum` with light price/facts bands, a dark Weekly Brief anchor, shared stat-card geometry, and retired background assets removed.
 - [x] Replaced the AURUM double menu with a shared-nav AURUM entry and route-scoped floating section navigator.

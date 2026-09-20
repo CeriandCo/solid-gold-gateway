@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
+import { Link } from "@tanstack/react-router";
 import type { AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialRow } from "@/components/aurum-editorial-row";
+import { formatEditorialDate } from "@/lib/aurum-editorial";
 
-const PAGE_SIZE = 3;
+function isOlderThanThirtyDays(date: string): boolean {
+  const age = Date.now() - new Date(`${date}T00:00:00Z`).getTime();
+  return age > 30 * 24 * 60 * 60 * 1000;
+}
 
 export function AurumDailyNoteSection({
   openSlug,
@@ -15,42 +17,8 @@ export function AurumDailyNoteSection({
   onToggle: (slug: string | null) => void;
   initial: { items: AurumEditorial[]; total: number } | null;
 }) {
-  const loadPage = useServerFn(fetchEditorialPage);
-  const [notes, setNotes] = useState<AurumEditorial[]>(initial?.items ?? []);
-  const [total, setTotal] = useState(initial?.total ?? 0);
-  const [loading, setLoading] = useState(false);
-
-  // Loader data can widen (a shared ?note= link loads enough pages to include that
-  // note). Merge it in rather than replacing, so an expanded list stays expanded.
-  useEffect(() => {
-    if (!initial) return;
-    setTotal(initial.total);
-    setNotes((current) => {
-      const merged = [...current];
-      for (const item of initial.items) {
-        if (!merged.some((note) => note.slug === item.slug)) merged.push(item);
-      }
-      return merged.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
-    });
-  }, [initial]);
-
-  const showOlder = async () => {
-    setLoading(true);
-    try {
-      const page = await loadPage({
-        data: { type: "daily_note", limit: PAGE_SIZE, offset: notes.length },
-      });
-      setNotes((current) => [
-        ...current,
-        ...page.items.filter((item) => !current.some((note) => note.slug === item.slug)),
-      ]);
-      setTotal(page.total);
-    } catch {
-      // Keep what is already on screen; the counter and button stay as they are.
-    } finally {
-      setLoading(false);
-    }
-  };
+  const notes = initial?.items ?? [];
+  const newest = notes[0];
 
   return (
     <section id="daily-note" className="aurum-section aurum-daily-note" aria-labelledby="aurum-daily-note-title">
@@ -60,8 +28,8 @@ export function AurumDailyNoteSection({
           What moved, and why
         </h2>
         <p className="aurum-note-dek">
-          A short, sourced note on each trading day. Every material fact links to where it came from. No
-          forecasts, no calls.
+          Short, sourced notes published when there is something worth recording. Every material fact links to
+          where it came from. No forecasts, no calls.
         </p>
 
         {initial === null ? (
@@ -85,13 +53,9 @@ export function AurumDailyNoteSection({
 
             <div className="aurum-note-footer">
               <p>
-                Latest {notes.length} of {total} notes
+                {newest ? <>Most recent note: {formatEditorialDate(newest.publishedAt)}.{isOlderThanThirtyDays(newest.publishedAt) ? " New notes are published as they are written, not on a fixed schedule." : ""}</> : "No notes published yet."}
               </p>
-              {notes.length < total ? (
-                <button type="button" className="aurum-note-more" onClick={showOlder} disabled={loading}>
-                  Show older notes ↓
-                </button>
-              ) : null}
+              <Link className="aurum-note-more" to="/aurum/notes" search={{ page: 1 }}>Show older notes →</Link>
             </div>
           </>
         )}

@@ -1,6 +1,20 @@
 import type { AurumEditorial } from "@/lib/aurum-editorial";
 
 export function AurumEditorialBody({ article }: { article: AurumEditorial }) {
+  const blocks = article.blocks;
+  if (blocks) {
+    return (
+      <div className="aurum-note-body">
+        {blocks.map((block, index) => {
+          if (block.type === "h2") return <h2 key={index}>{block.text}</h2>;
+          if (block.type === "h3") return <h3 key={index}>{block.text}</h3>;
+          if (block.type === "blockquote") return <blockquote key={index}>{block.text}</blockquote>;
+          if (block.type === "ul") return <ul key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
+          return <p key={index}>{block.text}</p>;
+        })}
+      </div>
+    );
+  }
   return (
     <div className="aurum-note-body">
       {article.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
@@ -14,6 +28,7 @@ export function AurumEditorialQuote({ article }: { article: AurumEditorial }) {
 }
 
 export function AurumEditorialSources({ article, idPrefix }: { article: AurumEditorial; idPrefix: string }) {
+  if (article.sources.length === 0) return null;
   return (
     <div className="aurum-note-sources">
       <p className="aurum-note-sources__label" id={`${idPrefix}-sources`}>SOURCES</p>

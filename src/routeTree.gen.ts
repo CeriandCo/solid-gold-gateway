@@ -42,7 +42,9 @@ import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/g
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
 import { Route as ApiPublicGiftCardDeliveryTickRouteImport } from './routes/api/public/gift-card-delivery-tick'
 import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe-webhook'
+import { Route as AurumBriefsIndexRouteImport } from './routes/aurum_.briefs.index'
 import { Route as AurumBriefsSlugRouteImport } from './routes/aurum_.briefs.$slug'
+import { Route as AurumNotesIndexRouteImport } from './routes/aurum_.notes.index'
 import { Route as AurumNotesSlugRouteImport } from './routes/aurum_.notes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -214,9 +216,19 @@ const ApiPublicStripeWebhookRoute = ApiPublicStripeWebhookRouteImport.update({
   path: '/api/public/stripe-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AurumBriefsIndexRoute = AurumBriefsIndexRouteImport.update({
+  id: '/aurum_/briefs/',
+  path: '/aurum/briefs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AurumBriefsSlugRoute = AurumBriefsSlugRouteImport.update({
   id: '/aurum_/briefs/$slug',
   path: '/aurum/briefs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AurumNotesIndexRoute = AurumNotesIndexRouteImport.update({
+  id: '/aurum_/notes/',
+  path: '/aurum/notes/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AurumNotesSlugRoute = AurumNotesSlugRouteImport.update({
@@ -261,6 +273,8 @@ export interface FileRoutesByFullPath {
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts/': typeof AdminPostsIndexRoute
+  '/aurum/briefs/': typeof AurumBriefsIndexRoute
+  '/aurum/notes/': typeof AurumNotesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -295,6 +309,8 @@ export interface FileRoutesByTo {
   '/aurum/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts': typeof AdminPostsIndexRoute
+  '/aurum/briefs': typeof AurumBriefsIndexRoute
+  '/aurum/notes': typeof AurumNotesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -333,6 +349,8 @@ export interface FileRoutesById {
   '/aurum_/briefs/$slug': typeof AurumBriefsSlugRoute
   '/aurum_/notes/$slug': typeof AurumNotesSlugRoute
   '/admin/posts/': typeof AdminPostsIndexRoute
+  '/aurum_/briefs/': typeof AurumBriefsIndexRoute
+  '/aurum_/notes/': typeof AurumNotesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -372,6 +390,8 @@ export interface FileRouteTypes {
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
     | '/admin/posts/'
+    | '/aurum/briefs/'
+    | '/aurum/notes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -406,6 +426,8 @@ export interface FileRouteTypes {
     | '/aurum/briefs/$slug'
     | '/aurum/notes/$slug'
     | '/admin/posts'
+    | '/aurum/briefs'
+    | '/aurum/notes'
   id:
     | '__root__'
     | '/'
@@ -443,6 +465,8 @@ export interface FileRouteTypes {
     | '/aurum_/briefs/$slug'
     | '/aurum_/notes/$slug'
     | '/admin/posts/'
+    | '/aurum_/briefs/'
+    | '/aurum_/notes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -470,6 +494,8 @@ export interface RootRouteChildren {
   ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
   AurumBriefsSlugRoute: typeof AurumBriefsSlugRoute
   AurumNotesSlugRoute: typeof AurumNotesSlugRoute
+  AurumBriefsIndexRoute: typeof AurumBriefsIndexRoute
+  AurumNotesIndexRoute: typeof AurumNotesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -705,11 +731,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicStripeWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aurum_/briefs/': {
+      id: '/aurum_/briefs/'
+      path: '/aurum/briefs'
+      fullPath: '/aurum/briefs/'
+      preLoaderRoute: typeof AurumBriefsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aurum_/briefs/$slug': {
       id: '/aurum_/briefs/$slug'
       path: '/aurum/briefs/$slug'
       fullPath: '/aurum/briefs/$slug'
       preLoaderRoute: typeof AurumBriefsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aurum_/notes/': {
+      id: '/aurum_/notes/'
+      path: '/aurum/notes'
+      fullPath: '/aurum/notes/'
+      preLoaderRoute: typeof AurumNotesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aurum_/notes/$slug': {
@@ -796,6 +836,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
   AurumBriefsSlugRoute: AurumBriefsSlugRoute,
   AurumNotesSlugRoute: AurumNotesSlugRoute,
+  AurumBriefsIndexRoute: AurumBriefsIndexRoute,
+  AurumNotesIndexRoute: AurumNotesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
