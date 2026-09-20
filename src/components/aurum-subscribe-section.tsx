@@ -122,9 +122,11 @@ export function AurumSubscribeSection() {
                 <fieldset className="aurum-subscribe__fieldset">
                   <legend className="aurum-subscribe__label">WHAT WOULD YOU LIKE TO RECEIVE</legend>
                   <div className="aurum-subscribe__choices">
-                    {LISTS.map(({ id, title, description }) => (
-                      <label key={id} className="aurum-subscribe__choice">
+                    {LISTS.map(({ id, key, title, description }) => (
+                      <label key={id} className="aurum-subscribe__choice" htmlFor={`aurum-subscribe-${id}`}>
                         <input
+                          id={`aurum-subscribe-${id}`}
+                          name={key}
                           type="checkbox"
                           checked={selected.includes(id)}
                           onChange={() => toggle(id)}
@@ -137,6 +139,9 @@ export function AurumSubscribeSection() {
                       </label>
                     ))}
                   </div>
+                  <p aria-live="polite" className="aurum-subscribe__status">
+                    {attempted && noListSelected ? "Choose at least one thing to receive." : ""}
+                  </p>
                 </fieldset>
 
                 <div className="aurum-subscribe__field">
