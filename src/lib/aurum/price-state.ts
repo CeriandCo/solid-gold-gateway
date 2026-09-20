@@ -77,6 +77,7 @@ export function priceData(state: PriceState): PriceData | null {
 
 /** The slice of history a chart range actually needs. */
 export function historyForRange(history: HistoryPoint[], range: AurumRange, now: Date): HistoryPoint[] {
+  if (range === "5Y") return history;
   const cutoff = now.getTime() - RANGE_DAYS[range] * 86_400_000;
   return history.filter((point) => point.date.getTime() >= cutoff);
 }
