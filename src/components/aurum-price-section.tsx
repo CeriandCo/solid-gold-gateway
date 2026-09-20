@@ -30,7 +30,8 @@ function formatAge(seconds: number) {
 export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange; onRangeChange: (range: AurumRange) => void }) {
   const { state, data, now, showLiveBadge, historyFor } = useAurumPrice();
   const facts = data?.facts ?? null;
-  const points = historyFor(range).map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
+  const rangeHistory = historyFor(range);
+  const points = rangeHistory.map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
   const latestClose = points.at(-1) ?? null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
   const rangeRowRef = useRef<HTMLDivElement>(null);
@@ -123,7 +124,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-history">
         <div className="aurum-container">
           <div className="aurum-history__head">
-            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{chartRangeHeading(range, points.map((point) => ({ date: new Date(`${point.date}T00:00:00Z`), close: point.close })))}</h2></div>
+            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{chartRangeHeading(range, rangeHistory)}</h2></div>
             <div ref={rangeRowRef} className="aurum-history__ranges" aria-label="History range">
               {RANGES.map((item) => <Button ref={range === item ? activeRangeRef : undefined} key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
