@@ -5256,7 +5256,7 @@ footer.site-footer a:focus-visible {
   }
 
   .home-proof li {
-    padding-block: 24px;
+    padding: 24px 16px;
   }
 
   .home-proof li + li {
