@@ -51,3 +51,6 @@
 
 
 - [ ] Set up a custom sending domain so sign-in links are not sent by the shared default sender.
+- [x] B4 — activation after the hold, gift code minting and delivery.
+- [x] B5 — security hardening and abuse-test pass.
+- [x] S2 — gift card Checkout bound to a verified Stripe Product catalog (sandbox-first).
