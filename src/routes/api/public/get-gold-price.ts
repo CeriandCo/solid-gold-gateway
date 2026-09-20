@@ -78,7 +78,7 @@ async function handle() {
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
   const { data, error } = await supabaseAdmin
     .from('aurum_spot_prices')
-    .select('price, change_amount, change_percent, high_24h, low_24h, previous_close, source, observed_at, created_at')
+    .select('price, change_amount, change_percent, source, observed_at, created_at')
     .order('observed_at', { ascending: false })
     .limit(1)
 
@@ -102,8 +102,19 @@ async function handle() {
   const freshness: Freshness = ageSeconds <= maxAgeSeconds ? 'fresh' : 'stale'
 
   const provider = typeof row.source === 'string' ? row.source : null
-  const rawPreviousClose = num(row.previous_close)
-  const previousCloseSource = rawPreviousClose !== null ? provider : null
+  const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
+  const { data: priorRows, error: priorError } = provider
+    ? await supabaseAdmin
+      .from('aurum_spot_prices')
+      .select('price, source')
+      .eq('source', provider)
+      .lt('observed_at', observedDayStart)
+      .order('observed_at', { ascending: false })
+      .limit(1)
+    : { data: null, error: null }
+  if (priorError) console.error('[get-gold-price] same-feed baseline read failed', priorError.message)
+  const rawPreviousClose = priorError ? null : num(priorRows?.[0]?.price)
+  const previousCloseSource = rawPreviousClose !== null ? priorRows?.[0]?.source ?? null : null
   const change = derivePriceChange({
     price,
     baseline: rawPreviousClose,
