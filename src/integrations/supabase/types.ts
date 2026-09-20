@@ -436,6 +436,8 @@ export type Database = {
           created_at: string
           id: string
           sort_order: number
+          stripe_price_id_live: string | null
+          stripe_price_id_test: string | null
         }
         Insert: {
           active?: boolean
@@ -443,6 +445,8 @@ export type Database = {
           created_at?: string
           id?: string
           sort_order?: number
+          stripe_price_id_live?: string | null
+          stripe_price_id_test?: string | null
         }
         Update: {
           active?: boolean
@@ -450,6 +454,8 @@ export type Database = {
           created_at?: string
           id?: string
           sort_order?: number
+          stripe_price_id_live?: string | null
+          stripe_price_id_test?: string | null
         }
         Relationships: []
       }
@@ -725,6 +731,10 @@ export type Database = {
       gift_card_set_code: {
         Args: { _code_hash: string; _code_last4: string; _gift_card_id: string }
         Returns: boolean
+      }
+      gift_card_set_stripe_prices: {
+        Args: { _map: Json; _mode: string }
+        Returns: number
       }
       security_function_grants: {
         Args: never

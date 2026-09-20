@@ -127,6 +127,13 @@
       "when": 1789822255882,
       "tag": "0017_security_function_grants_audit",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1789903892948,
+      "tag": "0018_gift_card_denomination_stripe_prices",
+      "breakpoints": true
     }
   ]
 }
