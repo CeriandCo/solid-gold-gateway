@@ -186,4 +186,20 @@ describe("gift card checkout", () => {
     expect(result).toEqual({ status: "not_found" });
     expect(Object.keys(result)).toEqual(["status"]);
   });
+
+  it("is unavailable, with no order written, when the Stripe catalog is not mapped", async () => {
+    process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
+    await setSettings({ checkout_enabled: true, currency: "usd", allowed_origins: [ORIGIN] });
+    headers["cf-connecting-ip"] = `unmapped-${uuid()}`;
+    await mapPrices(false);
+
+    const [denom] = await denominations();
+    const attemptId = uuid();
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
+    await mapPrices(true);
+
+    expect(result).toEqual({ ok: false, code: "unavailable" });
+    expect(await orderCount(attemptId)).toBe(0);
+  });
+
 });
