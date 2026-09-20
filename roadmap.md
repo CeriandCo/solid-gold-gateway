@@ -1,5 +1,8 @@
 # Roadmap
 
+## In progress
+- [ ] Replace the AURUM double menu with shared-nav AURUM entry and floating section navigator.
+
 ## Done
 - Built `/aurum#price` with validated database-only live/unavailable states, computed historical facts, and re-querying range chart.
 - Built the `/aurum#top` editorial hero with its responsive photo scrim, educational copy, and Price/Learn anchor actions.
