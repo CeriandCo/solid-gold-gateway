@@ -77,8 +77,6 @@ export const Route = createFileRoute("/aurum")({
   notFoundComponent: () => <div role="alert">AURUM price information was not found.</div>,
 });
 
-const SECTION_IDS = ["top", "price", "daily-note", "weekly-brief", "learn", "calculator", "gifts", "subscribe"] as const;
-
 function AurumPendingPage() {
   return (
     <div className="aurum-page">
@@ -111,12 +109,6 @@ function AurumPageContent() {
   const navigate = Route.useNavigate();
 
   useEffect(() => {
-    const hashId = window.location.hash.slice(1);
-    if (SECTION_IDS.some((id) => id === hashId)) {
-      requestAnimationFrame(() => document.getElementById(hashId)?.scrollIntoView({ behavior: "auto" }));
-      return;
-    }
-
     // Shared links (?note=slug / ?brief=slug) land on the open row once on load.
     // Interactive toggles never scroll — they pass resetScroll: false instead.
     const openSlug = openNote ?? openBrief;

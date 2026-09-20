@@ -2,8 +2,8 @@ import { Area, AreaChart, CartesianGrid, ReferenceDot, ResponsiveContainer, Tool
 import { Button } from "@/components/ui/button";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import type { AurumRange, UnavailableReason } from "@/lib/aurum/price-state";
+import { AURUM_USD } from "@/lib/aurum/price-format";
 
-const USD = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });
 const PERCENT = new Intl.NumberFormat("en-US", { signDisplay: "always", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
 const DATE = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric", month: "short", year: "numeric" });
@@ -55,10 +55,10 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                   As of {TIME.format(data.asOf)} UTC · {formatAge(state.status === "stale" ? state.ageSeconds : ageSeconds)} ago
                 </span>
               </div>
-              <data className="aurum-price-figure" value={data.spot}>{USD.format(data.spot)}</data>
+              <data className="aurum-price-figure" value={data.spot}>{AURUM_USD.format(data.spot)}</data>
               <div className="aurum-price-delta">
                 <strong>{PERCENT.format(data.changePct)}%</strong>
-                <span>{data.changeAmount >= 0 ? "+" : "−"}{USD.format(Math.abs(data.changeAmount))}</span>
+                <span>{data.changeAmount >= 0 ? "+" : "−"}{AURUM_USD.format(Math.abs(data.changeAmount))}</span>
                 <small>per troy ounce · USD</small>
               </div>
               {state.status === "stale" ? (
@@ -75,7 +75,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                 ] as const)
                   .filter(([, value]) => typeof value === "number")
                   .map(([label, value]) => (
-                    <div key={label}><dt>{label}</dt><dd>{USD.format(Number(value))}</dd></div>
+                     <div key={label}><dt>{label}</dt><dd>{AURUM_USD.format(Number(value))}</dd></div>
                   ))}
               </dl>
             </>
@@ -101,8 +101,8 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
             <div className="aurum-facts-grid">
               <Fact label="MONTH TO DATE" value={`${PERCENT.format(facts.monthToDatePct)}%`} caption={`From ${DATE.format(facts.monthToDateFrom)} close`} />
               <Fact label="YEAR TO DATE" value={`${PERCENT.format(facts.yearToDatePct)}%`} caption={`From ${DATE.format(facts.yearToDateFrom)} close`} />
-              <Fact label="52 WEEK HIGH" value={USD.format(facts.high52.price)} caption={`Recorded ${DATE.format(facts.high52.date)}`} />
-              <Fact label="52 WEEK LOW" value={USD.format(facts.low52.price)} caption={`Recorded ${DATE.format(facts.low52.date)}`} />
+               <Fact label="52 WEEK HIGH" value={AURUM_USD.format(facts.high52.price)} caption={`Recorded ${DATE.format(facts.high52.date)}`} />
+               <Fact label="52 WEEK LOW" value={AURUM_USD.format(facts.low52.price)} caption={`Recorded ${DATE.format(facts.low52.date)}`} />
             </div>
             <p className="aurum-facts-footnote">Figures are historical facts calculated from stored daily prices. They are not forecasts, signals or recommendations.</p>
           </div>
@@ -125,8 +125,8 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                   <defs><linearGradient id="aurum-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--gold)" stopOpacity={0.12} /><stop offset="100%" stopColor="var(--gold)" stopOpacity={0} /></linearGradient></defs>
                   <CartesianGrid vertical={false} stroke="var(--border)" />
                   <XAxis dataKey="date" tickFormatter={(value) => MONTH.format(new Date(`${value}T00:00:00Z`))} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} minTickGap={36} />
-                  <YAxis domain={["auto", "auto"]} tickFormatter={(value) => USD.format(value).replace(".00", "")} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} width={74} />
-                  <Tooltip formatter={(value) => [USD.format(Number(value)), "Close"]} labelFormatter={(label) => DATE.format(new Date(`${String(label)}T00:00:00Z`))} />
+                   <YAxis domain={["auto", "auto"]} tickFormatter={(value) => AURUM_USD.format(value).replace(".00", "")} tick={{ fill: "var(--aurum-grey)", fontSize: 11 }} axisLine={false} tickLine={false} width={74} />
+                   <Tooltip formatter={(value) => [AURUM_USD.format(Number(value)), "Close"]} labelFormatter={(label) => DATE.format(new Date(`${String(label)}T00:00:00Z`))} />
                   <Area type="monotone" dataKey="close" stroke="var(--gold)" strokeWidth={2} fill="url(#aurum-chart-fill)" dot={false} activeDot={{ r: 4, fill: "var(--gold)" }} />
                   <ReferenceDot
                     x={latestClose.date}
@@ -134,7 +134,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                     r={4}
                     fill="var(--gold)"
                     stroke="var(--paper)"
-                    label={{ value: USD.format(latestClose.close), position: "top", fill: "var(--charcoal)", fontSize: 11 }}
+                     label={{ value: AURUM_USD.format(latestClose.close), position: "top", fill: "var(--charcoal)", fontSize: 11 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
