@@ -13,12 +13,22 @@ const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 const { restoreCommerceSettings, snapshotCommerceSettings } = await import(
   "./commerce/settings-fixture"
 );
+const { peppered } = await import("./commerce.server");
+const { purgeTrackedOrders, trackTestOrder } = await import("./commerce/test-orders");
 
 // Real database: remember the operator's settings and restore them verbatim.
 const SETTINGS_SNAPSHOT = await snapshotCommerceSettings();
 
 const ORIGIN = "https://tests.sqoot.invalid";
 const uuid = () => crypto.randomUUID();
+
+/** Every salted IP bucket this run touched, so teardown deletes only its own rows. */
+const usedIpHashes = new Set<string>();
+
+async function useClientIp(ip: string) {
+  headers["cf-connecting-ip"] = ip;
+  usedIpHashes.add(await peppered(ip));
+}
 
 type SettingsPatch = {
   checkout_enabled?: boolean;
@@ -57,7 +67,7 @@ async function mapPrices(on: boolean) {
 }
 
 beforeAll(async () => {
-  headers["cf-connecting-ip"] = `test-${uuid()}`;
+  await useClientIp(`test-${uuid()}`);
   headers["origin"] = ORIGIN;
   await mapPrices(true);
 });
@@ -65,8 +75,16 @@ beforeAll(async () => {
 afterAll(async () => {
   delete process.env["STRIPE_SECRET_KEY"];
   await mapPrices(false);
-  await supabaseAdmin.from("gift_card_orders").delete().not("attempt_id", "is", null);
-  await supabaseAdmin.from("checkout_attempts").delete().neq("ip_hash", "");
+  // Only this run's own rows: never a blanket delete on a shared database.
+  const { data: ownOrders } = await supabaseAdmin
+    .from("gift_card_orders")
+    .select("id")
+    .in("client_ip_hash", [...usedIpHashes]);
+  for (const row of ownOrders ?? []) trackTestOrder(row.id);
+  await purgeTrackedOrders();
+  if (usedIpHashes.size > 0) {
+    await supabaseAdmin.from("checkout_attempts").delete().in("ip_hash", [...usedIpHashes]);
+  }
   await restoreCommerceSettings(SETTINGS_SNAPSHOT);
 });
 
@@ -165,7 +183,7 @@ describe("gift card checkout", () => {
 
   it("rate limits checkout at the 11th attempt while status polls still work", async () => {
     process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
-    headers["cf-connecting-ip"] = `rate-${uuid()}`;
+    await useClientIp(`rate-${uuid()}`);
     headers["origin"] = "https://evil.example.com"; // stop before any write
     const [denom] = await denominations();
 
@@ -196,7 +214,7 @@ describe("gift card checkout", () => {
   it("is unavailable, with no order written, when the Stripe catalog is not mapped", async () => {
     process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
     await setSettings({ checkout_enabled: true, currency: "usd", allowed_origins: [ORIGIN] });
-    headers["cf-connecting-ip"] = `unmapped-${uuid()}`;
+    await useClientIp(`unmapped-${uuid()}`);
     await mapPrices(false);
 
     const [denom] = await denominations();

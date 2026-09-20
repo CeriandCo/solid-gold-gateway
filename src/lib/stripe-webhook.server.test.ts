@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import type { ProcessDeps } from "./stripe-webhook.server";
 import { processStripeEvent } from "./stripe-webhook.server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { purgeTrackedOrders, trackTestOrder } from "@/lib/commerce/test-orders";
 
 // Throwaway values that exist only inside this test run.
 const TEST_WEBHOOK_SECRET = "whsec_test_only_local_value_not_a_real_secret";
@@ -30,7 +31,7 @@ async function createOrder(overrides: Record<string, unknown> = {}) {
     .select("id, stripe_session_id")
     .single();
   if (error) throw error;
-  createdOrders.push(data.id);
+  createdOrders.push(trackTestOrder(data.id));
   return data;
 }
 
@@ -119,8 +120,8 @@ afterAll(async () => {
   if (createdEvents.length > 0) {
     await supabaseAdmin.from("stripe_events").delete().in("event_id", createdEvents);
   }
-  // Ledger rows are append-only, so cards and orders are purged by the
-  // verification cleanup step that runs with the trigger disabled.
+  // Orders, cards, ledger entries and alerts created here go with them.
+  await purgeTrackedOrders();
 });
 
 describe("stripe webhook route guards", () => {
