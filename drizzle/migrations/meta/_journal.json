@@ -141,6 +141,13 @@
       "when": 1789924002525,
       "tag": "0019_admin_login_attempts",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1789925874868,
+      "tag": "0020_commerce_purge_test_order",
+      "breakpoints": true
     }
   ]
 }

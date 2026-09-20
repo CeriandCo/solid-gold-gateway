@@ -710,6 +710,10 @@ export type Database = {
       commerce_delivery_tick: { Args: never; Returns: undefined }
       commerce_prune_checkout_attempts: { Args: never; Returns: undefined }
       commerce_prune_delivery_attempts: { Args: never; Returns: undefined }
+      commerce_purge_test_order: {
+        Args: { _order_id: string }
+        Returns: boolean
+      }
       gift_card_activate_due: { Args: never; Returns: number }
       gift_card_claim_for_delivery: {
         Args: { _lease_minutes?: number; _limit?: number }
