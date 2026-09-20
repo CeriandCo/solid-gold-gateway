@@ -33,6 +33,29 @@ const HERO_SPOT = {
   note: "Sample data — not a real price",
 } as const;
 
+const PROOF_ITEMS = [
+  {
+    number: "01",
+    title: "Real, physical gold",
+    line: "Coins and bullion — never a token, note or ETF.",
+  },
+  {
+    number: "02",
+    title: "Held in your name",
+    line: "Allocated to you and shown on every statement.",
+  },
+  {
+    number: "03",
+    title: "Priced live",
+    line: "Spot and premium shown before you confirm.",
+  },
+  {
+    number: "04",
+    title: "Deliver or sell back",
+    line: "Take it home or sell it back from the app.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
