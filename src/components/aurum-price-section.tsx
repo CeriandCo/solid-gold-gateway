@@ -32,6 +32,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
   const facts = data?.facts ?? null;
   const rangeHistory = historyFor(range);
   const points = rangeHistory.map((point) => ({ date: point.date.toISOString().slice(0, 10), close: point.close }));
+  const rangeHeading = chartRangeHeading(range, rangeHistory);
   const latestClose = points.at(-1) ?? null;
   const ageSeconds = Math.max(0, Math.round((now.getTime() - (data?.asOf.getTime() ?? now.getTime())) / 1000));
   const rangeRowRef = useRef<HTMLDivElement>(null);
@@ -124,13 +125,13 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
       <div className="aurum-history">
         <div className="aurum-container">
           <div className="aurum-history__head">
-            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{chartRangeHeading(range, rangeHistory)}</h2></div>
+            <div><p className="aurum-history__eyebrow">GOLD PRICE HISTORY</p><h2 className="aurum-history__title">{rangeHeading}</h2></div>
             <div ref={rangeRowRef} className="aurum-history__ranges" aria-label="History range">
               {RANGES.map((item) => <Button ref={range === item ? activeRangeRef : undefined} key={item} type="button" variant="outline" size="sm" aria-pressed={range === item} onClick={() => onRangeChange(item)}>{item}</Button>)}
             </div>
           </div>
           {latestClose ? (
-            <div className="aurum-chart" aria-label={`${range} gold closing price chart`}>
+            <div className="aurum-chart" aria-label={`${rangeHeading} chart`}>
               <span className="aurum-chart__axis-label">USD PER TROY OUNCE</span>
               <ResponsiveContainer width="100%" height={360}>
                 <AreaChart data={points} margin={{ top: 34, right: 24, bottom: 8, left: 10 }}>

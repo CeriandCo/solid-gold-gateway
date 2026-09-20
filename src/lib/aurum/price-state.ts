@@ -107,7 +107,9 @@ export function validateHistoryDate(
 ): string | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return "Enter a date in the format DD/MM/YYYY.";
   const requested = new Date(`${raw}T00:00:00.000Z`);
-  if (Number.isNaN(requested.getTime())) return "Enter a date in the format DD/MM/YYYY.";
+  if (Number.isNaN(requested.getTime()) || requested.toISOString().slice(0, 10) !== raw) {
+    return "Enter a date in the format DD/MM/YYYY.";
+  }
   if (!bounds) return null;
   if (requested.getTime() < bounds.earliest.getTime()) {
     return `We only hold daily closes from ${format(bounds.earliest)} onward. Try a later date.`;
