@@ -72,6 +72,7 @@ export const livePriceAdapter: PriceAdapter = {
   async load() {
     let body: Record<string, unknown>;
     let history: HistoryPoint[];
+    let historyStatus: "ready" | "unavailable";
 
     try {
       const [priceResponse, historyPoints] = await Promise.all([
@@ -79,6 +80,7 @@ export const livePriceAdapter: PriceAdapter = {
         loadHistory(),
       ]);
       history = historyPoints.points;
+      historyStatus = historyPoints.status;
       body = (await priceResponse.json()) as Record<string, unknown>;
     } catch {
       return { status: "unavailable", reason: "network" };
@@ -111,7 +113,7 @@ export const livePriceAdapter: PriceAdapter = {
       previousClose: finiteOrNull(body["previous_close"]),
       facts: computeFacts(history, spot, asOf),
       history,
-      historyStatus: historyPoints.status,
+      historyStatus,
     };
 
     if (freshness === "stale") {

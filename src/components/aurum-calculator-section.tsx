@@ -12,6 +12,8 @@ const TIME = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", hour: "2-digit"
 
 const DEFAULT_AMOUNT = "5000";
 const PLACEHOLDER = "——";
+const OUNCE_PRECISION = 10 ** 3;
+const CENT_PRECISION = 10 ** 2;
 
 /** ISO yyyy-mm-dd for a UTC-anchored date. */
 function isoDay(date: Date): string {
@@ -120,8 +122,8 @@ export function AurumCalculatorSection() {
       return;
     }
     setNoClose(null);
-    const ounces = Math.round((amount / exact.close) * 1000) / 1000;
-    const valueToday = Math.round(ounces * data.spot * 100) / 100;
+    const ounces = Math.round((amount / exact.close) * OUNCE_PRECISION) / OUNCE_PRECISION;
+    const valueToday = Math.round(ounces * data.spot * CENT_PRECISION) / CENT_PRECISION;
     setResult({
       amount,
       then: exact,
