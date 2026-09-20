@@ -29,8 +29,8 @@ export type CatalogProblem = {
     | "livemode_mismatch"
     | "lookup_failed"
     | "write_failed";
-  lookupKey?: string;
-  detail?: string;
+  lookupKey?: string | undefined;
+  detail?: string | undefined;
 };
 
 export type CatalogSyncResult = {
@@ -39,7 +39,7 @@ export type CatalogSyncResult = {
   currency: string | null;
   mapped: number;
   expected: number;
-  productId?: string;
+  productId?: string | undefined;
   problems: CatalogProblem[];
 };
 
@@ -49,7 +49,7 @@ export type CatalogStatus = {
   mapped: number;
   expected: number;
   ready: boolean;
-  productId?: string;
+  productId?: string | undefined;
   lastSync?: { at: string; severity: string; message: string } | null;
 };
 
@@ -141,7 +141,7 @@ export function validateCatalog(
   currency: string,
   denominations: Array<{ id: string; amount_cents: number }>,
   prices: CatalogPrice[],
-): { map: Record<string, string>; productId?: string; problems: CatalogProblem[] } {
+): { map: Record<string, string>; productId?: string | undefined; problems: CatalogProblem[] } {
   const problems: CatalogProblem[] = [];
   const map: Record<string, string> = {};
   const productIds = new Set<string>();
