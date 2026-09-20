@@ -1088,128 +1088,8 @@ footer.site-footer a:focus-visible {
   padding-inline: 1.5rem;
 }
 
-.aurum-subheader {
-  position: sticky;
-  z-index: 20;
-  top: 0;
-  min-height: 56px;
-  border-bottom: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
-  background: var(--forest-deep);
-  color: var(--warm-white);
-}
-
-.aurum-subheader__inner {
-  display: grid;
-  min-height: 56px;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.aurum-subheader__brand,
-.aurum-subheader__actions,
-.aurum-subheader__links {
-  display: flex;
-  align-items: center;
-}
-
-.aurum-subheader__brand {
-  gap: 0.875rem;
-  white-space: nowrap;
-}
-
-.aurum-wordmark {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2.6px;
-  color: var(--gold);
-}
-
-.aurum-subheader__divider {
-  width: 1px;
-  height: 18px;
-  background: color-mix(in oklab, var(--gold) 55%, transparent);
-}
-
-.aurum-subheader__descriptor {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 400;
-  color: color-mix(in oklab, var(--warm-white) 70%, transparent);
-}
-
-.aurum-subheader__scroller {
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  overscroll-behavior-inline: contain;
-}
-
-.aurum-subheader__scroller::-webkit-scrollbar {
-  display: none;
-}
-
-.aurum-subheader__links {
-  justify-content: center;
-  gap: 0.125rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.aurum-subheader__links a {
-  display: inline-flex;
-  min-width: max-content;
-  min-height: 44px;
-  align-items: center;
-  padding-inline: 0.55rem;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: color-mix(in oklab, var(--warm-white) 72%, transparent);
-  transition: color 150ms var(--ease-standard);
-}
-
-.aurum-subheader__links a:hover,
-.aurum-subheader__links a[aria-current="location"] {
-  font-weight: 600;
-  color: var(--gold);
-}
-
-.aurum-subheader a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-.aurum-subheader__actions {
-  gap: 0.75rem;
-  white-space: nowrap;
-}
-
-.aurum-price {
-  display: flex;
-  min-height: 44px;
-  align-items: center;
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--aurum-grey);
-}
-
-.aurum-subscribe-button {
-  min-width: 0;
-  height: 44px;
-  border-radius: 2px;
-  padding: 0 1rem;
-  font-size: 12px;
-}
-
 .aurum-section {
-  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+  scroll-margin-top: 24px;
   padding-block: 80px;
 }
 
@@ -1332,46 +1212,7 @@ footer.site-footer a:focus-visible {
   background: var(--ivory);
 }
 
-@media (max-width: 1099px) {
-  .aurum-subheader__descriptor,
-  .aurum-subheader__divider {
-    display: none;
-  }
-}
-
 @media (max-width: 759px) {
-  .aurum-subheader__inner {
-    min-height: 52px;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 0.5rem;
-  }
-
-  .aurum-subheader__brand {
-    grid-column: 1;
-  }
-
-  .aurum-subheader__actions {
-    grid-column: 3;
-    justify-content: flex-end;
-  }
-
-  .aurum-subheader__scroller {
-    grid-column: 2;
-  }
-
-  .aurum-subheader__links {
-    width: max-content;
-    justify-content: flex-start;
-  }
-
-  .aurum-price {
-    display: none;
-  }
-
-  .aurum-subscribe-button {
-    padding-inline: 0.75rem;
-  }
-
   .aurum-section {
     padding-block: 48px;
   }
@@ -1420,7 +1261,7 @@ footer.site-footer a:focus-visible {
 
 /* AURUM price, facts, and stored history */
 .aurum-price-section {
-  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+  scroll-margin-top: 24px;
 }
 
 .aurum-price-current,
@@ -2181,7 +2022,7 @@ footer.site-footer a:focus-visible {
   overflow: hidden;
   padding-block: 80px;
   background: var(--ivory, #f4efe7);
-  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+  scroll-margin-top: 24px;
 }
 
 .aurum-page .aurum-calc__bg {
@@ -2877,7 +2718,7 @@ footer.site-footer a:focus-visible {
   --caution: #b0741a;
   padding-block: 80px;
   background: var(--warm-white, #f6f3f1);
-  scroll-margin-top: calc(var(--aurum-subheader-height, 56px) + 8px);
+  scroll-margin-top: 24px;
 }
 
 .aurum-page .aurum-subscribe__eyebrow {
