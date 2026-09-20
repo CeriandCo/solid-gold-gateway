@@ -1433,42 +1433,10 @@ footer.site-footer a:focus-visible {
   scroll-margin-top: 24px;
 }
 
-.aurum-price-current,
-.aurum-price-facts {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  color: var(--warm-white);
-}
-
 .aurum-price-current {
   padding-block: 88px 72px;
-  background: var(--forest);
-}
-
-.aurum-price-current::before,
-.aurum-price-current::after,
-.aurum-price-facts::before,
-.aurum-price-facts::after {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  content: "";
-}
-
-.aurum-price-current::before {
-  background: url("/__l5e/assets-v1/d366d310-1614-41a7-9e65-315ca960e36f/aurum-price-velvet.png") center / cover no-repeat;
-}
-
-.aurum-price-current::after {
-  z-index: -1;
-  background: linear-gradient(
-    to right,
-    color-mix(in oklab, var(--forest) 97%, transparent) 0%,
-    color-mix(in oklab, var(--forest) 93%, transparent) 42%,
-    color-mix(in oklab, var(--forest) 80%, transparent) 74%,
-    color-mix(in oklab, var(--forest) 62%, transparent) 100%
-  );
+  background: var(--warm-white);
+  color: var(--forest-deep);
 }
 
 .aurum-price-current__content {
@@ -1481,7 +1449,7 @@ footer.site-footer a:focus-visible {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1.6px;
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 .aurum-price-stamp {
@@ -1491,7 +1459,7 @@ footer.site-footer a:focus-visible {
   margin-top: 1rem;
   font-family: var(--font-sans);
   font-size: 12px;
-  color: color-mix(in oklab, var(--warm-white) 60%, transparent);
+  color: var(--muted-ink);
 }
 
 .aurum-live-badge {
@@ -1500,12 +1468,12 @@ footer.site-footer a:focus-visible {
   align-items: center;
   border-radius: 2px;
   padding-inline: 0.5rem;
-  background: var(--aurum-positive);
+  background: var(--gold);
   font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: var(--warm-white);
+  color: var(--forest-deep);
 }
 
 .aurum-price .aurum-live-badge {
@@ -1521,7 +1489,7 @@ footer.site-footer a:focus-visible {
   font-weight: 600;
   line-height: 0.9;
   letter-spacing: 0;
-  color: var(--warm-white);
+  color: var(--forest-deep);
 }
 
 .aurum-price-delta {
@@ -1529,8 +1497,10 @@ footer.site-footer a:focus-visible {
   align-items: baseline;
   gap: 1rem;
   margin-top: 1.5rem;
-  color: var(--gold);
 }
+
+.aurum-price-delta--positive { color: #2f6b45; }
+.aurum-price-delta--negative { color: #9b2c1f; }
 
 .aurum-price-delta strong {
   font-family: var(--font-display);
@@ -1548,24 +1518,32 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 400;
-  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+  color: var(--muted-ink);
 }
 
 .aurum-price-rule {
   height: 1px;
   margin-top: 2rem;
-  background: color-mix(in oklab, var(--warm-white) 14%, transparent);
+  background: color-mix(in oklab, var(--forest-deep) 12%, transparent);
 }
 
 .aurum-price-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
   margin-top: 1.5rem;
 }
 
-.aurum-price-stats div + div {
-  border-left: 1px solid color-mix(in oklab, var(--warm-white) 14%, transparent);
-  padding-left: 2rem;
+.aurum-price-stats > div,
+.aurum-fact {
+  min-width: 0;
+  border: 1px solid color-mix(in oklab, var(--forest-deep) 12%, transparent);
+  border-radius: 2px;
+  padding: 20px 24px 22px;
+}
+
+.aurum-price-stats > div {
+  background: var(--ivory);
 }
 
 .aurum-price-stats dt,
@@ -1577,7 +1555,7 @@ footer.site-footer a:focus-visible {
 }
 
 .aurum-price-stats dt {
-  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+  color: var(--muted-ink);
 }
 
 .aurum-price-stats dd {
@@ -1585,6 +1563,7 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 19px;
   font-weight: 500;
+  color: var(--forest-deep);
 }
 
 .aurum-price-unavailable {
@@ -1600,7 +1579,7 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
-  color: var(--aurum-grey);
+  color: var(--muted-ink);
 }
 
 .aurum-price-unavailable span,
@@ -1609,7 +1588,7 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 12px;
   line-height: 1.6;
-  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+  color: var(--muted-ink);
 }
 
 .aurum-price-loading {
@@ -1630,16 +1609,8 @@ footer.site-footer a:focus-visible {
 
 .aurum-price-facts {
   padding-block: 64px 40px;
-  background: var(--forest-deep);
-}
-
-.aurum-price-facts::before {
-  background: url("/__l5e/assets-v1/78a1d033-62ef-4f7b-a0c1-185c30203d6b/aurum-facts-bg.png") center / cover no-repeat;
-}
-
-.aurum-price-facts::after {
-  z-index: -1;
-  background: color-mix(in oklab, var(--forest-deep) 82%, transparent);
+  background: var(--ivory);
+  color: var(--forest-deep);
 }
 
 .aurum-price-title,
@@ -1655,18 +1626,15 @@ footer.site-footer a:focus-visible {
 .aurum-facts-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
+  gap: 24px;
   margin-top: 2rem;
-  background: color-mix(in oklab, var(--warm-white) 14%, transparent);
 }
 
 .aurum-fact {
-  min-width: 0;
-  padding: 1.5rem;
-  background: color-mix(in oklab, var(--forest-deep) 90%, transparent);
+  background: var(--warm-white);
 }
 
-.aurum-fact > p { color: var(--gold); }
+.aurum-fact > p { color: var(--gold-dark); }
 .aurum-fact strong {
   display: block;
   margin-top: 0.75rem;
@@ -1674,13 +1642,14 @@ footer.site-footer a:focus-visible {
   font-size: 36px;
   font-weight: 600;
   line-height: 1;
+  color: var(--forest-deep);
 }
 .aurum-fact span {
   display: block;
   margin-top: 0.75rem;
   font-family: var(--font-sans);
   font-size: 12px;
-  color: color-mix(in oklab, var(--warm-white) 55%, transparent);
+  color: var(--muted-ink);
 }
 .aurum-facts-footnote { margin-top: 1.5rem; }
 
@@ -1763,7 +1732,6 @@ footer.site-footer a:focus-visible {
   .aurum-price-delta { flex-wrap: wrap; gap: 0.5rem 0.75rem; }
   .aurum-price-delta small { flex-basis: 100%; }
   .aurum-price-stats { grid-template-columns: 1fr; gap: 1.25rem; }
-  .aurum-price-stats div + div { border-top: 1px solid color-mix(in oklab, var(--warm-white) 14%, transparent); border-left: 0; padding-top: 1.25rem; padding-left: 0; }
   .aurum-facts-grid { grid-template-columns: 1fr; }
   .aurum-history__head { align-items: stretch; flex-direction: column; }
   .aurum-history__ranges { width: 100%; }
@@ -2161,8 +2129,8 @@ footer.site-footer a:focus-visible {
   align-items: center;
   padding: 3px 7px;
   border-radius: 2px;
-  background: color-mix(in oklab, var(--warm-white) 16%, transparent);
-  color: var(--warm-white);
+  background: color-mix(in oklab, var(--forest-deep) 10%, transparent);
+  color: var(--forest-deep);
   font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 600;
@@ -2174,7 +2142,7 @@ footer.site-footer a:focus-visible {
   margin-top: 0.5rem;
   font-family: var(--font-sans);
   font-size: 12px;
-  color: color-mix(in oklab, var(--warm-white) 62%, transparent);
+  color: var(--muted-ink);
 }
 
 .aurum-page .aurum-history__stale {
@@ -2478,7 +2446,61 @@ footer.site-footer a:focus-visible {
 /* AURUM Weekly Brief (#weekly-brief) */
 .aurum-weekly-brief {
   padding-block: 80px;
-  background: var(--ivory);
+  background: var(--forest-deep);
+  color: var(--warm-white);
+}
+
+.aurum-weekly-brief .aurum-note-eyebrow,
+.aurum-weekly-brief .aurum-brief-feature__meta,
+.aurum-weekly-brief .aurum-note-count,
+.aurum-weekly-brief .aurum-note-aside__link,
+.aurum-weekly-brief .aurum-brief-feature__action {
+  color: var(--gold);
+}
+
+.aurum-weekly-brief .aurum-note-title,
+.aurum-weekly-brief .aurum-brief-feature__copy h3,
+.aurum-weekly-brief .aurum-note-date,
+.aurum-weekly-brief .aurum-note-headline,
+.aurum-weekly-brief .aurum-note-body p,
+.aurum-weekly-brief .aurum-note-quote,
+.aurum-weekly-brief .aurum-note-sources a,
+.aurum-weekly-brief .aurum-note-collapse {
+  color: var(--warm-white);
+}
+
+.aurum-weekly-brief .aurum-note-dek,
+.aurum-weekly-brief .aurum-brief-feature__summary,
+.aurum-weekly-brief .aurum-editorial-review,
+.aurum-weekly-brief .aurum-note-read,
+.aurum-weekly-brief .aurum-note-summary,
+.aurum-weekly-brief .aurum-note-aside__label {
+  color: color-mix(in oklab, var(--warm-white) 78%, transparent);
+}
+
+.aurum-weekly-brief .aurum-note-row,
+.aurum-weekly-brief .aurum-note-footer,
+.aurum-weekly-brief .aurum-brief-feature__card,
+.aurum-weekly-brief .aurum-brief-feature__panel,
+.aurum-weekly-brief .aurum-note-row.is-open,
+.aurum-weekly-brief .aurum-note-collapse {
+  border-color: color-mix(in oklab, var(--warm-white) 14%, transparent);
+}
+
+.aurum-weekly-brief .aurum-brief-feature__card,
+.aurum-weekly-brief .aurum-brief-feature__panel,
+.aurum-weekly-brief .aurum-note-row.is-open,
+.aurum-weekly-brief .aurum-note-sources {
+  background: transparent;
+}
+
+.aurum-weekly-brief .aurum-note-open,
+.aurum-weekly-brief .aurum-note-collapse {
+  color: var(--warm-white);
+}
+
+.aurum-weekly-brief .aurum-note-open::before {
+  border-color: color-mix(in oklab, var(--warm-white) 28%, transparent);
 }
 
 .aurum-brief-feature {

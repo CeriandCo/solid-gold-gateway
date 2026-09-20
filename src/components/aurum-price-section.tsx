@@ -56,7 +56,7 @@ export function AurumPriceSection({ range, onRangeChange }: { range: AurumRange;
                 </span>
               </div>
               <data className="aurum-price-figure" value={data.spot}>{AURUM_USD.format(data.spot)}</data>
-              <div className="aurum-price-delta">
+              <div className={`aurum-price-delta aurum-price-delta--${data.changePct >= 0 ? "positive" : "negative"}`}>
                 <strong>{PERCENT.format(data.changePct)}%</strong>
                 <span>{data.changeAmount >= 0 ? "+" : "−"}{AURUM_USD.format(Math.abs(data.changeAmount))}</span>
                 <small>per troy ounce · USD</small>
