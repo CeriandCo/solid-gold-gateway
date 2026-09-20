@@ -1,9 +1,9 @@
 # Roadmap
 
 ## In progress
-- [ ] Stop AURUM chart and editorial controls from changing scroll position or clearing the current hash.
 
 ## Done
+- [x] Stopped AURUM chart and editorial controls from changing scroll position or clearing the current hash.
 - [x] Rebalanced `/aurum` with light price/facts bands, a dark Weekly Brief anchor, shared stat-card geometry, and retired background assets removed.
 - [x] Replaced the AURUM double menu with a shared-nav AURUM entry and route-scoped floating section navigator.
 - Built `/aurum#price` with validated database-only live/unavailable states, computed historical facts, and re-querying range chart.

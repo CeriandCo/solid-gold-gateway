@@ -1,6 +1,6 @@
 import { formatEditorialDate, type AurumEditorial } from "@/lib/aurum-editorial";
 import { AurumEditorialPanel } from "@/components/aurum-editorial-content";
-import { useEffect, useRef } from "react";
+import { useNearestPanelScroll } from "@/lib/aurum/use-nearest-panel-scroll";
 
 export function AurumEditorialRow({
   article,
@@ -19,25 +19,7 @@ export function AurumEditorialRow({
   closeLabel: string;
   onToggle: () => void;
 }) {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const wasOpen = useRef(isOpen);
-
-  useEffect(() => {
-    const justOpened = isOpen && !wasOpen.current;
-    wasOpen.current = isOpen;
-    if (!justOpened) return;
-
-    const frame = requestAnimationFrame(() => {
-      const panel = panelRef.current;
-      if (!panel) return;
-      const rect = panel.getBoundingClientRect();
-      if (rect.bottom > window.innerHeight && rect.top > 0) {
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        panel.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
-      }
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [isOpen]);
+  const panelRef = useNearestPanelScroll<HTMLDivElement>(isOpen);
 
   return (
     <li className={`aurum-note-row${isOpen ? " is-open" : ""}`}>
