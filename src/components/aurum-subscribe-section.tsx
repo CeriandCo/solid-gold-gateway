@@ -99,12 +99,13 @@ export function AurumSubscribeSection() {
   return (
     <section id="subscribe" className="aurum-section aurum-subscribe" aria-labelledby="aurum-subscribe-title">
       <div className="site-container">
-        <p className="aurum-subscribe__eyebrow">THE MELT</p>
+        <p className="aurum-subscribe__eyebrow">STAY IN TOUCH</p>
         <h2 id="aurum-subscribe-title" className="aurum-subscribe__title">
           Gold, explained on a schedule
         </h2>
         <p className="aurum-subscribe__dek">
-          Choose the Daily Note, the Weekly Brief, or both. Sourced, plain and free — no forecasts, no calls, no sales.
+          Pick what you want. Each one is separate, and you can take just one. Sourced, plain and free — no forecasts,
+          no calls, no sales.
         </p>
 
         <div className="aurum-subscribe__grid">
