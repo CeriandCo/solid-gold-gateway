@@ -52,7 +52,7 @@ const PROOF_ITEMS = [
   {
     number: "04",
     title: "Deliver or sell back",
-    line: "Take it home or sell it back from the app.",
+    line: "Coins delivered to your door — sell back what you hold in the vault.",
   },
 ] as const;
 
