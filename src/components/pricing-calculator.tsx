@@ -27,8 +27,8 @@ import {
 type RadioOption<T extends string | number> = { label: string; value: T };
 
 const ownershipOptions: readonly RadioOption<Ownership>[] = [
-  { label: "Store in the vault", value: "vault" },
-  { label: "Take delivery", value: "delivery" },
+  { label: "Buy, vault and sell", value: "vault" },
+  { label: "Buy and take delivery", value: "delivery" },
 ];
 
 const deliveryOptions: readonly RadioOption<DeliveryKind>[] = [
@@ -334,7 +334,7 @@ function CalculatorResult({
           Raise your budget, or store gold in the vault from {formatMoney(PRICING.vault.minimumPurchaseUsd).replace(".00", "")}.
         </p>
         <Button className="pricing-calculator-cta is-outline" onClick={onSwitchToVault} variant="outline">
-          Store in the vault instead →
+          Buy, vault and sell instead →
         </Button>
       </div>
     );

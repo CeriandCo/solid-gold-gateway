@@ -262,7 +262,7 @@ function PricingPage() {
                             <img src={coinThumbnailAsset.url} alt="" />
                             <img src={barThumbnailAsset.url} alt="" />
                           </div>
-                          <span className="pricing-v2-table-title">Take delivery</span>
+                          <span className="pricing-v2-table-title">Buy and take delivery</span>
                           <span className="pricing-v2-table-subtitle">
                             Coins or bars, shipped to you insured.
                           </span>
@@ -271,7 +271,7 @@ function PricingPage() {
                           <div className="pricing-v2-table-thumbnails">
                             <img src={vaultThumbnailAsset.url} alt="" />
                           </div>
-                          <span className="pricing-v2-table-title">Store in the vault</span>
+                          <span className="pricing-v2-table-title">Buy, vault and sell</span>
                           <span className="pricing-v2-table-subtitle">
                             Allocated metal, recorded in your name.
                           </span>
@@ -349,13 +349,13 @@ function PricingPage() {
                     description="Coins or bars, shipped to you insured."
                     images={[coinThumbnailAsset.url, barThumbnailAsset.url]}
                     rows={deliveryRows}
-                    title="Take delivery"
+                    title="Buy and take delivery"
                   />
                   <ComparisonCard
                     description="Allocated metal, recorded in your name."
                     images={[vaultThumbnailAsset.url]}
                     rows={vaultRows}
-                    title="Store in the vault"
+                    title="Buy, vault and sell"
                   />
 
                   <div className="pricing-v2-mobile-other">
