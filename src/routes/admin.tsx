@@ -2,7 +2,12 @@ import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-rout
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { getAdminMe, requestAdminSignInLink, type AdminMe } from "@/lib/admin.functions";
+import {
+  adminSignInWithPassword,
+  getAdminMe,
+  requestAdminSignInLink,
+  type AdminMe,
+} from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/admin")({
   // Sessions live in the browser, so the admin area is client-rendered.
