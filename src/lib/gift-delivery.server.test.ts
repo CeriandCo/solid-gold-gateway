@@ -14,6 +14,10 @@ import {
   generateGiftCode,
   normaliseGiftCode,
 } from "@/lib/commerce/gift-code";
+import {
+  restoreCommerceSettings,
+  snapshotCommerceSettings,
+} from "@/lib/commerce/settings-fixture";
 
 const AMOUNT = 25_000;
 const createdOrders: string[] = [];
@@ -115,11 +119,13 @@ async function setSwitches(enabled: boolean, emailFrom: string | null) {
 }
 
 async function withDeliveryOn<T>(run: () => Promise<T>): Promise<T> {
+  // Real database: restore whatever the operator had configured, not fixed defaults.
+  const snapshot = await snapshotCommerceSettings();
   await setSwitches(true, "gifts@example.test");
   try {
     return await run();
   } finally {
-    await setSwitches(false, null);
+    await restoreCommerceSettings(snapshot);
   }
 }
 

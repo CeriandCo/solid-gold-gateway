@@ -5,6 +5,7 @@ import {
   getAdminMe,
   listEditors,
   removeEditor,
+  setEditorPassword,
   setEditorRole,
   type AdminRole,
   type EditorRow,
@@ -155,6 +156,7 @@ function PeoplePage() {
               <th scope="col">Email</th>
               <th scope="col">Role</th>
               <th scope="col">Signed in</th>
+              <th scope="col">Password</th>
               <th scope="col">
                 <span className="admin-visually-hidden">Actions</span>
               </th>
@@ -187,6 +189,9 @@ function PeoplePage() {
                 </td>
                 <td>{row.signedIn ? "Yes" : "Not yet"}</td>
                 <td>
+                  <PasswordCell email={row.email} disabled={busy} />
+                </td>
+                <td>
                   <button
                     type="button"
                     className="admin-button admin-button--ghost"
@@ -202,5 +207,64 @@ function PeoplePage() {
         </table>
       )}
     </section>
+  );
+}
+
+/**
+ * Sets or resets an allowlisted account's password. The value is typed here by an
+ * admin, sent once to the server and handed straight to auth; it is never stored
+ * in this page's state after saving, logged, or written anywhere else.
+ */
+function PasswordCell({ email, disabled }: { email: string; disabled: boolean }) {
+  const [value, setValue] = useState("");
+  const [status, setStatus] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const inputId = `set-password-${email.replace(/[^a-z0-9]/gi, "-")}`;
+
+  return (
+    <form
+      className="admin-row-form__controls"
+      onSubmit={(event) => {
+        event.preventDefault();
+        setSaving(true);
+        setStatus(null);
+        void setEditorPassword({ data: { email, password: value } })
+          .then((result) => {
+            setValue("");
+            setStatus(result.created ? "Account created." : "Password updated.");
+          })
+          .catch((cause: unknown) => {
+            setStatus(cause instanceof Error ? cause.message : "Could not set that password.");
+          })
+          .finally(() => setSaving(false));
+      }}
+    >
+      <label className="admin-visually-hidden" htmlFor={inputId}>
+        New password for {email}
+      </label>
+      <input
+        id={inputId}
+        type="password"
+        className="admin-input"
+        autoComplete="new-password"
+        minLength={12}
+        placeholder="At least 12 characters"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <button
+        type="submit"
+        className="admin-button admin-button--ghost"
+        disabled={disabled || saving || value.length < 12}
+      >
+        {saving ? "Saving…" : "Set"}
+      </button>
+      {status ? (
+        <span className="admin-note" role="status">
+          {status}
+        </span>
+      ) : null}
+    </form>
   );
 }

@@ -10,6 +10,12 @@ const { runGiftCardCheckout, runGiftCardCheckoutStatus } = await import(
   "./commerce-checkout.server"
 );
 const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+const { restoreCommerceSettings, snapshotCommerceSettings } = await import(
+  "./commerce/settings-fixture"
+);
+
+// Real database: remember the operator's settings and restore them verbatim.
+const SETTINGS_SNAPSHOT = await snapshotCommerceSettings();
 
 const ORIGIN = "https://tests.sqoot.invalid";
 const uuid = () => crypto.randomUUID();
@@ -61,7 +67,7 @@ afterAll(async () => {
   await mapPrices(false);
   await supabaseAdmin.from("gift_card_orders").delete().not("attempt_id", "is", null);
   await supabaseAdmin.from("checkout_attempts").delete().neq("ip_hash", "");
-  await setSettings({ checkout_enabled: false, currency: null, allowed_origins: [] });
+  await restoreCommerceSettings(SETTINGS_SNAPSHOT);
 });
 
 

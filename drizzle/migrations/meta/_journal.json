@@ -134,6 +134,13 @@
       "when": 1789903892948,
       "tag": "0018_gift_card_denomination_stripe_prices",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1789924002525,
+      "tag": "0019_admin_login_attempts",
+      "breakpoints": true
     }
   ]
 }

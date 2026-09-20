@@ -2,7 +2,12 @@ import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-rout
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { getAdminMe, requestAdminSignInLink, type AdminMe } from "@/lib/admin.functions";
+import {
+  adminSignInWithPassword,
+  getAdminMe,
+  requestAdminSignInLink,
+  type AdminMe,
+} from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/admin")({
   // Sessions live in the browser, so the admin area is client-rendered.
@@ -132,19 +137,46 @@ function AdminLayout() {
 
 function SignInScreen({ revoked }: { revoked: boolean }) {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
+  const [linkSending, setLinkSending] = useState(false);
 
+  // Password sign-in. Every refusal comes back from the server as one generic
+  // message; the browser never decides whether an account exists.
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
     setSending(true);
+    setMessage(null);
+    try {
+      const result = await adminSignInWithPassword({ data: { email, password } });
+      if (!result.ok) {
+        setMessage(result.message);
+        return;
+      }
+      setPassword("");
+      await supabase.auth.setSession({
+        access_token: result.accessToken,
+        refresh_token: result.refreshToken,
+      });
+    } catch {
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  // Fallback for a forgotten password.
+  const sendLink = async () => {
+    setLinkSending(true);
+    setMessage(null);
     try {
       const result = await requestAdminSignInLink({ data: { email } });
       setMessage(result.message);
     } catch {
       setMessage("Something went wrong. Please try again.");
     } finally {
-      setSending(false);
+      setLinkSending(false);
     }
   };
 
@@ -158,7 +190,7 @@ function SignInScreen({ revoked }: { revoked: boolean }) {
             You no longer have access.
           </p>
         ) : (
-          <p className="admin-muted">Sign in with a link sent to your email.</p>
+          <p className="admin-muted">Sign in with your email and password.</p>
         )}
         <form onSubmit={submit} className="admin-form">
           <label className="admin-label" htmlFor="admin-email">
@@ -166,6 +198,7 @@ function SignInScreen({ revoked }: { revoked: boolean }) {
           </label>
           <input
             id="admin-email"
+            name="email"
             type="email"
             required
             autoComplete="email"
@@ -173,10 +206,36 @@ function SignInScreen({ revoked }: { revoked: boolean }) {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <button type="submit" className="admin-button" disabled={sending || !email}>
-            {sending ? "Sending…" : "Send sign-in link"}
+          <label className="admin-label" htmlFor="admin-password">
+            Password
+          </label>
+          <input
+            id="admin-password"
+            name="password"
+            type="password"
+            required
+            autoComplete="current-password"
+            className="admin-input"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button
+            type="submit"
+            className="admin-button"
+            disabled={sending || !email || !password}
+          >
+            {sending ? "Signing in…" : "Sign in"}
+          </button>
+          <button
+            type="button"
+            className="admin-button admin-button--ghost"
+            onClick={sendLink}
+            disabled={linkSending || !email}
+          >
+            {linkSending ? "Sending…" : "Forgotten password? Email me a sign-in link"}
           </button>
         </form>
+
         {message ? (
           <p className="admin-note" role="status">
             {message}
