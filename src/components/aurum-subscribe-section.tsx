@@ -40,7 +40,8 @@ function attributionSource() {
 
 export function AurumSubscribeSection() {
   const statusId = useId();
-  const [selected, setSelected] = useState<ListId[]>(["daily-note", "weekly-brief"]);
+  const [selected, setSelected] = useState<ListId[]>([]);
+  const [attempted, setAttempted] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
