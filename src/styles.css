@@ -1077,6 +1077,7 @@ footer.site-footer a:focus-visible {
   --aurum-grey: #8a938d;
   --aurum-caution: #b0741a;
   --aurum-positive: #2f6b45;
+  --aurum-negative: #9b2c1f;
   overflow-x: clip;
   background: var(--warm-white);
 }
@@ -1435,8 +1436,8 @@ footer.site-footer a:focus-visible {
 
 .aurum-price-current {
   padding-block: 88px 72px;
-  background: var(--warm-white);
-  color: var(--forest-deep);
+  background: var(--cream);
+  color: var(--forest);
 }
 
 .aurum-price-current__content {
@@ -1473,7 +1474,7 @@ footer.site-footer a:focus-visible {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: var(--forest-deep);
+  color: var(--forest);
 }
 
 .aurum-price .aurum-live-badge {
@@ -1489,7 +1490,7 @@ footer.site-footer a:focus-visible {
   font-weight: 600;
   line-height: 0.9;
   letter-spacing: 0;
-  color: var(--forest-deep);
+  color: var(--forest);
 }
 
 .aurum-price-delta {
@@ -1499,8 +1500,8 @@ footer.site-footer a:focus-visible {
   margin-top: 1.5rem;
 }
 
-.aurum-price-delta--positive { color: #2f6b45; }
-.aurum-price-delta--negative { color: #9b2c1f; }
+.aurum-price-delta--positive { color: var(--aurum-positive); }
+.aurum-price-delta--negative { color: var(--aurum-negative); }
 
 .aurum-price-delta strong {
   font-family: var(--font-display);
@@ -1524,7 +1525,7 @@ footer.site-footer a:focus-visible {
 .aurum-price-rule {
   height: 1px;
   margin-top: 2rem;
-  background: color-mix(in oklab, var(--forest-deep) 12%, transparent);
+  background: color-mix(in oklab, var(--forest) 12%, transparent);
 }
 
 .aurum-price-stats {
@@ -1537,13 +1538,13 @@ footer.site-footer a:focus-visible {
 .aurum-price-stats > div,
 .aurum-fact {
   min-width: 0;
-  border: 1px solid color-mix(in oklab, var(--forest-deep) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--forest) 12%, transparent);
   border-radius: 2px;
   padding: 20px 24px 22px;
 }
 
 .aurum-price-stats > div {
-  background: var(--ivory);
+  background: var(--cream-2);
 }
 
 .aurum-price-stats dt,
@@ -1563,7 +1564,7 @@ footer.site-footer a:focus-visible {
   font-family: var(--font-sans);
   font-size: 19px;
   font-weight: 500;
-  color: var(--forest-deep);
+  color: var(--forest);
 }
 
 .aurum-price-unavailable {
@@ -1609,8 +1610,8 @@ footer.site-footer a:focus-visible {
 
 .aurum-price-facts {
   padding-block: 64px 40px;
-  background: var(--ivory);
-  color: var(--forest-deep);
+  background: var(--cream-2);
+  color: var(--forest);
 }
 
 .aurum-price-title,
@@ -1631,7 +1632,7 @@ footer.site-footer a:focus-visible {
 }
 
 .aurum-fact {
-  background: var(--warm-white);
+  background: var(--cream);
 }
 
 .aurum-fact > p { color: var(--gold-dark); }
@@ -1642,7 +1643,7 @@ footer.site-footer a:focus-visible {
   font-size: 36px;
   font-weight: 600;
   line-height: 1;
-  color: var(--forest-deep);
+  color: var(--forest);
 }
 .aurum-fact span {
   display: block;
@@ -1683,7 +1684,7 @@ footer.site-footer a:focus-visible {
 .aurum-history__ranges button[aria-pressed="true"] {
   border-color: var(--gold);
   background: var(--gold);
-  color: var(--forest-deep);
+  color: var(--forest);
 }
 .aurum-history__ranges button:focus-visible {
   outline: 2px solid var(--gold);
@@ -2446,8 +2447,8 @@ footer.site-footer a:focus-visible {
 /* AURUM Weekly Brief (#weekly-brief) */
 .aurum-weekly-brief {
   padding-block: 80px;
-  background: var(--forest-deep);
-  color: var(--warm-white);
+  background: var(--forest);
+  color: var(--cream);
 }
 
 .aurum-weekly-brief .aurum-note-eyebrow,
@@ -2466,7 +2467,7 @@ footer.site-footer a:focus-visible {
 .aurum-weekly-brief .aurum-note-quote,
 .aurum-weekly-brief .aurum-note-sources a,
 .aurum-weekly-brief .aurum-note-collapse {
-  color: var(--warm-white);
+  color: var(--cream);
 }
 
 .aurum-weekly-brief .aurum-note-dek,
@@ -2475,7 +2476,7 @@ footer.site-footer a:focus-visible {
 .aurum-weekly-brief .aurum-note-read,
 .aurum-weekly-brief .aurum-note-summary,
 .aurum-weekly-brief .aurum-note-aside__label {
-  color: color-mix(in oklab, var(--warm-white) 78%, transparent);
+  color: color-mix(in oklab, var(--cream) 78%, transparent);
 }
 
 .aurum-weekly-brief .aurum-note-row,
@@ -2484,7 +2485,7 @@ footer.site-footer a:focus-visible {
 .aurum-weekly-brief .aurum-brief-feature__panel,
 .aurum-weekly-brief .aurum-note-row.is-open,
 .aurum-weekly-brief .aurum-note-collapse {
-  border-color: color-mix(in oklab, var(--warm-white) 14%, transparent);
+  border-color: color-mix(in oklab, var(--cream) 14%, transparent);
 }
 
 .aurum-weekly-brief .aurum-brief-feature__card,
@@ -2496,11 +2497,11 @@ footer.site-footer a:focus-visible {
 
 .aurum-weekly-brief .aurum-note-open,
 .aurum-weekly-brief .aurum-note-collapse {
-  color: var(--warm-white);
+  color: var(--cream);
 }
 
 .aurum-weekly-brief .aurum-note-open::before {
-  border-color: color-mix(in oklab, var(--warm-white) 28%, transparent);
+  border-color: color-mix(in oklab, var(--cream) 28%, transparent);
 }
 
 .aurum-brief-feature {
