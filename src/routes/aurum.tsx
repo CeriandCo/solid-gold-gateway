@@ -115,6 +115,13 @@ function AurumPageContent() {
     setExpandedBrief(openBrief ?? null);
   }, [openNote, openBrief]);
 
+  const changeRange = (nextRange: AurumRange) => {
+    setSelectedRange(nextRange);
+    const url = new URL(window.location.href);
+    url.searchParams.set("range", nextRange);
+    window.history.replaceState(window.history.state, "", url);
+  };
+
   return (
     <div className="aurum-page">
       <SiteHeader />
@@ -123,7 +130,7 @@ function AurumPageContent() {
         <AurumHero />
         <AurumPriceSection
           range={selectedRange}
-          onRangeChange={setSelectedRange}
+          onRangeChange={changeRange}
         />
         <AurumDailyNoteSection
           initial={notes}
