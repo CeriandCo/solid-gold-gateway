@@ -1101,7 +1101,10 @@ footer.site-footer a:focus-visible {
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
-  transition: opacity 200ms var(--ease-standard), transform 200ms var(--ease-standard);
+  transition:
+    visibility 0s linear 200ms,
+    opacity 200ms var(--ease-standard),
+    transform 200ms var(--ease-standard);
 }
 
 .aurum-floating-nav[data-visible="true"] {
@@ -1109,6 +1112,7 @@ footer.site-footer a:focus-visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  transition-delay: 0s;
 }
 
 .aurum-floating-nav__trigger {
