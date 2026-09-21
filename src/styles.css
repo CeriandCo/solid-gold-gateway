@@ -5877,3 +5877,102 @@ footer.site-footer a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .aurum-fab { animation: none; }
 }
+
+/* Home — how it works */
+.home-how {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  padding-inline: var(--gutter);
+}
+
+.home-how-head {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-how-eyebrow {
+  color: var(--gold-dark);
+  font: 600 12px/1.2 var(--font-sans);
+  letter-spacing: 0.22em;
+}
+
+.home-how-title {
+  max-width: 760px;
+  color: var(--charcoal);
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 63px;
+  letter-spacing: 0;
+}
+
+.home-how-steps {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-how-steps li {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid color-mix(in oklab, var(--charcoal) 15%, transparent);
+  padding-top: 24px;
+}
+
+.home-how-number {
+  color: var(--gold-dark);
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 68px;
+}
+
+.home-how-step-title {
+  color: var(--charcoal);
+  font: 600 18px/22px var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-how-step-body {
+  color: var(--muted-ink);
+  font: 400 15px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-how-steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-how {
+    gap: 40px;
+  }
+
+  .home-how-title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .home-how-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
