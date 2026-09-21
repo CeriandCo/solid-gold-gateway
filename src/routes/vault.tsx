@@ -35,7 +35,7 @@ export const Route = createFileRoute("/vault")({
       {
         name: "description",
         content:
-          "Physical gold and silver stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose.",
+          "Physical gold stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose.",
       },
       { property: "og:title", content: "Vaulted Gold Held in Your Name | SQOOT Pure" },
       {
@@ -141,7 +141,7 @@ function Index() {
           <>
             <span>Real, insured, and yours to redeem whenever you choose.</span>
             <span>
-              Physical gold and silver, stored in an insured US vault, allocated to you individually. Not a promise on
+              Physical gold, stored in an insured US vault, allocated to you individually. Not a promise on
               a screen. A specific holding you can verify and reach.
             </span>
           </>
@@ -320,12 +320,12 @@ function Index() {
             <div className="flex flex-wrap items-start justify-center gap-6 xl:flex-nowrap xl:justify-between">
               {(tab === "delivered"
                 ? ([
-                    [Package, "Choose", ["Select physical gold", "or silver."]],
+                    [Package, "Choose", ["Select physical", "gold."]],
                     [Truck, "Ship insured", ["We ship it to your", "address."]],
                     [Home, "Receive", ["It arrives. It’s", "yours."]],
                   ] as const)
                 : ([
-                    [Package, "Choose", ["Select physical gold", "or silver."]],
+                    [Package, "Choose", ["Select physical", "gold."]],
                     [Warehouse, "We vault it", ["Stored insured at", "an IDS facility."]],
                     [FileText, "Verify", ["View your vault", "records anytime."]],
                   ] as const)
