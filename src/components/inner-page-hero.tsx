@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type InnerPageHeroProps = {
@@ -12,6 +12,7 @@ type InnerPageHeroProps = {
   imageSrc: string;
   imageAlt: string;
   imageVariant?: "standard" | "fractional" | "gifting" | "trust" | "learn" | "about" | "pricing";
+  videoSrc?: string;
   media?: ReactNode;
   className?: string;
 };
@@ -27,17 +28,50 @@ export function InnerPageHero({
   imageSrc,
   imageAlt,
   imageVariant = "standard",
+  videoSrc,
   media,
   className,
 }: InnerPageHeroProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Respect reduced-motion: pause the hero video instead of playing it.
+  useEffect(() => {
+    if (!videoSrc) return;
+    const video = videoRef.current;
+    if (!video) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (query.matches) video.pause();
+      else void video.play().catch(() => undefined);
+    };
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, [videoSrc]);
+
   return (
     <section id={id} className={cn("inner-page-hero", className)} aria-labelledby={titleId}>
-      <img
-        className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
-        src={imageSrc}
-        alt={imageAlt}
-        fetchPriority="high"
-      />
+      {videoSrc ? (
+        <video
+          ref={videoRef}
+          className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
+          src={videoSrc}
+          poster={imageSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+      ) : (
+        <img
+          className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
+          src={imageSrc}
+          alt={imageAlt}
+          fetchPriority="high"
+        />
+      )}
       {media}
       <div className="inner-page-hero-overlay" aria-hidden="true" />
       <div className="inner-page-hero-shell">
