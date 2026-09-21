@@ -6602,3 +6602,135 @@ footer.site-footer a:focus-visible {
     min-height: 0;
   }
 }
+
+/* Home — From AURUM */
+.home-aurum-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.home-aurum-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.home-aurum-intro {
+  display: flex;
+  max-width: 800px;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-aurum-eyebrow {
+  color: var(--gold-dark);
+  font: 600 12px/1.2 var(--font-sans);
+  letter-spacing: 0.22em;
+}
+
+.home-aurum-intro h2 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 63px;
+  letter-spacing: 0;
+}
+
+.home-aurum-head-link {
+  flex-shrink: 0;
+}
+
+.home-aurum-articles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.home-aurum-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.home-aurum-card-image {
+  width: 100%;
+  height: 240px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.home-aurum-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.home-aurum-card-label {
+  color: var(--gold-dark);
+  font: 600 11px/1.2 var(--font-sans);
+  letter-spacing: 0.14em;
+}
+
+.home-aurum-card-copy h3 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.home-aurum-card-excerpt {
+  color: var(--muted-ink);
+  font: 400 15px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-aurum-card-link {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-aurum-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .home-aurum-articles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+  }
+
+  .home-aurum-card:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 767px) {
+  .home-aurum-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .home-aurum-intro h2 {
+    font-size: 40px;
+    line-height: 1.08;
+  }
+
+  .home-aurum-articles {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}

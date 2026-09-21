@@ -17,6 +17,9 @@ import giftWeddings from "@/assets/home/gift-tile-weddings.png.asset.json";
 import giftNewArrivals from "@/assets/home/gift-tile-new-arrivals.png.asset.json";
 import giftFestivals from "@/assets/home/gift-tile-festivals.png.asset.json";
 import trustBackground from "@/assets/home/trust-background.png.asset.json";
+import aurumArticleDailyNote from "@/assets/home/aurum-article-daily-note.png.asset.json";
+import aurumArticleBeforeYouBuy from "@/assets/home/aurum-article-before-you-buy.png.asset.json";
+import aurumArticleGuide from "@/assets/home/aurum-article-guide.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -217,6 +220,33 @@ const TRUST_SAFEGUARDS = [
   },
 ] as const;
 
+const AURUM_ARTICLES = [
+  {
+    image: aurumArticleDailyNote.url,
+    alt: "A gold coin resting on dark green velvet",
+    label: "DAILY NOTE · 3 MIN",
+    title: "Why the spread on a one-ounce coin moved",
+    excerpt: "What changed in dealer premiums this week, and what it means for a first purchase.",
+    destination: "notes",
+  },
+  {
+    image: aurumArticleBeforeYouBuy.url,
+    alt: "A brass balance scale with a gold bar on marble",
+    label: "BEFORE YOU BUY",
+    title: "Spot is not your price",
+    excerpt: "Spot is a wholesale reference. What you pay includes a premium — here is how to read it.",
+    destination: "learn",
+  },
+  {
+    image: aurumArticleGuide.url,
+    alt: "Gold bars and a tagged bar arranged on dark green velvet",
+    label: "GUIDE · 6 MIN",
+    title: "Allocated or pooled: what you actually own",
+    excerpt: "Two ways to hold vaulted gold, and the questions to ask before you choose.",
+    destination: "learn",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
@@ -254,6 +284,51 @@ function TrustStatus({
       </span>
       <span>{children}</span>
     </span>
+  );
+}
+
+function AurumArticleCard({ article }: { article: (typeof AURUM_ARTICLES)[number] }) {
+  const linkContent = (
+    <>
+      <span>Read the note</span>
+      <ArrowRight aria-hidden="true" />
+    </>
+  );
+
+  return (
+    <article className="home-aurum-card">
+      <img
+        src={article.image}
+        alt={article.alt}
+        width={384}
+        height={240}
+        loading="lazy"
+        className="home-aurum-card-image"
+      />
+      <div className="home-aurum-card-copy">
+        <p className="home-aurum-card-label">{article.label}</p>
+        <h3>{article.title}</h3>
+        <p className="home-aurum-card-excerpt">{article.excerpt}</p>
+        {article.destination === "notes" ? (
+          <Link
+            to="/aurum/notes"
+            search={{ page: 1 }}
+            className="home-three-ways-link home-aurum-card-link"
+          >
+            {linkContent}
+          </Link>
+        ) : (
+          <Link
+            to="/aurum"
+            search={{ range: "1Y" }}
+            hash="learn"
+            className="home-three-ways-link home-aurum-card-link"
+          >
+            {linkContent}
+          </Link>
+        )}
+      </div>
+    </article>
   );
 }
 
@@ -603,8 +678,29 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="from-aurum" className={`bg-cream-2 ${STANDARD_SECTION}`}>
-          <SectionContainer />
+        <section id="from-aurum" className={`bg-cream-2 ${STANDARD_SECTION}`} aria-labelledby="from-aurum-heading">
+          <div className="site-container home-aurum-inner">
+            <div className="home-aurum-head">
+              <div className="home-aurum-intro">
+                <p className="home-aurum-eyebrow">FROM AURUM · THE SQOOT PURE GOLD BOARD</p>
+                <h2 id="from-aurum-heading">Understand gold before you own it.</h2>
+              </div>
+              <Link
+                to="/aurum"
+                search={{ range: "1Y" }}
+                className="home-three-ways-link home-aurum-head-link"
+              >
+                <span>Open AURUM</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="home-aurum-articles">
+              {AURUM_ARTICLES.map((article) => (
+                <AurumArticleCard key={article.title} article={article} />
+              ))}
+            </div>
+          </div>
         </section>
         <section id="faq" className={`bg-cream ${STANDARD_SECTION}`}>
           <SectionContainer />
