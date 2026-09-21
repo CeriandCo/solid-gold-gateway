@@ -16,6 +16,7 @@ import goldPriceBackground from "@/assets/home/gold-price-background.png.asset.j
 import giftWeddings from "@/assets/home/gift-tile-weddings.png.asset.json";
 import giftNewArrivals from "@/assets/home/gift-tile-new-arrivals.png.asset.json";
 import giftFestivals from "@/assets/home/gift-tile-festivals.png.asset.json";
+import trustBackground from "@/assets/home/trust-background.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -189,6 +190,33 @@ const GIFT_TILES = [
   },
 ] as const;
 
+const TRUST_SAFEGUARDS = [
+  {
+    title: "Sourced",
+    body: "Supplied through Dillon Gage, a precious-metals wholesaler and refiner applying OECD-aligned due diligence.",
+    status: "confirmed",
+    statusLabel: "Confirmed",
+  },
+  {
+    title: "Stored",
+    body: "Allocated, segregated storage with a professional vault operator, recorded in your name.",
+    status: "pending",
+    statusLabel: "Partner named before launch",
+  },
+  {
+    title: "Insured",
+    body: "Covered in transit and while it sits in storage, for its full replacement value.",
+    status: "pending",
+    statusLabel: "Policy published before launch",
+  },
+  {
+    title: "Audited",
+    body: "Independent checks of every bar and coin against our records.",
+    status: "pending",
+    statusLabel: "First report after launch",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
@@ -209,6 +237,23 @@ function GiftTile({
         <p className="home-gift-tile-body">{tile.body}</p>
       </figcaption>
     </figure>
+  );
+}
+
+function TrustStatus({
+  variant,
+  children,
+}: {
+  variant: "confirmed" | "pending";
+  children: string;
+}) {
+  return (
+    <span className={`home-trust-status home-trust-status-${variant}`}>
+      <span className="home-trust-status-dot" aria-hidden="true">
+        {variant === "confirmed" ? "●" : "○"}
+      </span>
+      <span>{children}</span>
+    </span>
   );
 }
 
@@ -518,8 +563,45 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="trust" className="bg-forest">
-          <SectionContainer />
+        <section id="trust" className="home-trust" aria-labelledby="trust-heading">
+          <img
+            src={trustBackground.url}
+            alt=""
+            width={1697}
+            height={927}
+            loading="lazy"
+            className="home-trust-background"
+          />
+          <div className="home-trust-inner site-container">
+            <div className="home-trust-head">
+              <div className="home-trust-intro">
+                <p className="home-trust-eyebrow">TRUST, IN THE OPEN</p>
+                <h2 id="trust-heading">
+                  Where your gold comes from —
+                  <br />
+                  and where it lives.
+                </h2>
+                <p className="home-trust-copy">
+                  We publish each safeguard as it is confirmed, and say plainly what is still pending.
+                </p>
+              </div>
+              <Link to="/trust-center" className="home-three-ways-link home-trust-link">
+                <span>Visit the Trust Center</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="home-trust-safeguards">
+              {TRUST_SAFEGUARDS.map((safeguard) => (
+                <article key={safeguard.title} className="home-trust-card">
+                  <h3>{safeguard.title}</h3>
+                  <p>{safeguard.body}</p>
+                  <span className="home-trust-spacer" aria-hidden="true" />
+                  <TrustStatus variant={safeguard.status}>{safeguard.statusLabel}</TrustStatus>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
         <section id="from-aurum" className={`bg-cream-2 ${STANDARD_SECTION}`}>
           <SectionContainer />
