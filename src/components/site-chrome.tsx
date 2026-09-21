@@ -223,7 +223,7 @@ function BuyDropdown() {
         type="button"
         aria-haspopup="true"
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen(true)}
         className={cn(
           "relative flex h-[44px] items-center gap-1.5 whitespace-nowrap font-sans text-[13px] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px]",
           buyActive || open ? "text-gold after:w-[46px]" : "text-warm-white/90",
