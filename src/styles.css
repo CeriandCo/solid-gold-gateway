@@ -7085,7 +7085,7 @@ footer.site-footer a:focus-visible {
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .home-final-cta-inner {
-    min-height: 640px;
+    height: 100%;
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 32px;
   }
@@ -7099,11 +7099,8 @@ footer.site-footer a:focus-visible {
   }
 
   .home-final-cta-stage {
-    width: 520px;
-    margin-inline: -110px -110px;
-    justify-self: center;
+    right: -60px;
     transform: scale(0.68);
-    transform-origin: center center;
   }
 
   .home-final-cta-control {
@@ -7120,8 +7117,13 @@ footer.site-footer a:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .home-final-cta {
+    height: auto;
+  }
+
   .home-final-cta-inner {
     display: flex;
+    height: auto;
     min-height: 0;
     flex-direction: column;
     align-items: stretch;
