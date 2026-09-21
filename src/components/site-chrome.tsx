@@ -54,7 +54,7 @@ export const WIDE = "site-container";
 export const STD = "site-container";
 
 export const siteNav = [
-  ["Buy Gold", "/precious-metal"],
+  ["Buy Coin", "/precious-metal"],
   ["Buy Fractional", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
