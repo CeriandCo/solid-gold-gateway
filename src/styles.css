@@ -509,7 +509,6 @@
   color: var(--gold-dark);
   font: 600 15px/1.4 var(--font-sans);
   letter-spacing: 0;
-  motion-safe: transition;
 }
 
 .home-three-ways-link svg {
@@ -531,12 +530,13 @@
 .home-three-ways-cards {
   display: flex;
   gap: 16px;
-  min-width: 960px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
 }
 
 .home-own-card {
   display: flex;
-  min-width: 0;
+  min-width: 389px;
   flex: 1 1 0;
   flex-direction: column;
   overflow: hidden;
