@@ -18,10 +18,10 @@ rm -rf "$ROOT"
 mkdir -p "$DATA" "$LOG"
 
 # Postgres refuses to run as root, so the server runs as an unprivileged user.
-PGRUNAS=${SQOOT_TEST_PGUSER:-pgtest}
-if ! id -u "$PGRUNAS" >/dev/null 2>&1; then
-  useradd -m "$PGRUNAS"
-fi
+PGRUNAS=${SQOOT_TEST_PGUSER:-lovable}
+id -u "$PGRUNAS" >/dev/null 2>&1 || {
+  echo "No unprivileged user '$PGRUNAS' to run Postgres as." >&2; exit 1;
+}
 chown -R "$PGRUNAS" "$ROOT"
 
 su "$PGRUNAS" -c "initdb -D '$DATA' -U postgres --auth=trust" >"$LOG/initdb.log" 2>&1
