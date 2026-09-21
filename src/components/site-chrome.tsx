@@ -274,15 +274,22 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             />
           </Link>
           <nav
-            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2.5 xl:gap-3.5 min-[1440px]:gap-5"
             aria-label="Primary navigation"
           >
-            {NAV_PRIMARY.map(([label, to]) => (
-              <HeaderLink key={label} label={label} to={to} />
+            <BuyDropdown />
+            {NAV_PRIMARY.slice(2).map(([label, to], index, items) => (
+              <Fragment key={label}>
+                <NavSep />
+                <HeaderLink label={label} to={to} />
+                {index === items.length - 1 && <NavSep />}
+              </Fragment>
             ))}
-            <span aria-hidden="true" className="h-5 w-px shrink-0 bg-warm-white/15" />
-            {NAV_SECONDARY.map(([label, to]) => (
-              <HeaderLink key={label} label={label} to={to} muted />
+            {NAV_SECONDARY.map(([label, to], index, items) => (
+              <Fragment key={label}>
+                <HeaderLink label={label} to={to} muted />
+                {index < items.length - 1 && <NavSep />}
+              </Fragment>
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
