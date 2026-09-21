@@ -39,6 +39,7 @@ import { Route as AdminPostsPostIdRouteImport } from './routes/admin.posts.$post
 import { Route as AdminPostsNewRouteImport } from './routes/admin.posts.new'
 import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
+import { Route as ApiPublicCommerceCatalogCheckRouteImport } from './routes/api/public/commerce-catalog-check'
 import { Route as ApiPublicGetGoldPriceRouteImport } from './routes/api/public/get-gold-price'
 import { Route as ApiPublicGetHistoryRouteImport } from './routes/api/public/get-history'
 import { Route as ApiPublicGiftCardDeliveryTickRouteImport } from './routes/api/public/gift-card-delivery-tick'
@@ -201,6 +202,12 @@ const ApiPublicAurumGoldPriceFetcherRoute =
     path: '/api/public/aurum-gold-price-fetcher',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicCommerceCatalogCheckRoute =
+  ApiPublicCommerceCatalogCheckRouteImport.update({
+    id: '/api/public/commerce-catalog-check',
+    path: '/api/public/commerce-catalog-check',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicGetGoldPriceRoute = ApiPublicGetGoldPriceRouteImport.update({
   id: '/api/public/get-gold-price',
   path: '/api/public/get-gold-price',
@@ -273,6 +280,7 @@ export interface FileRoutesByFullPath {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
@@ -310,6 +318,7 @@ export interface FileRoutesByTo {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
@@ -351,6 +360,7 @@ export interface FileRoutesById {
   '/admin/posts/new': typeof AdminPostsNewRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
+  '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
   '/api/public/get-gold-price': typeof ApiPublicGetGoldPriceRoute
   '/api/public/get-history': typeof ApiPublicGetHistoryRoute
   '/api/public/gift-card-delivery-tick': typeof ApiPublicGiftCardDeliveryTickRoute
@@ -393,6 +403,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/commerce-catalog-check'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
@@ -430,6 +441,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/commerce-catalog-check'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
@@ -470,6 +482,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
+    | '/api/public/commerce-catalog-check'
     | '/api/public/get-gold-price'
     | '/api/public/get-history'
     | '/api/public/gift-card-delivery-tick'
@@ -501,6 +514,7 @@ export interface RootRouteChildren {
   VaultRoute: typeof VaultRoute
   ApiPublicAurumBackfillDailyHistoryRoute: typeof ApiPublicAurumBackfillDailyHistoryRoute
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
+  ApiPublicCommerceCatalogCheckRoute: typeof ApiPublicCommerceCatalogCheckRoute
   ApiPublicGetGoldPriceRoute: typeof ApiPublicGetGoldPriceRoute
   ApiPublicGetHistoryRoute: typeof ApiPublicGetHistoryRoute
   ApiPublicGiftCardDeliveryTickRoute: typeof ApiPublicGiftCardDeliveryTickRoute
@@ -723,6 +737,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAurumGoldPriceFetcherRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/commerce-catalog-check': {
+      id: '/api/public/commerce-catalog-check'
+      path: '/api/public/commerce-catalog-check'
+      fullPath: '/api/public/commerce-catalog-check'
+      preLoaderRoute: typeof ApiPublicCommerceCatalogCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/get-gold-price': {
       id: '/api/public/get-gold-price'
       path: '/api/public/get-gold-price'
@@ -851,6 +872,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicAurumBackfillDailyHistoryRoute:
     ApiPublicAurumBackfillDailyHistoryRoute,
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,
+  ApiPublicCommerceCatalogCheckRoute: ApiPublicCommerceCatalogCheckRoute,
   ApiPublicGetGoldPriceRoute: ApiPublicGetGoldPriceRoute,
   ApiPublicGetHistoryRoute: ApiPublicGetHistoryRoute,
   ApiPublicGiftCardDeliveryTickRoute: ApiPublicGiftCardDeliveryTickRoute,
