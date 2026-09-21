@@ -122,7 +122,7 @@ function AurumPageContent() {
     setSelectedRange(nextRange);
     void navigate({
       search: (prev) => ({ ...prev, range: nextRange }),
-      hash: (prev) => prev,
+      hash: (prev) => prev ?? "",
       replace: true,
       resetScroll: false,
       hashScrollIntoView: false,
