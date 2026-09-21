@@ -431,7 +431,11 @@ function Index() {
                 ))}
               </dl>
               <div className="home-price-links">
-                <Link to="/aurum" search={{ range: "1Y" }} className="home-price-link">
+                <Link
+                  to="/aurum"
+                  search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+                  className="home-price-link"
+                >
                   Read what moved it in AURUM
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
