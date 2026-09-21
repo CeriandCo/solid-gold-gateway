@@ -446,8 +446,34 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="gifting" className={`bg-cream ${STANDARD_SECTION}`}>
-          <SectionContainer />
+        <section id="gifting" className={`bg-cream ${STANDARD_SECTION}`} aria-labelledby="gifting-heading">
+          <div className="home-gift site-container">
+            <div className="home-gift-head">
+              <div className="home-gift-intro">
+                <p className="home-gift-eyebrow">GOLD GIFTS THAT LAST</p>
+                <h2 id="gifting-heading">
+                  Gold marks the moments
+                  <br />
+                  that matter.
+                </h2>
+                <p className="home-gift-copy">
+                  Send a coin or a few grams with a note, straight from the app. They open a gift — not a price tag.
+                </p>
+              </div>
+              <Link to="/gifting" className="home-three-ways-link">
+                <span>Explore gifting</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="home-gift-mosaic">
+              <GiftTile tile={GIFT_TILES[0]} className="home-gift-tile-tall" />
+              <div className="home-gift-column">
+                <GiftTile tile={GIFT_TILES[1]} />
+                <GiftTile tile={GIFT_TILES[2]} />
+              </div>
+            </div>
+          </div>
         </section>
         <section id="trust" className="bg-forest">
           <SectionContainer />
