@@ -5881,8 +5881,10 @@ footer.site-footer a:focus-visible {
 /* Home — how it works */
 .home-how {
   display: flex;
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
   flex-direction: column;
-  align-items: center;
   gap: 56px;
   padding-inline: var(--gutter);
 }
@@ -6009,7 +6011,7 @@ footer.site-footer a:focus-visible {
 }
 
 .home-price-inner {
-  padding: 104px 120px;
+  padding-block: 104px;
 }
 
 .home-price-copy {
@@ -6148,7 +6150,7 @@ footer.site-footer a:focus-visible {
   }
 
   .home-price-inner {
-    padding: 80px 32px;
+    padding-block: 80px;
   }
 
   .home-price-value {
@@ -6176,7 +6178,7 @@ footer.site-footer a:focus-visible {
   }
 
   .home-price-inner {
-    padding: 72px var(--gutter);
+    padding-block: 72px;
   }
 
   .home-price-copy {
