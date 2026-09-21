@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { createFileRoute } from "@tanstack/react-router";
+import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
 import heroPhone from "@/assets/home/phone-hero-vault-holdings.png.asset.json";
 
@@ -89,14 +89,12 @@ function Index() {
               Two clear paths: buy, vault and sell your gold from the app — or buy a coin or bar and have it delivered to your door. Priced live, held in your name.
             </p>
 
-            <div className="home-hero-actions">
-              <Link to="/early-access" className="home-hero-button home-hero-button-primary">
-                Join the waitlist <span aria-hidden="true">→</span>
-              </Link>
-              <a href="#how-it-works" className="home-hero-button home-hero-button-secondary">
+            <CtaRow className="home-hero-ctas mt-7">
+              <GoldButton to="/early-access">Join the waitlist</GoldButton>
+              <GoldButton href="#how-it-works" variant="secondary" icon="none">
                 How it works
-              </a>
-            </div>
+              </GoldButton>
+            </CtaRow>
 
             <div className="home-hero-stores" aria-label="Mobile apps coming soon">
               {(["App Store", "Google Play"] as const).map((store) => (

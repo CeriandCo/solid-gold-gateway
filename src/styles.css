@@ -245,48 +245,6 @@
   font: 400 18px/1.6 var(--font-sans);
 }
 
-.home-hero-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.home-hero-button {
-  display: inline-flex;
-  min-height: 51px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 2px;
-  padding: 16px 28px;
-  font: 600 15px/1.2 var(--font-sans);
-  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
-}
-
-.home-hero-button:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.home-hero-button-primary {
-  background: var(--gold);
-  color: var(--ink);
-}
-
-.home-hero-button-primary:hover {
-  background: var(--gold-soft);
-}
-
-.home-hero-button-secondary {
-  border: 1px solid color-mix(in oklab, var(--cream) 45%, transparent);
-  color: var(--cream);
-}
-
-.home-hero-button-secondary:hover {
-  border-color: var(--cream);
-  background: color-mix(in oklab, var(--cream) 8%, transparent);
-}
-
 .home-hero-stores {
   display: flex;
   gap: 12px;
@@ -385,6 +343,36 @@
   letter-spacing: 0;
 }
 
+/* Tablet: scale the layered composition down so copy never reaches the phone. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-hero-copy {
+    width: min(46%, 400px);
+    padding-top: 96px;
+  }
+
+  .home-hero-body {
+    font-size: 16px;
+  }
+
+  .home-hero-ctas > * {
+    min-width: 0;
+    height: 50px;
+    padding-inline: 22px;
+  }
+
+  .home-hero-phone-stage {
+    top: 110px;
+    left: 55%;
+    width: 250px;
+  }
+
+  .home-hero-spot-card {
+    top: 600px;
+    left: 70%;
+    width: 190px;
+  }
+}
+
 @media (max-width: 767px) {
   .home-hero {
     height: auto;
@@ -424,14 +412,6 @@
 
   .home-hero-body {
     font-size: 16px;
-  }
-
-  .home-hero-actions {
-    flex-direction: column;
-  }
-
-  .home-hero-button {
-    width: 100%;
   }
 
   .home-hero-stores {
