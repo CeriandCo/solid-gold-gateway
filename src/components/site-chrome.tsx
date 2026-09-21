@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
+import { ArrowRight, ChevronDown, CirclePlay, Facebook, Linkedin, Menu, Twitter, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
@@ -362,7 +362,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | "/terms" | "/privacy" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | "/privacy" | "/contact" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
@@ -383,6 +383,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "About Us", to: "/about-us" },
       { label: "Trust Center", to: "/trust-center" },
+      { label: "Get In Touch", to: "/contact" },
     ],
   },
   {
@@ -395,9 +396,10 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
 ];
 
 const socialIcons = [
-  { Icon: Instagram, label: "Instagram" },
-  { Icon: Linkedin, label: "LinkedIn" },
-  { Icon: Youtube, label: "YouTube" },
+  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure" },
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/sqootpure" },
+  { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/sqootpure" },
+  { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@sqootpure" },
 ];
 
 /**
@@ -445,8 +447,8 @@ export function SiteFooter() {
       <div className="site-footer__bottom">
         <p className="site-footer__copy">© {year} SQOOT Pure. All rights reserved.</p>
         <div className="site-footer__social">
-          {socialIcons.map(({ Icon, label }) => (
-            <a key={label} href="#" aria-label={label}>
+          {socialIcons.map(({ Icon, label, href }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
               <Icon strokeWidth={1.5} aria-hidden="true" />
             </a>
           ))}
