@@ -107,7 +107,19 @@ curl -sf -o /dev/null "http://127.0.0.1:$RESTPORT/commerce_settings?select=id" |
   exit 1
 }
 
+# Supabase-shaped facade in front of PostgREST.
+PROXY_PORT=$PROXYPORT REST_PORT=$RESTPORT node "$(dirname "$0")/proxy.mjs" >"$LOG/proxy.log" 2>&1 &
+echo $! >"$ROOT/proxy.pid"
+for _ in $(seq 1 30); do
+  curl -sf -o /dev/null "http://127.0.0.1:$PROXYPORT/rest/v1/commerce_settings?select=id" && break
+  sleep 1
+done
+curl -sf -o /dev/null "http://127.0.0.1:$PROXYPORT/rest/v1/commerce_settings?select=id" || {
+  echo "Test database proxy did not come up; see $LOG/proxy.log" >&2
+  exit 1
+}
+
 cat >"$ROOT/env.json" <<JSON
-{ "restUrl": "http://127.0.0.1:$RESTPORT", "pgPort": $PGPORT_LOCAL, "restPort": $RESTPORT }
+{ "supabaseUrl": "http://127.0.0.1:$PROXYPORT", "restUrl": "http://127.0.0.1:$RESTPORT", "pgPort": $PGPORT_LOCAL, "restPort": $RESTPORT }
 JSON
-echo "test database ready on port $PGPORT_LOCAL, REST on $RESTPORT"
+echo "test database ready on port $PGPORT_LOCAL, REST on $RESTPORT, Supabase facade on $PROXYPORT"
