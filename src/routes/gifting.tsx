@@ -611,7 +611,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
   .gift-closing { height: 300px; }.gift-closing-inner > div { margin-left: 0; }
 }
 @media (max-width: 767px) {
-  .gifting-new .inner-page-hero-image--gifting { object-position: 86% 100%; }
+  .gifting-new .inner-page-hero-image--gifting { object-position: 83% 100%; }
   .gifting-new .inner-page-hero-overlay { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }
   .gifting-new { --page-padding: 20px; }
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
