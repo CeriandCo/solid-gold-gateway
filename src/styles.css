@@ -6646,6 +6646,8 @@ footer.site-footer a:focus-visible {
 
 .home-aurum-articles {
   display: grid;
+  width: 100%;
+  max-width: 1200px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }

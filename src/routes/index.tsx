@@ -320,7 +320,7 @@ function AurumArticleCard({ article }: { article: (typeof AURUM_ARTICLES)[number
         ) : (
           <Link
             to="/aurum"
-            search={{ range: "1Y" }}
+            search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
             hash="learn"
             className="home-three-ways-link home-aurum-card-link"
           >
@@ -687,7 +687,7 @@ function Index() {
               </div>
               <Link
                 to="/aurum"
-                search={{ range: "1Y" }}
+                search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
                 className="home-three-ways-link home-aurum-head-link"
               >
                 <span>Open AURUM</span>
