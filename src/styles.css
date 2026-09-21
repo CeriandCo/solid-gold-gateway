@@ -889,9 +889,9 @@
   }
 
   .home-app-showcase {
-    margin-block-end: -140px;
+    margin-block-end: -154px;
     margin-inline: -132px;
-    transform: scale(0.8);
+    transform: scale(0.78);
     transform-origin: top center;
   }
 }
