@@ -31,6 +31,7 @@ export function InnerPageHero({
   imageAlt,
   imageVariant = "standard",
   videoSrc,
+  videoFallbackSrc,
   media,
   className,
 }: InnerPageHeroProps) {
