@@ -6883,3 +6883,278 @@ footer.site-footer a:focus-visible {
     font-size: 40px;
   }
 }
+
+/* Home — final waitlist CTA */
+.home-final-cta {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--forest) 0%, color-mix(in oklab, var(--forest) 60%, var(--gold-dark)) 100%);
+}
+
+.home-final-cta-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.7;
+}
+
+.home-final-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 600px;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.home-final-cta-copy {
+  display: flex;
+  max-width: 560px;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  padding-block: 72px;
+}
+
+.home-final-cta-eyebrow {
+  color: var(--gold);
+  font: 600 12px/1.2 var(--font-sans);
+  letter-spacing: 0.22em;
+}
+
+.home-final-cta-copy h2 {
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.home-final-cta-copy h2 span,
+.home-final-cta-copy h2 em {
+  display: block;
+}
+
+.home-final-cta-copy h2 em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.home-final-cta-body {
+  max-width: 500px;
+  color: color-mix(in oklab, var(--cream) 72%, transparent);
+  font: 400 17px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-final-cta-form {
+  width: 100%;
+}
+
+.home-final-cta-control {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+}
+
+.home-final-cta-input {
+  width: 340px;
+  min-width: 0;
+  height: 56px;
+  border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent);
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  background: color-mix(in oklab, var(--cream) 7%, transparent);
+  padding-inline: 20px;
+  color: var(--cream);
+  font: 400 15px/1 var(--font-sans);
+  outline: none;
+}
+
+.home-final-cta-input::placeholder {
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+}
+
+.home-final-cta-button {
+  width: 189px;
+  height: 56px;
+  flex: none;
+  border-radius: 0 2px 2px 0;
+  background: var(--gold);
+  color: var(--forest-black);
+  font: 600 15px/1 var(--font-sans);
+  transition: background-color 180ms var(--ease-standard), transform 180ms var(--ease-standard);
+}
+
+.home-final-cta-button:hover {
+  background: color-mix(in oklab, var(--gold) 88%, var(--cream));
+  transform: translateY(-1px);
+}
+
+.home-final-cta-input:focus-visible,
+.home-final-cta-button:focus-visible,
+.home-final-cta-fineprint a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.home-final-cta-error,
+.home-final-cta-success {
+  margin-top: 10px;
+  font: 400 12px/1.5 var(--font-sans);
+}
+
+.home-final-cta-error {
+  color: color-mix(in oklab, var(--error) 55%, var(--cream));
+}
+
+.home-final-cta-success {
+  max-width: 500px;
+  margin-top: 0;
+  color: var(--cream);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.home-final-cta-fineprint {
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+  font: 400 12px/1.5 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-final-cta-fineprint a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.home-final-cta-stage {
+  position: relative;
+  width: 520px;
+  height: 600px;
+  justify-self: end;
+}
+
+.home-final-cta-phone {
+  transform-origin: center center;
+}
+
+.home-final-cta-phone-sell {
+  z-index: 1;
+  top: 113px;
+  left: 34px;
+  transform: scale(1.05);
+}
+
+.home-final-cta-phone-deliver {
+  z-index: 2;
+  top: 94px;
+  left: 259px;
+  transform: scale(1.24) rotate(-6deg);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-final-cta-inner {
+    min-height: 640px;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 32px;
+  }
+
+  .home-final-cta-copy {
+    padding-block: 80px;
+  }
+
+  .home-final-cta-copy h2 {
+    font-size: 52px;
+  }
+
+  .home-final-cta-stage {
+    width: 520px;
+    margin-inline: -110px -110px;
+    justify-self: center;
+    transform: scale(0.68);
+    transform-origin: center center;
+  }
+
+  .home-final-cta-control {
+    width: 100%;
+  }
+
+  .home-final-cta-input {
+    width: 100%;
+  }
+
+  .home-final-cta-button {
+    width: 176px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-final-cta-inner {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .home-final-cta-copy {
+    max-width: 100%;
+    padding-top: 72px;
+    padding-bottom: 0;
+  }
+
+  .home-final-cta-copy h2 {
+    font-size: 40px;
+  }
+
+  .home-final-cta-body {
+    font-size: 16px;
+  }
+
+  .home-final-cta-control {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .home-final-cta-input,
+  .home-final-cta-button {
+    width: 100%;
+    border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent);
+    border-radius: 2px;
+  }
+
+  .home-final-cta-button {
+    border-color: var(--gold);
+  }
+
+  .home-final-cta-stage {
+    width: 520px;
+    height: 600px;
+    margin-block: -84px -126px;
+    margin-inline: calc((100% - 520px) / 2);
+    align-self: center;
+    transform: scale(0.56);
+    transform-origin: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-final-cta-button {
+    transition: none;
+  }
+
+  .home-final-cta-button:hover {
+    transform: none;
+  }
+}

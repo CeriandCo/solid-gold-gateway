@@ -20,7 +20,12 @@ import trustBackground from "@/assets/home/trust-background.png.asset.json";
 import aurumArticleDailyNote from "@/assets/home/aurum-article-daily-note.png.asset.json";
 import aurumArticleBeforeYouBuy from "@/assets/home/aurum-article-before-you-buy.png.asset.json";
 import aurumArticleGuide from "@/assets/home/aurum-article-guide.png.asset.json";
+import ctaBackground from "@/assets/home/cta-background-curtain.png.asset.json";
+import ctaDeliverScreen from "@/assets/home/cta-phone-screen-deliver.png.asset.json";
+import ctaSellScreen from "@/assets/home/cta-phone-screen-sell-quote.png.asset.json";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWaitlistForm } from "@/hooks/use-waitlist-form";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -414,6 +419,7 @@ function PhoneMockup({ screen, className }: { screen: string; className?: string
 
 function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm();
 
   return (
     <div className="min-h-screen bg-cream text-ink">
@@ -795,8 +801,63 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="cta" className="bg-forest-black">
-          <SectionContainer />
+        <section id="cta" className="home-final-cta" aria-labelledby="home-final-cta-heading">
+          <img src={ctaBackground.url} alt="" className="home-final-cta-background" loading="lazy" />
+          <div className="site-container home-final-cta-inner">
+            <div className="home-final-cta-copy">
+              <p className="home-final-cta-eyebrow">EARLY ACCESS</p>
+              <h2 id="home-final-cta-heading">
+                <span>Be first when</span>
+                <em>the vault opens.</em>
+              </h2>
+              <p className="home-final-cta-body">
+                Join the waitlist for launch news and a first look at the app. It is free, and it is not a purchase.
+              </p>
+
+              {formState === "success" ? (
+                <p role="status" className="home-final-cta-success">
+                  You’re on the list. We’ll let you know when access becomes available.
+                </p>
+              ) : (
+                <form onSubmit={submitWaitlist} noValidate className="home-final-cta-form">
+                  <label htmlFor="home-final-cta-email" className="sr-only">Email address</label>
+                  <div className="home-final-cta-control">
+                    <input
+                      id="home-final-cta-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength={254}
+                      required
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                      placeholder="you@email.com"
+                      aria-invalid={formState === "invalid"}
+                      aria-describedby="home-final-cta-status"
+                      className="home-final-cta-input"
+                    />
+                    <Button type="submit" className="home-final-cta-button" disabled={formState === "submitting"}>
+                      {formState === "submitting" ? "Joining…" : "Join the waitlist →"}
+                    </Button>
+                  </div>
+                  {(formState === "invalid" || formState === "error") && (
+                    <p id="home-final-cta-status" role="alert" className="home-final-cta-error">
+                      {formState === "invalid" ? "Please enter a valid email address." : "Something went wrong. Please try again."}
+                    </p>
+                  )}
+                </form>
+              )}
+
+              <p className="home-final-cta-fineprint">
+                No payment or bank details. Unsubscribe any time. See our <Link to="/privacy">Privacy Policy</Link>.
+              </p>
+            </div>
+
+            <div className="home-final-cta-stage" aria-hidden="true">
+              <PhoneMockup screen={ctaSellScreen.url} className="home-final-cta-phone home-final-cta-phone-sell" />
+              <PhoneMockup screen={ctaDeliverScreen.url} className="home-final-cta-phone home-final-cta-phone-deliver" />
+            </div>
+          </div>
         </section>
       </main>
 
