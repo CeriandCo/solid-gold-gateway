@@ -24,8 +24,8 @@ id -u "$PGRUNAS" >/dev/null 2>&1 || {
 }
 chown -R "$PGRUNAS" "$ROOT"
 
-su "$PGRUNAS" -c "initdb -D '$DATA' -U postgres --auth=trust" >"$LOG/initdb.log" 2>&1
-su "$PGRUNAS" -c "pg_ctl -D '$DATA' -l '$LOG/postgres.log' -o '-p $PGPORT_LOCAL -k $ROOT -c listen_addresses=127.0.0.1' -w start" >/dev/null
+runuser -u "$PGRUNAS" -- bash -c "initdb -D '$DATA' -U postgres --auth=trust" >"$LOG/initdb.log" 2>&1
+runuser -u "$PGRUNAS" -- bash -c "pg_ctl -D '$DATA' -l '$LOG/postgres.log' -o '-p $PGPORT_LOCAL -k $ROOT -c listen_addresses=127.0.0.1' -w start" >/dev/null
 
 LOCAL="postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres"
 
