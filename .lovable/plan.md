@@ -1,17 +1,17 @@
 # Polish the Global AURUM CTA
 
 ## Scope
-- Redesign only the existing global AURUM link as a compact dark-forest premium card.
-- Preserve its `/aurum?range=1Y` destination, cleared search keys, global mount, exclusions, and safe-area-aware placement.
-- Keep AURUM content, site chrome, and all other floating controls unchanged.
+- Restyle only the existing global AURUM link as the companion to the `/aurum` floating navigator.
+- Preserve its destination, cleared search keys, global mount, exclusions, safe-area placement, and layer.
+- Leave AURUM content, shared site chrome, and all other floating controls unchanged.
 
 ## Presentation and behavior
-- Use the existing forest, gold, warm-white, typography, and motion tokens with Lucide icons already installed.
-- Add a gold market icon, two-line desktop label, compact mobile label, and right arrow inside one accessible link.
-- Reveal after 180px with one restrained entrance and one icon highlight sweep.
-- Add clear hover, active, keyboard-focus, and reduced-motion states without repeating animation or glow.
+- Reuse the exact existing SQOOT mandala asset and the AURUM navigator’s forest pill, gold border, and restrained shadow language.
+- Add the two-line desktop label, compact mobile label, and right arrow inside one accessible router link.
+- Reveal after 180px with one 420ms entrance; keep the mandala stable and add no shimmer.
+- Add clear hover, active, keyboard-focus, and reduced-motion states using existing tokens.
 
 ## Verification
-- Check the requested public routes at 390px, 768px, 1440px, and 1920px for visibility, overlap, tap size, and overflow.
-- Verify the threshold, internal navigation/search state, excluded routes, keyboard focus, and reduced-motion behavior.
-- Confirm no new package, unrelated styling change, runtime error, or build error.
+- Check all requested routes at 390px, 768px, 1440px, and 1920px for visibility, overlap, sizing, and overflow.
+- Verify threshold, client-side destination/search state, exclusions, keyboard focus, exact shared mandala asset, and reduced motion.
+- Confirm no dependency, unrelated style, runtime, or build regression.
