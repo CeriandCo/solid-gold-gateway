@@ -17,9 +17,15 @@ RESTPORT=${SQOOT_TEST_RESTPORT:-54330}
 rm -rf "$ROOT"
 mkdir -p "$DATA" "$LOG"
 
-export PGDATA_LOCAL=$DATA
-initdb -D "$DATA" -U postgres --auth=trust >"$LOG/initdb.log" 2>&1
-pg_ctl -D "$DATA" -l "$LOG/postgres.log" -o "-p $PGPORT_LOCAL -k $ROOT -c listen_addresses=127.0.0.1" -w start >/dev/null
+# Postgres refuses to run as root, so the server runs as an unprivileged user.
+PGRUNAS=${SQOOT_TEST_PGUSER:-pgtest}
+if ! id -u "$PGRUNAS" >/dev/null 2>&1; then
+  useradd -m "$PGRUNAS"
+fi
+chown -R "$PGRUNAS" "$ROOT"
+
+su "$PGRUNAS" -c "initdb -D '$DATA' -U postgres --auth=trust" >"$LOG/initdb.log" 2>&1
+su "$PGRUNAS" -c "pg_ctl -D '$DATA' -l '$LOG/postgres.log' -o '-p $PGPORT_LOCAL -k $ROOT -c listen_addresses=127.0.0.1' -w start" >/dev/null
 
 LOCAL="postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres"
 
