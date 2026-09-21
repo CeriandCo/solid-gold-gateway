@@ -129,6 +129,29 @@ const APP_FEATURES_RIGHT = [
   },
 ] as const;
 
+const HOW_IT_WORKS_STEPS = [
+  {
+    number: "01",
+    title: "Join the waitlist",
+    body: "Free, with no bank details. We email you the day accounts open.",
+  },
+  {
+    number: "02",
+    title: "Create your account",
+    body: "Verify your email and identity from your phone in a few minutes.",
+  },
+  {
+    number: "03",
+    title: "Buy your way",
+    body: "A coin, a weight, or both. Spot, premium and fees are shown before you confirm.",
+  },
+  {
+    number: "04",
+    title: "Keep, deliver or sell",
+    body: "Store it in the vault, ship it home, gift it, or sell it back in the app.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
