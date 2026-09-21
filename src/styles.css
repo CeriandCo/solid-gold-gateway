@@ -6372,11 +6372,14 @@ footer.site-footer a:focus-visible {
     flex-direction: column;
   }
 
-  .home-gift-tile {
+  .home-gift-tile,
+  .home-gift-column .home-gift-tile {
+    flex: none;
     height: 232px;
   }
 
   .home-gift-tile-tall {
+    flex: none;
     height: 440px;
   }
 
@@ -6390,7 +6393,8 @@ footer.site-footer a:focus-visible {
     font-size: 40px;
   }
 
-  .home-gift-tile {
+  .home-gift-tile,
+  .home-gift-column .home-gift-tile {
     height: 208px;
   }
 
