@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { Link } from "@tanstack/react-router";
 import { track } from "@/lib/analytics";
@@ -7,8 +7,7 @@ import phoneSellPngAsset from "@/assets/pricing/phone-sell-quote.png.asset.json"
 import phoneSellWebpAsset from "@/assets/pricing/phone-sell-quote.webp.asset.json";
 import phoneDeliverPngAsset from "@/assets/pricing/phone-deliver.png.asset.json";
 import phoneDeliverWebpAsset from "@/assets/pricing/phone-deliver.webp.asset.json";
-
-type FormState = "idle" | "invalid" | "submitting" | "error" | "success";
+import { useWaitlistForm } from "@/hooks/use-waitlist-form";
 
 export type WaitlistCtaProps = {
   eyebrow: string;
@@ -18,27 +17,9 @@ export type WaitlistCtaProps = {
 };
 
 export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaProps) {
-  const [email, setEmail] = useState("");
-  const [formState, setFormState] = useState<FormState>("idle");
-
-  async function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm(() => {
     track("bottom_cta_click", { section: "pricing_cta" });
-    const trimmed = email.trim();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed) && trimmed.length <= 254;
-    if (!valid) {
-      setFormState("invalid");
-      return;
-    }
-    setFormState("submitting");
-    try {
-      // Waitlist storage is not connected yet; registration completes locally.
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      setFormState("success");
-    } catch {
-      setFormState("error");
-    }
-  }
+  });
 
   const ctaRef = useReveal<HTMLElement>();
 
@@ -95,10 +76,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
                   maxLength={254}
                   required
                   value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    if (formState !== "submitting") setFormState("idle");
-                  }}
+                  onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@email.com"
                   aria-invalid={formState === "invalid"}
                   aria-describedby="waitlist-cta-status"
