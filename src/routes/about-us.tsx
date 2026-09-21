@@ -25,16 +25,9 @@ export const Route = createFileRoute("/about-us")({
   component: AboutPage,
 });
 
-type IconName = "bank" | "wyoming" | "shield" | "vault" | "coinbar" | "cubes";
+type IconName = "bank" | "shield" | "vault" | "coinbar" | "cubes";
 
 function LineIcon({ name, className = "" }: { name: IconName; className?: string }) {
-  if (name === "wyoming") {
-    return (
-      <svg className={className} viewBox="0 0 64 48" fill="none" aria-hidden="true">
-        <path d="m4 8 55-3 1 31-18 1-1 5-10-2-5 4-8-4-13 1L4 8Z" />
-      </svg>
-    );
-  }
   if (name === "shield") {
     return (
       <svg className={className} viewBox="0 0 52 52" fill="none" aria-hidden="true">
@@ -89,12 +82,6 @@ function Mandala({ className = "" }: { className?: string }) {
   );
 }
 
-const companyItems: Array<{ icon: IconName; label: string }> = [
-  { icon: "bank", label: "Fortress Gold Inc." },
-  { icon: "wyoming", label: "Wyoming Corporation" },
-  { icon: "shield", label: "FinCEN-Registered Dealer" },
-];
-
 const processItems: Array<{ icon: IconName; title: string; body: string }> = [
   { icon: "bank", title: "Dillon Gage", body: "Sourced from established suppliers with a long standing presence in the precious metals industry." },
   { icon: "vault", title: "IDS", body: "Allocated, vaulted, and held in independently operated, professional vaults with secure custody." },
@@ -137,17 +124,6 @@ function AboutPage() {
             <p>SQOOT Pure is the outcome of that experience.<br />Built with a single purpose: to offer a gold ownership platform designed for a new era.</p>
           </div>
           <img className="about-story-etch" src={sqootMandala.url} alt="" aria-hidden="true" />
-        </div>
-      </section>
-
-      <section className="about-company" data-reveal>
-        <div className="about-shell">
-          <p className="about-eyebrow">Company structure</p>
-          <div className="about-company-grid">
-            {companyItems.map(({ icon, label }) => (
-              <article key={label}><LineIcon name={icon} /><h2>{label}</h2></article>
-            ))}
-          </div>
         </div>
       </section>
 
