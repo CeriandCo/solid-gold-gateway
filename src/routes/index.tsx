@@ -9,6 +9,9 @@ import vaultCardBackground from "@/assets/home/card-bg-keep-it-in-the-vault.png.
 import coinsPhoneScreen from "@/assets/home/phone-screen-coins-delivered-home.png.asset.json";
 import weightPhoneScreen from "@/assets/home/phone-screen-buy-by-weight.png.asset.json";
 import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault.png.asset.json";
+import introPhoneScreen from "@/assets/home/phone-screen-intro-priced.png.asset.json";
+import homePhoneScreen from "@/assets/home/phone-screen-home-full.png.asset.json";
+import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,8 +107,46 @@ const OWNERSHIP_WAYS = [
   },
 ] as const;
 
+const APP_FEATURES_LEFT = [
+  {
+    title: "Priced live",
+    body: "Spot from global markets plus a premium you see before you confirm — never after.",
+  },
+  {
+    title: "Held in your name",
+    body: "Allocated metal with serial-level records and a statement every month.",
+  },
+] as const;
+
+const APP_FEATURES_RIGHT = [
+  {
+    title: "Deliver or sell back",
+    body: "Ship coins from the vault to your door, or lock a price and sell back in two taps.",
+  },
+  {
+    title: "Gift in a minute",
+    body: "Send a coin or a gram with a note. They see the gift, not the price.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
+}
+
+function PhoneMockup({ screen, className }: { screen: string; className?: string }) {
+  return (
+    <div className={className ? `home-own-phone ${className}` : "home-own-phone"} aria-hidden="true">
+      <span className="home-own-phone-action" />
+      <span className="home-own-phone-volume home-own-phone-volume-top" />
+      <span className="home-own-phone-volume home-own-phone-volume-bottom" />
+      <span className="home-own-phone-side" />
+      <div className="home-own-phone-screen">
+        <img src={screen} alt="" width={390} height={844} loading="lazy" />
+        <span className="home-own-phone-island" />
+        <span className="home-own-phone-glass" />
+      </div>
+    </div>
+  );
 }
 
 function Index() {
@@ -232,17 +273,7 @@ function Index() {
                       loading="lazy"
                       className="home-own-card-background"
                     />
-                    <div className="home-own-phone" aria-hidden="true">
-                      <span className="home-own-phone-action" />
-                      <span className="home-own-phone-volume home-own-phone-volume-top" />
-                      <span className="home-own-phone-volume home-own-phone-volume-bottom" />
-                      <span className="home-own-phone-side" />
-                      <div className="home-own-phone-screen">
-                        <img src={way.screen} alt="" width={390} height={844} loading="lazy" />
-                        <span className="home-own-phone-island" />
-                        <span className="home-own-phone-glass" />
-                      </div>
-                    </div>
+                    <PhoneMockup screen={way.screen} />
                   </div>
                   <div className="home-own-card-copy">
                     <p className="home-own-card-number" aria-hidden="true">{way.number}</p>
@@ -258,8 +289,59 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="app" className="bg-forest-black">
-          <SectionContainer />
+        <section id="app" className="bg-forest-black" aria-labelledby="app-heading">
+          <div className="home-app">
+            <div className="home-app-head">
+              <p className="home-app-eyebrow">THE SQOOT PURE APP</p>
+              <h2 id="app-heading" className="home-app-title">
+                All of your gold, <em>in your pocket.</em>
+              </h2>
+              <p className="home-app-body">
+                Buy, store, gift, deliver and sell back — every step priced in the open and confirmed with Face ID.
+              </p>
+            </div>
+
+            <div className="home-app-showcase">
+              <ul className="home-app-features home-app-features-left">
+                {APP_FEATURES_LEFT.map((feature) => (
+                  <li key={feature.title}>
+                    <span className="home-app-feature-rule" aria-hidden="true" />
+                    <h3>{feature.title}</h3>
+                    <p>{feature.body}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="home-app-stage">
+                <span className="home-app-glow" aria-hidden="true" />
+                <PhoneMockup screen={introPhoneScreen.url} className="home-app-phone home-app-phone-left" />
+                <PhoneMockup screen={giftPhoneScreen.url} className="home-app-phone home-app-phone-right" />
+                <PhoneMockup screen={homePhoneScreen.url} className="home-app-phone home-app-phone-center" />
+              </div>
+
+              <ul className="home-app-features home-app-features-right">
+                {APP_FEATURES_RIGHT.map((feature) => (
+                  <li key={feature.title}>
+                    <span className="home-app-feature-rule" aria-hidden="true" />
+                    <h3>{feature.title}</h3>
+                    <p>{feature.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <CtaRow className="home-app-ctas">
+              <GoldButton to="/early-access">Join the waitlist</GoldButton>
+              <div className="home-hero-stores" aria-label="Mobile apps coming soon">
+                {(["App Store", "Google Play"] as const).map((store) => (
+                  <div key={store} className="home-hero-store-badge">
+                    <span>Coming soon on</span>
+                    <strong>{store}</strong>
+                  </div>
+                ))}
+              </div>
+            </CtaRow>
+          </div>
         </section>
         <section id="how-it-works" className={`bg-cream-2 ${STANDARD_SECTION}`}>
           <SectionContainer />
