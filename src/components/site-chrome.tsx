@@ -173,6 +173,22 @@ export function CtaRow({ children, className = "" }: { children: React.ReactNode
   return <div className={cn("cta-row", className)}>{children}</div>;
 }
 
+/** One desktop header link; secondary (Explore) items sit slightly dimmer until hovered or active. */
+function HeaderLink({ label, to, muted = false }: { label: string; to: NavRoute; muted?: boolean }) {
+  return (
+    <Link
+      to={to}
+      activeOptions={{ exact: false }}
+      className={cn(
+        "relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]",
+        muted ? "text-warm-white/70" : "text-warm-white/90",
+      )}
+    >
+      {label}
+    </Link>
+  );
+}
+
 /**
  * Shared SQOOT Pure navbar — single source for every page.
  * variant="overlay" is used on the homepage (transparent, over the hero image);
@@ -230,31 +246,32 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
       </div>
 
       {menuOpen && (
-        <nav
-          aria-label="Mobile navigation"
-          className={cn(
-            "border-t border-warm-white/10 lg:hidden",
-            variant === "solid" ? "bg-forest-deep" : "bg-forest-deep",
-          )}
-        >
+        <nav aria-label="Mobile navigation" className="border-t border-warm-white/10 bg-forest-deep lg:hidden">
           <ul className="site-container py-2">
-            {siteNav.map(([label, to]) => (
-              <li key={label} className="border-b border-warm-white/10 last:border-b-0">
-                <Link
-                  to={to}
-                  activeOptions={{ exact: false }}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-4 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
-                >
-                  {label}
-                </Link>
-              </li>
+            {([["Buy & Vault", NAV_PRIMARY], ["Explore", NAV_SECONDARY]] as const).map(([heading, items]) => (
+              <Fragment key={heading}>
+                <li aria-hidden="true" className="pt-4 pb-1">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold/70">{heading}</p>
+                </li>
+                {items.map(([label, to]) => (
+                  <li key={label} className="border-b border-warm-white/10">
+                    <Link
+                      to={to}
+                      activeOptions={{ exact: false }}
+                      onClick={() => setMenuOpen(false)}
+                      className="block py-3.5 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </Fragment>
             ))}
-            <li className="py-4">
+            <li className="pt-4 pb-5">
               <Link
                 to="/early-access"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
+                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold bg-gradient-to-b from-gold-soft to-gold px-5 text-sm font-semibold leading-none text-forest-deep"
               >
                 Get Early Access
               </Link>
