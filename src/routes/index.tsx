@@ -20,6 +20,7 @@ import trustBackground from "@/assets/home/trust-background.png.asset.json";
 import aurumArticleDailyNote from "@/assets/home/aurum-article-daily-note.png.asset.json";
 import aurumArticleBeforeYouBuy from "@/assets/home/aurum-article-before-you-buy.png.asset.json";
 import aurumArticleGuide from "@/assets/home/aurum-article-guide.png.asset.json";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -247,6 +248,33 @@ const AURUM_ARTICLES = [
   },
 ] as const;
 
+const HOME_FAQS = [
+  {
+    question: "Is SQOOT Pure available now?",
+    answer: "Not yet. We are in pre-launch. You can join the waitlist, but accounts, payments and gold purchases are not open.",
+  },
+  {
+    question: "Is the gold real?",
+    answer: "Yes. Sqoot is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
+  },
+  {
+    question: "Where does the gold come from?",
+    answer: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually.",
+  },
+  {
+    question: "Do I need to pay or share bank details to join?",
+    answer: "No. Joining the waitlist is free. We will not ask you to fund an account or provide bank details while Sqoot remains in waitlist mode.",
+  },
+  {
+    question: "When will SQOOT Pure launch?",
+    answer: "We are working toward launch, but we will not promise a date before the product and its safeguards are ready. Waitlist members will receive an update when access begins.",
+  },
+  {
+    question: "Can I leave the waitlist?",
+    answer: "Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@getsqoot.com.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
 }
@@ -332,6 +360,42 @@ function AurumArticleCard({ article }: { article: (typeof AURUM_ARTICLES)[number
   );
 }
 
+function HomeFaqItem({
+  item,
+  index,
+  open,
+  onToggle,
+}: {
+  item: (typeof HOME_FAQS)[number];
+  index: number;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const answerId = `home-faq-answer-${index}`;
+  const answer = item.question === "Can I leave the waitlist?" ? (
+    <>
+      Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact{" "}
+      <a href="mailto:support@getsqoot.com">support@getsqoot.com</a>.
+    </>
+  ) : item.answer;
+
+  return (
+    <div className="home-faq-item">
+      <button
+        type="button"
+        className="home-faq-question"
+        aria-expanded={open}
+        aria-controls={answerId}
+        onClick={onToggle}
+      >
+        <span>{item.question}</span>
+        <span className="home-faq-toggle" aria-hidden="true">{open ? "–" : "+"}</span>
+      </button>
+      {open && <div id={answerId} className="home-faq-answer">{answer}</div>}
+    </div>
+  );
+}
+
 function PhoneMockup({ screen, className }: { screen: string; className?: string }) {
   return (
     <div className={className ? `home-own-phone ${className}` : "home-own-phone"} aria-hidden="true">
@@ -349,6 +413,8 @@ function PhoneMockup({ screen, className }: { screen: string; className?: string
 }
 
 function Index() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
   return (
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
@@ -702,8 +768,32 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="faq" className={`bg-cream ${STANDARD_SECTION}`}>
-          <SectionContainer />
+        <section id="faq" className="home-faq bg-cream" aria-labelledby="home-faq-heading">
+          <div className="site-container home-faq-inner">
+            <div className="home-faq-head">
+              <p className="home-faq-eyebrow">FAQ</p>
+              <h2 id="home-faq-heading">Questions, answered plainly.</h2>
+              <p className="home-faq-copy">
+                Still unsure? Write to <a href="mailto:support@getsqoot.com">support@getsqoot.com</a>. We will never ask for a password, one-time code or bank login by email.
+              </p>
+              <Link to="/contact" className="home-three-ways-link home-faq-link">
+                <span>See all questions</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="home-faq-list">
+              {HOME_FAQS.map((item, index) => (
+                <HomeFaqItem
+                  key={item.question}
+                  item={item}
+                  index={index}
+                  open={openFaq === index}
+                  onToggle={() => setOpenFaq(openFaq === index ? null : index)}
+                />
+              ))}
+            </div>
+          </div>
         </section>
         <section id="cta" className="bg-forest-black">
           <SectionContainer />
