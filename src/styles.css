@@ -695,7 +695,7 @@
   flex-direction: column;
   align-items: center;
   gap: 64px;
-  padding: 120px;
+  padding: 120px 40px;
 }
 
 .home-app-head {
@@ -737,7 +737,9 @@
 
 .home-app-showcase {
   display: flex;
-  width: 100%;
+  width: 1200px;
+  max-width: 100%;
+  margin-inline: auto;
   align-items: center;
   justify-content: space-between;
 }
