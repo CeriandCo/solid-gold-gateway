@@ -345,8 +345,22 @@ function Index() {
             </CtaRow>
           </div>
         </section>
-        <section id="how-it-works" className={`bg-cream-2 ${STANDARD_SECTION}`}>
-          <SectionContainer />
+        <section id="how-it-works" className={`bg-cream-2 home-how ${STANDARD_SECTION}`}>
+          <div className="home-how-head">
+            <p className="home-how-eyebrow">HOW IT WORKS</p>
+            <h2 className="home-how-title">From waitlist to your first ounce.</h2>
+          </div>
+          <ol className="home-how-steps">
+            {HOW_IT_WORKS_STEPS.map((step) => (
+              <li key={step.number}>
+                <span className="home-how-number" aria-hidden="true">
+                  {step.number}
+                </span>
+                <h3 className="home-how-step-title">{step.title}</h3>
+                <p className="home-how-step-body">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </section>
         <section id="gold-price" className="bg-forest-black">
           <SectionContainer />
