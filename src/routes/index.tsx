@@ -245,7 +245,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="home-own-card-copy">
-                    <p className="home-own-card-number">{way.number}</p>
+                    <p className="home-own-card-number" aria-hidden="true">{way.number}</p>
                     <h3>{way.title}</h3>
                     <p>{way.description}</p>
                     <Link to={way.to} className="home-three-ways-link home-own-card-link">
