@@ -13,6 +13,8 @@ type InnerPageHeroProps = {
   imageAlt: string;
   imageVariant?: "standard" | "fractional" | "gifting" | "trust" | "learn" | "about" | "pricing";
   videoSrc?: string;
+  /** Extra <source> entries (e.g. a WebM fallback) rendered before videoSrc. */
+  videoFallbackSrc?: string;
   media?: ReactNode;
   className?: string;
 };
