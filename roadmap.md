@@ -55,6 +55,7 @@
 ## Gifting
 - [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
 - [x] Refine the Gift Card left column typography, amount controls, summary, CTA, and trust line.
+- [x] C-7a — replace the gift-card artwork with the real SQOOT Pure logo and mandala, with pointer-safe premium depth and motion.
 - [x] B1 — commerce database foundation (settings kill switch, denominations, orders, cards, ledger, Stripe events, rate-limit attempts) and server-loaded amounts.
 - [x] B2 — secure checkout session creation (origins, rate limiting, server-decided amounts).
 - [x] B3a — Stripe webhook: signature verification, replay protection, payment settlement.

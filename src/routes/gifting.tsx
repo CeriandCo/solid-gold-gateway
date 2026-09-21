@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -40,6 +41,7 @@ import festivalPhoto from "@/assets/occasion-festivals.jpg";
 import familyPhoto from "@/assets/occasion-family.jpg";
 import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
 import sqootLogo from "@/assets/sqoot-pure-logo.png";
+import sqootMandala from "@/assets/sqoot-mandala.png";
 import closingGift from "@/assets/gifting-closing-banner.jpg";
 
 export const Route = createFileRoute("/gifting")({
@@ -170,10 +172,37 @@ function GiftingNewPage() {
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const attemptIdRef = useRef<string | null>(null);
   const messageRef = useRef<HTMLParagraphElement>(null);
+  const giftCardRef = useRef<HTMLDivElement>(null);
   const startCheckout = useServerFn(createGiftCardCheckout);
   const readCheckoutStatus = useServerFn(getGiftCardCheckoutStatus);
   const selected = denominations.find((option) => option.id === selectedId) ?? null;
   const currencyMark = giftCardCurrencyMark(currency);
+
+  const handleCardPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const card = giftCardRef.current;
+    if (
+      !card ||
+      event.pointerType !== "mouse" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return;
+
+    const bounds = card.getBoundingClientRect();
+    const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+    card.style.setProperty("--card-tilt-x", `${(-vertical * 5).toFixed(2)}deg`);
+    card.style.setProperty("--card-tilt-y", `${(horizontal * 6).toFixed(2)}deg`);
+    card.style.setProperty("--card-gloss-x", `${(horizontal + 0.5) * 100}%`);
+    card.dataset["interacting"] = "true";
+  };
+
+  const resetCardTilt = () => {
+    const card = giftCardRef.current;
+    if (!card) return;
+    card.style.removeProperty("--card-tilt-x");
+    card.style.removeProperty("--card-tilt-y");
+    card.style.removeProperty("--card-gloss-x");
+    delete card.dataset["interacting"];
+  };
 
   const announce = (message: string) => {
     setCheckoutMessage(message);
@@ -404,9 +433,16 @@ function GiftingNewPage() {
             height={1280}
             loading="lazy"
           />
-          <div className="gift-card-object" aria-hidden="true">
-            <img src={sqootLogo} alt="" width={567} height={200} />
-            <Mandala className="gift-card-mandala" />
+          <div
+            ref={giftCardRef}
+            className="gift-card-object"
+            aria-hidden="true"
+            onPointerMove={handleCardPointerMove}
+            onPointerLeave={resetCardTilt}
+            onPointerCancel={resetCardTilt}
+          >
+            <img className="gift-card-logo" src={sqootLogo} alt="" width={567} height={200} draggable={false} />
+            <img className="gift-card-mandala" src={sqootMandala} alt="" width={767} height={768} draggable={false} />
             <div className="gift-card-object-copy">
               <p>Gift Card</p>
               <span key={selected?.id ?? "placeholder"} className={selected === null ? "is-placeholder" : ""}>
@@ -535,12 +571,15 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
 .gift-card-checkout { width: auto; margin-top: 24px; }.gift-card-checkout:disabled { transform: none; }
 .gift-card-security { display: flex; align-items: center; justify-content: flex-start; gap: 6px; margin-top: 14px; color: var(--body-dark); font-size: 12px; opacity: .68; }.gift-card-security svg { width: 14px; height: 14px; color: var(--gold-deep); }
 .gift-card-message { min-height: 38px; padding-top: 8px; color: var(--forest-800); font-size: 13px; line-height: 1.4; text-align: left; }
-.gift-card-visual { position: relative; min-width: 0; min-height: 610px; overflow: hidden; display: grid; place-items: center; padding: clamp(44px,5vw,72px); isolation: isolate; }
+.gift-card-visual { position: relative; min-width: 0; min-height: 610px; overflow: hidden; display: grid; place-items: center; padding: clamp(44px,5vw,72px); isolation: isolate; perspective: 1100px; }
 .gift-card-background { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.gift-card-object { position: relative; width: min(100%,560px); aspect-ratio: 1.63; overflow: hidden; border: 1px solid var(--gold-400); border-radius: 7px; color: var(--gold-300); background: var(--forest-900); box-shadow: 0 24px 44px rgba(8,34,24,.28); transform: rotate(-2deg); }
-.gift-card-object::after { content:""; position:absolute; inset:9px; border:1px solid rgba(217,178,96,.32); border-radius:4px; pointer-events:none; }
-.gift-card-object > img { position: absolute; top: 9%; left: 7%; width: 38%; height: auto; }
-.gift-card-mandala { position: absolute; right: -8%; top: -15%; width: 58%; height: 92%; color: var(--gold-400); opacity: .16; }
+.gift-card-object { --card-tilt-x: 1deg; --card-tilt-y: -3deg; --card-gloss-x: 50%; position: relative; width: min(100%,560px); aspect-ratio: 1.63; overflow: hidden; border: 1px solid var(--gold-400); border-radius: 7px; color: var(--gold-300); background: var(--forest-900); box-shadow: -8px 22px 42px rgba(8,34,24,.32),0 6px 13px rgba(8,34,24,.2); transform: perspective(1100px) rotateX(var(--card-tilt-x)) rotateY(var(--card-tilt-y)) rotateZ(-1.3deg); transform-style: preserve-3d; will-change: transform; transition: transform .48s cubic-bezier(.22,1,.36,1),box-shadow .48s cubic-bezier(.22,1,.36,1); touch-action: pan-y; }
+.gift-card-object::before { content:""; position:absolute; z-index:3; inset:-45% -70%; pointer-events:none; background:linear-gradient(105deg,transparent 41%,rgba(250,245,234,.03) 45%,rgba(250,245,234,.2) 49%,rgba(250,245,234,.04) 53%,transparent 58%); transform:translateX(-38%) rotate(2deg); animation:giftCardSheen 8s ease-in-out infinite; }
+.gift-card-object::after { content:""; position:absolute; z-index:4; inset:8px; border:1px solid rgba(217,178,96,.34); border-radius:4px; box-shadow:inset 1px 1px 0 rgba(250,245,234,.12),inset -1px -1px 0 rgba(8,34,24,.3); pointer-events:none; }
+.gift-card-object[data-interacting="true"] { box-shadow: -12px 28px 48px rgba(8,34,24,.35),0 8px 16px rgba(8,34,24,.22); transition-duration: .12s; }
+.gift-card-object[data-interacting="true"]::before { animation-play-state:paused; transform:translateX(calc(var(--card-gloss-x) - 88%)) rotate(2deg); }
+.gift-card-logo { position:absolute; z-index:2; top:9%; left:7%; width:38%; height:auto; object-fit:contain; image-rendering:auto; user-select:none; }
+.gift-card-mandala { position:absolute; z-index:1; right:-8%; top:-15%; width:58%; height:92%; object-fit:contain; opacity:.12; mix-blend-mode:screen; user-select:none; }
 .gift-card-object-copy { position: absolute; left: 8%; right: 8%; bottom: 12%; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }.gift-card-object-copy p { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }.gift-card-object-copy > span { min-width: 145px; color: var(--cream-text); font-family: "Cormorant Garamond",Georgia,serif; font-size: clamp(31px,3vw,43px); font-weight: 500; line-height: 1; text-align: right; animation: giftCardAmount .2s ease-out both; }.gift-card-object-copy > span.is-placeholder { color: var(--muted-cream); font-family: "Inter",sans-serif; font-size: 13px; font-weight: 400; }
 .gift-trust { height: clamp(119px,calc(11.67vw - .5px),298px); color: var(--cream-text); background:
     radial-gradient(ellipse 42% 30% at 18% 22%, rgba(23,49,38,.07), transparent 60%),
@@ -553,7 +592,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
     var(--forest-950); }
 .gift-trust-inner { width: min(78.13%,2000px); height: 100%; margin: auto; display: grid; grid-template-columns: repeat(5,1fr); align-items: center; }.gift-trust article { min-width: 0; height: clamp(76px,7.4vw,190px); padding-inline: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:first-child { border-left: 0; }.gift-trust svg { width: clamp(28px,2.22vw,57px); height: clamp(28px,2.22vw,57px); color: var(--gold-400); }.gift-trust h2 { margin-top: 5px; color: var(--gold-400); font-family: "Inter",sans-serif; font-size: clamp(12px,.9vw,23px); font-weight: 600; line-height: 1.1; }.gift-trust p { max-width: 80%; margin-top: 3px; color: rgba(250,245,234,.82); font-size: clamp(9.5px,.73vw,19px); line-height: 1.35; }
 .gift-closing { position: relative; height: clamp(210px,19.44vw,498px); overflow: hidden; color: var(--cream-text); }.gift-closing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 67% center; }.gift-closing-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(63,31,12,.92) 0%,rgba(63,31,12,.79) 31%,rgba(25,39,26,.34) 57%,rgba(15,31,22,.06) 78%); }.gift-closing-inner { position: relative; max-width: var(--page-max); height: 100%; margin: auto; padding-inline: var(--page-padding); display: flex; align-items: center; }.gift-closing-inner > div { width: clamp(340px,33.2vw,850px); margin-left: calc(5% + clamp(36px,3.515625vw,90px)); }.gift-closing-overline { gap:8px; color: var(--gold-400); }.gift-closing-overline > span { width: 42px; height: 1px; background: var(--gold-500); }.gift-closing-overline p { font-size: clamp(10px,.76vw,20px); font-weight: 600; letter-spacing: .18em; }.gift-closing h2 { margin-top: 7px; color: var(--cream-text); font-size: clamp(34px,3.35vw,86px); font-weight: 500; line-height: .98; }.gift-closing h2 span { display: block; }.gift-closing-inner > div > p { max-width: 88%; margin-top: 7px; color: rgba(250,245,234,.86); font-size: clamp(11px,.97vw,25px); line-height: 1.45; }.gift-closing .gift-button { margin-top: 10px; height: clamp(42px,3.61vw,93px); }
-@keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} } @keyframes giftCardAmount { from{opacity:.15}to{opacity:1} }
+@keyframes giftFade { from{opacity:0}to{opacity:1} } @keyframes giftHeroImage { from{transform:scale(1.025)}to{transform:scale(1)} } @keyframes giftReveal { to{opacity:1;transform:none} } @keyframes giftCardAmount { from{opacity:.15}to{opacity:1} } @keyframes giftCardSheen { 0%,18%{transform:translateX(-38%) rotate(2deg)} 55%,100%{transform:translateX(38%) rotate(2deg)} }
 @media (min-width: 1025px) {
 }
 @media (max-width: 1023px) {
@@ -574,5 +613,6 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
   .gift-closing { height: 440px; }.gift-closing > img { object-position: 66% bottom; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
 }
 @media (max-width: 359px) { .gift-amount-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-@media (prefers-reduced-motion: reduce) { html:has(.gifting-new) { scroll-behavior: auto; } .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } }
+@media (hover:none),(pointer:coarse) { .gift-card-object { --card-tilt-x: 0deg; --card-tilt-y: 0deg; transform:perspective(1100px) rotateZ(-1.3deg); will-change:auto; } }
+@media (prefers-reduced-motion: reduce) { html:has(.gifting-new) { scroll-behavior: auto; } .gifting-new * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } .gift-card-object { --card-tilt-x:0deg !important; --card-tilt-y:0deg !important; transform:perspective(1100px) rotateZ(-1.3deg) !important; will-change:auto; } .gift-card-object::before { display:none; } }
 `;
