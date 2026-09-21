@@ -103,6 +103,7 @@ function KnowledgeCenterPage() {
         imageAlt="Macro detail of polished physical gold bars"
         imageVariant="learn"
         videoSrc={learnHeroVideo.url}
+        videoFallbackSrc={learnHeroVideoWebm.url}
         media={<button id="learn-introduction" type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>}
       />
 
