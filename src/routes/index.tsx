@@ -408,7 +408,7 @@ function Index() {
             className="home-price-background"
           />
           <div className="home-price-scrim" aria-hidden="true" />
-          <div className="home-price-inner">
+          <div className="site-container home-price-inner">
             <div className="home-price-copy">
               <div className="home-price-labels">
                 <p className="home-price-eyebrow">TODAY&rsquo;S GOLD PRICE</p>
