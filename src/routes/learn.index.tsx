@@ -16,8 +16,8 @@ import {
 } from "lucide-react";
 import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import bandGold from "@/assets/band-gold.jpg";
-import laptop from "@/assets/walkthrough-laptop.jpg";
+import bandGold from "@/assets/learn-hero-poster.jpg.asset.json";
+import learnHeroVideo from "@/assets/learn-hero-intro.mp4.asset.json";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
 import confidenceGoldBar from "@/assets/knowledge-confidence-gold-bar.png.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
