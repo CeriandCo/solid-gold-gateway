@@ -854,6 +854,108 @@
   justify-content: center;
 }
 
+/* Below the desktop range the three-column showcase cannot fit (270+600+270),
+ * so the phone cluster moves above a single stacked column of features. The
+ * cluster scales as one unit; negative margins pull the layout footprint in to
+ * match the scaled visual so nothing overflows. */
+@media (max-width: 1023px) {
+  .home-app-showcase {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .home-app-stage {
+    order: -1;
+    width: 600px;
+    transform-origin: top center;
+  }
+
+  .home-app-features-left {
+    text-align: left;
+  }
+
+  .home-app-features-left li {
+    align-items: flex-start;
+  }
+}
+
+/* Narrow desktops cannot fit the 1200px row inside 120px/40px framing, so the
+ * row scales as one unit: identical internal layout, smaller overall. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .home-app {
+    padding-inline: 24px;
+  }
+
+  .home-app-showcase {
+    margin-block-end: -154px;
+    margin-inline: -132px;
+    transform: scale(0.78);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-app {
+    gap: 48px;
+    padding: 80px 32px;
+  }
+
+  .home-app-stage {
+    margin-block-end: -140px;
+    margin-inline: -60px;
+    transform: scale(0.8);
+  }
+
+  .home-app-features {
+    width: 300px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-app {
+    gap: 40px;
+    padding: 72px var(--gutter);
+  }
+
+  .home-app-title {
+    font-size: 40px;
+    line-height: 1.12;
+  }
+
+  .home-app-body {
+    font-size: 16px;
+  }
+
+  .home-app-stage {
+    margin-block-end: -315px;
+    margin-inline: -135px;
+    transform: scale(0.55);
+  }
+
+  .home-app-features {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .home-app-ctas {
+    width: 100%;
+    max-width: 480px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-app-ctas > a {
+    width: 100%;
+  }
+
+  .home-app-ctas .home-hero-stores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 
 @media (min-width: 768px) and (max-width: 1023px) {
   #three-ways {
@@ -885,7 +987,7 @@
     grid-column: 1 / -1;
   }
 
-  .home-own-phone {
+  .home-own-card .home-own-phone {
     left: auto;
     right: 20px;
     width: 168px;
@@ -935,7 +1037,7 @@
     height: 360px;
   }
 
-  .home-own-phone {
+  .home-own-card .home-own-phone {
     top: 112px;
     left: auto;
     right: 20px;
