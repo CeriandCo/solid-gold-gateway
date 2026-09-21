@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AurumRouteImport } from './routes/aurum'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EarlyAccessRouteImport } from './routes/early-access'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
@@ -65,6 +66,11 @@ const AdminRoute = AdminRouteImport.update({
 const AurumRoute = AurumRouteImport.update({
   id: '/aurum',
   path: '/aurum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EarlyAccessRoute = EarlyAccessRouteImport.update({
@@ -242,6 +248,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
+  '/contact': typeof ContactRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -280,6 +287,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/aurum': typeof AurumRoute
+  '/contact': typeof ContactRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -318,6 +326,7 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
+  '/contact': typeof ContactRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -359,6 +368,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/admin'
     | '/aurum'
+    | '/contact'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -397,6 +407,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/aurum'
+    | '/contact'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -434,6 +445,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/admin'
     | '/aurum'
+    | '/contact'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -474,6 +486,7 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   AdminRoute: typeof AdminRouteWithChildren
   AurumRoute: typeof AurumRoute
+  ContactRoute: typeof ContactRoute
   EarlyAccessRoute: typeof EarlyAccessRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
   GiftingRoute: typeof GiftingRoute
@@ -526,6 +539,13 @@ declare module '@tanstack/react-router' {
       path: '/aurum'
       fullPath: '/aurum'
       preLoaderRoute: typeof AurumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/early-access': {
@@ -815,6 +835,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   AdminRoute: AdminRouteWithChildren,
   AurumRoute: AurumRoute,
+  ContactRoute: ContactRoute,
   EarlyAccessRoute: EarlyAccessRoute,
   FractionalGoldRoute: FractionalGoldRoute,
   GiftingRoute: GiftingRoute,
