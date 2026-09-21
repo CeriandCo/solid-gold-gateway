@@ -16,8 +16,17 @@ export type CatalogGuardOutcome = {
   problems: string[];
 };
 
+/** Writes one alert at most every 30 minutes, so a persistent fault cannot flood the table. */
 async function alert(severity: "info" | "warning" | "critical", message: string) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+  const { data: recent } = await supabaseAdmin
+    .from("commerce_alerts")
+    .select("id")
+    .eq("kind", "catalog_guard")
+    .gte("created_at", since)
+    .limit(1);
+  if (recent && recent.length > 0) return;
   await supabaseAdmin
     .from("commerce_alerts")
     .insert({ severity, kind: "catalog_guard", message: message.slice(0, 500) });
@@ -59,4 +68,20 @@ export async function reassertCatalog(): Promise<CatalogGuardOutcome> {
     `Catalog mapping is incomplete (${after.mapped}/${after.expected}, mode ${after.mode}) and could not be repaired: ${problems.join(", ") || "unknown"}. Checkout was left untouched and may be failing.`,
   );
   return { outcome: "failed", before: snapshot(before), after: snapshot(after), mode: after.mode, problems };
+}
+
+/**
+ * Cheap health check for the scheduled tick: reads the stored mapping only
+ * (no Stripe call) and repairs it when something has cleared it. Never throws
+ * and never touches checkout_enabled, so a failure here cannot break delivery.
+ */
+export async function runScheduledCatalogCheck(): Promise<CatalogGuardOutcome | null> {
+  try {
+    const status = await catalogStatus();
+    if (status.ready) return null;
+    return await reassertCatalog();
+  } catch (cause) {
+    console.error("[catalog-guard] scheduled check failed", cause);
+    return null;
+  }
 }
