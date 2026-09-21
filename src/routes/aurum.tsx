@@ -12,7 +12,7 @@ import { InnerPageHero } from "@/components/inner-page-hero";
 import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceStatus } from "@/lib/aurum/price-state";
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { fetchEditorialPage, fetchPublishedLearnNotes } from "@/lib/aurum-editorial.functions";
 import { useEffect, useState } from "react";
 
@@ -111,12 +111,25 @@ function AurumPageContent() {
     setExpandedBrief(openBrief ?? null);
   }, [openNote, openBrief]);
 
+  const navigate = useNavigate({ from: Route.fullPath });
+
+  // Range selection is an in-section control, never navigation. The choice is
+  // recorded in the URL through the router with replace + resetScroll false, and
+  // with hashScrollIntoView disabled: when the visitor arrived through the
+  // "#price" anchor, any location change that keeps the hash would otherwise make
+  // the router re-scroll to the price section.
   const changeRange = (nextRange: AurumRange) => {
     setSelectedRange(nextRange);
-    const url = new URL(window.location.href);
-    url.searchParams.set("range", nextRange);
-    window.history.replaceState(window.history.state, "", url);
+    void navigate({
+      search: (prev) => ({ ...prev, range: nextRange }),
+      hash: (prev) => prev,
+      replace: true,
+      resetScroll: false,
+      hashScrollIntoView: false,
+    });
   };
+
+
 
   return (
     <div className="aurum-page">
