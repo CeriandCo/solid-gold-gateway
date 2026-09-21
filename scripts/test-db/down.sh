@@ -4,6 +4,9 @@ set -uo pipefail
 
 ROOT=/tmp/sqoot-test-db
 
+if [ -f "$ROOT/proxy.pid" ]; then
+  kill "$(cat "$ROOT/proxy.pid")" 2>/dev/null || true
+fi
 if [ -f "$ROOT/postgrest.pid" ]; then
   kill "$(cat "$ROOT/postgrest.pid")" 2>/dev/null || true
 fi
