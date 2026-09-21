@@ -130,10 +130,10 @@ export function GoldButton({
           ? "rounded-[6px] px-6 py-3.5 text-sm focus-visible:outline-offset-[3px]"
           : "rounded-[6px] px-7 py-4 text-[15px] focus-visible:outline-offset-[3px]",
     variant === "primary"
-      ? "bg-gradient-to-b from-gold-soft to-gold text-forest-deep transition-all hover:-translate-y-px hover:from-gold hover:to-gold-dark"
+      ? "bg-gradient-to-b from-gold-soft to-gold text-forest-deep motion-safe:transition-all motion-safe:hover:-translate-y-px hover:from-gold hover:to-gold-dark"
       : variant === "forest"
         ? "bg-forest-black text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep"
-        : "border border-gold/70 bg-transparent text-warm-white transition-all hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
+        : "border border-gold/70 bg-transparent text-warm-white motion-safe:transition-all motion-safe:hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
     disabled && (variant === "forest" ? "cursor-not-allowed opacity-50" : "pointer-events-none opacity-60"),
     className,
   );

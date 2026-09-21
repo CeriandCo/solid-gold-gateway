@@ -29,7 +29,9 @@ const STANDARD_SECTION = "py-[clamp(72px,8.3vw,120px)]";
 
 const HERO_SPOT = {
   price: "$3,412.80",
-  change: "▲ 0.42%",
+  changeGlyph: "▲",
+  changeDirection: "Up",
+  changePercent: "0.42%",
   note: "Sample data — not a real price",
 } as const;
 
@@ -120,7 +122,11 @@ function Index() {
             <p>GOLD SPOT · PER OZ</p>
             <div>
               <strong>{HERO_SPOT.price}</strong>
-              <span>{HERO_SPOT.change}</span>
+              <span>
+                <span aria-hidden="true">{HERO_SPOT.changeGlyph} </span>
+                <span className="sr-only">{HERO_SPOT.changeDirection} </span>
+                {HERO_SPOT.changePercent}
+              </span>
             </div>
             <small>{HERO_SPOT.note}</small>
           </aside>
@@ -128,8 +134,11 @@ function Index() {
       </section>
 
       <main>
-        <section id="proof" className="bg-forest-2" aria-label="Why SQOOT gold">
+        <section id="proof" className="bg-forest-2" aria-labelledby="proof-heading">
           <div className="site-container">
+            <h2 id="proof-heading" className="sr-only">
+              Why SQOOT gold
+            </h2>
             <ul className="home-proof">
               {PROOF_ITEMS.map((item) => (
                 <li key={item.number}>
