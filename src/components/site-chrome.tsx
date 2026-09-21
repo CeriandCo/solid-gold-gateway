@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { ArrowRight, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
@@ -59,11 +59,17 @@ export const siteNav = [
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
-  ["Trust Center", "/trust-center"],
-  ["About Us", "/about-us"],
   ["AURUM", "/aurum"],
   ["Learn", "/learn"],
+  ["About Us", "/about-us"],
+  ["Trust Center", "/trust-center"],
 ] as const;
+
+export type NavRoute = (typeof siteNav)[number][1];
+
+/** Header grouping: the five buy & vault paths first, then editorial and company pages. */
+const NAV_PRIMARY = siteNav.slice(0, 5);
+const NAV_SECONDARY = siteNav.slice(5);
 
 
 export function GoldRule() {
