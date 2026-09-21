@@ -189,6 +189,70 @@ function HeaderLink({ label, to, muted = false }: { label: string; to: NavRoute;
   );
 }
 
+/** Thin vertical hairline shown between each desktop nav item. */
+function NavSep() {
+  return <span aria-hidden="true" className="h-4 w-px shrink-0 bg-warm-white/15" />;
+}
+
+/** "Buy" menu with the two buy paths — Coin (physical coins) and Fraction (fractional gold) — as sub-selections. */
+function BuyDropdown() {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const buyActive = pathname.startsWith("/precious-metal") || pathname.startsWith("/fractional-gold");
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) setOpen(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div ref={wrapperRef} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className={cn(
+          "relative flex h-[44px] items-center gap-1.5 whitespace-nowrap font-sans text-[13px] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px]",
+          buyActive || open ? "text-gold after:w-[46px]" : "text-warm-white/90",
+        )}
+      >
+        Buy
+        <ChevronDown strokeWidth={2} aria-hidden="true" className={cn("h-3.5 w-3.5 transition-transform duration-300", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 pt-2">
+          <div className="border border-warm-white/10 bg-forest-deep py-2 shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+            {NAV_PRIMARY.slice(0, 2).map(([label, to]) => (
+              <Link
+                key={label}
+                to={to}
+                activeOptions={{ exact: false }}
+                onClick={() => setOpen(false)}
+                className="block px-5 py-2.5 font-sans text-[13px] font-medium text-warm-white/85 transition-colors hover:bg-warm-white/5 hover:text-gold [&.active]:text-gold"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /**
  * Shared SQOOT Pure navbar — single source for every page.
  * variant="overlay" is used on the homepage (transparent, over the hero image);
