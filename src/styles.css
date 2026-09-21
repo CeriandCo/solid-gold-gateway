@@ -861,14 +861,14 @@
 @media (max-width: 1023px) {
   .home-app-showcase {
     width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 48px;
   }
 
   .home-app-stage {
     order: -1;
-    flex-basis: 100%;
+    width: 600px;
     transform-origin: top center;
   }
 
