@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { ArrowRight, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
@@ -59,11 +59,17 @@ export const siteNav = [
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
-  ["Trust Center", "/trust-center"],
-  ["About Us", "/about-us"],
   ["AURUM", "/aurum"],
   ["Learn", "/learn"],
+  ["About Us", "/about-us"],
+  ["Trust Center", "/trust-center"],
 ] as const;
+
+export type NavRoute = (typeof siteNav)[number][1];
+
+/** Header grouping: the five buy & vault paths first, then editorial and company pages. */
+const NAV_PRIMARY = siteNav.slice(0, 5);
+const NAV_SECONDARY = siteNav.slice(5);
 
 
 export function GoldRule() {
@@ -167,6 +173,22 @@ export function CtaRow({ children, className = "" }: { children: React.ReactNode
   return <div className={cn("cta-row", className)}>{children}</div>;
 }
 
+/** One desktop header link; secondary (Explore) items sit slightly dimmer until hovered or active. */
+function HeaderLink({ label, to, muted = false }: { label: string; to: NavRoute; muted?: boolean }) {
+  return (
+    <Link
+      to={to}
+      activeOptions={{ exact: false }}
+      className={cn(
+        "relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]",
+        muted ? "text-warm-white/70" : "text-warm-white/90",
+      )}
+    >
+      {label}
+    </Link>
+  );
+}
+
 /**
  * Shared SQOOT Pure navbar — single source for every page.
  * variant="overlay" is used on the homepage (transparent, over the hero image);
@@ -191,26 +213,18 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
             aria-label="Primary navigation"
           >
-            {siteNav.map(([label, to]) => (
-              <Link
-                key={label}
-                to={to}
-                activeOptions={{ exact: false }}
-                className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
-              >
-                {label}
-              </Link>
+            {NAV_PRIMARY.map(([label, to]) => (
+              <HeaderLink key={label} label={label} to={to} />
+            ))}
+            <span aria-hidden="true" className="h-5 w-px shrink-0 bg-warm-white/15" />
+            {NAV_SECONDARY.map(([label, to]) => (
+              <HeaderLink key={label} label={label} to={to} muted />
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
             <Link
               to="/early-access"
-              className={cn(
-                "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
-                variant === "overlay"
-                  ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                  : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
-              )}
+              className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold bg-gradient-to-b from-gold-soft to-gold font-sans text-[12px] font-semibold leading-none text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6"
             >
               Get Early Access
             </Link>
@@ -232,31 +246,32 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
       </div>
 
       {menuOpen && (
-        <nav
-          aria-label="Mobile navigation"
-          className={cn(
-            "border-t border-warm-white/10 lg:hidden",
-            variant === "solid" ? "bg-forest-deep" : "bg-forest-deep",
-          )}
-        >
+        <nav aria-label="Mobile navigation" className="border-t border-warm-white/10 bg-forest-deep lg:hidden">
           <ul className="site-container py-2">
-            {siteNav.map(([label, to]) => (
-              <li key={label} className="border-b border-warm-white/10 last:border-b-0">
-                <Link
-                  to={to}
-                  activeOptions={{ exact: false }}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-4 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
-                >
-                  {label}
-                </Link>
-              </li>
+            {([["Buy & Vault", NAV_PRIMARY], ["Explore", NAV_SECONDARY]] as const).map(([heading, items]) => (
+              <Fragment key={heading}>
+                <li aria-hidden="true" className="pt-4 pb-1">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold/70">{heading}</p>
+                </li>
+                {items.map(([label, to]) => (
+                  <li key={label} className="border-b border-warm-white/10">
+                    <Link
+                      to={to}
+                      activeOptions={{ exact: false }}
+                      onClick={() => setMenuOpen(false)}
+                      className="block py-3.5 text-sm font-medium text-warm-white/85 transition-colors hover:text-gold [&.active]:text-gold"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </Fragment>
             ))}
-            <li className="py-4">
+            <li className="pt-4 pb-5">
               <Link
                 to="/early-access"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold/55 bg-transparent px-5 text-sm font-medium leading-none text-gold"
+                className="inline-flex h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold bg-gradient-to-b from-gold-soft to-gold px-5 text-sm font-semibold leading-none text-forest-deep"
               >
                 Get Early Access
               </Link>
