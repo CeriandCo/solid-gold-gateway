@@ -75,6 +75,7 @@ const articles = [
     alt: "A hand holding a phone displaying the SQOOT Pure My Vault interface",
     width: 1536,
     height: 1024,
+    decoding: "async",
     href: "/learn/physical-gold-vs-gold-etf",
   },
   {
@@ -84,6 +85,7 @@ const articles = [
     alt: "SQOOT Pure 10g fine gold bar with engraved emblem",
     width: 1536,
     height: 1024,
+    decoding: "async",
     href: "/learn/how-to-buy-gold-safely",
   },
   {
@@ -230,7 +232,7 @@ function KnowledgeCenterPage() {
                   width={article.width}
                   height={article.height}
                   loading="lazy"
-                  decoding="async"
+                  decoding={"decoding" in article ? article.decoding : undefined}
                 />
               </div>
               <div className="kc-article-copy">
