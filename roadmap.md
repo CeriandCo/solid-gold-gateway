@@ -60,7 +60,7 @@
 
 ## Gifting
 
-- [ ] Phase 2 — align `/gifting` containers, section rhythm, and element-level motion with the shared page system.
+- [x] Phase 2 — align `/gifting` containers, section rhythm, and element-level motion with the shared page system.
 - [x] G1 — replace the engraving section with the Gift Card purchase UI and verify responsive/accessibility behavior.
 - [x] Refine the Gift Card left column typography, amount controls, summary, CTA, and trust line.
 - [x] C-7a — replace the gift-card artwork with the real SQOOT Pure logo and mandala, with pointer-safe premium depth and motion.
