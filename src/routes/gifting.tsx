@@ -9,7 +9,6 @@ import {
   getGiftCardOffering,
 } from "@/lib/commerce.functions";
 
-
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -68,7 +67,6 @@ export const Route = createFileRoute("/gifting")({
   component: GiftingNewPage,
 });
 
-
 function Mandala({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" className={className} fill="none">
@@ -92,11 +90,23 @@ type Feature = {
 
 const features: Feature[] = [
   { icon: Gift, title: "Meaningful", description: "A timeless symbol of love and blessings" },
-  { icon: ShieldCheck, title: "Real & Secure", description: "Real gold, fully insured in U.S. vaults" },
-  { icon: HandHeart, title: "Flexible", description: "Choose an amount and let them pick the gift" },
+  {
+    icon: ShieldCheck,
+    title: "Real & Secure",
+    description: "Real gold, fully insured in U.S. vaults",
+  },
+  {
+    icon: HandHeart,
+    title: "Flexible",
+    description: "Choose an amount and let them pick the gift",
+  },
   { icon: Truck, title: "Beautifully Delivered", description: "Premium packaging, ready to gift" },
   { icon: RefreshCw, title: "Redeemable", description: "Redeem or upgrade anytime" },
-  { icon: Globe2, title: "Vaulted Gifting", description: "Gift allocated gold held securely in insured U.S. vaults" },
+  {
+    icon: Globe2,
+    title: "Vaulted Gifting",
+    description: "Gift allocated gold held securely in insured U.S. vaults",
+  },
 ];
 
 const occasions = [
@@ -110,10 +120,26 @@ const occasions = [
 
 const assurances: Feature[] = [
   { icon: Gem, title: "100% Real Gold", description: "Allocated, audited and insured" },
-  { icon: ShieldCheck, title: "Secure Vaulted", description: "Stored in fully insured U.S. vaults" },
-  { icon: LockKeyhole, title: "Fully Insured", description: "Your gold is protected every step of the way" },
-  { icon: RefreshCw, title: "Redeem or Upgrade", description: "Redeem, sell or upgrade at any time" },
-  { icon: Send, title: "Simple to Gift", description: "Allocated to the recipient — no international shipping" },
+  {
+    icon: ShieldCheck,
+    title: "Secure Vaulted",
+    description: "Stored in fully insured U.S. vaults",
+  },
+  {
+    icon: LockKeyhole,
+    title: "Fully Insured",
+    description: "Your gold is protected every step of the way",
+  },
+  {
+    icon: RefreshCw,
+    title: "Redeem or Upgrade",
+    description: "Redeem, sell or upgrade at any time",
+  },
+  {
+    icon: Send,
+    title: "Simple to Gift",
+    description: "Allocated to the recipient — no international shipping",
+  },
 ];
 
 function formatGiftCardAmount(amountCents: number, currency: string | null) {
@@ -159,8 +185,7 @@ const CHECKOUT_MESSAGES: Record<string, string> = {
   cancelled: "Checkout was cancelled. You have not been charged.",
   confirming: "Confirming your payment…",
   paid: "Thank you. Your payment is confirmed. The gift card will be sent to your recipient once it clears our standard security checks.",
-  pending:
-    "Your payment is being confirmed. You'll receive an email receipt from Stripe.",
+  pending: "Your payment is being confirmed. You'll receive an email receipt from Stripe.",
 };
 
 function GiftingNewPage() {
@@ -184,7 +209,8 @@ function GiftingNewPage() {
       !card ||
       event.pointerType !== "mouse" ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) return;
+    )
+      return;
 
     const bounds = card.getBoundingClientRect();
     const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
@@ -226,9 +252,7 @@ function GiftingNewPage() {
         }
         announce(CHECKOUT_MESSAGES["failed"]!);
       } else {
-        announce(
-          CHECKOUT_MESSAGES[result.code] ?? CHECKOUT_MESSAGES["failed"]!,
-        );
+        announce(CHECKOUT_MESSAGES[result.code] ?? CHECKOUT_MESSAGES["failed"]!);
       }
     } catch {
       announce(CHECKOUT_MESSAGES["failed"]!);
@@ -285,8 +309,6 @@ function GiftingNewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
-
   return (
     <main ref={scope} id="top" className="gifting-new">
       <SiteHeader />
@@ -294,9 +316,26 @@ function GiftingNewPage() {
       <InnerPageHero
         titleId="gift-hero-title"
         eyebrow="Gifting gold"
-        title={<>Celebrate love<span>with a gift</span><span>that lasts.</span></>}
-        body={<>Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.</>}
-        actions={<CtaRow><GoldButton href="#gift-card">Buy a Gift Card</GoldButton><GoldButton href="#occasions" variant="secondary">Explore Gold Gifts</GoldButton></CtaRow>}
+        title={
+          <>
+            Celebrate love<span>with a gift</span>
+            <span>that lasts.</span>
+          </>
+        }
+        body={
+          <>
+            Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious
+            moments.
+          </>
+        }
+        actions={
+          <CtaRow>
+            <GoldButton href="#gift-card">Buy a Gift Card</GoldButton>
+            <GoldButton href="#occasions" variant="secondary">
+              Explore Gold Gifts
+            </GoldButton>
+          </CtaRow>
+        }
         imageSrc={heroGift.url}
         imageAlt="Dark green gift box tied with bronze ribbon beside a SQOOT Pure 10g gold bar"
         imageWidth={1920}
@@ -341,23 +380,37 @@ function GiftingNewPage() {
                     loading="lazy"
                   />
                 </div>
-                <div className="gift-occasion-label"><h3>{label}</h3></div>
-                 <span className="gift-occasion-icon"><Icon size={18} strokeWidth={1.25} absoluteStrokeWidth /></span>
+                <div className="gift-occasion-label">
+                  <h3>{label}</h3>
+                </div>
+                <span className="gift-occasion-icon">
+                  <Icon size={18} strokeWidth={1.25} absoluteStrokeWidth />
+                </span>
               </article>
             ))}
           </div>
 
-          <a href="#gift-card" className="gift-view-all" data-reveal>View all occasions <ArrowRight /></a>
+          <a href="#gift-card" className="gift-view-all" data-reveal>
+            View all occasions <ArrowRight />
+          </a>
         </div>
       </section>
 
       <section id="gift-card" className="gift-card-section" aria-labelledby="gift-card-title">
         <div className="gift-card-copy">
           <div className="gift-card-copy-inner">
-            <div className="gift-card-overline" data-reveal><span /><p>SQOOT Pure Gift Card</p><Mandala /></div>
-            <h2 id="gift-card-title" data-reveal><span>Give them the freedom</span><span>to choose.</span></h2>
+            <div className="gift-card-overline" data-reveal>
+              <span />
+              <p>SQOOT Pure Gift Card</p>
+              <Mandala />
+            </div>
+            <h2 id="gift-card-title" data-reveal>
+              <span>Give them the freedom</span>
+              <span>to choose.</span>
+            </h2>
             <p className="gift-card-intro" data-reveal>
-              A meaningful gift for every occasion. Choose an amount and let someone special begin their journey with SQOOT Pure.
+              A meaningful gift for every occasion. Choose an amount and let someone special begin
+              their journey with SQOOT Pure.
             </p>
 
             <fieldset className="gift-amount-fieldset" data-reveal>
@@ -378,7 +431,6 @@ function GiftingNewPage() {
                           setCheckoutMessage("");
                           attemptIdRef.current = null;
                         }}
-
                       />
                       <span className="gift-amount-label">
                         <span className="gift-amount-price" aria-hidden="true">
@@ -396,7 +448,9 @@ function GiftingNewPage() {
             <div className="gift-card-value" aria-hidden="true" data-reveal>
               <span>Gift card value</span>
               <strong className={selected === null ? "is-placeholder" : ""}>
-                {selected === null ? "Select an amount" : formatGiftCardAmount(selected.amountCents, currency)}
+                {selected === null
+                  ? "Select an amount"
+                  : formatGiftCardAmount(selected.amountCents, currency)}
               </strong>
             </div>
 
@@ -410,7 +464,10 @@ function GiftingNewPage() {
               >
                 {checkoutBusy ? "Starting secure checkout…" : "Continue to Secure Checkout"}
               </GoldButton>
-              <p className="gift-card-security"><LockKeyhole aria-hidden="true" />Secure payment powered by Stripe</p>
+              <p className="gift-card-security">
+                <LockKeyhole aria-hidden="true" />
+                Secure payment powered by Stripe
+              </p>
             </div>
             <p
               ref={messageRef}
@@ -422,7 +479,6 @@ function GiftingNewPage() {
             >
               {checkoutMessage}
             </p>
-
           </div>
         </div>
 
@@ -448,12 +504,31 @@ function GiftingNewPage() {
             onPointerLeave={resetCardTilt}
             onPointerCancel={resetCardTilt}
           >
-            <img className="gift-card-logo" src={sqootLogo} alt="" width={567} height={200} draggable={false} />
-            <img className="gift-card-mandala" src={sqootMandala} alt="" width={767} height={768} draggable={false} />
+            <img
+              className="gift-card-logo"
+              src={sqootLogo}
+              alt=""
+              width={567}
+              height={200}
+              draggable={false}
+            />
+            <img
+              className="gift-card-mandala"
+              src={sqootMandala}
+              alt=""
+              width={767}
+              height={768}
+              draggable={false}
+            />
             <div className="gift-card-object-copy">
               <p>Gift Card</p>
-              <span key={selected?.id ?? "placeholder"} className={selected === null ? "is-placeholder" : ""}>
-                {selected === null ? "Select amount" : formatGiftCardAmount(selected.amountCents, currency)}
+              <span
+                key={selected?.id ?? "placeholder"}
+                className={selected === null ? "is-placeholder" : ""}
+              >
+                {selected === null
+                  ? "Select amount"
+                  : formatGiftCardAmount(selected.amountCents, currency)}
               </span>
             </div>
           </div>
@@ -463,7 +538,6 @@ function GiftingNewPage() {
               : `${formatGiftCardAmount(selected.amountCents, currency)} gift card selected`}
           </span>
         </div>
-
       </section>
 
       <section className="gift-trust" aria-label="Gold ownership assurances">
@@ -490,12 +564,19 @@ function GiftingNewPage() {
         <div className="gift-closing-shade" />
         <div className="gift-closing-inner site-container">
           <div>
-            <div className="gift-closing-overline" data-reveal><span /><p>A gift that lasts generations</p></div>
-            <h2 data-reveal>More than a gift.<span>A legacy of love.</span></h2>
+            <div className="gift-closing-overline" data-reveal>
+              <span />
+              <p>A gift that lasts generations</p>
+            </div>
+            <h2 data-reveal>
+              More than a gift.<span>A legacy of love.</span>
+            </h2>
             <p data-reveal>
               Give real gold that will be cherished today and passed down through generations.
             </p>
-            <GoldButton href="#top" className="mt-8" data-reveal>Start Gifting Gold</GoldButton>
+            <GoldButton href="#top" className="mt-8" data-reveal>
+              Start Gifting Gold
+            </GoldButton>
           </div>
         </div>
       </section>
