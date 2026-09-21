@@ -6223,3 +6223,192 @@ footer.site-footer a:focus-visible {
     );
   }
 }
+
+/* Home — gifting mosaic */
+.home-gift {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.home-gift-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 56px;
+}
+
+.home-gift-intro {
+  display: flex;
+  max-width: 700px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-gift-eyebrow {
+  color: var(--gold-dark);
+  font: 600 12px/1.2 var(--font-sans);
+  letter-spacing: 0.22em;
+}
+
+.home-gift-intro h2 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.home-gift-copy {
+  max-width: 560px;
+  color: var(--muted-ink);
+  font: 400 18px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-gift-mosaic {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.home-gift-column {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-gift-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-width: 0;
+  height: 272px;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.home-gift-column .home-gift-tile {
+  flex: 1;
+}
+
+.home-gift-tile-tall {
+  flex: 1;
+  height: 560px;
+}
+
+.home-gift-tile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-gift-tile-image {
+    transition: transform 400ms var(--ease-standard);
+  }
+  .home-gift-tile:hover .home-gift-tile-image {
+    transform: scale(1.03);
+  }
+}
+
+.home-gift-tile-scrim {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 150px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--forest-black) 0%, transparent) 0%,
+    color-mix(in oklab, var(--forest-black) 90%, transparent) 100%
+  );
+}
+
+.home-gift-tile-tall .home-gift-tile-scrim {
+  height: 308px;
+}
+
+.home-gift-tile-caption {
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
+  left: 32px;
+  display: flex;
+  max-width: 440px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-gift-tile-title {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.home-gift-tile-body {
+  color: color-mix(in oklab, var(--cream) 80%, transparent);
+  font: 400 15px/1.55 var(--font-sans);
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .home-gift {
+    gap: 40px;
+  }
+
+  .home-gift-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .home-gift-mosaic {
+    flex-direction: column;
+  }
+
+  .home-gift-tile,
+  .home-gift-column .home-gift-tile {
+    flex: none;
+    height: 232px;
+  }
+
+  .home-gift-tile-tall {
+    flex: none;
+    height: 440px;
+  }
+
+  .home-gift-tile-tall .home-gift-tile-scrim {
+    height: 240px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-gift-intro h2 {
+    font-size: 40px;
+  }
+
+  .home-gift-tile,
+  .home-gift-column .home-gift-tile {
+    height: 208px;
+  }
+
+  .home-gift-tile-tall {
+    height: 340px;
+  }
+
+  .home-gift-tile-tall .home-gift-tile-scrim {
+    height: 200px;
+  }
+
+  .home-gift-tile-caption {
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+  }
+}
