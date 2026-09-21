@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
-import { Fragment, useState } from "react";
-import { ArrowRight, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronDown, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
@@ -54,12 +54,12 @@ export const WIDE = "site-container";
 export const STD = "site-container";
 
 export const siteNav = [
-  ["Buy Coin", "/precious-metal"],
-  ["Buy Fractional", "/fractional-gold"],
+  ["Coin", "/precious-metal"],
+  ["Fraction", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
-  ["AURUM", "/aurum"],
+  ["Aurum", "/aurum"],
   ["Learn", "/learn"],
   ["About Us", "/about-us"],
   ["Trust Center", "/trust-center"],
@@ -67,7 +67,7 @@ export const siteNav = [
 
 export type NavRoute = (typeof siteNav)[number][1];
 
-/** Header grouping: the five buy & vault paths first, then editorial and company pages. */
+/** Header grouping: the buy paths (Coin/Fraction live under the Buy menu) first, then editorial and company pages. */
 const NAV_PRIMARY = siteNav.slice(0, 5);
 const NAV_SECONDARY = siteNav.slice(5);
 
@@ -189,6 +189,70 @@ function HeaderLink({ label, to, muted = false }: { label: string; to: NavRoute;
   );
 }
 
+/** Thin vertical hairline shown between each desktop nav item. */
+function NavSep() {
+  return <span aria-hidden="true" className="h-4 w-px shrink-0 bg-warm-white/15" />;
+}
+
+/** "Buy" menu with the two buy paths — Coin (physical coins) and Fraction (fractional gold) — as sub-selections. */
+function BuyDropdown() {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const buyActive = pathname.startsWith("/precious-metal") || pathname.startsWith("/fractional-gold");
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) setOpen(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div ref={wrapperRef} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen(true)}
+        className={cn(
+          "relative flex h-[44px] items-center gap-1.5 whitespace-nowrap font-sans text-[13px] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px]",
+          buyActive || open ? "text-gold after:w-[46px]" : "text-warm-white/90",
+        )}
+      >
+        Buy
+        <ChevronDown strokeWidth={2} aria-hidden="true" className={cn("h-3.5 w-3.5 transition-transform duration-300", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 pt-2">
+          <div className="border border-warm-white/10 bg-forest-deep py-2 shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+            {NAV_PRIMARY.slice(0, 2).map(([label, to]) => (
+              <Link
+                key={label}
+                to={to}
+                activeOptions={{ exact: false }}
+                onClick={() => setOpen(false)}
+                className="block px-5 py-2.5 font-sans text-[13px] font-medium text-warm-white/85 transition-colors hover:bg-warm-white/5 hover:text-gold [&.active]:text-gold"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /**
  * Shared SQOOT Pure navbar — single source for every page.
  * variant="overlay" is used on the homepage (transparent, over the hero image);
@@ -210,15 +274,22 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             />
           </Link>
           <nav
-            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2.5 xl:gap-3.5 min-[1440px]:gap-5"
             aria-label="Primary navigation"
           >
-            {NAV_PRIMARY.map(([label, to]) => (
-              <HeaderLink key={label} label={label} to={to} />
+            <BuyDropdown />
+            {NAV_PRIMARY.slice(2).map(([label, to], index, items) => (
+              <Fragment key={label}>
+                <NavSep />
+                <HeaderLink label={label} to={to} />
+                {index === items.length - 1 && <NavSep />}
+              </Fragment>
             ))}
-            <span aria-hidden="true" className="h-5 w-px shrink-0 bg-warm-white/15" />
-            {NAV_SECONDARY.map(([label, to]) => (
-              <HeaderLink key={label} label={label} to={to} muted />
+            {NAV_SECONDARY.map(([label, to], index, items) => (
+              <Fragment key={label}>
+                <HeaderLink label={label} to={to} muted />
+                {index < items.length - 1 && <NavSep />}
+              </Fragment>
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
