@@ -56,7 +56,7 @@ const faqs = [
   ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
   ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
   ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
-  ["How are fees calculated?", "Storage is billed pro-rata: full period fee × days held ÷ 90, with a $25 minimum charge."],
+  ["How are fees calculated?", "Storage is billed pro-rata: full period fee × days held ÷ 90, with a $3 minimum charge."],
 ] as const;
 
 const WIDE = "site-container";
@@ -509,7 +509,7 @@ function Index() {
               <ThinArrow className="w-10" />
               <div className="grid h-[92px] w-[92px] place-items-center rounded-full bg-gold px-2 text-center text-[#0B2015]">
                 <span>
-                  <span className="block text-[13px] font-semibold leading-tight">$25.00</span>
+                  <span className="block text-[13px] font-semibold leading-tight">$3.00</span>
                   <span className="block text-[10px] leading-tight">Minimum fee</span>
                 </span>
               </div>
@@ -522,7 +522,7 @@ function Index() {
                 Full period fee × days held ÷ 90
               </span>
               <span className="flex items-center justify-center px-6 py-3 text-[13px] text-charcoal">
-                Minimum charge: $25
+                Minimum charge: $3
               </span>
             </div>
           </div>
