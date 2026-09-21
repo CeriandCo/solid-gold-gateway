@@ -1,8 +1,15 @@
 import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const LIVE_READ_ONLY = ["src/lib/security/**/*.test.ts"];
-const LIVE_WRITE = ["src/lib/admin-password.server.test.ts"];
+// Read-only probes of the real project: these only SELECT (or call read-only
+// RPCs), and the setup file blocks anything privileged that could write.
+const LIVE_READ_ONLY = ["src/lib/security/function-privileges.test.ts"];
+// These need the real auth server and create their own temporary auth users,
+// so they only run with ALLOW_LIVE_DB_TESTS=1. Neither touches commerce rows.
+const LIVE_WRITE = [
+  "src/lib/admin-password.server.test.ts",
+  "src/lib/security/rest-surface.test.ts",
+];
 
 // The live-write suites need the real auth server, so they only run when the
 // operator opts in. Everything else runs against a throwaway database.
