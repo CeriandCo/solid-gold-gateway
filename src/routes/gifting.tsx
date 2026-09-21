@@ -515,7 +515,8 @@ const giftingStyles = `
 }
 html:has(.gifting-new) { scroll-behavior: smooth; }
 .gifting-new h1,.gifting-new h2,.gifting-new h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
-.gifting-new .inner-page-hero-image--gifting { object-position: 50% 50%; }
+.gifting-new .inner-page-hero-image--gifting { object-position: 66% 50%; }
+.gifting-new .inner-page-hero-overlay { background: linear-gradient(90deg,rgba(8,34,24,.90) 0%,rgba(8,34,24,.78) 28%,rgba(8,34,24,.36) 49%,rgba(8,34,24,0) 70%); }
 .gift-hero { position: relative; height: clamp(384px,37.5vw,960px); overflow: hidden; color: var(--cream-text); background: var(--forest-950); }
 .gift-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: giftHeroImage 1.1s cubic-bezier(.22,1,.36,1) both; }
 .gift-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.94) 27%,rgba(8,34,24,.70) 42%,rgba(8,34,24,.20) 61%,rgba(8,34,24,0) 76%); }
@@ -601,7 +602,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
 @media (min-width: 1025px) {
 }
 @media (max-width: 1023px) {
-  .gifting-new .inner-page-hero-image--gifting { object-position: 63% 50%; }
+  .gifting-new .inner-page-hero-image--gifting { object-position: 76% 50%; }
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
@@ -610,7 +611,8 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
   .gift-closing { height: 300px; }.gift-closing-inner > div { margin-left: 0; }
 }
 @media (max-width: 767px) {
-  .gifting-new .inner-page-hero-image--gifting { object-position: 80% 100%; }
+  .gifting-new .inner-page-hero-image--gifting { object-position: 86% 100%; }
+  .gifting-new .inner-page-hero-overlay { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }
   .gifting-new { --page-padding: 20px; }
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
   .gift-benefits-inner { grid-template-columns: repeat(2,1fr); padding: 12px 14px; }.gift-benefit { height: 122px; }.gift-benefit:nth-child(3n+1) { border-left: 1px solid var(--light-divider); }.gift-benefit:nth-child(odd) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(n+5) { border-bottom: 0; }
