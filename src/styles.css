@@ -890,7 +890,7 @@
 
   .home-app-showcase {
     margin-block-end: -140px;
-    margin-inline: -120px;
+    margin-inline: -132px;
     transform: scale(0.8);
     transform-origin: top center;
   }
@@ -987,7 +987,7 @@
     grid-column: 1 / -1;
   }
 
-  .home-own-phone {
+  .home-own-card .home-own-phone {
     left: auto;
     right: 20px;
     width: 168px;
@@ -1037,7 +1037,7 @@
     height: 360px;
   }
 
-  .home-own-phone {
+  .home-own-card .home-own-phone {
     top: 112px;
     left: auto;
     right: 20px;
