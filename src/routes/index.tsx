@@ -678,7 +678,7 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="from-aurum" className={`bg-cream-2 ${STANDARD_SECTION}`} aria-labelledby="from-aurum-heading">
+        <section id="from-aurum" className="home-aurum bg-cream-2" aria-labelledby="from-aurum-heading">
           <div className="site-container home-aurum-inner">
             <div className="home-aurum-head">
               <div className="home-aurum-intro">
