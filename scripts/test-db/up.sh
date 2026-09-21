@@ -27,7 +27,7 @@ chown -R "$PGRUNAS" "$ROOT"
 setpriv --reuid="$PGRUNAS" --regid="$PGRUNAS" --clear-groups bash -c "initdb -D '$DATA' -U postgres --auth=trust" >"$LOG/initdb.log" 2>&1
 setpriv --reuid="$PGRUNAS" --regid="$PGRUNAS" --clear-groups bash -c "pg_ctl -D '$DATA' -l '$LOG/postgres.log' -o '-p $PGPORT_LOCAL -k $ROOT -c listen_addresses=127.0.0.1' -w start" >/dev/null
 
-LOCAL="postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres"
+LOCAL="postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres?sslmode=disable"
 
 # --- Supabase-shaped prerequisites the dump assumes exist ---------------------
 psql -q "$LOCAL" <<'SQL'
@@ -84,7 +84,7 @@ SQL
 # No jwt-secret is configured, so every request runs as the anonymous role.
 # That role is service_role here, which is what supabaseAdmin expects.
 cat >"$ROOT/postgrest.conf" <<CONF
-db-uri = "postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres"
+db-uri = "postgres://postgres@127.0.0.1:$PGPORT_LOCAL/postgres?sslmode=disable"
 db-schemas = "public"
 db-anon-role = "service_role"
 server-host = "127.0.0.1"
