@@ -30,7 +30,7 @@ export function AurumFloatingButton() {
   return (
     <Link
       to="/aurum"
-      search={{ range: "1Y" }}
+      search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
       aria-label="AURUM — live gold price"
       className="aurum-fab fixed bottom-[calc(88px+env(safe-area-inset-bottom))] right-5 z-40 inline-flex h-10 items-center justify-center whitespace-nowrap rounded-[4px] border border-gold bg-gradient-to-b from-gold-soft to-gold px-4 font-sans text-[12px] font-semibold leading-none tracking-[0.08em] text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
     >
