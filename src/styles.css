@@ -7047,7 +7047,7 @@ footer.site-footer a:focus-visible {
 .home-final-cta-stage {
   position: absolute;
   right: 17.5px;
-  bottom: 149.17px;
+  bottom: -149.17px;
   width: 544.8px;
   height: 645.17px;
   transform-origin: 100% 496px;
@@ -7166,8 +7166,8 @@ footer.site-footer a:focus-visible {
     right: auto;
     bottom: auto;
     width: 544.8px;
-    margin-top: -276px;
-    margin-bottom: -83.5px;
+    margin-top: -210.2px;
+    margin-bottom: -149.17px;
     margin-inline: calc((100% - 544.8px) / 2);
     align-self: center;
     transform: scale(0.56);
