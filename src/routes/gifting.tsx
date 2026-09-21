@@ -305,10 +305,10 @@ function GiftingNewPage() {
         imageVariant="gifting"
       />
 
-      <section className="gift-benefits" data-reveal aria-label="Gifting benefits">
-        <div className="gift-benefits-inner">
+      <section className="gift-benefits" aria-label="Gifting benefits">
+        <div className="gift-benefits-inner site-container">
           {features.map(({ icon: Icon, title, description }) => (
-            <article key={title} className="gift-benefit">
+            <article key={title} className="gift-benefit" data-reveal>
               <Icon size={32} strokeWidth={1.5} absoluteStrokeWidth />
               <h2>{title}</h2>
               <p>{description}</p>
@@ -317,9 +317,9 @@ function GiftingNewPage() {
         </div>
       </section>
 
-      <section id="occasions" className="gift-occasions" data-reveal>
-        <div className="gift-occasions-inner">
-          <header>
+      <section id="occasions" className="gift-occasions">
+        <div className="gift-occasions-inner site-container">
+          <header data-reveal>
             <div className="gift-section-overline">
               <span />
               <p>For every occasion</p>
@@ -331,7 +331,7 @@ function GiftingNewPage() {
 
           <div className="gift-occasion-grid">
             {occasions.map(({ label, image, icon: Icon }) => (
-              <article key={label} className="gift-occasion-card">
+              <article key={label} className="gift-occasion-card" data-reveal>
                 <div className="gift-occasion-image">
                   <img
                     src={image}
@@ -347,20 +347,20 @@ function GiftingNewPage() {
             ))}
           </div>
 
-          <a href="#gift-card" className="gift-view-all">View all occasions <ArrowRight /></a>
+          <a href="#gift-card" className="gift-view-all" data-reveal>View all occasions <ArrowRight /></a>
         </div>
       </section>
 
-      <section id="gift-card" className="gift-card-section" data-reveal aria-labelledby="gift-card-title">
+      <section id="gift-card" className="gift-card-section" aria-labelledby="gift-card-title">
         <div className="gift-card-copy">
           <div className="gift-card-copy-inner">
-            <div className="gift-card-overline"><span /><p>SQOOT Pure Gift Card</p><Mandala /></div>
-            <h2 id="gift-card-title"><span>Give them the freedom</span><span>to choose.</span></h2>
-            <p className="gift-card-intro">
+            <div className="gift-card-overline" data-reveal><span /><p>SQOOT Pure Gift Card</p><Mandala /></div>
+            <h2 id="gift-card-title" data-reveal><span>Give them the freedom</span><span>to choose.</span></h2>
+            <p className="gift-card-intro" data-reveal>
               A meaningful gift for every occasion. Choose an amount and let someone special begin their journey with SQOOT Pure.
             </p>
 
-            <fieldset className="gift-amount-fieldset">
+            <fieldset className="gift-amount-fieldset" data-reveal>
               <legend>Choose your gift amount</legend>
               <div className="gift-amount-grid">
                 {denominations.map(({ id, amountCents }) => {
@@ -393,27 +393,30 @@ function GiftingNewPage() {
               </div>
             </fieldset>
 
-            <div className="gift-card-value" aria-hidden="true">
+            <div className="gift-card-value" aria-hidden="true" data-reveal>
               <span>Gift card value</span>
               <strong className={selected === null ? "is-placeholder" : ""}>
                 {selected === null ? "Select an amount" : formatGiftCardAmount(selected.amountCents, currency)}
               </strong>
             </div>
 
-            <GoldButton
-              type="button"
-              disabled={selected === null || checkoutBusy}
-              aria-busy={checkoutBusy}
-              className="gift-card-checkout"
-              onClick={() => void handleCheckout()}
-            >
-              {checkoutBusy ? "Starting secure checkout…" : "Continue to Secure Checkout"}
-            </GoldButton>
-            <p className="gift-card-security"><LockKeyhole aria-hidden="true" />Secure payment powered by Stripe</p>
+            <div className="gift-card-action-group" data-reveal>
+              <GoldButton
+                type="button"
+                disabled={selected === null || checkoutBusy}
+                aria-busy={checkoutBusy}
+                className="gift-card-checkout"
+                onClick={() => void handleCheckout()}
+              >
+                {checkoutBusy ? "Starting secure checkout…" : "Continue to Secure Checkout"}
+              </GoldButton>
+              <p className="gift-card-security"><LockKeyhole aria-hidden="true" />Secure payment powered by Stripe</p>
+            </div>
             <p
               ref={messageRef}
               tabIndex={-1}
               className="gift-card-message"
+              data-reveal
               role="status"
               aria-live="polite"
             >
@@ -425,6 +428,7 @@ function GiftingNewPage() {
 
         <div
           className="gift-card-visual"
+          data-reveal
           role="img"
           aria-label="SQOOT Pure gift card resting on green velvet with cream paper and ribbon"
         >
@@ -462,10 +466,10 @@ function GiftingNewPage() {
 
       </section>
 
-      <section className="gift-trust" data-reveal aria-label="Gold ownership assurances">
-        <div className="gift-trust-inner">
+      <section className="gift-trust" aria-label="Gold ownership assurances">
+        <div className="gift-trust-inner site-container">
           {assurances.map(({ icon: Icon, title, description }) => (
-            <article key={title}>
+            <article key={title} data-reveal>
               <Icon strokeWidth={1.5} absoluteStrokeWidth />
               <h2>{title}</h2>
               <p>{description}</p>
@@ -474,7 +478,7 @@ function GiftingNewPage() {
         </div>
       </section>
 
-      <section id="closing-gift" className="gift-closing" data-reveal>
+      <section id="closing-gift" className="gift-closing" data-reveal="trigger">
         <img
           src={closingGift.url}
           alt="SQOOT Pure 10g gold bar in an ivory presentation box with forest green velvet and olive branches"
@@ -484,14 +488,14 @@ function GiftingNewPage() {
           decoding="async"
         />
         <div className="gift-closing-shade" />
-        <div className="gift-closing-inner">
+        <div className="gift-closing-inner site-container">
           <div>
-            <div className="gift-closing-overline"><span /><p>A gift that lasts generations</p></div>
-            <h2>More than a gift.<span>A legacy of love.</span></h2>
-            <p>
+            <div className="gift-closing-overline" data-reveal><span /><p>A gift that lasts generations</p></div>
+            <h2 data-reveal>More than a gift.<span>A legacy of love.</span></h2>
+            <p data-reveal>
               Give real gold that will be cherished today and passed down through generations.
             </p>
-            <GoldButton href="#top" className="mt-8">Start Gifting Gold</GoldButton>
+            <GoldButton href="#top" className="mt-8" data-reveal>Start Gifting Gold</GoldButton>
           </div>
         </div>
       </section>
