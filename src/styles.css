@@ -343,6 +343,36 @@
   letter-spacing: 0;
 }
 
+/* Tablet: scale the layered composition down so copy never reaches the phone. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-hero-copy {
+    width: min(46%, 400px);
+    padding-top: 96px;
+  }
+
+  .home-hero-body {
+    font-size: 16px;
+  }
+
+  .home-hero-ctas > * {
+    min-width: 0;
+    height: 50px;
+    padding-inline: 22px;
+  }
+
+  .home-hero-phone-stage {
+    top: 110px;
+    left: 55%;
+    width: 250px;
+  }
+
+  .home-hero-spot-card {
+    top: 600px;
+    left: 70%;
+    width: 190px;
+  }
+}
+
 @media (max-width: 767px) {
   .home-hero {
     height: auto;
