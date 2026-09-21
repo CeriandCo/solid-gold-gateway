@@ -232,7 +232,9 @@ async function handle(request: Request) {
 
   const source = `dillon_gage:${activeFeed}`
   const observedDayStart = `${observedAt.toISOString().slice(0, 10)}T00:00:00.000Z`
-  const priorDayStart = new Date(Date.parse(observedDayStart) - 24 * 60 * 60 * 1000).toISOString()
+  // Look back up to 7 days so weekends, holidays and cron gaps still yield the
+  // most recent earlier same-feed close instead of no baseline at all.
+  const priorDayStart = new Date(Date.parse(observedDayStart) - 7 * 24 * 60 * 60 * 1000).toISOString()
   const { data: closeRows, error: closeError } = await supabaseAdmin
     .from('aurum_spot_prices')
     .select('price, source')
