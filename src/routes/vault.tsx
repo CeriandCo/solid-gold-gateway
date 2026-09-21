@@ -56,7 +56,7 @@ const faqs = [
   ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
   ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
   ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
-  ["How are fees calculated?", "Storage is billed pro-rata: full period fee × days held ÷ 90, with a $3 minimum charge."],
+  ["How are fees calculated?", "Storage is billed quarterly and pro-rata: quarterly fee × days held ÷ 90, with a $3 minimum charge."],
 ] as const;
 
 const WIDE = "site-container";
@@ -478,8 +478,9 @@ function Index() {
               time your metal is stored.
             </h2>
             <p className="mt-4 max-w-[420px] text-[13px] leading-[1.5] text-[#444A45]">
-              If you redeem or request physical delivery before the end of a billing period, your storage fee is
-              calculated for the days your metal was held. The minimum storage fee still applies.
+              Storage is billed quarterly. If you redeem or request physical delivery before the end of a
+              quarterly billing period, your fee is calculated for the days your metal was held. The minimum
+              storage fee still applies.
             </p>
           </div>
           <div>
@@ -519,7 +520,7 @@ function Index() {
                 Storage fee formula
               </span>
               <span className="flex items-center justify-center px-5 py-3 text-[13px] text-charcoal sm:border-r sm:border-beige">
-                Full period fee × days held ÷ 90
+                Quarterly fee × days held ÷ 90
               </span>
               <span className="flex items-center justify-center px-6 py-3 text-[13px] text-charcoal">
                 Minimum charge: $3
