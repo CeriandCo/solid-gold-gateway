@@ -32,9 +32,16 @@ export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
       { title: "Knowledge Center — Gold Education | SQOOT Pure" },
-      { name: "description", content: "Explore clear, trusted education on gold ownership, performance, safety and long-term value from SQOOT Pure." },
+      {
+        name: "description",
+        content:
+          "Explore clear, trusted education on gold ownership, performance, safety and long-term value from SQOOT Pure.",
+      },
       { property: "og:title", content: "Knowledge Center — Gold Education | SQOOT Pure" },
-      { property: "og:description", content: "Clear, trusted education on gold ownership, performance and long-term value." },
+      {
+        property: "og:description",
+        content: "Clear, trusted education on gold ownership, performance and long-term value.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -61,33 +68,73 @@ const benefits = [
 ] as const;
 
 const articles = [
-  { title: "PHYSICAL GOLD VS GOLD ETF", copy: "Understand what you actually own when you buy physical gold versus a gold ETF.", image: articlePhone.url, alt: "A hand holding a phone displaying the SQOOT Pure My Vault interface", width: 1536, height: 1024, href: "/learn/physical-gold-vs-gold-etf" },
-  { title: "HOW TO BUY GOLD SAFELY", copy: "What to check before buying physical gold online, from provenance to storage.", image: articleGoldBar.url, alt: "SQOOT Pure 10g fine gold bar with engraved emblem", width: 1536, height: 1024, href: "/learn/how-to-buy-gold-safely" },
-  { title: "GIFTING GOLD", copy: "A guide to giving gold for weddings, festivals, and life's milestones.", image: coupleBench.url, alt: "A couple sitting together on a park bench", width: 1408, height: 912, href: "/learn/gifting-gold-guide" },
+  {
+    title: "PHYSICAL GOLD VS GOLD ETF",
+    copy: "Understand what you actually own when you buy physical gold versus a gold ETF.",
+    image: articlePhone.url,
+    alt: "A hand holding a phone displaying the SQOOT Pure My Vault interface",
+    width: 1536,
+    height: 1024,
+    href: "/learn/physical-gold-vs-gold-etf",
+  },
+  {
+    title: "HOW TO BUY GOLD SAFELY",
+    copy: "What to check before buying physical gold online, from provenance to storage.",
+    image: articleGoldBar.url,
+    alt: "SQOOT Pure 10g fine gold bar with engraved emblem",
+    width: 1536,
+    height: 1024,
+    href: "/learn/how-to-buy-gold-safely",
+  },
+  {
+    title: "GIFTING GOLD",
+    copy: "A guide to giving gold for weddings, festivals, and life's milestones.",
+    image: coupleBench.url,
+    alt: "A couple sitting together on a park bench",
+    width: 1408,
+    height: 912,
+    href: "/learn/gifting-gold-guide",
+  },
 ] as const;
 
 const returnPoints = [
-  <>Since 1971, gold's return has been similar to equities and outperformed bonds. <sup>[1]</sup></>,
-  <>In the last 20 years, gold outperformed most major asset classes. <sup>[2]</sup></>,
-  <>In the last 20 years, gold's global investment demand increased by an average of 10% per year. <sup>[3]</sup></>,
-  <>Through its dual nature as a consumer good and investment, gold has historically preserved its value. Unlike fiat currencies, gold cannot be printed, only mined—this helps explain why it has consistently outperformed major fiat currencies. <sup>[4]</sup></>,
+  <>
+    Since 1971, gold's return has been similar to equities and outperformed bonds. <sup>[1]</sup>
+  </>,
+  <>
+    In the last 20 years, gold outperformed most major asset classes. <sup>[2]</sup>
+  </>,
+  <>
+    In the last 20 years, gold's global investment demand increased by an average of 10% per year.{" "}
+    <sup>[3]</sup>
+  </>,
+  <>
+    Through its dual nature as a consumer good and investment, gold has historically preserved its
+    value. Unlike fiat currencies, gold cannot be printed, only mined—this helps explain why it has
+    consistently outperformed major fiat currencies. <sup>[4]</sup>
+  </>,
 ];
 
 const RETURNS: Record<string, [string, number][]> = {
-  '20yr': [
-    ["US Cash", 1.3], ["US Treasuries", 2.1], ["Global stocks", 6.6], ["US stocks", 8.6],
-    ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
+  "20yr": [
+    ["US Cash", 1.3],
+    ["US Treasuries", 2.1],
+    ["Global stocks", 6.6],
+    ["US stocks", 8.6],
+    ["EM Stocks", 4.1],
+    ["Commodities", 5.0],
+    ["Gold", 10.6],
   ],
 };
-const PERIODS = ['20yr', '10yr', '5yr', '3yr', '1yr'] as const;
+const PERIODS = ["20yr", "10yr", "5yr", "3yr", "1yr"] as const;
 const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
-
 
 function KnowledgeCenterPage() {
   const rootRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState(0);
   const [period, setPeriod] = useState<string>(AVAILABLE[0]!);
-  const moveBenefit = (direction: number) => setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
+  const moveBenefit = (direction: number) =>
+    setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
 
   return (
     <main ref={rootRef} id="top" className="knowledge-center-page">
@@ -96,28 +143,69 @@ function KnowledgeCenterPage() {
       <InnerPageHero
         titleId="learn-hero-title"
         eyebrow="Learn"
-        title={<>Gold.<span>Start with clarity.</span></>}
-        body={<>It's famous for being a <em>'safe haven'</em> investment thanks to years of strong performance in both good and bad economic times.<br />Discover how investing in gold today could be the first step on your financial journey.</>}
-        actions={<GoldButton href="#learn-introduction" variant="video">Watch the introduction</GoldButton>}
+        title={
+          <>
+            Gold.<span>Start with clarity.</span>
+          </>
+        }
+        body={
+          <>
+            It's famous for being a <em>'safe haven'</em> investment thanks to years of strong
+            performance in both good and bad economic times.
+            <br />
+            Discover how investing in gold today could be the first step on your financial journey.
+          </>
+        }
+        actions={
+          <GoldButton href="#learn-introduction" variant="video">
+            Watch the introduction
+          </GoldButton>
+        }
         imageSrc={bandGold.url}
         imageAlt="Macro detail of polished physical gold bars"
         imageVariant="learn"
         videoSrc={learnHeroVideo.url}
         videoFallbackSrc={learnHeroVideoWebm.url}
-        media={<button id="learn-introduction" type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>}
+        media={
+          <button
+            id="learn-introduction"
+            type="button"
+            className="kc-play"
+            aria-label="Preview the introduction to gold"
+          >
+            <Play aria-hidden="true" />
+          </button>
+        }
       />
 
-      <div className="kc-disclaimer"><div className="kc-container"><a href="#disclaimer"><ShieldCheck aria-hidden="true" />Important Disclaimer: Please Read</a></div></div>
+      <div className="kc-disclaimer">
+        <div className="kc-container">
+          <a href="#disclaimer">
+            <ShieldCheck aria-hidden="true" />
+            Important Disclaimer: Please Read
+          </a>
+        </div>
+      </div>
 
       <section id="benefits" className="kc-section kc-benefits" data-reveal>
         <div className="kc-container kc-benefits-layout">
           <div className="kc-benefits-intro">
             <h2 className="kc-section-title">Discover more of gold's potential benefits</h2>
-            <a href="#articles" className="kc-text-link">Learn about gold's qualities <ArrowRight aria-hidden="true" /></a>
+            <a href="#articles" className="kc-text-link">
+              Learn about gold's qualities <ArrowRight aria-hidden="true" />
+            </a>
             <div className="kc-benefit-controls">
-              <button type="button" onClick={() => moveBenefit(-1)} aria-label="Previous gold benefit"><ArrowLeft /></button>
+              <button
+                type="button"
+                onClick={() => moveBenefit(-1)}
+                aria-label="Previous gold benefit"
+              >
+                <ArrowLeft />
+              </button>
               <span aria-live="polite">{activeBenefit + 1} of 6</span>
-              <button type="button" onClick={() => moveBenefit(1)} aria-label="Next gold benefit"><ArrowRight /></button>
+              <button type="button" onClick={() => moveBenefit(1)} aria-label="Next gold benefit">
+                <ArrowRight />
+              </button>
             </div>
           </div>
           <div className="kc-benefit-grid">
@@ -135,100 +223,301 @@ function KnowledgeCenterPage() {
         <div className="kc-container kc-article-grid">
           {articles.map((article, index) => (
             <article className="kc-article-card" data-reveal key={article.title}>
-              <div className="kc-article-image"><img src={article.image} alt={article.alt} width={article.width} height={article.height} loading="lazy" decoding="async" /></div>
-              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
+              <div className="kc-article-image">
+                <img
+                  src={article.image}
+                  alt={article.alt}
+                  width={article.width}
+                  height={article.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="kc-article-copy">
+                <h2>{article.title}</h2>
+                <p>{article.copy}</p>
+                <Link to={article.href}>
+                  Learn More <ArrowRight aria-hidden="true" />
+                </Link>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="kc-section kc-returns"><div className="kc-container"><div className="kc-returns-panel" data-reveal>
-        <div className="kc-returns-copy">
-          <span className="kc-label">Returns</span>
-          <h2 className="kc-section-title">A proven asset with competitive returns</h2>
-          <ul>{returnPoints.map((point, i) => <li key={i}><span><ShieldCheck aria-hidden="true" /></span><p>{point}</p></li>)}</ul>
-          <a className="kc-dark-link" href="#performance-chart">See More <ArrowRight aria-hidden="true" /></a>
-        </div>
-        <div id="performance-chart" className="kc-chart-panel">
-          {AVAILABLE.length === 1 ? (
-            <p className="kc-chart-period">20-year annualised return</p>
-          ) : (
-            <div className="kc-tabs" role="tablist" aria-label="Gold performance period">
-              {AVAILABLE.map((tab) => (
-                <button key={tab} type="button" role="tab" aria-selected={period === tab} onClick={() => setPeriod(tab)}>{tab}</button>
-              ))}
+      <section className="kc-section kc-returns">
+        <div className="kc-container">
+          <div className="kc-returns-panel" data-reveal>
+            <div className="kc-returns-copy">
+              <span className="kc-label">Returns</span>
+              <h2 className="kc-section-title">A proven asset with competitive returns</h2>
+              <ul>
+                {returnPoints.map((point, i) => (
+                  <li key={i}>
+                    <span>
+                      <ShieldCheck aria-hidden="true" />
+                    </span>
+                    <p>{point}</p>
+                  </li>
+                ))}
+              </ul>
+              <a className="kc-dark-link" href="#performance-chart">
+                See More <ArrowRight aria-hidden="true" />
+              </a>
             </div>
-          )}
-          <div className="kc-chart" role="tabpanel">
-            <h3>CAGR (%)</h3>
-            {(() => {
-              const data = RETURNS[period]!;
-              const values = data.map(([, v]) => v);
-              const rawMax = Math.max(...values);
-              const niceMax = Math.ceil(rawMax / 2) * 2;
-              const min = Math.min(0, ...values);
-              const span = niceMax - min;
-              const zero = Math.max(min, 0);
-              const step = span <= 12 ? 2 : span <= 30 ? 5 : 10;
-              const labels: number[] = [];
-              for (let v = min; v <= niceMax + 1e-9; v += step) {
-                labels.push(Number(v.toFixed(1)));
-              }
-              const gridStep = 100 / (labels.length - 1);
-              return (
-                <>
-                  <div className="kc-bars">
-                    {data.map(([name, value]) => {
-                      const rawW = ((value - zero) / span) * 100;
-                      const isNegative = rawW < 0;
-                      const width = `${Math.abs(rawW).toFixed(3)}%`;
-                      const barStart = `${((0 - min) / span * 100).toFixed(3)}%`;
-                      const iStyle: CSSProperties = { "--bar-width": width } as CSSProperties;
-                      if (isNegative) iStyle.marginLeft = `calc(${barStart} - ${width})`;
-                      return (
-                        <div className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`} key={name}>
-                          <span>{name}</span>
-                          <div style={{ "--bar-start": barStart, "--bar-width": width, "--grid-step": `${gridStep}%` } as CSSProperties}>
-                            <i style={iStyle} />
-                            <b>{value.toFixed(1)}</b>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <table className="kc-sr-table"><caption>{period}-year compound annual growth rates</caption><tbody>{data.map(([name, value]) => <tr key={name}><th>{name}</th><td>{value}%</td></tr>)}</tbody></table>
-                </>
-              );
-            })()}
+            <div id="performance-chart" className="kc-chart-panel">
+              {AVAILABLE.length === 1 ? (
+                <p className="kc-chart-period">20-year annualised return</p>
+              ) : (
+                <div className="kc-tabs" role="tablist" aria-label="Gold performance period">
+                  {AVAILABLE.map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      role="tab"
+                      aria-selected={period === tab}
+                      onClick={() => setPeriod(tab)}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className="kc-chart" role="tabpanel">
+                <h3>CAGR (%)</h3>
+                {(() => {
+                  const data = RETURNS[period]!;
+                  const values = data.map(([, v]) => v);
+                  const rawMax = Math.max(...values);
+                  const niceMax = Math.ceil(rawMax / 2) * 2;
+                  const min = Math.min(0, ...values);
+                  const span = niceMax - min;
+                  const zero = Math.max(min, 0);
+                  const step = span <= 12 ? 2 : span <= 30 ? 5 : 10;
+                  const labels: number[] = [];
+                  for (let v = min; v <= niceMax + 1e-9; v += step) {
+                    labels.push(Number(v.toFixed(1)));
+                  }
+                  const gridStep = 100 / (labels.length - 1);
+                  return (
+                    <>
+                      <div className="kc-bars">
+                        {data.map(([name, value]) => {
+                          const rawW = ((value - zero) / span) * 100;
+                          const isNegative = rawW < 0;
+                          const width = `${Math.abs(rawW).toFixed(3)}%`;
+                          const barStart = `${(((0 - min) / span) * 100).toFixed(3)}%`;
+                          const iStyle: CSSProperties = { "--bar-width": width } as CSSProperties;
+                          if (isNegative) iStyle.marginLeft = `calc(${barStart} - ${width})`;
+                          return (
+                            <div
+                              className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`}
+                              key={name}
+                            >
+                              <span>{name}</span>
+                              <div
+                                style={
+                                  {
+                                    "--bar-start": barStart,
+                                    "--bar-width": width,
+                                    "--grid-step": `${gridStep}%`,
+                                  } as CSSProperties
+                                }
+                              >
+                                <i style={iStyle} />
+                                <b>{value.toFixed(1)}</b>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <table className="kc-sr-table">
+                        <caption>{period}-year compound annual growth rates</caption>
+                        <tbody>
+                          {data.map(([name, value]) => (
+                            <tr key={name}>
+                              <th>{name}</th>
+                              <td>{value}%</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
           </div>
         </div>
-      </div></div></section>
+      </section>
 
-      <section id="resources" className="kc-section kc-promos"><div className="kc-container kc-promo-grid">
-        <article className="kc-promo-card" data-reveal><img src={goldNugget.url} alt="Natural raw gold nugget" width={1200} height={912} loading="lazy" /><div><h2>Consider gold's potential benefits</h2><p>Gold is used in everything from electronics to jewellery, but you can also invest in it. The unique nature of gold could help in times of economic turmoil and growth.</p><a href="#benefits">The Case for Gold <ArrowRight /></a></div></article>
-        <article className="kc-promo-card kc-guide-card" data-reveal><img src={buyingGuide.url} alt="Dark green SQOOT Pure Buying Gold Safely guide" width={1400} height={900} loading="lazy" /><div><h2>Get the guide for investing in gold</h2><p>Investing in gold can be simple and safe—provided you ask the right questions. Find out more with our 5-step guide to buying gold safely.</p><a href="#articles">Buying Gold Safely <ArrowRight /></a></div></article>
-      </div></section>
+      <section id="resources" className="kc-section kc-promos">
+        <div className="kc-container kc-promo-grid">
+          <article className="kc-promo-card" data-reveal>
+            <img
+              src={goldNugget.url}
+              alt="Natural raw gold nugget"
+              width={1200}
+              height={912}
+              loading="lazy"
+            />
+            <div>
+              <h2>Consider gold's potential benefits</h2>
+              <p>
+                Gold is used in everything from electronics to jewellery, but you can also invest in
+                it. The unique nature of gold could help in times of economic turmoil and growth.
+              </p>
+              <a href="#benefits">
+                The Case for Gold <ArrowRight />
+              </a>
+            </div>
+          </article>
+          <article className="kc-promo-card kc-guide-card" data-reveal>
+            <img
+              src={buyingGuide.url}
+              alt="Dark green SQOOT Pure Buying Gold Safely guide"
+              width={1400}
+              height={900}
+              loading="lazy"
+            />
+            <div>
+              <h2>Get the guide for investing in gold</h2>
+              <p>
+                Investing in gold can be simple and safe—provided you ask the right questions. Find
+                out more with our 5-step guide to buying gold safely.
+              </p>
+              <a href="#articles">
+                Buying Gold Safely <ArrowRight />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <section className="kc-section kc-investing"><div className="kc-container"><div className="kc-investing-panel" data-reveal>
-        <div className="kc-investing-copy"><h2>Simple, straightforward investing</h2><p>History shows that people turn to gold as an investment because of its unique qualities.</p><p>If you're looking for a safer way to grow what you have and protect it, gold could be the investment for you.</p><p>Offering the potential for competitive returns and the ability to buy and sell online, gold could help you navigate your future.</p><p>Choose your own path, with gold.</p></div>
-        <img src={investingBanner.url} alt="SQOOT Pure 10g gold bar, two emblem coins and stacked bullion" width={1820} height={864} loading="lazy" decoding="async" />
-      </div></div></section>
+      <section className="kc-section kc-investing">
+        <div className="kc-container">
+          <div className="kc-investing-panel" data-reveal>
+            <div className="kc-investing-copy">
+              <h2>Simple, straightforward investing</h2>
+              <p>
+                History shows that people turn to gold as an investment because of its unique
+                qualities.
+              </p>
+              <p>
+                If you're looking for a safer way to grow what you have and protect it, gold could
+                be the investment for you.
+              </p>
+              <p>
+                Offering the potential for competitive returns and the ability to buy and sell
+                online, gold could help you navigate your future.
+              </p>
+              <p>Choose your own path, with gold.</p>
+            </div>
+            <img
+              src={investingBanner.url}
+              alt="SQOOT Pure 10g gold bar, two emblem coins and stacked bullion"
+              width={1820}
+              height={864}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
-      <section className="kc-section kc-external"><div className="kc-container kc-external-grid">
-        <article className="kc-external-card kc-newsletter" data-reveal><div><span className="kc-label">Stay up to date</span><h2>Get weekly insights on gold's performance</h2><p>Follow market context and the forces shaping gold, delivered in a clear weekly briefing.</p><GoldButton href="#">Sign Up on Gold.org</GoldButton></div><div className="kc-report-art" role="img" aria-label="Pale market report with a line chart and gold stationery"><span className="kc-report-sheet"><svg viewBox="0 0 180 112" aria-hidden="true"><path className="kc-chart-grid" d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"/><path className="kc-chart-line kc-chart-line-muted" d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"/><path className="kc-chart-line" d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"/></svg></span><span className="kc-report-notebook" aria-hidden="true" /><span className="kc-report-pen" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-one" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-two" aria-hidden="true" /></div></article>
-        <article className="kc-external-card kc-goldhub" data-reveal><div><span className="kc-label">Explore the home of gold research</span><h2>Get the latest insights from the World Gold Council</h2><p>Explore trusted research, market analysis and educational resources about gold.</p><GoldButton href="#">Goldhub</GoldButton></div><img src={laptop} alt="Laptop displaying an institutional gold dashboard" width={1200} height={800} loading="lazy" /></article>
-        <article className="kc-film-card" data-reveal><img src={cinematicGold.url} alt="Abstract black silk and textured gold leaf" width={912} height={1200} loading="lazy" /><span className="kc-film-overlay" /><div><h2>Elton John / Touched by Gold: Watch the Film</h2><button type="button" aria-label="Preview Touched by Gold"><Play /></button><p>Touched by Gold</p></div></article>
-      </div></section>
+      <section className="kc-section kc-external">
+        <div className="kc-container kc-external-grid">
+          <article className="kc-external-card kc-newsletter" data-reveal>
+            <div>
+              <span className="kc-label">Stay up to date</span>
+              <h2>Get weekly insights on gold's performance</h2>
+              <p>
+                Follow market context and the forces shaping gold, delivered in a clear weekly
+                briefing.
+              </p>
+              <GoldButton href="#">Sign Up on Gold.org</GoldButton>
+            </div>
+            <div
+              className="kc-report-art"
+              role="img"
+              aria-label="Pale market report with a line chart and gold stationery"
+            >
+              <span className="kc-report-sheet">
+                <svg viewBox="0 0 180 112" aria-hidden="true">
+                  <path
+                    className="kc-chart-grid"
+                    d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"
+                  />
+                  <path
+                    className="kc-chart-line kc-chart-line-muted"
+                    d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"
+                  />
+                  <path
+                    className="kc-chart-line"
+                    d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"
+                  />
+                </svg>
+              </span>
+              <span className="kc-report-notebook" aria-hidden="true" />
+              <span className="kc-report-pen" aria-hidden="true" />
+              <span className="kc-report-clip kc-report-clip-one" aria-hidden="true" />
+              <span className="kc-report-clip kc-report-clip-two" aria-hidden="true" />
+            </div>
+          </article>
+          <article className="kc-external-card kc-goldhub" data-reveal>
+            <div>
+              <span className="kc-label">Explore the home of gold research</span>
+              <h2>Get the latest insights from the World Gold Council</h2>
+              <p>Explore trusted research, market analysis and educational resources about gold.</p>
+              <GoldButton href="#">Goldhub</GoldButton>
+            </div>
+            <img
+              src={laptop}
+              alt="Laptop displaying an institutional gold dashboard"
+              width={1200}
+              height={800}
+              loading="lazy"
+            />
+          </article>
+          <article className="kc-film-card" data-reveal>
+            <img
+              src={cinematicGold.url}
+              alt="Abstract black silk and textured gold leaf"
+              width={912}
+              height={1200}
+              loading="lazy"
+            />
+            <span className="kc-film-overlay" />
+            <div>
+              <h2>Elton John / Touched by Gold: Watch the Film</h2>
+              <button type="button" aria-label="Preview Touched by Gold">
+                <Play />
+              </button>
+              <p>Touched by Gold</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <div id="disclaimer" className="kc-footnote kc-container">Past performance is not a guarantee of future results. Educational content is provided for general information only.</div>
+      <div id="disclaimer" className="kc-footnote kc-container">
+        Past performance is not a guarantee of future results. Educational content is provided for
+        general information only.
+      </div>
       <section className="kc-section kc-aurum-signpost" data-reveal>
         <div className="kc-container">
           <p className="kc-label">AURUM</p>
           <h2 className="kc-section-title">Daily notes and weekly briefs</h2>
-          <p>Short, sourced notes on what moved in the gold market, and a longer read each week. Free, and nothing is sold there.</p>
+          <p>
+            Short, sourced notes on what moved in the gold market, and a longer read each week.
+            Free, and nothing is sold there.
+          </p>
           <div className="kc-aurum-signpost__links">
-            <Link to="/aurum/notes" search={{ page: 1 }}>Read the notes →</Link>
-            <Link to="/aurum/briefs" search={{ page: 1 }}>Read the briefs →</Link>
+            <Link to="/aurum/notes" search={{ page: 1 }}>
+              Read the notes →
+            </Link>
+            <Link to="/aurum/briefs" search={{ page: 1 }}>
+              Read the briefs →
+            </Link>
           </div>
         </div>
       </section>
