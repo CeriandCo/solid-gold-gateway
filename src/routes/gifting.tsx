@@ -192,7 +192,7 @@ function GiftingNewPage() {
     card.style.setProperty("--card-tilt-x", `${(-vertical * 5).toFixed(2)}deg`);
     card.style.setProperty("--card-tilt-y", `${(horizontal * 6).toFixed(2)}deg`);
     card.style.setProperty("--card-gloss-x", `${(horizontal + 0.5) * 100}%`);
-    card.dataset.interacting = "true";
+    card.dataset["interacting"] = "true";
   };
 
   const resetCardTilt = () => {
@@ -201,7 +201,7 @@ function GiftingNewPage() {
     card.style.removeProperty("--card-tilt-x");
     card.style.removeProperty("--card-tilt-y");
     card.style.removeProperty("--card-gloss-x");
-    delete card.dataset.interacting;
+    delete card.dataset["interacting"];
   };
 
   const announce = (message: string) => {
