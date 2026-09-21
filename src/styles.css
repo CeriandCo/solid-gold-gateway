@@ -6888,7 +6888,7 @@ footer.site-footer a:focus-visible {
 .home-final-cta {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  height: 600px;
   overflow: hidden;
   background: linear-gradient(90deg, var(--forest) 0%, color-mix(in oklab, var(--forest) 60%, var(--gold-dark)) 100%);
 }
@@ -6907,13 +6907,15 @@ footer.site-footer a:focus-visible {
   position: relative;
   z-index: 1;
   display: grid;
-  min-height: 600px;
+  height: 100%;
   grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
   align-items: center;
   gap: 64px;
 }
 
 .home-final-cta-copy {
+  position: relative;
+  z-index: 2;
   display: flex;
   max-width: 560px;
   min-width: 0;
@@ -7037,11 +7039,18 @@ footer.site-footer a:focus-visible {
   text-underline-offset: 3px;
 }
 
+/* Phone cluster in exact Figma geometry (1440 artboard, 600px section).
+   The stage is anchored so its y=496px line sits on the section's bottom
+   edge — both phones are designed to bleed past it and get cropped there
+   (sell ~72px, deliver ~149px at full scale). Scaling the stage about that
+   line preserves the crop ratio at every breakpoint. */
 .home-final-cta-stage {
-  position: relative;
-  width: 520px;
-  height: 600px;
-  justify-self: end;
+  position: absolute;
+  right: 17.5px;
+  bottom: -149.17px;
+  width: 544.8px;
+  height: 645.17px;
+  transform-origin: 100% 496px;
 }
 
 .home-final-cta-phone {
@@ -7050,16 +7059,17 @@ footer.site-footer a:focus-visible {
 
 .home-final-cta-phone-sell {
   z-index: 2;
-  top: 113px;
-  left: 34px;
-  transform: scale(1.05);
+  top: 0;
+  left: 0;
+  transform: scale(1.5);
+  transform-origin: top left;
 }
 
 .home-final-cta-phone-deliver {
   z-index: 1;
-  top: 152px;
-  left: 216px;
-  transform: scale(1.128) rotate(-6deg);
+  top: 134.3px;
+  left: 336.9px;
+  transform: rotate(-6deg) scale(1.6118);
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
@@ -7068,15 +7078,14 @@ footer.site-footer a:focus-visible {
   }
 
   .home-final-cta-stage {
-    margin-inline: -94px;
+    right: -40px;
     transform: scale(0.64);
-    transform-origin: center center;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .home-final-cta-inner {
-    min-height: 640px;
+    height: 100%;
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 32px;
   }
@@ -7090,11 +7099,8 @@ footer.site-footer a:focus-visible {
   }
 
   .home-final-cta-stage {
-    width: 520px;
-    margin-inline: -110px -110px;
-    justify-self: center;
+    right: -60px;
     transform: scale(0.68);
-    transform-origin: center center;
   }
 
   .home-final-cta-control {
@@ -7111,8 +7117,13 @@ footer.site-footer a:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .home-final-cta {
+    height: auto;
+  }
+
   .home-final-cta-inner {
     display: flex;
+    height: auto;
     min-height: 0;
     flex-direction: column;
     align-items: stretch;
@@ -7151,13 +7162,16 @@ footer.site-footer a:focus-visible {
   }
 
   .home-final-cta-stage {
-    width: 520px;
-    height: 600px;
-    margin-block: -84px -126px;
-    margin-inline: calc((100% - 520px) / 2);
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 544.8px;
+    margin-top: -210.2px;
+    margin-bottom: -149.17px;
+    margin-inline: calc((100% - 544.8px) / 2);
     align-self: center;
     transform: scale(0.56);
-    transform-origin: center center;
+    transform-origin: 50% 496px;
   }
 }
 
