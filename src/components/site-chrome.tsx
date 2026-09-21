@@ -54,12 +54,12 @@ export const WIDE = "site-container";
 export const STD = "site-container";
 
 export const siteNav = [
-  ["Buy Coin", "/precious-metal"],
-  ["Buy Fractional", "/fractional-gold"],
+  ["Coin", "/precious-metal"],
+  ["Fraction", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
-  ["AURUM", "/aurum"],
+  ["Aurum", "/aurum"],
   ["Learn", "/learn"],
   ["About Us", "/about-us"],
   ["Trust Center", "/trust-center"],
@@ -67,7 +67,7 @@ export const siteNav = [
 
 export type NavRoute = (typeof siteNav)[number][1];
 
-/** Header grouping: the five buy & vault paths first, then editorial and company pages. */
+/** Header grouping: the buy paths (Coin/Fraction live under the Buy menu) first, then editorial and company pages. */
 const NAV_PRIMARY = siteNav.slice(0, 5);
 const NAV_SECONDARY = siteNav.slice(5);
 
