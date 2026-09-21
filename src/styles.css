@@ -7049,17 +7049,17 @@ footer.site-footer a:focus-visible {
 }
 
 .home-final-cta-phone-sell {
-  z-index: 1;
+  z-index: 2;
   top: 113px;
   left: 34px;
   transform: scale(1.05);
 }
 
 .home-final-cta-phone-deliver {
-  z-index: 2;
-  top: 94px;
-  left: 259px;
-  transform: scale(1.24) rotate(-6deg);
+  z-index: 1;
+  top: 152px;
+  left: 216px;
+  transform: scale(1.128) rotate(-6deg);
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
