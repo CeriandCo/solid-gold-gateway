@@ -199,6 +199,11 @@ export async function runDeliveryTick(
 ): Promise<DeliveryTickResult> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
+  // Safety net on the existing 5-minute schedule: if anything has cleared the
+  // Stripe price mapping, re-assert it. Read-only when the catalog is healthy.
+  const { runScheduledCatalogCheck } = await import("./commerce/catalog-guard.server");
+  await runScheduledCatalogCheck();
+
   const { data: settings } = await supabaseAdmin
     .from("commerce_settings")
     .select("delivery_enabled, email_from")

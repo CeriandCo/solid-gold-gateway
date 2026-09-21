@@ -1,15 +1,66 @@
 import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-// These suites talk to the real database over the network, so the default
-// 5-second limit is too tight for the multi-step commerce scenarios.
+// Read-only probes of the real project: these only SELECT (or call read-only
+// RPCs), and the setup file blocks anything privileged that could write.
+const LIVE_READ_ONLY = ["src/lib/security/function-privileges.test.ts"];
+// These need the real auth server and create their own temporary auth users,
+// so they only run with ALLOW_LIVE_DB_TESTS=1. Neither touches commerce rows.
+const LIVE_WRITE = [
+  "src/lib/admin-password.server.test.ts",
+  "src/lib/security/rest-surface.test.ts",
+];
+
+// The live-write suites need the real auth server, so they only run when the
+// operator opts in. Everything else runs against a throwaway database.
+const optedIntoLive = process.env["ALLOW_LIVE_DB_TESTS"] === "1";
+
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     testTimeout: 60_000,
     hookTimeout: 60_000,
-    // Every suite writes to the same real database, and the fraud rules count
-    // rows per buyer per day, so suites must not overlap.
     fileParallelism: false,
+    projects: [
+      {
+        plugins: [tsconfigPaths()],
+        test: {
+          name: "isolated",
+          include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+          exclude: ["**/node_modules/**", ...LIVE_READ_ONLY, ...LIVE_WRITE],
+          globalSetup: ["src/test/global-setup.ts"],
+          setupFiles: ["src/test/setup-isolated.ts"],
+          testTimeout: 60_000,
+          hookTimeout: 120_000,
+          fileParallelism: false,
+        },
+      },
+      {
+        plugins: [tsconfigPaths()],
+        test: {
+          name: "live-readonly",
+          include: LIVE_READ_ONLY,
+          setupFiles: ["src/test/setup-live-readonly.ts"],
+          testTimeout: 60_000,
+          hookTimeout: 60_000,
+          fileParallelism: false,
+        },
+      },
+      ...(optedIntoLive
+        ? [
+            {
+              plugins: [tsconfigPaths()],
+              test: {
+                name: "live-write",
+                include: LIVE_WRITE,
+                setupFiles: ["src/test/setup-live-write.ts"],
+                testTimeout: 60_000,
+                hookTimeout: 60_000,
+                fileParallelism: false,
+              },
+            },
+          ]
+        : []),
+    ],
   },
 });

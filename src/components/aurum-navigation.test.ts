@@ -10,7 +10,7 @@ const panelScroll = readFileSync(new URL("../lib/aurum/use-nearest-panel-scroll.
 
 describe("AURUM navigation", () => {
   it("places AURUM immediately before Learn in the shared navigation", () => {
-    expect(chrome).toContain('["AURUM", "/aurum"],\n  ["Learn", "/learn"]');
+    expect(chrome).toContain('["Aurum", "/aurum"],\n  ["Learn", "/learn"]');
     expect(chrome).toContain('activeOptions={{ exact: false }}');
   });
 
