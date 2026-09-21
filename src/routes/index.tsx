@@ -13,6 +13,9 @@ import introPhoneScreen from "@/assets/home/phone-screen-intro-priced.png.asset.
 import homePhoneScreen from "@/assets/home/phone-screen-home-full.png.asset.json";
 import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview.png.asset.json";
 import goldPriceBackground from "@/assets/home/gold-price-background.png.asset.json";
+import giftWeddings from "@/assets/home/gift-tile-weddings.png.asset.json";
+import giftNewArrivals from "@/assets/home/gift-tile-new-arrivals.png.asset.json";
+import giftFestivals from "@/assets/home/gift-tile-festivals.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -165,8 +168,48 @@ const HOW_IT_WORKS_STEPS = [
   },
 ] as const;
 
+const GIFT_TILES = [
+  {
+    image: giftWeddings.url,
+    alt: "A couple's hands with a gold coin at a wedding",
+    title: "Weddings",
+    body: "A coin for the couple, kept in their name for the years ahead.",
+  },
+  {
+    image: giftNewArrivals.url,
+    alt: "A newborn's hand resting on a parent's palm",
+    title: "New arrivals",
+    body: "Start a holding on the day they arrive.",
+  },
+  {
+    image: giftFestivals.url,
+    alt: "Festival lamps lit beside gold coins",
+    title: "Festivals",
+    body: "Akshaya Tritiya, Diwali, Lunar New Year and more.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
+}
+
+function GiftTile({
+  tile,
+  className,
+}: {
+  tile: (typeof GIFT_TILES)[number];
+  className?: string;
+}) {
+  return (
+    <figure className={className ? `home-gift-tile ${className}` : "home-gift-tile"}>
+      <img src={tile.image} alt={tile.alt} loading="lazy" className="home-gift-tile-image" />
+      <span className="home-gift-tile-scrim" aria-hidden="true" />
+      <figcaption className="home-gift-tile-caption">
+        <p className="home-gift-tile-title">{tile.title}</p>
+        <p className="home-gift-tile-body">{tile.body}</p>
+      </figcaption>
+    </figure>
+  );
 }
 
 function PhoneMockup({ screen, className }: { screen: string; className?: string }) {
