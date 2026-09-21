@@ -18,6 +18,7 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import bandGold from "@/assets/learn-hero-poster.jpg.asset.json";
 import learnHeroVideo from "@/assets/learn-hero-intro.mp4.asset.json";
+import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
 import confidenceGoldBar from "@/assets/knowledge-confidence-gold-bar.png.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
@@ -97,9 +98,10 @@ function KnowledgeCenterPage() {
         title={<>Gold.<span>Start with clarity.</span></>}
         body={<>It's famous for being a <em>'safe haven'</em> investment thanks to years of strong performance in both good and bad economic times.<br />Discover how investing in gold today could be the first step on your financial journey.</>}
         actions={<GoldButton href="#learn-introduction" variant="video">Watch the introduction</GoldButton>}
-        imageSrc={bandGold}
+        imageSrc={bandGold.url}
         imageAlt="Macro detail of polished physical gold bars"
         imageVariant="learn"
+        videoSrc={learnHeroVideo.url}
         media={<button id="learn-introduction" type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>}
       />
 
