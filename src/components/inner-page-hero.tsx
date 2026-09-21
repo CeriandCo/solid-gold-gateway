@@ -58,7 +58,6 @@ export function InnerPageHero({
         <video
           ref={videoRef}
           className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
-          src={videoSrc}
           poster={imageSrc}
           autoPlay
           muted
@@ -66,7 +65,10 @@ export function InnerPageHero({
           playsInline
           preload="metadata"
           aria-hidden="true"
-        />
+        >
+          {videoFallbackSrc ? <source src={videoFallbackSrc} type="video/webm" /> : null}
+          <source src={videoSrc} type="video/mp4" />
+        </video>
       ) : (
         <img
           className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
