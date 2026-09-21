@@ -55,7 +55,7 @@ export const STD = "site-container";
 
 export const siteNav = [
   ["Buy Gold", "/precious-metal"],
-  ["Fractional Gold", "/fractional-gold"],
+  ["Buy Fractional", "/fractional-gold"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
