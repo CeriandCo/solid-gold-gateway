@@ -12,7 +12,16 @@ export function IntercomMessenger() {
     let cancelled = false;
     import("@intercom/messenger-js-sdk")
       .then((mod) => {
-        if (!cancelled) mod.default({ app_id: INTERCOM_APP_ID });
+        // The SDK ships as CommonJS; bundlers can hand the default export
+        // back as a namespace object, so resolve the function both ways.
+        const init = typeof mod.default === "function"
+          ? mod.default
+          : (mod.default as { Intercom?: unknown } | undefined)?.Intercom;
+        if (typeof init === "function" && !cancelled) {
+          (init as (props: { app_id: string }) => void)({ app_id: INTERCOM_APP_ID });
+        } else if (!cancelled) {
+          console.warn("Intercom SDK loaded but no init function was found");
+        }
       })
       .catch((err) => {
         console.warn("Intercom failed to load:", err);
