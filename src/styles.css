@@ -6292,7 +6292,8 @@ footer.site-footer a:focus-visible {
 }
 
 .home-gift-column .home-gift-tile {
-  flex: 1;
+  flex: none;
+  height: 272px;
 }
 
 .home-gift-tile-tall {
