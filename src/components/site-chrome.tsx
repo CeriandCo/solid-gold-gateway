@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
-import { Fragment, useState } from "react";
-import { ArrowRight, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronDown, CirclePlay, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
