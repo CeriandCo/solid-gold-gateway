@@ -197,26 +197,18 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
             className="hidden flex-1 items-center justify-center lg:flex lg:gap-2 xl:gap-3 min-[1440px]:gap-8"
             aria-label="Primary navigation"
           >
-            {siteNav.map(([label, to]) => (
-              <Link
-                key={label}
-                to={to}
-                activeOptions={{ exact: false }}
-                className="relative flex h-[44px] items-center whitespace-nowrap font-sans text-[13px] font-medium text-warm-white/90 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gold after:transition-[width] after:duration-300 hover:text-gold xl:text-[14px] [&.active]:text-gold [&.active]:after:w-[46px]"
-              >
-                {label}
-              </Link>
+            {NAV_PRIMARY.map(([label, to]) => (
+              <HeaderLink key={label} label={label} to={to} />
+            ))}
+            <span aria-hidden="true" className="h-5 w-px shrink-0 bg-warm-white/15" />
+            {NAV_SECONDARY.map(([label, to]) => (
+              <HeaderLink key={label} label={label} to={to} muted />
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
             <Link
               to="/early-access"
-              className={cn(
-                "hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] font-sans text-[12px] font-semibold leading-none transition-all duration-300 lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6",
-                variant === "overlay"
-                  ? "border border-gold bg-gradient-to-b from-gold-soft to-gold text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                  : "border border-gold/55 bg-transparent text-gold hover:border-gold hover:bg-gold/10",
-              )}
+              className="hidden h-[43px] items-center justify-center whitespace-nowrap rounded-[4px] border border-gold bg-gradient-to-b from-gold-soft to-gold font-sans text-[12px] font-semibold leading-none text-forest-deep shadow-[0_2px_10px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-px hover:from-gold hover:to-gold-dark hover:shadow-[0_4px_14px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold lg:inline-flex lg:px-4 xl:px-5 xl:text-[13px] min-[1440px]:px-6"
             >
               Get Early Access
             </Link>
