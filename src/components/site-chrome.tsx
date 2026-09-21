@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, CirclePlay, Facebook, Linkedin, Menu, Twitter, X, Youtube } from "lucide-react";
+import { ArrowRight, ChevronDown, CirclePlay, Facebook, Instagram, Linkedin, Menu, Twitter, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
@@ -396,10 +396,10 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
 ];
 
 const socialIcons = [
-  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure" },
-  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/sqootpure" },
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61586363577228" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/sqootpure/" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/sqootpure" },
-  { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@sqootpure" },
+  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure" },
 ];
 
 /**

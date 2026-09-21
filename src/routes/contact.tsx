@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import logoImage from "@/assets/sqoot-pure-logo.png";
 
 export const Route = createFileRoute("/contact")({
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact SQOOT Pure: email hello@sqoot.us, find us in Sugar Land, TX, or follow us on X, Facebook, LinkedIn and YouTube.",
+          "Contact SQOOT Pure: email hello@sqoot.us, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
       },
       { property: "og:title", content: "Get In Touch — SQOOT Pure" },
       {
@@ -51,10 +51,10 @@ const contactChannels = [
 ];
 
 const socialLinks = [
-  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure", handle: "x/sqootpure" },
-  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/sqootpure", handle: "facebook/sqootpure" },
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61586363577228", handle: "facebook" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/sqootpure/", handle: "instagram/sqootpure" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/sqootpure", handle: "linkedin/sqootpure" },
-  { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@sqootpure", handle: "youtube/sqootpure" },
+  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure", handle: "x/sqootpure" },
 ];
 
 function ContactPage() {
