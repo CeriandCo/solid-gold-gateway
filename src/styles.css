@@ -815,15 +815,15 @@
 .home-app-phone-left {
   z-index: 1;
   top: 168.5px;
-  left: 42px;
-  transform: scale(1.388) rotate(-6deg);
+  left: 56px;
+  transform: scale(1.30) rotate(-6deg);
 }
 
 .home-app-phone-right {
   z-index: 1;
   top: 168.5px;
-  left: 375px;
-  transform: scale(1.388) rotate(6deg);
+  left: 361px;
+  transform: scale(1.30) rotate(6deg);
 }
 
 .home-app-phone-center {
