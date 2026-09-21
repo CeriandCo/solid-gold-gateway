@@ -286,8 +286,59 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="app" className="bg-forest-black">
-          <SectionContainer />
+        <section id="app" className="bg-forest-black" aria-labelledby="app-heading">
+          <div className="home-app">
+            <div className="home-app-head">
+              <p className="home-app-eyebrow">THE SQOOT PURE APP</p>
+              <h2 id="app-heading" className="home-app-title">
+                All of your gold, <em>in your pocket.</em>
+              </h2>
+              <p className="home-app-body">
+                Buy, store, gift, deliver and sell back — every step priced in the open and confirmed with Face ID.
+              </p>
+            </div>
+
+            <div className="home-app-showcase">
+              <ul className="home-app-features home-app-features-left">
+                {APP_FEATURES_LEFT.map((feature) => (
+                  <li key={feature.title}>
+                    <span className="home-app-feature-rule" aria-hidden="true" />
+                    <h3>{feature.title}</h3>
+                    <p>{feature.body}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="home-app-stage">
+                <span className="home-app-glow" aria-hidden="true" />
+                <PhoneMockup screen={introPhoneScreen.url} className="home-app-phone home-app-phone-left" />
+                <PhoneMockup screen={giftPhoneScreen.url} className="home-app-phone home-app-phone-right" />
+                <PhoneMockup screen={homePhoneScreen.url} className="home-app-phone home-app-phone-center" />
+              </div>
+
+              <ul className="home-app-features home-app-features-right">
+                {APP_FEATURES_RIGHT.map((feature) => (
+                  <li key={feature.title}>
+                    <span className="home-app-feature-rule" aria-hidden="true" />
+                    <h3>{feature.title}</h3>
+                    <p>{feature.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <CtaRow className="home-app-ctas">
+              <GoldButton to="/early-access">Join the waitlist</GoldButton>
+              <div className="home-hero-stores" aria-label="Mobile apps coming soon">
+                {(["App Store", "Google Play"] as const).map((store) => (
+                  <div key={store} className="home-hero-store-badge">
+                    <span>Coming soon on</span>
+                    <strong>{store}</strong>
+                  </div>
+                ))}
+              </div>
+            </CtaRow>
+          </div>
         </section>
         <section id="how-it-works" className={`bg-cream-2 ${STANDARD_SECTION}`}>
           <SectionContainer />
