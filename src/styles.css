@@ -7162,13 +7162,16 @@ footer.site-footer a:focus-visible {
   }
 
   .home-final-cta-stage {
-    width: 520px;
-    height: 600px;
-    margin-block: -84px -126px;
-    margin-inline: calc((100% - 520px) / 2);
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 544.8px;
+    margin-top: -276px;
+    margin-bottom: -83.5px;
+    margin-inline: calc((100% - 544.8px) / 2);
     align-self: center;
     transform: scale(0.56);
-    transform-origin: center center;
+    transform-origin: 50% 496px;
   }
 }
 
