@@ -11,6 +11,9 @@ type InnerPageHeroProps = {
   note?: ReactNode;
   imageSrc: string;
   imageAlt: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageLoading?: "eager" | "lazy";
   imageVariant?: "standard" | "fractional" | "gifting" | "trust" | "learn" | "about" | "pricing";
   videoSrc?: string;
   /** Extra <source> entries (e.g. a WebM fallback) rendered before videoSrc. */
@@ -29,6 +32,9 @@ export function InnerPageHero({
   note,
   imageSrc,
   imageAlt,
+  imageWidth,
+  imageHeight,
+  imageLoading,
   imageVariant = "standard",
   videoSrc,
   videoFallbackSrc,
@@ -74,7 +80,11 @@ export function InnerPageHero({
           className={cn("inner-page-hero-image", `inner-page-hero-image--${imageVariant}`)}
           src={imageSrc}
           alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          loading={imageLoading}
           fetchPriority="high"
+          decoding="async"
         />
       )}
       {media}

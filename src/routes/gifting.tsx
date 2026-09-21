@@ -32,7 +32,7 @@ import {
 } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import heroGift from "@/assets/gifting-target-hero.jpg";
+import heroGift from "@/assets/gifting-hero-v2.png.asset.json";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
 import arrivalsPhoto from "@/assets/occasion-new-arrivals.jpg";
 import birthdayPhoto from "@/assets/occasion-birthdays.jpg";
@@ -42,7 +42,7 @@ import familyPhoto from "@/assets/occasion-family.jpg";
 import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
 import sqootLogo from "@/assets/sqoot-pure-logo.png";
 import sqootMandala from "@/assets/sqoot-mandala.png";
-import closingGift from "@/assets/gifting-closing-banner.jpg";
+import closingGift from "@/assets/gifting-closing-v2.png.asset.json";
 
 export const Route = createFileRoute("/gifting")({
   loader: () => getGiftCardOffering(),
@@ -297,8 +297,11 @@ function GiftingNewPage() {
         title={<>Celebrate love<span>with a gift</span><span>that lasts.</span></>}
         body={<>Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious moments.</>}
         actions={<CtaRow><GoldButton href="#gift-card">Buy a Gift Card</GoldButton><GoldButton href="#occasions" variant="secondary">Explore Gold Gifts</GoldButton></CtaRow>}
-        imageSrc={heroGift}
-        imageAlt="Forest green SQOOT Pure gift box with bronze ribbon and gold bar"
+        imageSrc={heroGift.url}
+        imageAlt="Dark green gift box tied with bronze ribbon beside a SQOOT Pure 10g gold bar"
+        imageWidth={1920}
+        imageHeight={720}
+        imageLoading="eager"
         imageVariant="gifting"
       />
 
@@ -473,11 +476,12 @@ function GiftingNewPage() {
 
       <section id="closing-gift" className="gift-closing" data-reveal>
         <img
-          src={closingGift}
-          alt="Forest green gift box, bronze ribbon and gold bar beside an olive sprig"
-          width={1920}
-          height={800}
+          src={closingGift.url}
+          alt="SQOOT Pure 10g gold bar in an ivory presentation box with forest green velvet and olive branches"
+          width={1942}
+          height={809}
           loading="lazy"
+          decoding="async"
         />
         <div className="gift-closing-shade" />
         <div className="gift-closing-inner">
@@ -511,6 +515,7 @@ const giftingStyles = `
 }
 html:has(.gifting-new) { scroll-behavior: smooth; }
 .gifting-new h1,.gifting-new h2,.gifting-new h3 { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
+.gifting-new .inner-page-hero-image--gifting { object-position: 50% 50%; }
 .gift-hero { position: relative; height: clamp(384px,37.5vw,960px); overflow: hidden; color: var(--cream-text); background: var(--forest-950); }
 .gift-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: giftHeroImage 1.1s cubic-bezier(.22,1,.36,1) both; }
 .gift-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.94) 27%,rgba(8,34,24,.70) 42%,rgba(8,34,24,.20) 61%,rgba(8,34,24,0) 76%); }
@@ -596,6 +601,7 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
 @media (min-width: 1025px) {
 }
 @media (max-width: 1023px) {
+  .gifting-new .inner-page-hero-image--gifting { object-position: 63% 50%; }
   .gift-hero { height: 620px; }.gift-hero > img { object-position: 60% center; }.gift-hero-copy { width: 52%; margin-left: 0; }.gift-hero h1 { font-size: clamp(52px,6vw,58px); }
   .gift-benefits { height: auto; }.gift-benefits-inner { width: 100%; grid-template-columns: repeat(3,1fr); padding: 12px 28px; }.gift-benefit { height: 106px; border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(3n+1) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 0; }
   .gift-occasions { height: auto; padding-block: 28px; }.gift-occasion-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }.gift-occasion-card { height: 250px; }.gift-view-all { margin-top: 20px; }
@@ -604,13 +610,14 @@ html:has(.gifting-new) { scroll-behavior: smooth; }
   .gift-closing { height: 300px; }.gift-closing-inner > div { margin-left: 0; }
 }
 @media (max-width: 767px) {
+  .gifting-new .inner-page-hero-image--gifting { object-position: 80% 100%; }
   .gifting-new { --page-padding: 20px; }
   .gift-hero { height: 700px; }.gift-hero > img { object-position: 66% bottom; }.gift-hero-shade { background: linear-gradient(180deg,rgba(8,34,24,.98) 0%,rgba(8,34,24,.91) 45%,rgba(8,34,24,.42) 68%,rgba(8,34,24,.08) 100%); }.gift-hero-inner { align-items: flex-start; padding-top: 55px; }.gift-hero-copy { width: 100%; max-width: 390px; }.gift-hero h1 { font-size: clamp(48px,13vw,52px); }.gift-hero-body { max-width: 320px; }.gift-hero-actions { flex-direction: column; width: min(100%,330px); }.gift-button { min-height: 48px; }
   .gift-benefits-inner { grid-template-columns: repeat(2,1fr); padding: 12px 14px; }.gift-benefit { height: 122px; }.gift-benefit:nth-child(3n+1) { border-left: 1px solid var(--light-divider); }.gift-benefit:nth-child(odd) { border-left: 0; }.gift-benefit:nth-child(n+4) { border-bottom: 1px solid var(--light-divider); }.gift-benefit:nth-child(n+5) { border-bottom: 0; }
   .gift-occasions { padding-inline: 0; }.gift-occasions header { padding-inline: 20px; }.gift-occasions h2 { font-size: 34px; }.gift-occasion-grid { width: 100%; display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 18px; scroll-snap-type: x mandatory; scrollbar-width: none; }.gift-occasion-grid::-webkit-scrollbar { display:none; }.gift-occasion-card { flex: 0 0 82%; height: 330px; scroll-snap-align: start; }.gift-view-all { margin-top: 2px; }
   .gift-card-section { display: flex; flex-direction: column; }.gift-card-visual { order: -1; min-height: 360px; padding: 34px 28px; }.gift-card-copy { padding: 42px 20px 38px; }.gift-card-copy-inner { width: min(100%,520px); margin: auto; }.gift-card-copy h2 { font-size: 38px; }.gift-card-intro { font-size: 14px; }.gift-amount-label { height: 64px; }.gift-amount-price { font-size: 24px; }.gift-card-checkout { width: 100%; min-height: 54px; }.gift-card-security { justify-content: center; }.gift-card-message { text-align: center; }.gift-card-object-copy > span { min-width: 120px; font-size: 34px; }
   .gift-trust-inner { grid-template-columns: repeat(2,1fr); padding: 14px; }.gift-trust article { height: 125px; }.gift-trust article:nth-child(odd) { border-left: 0; }.gift-trust article:nth-child(4) { border-left: 1px solid rgba(201,168,76,.35); }.gift-trust article:last-child { grid-column: 1/-1; }
-  .gift-closing { height: 440px; }.gift-closing > img { object-position: 66% bottom; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
+  .gift-closing { height: 440px; }.gift-closing > img { object-position: 68% 100%; }.gift-closing-shade { background: linear-gradient(180deg,rgba(63,31,12,.94) 0%,rgba(63,31,12,.78) 46%,rgba(25,39,26,.22) 73%,rgba(15,31,22,.04) 100%); }.gift-closing-inner { align-items: flex-start; padding-top: 44px; }.gift-closing-inner > div { width: min(100%,340px); }.gift-closing h2 { font-size: 40px; }.gift-closing .gift-button { min-height: 48px; }
 }
 @media (max-width: 359px) { .gift-amount-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (hover:none),(pointer:coarse) { .gift-card-object { --card-tilt-x: 0deg; --card-tilt-y: 0deg; transform:perspective(1100px) rotateZ(-1.3deg); will-change:auto; } }
