@@ -366,10 +366,16 @@
     width: 250px;
   }
 
+  /* Right-anchored so the card always ends at the container's content edge. */
   .home-hero-spot-card {
-    top: 600px;
-    left: 70%;
-    width: 190px;
+    top: 640px;
+    left: auto;
+    right: var(--gutter);
+    width: clamp(210px, 26vw, 217px);
+  }
+
+  .home-hero-spot-card strong {
+    font-size: 30px;
   }
 }
 
@@ -5241,6 +5247,25 @@ footer.site-footer a:focus-visible {
 
   .home-proof li + li {
     border-left: none;
+  }
+
+  .home-proof li:nth-child(n + 3) {
+    border-top: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+  }
+}
+
+/* Tablet: same 2-column grid as mobile, but with the desktop's roomier padding. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-proof li + li {
+    border-left: none;
+  }
+
+  .home-proof li:nth-child(2n) {
+    border-left: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
   }
 
   .home-proof li:nth-child(n + 3) {
