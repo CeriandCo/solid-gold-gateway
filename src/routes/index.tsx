@@ -232,17 +232,7 @@ function Index() {
                       loading="lazy"
                       className="home-own-card-background"
                     />
-                    <div className="home-own-phone" aria-hidden="true">
-                      <span className="home-own-phone-action" />
-                      <span className="home-own-phone-volume home-own-phone-volume-top" />
-                      <span className="home-own-phone-volume home-own-phone-volume-bottom" />
-                      <span className="home-own-phone-side" />
-                      <div className="home-own-phone-screen">
-                        <img src={way.screen} alt="" width={390} height={844} loading="lazy" />
-                        <span className="home-own-phone-island" />
-                        <span className="home-own-phone-glass" />
-                      </div>
-                    </div>
+                    <PhoneMockup screen={way.screen} />
                   </div>
                   <div className="home-own-card-copy">
                     <p className="home-own-card-number" aria-hidden="true">{way.number}</p>
