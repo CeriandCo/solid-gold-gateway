@@ -27,9 +27,15 @@ describe("AURUM navigation", () => {
   });
 
   it("keeps in-place controls out of router and document scrolling", () => {
-    expect(route).not.toContain("useNavigate");
-    expect(route).not.toContain("scrollIntoView");
+    // The range control records its state in the URL, so a router navigation is
+    // allowed — but only one that cannot move the viewport.
+    expect(route).not.toContain("history.replaceState");
+    expect(route).toContain("resetScroll: false");
+    expect(route).toContain("hashScrollIntoView: false");
+    expect(route).toContain("replace: true");
+    expect(route).not.toContain("scrollIntoView(");
     expect(price).not.toContain("scrollIntoView");
+
     expect(price).toContain("row.scrollLeft");
     expect(price).toContain("row.scrollWidth > row.clientWidth");
     expect(panelScroll.match(/scrollIntoView/g)).toHaveLength(1);
