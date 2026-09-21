@@ -457,6 +457,237 @@
 .cta-row > * {
   width: 100%;
 }
+
+/* Homepage v2 — three ownership paths */
+.home-three-ways {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.home-three-ways-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 56px;
+}
+
+.home-three-ways-intro {
+  display: flex;
+  max-width: 760px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-three-ways-eyebrow {
+  color: var(--gold-dark);
+  font: 600 12px/1.2 var(--font-sans);
+  letter-spacing: 0.22em;
+}
+
+.home-three-ways-intro h2 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.home-three-ways-copy {
+  max-width: 640px;
+  color: var(--muted-ink);
+  font: 400 18px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-three-ways-link {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-dark);
+  font: 600 15px/1.4 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-three-ways-link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 180ms var(--ease-standard);
+}
+
+.home-three-ways-link:hover svg {
+  transform: translateX(3px);
+}
+
+.home-three-ways-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 4px;
+}
+
+.home-three-ways-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.home-own-card {
+  display: flex;
+  min-width: 389px;
+  flex: 1 1 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--beige);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.home-own-card-visual {
+  position: relative;
+  height: 420px;
+  flex: none;
+  overflow: hidden;
+}
+
+.home-own-card-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-own-phone {
+  position: absolute;
+  top: 132px;
+  left: 47.3%;
+  width: 183px;
+  height: 379px;
+  border: 2px solid color-mix(in oklab, var(--white) 58%, var(--ink));
+  border-radius: 29px;
+  background: color-mix(in oklab, var(--ink) 88%, var(--white));
+  box-shadow:
+    0 3px 6px color-mix(in oklab, var(--ink) 25%, transparent),
+    0 15px 31px color-mix(in oklab, var(--ink) 35%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--white) 28%, transparent);
+}
+
+.home-own-phone-screen {
+  position: absolute;
+  inset: 5px;
+  overflow: hidden;
+  border-radius: 23px;
+  background: var(--white);
+}
+
+.home-own-phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-own-phone-island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 52px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.home-own-phone-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, color-mix(in oklab, var(--white) 12%, transparent), transparent 34%);
+  pointer-events: none;
+}
+
+.home-own-phone-action,
+.home-own-phone-volume,
+.home-own-phone-side {
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--ink) 72%, var(--white));
+}
+
+.home-own-phone-action {
+  top: 58px;
+  left: -4px;
+  height: 18px;
+}
+
+.home-own-phone-volume {
+  left: -4px;
+  height: 34px;
+}
+
+.home-own-phone-volume-top {
+  top: 89px;
+}
+
+.home-own-phone-volume-bottom {
+  top: 132px;
+}
+
+.home-own-phone-side {
+  top: 100px;
+  right: -4px;
+  height: 58px;
+}
+
+.home-own-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+}
+
+.home-own-card-number {
+  color: var(--gold-dark);
+  font: 500 12px/1.2 var(--font-money);
+  letter-spacing: 0.08em;
+}
+
+.home-own-card-copy h3 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.home-own-card-copy > p:not(.home-own-card-number) {
+  color: var(--muted-ink);
+  font: 400 15px/1.6 var(--font-sans);
+  letter-spacing: 0;
+}
+
+.home-own-card-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-three-ways-link svg {
+    transition: none;
+  }
+
+  .home-three-ways-link:hover svg {
+    transform: none;
+  }
+}
+
 @media (max-width: 767px) {
   .cta-row {
     display: grid;

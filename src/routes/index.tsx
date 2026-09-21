@@ -1,7 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
 import heroPhone from "@/assets/home/phone-hero-vault-holdings.png.asset.json";
+import coinsCardBackground from "@/assets/home/card-bg-coins-delivered-home.png.asset.json";
+import weightCardBackground from "@/assets/home/card-bg-buy-by-weight.png.asset.json";
+import vaultCardBackground from "@/assets/home/card-bg-keep-it-in-the-vault.png.asset.json";
+import coinsPhoneScreen from "@/assets/home/phone-screen-coins-delivered-home.png.asset.json";
+import weightPhoneScreen from "@/assets/home/phone-screen-buy-by-weight.png.asset.json";
+import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,6 +62,45 @@ const PROOF_ITEMS = [
     number: "04",
     title: "Deliver or sell back",
     line: "Coins delivered to your door — sell back what you hold in the vault.",
+  },
+] as const;
+
+const OWNERSHIP_WAYS = [
+  {
+    number: "01",
+    title: "Coins, delivered home",
+    description:
+      "Gold Eagles, Britannias and Sovereigns, shipped insured with signature on delivery.",
+    linkLabel: "Browse coins",
+    to: "/precious-metal",
+    background: coinsCardBackground.url,
+    backgroundAlt: "Gold coins presented in a premium SQOOT Pure gift box",
+    screen: coinsPhoneScreen.url,
+    screenAlt: "SQOOT Pure app coin collection screen",
+  },
+  {
+    number: "02",
+    title: "Buy by weight",
+    description:
+      "Own from 1/10 oz. Enter an amount in dollars or ounces — your price holds for 90 seconds at checkout.",
+    linkLabel: "How fractional works",
+    to: "/fractional-gold",
+    background: weightCardBackground.url,
+    backgroundAlt: "Gold bars arranged by weight on cream linen",
+    screen: weightPhoneScreen.url,
+    screenAlt: "SQOOT Pure app buy-by-weight screen",
+  },
+  {
+    number: "03",
+    title: "Keep it in the vault",
+    description:
+      "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request.",
+    linkLabel: "See the vault",
+    to: "/vault",
+    background: vaultCardBackground.url,
+    backgroundAlt: "Gold bars and coins stored in a secure vault",
+    screen: vaultPhoneScreen.url,
+    screenAlt: "SQOOT Pure app vaulted holdings screen",
   },
 ] as const;
 
@@ -155,7 +201,62 @@ function Index() {
           </div>
         </section>
         <section id="three-ways" className={`bg-cream ${STANDARD_SECTION}`}>
-          <SectionContainer />
+          <div className="home-three-ways site-container">
+            <div className="home-three-ways-head">
+              <div className="home-three-ways-intro">
+                <p className="home-three-ways-eyebrow">THREE WAYS TO OWN</p>
+                <h2>
+                  Start with a coin,
+                  <br />
+                  or buy gold by weight.
+                </h2>
+                <p className="home-three-ways-copy">
+                  Pick the way that suits you today. Switch any time — everything you own sits in one account, in your name.
+                </p>
+              </div>
+              <Link to="/pricing" hash="pricing-compare" className="home-three-ways-link">
+                <span>Compare the three</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="home-three-ways-cards">
+              {OWNERSHIP_WAYS.map((way) => (
+                <article key={way.number} className="home-own-card">
+                  <div className="home-own-card-visual">
+                    <img
+                      src={way.background}
+                      alt={way.backgroundAlt}
+                      width={1205}
+                      height={1305}
+                      loading="lazy"
+                      className="home-own-card-background"
+                    />
+                    <div className="home-own-phone" aria-hidden="true">
+                      <span className="home-own-phone-action" />
+                      <span className="home-own-phone-volume home-own-phone-volume-top" />
+                      <span className="home-own-phone-volume home-own-phone-volume-bottom" />
+                      <span className="home-own-phone-side" />
+                      <div className="home-own-phone-screen">
+                        <img src={way.screen} alt="" width={390} height={844} loading="lazy" />
+                        <span className="home-own-phone-island" />
+                        <span className="home-own-phone-glass" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="home-own-card-copy">
+                    <p className="home-own-card-number">{way.number}</p>
+                    <h3>{way.title}</h3>
+                    <p>{way.description}</p>
+                    <Link to={way.to} className="home-three-ways-link home-own-card-link">
+                      <span>{way.linkLabel}</span>
+                      <ArrowRight aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
         <section id="app" className="bg-forest-black">
           <SectionContainer />
