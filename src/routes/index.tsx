@@ -9,6 +9,9 @@ import vaultCardBackground from "@/assets/home/card-bg-keep-it-in-the-vault.png.
 import coinsPhoneScreen from "@/assets/home/phone-screen-coins-delivered-home.png.asset.json";
 import weightPhoneScreen from "@/assets/home/phone-screen-buy-by-weight.png.asset.json";
 import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault.png.asset.json";
+import introPhoneScreen from "@/assets/home/phone-screen-intro-priced.png.asset.json";
+import homePhoneScreen from "@/assets/home/phone-screen-home-full.png.asset.json";
+import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
