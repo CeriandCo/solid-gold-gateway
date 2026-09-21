@@ -104,8 +104,46 @@ const OWNERSHIP_WAYS = [
   },
 ] as const;
 
+const APP_FEATURES_LEFT = [
+  {
+    title: "Priced live",
+    body: "Spot from global markets plus a premium you see before you confirm — never after.",
+  },
+  {
+    title: "Held in your name",
+    body: "Allocated metal with serial-level records and a statement every month.",
+  },
+] as const;
+
+const APP_FEATURES_RIGHT = [
+  {
+    title: "Deliver or sell back",
+    body: "Ship coins from the vault to your door, or lock a price and sell back in two taps.",
+  },
+  {
+    title: "Gift in a minute",
+    body: "Send a coin or a gram with a note. They see the gift, not the price.",
+  },
+] as const;
+
 function SectionContainer() {
   return <div className="site-container" />;
+}
+
+function PhoneMockup({ screen, className }: { screen: string; className?: string }) {
+  return (
+    <div className={className ? `home-own-phone ${className}` : "home-own-phone"} aria-hidden="true">
+      <span className="home-own-phone-action" />
+      <span className="home-own-phone-volume home-own-phone-volume-top" />
+      <span className="home-own-phone-volume home-own-phone-volume-bottom" />
+      <span className="home-own-phone-side" />
+      <div className="home-own-phone-screen">
+        <img src={screen} alt="" width={390} height={844} loading="lazy" />
+        <span className="home-own-phone-island" />
+        <span className="home-own-phone-glass" />
+      </div>
+    </div>
+  );
 }
 
 function Index() {
