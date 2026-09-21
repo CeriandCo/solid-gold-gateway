@@ -688,6 +688,99 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  #three-ways {
+    padding-block: 64px;
+  }
+
+  .home-three-ways-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .home-three-ways-intro {
+    max-width: 680px;
+  }
+
+  .home-three-ways-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+    overflow: visible;
+  }
+
+  .home-own-card {
+    min-width: 0;
+  }
+
+  .home-own-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .home-own-phone {
+    left: auto;
+    right: 20px;
+    width: 168px;
+    height: 348px;
+  }
+
+  .home-own-card:last-child .home-own-phone {
+    right: 12%;
+  }
+}
+
+@media (max-width: 767px) {
+  #three-ways {
+    padding-block: 72px;
+  }
+
+  .home-three-ways {
+    gap: 40px;
+  }
+
+  .home-three-ways-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .home-three-ways-intro h2 {
+    font-size: 40px;
+  }
+
+  .home-three-ways-copy {
+    font-size: 16px;
+  }
+
+  .home-three-ways-cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    overflow: visible;
+  }
+
+  .home-own-card {
+    min-width: 0;
+  }
+
+  .home-own-card-visual {
+    height: 360px;
+  }
+
+  .home-own-phone {
+    top: 112px;
+    left: auto;
+    right: 20px;
+    width: 160px;
+    height: 332px;
+  }
+
+  .home-own-card-copy {
+    padding: 32px;
+  }
+}
+
 @media (max-width: 767px) {
   .cta-row {
     display: grid;
