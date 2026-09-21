@@ -18,6 +18,7 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import bandGold from "@/assets/learn-hero-poster.jpg.asset.json";
 import learnHeroVideo from "@/assets/learn-hero-intro.mp4.asset.json";
+import learnHeroVideoWebm from "@/assets/learn-hero-intro.webm.asset.json";
 import laptop from "@/assets/walkthrough-laptop.jpg";
 import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
 import confidenceGoldBar from "@/assets/knowledge-confidence-gold-bar.png.asset.json";
