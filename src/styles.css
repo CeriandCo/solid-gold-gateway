@@ -6420,11 +6420,12 @@ footer.site-footer a:focus-visible {
   isolation: isolate;
   overflow: hidden;
   width: 100%;
+  padding-block: 120px;
 }
 
 .home-trust-background {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -6551,6 +6552,10 @@ footer.site-footer a:focus-visible {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .home-trust {
+    padding-block: 80px;
+  }
+
   .home-trust-inner {
     gap: 40px;
   }
@@ -6569,6 +6574,10 @@ footer.site-footer a:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .home-trust {
+    padding-block: 72px;
+  }
+
   .home-trust-inner {
     gap: 40px;
   }

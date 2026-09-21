@@ -563,7 +563,7 @@ function Index() {
             </div>
           </div>
         </section>
-        <section id="trust" className={`home-trust ${STANDARD_SECTION}`} aria-labelledby="trust-heading">
+        <section id="trust" className="home-trust" aria-labelledby="trust-heading">
           <img
             src={trustBackground.url}
             alt=""
