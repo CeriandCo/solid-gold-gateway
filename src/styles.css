@@ -6124,6 +6124,7 @@ footer.site-footer a:focus-visible {
   font-weight: 600;
   font-size: 15px;
   color: var(--cream);
+  white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: no-preference) {
