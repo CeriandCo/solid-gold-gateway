@@ -20,21 +20,28 @@ import bandGold from "@/assets/learn-hero-poster.jpg.asset.json";
 import learnHeroVideo from "@/assets/learn-hero-intro.mp4.asset.json";
 import learnHeroVideoWebm from "@/assets/learn-hero-intro.webm.asset.json";
 import laptop from "@/assets/walkthrough-laptop.jpg";
-import phoneHand from "@/assets/knowledge-phone-hand.jpg.asset.json";
-import confidenceGoldBar from "@/assets/knowledge-confidence-gold-bar.png.asset.json";
+import articlePhone from "@/assets/learn-article-phone-v2.png.asset.json";
+import articleGoldBar from "@/assets/learn-article-gold-bar-v2.png.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
 import goldNugget from "@/assets/knowledge-gold-nugget.jpg.asset.json";
 import cinematicGold from "@/assets/knowledge-cinematic-gold.jpg.asset.json";
 import buyingGuide from "@/assets/knowledge-buying-guide.jpg.asset.json";
-import investingBars from "@/assets/knowledge-investing-bars.jpg.asset.json";
+import investingBanner from "@/assets/learn-investing-banner-v2.png.asset.json";
 
 export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
       { title: "Knowledge Center — Gold Education | SQOOT Pure" },
-      { name: "description", content: "Explore clear, trusted education on gold ownership, performance, safety and long-term value from SQOOT Pure." },
+      {
+        name: "description",
+        content:
+          "Explore clear, trusted education on gold ownership, performance, safety and long-term value from SQOOT Pure.",
+      },
       { property: "og:title", content: "Knowledge Center — Gold Education | SQOOT Pure" },
-      { property: "og:description", content: "Clear, trusted education on gold ownership, performance and long-term value." },
+      {
+        property: "og:description",
+        content: "Clear, trusted education on gold ownership, performance and long-term value.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -61,33 +68,75 @@ const benefits = [
 ] as const;
 
 const articles = [
-  { title: "PHYSICAL GOLD VS GOLD ETF", copy: "Understand what you actually own when you buy physical gold versus a gold ETF.", image: phoneHand.url, alt: "A hand holding a phone displaying a gold ownership interface", href: "/learn/physical-gold-vs-gold-etf" },
-  { title: "HOW TO BUY GOLD SAFELY", copy: "What to check before buying physical gold online, from provenance to storage.", image: confidenceGoldBar.url, alt: "A SQOOT Pure fine gold bar on a dark surface", href: "/learn/how-to-buy-gold-safely" },
-  { title: "GIFTING GOLD", copy: "A guide to giving gold for weddings, festivals, and life's milestones.", image: coupleBench.url, alt: "A couple sitting together on a park bench", href: "/learn/gifting-gold-guide" },
+  {
+    title: "PHYSICAL GOLD VS GOLD ETF",
+    copy: "Understand what you actually own when you buy physical gold versus a gold ETF.",
+    image: articlePhone.url,
+    alt: "A hand holding a phone displaying the SQOOT Pure My Vault interface",
+    width: 1536,
+    height: 1024,
+    decoding: "async",
+    href: "/learn/physical-gold-vs-gold-etf",
+  },
+  {
+    title: "HOW TO BUY GOLD SAFELY",
+    copy: "What to check before buying physical gold online, from provenance to storage.",
+    image: articleGoldBar.url,
+    alt: "SQOOT Pure 10g fine gold bar with engraved emblem",
+    width: 1536,
+    height: 1024,
+    decoding: "async",
+    href: "/learn/how-to-buy-gold-safely",
+  },
+  {
+    title: "GIFTING GOLD",
+    copy: "A guide to giving gold for weddings, festivals, and life's milestones.",
+    image: coupleBench.url,
+    alt: "A couple sitting together on a park bench",
+    width: 1408,
+    height: 912,
+    href: "/learn/gifting-gold-guide",
+  },
 ] as const;
 
 const returnPoints = [
-  <>Since 1971, gold's return has been similar to equities and outperformed bonds. <sup>[1]</sup></>,
-  <>In the last 20 years, gold outperformed most major asset classes. <sup>[2]</sup></>,
-  <>In the last 20 years, gold's global investment demand increased by an average of 10% per year. <sup>[3]</sup></>,
-  <>Through its dual nature as a consumer good and investment, gold has historically preserved its value. Unlike fiat currencies, gold cannot be printed, only mined—this helps explain why it has consistently outperformed major fiat currencies. <sup>[4]</sup></>,
+  <>
+    Since 1971, gold's return has been similar to equities and outperformed bonds. <sup>[1]</sup>
+  </>,
+  <>
+    In the last 20 years, gold outperformed most major asset classes. <sup>[2]</sup>
+  </>,
+  <>
+    In the last 20 years, gold's global investment demand increased by an average of 10% per year.{" "}
+    <sup>[3]</sup>
+  </>,
+  <>
+    Through its dual nature as a consumer good and investment, gold has historically preserved its
+    value. Unlike fiat currencies, gold cannot be printed, only mined—this helps explain why it has
+    consistently outperformed major fiat currencies. <sup>[4]</sup>
+  </>,
 ];
 
 const RETURNS: Record<string, [string, number][]> = {
-  '20yr': [
-    ["US Cash", 1.3], ["US Treasuries", 2.1], ["Global stocks", 6.6], ["US stocks", 8.6],
-    ["EM Stocks", 4.1], ["Commodities", 5.0], ["Gold", 10.6],
+  "20yr": [
+    ["US Cash", 1.3],
+    ["US Treasuries", 2.1],
+    ["Global stocks", 6.6],
+    ["US stocks", 8.6],
+    ["EM Stocks", 4.1],
+    ["Commodities", 5.0],
+    ["Gold", 10.6],
   ],
 };
-const PERIODS = ['20yr', '10yr', '5yr', '3yr', '1yr'] as const;
+const PERIODS = ["20yr", "10yr", "5yr", "3yr", "1yr"] as const;
 const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
-
 
 function KnowledgeCenterPage() {
   const rootRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState(0);
   const [period, setPeriod] = useState<string>(AVAILABLE[0]!);
-  const moveBenefit = (direction: number) => setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
+  const moveBenefit = (direction: number) =>
+    setActiveBenefit((current) => (current + direction + benefits.length) % benefits.length);
 
   return (
     <main ref={rootRef} id="top" className="knowledge-center-page">
@@ -96,28 +145,69 @@ function KnowledgeCenterPage() {
       <InnerPageHero
         titleId="learn-hero-title"
         eyebrow="Learn"
-        title={<>Gold.<span>Start with clarity.</span></>}
-        body={<>It's famous for being a <em>'safe haven'</em> investment thanks to years of strong performance in both good and bad economic times.<br />Discover how investing in gold today could be the first step on your financial journey.</>}
-        actions={<GoldButton href="#learn-introduction" variant="video">Watch the introduction</GoldButton>}
+        title={
+          <>
+            Gold.<span>Start with clarity.</span>
+          </>
+        }
+        body={
+          <>
+            It's famous for being a <em>'safe haven'</em> investment thanks to years of strong
+            performance in both good and bad economic times.
+            <br />
+            Discover how investing in gold today could be the first step on your financial journey.
+          </>
+        }
+        actions={
+          <GoldButton href="#learn-introduction" variant="video">
+            Watch the introduction
+          </GoldButton>
+        }
         imageSrc={bandGold.url}
         imageAlt="Macro detail of polished physical gold bars"
         imageVariant="learn"
         videoSrc={learnHeroVideo.url}
         videoFallbackSrc={learnHeroVideoWebm.url}
-        media={<button id="learn-introduction" type="button" className="kc-play" aria-label="Preview the introduction to gold"><Play aria-hidden="true" /></button>}
+        media={
+          <button
+            id="learn-introduction"
+            type="button"
+            className="kc-play"
+            aria-label="Preview the introduction to gold"
+          >
+            <Play aria-hidden="true" />
+          </button>
+        }
       />
 
-      <div className="kc-disclaimer"><div className="kc-container"><a href="#disclaimer"><ShieldCheck aria-hidden="true" />Important Disclaimer: Please Read</a></div></div>
+      <div className="kc-disclaimer">
+        <div className="kc-container">
+          <a href="#disclaimer">
+            <ShieldCheck aria-hidden="true" />
+            Important Disclaimer: Please Read
+          </a>
+        </div>
+      </div>
 
       <section id="benefits" className="kc-section kc-benefits" data-reveal>
         <div className="kc-container kc-benefits-layout">
           <div className="kc-benefits-intro">
             <h2 className="kc-section-title">Discover more of gold's potential benefits</h2>
-            <a href="#articles" className="kc-text-link">Learn about gold's qualities <ArrowRight aria-hidden="true" /></a>
+            <a href="#articles" className="kc-text-link">
+              Learn about gold's qualities <ArrowRight aria-hidden="true" />
+            </a>
             <div className="kc-benefit-controls">
-              <button type="button" onClick={() => moveBenefit(-1)} aria-label="Previous gold benefit"><ArrowLeft /></button>
+              <button
+                type="button"
+                onClick={() => moveBenefit(-1)}
+                aria-label="Previous gold benefit"
+              >
+                <ArrowLeft />
+              </button>
               <span aria-live="polite">{activeBenefit + 1} of 6</span>
-              <button type="button" onClick={() => moveBenefit(1)} aria-label="Next gold benefit"><ArrowRight /></button>
+              <button type="button" onClick={() => moveBenefit(1)} aria-label="Next gold benefit">
+                <ArrowRight />
+              </button>
             </div>
           </div>
           <div className="kc-benefit-grid">
@@ -135,100 +225,301 @@ function KnowledgeCenterPage() {
         <div className="kc-container kc-article-grid">
           {articles.map((article, index) => (
             <article className="kc-article-card" data-reveal key={article.title}>
-              <div className="kc-article-image"><img src={article.image} alt={article.alt} width={1408} height={912} loading="lazy" /></div>
-              <div className="kc-article-copy"><h2>{article.title}</h2><p>{article.copy}</p><Link to={article.href}>Learn More <ArrowRight aria-hidden="true" /></Link></div>
+              <div className="kc-article-image">
+                <img
+                  src={article.image}
+                  alt={article.alt}
+                  width={article.width}
+                  height={article.height}
+                  loading="lazy"
+                  decoding={"decoding" in article ? article.decoding : undefined}
+                />
+              </div>
+              <div className="kc-article-copy">
+                <h2>{article.title}</h2>
+                <p>{article.copy}</p>
+                <Link to={article.href}>
+                  Learn More <ArrowRight aria-hidden="true" />
+                </Link>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="kc-section kc-returns"><div className="kc-container"><div className="kc-returns-panel" data-reveal>
-        <div className="kc-returns-copy">
-          <span className="kc-label">Returns</span>
-          <h2 className="kc-section-title">A proven asset with competitive returns</h2>
-          <ul>{returnPoints.map((point, i) => <li key={i}><span><ShieldCheck aria-hidden="true" /></span><p>{point}</p></li>)}</ul>
-          <a className="kc-dark-link" href="#performance-chart">See More <ArrowRight aria-hidden="true" /></a>
-        </div>
-        <div id="performance-chart" className="kc-chart-panel">
-          {AVAILABLE.length === 1 ? (
-            <p className="kc-chart-period">20-year annualised return</p>
-          ) : (
-            <div className="kc-tabs" role="tablist" aria-label="Gold performance period">
-              {AVAILABLE.map((tab) => (
-                <button key={tab} type="button" role="tab" aria-selected={period === tab} onClick={() => setPeriod(tab)}>{tab}</button>
-              ))}
+      <section className="kc-section kc-returns">
+        <div className="kc-container">
+          <div className="kc-returns-panel" data-reveal>
+            <div className="kc-returns-copy">
+              <span className="kc-label">Returns</span>
+              <h2 className="kc-section-title">A proven asset with competitive returns</h2>
+              <ul>
+                {returnPoints.map((point, i) => (
+                  <li key={i}>
+                    <span>
+                      <ShieldCheck aria-hidden="true" />
+                    </span>
+                    <p>{point}</p>
+                  </li>
+                ))}
+              </ul>
+              <a className="kc-dark-link" href="#performance-chart">
+                See More <ArrowRight aria-hidden="true" />
+              </a>
             </div>
-          )}
-          <div className="kc-chart" role="tabpanel">
-            <h3>CAGR (%)</h3>
-            {(() => {
-              const data = RETURNS[period]!;
-              const values = data.map(([, v]) => v);
-              const rawMax = Math.max(...values);
-              const niceMax = Math.ceil(rawMax / 2) * 2;
-              const min = Math.min(0, ...values);
-              const span = niceMax - min;
-              const zero = Math.max(min, 0);
-              const step = span <= 12 ? 2 : span <= 30 ? 5 : 10;
-              const labels: number[] = [];
-              for (let v = min; v <= niceMax + 1e-9; v += step) {
-                labels.push(Number(v.toFixed(1)));
-              }
-              const gridStep = 100 / (labels.length - 1);
-              return (
-                <>
-                  <div className="kc-bars">
-                    {data.map(([name, value]) => {
-                      const rawW = ((value - zero) / span) * 100;
-                      const isNegative = rawW < 0;
-                      const width = `${Math.abs(rawW).toFixed(3)}%`;
-                      const barStart = `${((0 - min) / span * 100).toFixed(3)}%`;
-                      const iStyle: CSSProperties = { "--bar-width": width } as CSSProperties;
-                      if (isNegative) iStyle.marginLeft = `calc(${barStart} - ${width})`;
-                      return (
-                        <div className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`} key={name}>
-                          <span>{name}</span>
-                          <div style={{ "--bar-start": barStart, "--bar-width": width, "--grid-step": `${gridStep}%` } as CSSProperties}>
-                            <i style={iStyle} />
-                            <b>{value.toFixed(1)}</b>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <table className="kc-sr-table"><caption>{period}-year compound annual growth rates</caption><tbody>{data.map(([name, value]) => <tr key={name}><th>{name}</th><td>{value}%</td></tr>)}</tbody></table>
-                </>
-              );
-            })()}
+            <div id="performance-chart" className="kc-chart-panel">
+              {AVAILABLE.length === 1 ? (
+                <p className="kc-chart-period">20-year annualised return</p>
+              ) : (
+                <div className="kc-tabs" role="tablist" aria-label="Gold performance period">
+                  {AVAILABLE.map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      role="tab"
+                      aria-selected={period === tab}
+                      onClick={() => setPeriod(tab)}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className="kc-chart" role="tabpanel">
+                <h3>CAGR (%)</h3>
+                {(() => {
+                  const data = RETURNS[period]!;
+                  const values = data.map(([, v]) => v);
+                  const rawMax = Math.max(...values);
+                  const niceMax = Math.ceil(rawMax / 2) * 2;
+                  const min = Math.min(0, ...values);
+                  const span = niceMax - min;
+                  const zero = Math.max(min, 0);
+                  const step = span <= 12 ? 2 : span <= 30 ? 5 : 10;
+                  const labels: number[] = [];
+                  for (let v = min; v <= niceMax + 1e-9; v += step) {
+                    labels.push(Number(v.toFixed(1)));
+                  }
+                  const gridStep = 100 / (labels.length - 1);
+                  return (
+                    <>
+                      <div className="kc-bars">
+                        {data.map(([name, value]) => {
+                          const rawW = ((value - zero) / span) * 100;
+                          const isNegative = rawW < 0;
+                          const width = `${Math.abs(rawW).toFixed(3)}%`;
+                          const barStart = `${(((0 - min) / span) * 100).toFixed(3)}%`;
+                          const iStyle: CSSProperties = { "--bar-width": width } as CSSProperties;
+                          if (isNegative) iStyle.marginLeft = `calc(${barStart} - ${width})`;
+                          return (
+                            <div
+                              className={`kc-bar-row ${name === "Gold" ? "is-gold" : ""}`}
+                              key={name}
+                            >
+                              <span>{name}</span>
+                              <div
+                                style={
+                                  {
+                                    "--bar-start": barStart,
+                                    "--bar-width": width,
+                                    "--grid-step": `${gridStep}%`,
+                                  } as CSSProperties
+                                }
+                              >
+                                <i style={iStyle} />
+                                <b>{value.toFixed(1)}</b>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <table className="kc-sr-table">
+                        <caption>{period}-year compound annual growth rates</caption>
+                        <tbody>
+                          {data.map(([name, value]) => (
+                            <tr key={name}>
+                              <th>{name}</th>
+                              <td>{value}%</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
           </div>
         </div>
-      </div></div></section>
+      </section>
 
-      <section id="resources" className="kc-section kc-promos"><div className="kc-container kc-promo-grid">
-        <article className="kc-promo-card" data-reveal><img src={goldNugget.url} alt="Natural raw gold nugget" width={1200} height={912} loading="lazy" /><div><h2>Consider gold's potential benefits</h2><p>Gold is used in everything from electronics to jewellery, but you can also invest in it. The unique nature of gold could help in times of economic turmoil and growth.</p><a href="#benefits">The Case for Gold <ArrowRight /></a></div></article>
-        <article className="kc-promo-card kc-guide-card" data-reveal><img src={buyingGuide.url} alt="Dark green SQOOT Pure Buying Gold Safely guide" width={1400} height={900} loading="lazy" /><div><h2>Get the guide for investing in gold</h2><p>Investing in gold can be simple and safe—provided you ask the right questions. Find out more with our 5-step guide to buying gold safely.</p><a href="#articles">Buying Gold Safely <ArrowRight /></a></div></article>
-      </div></section>
+      <section id="resources" className="kc-section kc-promos">
+        <div className="kc-container kc-promo-grid">
+          <article className="kc-promo-card" data-reveal>
+            <img
+              src={goldNugget.url}
+              alt="Natural raw gold nugget"
+              width={1200}
+              height={912}
+              loading="lazy"
+            />
+            <div>
+              <h2>Consider gold's potential benefits</h2>
+              <p>
+                Gold is used in everything from electronics to jewellery, but you can also invest in
+                it. The unique nature of gold could help in times of economic turmoil and growth.
+              </p>
+              <a href="#benefits">
+                The Case for Gold <ArrowRight />
+              </a>
+            </div>
+          </article>
+          <article className="kc-promo-card kc-guide-card" data-reveal>
+            <img
+              src={buyingGuide.url}
+              alt="Dark green SQOOT Pure Buying Gold Safely guide"
+              width={1400}
+              height={900}
+              loading="lazy"
+            />
+            <div>
+              <h2>Get the guide for investing in gold</h2>
+              <p>
+                Investing in gold can be simple and safe—provided you ask the right questions. Find
+                out more with our 5-step guide to buying gold safely.
+              </p>
+              <a href="#articles">
+                Buying Gold Safely <ArrowRight />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <section className="kc-section kc-investing"><div className="kc-container"><div className="kc-investing-panel" data-reveal>
-        <div className="kc-investing-copy"><h2>Simple, straightforward investing</h2><p>History shows that people turn to gold as an investment because of its unique qualities.</p><p>If you're looking for a safer way to grow what you have and protect it, gold could be the investment for you.</p><p>Offering the potential for competitive returns and the ability to buy and sell online, gold could help you navigate your future.</p><p>Choose your own path, with gold.</p></div>
-        <img src={investingBars.url} alt="Upright SQOOT Pure gold bar with stacked bars and two coins" width={1920} height={900} loading="lazy" />
-      </div></div></section>
+      <section className="kc-section kc-investing">
+        <div className="kc-container">
+          <div className="kc-investing-panel" data-reveal>
+            <div className="kc-investing-copy">
+              <h2>Simple, straightforward investing</h2>
+              <p>
+                History shows that people turn to gold as an investment because of its unique
+                qualities.
+              </p>
+              <p>
+                If you're looking for a safer way to grow what you have and protect it, gold could
+                be the investment for you.
+              </p>
+              <p>
+                Offering the potential for competitive returns and the ability to buy and sell
+                online, gold could help you navigate your future.
+              </p>
+              <p>Choose your own path, with gold.</p>
+            </div>
+            <img
+              src={investingBanner.url}
+              alt="SQOOT Pure 10g gold bar, two emblem coins and stacked bullion"
+              width={1820}
+              height={864}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
-      <section className="kc-section kc-external"><div className="kc-container kc-external-grid">
-        <article className="kc-external-card kc-newsletter" data-reveal><div><span className="kc-label">Stay up to date</span><h2>Get weekly insights on gold's performance</h2><p>Follow market context and the forces shaping gold, delivered in a clear weekly briefing.</p><GoldButton href="#">Sign Up on Gold.org</GoldButton></div><div className="kc-report-art" role="img" aria-label="Pale market report with a line chart and gold stationery"><span className="kc-report-sheet"><svg viewBox="0 0 180 112" aria-hidden="true"><path className="kc-chart-grid" d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"/><path className="kc-chart-line kc-chart-line-muted" d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"/><path className="kc-chart-line" d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"/></svg></span><span className="kc-report-notebook" aria-hidden="true" /><span className="kc-report-pen" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-one" aria-hidden="true" /><span className="kc-report-clip kc-report-clip-two" aria-hidden="true" /></div></article>
-        <article className="kc-external-card kc-goldhub" data-reveal><div><span className="kc-label">Explore the home of gold research</span><h2>Get the latest insights from the World Gold Council</h2><p>Explore trusted research, market analysis and educational resources about gold.</p><GoldButton href="#">Goldhub</GoldButton></div><img src={laptop} alt="Laptop displaying an institutional gold dashboard" width={1200} height={800} loading="lazy" /></article>
-        <article className="kc-film-card" data-reveal><img src={cinematicGold.url} alt="Abstract black silk and textured gold leaf" width={912} height={1200} loading="lazy" /><span className="kc-film-overlay" /><div><h2>Elton John / Touched by Gold: Watch the Film</h2><button type="button" aria-label="Preview Touched by Gold"><Play /></button><p>Touched by Gold</p></div></article>
-      </div></section>
+      <section className="kc-section kc-external">
+        <div className="kc-container kc-external-grid">
+          <article className="kc-external-card kc-newsletter" data-reveal>
+            <div>
+              <span className="kc-label">Stay up to date</span>
+              <h2>Get weekly insights on gold's performance</h2>
+              <p>
+                Follow market context and the forces shaping gold, delivered in a clear weekly
+                briefing.
+              </p>
+              <GoldButton href="#">Sign Up on Gold.org</GoldButton>
+            </div>
+            <div
+              className="kc-report-art"
+              role="img"
+              aria-label="Pale market report with a line chart and gold stationery"
+            >
+              <span className="kc-report-sheet">
+                <svg viewBox="0 0 180 112" aria-hidden="true">
+                  <path
+                    className="kc-chart-grid"
+                    d="M16 16H168M16 42H168M16 68H168M16 94H168M16 16V94M54 16V94M92 16V94M130 16V94M168 16V94"
+                  />
+                  <path
+                    className="kc-chart-line kc-chart-line-muted"
+                    d="M16 83L38 67L59 72L81 48L103 58L125 35L146 44L168 20"
+                  />
+                  <path
+                    className="kc-chart-line"
+                    d="M16 88L38 76L59 61L81 66L103 43L125 49L146 29L168 24"
+                  />
+                </svg>
+              </span>
+              <span className="kc-report-notebook" aria-hidden="true" />
+              <span className="kc-report-pen" aria-hidden="true" />
+              <span className="kc-report-clip kc-report-clip-one" aria-hidden="true" />
+              <span className="kc-report-clip kc-report-clip-two" aria-hidden="true" />
+            </div>
+          </article>
+          <article className="kc-external-card kc-goldhub" data-reveal>
+            <div>
+              <span className="kc-label">Explore the home of gold research</span>
+              <h2>Get the latest insights from the World Gold Council</h2>
+              <p>Explore trusted research, market analysis and educational resources about gold.</p>
+              <GoldButton href="#">Goldhub</GoldButton>
+            </div>
+            <img
+              src={laptop}
+              alt="Laptop displaying an institutional gold dashboard"
+              width={1200}
+              height={800}
+              loading="lazy"
+            />
+          </article>
+          <article className="kc-film-card" data-reveal>
+            <img
+              src={cinematicGold.url}
+              alt="Abstract black silk and textured gold leaf"
+              width={912}
+              height={1200}
+              loading="lazy"
+            />
+            <span className="kc-film-overlay" />
+            <div>
+              <h2>Elton John / Touched by Gold: Watch the Film</h2>
+              <button type="button" aria-label="Preview Touched by Gold">
+                <Play />
+              </button>
+              <p>Touched by Gold</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <div id="disclaimer" className="kc-footnote kc-container">Past performance is not a guarantee of future results. Educational content is provided for general information only.</div>
+      <div id="disclaimer" className="kc-footnote kc-container">
+        Past performance is not a guarantee of future results. Educational content is provided for
+        general information only.
+      </div>
       <section className="kc-section kc-aurum-signpost" data-reveal>
         <div className="kc-container">
           <p className="kc-label">AURUM</p>
           <h2 className="kc-section-title">Daily notes and weekly briefs</h2>
-          <p>Short, sourced notes on what moved in the gold market, and a longer read each week. Free, and nothing is sold there.</p>
+          <p>
+            Short, sourced notes on what moved in the gold market, and a longer read each week.
+            Free, and nothing is sold there.
+          </p>
           <div className="kc-aurum-signpost__links">
-            <Link to="/aurum/notes" search={{ page: 1 }}>Read the notes →</Link>
-            <Link to="/aurum/briefs" search={{ page: 1 }}>Read the briefs →</Link>
+            <Link to="/aurum/notes" search={{ page: 1 }}>
+              Read the notes →
+            </Link>
+            <Link to="/aurum/briefs" search={{ page: 1 }}>
+              Read the briefs →
+            </Link>
           </div>
         </div>
       </section>
@@ -244,7 +535,7 @@ const knowledgeStyles = `
 .kc-hero{height:520px;background:radial-gradient(circle at 78% 48%,rgba(181,126,30,.15),transparent 36%),radial-gradient(circle at 15% 85%,rgba(10,53,40,.6),transparent 42%),var(--kc-forest-950);color:var(--kc-cream)}.kc-hero-inner{height:100%;display:grid;grid-template-columns:minmax(0, 36fr) minmax(0, 64fr);gap:40px;align-items:center}.kc-hero-text{max-width:405px;animation:kc-rise .82s cubic-bezier(.22,1,.36,1) both}.kc-hero .kc-display{color:var(--kc-gold);margin-bottom:18px}.kc-hero-copy em{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500}.kc-gold-rule{display:block;width:42px;height:1.5px;margin:24px 0 22px;background:var(--kc-gold)}.kc-hero-text>.kc-body{max-width:370px;color:rgba(252,250,246,.86)}.kc-circle-control{display:grid;width:44px;height:44px;margin-top:24px;place-items:center;border:1px solid var(--kc-gold);border-radius:50%;color:var(--kc-gold);transition:background .2s,color .2s}.kc-circle-control:hover{background:var(--kc-gold);color:var(--kc-forest-950)}.kc-circle-control svg{width:18px}.kc-hero-media{position:relative;height:460px;border:1px solid rgba(213,163,59,.2);border-radius:21px;overflow:hidden;animation:kc-media .85s cubic-bezier(.22,1,.36,1) both}.kc-hero-media>img{width:100%;height:100%;object-fit:cover}.kc-media-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,18,13,.22),transparent 35%,rgba(1,18,13,.08)),linear-gradient(0deg,rgba(1,18,13,.24),transparent 40%)}.kc-play{position:absolute;inset:50% auto auto 50%;translate:-50% -50%;display:grid;width:92px;height:92px;place-items:center;border:1px solid var(--kc-gold);border-radius:50%;background:rgba(1,18,13,.92);color:var(--kc-gold-soft);transition:transform .25s,border-color .25s}.kc-play:hover{transform:scale(1.035);border-color:var(--kc-gold-soft)}.kc-play svg{width:26px;fill:currentColor}
 .kc-disclaimer{height:50px;border-top:1px solid rgba(213,163,59,.16);background:var(--kc-forest-850)}.kc-disclaimer .kc-container{height:100%;display:flex;align-items:center}.kc-disclaimer a{display:inline-flex;align-items:center;gap:8px;color:var(--kc-gold-soft);font-size:12px;font-weight:500}.kc-disclaimer svg{width:17px}
 .kc-benefits{height:300px;display:flex;align-items:center}.kc-benefits-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:36px;align-items:center}.kc-benefits-intro .kc-section-title{font-size:36px}.kc-text-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--kc-gold-dark);font-size:15px;font-weight:500}.kc-text-link svg{width:15px}.kc-benefit-controls{display:flex;align-items:center;gap:12px;margin-top:22px;color:var(--kc-muted);font-size:12px}.kc-benefit-controls button{display:grid;width:38px;height:38px;place-items:center;border:1px solid var(--kc-gold-dark);border-radius:50%;color:var(--kc-gold-dark);transition:background .2s,color .2s}.kc-benefit-controls button:hover{background:var(--kc-gold);color:var(--kc-forest-950)}.kc-benefit-controls svg{width:15px}.kc-benefit-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));height:180px;align-items:center}.kc-benefit-grid article{height:125px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;border-left:1px solid rgba(112,87,45,.14);text-align:center;opacity:.64;transition:opacity .25s}.kc-benefit-grid article:first-child{border-left:0}.kc-benefit-grid article.is-active,.kc-benefit-grid article:hover{opacity:1}.kc-benefit-grid svg{width:42px;height:42px;color:var(--kc-gold);stroke-width:1.4;transition:transform .2s}.kc-benefit-grid article:hover svg,.kc-benefit-grid article.is-active svg{transform:translateY(-2px)}.kc-benefit-grid h3{font-size:16px;font-weight:500;line-height:1.16;color:var(--kc-forest-950)}.kc-globe-coin{position:relative;display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center}.kc-globe-coin svg:first-child{width:42px;height:42px}.kc-globe-coin svg:last-child{position:absolute;bottom:-3px;right:-3px;width:18px;height:18px;stroke-width:1.6;background:var(--kc-cream);border-radius:50%}
-.kc-article-grid{height:440px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.kc-article-card{height:440px;border:1px solid var(--kc-border);border-radius:var(--kc-radius-card);overflow:hidden;background:var(--kc-forest-900);box-shadow:var(--kc-shadow);transition:transform .3s}.kc-article-card:hover{transform:translateY(-2px)}.kc-article-image{height:62%;overflow:hidden}.kc-article-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s}.kc-article-card:hover img{transform:scale(1.025)}.kc-article-copy{height:38%;display:flex;flex-direction:column;padding:22px 24px;color:var(--kc-cream)}.kc-article-copy h2{font-size:12px;line-height:1.25;letter-spacing:.11em;color:var(--kc-gold-soft);font-weight:600}.kc-article-copy p{margin-top:11px;font-size:15px;line-height:1.45;color:rgba(252,250,246,.88)}.kc-article-copy a,.kc-promo-card a{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:var(--kc-gold-soft);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.kc-article-copy a svg,.kc-promo-card a svg{width:15px;transition:transform .3s}.kc-article-card:hover a svg,.kc-promo-card:hover a svg{transform:translateX(4px)}
+.kc-article-grid{height:440px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.kc-article-card{height:440px;border:1px solid var(--kc-border);border-radius:var(--kc-radius-card);overflow:hidden;background:var(--kc-forest-900);box-shadow:var(--kc-shadow);transition:transform .3s}.kc-article-card:hover{transform:translateY(-2px)}.kc-article-image{height:62%;overflow:hidden}.kc-article-image img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;transition:transform .3s}.kc-article-card:hover img{transform:scale(1.025)}.kc-article-copy{height:38%;display:flex;flex-direction:column;padding:22px 24px;color:var(--kc-cream)}.kc-article-copy h2{font-size:12px;line-height:1.25;letter-spacing:.11em;color:var(--kc-gold-soft);font-weight:600}.kc-article-copy p{margin-top:11px;font-size:15px;line-height:1.45;color:rgba(252,250,246,.88)}.kc-article-copy a,.kc-promo-card a{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:var(--kc-gold-soft);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.kc-article-copy a svg,.kc-promo-card a svg{width:15px;transition:transform .3s}.kc-article-card:hover a svg,.kc-promo-card:hover a svg{transform:translateX(4px)}
 .kc-returns-panel{min-height:558px;display:grid;grid-template-columns:minmax(0, 35fr) minmax(0, 65fr);gap:32px;padding:36px;border:1px solid rgba(213,163,59,.22);border-radius:14px;background:linear-gradient(135deg,var(--kc-forest-950),var(--kc-forest-800));color:var(--kc-cream);overflow:hidden}.kc-returns-copy>.kc-label{color:var(--kc-gold-soft)}.kc-returns-copy>.kc-section-title{margin-top:13px;max-width:390px;color:var(--kc-cream)}.kc-returns-copy ul{display:grid;gap:12px;margin-top:22px}.kc-returns-copy li{display:grid;grid-template-columns:19px minmax(0,1fr);gap:12px}.kc-returns-copy li>span{display:grid;width:18px;height:18px;place-items:center;border:1px solid var(--kc-gold-dark);border-radius:50%;color:var(--kc-gold)}.kc-returns-copy li svg{width:11px}.kc-returns-copy li p{font-size:14px;line-height:1.42;color:rgba(252,250,246,.85)}.kc-returns-copy sup{color:var(--kc-gold-soft);font-weight:600}.kc-dark-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--kc-gold-soft);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.kc-dark-link svg{width:15px}.kc-chart-panel{align-self:stretch;display:flex;flex-direction:column;border:1px solid rgba(213,163,59,.3);border-radius:12px;background:rgba(10,53,40,.72);padding:0 26px 24px;overflow:hidden}.kc-tabs{display:grid;grid-template-columns:repeat(5,1fr);height:56px;border-bottom:1px solid rgba(229,193,113,.2)}.kc-tabs button{position:relative;border-left:1px solid rgba(229,193,113,.12);color:rgba(252,250,246,.62);font-size:13px;font-weight:600}.kc-tabs button:first-child{border-left:0}.kc-tabs button[aria-selected=true]{color:var(--kc-gold-soft)}.kc-tabs button[aria-selected=true]:after{content:"";position:absolute;left:18%;right:18%;bottom:-1px;height:2px;background:var(--kc-gold)}.kc-chart{padding-top:21px}.kc-chart h3{font-size:13px;font-weight:600;color:var(--kc-gold-soft)}.kc-bars{display:grid;gap:12px;margin-top:18px}.kc-bar-row{display:grid;grid-template-columns:105px minmax(0,1fr);align-items:center;gap:12px;font-size:12px;color:rgba(252,250,246,.78)}.kc-bar-row>div{position:relative;height:24px;display:flex;align-items:center;gap:8px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--grid-step) - 1px),rgba(252,250,246,.08) var(--grid-step))}.kc-bar-row>div:before{content:"";position:absolute;left:var(--bar-start);top:0;bottom:0;width:1px;background:rgba(252,250,246,.18)}.kc-bar-row i{display:block;margin-left:var(--bar-start);width:0;height:24px;max-height:24px;background:#527466;border-radius:0 4px 4px 0;transition:width .8s cubic-bezier(.22,1,.36,1)}.kc-returns-panel.is-visible .kc-bar-row i{width:var(--bar-width)}.kc-bar-row.is-gold{color:var(--kc-gold-soft)}.kc-bar-row.is-gold i{background:linear-gradient(90deg,var(--kc-gold-dark),var(--kc-gold-soft))}.kc-bar-row b{font-weight:600;font-variant-numeric:tabular-nums;color:rgba(252,250,246,.9)}.kc-bar-row.is-gold b{color:var(--kc-gold-soft)}.kc-chart-period{height:56px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(229,193,113,.2);color:var(--kc-gold-soft);font-size:13px;font-weight:600}.kc-sr-table{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .kc-promo-grid{height:298px;display:grid;grid-template-columns:.84fr 1.16fr;gap:16px}.kc-promo-card{height:100%;display:grid;grid-template-columns:42% 58%;overflow:hidden;border:1px solid var(--kc-border);border-radius:var(--kc-radius-card);background:var(--kc-paper);box-shadow:var(--kc-shadow)}.kc-promo-card>img{width:100%;height:100%;object-fit:cover}.kc-promo-card>div{display:flex;flex-direction:column;padding:28px 26px}.kc-promo-card h2{font-size:29px;line-height:1.06;font-weight:500}.kc-promo-card p{margin-top:13px;font-size:14px;line-height:1.5;color:var(--kc-body)}.kc-promo-card a{color:var(--kc-gold-dark)}.kc-guide-card{grid-template-columns:40% 60%}
 .kc-aurum-signpost{margin-top:0;padding-block:42px;border-top:1px solid var(--kc-border);background:var(--kc-paper)}.kc-aurum-signpost .kc-label{color:var(--kc-gold-dark)}.kc-aurum-signpost .kc-section-title{margin-top:10px}.kc-aurum-signpost p:not(.kc-label){max-width:720px;margin-top:12px;font-size:15px;line-height:1.55;color:var(--kc-body)}.kc-aurum-signpost__links{display:flex;flex-wrap:wrap;gap:24px;margin-top:18px}.kc-aurum-signpost__links a{color:var(--kc-gold-dark);font-size:13px;font-weight:600;text-transform:uppercase}
