@@ -331,7 +331,9 @@ function Index() {
             </div>
 
             <CtaRow className="home-app-ctas">
-              <GoldButton to="/early-access">Join the waitlist</GoldButton>
+              <GoldButton to="/early-access" className="h-[50px] min-h-[50px]">
+                Join the waitlist
+              </GoldButton>
               <div className="home-hero-stores" aria-label="Mobile apps coming soon">
                 {(["App Store", "Google Play"] as const).map((store) => (
                   <div key={store} className="home-hero-store-badge">
