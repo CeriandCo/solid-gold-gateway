@@ -41,13 +41,20 @@ export function assertLiveOptIn(): void {
 }
 
 /**
- * Makes the live project physically read-only for this process: any REST or
- * auth request that is not a GET/HEAD is rejected before it leaves the
- * process. Used by the read-only live suites so they cannot regress into
- * writing.
+ * Makes the live project effectively read-only for this process.
+ *
+ * Privileged (service-role) requests may only read: GET/HEAD, or a POST to
+ * /rest/v1/rpc/, which is how PostgREST exposes read-only functions. Anything
+ * that could write is rejected before it leaves the process.
+ *
+ * Requests made with the public anon key are left alone: the security suites
+ * fire deliberate write attempts with that key to prove RLS rejects them, and
+ * blocking those here would hide a real regression.
  */
 export function enforceReadOnlyFetch(): void {
   const original = globalThis.fetch;
+  const serviceKey = process.env["SUPABASE_SERVICE_ROLE_KEY"];
+
   globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
     const method = (
       init?.method ??
@@ -61,11 +68,24 @@ export function enforceReadOnlyFetch(): void {
           ? input.toString()
           : input.url;
 
+    const headers = new Headers(
+      typeof input === "object" && "headers" in input ? input.headers : undefined,
+    );
+    if (init?.headers) new Headers(init.headers).forEach((v, k) => headers.set(k, v));
+    const privileged =
+      Boolean(serviceKey) &&
+      (headers.get("apikey") === serviceKey ||
+        headers.get("Authorization") === `Bearer ${serviceKey}`);
+
     const live = process.env["SUPABASE_URL"];
     const touchesLive = Boolean(live) && url.startsWith(live!);
-    if (touchesLive && !["GET", "HEAD", "OPTIONS"].includes(method)) {
+    const readOnly =
+      ["GET", "HEAD", "OPTIONS"].includes(method) ||
+      (method === "POST" && url.includes("/rest/v1/rpc/"));
+
+    if (touchesLive && privileged && !readOnly) {
       throw new Error(
-        `Blocked a ${method} request to the live project from a read-only test suite: ${url.split("?")[0]}`,
+        `Blocked a privileged ${method} request to the live project from a read-only test suite: ${url.split("?")[0]}`,
       );
     }
     return original(input as RequestInfo, init);
