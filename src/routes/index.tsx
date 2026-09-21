@@ -12,6 +12,7 @@ import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault.pn
 import introPhoneScreen from "@/assets/home/phone-screen-intro-priced.png.asset.json";
 import homePhoneScreen from "@/assets/home/phone-screen-home-full.png.asset.json";
 import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview.png.asset.json";
+import goldPriceBackground from "@/assets/home/gold-price-background.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +37,18 @@ export const Route = createFileRoute("/")({
 });
 
 const STANDARD_SECTION = "py-[clamp(72px,8.3vw,120px)]";
+
+const GOLD_PRICE = {
+  price: "$3,412.80",
+  changePercent: "0.42%",
+  changeAmount: "$14.27",
+  asOf: "09:41",
+  stats: [
+    { label: "24-hour high", value: "$3,421.06" },
+    { label: "24-hour low", value: "$3,389.44" },
+    { label: "Previous close", value: "$3,398.53" },
+  ],
+} as const;
 
 const HERO_SPOT = {
   price: "$3,412.80",
@@ -385,8 +398,53 @@ function Index() {
             ))}
           </ol>
         </section>
-        <section id="gold-price" className="bg-forest-black">
-          <SectionContainer />
+        <section id="gold-price" className="bg-forest-black home-price">
+          <img
+            src={goldPriceBackground.url}
+            alt=""
+            width={1920}
+            height={1080}
+            loading="lazy"
+            className="home-price-background"
+          />
+          <div className="home-price-scrim" aria-hidden="true" />
+          <div className="home-price-inner">
+            <div className="home-price-copy">
+              <div className="home-price-labels">
+                <p className="home-price-eyebrow">TODAY&rsquo;S GOLD PRICE</p>
+                <span className="home-price-chip">Sample data — not a real price</span>
+              </div>
+              <p className="home-price-value">{GOLD_PRICE.price}</p>
+              <div className="home-price-change">
+                <span className="home-price-delta">
+                  <span aria-hidden="true">▲</span> +{GOLD_PRICE.changePercent}
+                </span>
+                <span className="home-price-delta">+{GOLD_PRICE.changeAmount}</span>
+                <span className="home-price-meta">per troy ounce · USD · as of {GOLD_PRICE.asOf}</span>
+              </div>
+              <dl className="home-price-stats">
+                {GOLD_PRICE.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dt>{stat.label}</dt>
+                    <dd>{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="home-price-links">
+                <Link
+                  to="/aurum"
+                  search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+                  className="home-price-link"
+                >
+                  Read what moved it in AURUM
+                  <ArrowRight aria-hidden="true" className="size-4" />
+                </Link>
+                <p className="home-price-disclaimer">
+                  Figures are indicative. Not an offer to buy or sell.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
         <section id="gifting" className={`bg-cream ${STANDARD_SECTION}`}>
           <SectionContainer />

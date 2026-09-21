@@ -5976,3 +5976,244 @@ footer.site-footer a:focus-visible {
     gap: 32px;
   }
 }
+
+/* Today's gold price */
+.home-price {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: 640px;
+}
+
+.home-price-background {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.home-price-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--forest-black) 94%, transparent) 0%,
+    color-mix(in oklab, var(--forest-black) 80%, transparent) 45%,
+    color-mix(in oklab, var(--forest-black) 15%, transparent) 60%,
+    transparent 100%
+  );
+}
+
+.home-price-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 104px 120px;
+}
+
+.home-price-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 586px;
+}
+
+.home-price-labels {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-price-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+}
+
+.home-price-chip {
+  border: 1px solid color-mix(in oklab, var(--gold) 60%, transparent);
+  border-radius: 2px;
+  padding: 3px 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.home-price-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 140px;
+  line-height: 100%;
+  color: var(--cream);
+}
+
+.home-price-change {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.home-price-delta {
+  font-family: var(--font-money);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.home-price-meta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: color-mix(in oklab, var(--cream) 60%, transparent);
+}
+
+.home-price-stats {
+  display: flex;
+  gap: 72px;
+  padding-top: 28px;
+  border-top: 1px solid color-mix(in oklab, var(--cream) 15%, transparent);
+}
+
+.home-price-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-price-stats dt {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--cream) 55%, transparent);
+}
+
+.home-price-stats dd {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.home-price-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 12px;
+}
+
+.home-price-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid color-mix(in oklab, var(--cream) 45%, transparent);
+  border-radius: 2px;
+  padding: 16px 28px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--cream);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-price-link {
+    transition: background-color 200ms var(--ease-standard), border-color 200ms var(--ease-standard);
+  }
+}
+
+.home-price-link:hover {
+  background: color-mix(in oklab, var(--cream) 10%, transparent);
+  border-color: color-mix(in oklab, var(--cream) 70%, transparent);
+}
+
+.home-price-disclaimer {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+}
+
+@media (max-width: 1023px) {
+  .home-price {
+    height: auto;
+    min-height: 560px;
+  }
+
+  .home-price-inner {
+    padding: 80px 32px;
+  }
+
+  .home-price-value {
+    font-size: 96px;
+  }
+
+  .home-price-stats {
+    gap: 40px;
+  }
+
+  .home-price-scrim {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--forest-black) 94%, transparent) 0%,
+      color-mix(in oklab, var(--forest-black) 86%, transparent) 60%,
+      color-mix(in oklab, var(--forest-black) 30%, transparent) 90%,
+      color-mix(in oklab, var(--forest-black) 10%, transparent) 100%
+    );
+  }
+}
+
+@media (max-width: 767px) {
+  .home-price {
+    min-height: 0;
+  }
+
+  .home-price-inner {
+    padding: 72px var(--gutter);
+  }
+
+  .home-price-copy {
+    max-width: 100%;
+  }
+
+  .home-price-value {
+    font-size: 64px;
+  }
+
+  .home-price-stats {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .home-price-stats dd {
+    font-size: 24px;
+  }
+
+  .home-price-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-price-link {
+    justify-content: center;
+  }
+
+  .home-price-scrim {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--forest-black) 94%, transparent) 0%,
+      color-mix(in oklab, var(--forest-black) 88%, transparent) 55%,
+      color-mix(in oklab, var(--forest-black) 70%, transparent) 100%
+    );
+  }
+}
