@@ -42,7 +42,7 @@ function sql(text: string): string {
   return result.out;
 }
 
-const EDITOR = "44444444-4444-4444-8444-444444444444";
+const EDITOR = "66666666-6666-4666-8666-666666666666";
 let postId = "";
 
 beforeAll(() => {
