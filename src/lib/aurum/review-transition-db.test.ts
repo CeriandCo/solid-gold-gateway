@@ -54,6 +54,15 @@ beforeAll(() => {
     grant select, insert, update, delete on all tables in schema public to authenticated;
     grant usage on schema auth to authenticated
   `);
+  sql(`
+    insert into auth.users (id, email) values ('${EDITOR}'::uuid, 'submit-editor@example.com')
+    on conflict (id) do nothing
+  `);
+  sql(`
+    insert into public.aurum_editors (email, role, user_id)
+    values ('submit-editor@example.com', 'editor', '${EDITOR}'::uuid)
+    on conflict (email) do update set role = excluded.role, user_id = excluded.user_id
+  `);
   postId = sql(`
     insert into public.aurum_posts (type, slug, title, summary, body, status, author_id)
     values ('daily_note', 't2-submit-guard-${Date.now()}', 'Guard', 'Guard summary',
