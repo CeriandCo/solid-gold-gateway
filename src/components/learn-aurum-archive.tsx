@@ -3,9 +3,19 @@ import { Link } from "@tanstack/react-router";
 import type { AurumArchiveRow } from "@/lib/aurum-editorial";
 import { formatEditorialDate } from "@/lib/aurum-editorial";
 
-const PAGE_SIZE = 12;
+export const PAGE_SIZE = 12;
 
-type Filter = "all" | "daily_note" | "weekly_brief";
+export type Filter = "all" | "daily_note" | "weekly_brief";
+
+/** Rows shown for a filter. Pure so the archive behaviour is testable without a DOM. */
+export function filterArchiveRows(rows: AurumArchiveRow[], filter: Filter): AurumArchiveRow[] {
+  return filter === "all" ? rows : rows.filter((row) => row.type === filter);
+}
+
+/** The existing public detail route pattern for a row's type. */
+export function archiveRoutePattern(type: AurumArchiveRow["type"]): string {
+  return type === "daily_note" ? "/aurum/notes/$slug" : "/aurum/briefs/$slug";
+}
 
 const FILTERS: Array<{ id: Filter; label: string }> = [
   { id: "all", label: "All" },
@@ -17,10 +27,7 @@ export function LearnAurumArchive({ rows }: { rows: AurumArchiveRow[] }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [visible, setVisible] = useState(PAGE_SIZE);
 
-  const filtered = useMemo(
-    () => (filter === "all" ? rows : rows.filter((row) => row.type === filter)),
-    [rows, filter],
-  );
+  const filtered = useMemo(() => filterArchiveRows(rows, filter), [rows, filter]);
   const shown = filtered.slice(0, visible);
 
   return (
