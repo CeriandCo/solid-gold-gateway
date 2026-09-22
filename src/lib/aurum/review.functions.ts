@@ -206,3 +206,124 @@ export const submitForReview = createServerFn({ method: "POST" })
       data,
     ),
   );
+
+/* ------------------------------------------------------------------ *
+ * Publish / schedule — a thin wrapper over public.aurum_publish_post.
+ * ------------------------------------------------------------------ */
+
+export const PUBLISH_UNAUTHENTICATED = "Sign in again to publish this post.";
+export const PUBLISH_FORBIDDEN_ROLE = "Only a reviewer or an admin can publish a post.";
+export const PUBLISH_SELF_APPROVAL = "Another reviewer has to approve your own post.";
+export const PUBLISH_SETTINGS_UNAVAILABLE =
+  "Publishing is unavailable right now. Try again in a moment.";
+export const PUBLISH_NOT_FOUND = "That post could not be found.";
+export const PUBLISH_WRONG_STATUS = "That post is no longer awaiting review.";
+export const PUBLISH_CONFLICT =
+  "Another reviewer already published or scheduled this post. Reload the page.";
+export const PUBLISH_EMPTY_BODY = "That post has no content to publish.";
+export const PUBLISH_MISSING_SOURCE = "Add at least one source before publishing.";
+export const PUBLISH_PAST_TIME = "To publish immediately, leave the publication time empty.";
+export const PUBLISH_BAD_TIME =
+  "Enter a publication time as a full date and time including its time zone.";
+export const PUBLISH_UNEXPECTED = "That post could not be published. Try again.";
+
+/** ISO-8601 instant with an explicit zone: trailing Z or a ±HH:MM offset. */
+const ABSOLUTE_INSTANT =
+  /^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2}(\.\d{1,6})?)?(Z|[+-]\d{2}:\d{2})$/;
+
+const publishInput = z
+  .object({
+    postId: z.string().uuid(),
+    // A timezone-less local datetime is refused rather than guessed at.
+    publishedAt: z
+      .string()
+      .trim()
+      .regex(ABSOLUTE_INSTANT, PUBLISH_BAD_TIME)
+      .refine((value) => !Number.isNaN(Date.parse(value)), PUBLISH_BAD_TIME)
+      .nullish()
+      .transform((value) => (value ? new Date(value).toISOString() : null)),
+  })
+  .strict();
+
+export type PublishPostInput = z.input<typeof publishInput>;
+
+export type PublishPostResult = {
+  id: string;
+  status: "published";
+  publishedAt: string;
+  changed: boolean;
+};
+
+/**
+ * Translates the RPC's SQLSTATE + stable message into the application's error
+ * vocabulary. 42501 and 23514 each cover two distinct situations the RPC
+ * separates by message, so both are inspected.
+ */
+export function translatePublishError(error: { code?: string; message?: string }): Error {
+  const code = error.code ?? "";
+  const message = error.message ?? "";
+
+  if (code === "28000") return new Error(PUBLISH_UNAUTHENTICATED);
+  if (code === "P0002") return new Error(PUBLISH_NOT_FOUND);
+  if (code === "40001") return new Error(PUBLISH_CONFLICT);
+  if (code === "55000") return new Error(PUBLISH_WRONG_STATUS);
+  if (code === "22007") return new Error(PUBLISH_PAST_TIME);
+  if (code === "42501") {
+    if (/another reviewer must approve/i.test(message)) return new Error(PUBLISH_SELF_APPROVAL);
+    if (/approval settings are unavailable/i.test(message)) {
+      return new Error(PUBLISH_SETTINGS_UNAVAILABLE);
+    }
+    return new Error(PUBLISH_FORBIDDEN_ROLE);
+  }
+  if (code === "23514") {
+    if (/at least one source/i.test(message)) return new Error(PUBLISH_MISSING_SOURCE);
+    if (/no content to publish/i.test(message)) return new Error(PUBLISH_EMPTY_BODY);
+  }
+
+  // Unknown database failure: fail closed, and say nothing about internals.
+  console.error("aurum_publish_post failed", { code, message });
+  return new Error(PUBLISH_UNEXPECTED);
+}
+
+const publishPayload = z.object({
+  id: z.string().uuid(),
+  status: z.literal("published"),
+  published_at: z.string().min(1),
+  changed: z.boolean(),
+});
+
+export async function performPublishPost(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  input: { postId: string; publishedAt: string | null },
+): Promise<PublishPostResult> {
+  // Defence in depth only — the RPC independently enforces the same rule.
+  await requireRole(supabase, ["reviewer", "admin"]);
+
+  const { data, error } = await supabase.rpc("aurum_publish_post", {
+    _post_id: input.postId,
+    _published_at: input.publishedAt,
+  });
+  if (error) throw translatePublishError(error);
+
+  const parsed = publishPayload.safeParse(data);
+  if (!parsed.success) {
+    console.error("aurum_publish_post returned an unexpected payload");
+    throw new Error(PUBLISH_UNEXPECTED);
+  }
+
+  return {
+    id: parsed.data.id,
+    status: "published",
+    publishedAt: parsed.data.published_at,
+    changed: parsed.data.changed,
+  };
+}
+
+export const publishPost = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => publishInput.parse(data ?? {}))
+  .handler(
+    async ({ data, context }): Promise<PublishPostResult> =>
+      performPublishPost(context.supabase, data),
+  );
