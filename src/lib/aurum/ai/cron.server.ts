@@ -47,18 +47,27 @@ async function claimRun(windowKey: string, cap: number): Promise<ClaimResult> {
 }
 
 async function finishRun(input: Parameters<RunDeps["finishRun"]>[0]): Promise<void> {
-  const { error } = await supabaseAdmin.rpc("aurum_ai_finish_run", {
-    _run_id: input.runId,
-    _outcome: input.outcome,
-    _provider: input.usage?.provider ?? null,
-    _model: input.usage?.model ?? null,
-    _input_tokens: input.usage?.inputTokens ?? null,
-    _output_tokens: input.usage?.outputTokens ?? null,
-    _total_tokens: input.usage?.totalTokens ?? null,
-    _cost_usd: input.usage?.costUsd ?? null,
-    _post_id: input.postId ?? null,
-    _detail: input.detail ?? null,
-  });
+  // The RPC defaults every optional argument, so only supply the ones we have.
+  const args: Record<string, unknown> = { _run_id: input.runId, _outcome: input.outcome };
+  const optional = {
+    _provider: input.usage?.provider,
+    _model: input.usage?.model,
+    _input_tokens: input.usage?.inputTokens,
+    _output_tokens: input.usage?.outputTokens,
+    _total_tokens: input.usage?.totalTokens,
+    _cost_usd: input.usage?.costUsd,
+    _post_id: input.postId,
+    _detail: input.detail,
+  };
+  for (const [key, value] of Object.entries(optional)) {
+    if (value !== null && value !== undefined) args[key] = value;
+  }
+  const { error } = await (
+    supabaseAdmin.rpc as unknown as (
+      fn: string,
+      params: Record<string, unknown>,
+    ) => Promise<{ error: { message: string } | null }>
+  )("aurum_ai_finish_run", args);
   if (error) console.error("[aurum-ai] failed to record run outcome", error.message);
 }
 

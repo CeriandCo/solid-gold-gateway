@@ -14,7 +14,7 @@ export type ProviderUsage = {
 };
 
 export type ProviderResult =
-  | { ok: true; raw: unknown; usage: ProviderUsage }
+  | { ok: true; raw: unknown; usage: ProviderUsage | null }
   | { ok: false; reason: string; usage: ProviderUsage | null };
 
 export type DailyNoteGenerator = (input: {

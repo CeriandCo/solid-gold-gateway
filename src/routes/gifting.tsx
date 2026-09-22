@@ -39,6 +39,8 @@ import achievementPhoto from "@/assets/occasion-achievements.jpg";
 import festivalPhoto from "@/assets/occasion-festivals.jpg";
 import familyPhoto from "@/assets/occasion-family.jpg";
 import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
+import { PurchaseAcknowledgement } from "@/components/purchase-acknowledgement";
+import { ACKNOWLEDGEMENT_VERSION } from "@/lib/commerce/acknowledgement";
 import sqootLogo from "@/assets/sqoot-pure-logo.png";
 import sqootMandala from "@/assets/sqoot-mandala.png";
 import closingGift from "@/assets/gifting-closing-v2.png.asset.json";
@@ -195,6 +197,7 @@ function GiftingNewPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [acknowledged, setAcknowledged] = useState(false);
   const attemptIdRef = useRef<string | null>(null);
   const messageRef = useRef<HTMLParagraphElement>(null);
   const giftCardRef = useRef<HTMLDivElement>(null);
@@ -236,13 +239,18 @@ function GiftingNewPage() {
   };
 
   const handleCheckout = async () => {
-    if (!selected || checkoutBusy) return;
+    if (!selected || !acknowledged || checkoutBusy) return;
     if (!attemptIdRef.current) attemptIdRef.current = crypto.randomUUID();
     setCheckoutBusy(true);
     setCheckoutMessage("");
     try {
       const result = await startCheckout({
-        data: { denominationId: selected.id, attemptId: attemptIdRef.current },
+        data: {
+          denominationId: selected.id,
+          attemptId: attemptIdRef.current,
+          acknowledged: true,
+          termsVersion: ACKNOWLEDGEMENT_VERSION,
+        },
       });
       if (result.ok) {
         // Trust nothing but the expected Stripe host, on this side too.
@@ -454,11 +462,26 @@ function GiftingNewPage() {
               </strong>
             </div>
 
+            <PurchaseAcknowledgement
+              kind="gift_card"
+              checked={acknowledged}
+              onChange={setAcknowledged}
+              id="gift-card-acknowledgement"
+              className="gift-card-ack"
+            />
+
             <div className="gift-card-action-group" data-reveal>
               <GoldButton
                 type="button"
-                disabled={selected === null || checkoutBusy}
+                aria-disabled={selected === null || !acknowledged || checkoutBusy}
                 aria-busy={checkoutBusy}
+                aria-label={
+                  selected === null
+                    ? "Continue to Secure Checkout — unavailable until you choose a gift amount"
+                    : !acknowledged
+                      ? "Continue to Secure Checkout — unavailable until you tick the acknowledgement above"
+                      : "Continue to Secure Checkout"
+                }
                 className="gift-card-checkout"
                 onClick={() => void handleCheckout()}
               >
