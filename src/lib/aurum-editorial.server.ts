@@ -2,7 +2,7 @@
 // The browser never queries aurum_posts / aurum_post_sources directly: RLS has no
 // policies at all, so the service-role client on the server is the only way in.
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import { formatShortDate, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
+import { formatShortDate, type AurumArchiveRow, type AurumEditorial, type AurumEditorialSource } from "@/lib/aurum-editorial";
 
 export type AurumEditorialType = "daily_note" | "weekly_brief" | "article";
 
