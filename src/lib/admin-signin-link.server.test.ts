@@ -43,6 +43,10 @@ beforeEach(async () => {
 
 afterAll(async () => {
   globalThis.fetch = realFetch;
+  // sendAdminSignInLink prepares the auth user for a listed email; remove it again.
+  const { data } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
+  const match = data?.users.find((user) => user.email === listedEmail);
+  if (match) createdUsers.push(match.id);
   await supabaseAdmin.from("aurum_admin_link_requests").delete().eq("email", listedEmail);
   await supabaseAdmin.from("aurum_admin_link_requests").delete().eq("email", strangerEmail);
   await supabaseAdmin.from("aurum_editors").delete().eq("email", listedEmail);
