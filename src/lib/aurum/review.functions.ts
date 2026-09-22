@@ -336,9 +336,9 @@ export const publishPost = createServerFn({ method: "POST" })
 /* ------------------------------------------------------------------ *
  * Return to draft — in_review -> draft, so the author can make changes.
  *
- * Not an approval decision: allow_self_approval is deliberately not read,
- * and no content or source validation runs. Returning a post for changes
- * must work precisely when the content is incomplete.
+ * Not an approval decision: the self-approval setting is deliberately not
+ * consulted, and no content or source validation runs. Returning a post for
+ * changes must work precisely when the content is incomplete.
  * ------------------------------------------------------------------ */
 
 export const RETURN_NOT_FOUND = "That post could not be found.";
