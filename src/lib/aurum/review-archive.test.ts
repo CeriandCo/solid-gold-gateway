@@ -211,7 +211,7 @@ describe("archivePost — the transition", () => {
       declarationAt,
     );
     const patch = /\.update\(\{([^}]*)\}\)/.exec(implementation)?.[1] ?? "";
-    expect(patch.replace(/\s/g, "")).toBe('status:"archived",');
+    expect(patch.replace(/\s/g, "").replace(/,$/, "")).toBe('status:"archived"');
   });
 
   it("leaves the source rows untouched", async () => {

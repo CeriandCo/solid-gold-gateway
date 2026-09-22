@@ -68,17 +68,24 @@ function publiclyVisible(postId: string, atSql = "now()"): boolean {
 }
 
 function makePublishedPost(tag: string, publishedAt: string): string {
+  // Inserted as a draft first: the sourcing rule is checked at commit, so the
+  // source row must exist before the row becomes published.
   const id = sql(`
-    insert into public.aurum_posts
-      (type, slug, title, summary, body, status, author_id, submitted_at, reviewed_by, reviewed_at, published_at)
+    insert into public.aurum_posts (type, slug, title, summary, body, status, author_id)
     values ('daily_note', 't2-archive-${tag}-${Date.now()}', 'Archive guard', 'Archive summary',
-            '["A paragraph."]'::jsonb, 'published', '${EDITOR}'::uuid, now() - interval '2 days',
-            '${REVIEWER}'::uuid, now() - interval '1 day', ${publishedAt})
+            '["A paragraph."]'::jsonb, 'draft', '${EDITOR}'::uuid)
     returning id
   `);
   sql(`
     insert into public.aurum_post_sources (post_id, position, publisher, title, source_date, url)
     values ('${id}'::uuid, 1, 'Reuters', 'Gold steadies', current_date, 'https://example.com/a')
+  `);
+  sql(`
+    update public.aurum_posts
+       set status = 'published', submitted_at = now() - interval '2 days',
+           reviewed_by = '${REVIEWER}'::uuid, reviewed_at = now() - interval '1 day',
+           published_at = ${publishedAt}
+     where id = '${id}'::uuid
   `);
   return id;
 }
