@@ -27,10 +27,7 @@ export function LearnAurumArchive({ rows }: { rows: AurumArchiveRow[] }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [visible, setVisible] = useState(PAGE_SIZE);
 
-  const filtered = useMemo(
-    () => (filter === "all" ? rows : rows.filter((row) => row.type === filter)),
-    [rows, filter],
-  );
+  const filtered = useMemo(() => filterArchiveRows(rows, filter), [rows, filter]);
   const shown = filtered.slice(0, visible);
 
   return (
