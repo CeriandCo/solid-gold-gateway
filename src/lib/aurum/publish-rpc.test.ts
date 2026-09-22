@@ -144,6 +144,8 @@ beforeAll(() => {
       ('reviewer2@example.com', 'reviewer', ${lit(REVIEWER_2)}::uuid),
       ('admin@example.com', 'admin', ${lit(ADMIN)}::uuid),
       ('editor@example.com', 'editor', ${lit(EDITOR)}::uuid)
+    on conflict (email) do update set role = excluded.role, user_id = excluded.user_id
+
   `);
   sql(`insert into public.aurum_cms_settings (id) values (true) on conflict (id) do nothing`);
   setSelfApproval(true);
