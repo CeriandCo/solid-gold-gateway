@@ -1,15 +1,22 @@
 /**
- * AURUM review workflow — submission step (draft -> in_review).
+ * AURUM review workflow — submission step (draft -> in_review) and the thin
+ * wrapper over the atomic publish/schedule primitive.
  *
  * Authentication happens in the middleware, authorization through the caller's
  * own user-scoped client, and only then is the privileged client loaded to make
  * the workflow write the authenticated session is deliberately forbidden to make
  * (see the aurum_posts_guard_workflow_fields trigger).
+ *
+ * Publication is different: public.aurum_publish_post is the authority, and it
+ * reads auth.uid() to record who approved. The wrapper therefore calls it with
+ * the caller's own client and never with service-role capability.
  */
+import { z } from "zod";
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { requireRole } from "@/lib/admin-roles";
 import { parseDraftInput, writeError } from "@/lib/admin.functions";
+
 
 export const SUBMIT_NOT_FOUND = "That post could not be found.";
 export const SUBMIT_FORBIDDEN = "You cannot send that post for review.";
