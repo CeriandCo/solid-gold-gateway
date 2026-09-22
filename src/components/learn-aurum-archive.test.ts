@@ -73,9 +73,8 @@ describe("Learn AURUM archive URLs", () => {
     expect(archiveRoutePattern("weekly_brief")).toBe("/aurum/briefs/$slug");
   });
 
-  it("renders those same patterns in the row links", () => {
-    expect(component).toContain('"/aurum/notes/$slug" : "/aurum/briefs/$slug"');
-    expect(component).toContain("params={{ slug: row.slug }}");
+  it("builds the row links from that helper rather than a duplicated ternary", () => {
+    expect(component).toContain("to={archiveRoutePattern(row.type)}");
   });
 });
 
