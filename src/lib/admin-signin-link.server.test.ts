@@ -27,12 +27,26 @@ const realFetch = globalThis.fetch;
 type OtpCall = { url: string; body: Record<string, unknown> };
 let otpCalls: OtpCall[] = [];
 
+const json = (body: unknown, status: number) =>
+  new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
+
 globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+  if (url.includes("/auth/v1/settings")) {
+    return json({ disable_signup: true, external: { email: true } }, 200);
+  }
+  if (url.includes("/auth/v1/admin/users")) {
+    return json({ id: "00000000-0000-4000-8000-000000000001", email: listedEmail }, 200);
+  }
   if (url.includes("/auth/v1/otp")) {
     const raw = typeof init?.body === "string" ? init.body : "{}";
-    otpCalls.push({ url, body: JSON.parse(raw) as Record<string, unknown> });
-    return new Response("{}", { status: 200, headers: { "content-type": "application/json" } });
+    const body = JSON.parse(raw) as Record<string, unknown>;
+    otpCalls.push({ url, body });
+    // Mirrors the live auth server with disable_signup = true.
+    if (body["create_user"] !== false) {
+      return json({ code: 422, error_code: "signup_disabled", msg: "Signups not allowed for otp" }, 422);
+    }
+    return json({}, 200);
   }
   return realFetch(input as RequestInfo, init);
 }) as typeof fetch;
