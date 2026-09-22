@@ -4,15 +4,18 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 /**
  * Permanent regression guard: Postgres grants EXECUTE on new functions to
  * PUBLIC by default, which exposes them through PostgREST RPC. Nothing in
- * `public` may be callable by `anon`, and only these four RLS helpers may be
- * callable by a signed-in user.
+ * `public` may be callable by `anon`, and only these helpers may be callable
+ * by a signed-in user: the four RLS helpers, plus the review-workflow publish
+ * primitive, which authenticates and authorises the caller internally.
  */
 const AUTHENTICATED_ALLOWLIST = new Set([
   "aurum_current_editor_role",
   "aurum_can_edit_draft",
   "aurum_can_edit_post_sources",
   "aurum_link_current_editor",
+  "aurum_publish_post",
 ]);
+
 
 type GrantRow = {
   function_name: string;
