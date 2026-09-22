@@ -9,6 +9,9 @@ import {
   type AdminPostEditable,
 } from "@/lib/admin.functions";
 import { AurumEditorialPreview } from "@/components/aurum-editorial-preview";
+import { AdminWorkflowPanel } from "@/components/admin-workflow-panel";
+import { readOnlyReason } from "@/lib/aurum/workflow-ui";
+import type { AdminRole } from "@/lib/admin-roles";
 import { formatShortDate, type AurumEditorial } from "@/lib/aurum-editorial";
 
 
@@ -126,7 +129,15 @@ function initialState(post: AdminPostEditable | null, type: AdminPostType): Form
 }
 
 
-export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
+export function AdminPostForm({
+  post,
+  role = null,
+  onReload,
+}: {
+  post: AdminPostEditable | null;
+  role?: AdminRole | null;
+  onReload?: () => Promise<void> | void;
+}) {
   const navigate = useNavigate();
   const readOnly = post !== null && !post.editable;
 
@@ -249,14 +260,14 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
     })),
   });
 
-  const save = async (event: React.FormEvent) => {
-    event.preventDefault();
+  /** Saves the open form. Returns false when nothing was written. */
+  const persist = async (): Promise<boolean> => {
     if (hasSourceErrors) {
       // Nothing is sent, so neither the post nor its sources change.
       setShowSourceErrors(true);
       setNotice(null);
       setError("Check the sources below. Nothing was saved.");
-      return;
+      return false;
     }
     setShowSourceErrors(false);
     setBusy(true);
@@ -267,17 +278,25 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
         await updateDraft({ data: { id: post.id, ...payload() } });
         setSaved(JSON.stringify(state));
         setNotice("Draft saved.");
+        // The workflow panel reads the persisted row version, so reload it.
+        await onReload?.();
       } else {
         const result = await createDraft({ data: { type: state.type, ...payload() } });
         setSaved(JSON.stringify(state));
         await navigate({ to: "/admin/posts/$postId", params: { postId: result.id } });
       }
+      return true;
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "That draft could not be saved.");
+      return false;
     } finally {
       setBusy(false);
     }
+  };
 
+  const save = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await persist();
   };
 
   const remove = async () => {
@@ -321,9 +340,9 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
         </div>
       </div>
 
-      {readOnly ? (
+      {post && readOnly && readOnlyReason(post.status, post.editable) ? (
         <p className="admin-note" role="note">
-          Editing published posts arrives with the review workflow.
+          {readOnlyReason(post.status, post.editable)}
         </p>
       ) : null}
       {error ? (
@@ -335,6 +354,22 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
         <p className="admin-note" role="status">
           {notice}
         </p>
+      ) : null}
+
+      {post && role ? (
+        <AdminWorkflowPanel
+          postId={post.id}
+          status={post.status}
+          publishedAt={post.publishedAt}
+          updatedAt={post.updatedAt}
+          editable={post.editable}
+          role={role}
+          dirty={dirty}
+          saveNow={persist}
+          onDone={async () => {
+            await onReload?.();
+          }}
+        />
       ) : null}
 
       <div className="admin-form__actions">
@@ -679,21 +714,16 @@ export function AdminPostForm({ post }: { post: AdminPostEditable | null }) {
           <p className="admin-help">Optional manual override, in minutes.</p>
         </div>
 
+        {/*
+          The publication date is deliberately not editable here. It never
+          scheduled anything: the reviewer's Publish now / Schedule choice sets
+          the real time, so an editable field on a draft could only mislead.
+          The stored value is carried through saves untouched.
+        */}
         <div className="admin-field">
-          <label className="admin-label" htmlFor="post-published-at">
-            Planned publication date (optional)
-          </label>
-          <input
-            id="post-published-at"
-            className="admin-input"
-            type="datetime-local"
-            disabled={readOnly}
-            value={state.publishedAt}
-            onChange={(event) => set("publishedAt", event.target.value)}
-          />
+          <span className="admin-label">Publication date</span>
           <p className="admin-help">
-            Times are UTC. This only takes effect when the post is published, which arrives in the
-            next step.
+            Set by the reviewer when the post is published or scheduled.
           </p>
         </div>
 

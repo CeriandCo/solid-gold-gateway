@@ -4377,6 +4377,47 @@ footer.site-footer a:focus-visible {
   gap: 12px;
 }
 
+/* Admin: editorial workflow controls (CMS step 3b-4) */
+.admin-workflow {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--admin-line);
+  border-radius: 12px;
+}
+
+.admin-workflow__state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-workflow__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-workflow__actions .admin-button,
+.admin-workflow .admin-form__actions .admin-button {
+  min-width: 0;
+}
+
+.admin-button--danger {
+  border-color: var(--admin-alert);
+  background: transparent;
+  color: var(--admin-alert);
+}
+
+.admin-button--danger:hover:not(:disabled) {
+  background: var(--admin-alert);
+  color: var(--admin-warm-white);
+}
+
+
+
 /* Admin: sources editor and live preview (CMS step 3b-3) */
 .admin-editor-layout {
   display: grid;

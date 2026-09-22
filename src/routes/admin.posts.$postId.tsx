@@ -1,6 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { getAdminPostForEdit, type AdminPostEditable } from "@/lib/admin.functions";
+import { useCallback, useEffect, useState } from "react";
+import {
+  getAdminMe,
+  getAdminPostForEdit,
+  type AdminPostEditable,
+  type AdminRole,
+} from "@/lib/admin.functions";
 import { AdminPostForm } from "@/components/admin-post-form";
 
 export const Route = createFileRoute("/admin/posts/$postId")({
@@ -23,15 +28,24 @@ export const Route = createFileRoute("/admin/posts/$postId")({
 function PostDetailPage() {
   const { postId } = Route.useParams();
   const [post, setPost] = useState<AdminPostEditable | null>(null);
+  const [role, setRole] = useState<AdminRole | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Revalidates in place after a workflow action, so the shown state is always
+  // the persisted one and the page does not jump.
+  const reload = useCallback(async () => {
+    const data = await getAdminPostForEdit({ data: { id: postId } });
+    if (data) setPost(data);
+  }, [postId]);
 
   useEffect(() => {
     let active = true;
     setLoading(true);
-    getAdminPostForEdit({ data: { id: postId } })
-      .then((data) => {
+    Promise.all([getAdminPostForEdit({ data: { id: postId } }), getAdminMe()])
+      .then(([data, me]) => {
         if (!active) return;
+        setRole(me.role);
         if (!data) setError("That post could not be found.");
         else setPost(data);
       })
@@ -68,5 +82,5 @@ function PostDetailPage() {
     );
   }
 
-  return <AdminPostForm key={post.id} post={post} />;
+  return <AdminPostForm key={post.id} post={post} role={role} onReload={reload} />;
 }

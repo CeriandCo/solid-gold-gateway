@@ -231,6 +231,9 @@ export const PUBLISH_UNEXPECTED = "That post could not be published. Try again."
 const ABSOLUTE_INSTANT =
   /^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2}(\.\d{1,6})?)?(Z|[+-]\d{2}:\d{2})$/;
 
+/** Exposed so the scheduling UI can be proven to produce an accepted instant. */
+export const ABSOLUTE_INSTANT_FOR_TESTS = ABSOLUTE_INSTANT;
+
 const publishInput = z
   .object({
     postId: z.string().uuid(),
