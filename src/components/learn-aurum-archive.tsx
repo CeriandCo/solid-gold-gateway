@@ -13,7 +13,9 @@ export function filterArchiveRows(rows: AurumArchiveRow[], filter: Filter): Auru
 }
 
 /** The existing public detail route pattern for a row's type. */
-export function archiveRoutePattern(type: AurumArchiveRow["type"]): string {
+export function archiveRoutePattern(
+  type: AurumArchiveRow["type"],
+): "/aurum/notes/$slug" | "/aurum/briefs/$slug" {
   return type === "daily_note" ? "/aurum/notes/$slug" : "/aurum/briefs/$slug";
 }
 
@@ -71,7 +73,7 @@ export function LearnAurumArchive({ rows }: { rows: AurumArchiveRow[] }) {
             {shown.map((row) => (
               <li key={`${row.type}-${row.slug}`} className="kc-archive__row">
                 <Link
-                  to={row.type === "daily_note" ? "/aurum/notes/$slug" : "/aurum/briefs/$slug"}
+                  to={archiveRoutePattern(row.type)}
                   params={{ slug: row.slug }}
                   className="kc-archive__link"
                 >
