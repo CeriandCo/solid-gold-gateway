@@ -54,4 +54,15 @@ describe("public function EXECUTE privileges", () => {
       .map((row) => row.function_name);
     expect(offenders).toEqual([]);
   });
+
+  it("exposes the review publish primitive to signed-in editors only", async () => {
+    const row = (await loadGrants()).find((entry) => entry.function_name === "aurum_publish_post");
+    expect(row).toMatchObject({
+      security_definer: true,
+      anon_execute: false,
+      authenticated_execute: true,
+      service_role_execute: true,
+    });
+  });
+
 });
