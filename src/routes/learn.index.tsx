@@ -135,6 +135,7 @@ const PERIODS = ["20yr", "10yr", "5yr", "3yr", "1yr"] as const;
 const AVAILABLE = PERIODS.filter((p) => RETURNS[p]?.length);
 
 function KnowledgeCenterPage() {
+  const archiveRows = Route.useLoaderData();
   const rootRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState(0);
   const [period, setPeriod] = useState<string>(AVAILABLE[0]!);
