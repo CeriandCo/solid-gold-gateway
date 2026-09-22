@@ -2,13 +2,16 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { AurumNoteBody, AurumNoteQuote, AurumNoteSources } from "@/components/aurum-note-content";
 import { formatNoteDate } from "@/lib/aurum-notes";
-import { fetchPublishedLearnNoteBySlug } from "@/lib/aurum-editorial.functions";
+import { fetchEditorialBySlug, fetchPublishedLearnNoteBySlug } from "@/lib/aurum-editorial.functions";
 
 const origin = "https://solid-gold-gateway.lovable.app";
 
 export const Route = createFileRoute("/aurum_/notes/$slug")({
   loader: async ({ params }) => {
-    const note = await fetchPublishedLearnNoteBySlug({ data: { slug: params.slug } });
+    // Learn-fed notes first; archived database Daily Notes keep their existing URLs.
+    const note =
+      (await fetchPublishedLearnNoteBySlug({ data: { slug: params.slug } })) ??
+      (await fetchEditorialBySlug({ data: { type: "daily_note", slug: params.slug } }));
     if (!note) throw notFound();
     return { note };
   },

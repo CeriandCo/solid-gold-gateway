@@ -56,6 +56,7 @@ export function AurumDailyNoteSection({
                 {newest ? <>Most recent note: {formatEditorialDate(newest.publishedAt)}.{isOlderThanThirtyDays(newest.publishedAt) ? " New notes are published as they are written, not on a fixed schedule." : ""}</> : "No notes published yet."}
               </p>
               <Link className="aurum-note-more" to="/aurum/notes" search={{ page: 1 }}>Show older notes →</Link>
+              <Link className="aurum-note-more" to="/learn" hash="aurum-archive">Browse all notes →</Link>
             </div>
           </>
         )}
