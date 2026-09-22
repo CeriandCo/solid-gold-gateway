@@ -639,6 +639,8 @@ export type Database = {
       }
       gift_card_orders: {
         Row: {
+          acknowledged_at: string | null
+          acknowledged_text: string | null
           amount_cents: number
           attempt_id: string | null
           buyer_email: string | null
@@ -657,9 +659,12 @@ export type Database = {
           status: string
           stripe_payment_intent_id: string | null
           stripe_session_id: string | null
+          terms_version: string | null
           updated_at: string
         }
         Insert: {
+          acknowledged_at?: string | null
+          acknowledged_text?: string | null
           amount_cents: number
           attempt_id?: string | null
           buyer_email?: string | null
@@ -678,9 +683,12 @@ export type Database = {
           status?: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
+          terms_version?: string | null
           updated_at?: string
         }
         Update: {
+          acknowledged_at?: string | null
+          acknowledged_text?: string | null
           amount_cents?: number
           attempt_id?: string | null
           buyer_email?: string | null
@@ -699,6 +707,7 @@ export type Database = {
           status?: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
+          terms_version?: string | null
           updated_at?: string
         }
         Relationships: [

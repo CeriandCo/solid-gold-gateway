@@ -5,13 +5,26 @@ import { createStripeClient, getStripeSecretKey, isLiveKey, peppered } from "./c
 import { keyMode } from "./commerce/stripe-catalog.server";
 
 import { buildGiftCardSessionParams } from "./commerce/session-params";
+import {
+  ACKNOWLEDGEMENT_VERSION,
+  acknowledgementRecordText,
+} from "./commerce/acknowledgement";
 import type { CheckoutResult, CheckoutStatusResult } from "./commerce/types";
 
 const uuid = z.string().uuid();
 
 // `.strict()` — a payload carrying anything else (an amount, a currency) is
 // rejected outright rather than silently ignored.
-const checkoutInput = z.object({ denominationId: uuid, attemptId: uuid }).strict();
+// `acknowledged` (task C-9) must be literally true: a client with devtools
+// cannot omit it, send false, or send a stale terms version.
+const checkoutInput = z
+  .object({
+    denominationId: uuid,
+    attemptId: uuid,
+    acknowledged: z.literal(true),
+    termsVersion: z.literal(ACKNOWLEDGEMENT_VERSION),
+  })
+  .strict();
 
 const sessionIdInput = z
   .object({ sessionId: z.string().regex(/^cs_(test|live)_[A-Za-z0-9]+$/) })
@@ -179,6 +192,14 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
   }
 
   // 6. Create the order, then the session with an idempotency key.
+  // Consent record (C-9): the version and the exact text are rebuilt here from
+  // the server's own copy, never taken from the browser.
+  const consent = {
+    terms_version: ACKNOWLEDGEMENT_VERSION,
+    acknowledged_text: acknowledgementRecordText("gift_card"),
+    acknowledged_at: new Date().toISOString(),
+  };
+
   let orderId: string | null = null;
   if (existing.data) {
     // Only a still-unpaid attempt may be picked up again.
@@ -187,7 +208,10 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
       return { ok: false, code: "invalid_request" };
     }
     orderId = existing.data.id;
-    await supabaseAdmin.from("gift_card_orders").update({ status: "open" }).eq("id", orderId);
+    await supabaseAdmin
+      .from("gift_card_orders")
+      .update({ status: "open", ...consent })
+      .eq("id", orderId);
   } else {
     const inserted = await supabaseAdmin
       .from("gift_card_orders")
@@ -199,6 +223,7 @@ export async function runGiftCardCheckout(data: unknown): Promise<CheckoutResult
         currency,
         client_ip_hash: ipHash,
         livemode: isLiveKey(secretKey),
+        ...consent,
       })
       .select("id")
       .single();

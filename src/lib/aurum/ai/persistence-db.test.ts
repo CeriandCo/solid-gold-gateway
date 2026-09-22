@@ -9,7 +9,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 import { assertIsolatedDatabase } from "@/test/live-db-guard";
 
@@ -197,6 +197,25 @@ describe("atomic in_review save", () => {
 });
 
 describe("an ordinary session cannot reach or forge any of this", () => {
+  // Other database suites in this repo run a blanket
+  // "grant ... on all tables in schema public to authenticated" against the
+  // same throwaway database, which clobbers the AI tables' grants. Restate the
+  // live grants (service_role only) immediately before each check so this suite
+  // measures the real permission model regardless of execution order.
+  beforeEach(() => {
+    for (const table of ["public.aurum_ai_runs", "public.aurum_ai_alerts"]) {
+      sql(`revoke all on table ${table} from public, anon, authenticated`);
+    }
+    for (const signature of [
+      "public.aurum_ai_claim_run(text, integer)",
+      "public.aurum_ai_finish_run(uuid, text, text, text, integer, integer, integer, numeric, uuid, text)",
+      "public.aurum_ai_create_in_review(uuid, text, text, text, jsonb, jsonb)",
+      "public.aurum_ai_max_runs_per_day()",
+    ]) {
+      sql(`revoke all on function ${signature} from public, anon, authenticated`);
+    }
+  });
+
   function asEditor(statement: string): SqlResult {
     return run(
       ["begin", "set local role authenticated", `set local test.uid = '${EDITOR}'`, statement, "commit"].join(

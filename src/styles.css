@@ -7373,3 +7373,52 @@ footer.site-footer a:focus-visible {
   text-transform: uppercase;
   vertical-align: middle;
 }
+
+/* Purchase acknowledgement panel (task C-9). Existing tokens only. */
+.purchase-ack {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--cream-2);
+}
+.purchase-ack-heading {
+  color: var(--forest);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.purchase-ack-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+  color: var(--muted-ink);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.purchase-ack-list li + li { margin-top: 6px; }
+.purchase-ack-confirm {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+  color: var(--forest);
+  font-size: 13.5px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.purchase-ack-confirm input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--gold-dark);
+  cursor: pointer;
+}
+.purchase-ack-confirm input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}

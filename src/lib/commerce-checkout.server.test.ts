@@ -10,6 +10,9 @@ const { runGiftCardCheckout, runGiftCardCheckoutStatus } = await import(
   "./commerce-checkout.server"
 );
 const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+const { ACKNOWLEDGEMENT_VERSION, acknowledgementRecordText } = await import(
+  "./commerce/acknowledgement"
+);
 const { restoreCommerceSettings, snapshotCommerceSettings } = await import(
   "./commerce/settings-fixture"
 );
@@ -21,6 +24,9 @@ const SETTINGS_SNAPSHOT = await snapshotCommerceSettings();
 
 const ORIGIN = "https://tests.sqoot.invalid";
 const uuid = () => crypto.randomUUID();
+
+/** Task C-9: every checkout call must carry the purchase acknowledgement. */
+const ack = { acknowledged: true as const, termsVersion: ACKNOWLEDGEMENT_VERSION };
 
 /** Every salted IP bucket this run touched, so teardown deletes only its own rows. */
 const usedIpHashes = new Set<string>();
@@ -94,7 +100,7 @@ describe("gift card checkout", () => {
     await setSettings({ checkout_enabled: false, currency: null, allowed_origins: [] });
     const [denom] = await denominations();
     const attemptId = uuid();
-    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId, ...ack });
     expect(result).toEqual({ ok: false, code: "unavailable" });
     expect(await orderCount(attemptId)).toBe(0);
   });
@@ -104,7 +110,7 @@ describe("gift card checkout", () => {
     delete process.env["STRIPE_SECRET_KEY"];
     const [denom] = await denominations();
     const attemptId = uuid();
-    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId, ...ack });
     expect(result).toEqual({ ok: false, code: "unavailable" });
     expect(await orderCount(attemptId)).toBe(0);
   });
@@ -115,11 +121,12 @@ describe("gift card checkout", () => {
       await runGiftCardCheckout({
         denominationId: denom!.id,
         attemptId: uuid(),
+        ...ack,
         amountCents: 1,
       }),
     ).toEqual({ ok: false, code: "invalid_request" });
     expect(
-      await runGiftCardCheckout({ denominationId: "not-a-uuid", attemptId: uuid() }),
+      await runGiftCardCheckout({ denominationId: "not-a-uuid", attemptId: uuid(), ...ack }),
     ).toEqual({ ok: false, code: "invalid_request" });
   });
 
@@ -130,6 +137,7 @@ describe("gift card checkout", () => {
     const result = await runGiftCardCheckout({
       denominationId: denom!.id,
       attemptId: uuid(),
+      ...ack,
     });
     headers["origin"] = ORIGIN;
     expect(result).toEqual({ ok: false, code: "origin_not_allowed" });
@@ -145,7 +153,7 @@ describe("gift card checkout", () => {
     // First use creates exactly one order. The placeholder key makes the Stripe
     // call fail, which is the point: the order exists without a session.
     expect(await orderCount(attemptId)).toBe(0);
-    const initial = await runGiftCardCheckout({ denominationId: first.id, attemptId });
+    const initial = await runGiftCardCheckout({ denominationId: first.id, attemptId, ...ack });
     expect(initial).toEqual({ ok: false, code: "checkout_failed" });
     expect(await orderCount(attemptId)).toBe(1);
 
@@ -158,7 +166,7 @@ describe("gift card checkout", () => {
     expect(created.data?.amount_cents).toBe(first.amount_cents);
 
     // Replay with a DIFFERENT amount is refused outright.
-    const swapped = await runGiftCardCheckout({ denominationId: second.id, attemptId });
+    const swapped = await runGiftCardCheckout({ denominationId: second.id, attemptId, ...ack });
     expect(swapped).toEqual({ ok: false, code: "invalid_request" });
     const afterSwap = await supabaseAdmin
       .from("gift_card_orders")
@@ -170,7 +178,7 @@ describe("gift card checkout", () => {
     expect(await orderCount(attemptId)).toBe(1);
 
     // Replay with the SAME amount reuses the same order, never a second one.
-    const replay = await runGiftCardCheckout({ denominationId: first.id, attemptId });
+    const replay = await runGiftCardCheckout({ denominationId: first.id, attemptId, ...ack });
     expect(replay).toEqual({ ok: false, code: "checkout_failed" });
     const afterReplay = await supabaseAdmin
       .from("gift_card_orders")
@@ -192,6 +200,7 @@ describe("gift card checkout", () => {
       const result = await runGiftCardCheckout({
         denominationId: denom!.id,
         attemptId: uuid(),
+        ...ack,
       });
       codes.push(result.ok ? "ok" : result.code);
     }
@@ -219,11 +228,66 @@ describe("gift card checkout", () => {
 
     const [denom] = await denominations();
     const attemptId = uuid();
-    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId });
+    const result = await runGiftCardCheckout({ denominationId: denom!.id, attemptId, ...ack });
     await mapPrices(true);
 
     expect(result).toEqual({ ok: false, code: "unavailable" });
     expect(await orderCount(attemptId)).toBe(0);
   });
+
+  // Task C-9: server-side enforcement of the purchase acknowledgement.
+  it("rejects a purchase without the acknowledgement and writes no order", async () => {
+    process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
+    await setSettings({ checkout_enabled: true, currency: "usd", allowed_origins: [ORIGIN] });
+    await useClientIp(`ack-${uuid()}`);
+    const [denom] = await denominations();
+
+    const missing = uuid();
+    expect(
+      await runGiftCardCheckout({ denominationId: denom!.id, attemptId: missing }),
+    ).toEqual({ ok: false, code: "invalid_request" });
+    expect(await orderCount(missing)).toBe(0);
+
+    const untickedId = uuid();
+    expect(
+      await runGiftCardCheckout({
+        denominationId: denom!.id,
+        attemptId: untickedId,
+        acknowledged: false,
+        termsVersion: ACKNOWLEDGEMENT_VERSION,
+      }),
+    ).toEqual({ ok: false, code: "invalid_request" });
+    expect(await orderCount(untickedId)).toBe(0);
+
+    const staleId = uuid();
+    expect(
+      await runGiftCardCheckout({
+        denominationId: denom!.id,
+        attemptId: staleId,
+        acknowledged: true,
+        termsVersion: "some-old-version",
+      }),
+    ).toEqual({ ok: false, code: "invalid_request" });
+    expect(await orderCount(staleId)).toBe(0);
+  });
+
+  it("records the acknowledgement version, text and time on the order", async () => {
+    process.env["STRIPE_SECRET_KEY"] = "sk_test_placeholder_for_tests";
+    await setSettings({ checkout_enabled: true, currency: "usd", allowed_origins: [ORIGIN] });
+    await useClientIp(`ack-record-${uuid()}`);
+    const [denom] = await denominations();
+    const attemptId = uuid();
+
+    // The placeholder key makes Stripe fail, but the order row is written first.
+    await runGiftCardCheckout({ denominationId: denom!.id, attemptId, ...ack });
+    const row = await supabaseAdmin
+      .from("gift_card_orders")
+      .select("terms_version, acknowledged_text, acknowledged_at")
+      .eq("attempt_id", attemptId)
+      .single();
+    expect(row.data?.terms_version).toBe(ACKNOWLEDGEMENT_VERSION);
+    expect(row.data?.acknowledged_text).toBe(acknowledgementRecordText("gift_card"));
+    expect(typeof row.data?.acknowledged_at).toBe("string");
+  }, 60000);
 
 });

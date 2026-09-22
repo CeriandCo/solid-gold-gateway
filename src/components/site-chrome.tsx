@@ -102,6 +102,8 @@ export function GoldButton({
   target,
   rel,
   "aria-label": ariaLabel,
+  "aria-busy": ariaBusy,
+  "aria-disabled": ariaDisabled,
   className = "",
 }: {
   children: React.ReactNode;
@@ -117,6 +119,12 @@ export function GoldButton({
   target?: string;
   rel?: string;
   "aria-label"?: string;
+  "aria-busy"?: boolean;
+  /**
+   * Soft-disabled: styled as unavailable but still focusable, so a keyboard
+   * user can reach it and hear why it cannot be used yet (task C-9).
+   */
+  "aria-disabled"?: boolean;
   className?: string;
 }) {
   const resolvedIcon = icon ?? (variant === "video" ? "play" : "arrow");
@@ -135,6 +143,7 @@ export function GoldButton({
         ? "bg-forest-black text-paper motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard hover:bg-forest-black-deep"
         : "border border-gold/70 bg-transparent text-warm-white motion-safe:transition-all motion-safe:hover:-translate-y-px hover:border-gold hover:bg-gold hover:text-forest-deep",
     disabled && (variant === "forest" ? "cursor-not-allowed opacity-50" : "pointer-events-none opacity-60"),
+    !disabled && ariaDisabled && "cursor-not-allowed opacity-60",
     className,
   );
   const content = (
@@ -159,7 +168,16 @@ export function GoldButton({
     );
   }
   return (
-    <button type={type ?? "button"} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel} ref={ref}>
+    <button
+      type={type ?? "button"}
+      className={classes}
+      onClick={ariaDisabled ? undefined : onClick}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      aria-busy={ariaBusy}
+      aria-disabled={ariaDisabled}
+      ref={ref}
+    >
       {content}
     </button>
   );
