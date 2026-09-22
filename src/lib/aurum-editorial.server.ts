@@ -160,6 +160,31 @@ export async function loadEditorialPage(input: {
 }
 
 
+/**
+ * Every publicly visible Daily Note and Weekly Brief, newest first, tie-broken by id
+ * so the order can never swap between requests. Drafts, scheduled and archived posts
+ * are excluded by the shared `visible()` filter.
+ */
+export async function loadEditorialArchive(): Promise<AurumArchiveRow[]> {
+  const { data, error } = await visible(
+    supabaseAdmin
+      .from("aurum_posts")
+      .select("slug, title, summary, published_at, type")
+      .in("type", ["daily_note", "weekly_brief"]),
+  )
+    .order("published_at", { ascending: false })
+    .order("id", { ascending: false });
+  if (error) throw new Error(`Failed to load editorial archive: ${error.message}`);
+
+  return ((data ?? []) as Record<string, unknown>[]).map((row) => ({
+    slug: row["slug"] as string,
+    title: row["title"] as string,
+    summary: (row["summary"] as string | null) ?? "",
+    publishedAt: toUtcDate(row["published_at"] as string),
+    type: row["type"] as AurumArchiveRow["type"],
+  }));
+}
+
 export async function loadEditorialBySlug(
   type: AurumEditorialType,
   slug: string,
