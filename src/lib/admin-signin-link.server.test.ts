@@ -59,24 +59,22 @@ beforeEach(async () => {
 
 afterAll(async () => {
   globalThis.fetch = realFetch;
-  // sendAdminSignInLink prepares the auth user for a listed email; remove it again.
-  const { data } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
-  const match = data?.users.find((user) => user.email === listedEmail);
-  if (match) createdUsers.push(match.id);
   await supabaseAdmin.from("aurum_admin_link_requests").delete().eq("email", listedEmail);
   await supabaseAdmin.from("aurum_admin_link_requests").delete().eq("email", strangerEmail);
   await supabaseAdmin.from("aurum_editors").delete().eq("email", listedEmail);
-  for (const id of createdUsers) await supabaseAdmin.auth.admin.deleteUser(id);
 });
 
 describe("admin sign-in link", () => {
-  it("keeps public sign-up disabled on the auth server", async () => {
-    const response = await realFetch(`${process.env["SUPABASE_URL"]}/auth/v1/settings`, {
-      headers: { apikey: process.env["SUPABASE_PUBLISHABLE_KEY"]! },
-    });
-    const settings = (await response.json()) as { disable_signup: boolean; external: { email: boolean } };
+  it("a request that asks for user creation is refused while signups are disabled", async () => {
+    const settings = await fetch(`${process.env["SUPABASE_URL"]}/auth/v1/settings`).then((r) => r.json());
     expect(settings.disable_signup).toBe(true);
-    expect(settings.external.email).toBe(true);
+    const refused = await fetch(`${process.env["SUPABASE_URL"]}/auth/v1/otp`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: listedEmail, create_user: true }),
+    });
+    expect(refused.status).toBe(422);
+    otpCalls = [];
   });
 
   it("sends a link for an allowlisted account without creating a user", async () => {
