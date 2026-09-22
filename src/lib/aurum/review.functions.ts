@@ -421,3 +421,96 @@ export const returnToDraft = createServerFn({ method: "POST" })
         data,
       ),
   );
+
+/* ------------------------------------------------------------------ *
+ * Archive (unpublish) — published -> archived.
+ *
+ * One action serves two situations, because a scheduled post is simply a
+ * published row whose publication time has not arrived: it unpublishes live
+ * content and it cancels a scheduled publication.
+ *
+ * Removal from public view is a safety action, never an approval decision: no
+ * content or source validation runs, the approval setting is not consulted, and
+ * publication provenance (published_at, reviewed_by, reviewed_at, submitted_at)
+ * is deliberately preserved for a later restore design.
+ * ------------------------------------------------------------------ */
+
+export const ARCHIVE_NOT_FOUND = "That post could not be found.";
+export const ARCHIVE_WRONG_STATUS = "That post is not published.";
+export const ARCHIVE_UNEXPECTED = "That post could not be unpublished. Try again.";
+
+const archiveInput = z.object({ postId: z.string().uuid() }).strict();
+
+/** The server function's input contract, exported so it can be tested directly. */
+export function parseArchiveInput(data: unknown): { postId: string } {
+  return archiveInput.parse(data ?? {});
+}
+
+export type ArchivePostResult = {
+  id: string;
+  status: "archived";
+  changed: boolean;
+};
+
+export type ArchiveDeps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getPrivileged: () => Promise<any>;
+};
+
+export async function performArchivePost(
+  deps: ArchiveDeps,
+  input: { postId: string },
+): Promise<ArchivePostResult> {
+  // Taking content off the site is a reviewer/admin act, exactly as putting it
+  // there is. The role always comes from the caller's own client.
+  await requireRole(deps.supabase, ["reviewer", "admin"]);
+
+  // Authorized: only now is privileged capability obtained.
+  const privileged = await deps.getPrivileged();
+
+  // Status is a predicate on the write itself, never a prior read: that is what
+  // makes two simultaneous requests produce exactly one transition. It matches
+  // live and scheduled rows alike, both of which are status = 'published'.
+  const { data: updated, error } = await privileged
+    .from("aurum_posts")
+    .update({ status: "archived" })
+    .eq("id", input.postId)
+    .eq("status", "published")
+    .select("id, status");
+  if (error) throw writeError(error);
+
+  const written = (updated ?? []) as { id: string }[];
+  if (written.length > 0) {
+    return { id: written[0]!.id, status: "archived", changed: true };
+  }
+
+  // Nothing moved: the post is gone, or it is not (or no longer) published.
+  // An already archived row is reported as a wrong state rather than as
+  // idempotent success — the schema records no archived_by/archived_at, so this
+  // request cannot be shown to be the one that produced the archived state.
+  const { data: after, error: afterError } = await privileged
+    .from("aurum_posts")
+    .select("status")
+    .eq("id", input.postId)
+    .maybeSingle();
+  if (afterError) throw new Error(ARCHIVE_UNEXPECTED);
+  if (!after) throw new Error(ARCHIVE_NOT_FOUND);
+  throw new Error(ARCHIVE_WRONG_STATUS);
+}
+
+export const archivePost = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(parseArchiveInput)
+  .handler(
+    async ({ data, context }): Promise<ArchivePostResult> =>
+      performArchivePost(
+        {
+          supabase: context.supabase,
+          getPrivileged: async () =>
+            (await import("@/integrations/supabase/client.server")).supabaseAdmin,
+        },
+        data,
+      ),
+  );
