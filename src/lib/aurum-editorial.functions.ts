@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import type { AurumEditorial } from "@/lib/aurum-editorial";
+import type { AurumArchiveRow, AurumEditorial } from "@/lib/aurum-editorial";
 import type { AurumEditorialType, EditorialPage } from "@/lib/aurum-editorial.server";
 
 const TYPES = ["daily_note", "weekly_brief", "article"] as const;
@@ -69,3 +69,10 @@ export const fetchPublishedLearnNoteBySlug = createServerFn({ method: "GET" })
     const { getPublishedLearnArticle } = await import("@/lib/learn-articles");
     return getPublishedLearnArticle(data.slug);
   });
+
+export const fetchEditorialArchive = createServerFn({ method: "GET" }).handler(
+  async (): Promise<AurumArchiveRow[]> => {
+    const { loadEditorialArchive } = await import("@/lib/aurum-editorial.server");
+    return loadEditorialArchive();
+  },
+);

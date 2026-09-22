@@ -21,6 +21,15 @@ export type AurumEditorial = {
   reviewLine?: string;
 };
 
+/** One row in the combined published archive (Daily Notes + Weekly Briefs). */
+export type AurumArchiveRow = {
+  slug: string;
+  title: string;
+  summary: string;
+  publishedAt: string;
+  type: "daily_note" | "weekly_brief";
+};
+
 // Fixed month table on purpose: some en-GB runtimes render "Sept" via Intl, and a
 // server/browser difference would also cause a hydration mismatch. Shared by every
 // short-date formatter (server module and client components alike).
