@@ -27,9 +27,10 @@ function run(sql: string): SqlResult {
   try {
     const out = execFileSync(
       "psql",
-      [CONN, "-At", "-v", "ON_ERROR_STOP=1", "-c", `\\set VERBOSITY verbose`, "-c", sql],
+      [CONN, "-At", "-q", "-v", "ON_ERROR_STOP=1", "-c", `\\set VERBOSITY verbose`, "-c", sql],
       { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
     );
+
     return { ok: true, out: out.trim() };
   } catch (error) {
     const err = error as { stderr?: string };
