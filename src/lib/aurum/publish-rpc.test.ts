@@ -311,10 +311,16 @@ describe("aurum_publish_post — immediate publication", () => {
 describe("aurum_publish_post — scheduling", () => {
   it("stores a future instant exactly", () => {
     const at = sql(`select (now() + interval '2 days')::text`);
-    const result = payload(publish(REVIEWER, makePost(), at));
+    const post = makePost();
+    const result = payload(publish(REVIEWER, post, at));
     expect(result.changed).toBe(true);
-    expect(new Date(result.published_at).getTime()).toBe(new Date(at.replace(" ", "T")).getTime());
+    expect(
+      sql(
+        `select (published_at = ${lit(at)}::timestamptz)::text from public.aurum_posts where id = ${lit(post)}::uuid`,
+      ),
+    ).toBe("true");
   });
+
 
   it("rejects a publication time at or before database now", () => {
     const past = sql(`select (now() - interval '1 minute')::text`);
