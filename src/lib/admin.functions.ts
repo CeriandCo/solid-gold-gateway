@@ -465,7 +465,7 @@ function optionalText(value: unknown): string | null {
   return text.length > 0 ? text : null;
 }
 
-function parseDraftInput(input: Record<string, unknown>): AdminDraftInput {
+export function parseDraftInput(input: Record<string, unknown>): AdminDraftInput {
   const title = String(input["title"] ?? "").trim();
   if (!title) throw new Error("A title is required.");
 
@@ -542,7 +542,7 @@ function parseSources(value: unknown): AdminSourceInput[] {
 }
 
 
-function writeError(error: { code?: string; message: string }): Error {
+export function writeError(error: { code?: string; message: string }): Error {
   if (error.code === "23505") {
     return new Error("That web address is already used by another post of this type.");
   }
