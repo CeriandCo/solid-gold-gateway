@@ -514,3 +514,100 @@ export const archivePost = createServerFn({ method: "POST" })
         data,
       ),
   );
+
+/* ------------------------------------------------------------------ *
+ * Restore — archived -> draft.
+ *
+ * Restore is never republication: the post re-enters the editable workflow and
+ * must travel submit -> review -> publish again before it can be public.
+ *
+ * published_at is cleared. On a draft that column is editor-owned data (the
+ * draft editor reads it back into the form and createDraft/updateDraft write
+ * whatever the form submits), so leaving a historical publication instant on a
+ * restored draft would present past provenance as the post's current intended
+ * publication date. The trade-off is explicit: the schema keeps no separate
+ * publication history, so the previous publication instant and the reviewer who
+ * approved it are not retained anywhere after a restore.
+ * ------------------------------------------------------------------ */
+
+export const RESTORE_NOT_FOUND = "That post could not be found.";
+export const RESTORE_WRONG_STATUS = "That post is not archived.";
+export const RESTORE_UNEXPECTED = "That post could not be restored. Try again.";
+
+const restoreInput = z.object({ postId: z.string().uuid() }).strict();
+
+/** The server function's input contract, exported so it can be tested directly. */
+export function parseRestoreInput(data: unknown): { postId: string } {
+  return restoreInput.parse(data ?? {});
+}
+
+export type RestoreToDraftResult = {
+  id: string;
+  status: "draft";
+  changed: boolean;
+};
+
+export type RestoreDeps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getPrivileged: () => Promise<any>;
+};
+
+export async function performRestoreToDraft(
+  deps: RestoreDeps,
+  input: { postId: string },
+): Promise<RestoreToDraftResult> {
+  // Bringing archived content back into the editable workflow is a reviewer or
+  // admin decision; an editor cannot do it alone.
+  await requireRole(deps.supabase, ["reviewer", "admin"]);
+
+  // Authorized: only now is privileged capability obtained.
+  const privileged = await deps.getPrivileged();
+
+  // The destination is fixed and the starting state is enforced by the write.
+  const { data: updated, error } = await privileged
+    .from("aurum_posts")
+    .update({
+      status: "draft",
+      published_at: null,
+      submitted_at: null,
+      reviewed_by: null,
+      reviewed_at: null,
+    })
+    .eq("id", input.postId)
+    .eq("status", "archived")
+    .select("id, status");
+  if (error) throw writeError(error);
+
+  const written = (updated ?? []) as { id: string }[];
+  if (written.length > 0) {
+    return { id: written[0]!.id, status: "draft", changed: true };
+  }
+
+  // Nothing moved. An already-draft row is a wrong state, not a success: the
+  // schema cannot show whether this request produced that draft.
+  const { data: after, error: afterError } = await privileged
+    .from("aurum_posts")
+    .select("status")
+    .eq("id", input.postId)
+    .maybeSingle();
+  if (afterError) throw new Error(RESTORE_UNEXPECTED);
+  if (!after) throw new Error(RESTORE_NOT_FOUND);
+  throw new Error(RESTORE_WRONG_STATUS);
+}
+
+export const restoreToDraft = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(parseRestoreInput)
+  .handler(
+    async ({ data, context }): Promise<RestoreToDraftResult> =>
+      performRestoreToDraft(
+        {
+          supabase: context.supabase,
+          getPrivileged: async () =>
+            (await import("@/integrations/supabase/client.server")).supabaseAdmin,
+        },
+        data,
+      ),
+  );
