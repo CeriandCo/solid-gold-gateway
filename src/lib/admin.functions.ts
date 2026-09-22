@@ -2,8 +2,9 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { NEUTRAL_SIGN_IN_MESSAGE } from "@/lib/admin.server";
+import { ADMIN_ROLES, requireRole, resolveRole, type AdminRole } from "@/lib/admin-roles";
 
-export type AdminRole = "admin" | "reviewer" | "editor";
+export type { AdminRole };
 
 export type AdminMe = {
   email: string;
@@ -18,30 +19,17 @@ export type EditorRow = {
   createdAt: string;
 };
 
-const ROLES: AdminRole[] = ["admin", "reviewer", "editor"];
-
 function parseRole(value: unknown): AdminRole {
-  const role = ROLES.find((candidate) => candidate === value);
+  const role = ADMIN_ROLES.find((candidate) => candidate === value);
   if (!role) throw new Error("Choose a role of admin, reviewer or editor.");
   return role;
 }
 
-/**
- * Resolves the caller's role through the user-scoped client, linking their auth user
- * to the allowlist row on first sign-in. Returns null for anyone not on the list.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function resolveRole(supabase: any): Promise<AdminRole | null> {
-  const { data, error } = await supabase.rpc("aurum_link_current_editor");
-  if (error) throw new Error(error.message);
-  return (data as AdminRole | null) ?? null;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function requireAdmin(supabase: any): Promise<void> {
-  const role = await resolveRole(supabase);
-  if (role !== "admin") throw new Error("Forbidden: this area is for admins only.");
+  await requireRole(supabase, ["admin"]);
 }
+
 
 /** Public: allowlist-gated, rate-limited magic-link request. Never reveals membership. */
 export const requestAdminSignInLink = createServerFn({ method: "POST" })
