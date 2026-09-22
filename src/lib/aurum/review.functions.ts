@@ -332,3 +332,92 @@ export const publishPost = createServerFn({ method: "POST" })
     async ({ data, context }): Promise<PublishPostResult> =>
       performPublishPost(context.supabase, data),
   );
+
+/* ------------------------------------------------------------------ *
+ * Return to draft — in_review -> draft, so the author can make changes.
+ *
+ * Not an approval decision: the self-approval setting is deliberately not
+ * consulted, and no content or source validation runs. Returning a post for
+ * changes must work precisely when the content is incomplete.
+ * ------------------------------------------------------------------ */
+
+export const RETURN_NOT_FOUND = "That post could not be found.";
+export const RETURN_WRONG_STATUS = "That post is not awaiting review.";
+export const RETURN_UNEXPECTED = "That post could not be returned to draft. Try again.";
+
+const returnInput = z.object({ postId: z.string().uuid() }).strict();
+
+/** The server function's input contract, exported so it can be tested directly. */
+export function parseReturnInput(data: unknown): { postId: string } {
+  return returnInput.parse(data ?? {});
+}
+
+export type ReturnToDraftResult = {
+  id: string;
+  status: "draft";
+  changed: boolean;
+};
+
+export type ReturnDeps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getPrivileged: () => Promise<any>;
+};
+
+export async function performReturnToDraft(
+  deps: ReturnDeps,
+  input: { postId: string },
+): Promise<ReturnToDraftResult> {
+  // Reviewing is a reviewer/admin act, exactly as publication is.
+  await requireRole(deps.supabase, ["reviewer", "admin"]);
+
+  // Authorized: only now is privileged capability obtained.
+  const privileged = await deps.getPrivileged();
+
+  // The starting state is enforced by the write itself, never by a prior read.
+  const { data: updated, error } = await privileged
+    .from("aurum_posts")
+    .update({
+      status: "draft",
+      submitted_at: null,
+      // Cleared, not overwritten: reviewed_by means "the reviewer who approved
+      // this post", and nothing here was approved.
+      reviewed_by: null,
+      reviewed_at: null,
+    })
+    .eq("id", input.postId)
+    .eq("status", "in_review")
+    .select("id, status");
+  if (error) throw writeError(error);
+
+  const written = (updated ?? []) as { id: string }[];
+  if (written.length > 0) {
+    return { id: written[0]!.id, status: "draft", changed: true };
+  }
+
+  // Nothing moved: either the post is gone, or it left review first.
+  const { data: after, error: afterError } = await privileged
+    .from("aurum_posts")
+    .select("status")
+    .eq("id", input.postId)
+    .maybeSingle();
+  if (afterError) throw new Error(RETURN_UNEXPECTED);
+  if (!after) throw new Error(RETURN_NOT_FOUND);
+  throw new Error(RETURN_WRONG_STATUS);
+}
+
+export const returnToDraft = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(parseReturnInput)
+  .handler(
+    async ({ data, context }): Promise<ReturnToDraftResult> =>
+      performReturnToDraft(
+        {
+          supabase: context.supabase,
+          getPrivileged: async () =>
+            (await import("@/integrations/supabase/client.server")).supabaseAdmin,
+        },
+        data,
+      ),
+  );
