@@ -73,3 +73,4 @@
 - [x] B4 — activation after the hold, gift code minting and delivery.
 - [x] B5 — security hardening and abuse-test pass.
 - [x] S2 — gift card Checkout bound to a verified Stripe Product catalog (sandbox-first).
+- [ ] Seed a full-access admin account (editor allowlist row with the admin role) so the CMS can be used end to end.
