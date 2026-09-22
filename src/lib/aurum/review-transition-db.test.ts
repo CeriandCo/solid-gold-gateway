@@ -89,7 +89,7 @@ describe("draft -> in_review cannot be done by an authenticated session", () => 
   it("blocks writing submitted_at and reviewer fields directly", () => {
     for (const patch of [
       "submitted_at = now()",
-      "reviewed_by = null, reviewed_at = null",
+      `reviewed_by = '${EDITOR}'::uuid, reviewed_at = now()`,
       "author_id = null",
     ]) {
       const result = run(
