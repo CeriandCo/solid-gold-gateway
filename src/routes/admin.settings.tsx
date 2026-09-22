@@ -101,7 +101,9 @@ function SettingsPage() {
             <p className="admin-muted">
               Turning this off means a second person has to publish what someone wrote.
             </p>
-            <p className="admin-note">Takes effect when publishing arrives in the next step.</p>
+            <p className="admin-note">
+              Checked every time someone publishes or schedules a post.
+            </p>
           </div>
         )}
       </section>
