@@ -130,6 +130,13 @@ beforeAll(() => {
     create or replace function auth.uid() returns uuid language sql stable
     as $fn$ select nullif(current_setting('test.uid', true), '')::uuid $fn$
   `);
+  // The live project grants table DML to `authenticated`; the schema dump used
+  // by the throwaway stack strips privileges, and the deferred source trigger
+  // runs at commit as the session role, so restore them here.
+  sql(`
+    grant select, insert, update, delete on all tables in schema public to authenticated;
+    grant usage on schema auth to authenticated
+  `);
   sql(`
     insert into auth.users (id, email) values
       (${lit(REVIEWER)}::uuid, 'reviewer@example.com'),
@@ -203,7 +210,7 @@ describe("aurum_publish_post — authentication and authorization", () => {
 
   it("reports a missing post as not found", () => {
     const result = publish(REVIEWER, "99999999-9999-4999-8999-999999999999");
-    expect(result).toMatchObject({ ok: false, sqlstate: "02000" });
+    expect(result).toMatchObject({ ok: false, sqlstate: "P0002" });
   });
 });
 
