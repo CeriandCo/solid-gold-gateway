@@ -69,7 +69,9 @@ describe("publishPost — boundary", () => {
   it("is a POST server function protected by requireSupabaseAuth", async () => {
     const { readFileSync } = await import("node:fs");
     const source = readFileSync("src/lib/aurum/review.functions.ts", "utf8");
-    const declaration = source.slice(source.indexOf("export const publishPost"));
+    // Just this declaration: the file continues with other workflow transitions.
+    const from = source.indexOf("export const publishPost");
+    const declaration = source.slice(from, source.indexOf(");", from) + 2);
     expect(declaration).toMatch(/createServerFn\(\{\s*method:\s*"POST"\s*\}\)/);
     expect(declaration).toMatch(/\.middleware\(\[requireSupabaseAuth\]\)/);
     // The RPC must run as the human reviewer, never as service role.
