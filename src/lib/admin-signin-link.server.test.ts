@@ -1,10 +1,12 @@
 /**
  * C-10 regression: an allowlisted, existing account can still request a sign-in
- * link while public sign-up stays disabled on the auth server.
+ * link while public sign-up stays disabled.
  *
- * The allowlist lookup and the rate-limit bookkeeping run against the real
- * project database; the outgoing OTP call is intercepted so the test never
- * dispatches a real email. No password is created or used here.
+ * The allowlist lookup and the rate-limit bookkeeping run against the isolated
+ * test database. The auth server is stood in for by a stub that behaves the way
+ * the real one does with signups disabled: an OTP request that asks for user
+ * creation is refused with "Signups not allowed for otp". No real email is ever
+ * dispatched and no password is created or used here.
  */
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { randomUUID } from "node:crypto";
