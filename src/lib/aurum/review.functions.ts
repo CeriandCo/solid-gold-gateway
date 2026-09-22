@@ -247,6 +247,11 @@ const publishInput = z
 
 export type PublishPostInput = z.input<typeof publishInput>;
 
+/** The server function's input contract, exported so it can be tested directly. */
+export function parsePublishInput(data: unknown): { postId: string; publishedAt: string | null } {
+  return publishInput.parse(data ?? {});
+}
+
 export type PublishPostResult = {
   id: string;
   status: "published";
@@ -322,7 +327,7 @@ export async function performPublishPost(
 
 export const publishPost = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) => publishInput.parse(data ?? {}))
+  .inputValidator(parsePublishInput)
   .handler(
     async ({ data, context }): Promise<PublishPostResult> =>
       performPublishPost(context.supabase, data),

@@ -13,6 +13,7 @@ import {
   PUBLISH_UNAUTHENTICATED,
   PUBLISH_UNEXPECTED,
   PUBLISH_WRONG_STATUS,
+  parsePublishInput,
   performPublishPost,
   translatePublishError,
 } from "./review.functions";
@@ -46,7 +47,7 @@ function client(options: {
       if (name === "aurum_publish_post") {
         if (options.error) return { data: null, error: options.error };
         return {
-          data: options.result ?? {
+          data: "result" in options ? options.result : {
             id: POST_ID,
             status: "published",
             published_at: PUBLISHED_AT,
@@ -106,13 +107,7 @@ describe("publishPost — boundary", () => {
 describe("publishPost — input contract", () => {
   // The server function's validator, exercised directly.
   async function parse(input: unknown) {
-    const { readFileSync } = await import("node:fs");
-    void readFileSync; // keep the import list honest for the linter
-    const mod = await import("./review.functions");
-    const fn = mod.publishPost as unknown as {
-      options: { inputValidator: (value: unknown) => unknown };
-    };
-    return fn.options.inputValidator(input);
+    return parsePublishInput(input);
   }
 
   it("accepts a valid uuid and no timestamp as publish-now", async () => {
