@@ -188,7 +188,16 @@ export type AdminPostRow = {
   publishedAt: string | null;
   updatedAt: string;
   sourceCount: number;
+  /** Durable provenance: 'ai' means the draft originated from generation. */
+  origin: AurumPostOrigin;
 };
+
+/**
+ * Provenance semantics: 'ai' means the post ORIGINATED from AI generation. It
+ * stays 'ai' after a human edits it, because the origin of the draft does not
+ * change; it never claims the current wording is entirely machine-written.
+ */
+export type AurumPostOrigin = "human" | "ai";
 
 export type AdminPostsPage = {
   rows: AdminPostRow[];
@@ -311,7 +320,7 @@ export const listAdminPosts = createServerFn({ method: "GET" })
       applyListFilters(
         context.supabase
           .from("aurum_posts")
-          .select("id, title, type, status, published_at, updated_at"),
+          .select("id, title, type, status, published_at, updated_at, origin"),
         data.type,
         data.search,
       ),
@@ -330,6 +339,7 @@ export const listAdminPosts = createServerFn({ method: "GET" })
       status: string;
       published_at: string | null;
       updated_at: string;
+      origin: string | null;
     };
     const postRows = (posts ?? []) as PostRow[];
     const ids = postRows.map((post) => post.id);
@@ -354,6 +364,7 @@ export const listAdminPosts = createServerFn({ method: "GET" })
         publishedAt: post.published_at,
         updatedAt: post.updated_at,
         sourceCount: sourceCounts.get(post.id) ?? 0,
+        origin: post.origin === "ai" ? "ai" : "human",
       })),
       total: counts[data.status],
       page: data.page,
@@ -421,6 +432,8 @@ export type AdminPostEditable = {
   readMinutes: number | null;
   publishedAt: string | null;
   updatedAt: string;
+  /** 'ai' when the draft originated from generation (see AurumPostOrigin). */
+  origin: AurumPostOrigin;
   /** False for published, scheduled and archived posts: the form opens read-only. */
   editable: boolean;
   sources: { publisher: string; title: string; date: string; url: string }[];
@@ -564,7 +577,7 @@ export const getAdminPostForEdit = createServerFn({ method: "GET" })
     const { data: post, error } = await context.supabase
       .from("aurum_posts")
       .select(
-        "id, type, status, slug, title, summary, body, pull_quote, review_line, read_minutes, published_at, updated_at, author_id",
+        "id, type, status, slug, title, summary, body, pull_quote, review_line, read_minutes, published_at, updated_at, author_id, origin",
       )
       .eq("id", data.id)
       .maybeSingle();
@@ -595,6 +608,7 @@ export const getAdminPostForEdit = createServerFn({ method: "GET" })
       readMinutes: post.read_minutes,
       publishedAt: post.published_at,
       updatedAt: post.updated_at,
+      origin: post.origin === "ai" ? "ai" : "human",
       editable: post.status === "draft" && mayEditOwn,
       sources: (sources ?? []).map((source) => ({
         publisher: source.publisher,

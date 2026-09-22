@@ -335,10 +335,23 @@ export function AdminPostForm({
                 {STATUS_LABELS[post.status] ?? post.status}
               </span>{" "}
               {TYPE_LABELS[post.type] ?? post.type}
+              {post.origin === "ai" ? (
+                <span className="admin-origin-badge" title="Originated from AI generation">
+                  AI
+                </span>
+              ) : null}
             </p>
           ) : null}
         </div>
       </div>
+
+      {post?.origin === "ai" ? (
+        <p className="admin-note" role="note">
+          This draft was written by AI from stored AURUM price data only, and every figure in it
+          was checked against that data before it was saved. Read it in full before publishing.
+        </p>
+      ) : null}
+
 
       {post && readOnly && readOnlyReason(post.status, post.editable) ? (
         <p className="admin-note" role="note">

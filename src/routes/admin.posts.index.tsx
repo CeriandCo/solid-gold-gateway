@@ -218,7 +218,14 @@ function PostsPage() {
                       {row.title}
                     </Link>
                   </td>
-                  <td>{TYPE_LABELS[row.type] ?? row.type}</td>
+                  <td>
+                    {TYPE_LABELS[row.type] ?? row.type}
+                    {row.origin === "ai" ? (
+                      <span className="admin-origin-badge" title="Originated from AI generation">
+                        AI
+                      </span>
+                    ) : null}
+                  </td>
                   <td>
                     <StatusBadge status={row.status} />
                   </td>
