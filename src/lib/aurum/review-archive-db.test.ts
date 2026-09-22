@@ -45,8 +45,8 @@ function sql(text: string): string {
   return result.out;
 }
 
-const EDITOR = "77777777-7777-4777-8777-777777777777";
-const REVIEWER = "88888888-8888-4888-8888-888888888888";
+const EDITOR = "6a6a6a6a-7777-4777-8777-777777777771";
+const REVIEWER = "6a6a6a6a-8888-4888-8888-888888888882";
 
 /** The exact privileged write the server function issues. */
 function archiveSql(postId: string): string {
