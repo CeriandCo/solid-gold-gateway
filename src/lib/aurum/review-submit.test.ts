@@ -38,7 +38,7 @@ function setup(options: Setup = {}) {
     ...(options.beforeUpdate ? { beforeUpdate: options.beforeUpdate } : {}),
   };
   const user = makeFakeClient(db, {
-    role: options.role ?? "editor",
+    role: "role" in options ? options.role : "editor",
     canEditDraft: options.canEditDraft ?? true,
   });
   const privileged = makeFakeClient(db, { role: null, privileged: true });

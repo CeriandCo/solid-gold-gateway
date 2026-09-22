@@ -30,7 +30,7 @@ describe("review workflow server functions", () => {
   });
 
   it("loads the privileged client only inside a handler, after authorization", () => {
-    expect(source).not.toMatch(/^import[\s\S]*client\.server/m);
+    expect(source).not.toMatch(/^import[^\n]*client\.server/m);
     const privilegedAt = source.indexOf("client.server");
     const guardAt = source.indexOf("requireRole(supabase");
     expect(privilegedAt).toBeGreaterThan(guardAt);
