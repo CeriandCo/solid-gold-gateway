@@ -703,6 +703,10 @@ export type Database = {
       aurum_link_current_editor: { Args: never; Returns: string }
       aurum_prune_admin_login_attempts: { Args: never; Returns: undefined }
       aurum_prune_old_rows: { Args: never; Returns: undefined }
+      aurum_publish_post: {
+        Args: { _post_id: string; _published_at?: string }
+        Returns: Json
+      }
       aurum_replace_post_sources: {
         Args: { _post_id: string; _sources: Json }
         Returns: undefined
