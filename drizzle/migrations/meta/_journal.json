@@ -148,6 +148,13 @@
       "when": 1789925874868,
       "tag": "0020_commerce_purge_test_order",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1790092484483,
+      "tag": "0021_aurum_publish_post",
+      "breakpoints": true
     }
   ]
 }
