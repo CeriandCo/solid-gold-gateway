@@ -75,3 +75,4 @@
 - [x] S2 — gift card Checkout bound to a verified Stripe Product catalog (sandbox-first).
 - [ ] Seed a full-access admin account (editor allowlist row with the admin role) so the CMS can be used end to end.
 - [x] C-10 — diagnose the admin sign-in link; cause is the missing verified sending domain, not signup being disabled (docs/verification/C10.md).
+- [x] C-9 — purchase acknowledgement panel gating the gift card CTA, with server enforcement and the consent recorded on the order (docs/verification/C9.md). Physical gold list ready; no physical purchase CTA exists yet.
