@@ -19,7 +19,7 @@ const listedEmail = `c10-listed-${run}@example.test`;
 const strangerEmail = `c10-stranger-${run}@example.test`;
 const redirectTo = "https://solid-gold-gateway.lovable.app/admin";
 
-const createdUsers: string[] = [];
+
 
 await supabaseAdmin.from("aurum_editors").insert({ email: listedEmail, role: "editor" });
 
