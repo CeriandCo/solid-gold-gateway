@@ -35,8 +35,9 @@ function run(sql: string): SqlResult {
   } catch (error) {
     const err = error as { stderr?: string };
     const stderr = err.stderr ?? "";
-    const sqlstate = /SQLSTATE:?\s*([0-9A-Z]{5})/.exec(stderr)?.[1] ?? "";
-    const message = /ERROR:\s*(.*)/.exec(stderr)?.[1]?.trim() ?? stderr.trim();
+    const verbose = /ERROR:\s*([0-9A-Z]{5}):\s*(.*)/.exec(stderr);
+    const sqlstate = verbose?.[1] ?? "";
+    const message = verbose?.[2]?.trim() ?? /ERROR:\s*(.*)/.exec(stderr)?.[1]?.trim() ?? stderr.trim();
     return { ok: false, sqlstate, message };
   }
 }
@@ -159,7 +160,7 @@ describe("aurum_publish_post — definition hardening", () => {
       from pg_proc p join pg_namespace n on n.oid = p.pronamespace
       where n.nspname = 'public' and p.proname = 'aurum_publish_post'
     `);
-    expect(row).toBe("t|search_path=public, auth|f");
+    expect(row).toBe("true|search_path=public, auth|false");
   });
 
   it("keeps the deferred source trigger in place as defence in depth", () => {
@@ -168,7 +169,7 @@ describe("aurum_publish_post — definition hardening", () => {
       from pg_trigger t
       where t.tgrelid = 'public.aurum_posts'::regclass and t.tgname = 'aurum_posts_require_source_trg'
     `);
-    expect(row).toBe("t|t");
+    expect(row).toBe("true|true");
   });
 });
 
@@ -289,11 +290,11 @@ describe("aurum_publish_post — immediate publication", () => {
     expect(payload(publish(REVIEWER, post))).toMatchObject({ status: "published", changed: true });
 
     const after = sql(`
-      select status || '|' || (published_at <= now()) || '|' || reviewed_by::text || '|' ||
+      select status || '|' || (published_at <= now())::text || '|' || reviewed_by::text || '|' ||
              (reviewed_at is not null) || '|' || submitted_at::text || '|' || author_id::text
       from public.aurum_posts where id = ${lit(post)}::uuid
     `);
-    expect(after).toBe(`published|t|${REVIEWER}|t|${before}`);
+    expect(after).toBe(`published|true|${REVIEWER}|true|${before}`);
     expect(
       sql(`select count(*) from public.aurum_post_sources where post_id = ${lit(post)}::uuid`),
     ).toBe("1");
