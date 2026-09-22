@@ -37,6 +37,7 @@ import { Route as LearnPhysicalGoldVsGoldEtfRouteImport } from './routes/learn.p
 import { Route as AdminPostsIndexRouteImport } from './routes/admin.posts.index'
 import { Route as AdminPostsPostIdRouteImport } from './routes/admin.posts.$postId'
 import { Route as AdminPostsNewRouteImport } from './routes/admin.posts.new'
+import { Route as ApiPublicAurumAiDailyNoteRouteImport } from './routes/api/public/aurum-ai-daily-note'
 import { Route as ApiPublicAurumBackfillDailyHistoryRouteImport } from './routes/api/public/aurum-backfill-daily-history'
 import { Route as ApiPublicAurumGoldPriceFetcherRouteImport } from './routes/api/public/aurum-gold-price-fetcher'
 import { Route as ApiPublicCommerceCatalogCheckRouteImport } from './routes/api/public/commerce-catalog-check'
@@ -190,6 +191,12 @@ const AdminPostsNewRoute = AdminPostsNewRouteImport.update({
   path: '/new',
   getParentRoute: () => AdminPostsRoute,
 } as any)
+const ApiPublicAurumAiDailyNoteRoute =
+  ApiPublicAurumAiDailyNoteRouteImport.update({
+    id: '/api/public/aurum-ai-daily-note',
+    path: '/api/public/aurum-ai-daily-note',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicAurumBackfillDailyHistoryRoute =
   ApiPublicAurumBackfillDailyHistoryRouteImport.update({
     id: '/api/public/aurum-backfill-daily-history',
@@ -278,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/learn/': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/admin/posts/new': typeof AdminPostsNewRoute
+  '/api/public/aurum-ai-daily-note': typeof ApiPublicAurumAiDailyNoteRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
@@ -316,6 +324,7 @@ export interface FileRoutesByTo {
   '/learn': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/admin/posts/new': typeof AdminPostsNewRoute
+  '/api/public/aurum-ai-daily-note': typeof ApiPublicAurumAiDailyNoteRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
@@ -358,6 +367,7 @@ export interface FileRoutesById {
   '/learn/': typeof LearnIndexRoute
   '/admin/posts/$postId': typeof AdminPostsPostIdRoute
   '/admin/posts/new': typeof AdminPostsNewRoute
+  '/api/public/aurum-ai-daily-note': typeof ApiPublicAurumAiDailyNoteRoute
   '/api/public/aurum-backfill-daily-history': typeof ApiPublicAurumBackfillDailyHistoryRoute
   '/api/public/aurum-gold-price-fetcher': typeof ApiPublicAurumGoldPriceFetcherRoute
   '/api/public/commerce-catalog-check': typeof ApiPublicCommerceCatalogCheckRoute
@@ -401,6 +411,7 @@ export interface FileRouteTypes {
     | '/learn/'
     | '/admin/posts/$postId'
     | '/admin/posts/new'
+    | '/api/public/aurum-ai-daily-note'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/commerce-catalog-check'
@@ -439,6 +450,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/admin/posts/$postId'
     | '/admin/posts/new'
+    | '/api/public/aurum-ai-daily-note'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/commerce-catalog-check'
@@ -480,6 +492,7 @@ export interface FileRouteTypes {
     | '/learn/'
     | '/admin/posts/$postId'
     | '/admin/posts/new'
+    | '/api/public/aurum-ai-daily-note'
     | '/api/public/aurum-backfill-daily-history'
     | '/api/public/aurum-gold-price-fetcher'
     | '/api/public/commerce-catalog-check'
@@ -512,6 +525,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrustCenterRoute: typeof TrustCenterRoute
   VaultRoute: typeof VaultRoute
+  ApiPublicAurumAiDailyNoteRoute: typeof ApiPublicAurumAiDailyNoteRoute
   ApiPublicAurumBackfillDailyHistoryRoute: typeof ApiPublicAurumBackfillDailyHistoryRoute
   ApiPublicAurumGoldPriceFetcherRoute: typeof ApiPublicAurumGoldPriceFetcherRoute
   ApiPublicCommerceCatalogCheckRoute: typeof ApiPublicCommerceCatalogCheckRoute
@@ -723,6 +737,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPostsNewRouteImport
       parentRoute: typeof AdminPostsRoute
     }
+    '/api/public/aurum-ai-daily-note': {
+      id: '/api/public/aurum-ai-daily-note'
+      path: '/api/public/aurum-ai-daily-note'
+      fullPath: '/api/public/aurum-ai-daily-note'
+      preLoaderRoute: typeof ApiPublicAurumAiDailyNoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/aurum-backfill-daily-history': {
       id: '/api/public/aurum-backfill-daily-history'
       path: '/api/public/aurum-backfill-daily-history'
@@ -869,6 +890,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrustCenterRoute: TrustCenterRoute,
   VaultRoute: VaultRoute,
+  ApiPublicAurumAiDailyNoteRoute: ApiPublicAurumAiDailyNoteRoute,
   ApiPublicAurumBackfillDailyHistoryRoute:
     ApiPublicAurumBackfillDailyHistoryRoute,
   ApiPublicAurumGoldPriceFetcherRoute: ApiPublicAurumGoldPriceFetcherRoute,

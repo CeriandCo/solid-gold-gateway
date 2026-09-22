@@ -53,6 +53,116 @@ export type Database = {
         }
         Relationships: []
       }
+      aurum_ai_alerts: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          message: string
+          post_id: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          run_id: string | null
+          severity: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          message: string
+          post_id?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          run_id?: string | null
+          severity: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          message?: string
+          post_id?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          run_id?: string | null
+          severity?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aurum_ai_alerts_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "aurum_posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "aurum_ai_alerts_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "aurum_ai_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      aurum_ai_runs: {
+        Row: {
+          cost_available: boolean
+          cost_usd: number | null
+          created_at: string
+          detail: string | null
+          finished_at: string | null
+          id: string
+          input_tokens: number | null
+          model: string | null
+          outcome: string
+          output_tokens: number | null
+          post_id: string | null
+          provider: string | null
+          total_tokens: number | null
+          window_key: string
+        }
+        Insert: {
+          cost_available?: boolean
+          cost_usd?: number | null
+          created_at?: string
+          detail?: string | null
+          finished_at?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          outcome?: string
+          output_tokens?: number | null
+          post_id?: string | null
+          provider?: string | null
+          total_tokens?: number | null
+          window_key: string
+        }
+        Update: {
+          cost_available?: boolean
+          cost_usd?: number | null
+          created_at?: string
+          detail?: string | null
+          finished_at?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          outcome?: string
+          output_tokens?: number | null
+          post_id?: string | null
+          provider?: string | null
+          total_tokens?: number | null
+          window_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aurum_ai_runs_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "aurum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       aurum_cms_settings: {
         Row: {
           allow_self_approval: boolean
@@ -202,6 +312,7 @@ export type Database = {
           body: Json
           created_at: string
           id: string
+          origin: string
           published_at: string | null
           pull_quote: string | null
           read_minutes: number | null
@@ -221,6 +332,7 @@ export type Database = {
           body: Json
           created_at?: string
           id?: string
+          origin?: string
           published_at?: string | null
           pull_quote?: string | null
           read_minutes?: number | null
@@ -240,6 +352,7 @@ export type Database = {
           body?: Json
           created_at?: string
           id?: string
+          origin?: string
           published_at?: string | null
           pull_quote?: string | null
           read_minutes?: number | null
@@ -692,6 +805,37 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      aurum_ai_claim_run: {
+        Args: { _daily_cap: number; _window_key: string }
+        Returns: Json
+      }
+      aurum_ai_create_in_review: {
+        Args: {
+          _body: Json
+          _run_id: string
+          _slug: string
+          _sources: Json
+          _summary: string
+          _title: string
+        }
+        Returns: string
+      }
+      aurum_ai_finish_run: {
+        Args: {
+          _cost_usd?: number
+          _detail?: string
+          _input_tokens?: number
+          _model?: string
+          _outcome: string
+          _output_tokens?: number
+          _post_id?: string
+          _provider?: string
+          _run_id: string
+          _total_tokens?: number
+        }
+        Returns: undefined
+      }
+      aurum_ai_max_runs_per_day: { Args: never; Returns: number }
       aurum_backfill_tick: { Args: never; Returns: undefined }
       aurum_can_edit_draft: { Args: { _author_id: string }; Returns: boolean }
       aurum_can_edit_post_sources: {
