@@ -3,7 +3,8 @@ import { describe, expect, it } from "vitest";
 import { EXTERNAL_VERDICTS, PHASE4_REPLACED, isSafeNewTab, protocolIssue } from "./external";
 
 const artifact = JSON.parse(readFileSync("docs/verification/t5-link-audit.json", "utf8"));
-const occ: Array<Record<string, any>> = artifact.occurrences;
+interface Occ { category: string; opensNewTab: boolean; rel: string | null; sourceRoute: string; normalizedTarget: string; rawTarget: string }
+const occ: Occ[] = artifact.occurrences;
 const ext = occ.filter((o) => o.category === "external");
 
 describe("T5 Phase 4 external links", () => {
@@ -46,14 +47,12 @@ describe("T5 Phase 4 external links", () => {
 
   it("Goldhub fix stays on the official WGC portal, new tab, protected", () => {
     const g = ext.filter((o) => o.normalizedTarget === "https://www.gold.org/goldhub");
-    expect(g.length).toBe(1);
-    expect(g[0].opensNewTab).toBe(true);
-    expect(g[0].rel).toBe("noopener noreferrer");
+    expect(g.map((o) => [o.opensNewTab, o.rel])).toEqual([[true, "noopener noreferrer"]]);
     expect(EXTERNAL_VERDICTS["https://www.gold.org/goldhub"].verdict).toBe("REACHABLE");
   });
 
   it("Sign Up on Gold.org remains an unresolved placeholder (not invented)", () => {
-    const s = occ.filter((o) => o["category"] === "placeholder");
-    expect(s.map((o) => o["rawTarget"])).toEqual(["#"]);
+    const s = occ.filter((o) => o.category === "placeholder");
+    expect(s.map((o) => o.rawTarget)).toEqual(["#"]);
   });
 });
