@@ -7,7 +7,6 @@ import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from
 
 const LINKS = [
   { label: "Price", id: "price" },
-  { label: "Daily Note", id: "daily-note" },
   { label: "Weekly Brief", id: "weekly-brief" },
   { label: "Learn", id: "learn" },
   { label: "Calculator", id: "calculator" },
