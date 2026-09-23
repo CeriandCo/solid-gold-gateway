@@ -169,6 +169,13 @@
       "when": 1790100515009,
       "tag": "0023_gift_card_orders_acknowledgement",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1790173599314,
+      "tag": "0024_newsletter_signups",
+      "breakpoints": true
     }
   ]
 }

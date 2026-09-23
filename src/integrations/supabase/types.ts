@@ -779,6 +779,60 @@ export type Database = {
           },
         ]
       }
+      newsletter_attempts: {
+        Row: {
+          created_at: string
+          id: number
+          ip_hash: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          ip_hash: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          ip_hash?: string
+        }
+        Relationships: []
+      }
+      newsletter_signups: {
+        Row: {
+          consent_text: string
+          consent_version: string
+          consented_at: string
+          created_at: string
+          email: string
+          id: string
+          lists: string[]
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          consent_text: string
+          consent_version: string
+          consented_at: string
+          created_at?: string
+          email: string
+          id?: string
+          lists: string[]
+          source: string
+          updated_at?: string
+        }
+        Update: {
+          consent_text?: string
+          consent_version?: string
+          consented_at?: string
+          created_at?: string
+          email?: string
+          id?: string
+          lists?: string[]
+          source?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       stripe_events: {
         Row: {
           error: string | null
@@ -922,6 +976,7 @@ export type Database = {
         Args: { _map: Json; _mode: string }
         Returns: number
       }
+      newsletter_prune_attempts: { Args: never; Returns: undefined }
       security_function_grants: {
         Args: never
         Returns: {
