@@ -1,5 +1,5 @@
 {
-  "crawledAt": "2026-09-23T16:55:51Z",
+  "crawledAt": "2026-09-23T17:01:30Z",
   "base": "http://localhost:8080",
   "summary": {
     "publicRoutes": 33,
@@ -165,7 +165,7 @@
       "rendered": true,
       "pageErrors": [],
       "duplicateIds": [],
-      "inboundLinks": 12
+      "inboundLinks": 11
     },
     {
       "route": "/aurum/notes/allocated-and-unallocated",
@@ -230,7 +230,7 @@
       "rendered": true,
       "pageErrors": [],
       "duplicateIds": [],
-      "inboundLinks": 1
+      "inboundLinks": 2
     },
     {
       "route": "/aurum/notes/three-mints-longer-lead-times",
@@ -578,12 +578,12 @@
       "redirectClass": "direct",
       "title": "AURUM Gold Education | SQOOT Pure"
     },
-    "/aurum/notes?page=1": {
+    "/aurum/notes/spread-on-a-one-ounce-coin": {
       "category": "internal",
-      "occurrences": 12,
+      "occurrences": 2,
       "status": 200,
       "redirectClass": "direct",
-      "title": "Daily Note Archive | AURUM by SQOOT Pure"
+      "title": "Why the spread on a one ounce coin moved this week | AURUM Daily Note"
     },
     "mailto:support@getsqoot.com": {
       "category": "mailto",
@@ -668,6 +668,13 @@
       "status": 200,
       "redirectClass": "direct",
       "title": "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | AURUM Daily Note"
+    },
+    "/aurum/notes?page=1": {
+      "category": "internal",
+      "occurrences": 11,
+      "status": 200,
+      "redirectClass": "direct",
+      "title": "Daily Note Archive | AURUM by SQOOT Pure"
     },
     "https://www.usmint.gov/news": {
       "category": "external",
@@ -871,13 +878,6 @@
       "status": null,
       "redirectClass": null,
       "title": null
-    },
-    "/aurum/notes/spread-on-a-one-ounce-coin": {
-      "category": "internal",
-      "occurrences": 1,
-      "status": 200,
-      "redirectClass": "direct",
-      "title": "Why the spread on a one ounce coin moved this week | AURUM Daily Note"
     },
     "/aurum/notes/three-mints-longer-lead-times": {
       "category": "internal",
@@ -1910,9 +1910,9 @@
       "sourcePage": "SQOOT Pure — Own Real Gold, Three Ways",
       "sourceRoute": "/",
       "linkText": "Read the note",
-      "rawTarget": "/aurum/notes?page=1",
-      "normalizedTarget": "/aurum/notes?page=1",
-      "destinationKey": "/aurum/notes?page=1",
+      "rawTarget": "/aurum/notes/spread-on-a-one-ounce-coin",
+      "normalizedTarget": "/aurum/notes/spread-on-a-one-ounce-coin",
+      "destinationKey": "/aurum/notes/spread-on-a-one-ounce-coin",
       "category": "internal-page",
       "status": 200,
       "redirectClass": "direct",
@@ -1922,8 +1922,8 @@
       "opensNewTab": false,
       "rel": null,
       "relSafe": true,
-      "destinationTitle": "Daily Note Archive | AURUM by SQOOT Pure",
-      "destinationH1": "Daily Note archive",
+      "destinationTitle": "Why the spread on a one ounce coin moved this week | AURUM Daily Note",
+      "destinationH1": "Why the spread on a one ounce coin moved this week",
       "surface": "article",
       "global": false,
       "context": {
@@ -1945,14 +1945,14 @@
       "placeholderReason": null,
       "technicalVerdict": "NEEDS SEMANTIC REVIEW",
       "technicalReasons": [],
-      "semanticVerdict": "INCORRECT",
+      "semanticVerdict": "CORRECT",
       "finalVerdict": "NEEDS SEMANTIC REVIEW",
       "suggestedFix": null,
       "notes": null,
-      "semanticSeverity": "MEDIUM",
-      "semanticRule": "home:note-spread-prefix",
-      "semanticEvidence": "Card names one specific published note but linked to the Daily Note archive.",
-      "semanticFix": "Link to /aurum/notes/spread-on-a-one-ounce-coin.",
+      "semanticSeverity": "NONE",
+      "semanticRule": "home:note-spread",
+      "semanticEvidence": "Card “Why the spread on a one-ounce coin moved” (DAILY NOTE · 3 MIN) → published note “Why the spread on a one ounce coin moved this week” (3 min read). Phase 3 fix: previously pointed at the notes archive.",
+      "semanticFix": null,
       "semanticGroup": "individual"
     },
     {
@@ -5035,12 +5035,10 @@
         "sectionHeading": null
       },
       "viewports": [
-        "375",
-        "1440"
+        "375"
       ],
       "visibleIn": [
-        "375",
-        "1440"
+        "375"
       ],
       "revealedBy": null,
       "domPath": "a:3",
@@ -52356,12 +52354,10 @@
         "sectionHeading": null
       },
       "viewports": [
-        "375",
-        "1440"
+        "375"
       ],
       "visibleIn": [
-        "375",
-        "1440"
+        "375"
       ],
       "revealedBy": null,
       "domPath": "a:3",
@@ -60053,12 +60049,10 @@
         "sectionHeading": null
       },
       "viewports": [
-        "375",
-        "1440"
+        "375"
       ],
       "visibleIn": [
-        "375",
-        "1440"
+        "375"
       ],
       "revealedBy": null,
       "domPath": "a:5",
@@ -68391,13 +68385,13 @@
       "technicalReasons": [
         "address must be confirmed by client"
       ],
-      "semanticVerdict": "UNREVIEWED",
+      "semanticVerdict": "CORRECT",
       "finalVerdict": "NEEDS SEMANTIC REVIEW",
       "suggestedFix": null,
       "notes": null,
       "semanticSeverity": "NONE",
-      "semanticRule": "none",
-      "semanticEvidence": "No Phase 3 judgement covers this occurrence.",
+      "semanticRule": "trust:mail",
+      "semanticEvidence": "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address.",
       "semanticFix": null,
       "semanticGroup": "individual"
     },
@@ -68448,7 +68442,7 @@
       "notes": null,
       "semanticSeverity": "NONE",
       "semanticRule": "trust:mail",
-      "semanticEvidence": "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Detail” to the same published support address.",
+      "semanticEvidence": "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address.",
       "semanticFix": null,
       "semanticGroup": "individual"
     },
@@ -72607,21 +72601,18 @@
     }
   ],
   "semanticSummary": {
-    "reviewedAt": "2026-09-23T17:01:13.832Z",
+    "reviewedAt": "2026-09-23T17:06:49.926Z",
     "occurrences": 1451,
     "globalComponentOccurrences": 1221,
     "globalGroups": 27,
     "individualOccurrences": 230,
     "verdicts": {
-      "CORRECT": 1421,
-      "INCORRECT": 1,
+      "CORRECT": 1423,
       "AMBIGUOUS — CLIENT DECISION": 27,
-      "TECHNICALLY BLOCKED": 1,
-      "UNREVIEWED": 1
+      "TECHNICALLY BLOCKED": 1
     },
     "severities": {
-      "NONE": 1422,
-      "MEDIUM": 1,
+      "NONE": 1423,
       "CLIENT DECISION": 28
     },
     "rules": {
@@ -72643,7 +72634,7 @@
       "home:aurum": 2,
       "home:gifting": 1,
       "home:trust": 1,
-      "home:note-spread-prefix": 1,
+      "home:note-spread": 1,
       "home:note-learn": 2,
       "home:mail": 2,
       "home:see-all-questions": 1,
@@ -72717,8 +72708,7 @@
       "pricing:mail": 1,
       "legal:toc": 30,
       "trust:audit": 1,
-      "none": 1,
-      "trust:mail": 1,
+      "trust:mail": 2,
       "vault:walkthrough": 1,
       "vault:allocation": 1,
       "vault:details": 2,
