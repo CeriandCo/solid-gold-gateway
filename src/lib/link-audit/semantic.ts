@@ -88,20 +88,20 @@ const SPECIFIC_SOURCES: Array<[RegExp, RegExp]> = [
   [/Good Delivery Current List — Gold/, /lbma\.org\.uk\/good-delivery\/gold-current-list$/],
   [/Good Delivery current list|Good delivery refiner list|Responsible sourcing and good delivery rules/, /lbma\.org\.uk\/good-delivery$/],
   [/production and sales figures|American Eagle production report/, /usmint\.gov\/about\/production-sales-figures$/],
-  [/Gold price benchmark data/, /lbma\.org\.uk\/prices-and-data\/precious-metal-prices$/],
+  [/Gold price benchmark data/, /lbma\.org\.uk\/prices-and-data\/lbma-precious-metal-prices$/],
   [/Precious metal price methodology/, /lbma\.org\.uk\/prices-and-data$/],
   [/Gold demand trends/, /gold\.org\/goldhub\/research\/gold-demand-trends$/],
   [/central bank statistics/i, /gold\.org\/goldhub\/data\/monthly-central-bank-statistics$/],
   [/International Monetary Fund — International Financial Statistics/, /^https:\/\/data\.imf\.org\/$/],
   [/Bank for International Settlements — International banking/, /bis\.org\/statistics\/$/],
   [/Veriscan/, /pamp\.com\/veriscan$/],
-  [/Handbook 44/, /nist\.gov\/pml\/owm\/nist-handbook-44$/],
+  [/Handbook 44/, /nist\.gov\/publications\/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18$/],
 ];
 
 /** Citations naming a specific dated document but linking to a publisher index page. */
 const INDEX_SOURCES: Array<[RegExp, RegExp]> = [
   [/Bullion product schedule update/, /usmint\.gov\/news$/],
-  [/Bullion operations statement/, /mint\.ca\/en\/discover\/news$/],
+  [/Bullion operations statement/, /mint\.ca\/en\/company\/media-room$/],
   [/Refinery delivery notice/, /pamp\.com\/news$/],
   [/Guide to the London precious metals market/, /lbma\.org\.uk\/publications$/],
   [/Investment guidance on storage structures/, /gold\.org\/goldhub\/research$/],
