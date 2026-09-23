@@ -53,8 +53,7 @@ describe("T5 Phase 4 external links", () => {
   });
 
   it("Sign Up on Gold.org remains an unresolved placeholder (not invented)", () => {
-    const s = occ.filter((o) => o.category === "placeholder");
-    expect(s.length).toBe(1);
-    expect(s[0].rawTarget).toBe("#");
+    const s = occ.filter((o) => o["category"] === "placeholder");
+    expect(s.map((o) => o["rawTarget"])).toEqual(["#"]);
   });
 });
