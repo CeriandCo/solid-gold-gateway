@@ -176,8 +176,10 @@ export async function runMeltSignup(
     {
       email,
       lists,
-      consent_version: consent.version.trim(),
-      consent_text: consent.text.trim(),
+      // Stored verbatim: the validator already refused anything untrimmed or
+      // malformed, so approved copy is never silently rewritten.
+      consent_version: consent.version,
+      consent_text: consent.text,
       consented_at: new Date().toISOString(),
       source: MELT_SOURCE,
     },
