@@ -197,13 +197,22 @@ describe("upsert primitive for Phase 3", () => {
     expect(after[5]).toBe("daily-note,weekly-brief");
   });
 
-  it("keeps one row when the same email is inserted twice in one statement batch", () => {
-    sql(
-      `INSERT INTO public.newsletter_signups (email, lists, consent_version, consent_text, consented_at, source)
-       SELECT 'reader@example.com', ARRAY['daily-note'], 'test-fixture', 'TEST FIXTURE CONSENT SNAPSHOT', now(), 'aurum#subscribe'
-       FROM generate_series(1, 5)
-       ON CONFLICT (email) DO UPDATE SET consented_at = EXCLUDED.consented_at`,
+  it("keeps exactly one row when two connections upsert the same email at once", () => {
+    const upsert = `INSERT INTO public.newsletter_signups (email, lists, consent_version, consent_text, consented_at, source)
+       VALUES ('reader@example.com', ARRAY['daily-note'], 'test-fixture', 'TEST FIXTURE CONSENT SNAPSHOT', now(), 'aurum#subscribe')
+       ON CONFLICT (email) DO UPDATE SET consented_at = EXCLUDED.consented_at`;
+
+    // Two real client connections racing, not two rows inside one statement.
+    execFileSync(
+      "bash",
+      [
+        "-c",
+        `psql "${CONN}" -q -v ON_ERROR_STOP=1 -c "${upsert.replace(/\s+/g, " ")}" & ` +
+          `psql "${CONN}" -q -v ON_ERROR_STOP=1 -c "${upsert.replace(/\s+/g, " ")}" & wait`,
+      ],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
     );
+
     expect(sql("SELECT count(*) FROM public.newsletter_signups")).toBe("1");
   });
 });
