@@ -109,9 +109,10 @@ export function buildRunDeps(options: {
     loadFactInputs,
     loadStyleSamples: () => loadStyleSamples(3),
     buildSources: buildInternalSources,
+    persist,
     generate: options.generate,
     ...(options.force ? { force: true } : {}),
-  } as RunDeps;
+  };
 }
 
 export type CronResponse = { status: number; body: Record<string, unknown> };

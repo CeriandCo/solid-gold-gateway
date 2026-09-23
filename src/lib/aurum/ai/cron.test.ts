@@ -33,10 +33,13 @@ describe("constant-time comparison", () => {
 describe("endpoint authentication", () => {
   it("fails closed when no secret is configured", async () => {
     const run = vi.fn();
+    // The deployment may have the secret set; this test is about its absence.
+    vi.stubEnv("AURUM_AI_CRON_SECRET", "");
     const response = await handleDailyNoteCron(post({ "x-cron-secret": SECRET }), {
       expectedSecret: undefined,
       run,
     });
+    vi.unstubAllEnvs();
     expect(response.status).toBe(500);
     expect(run).not.toHaveBeenCalled();
   });
