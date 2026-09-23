@@ -9,7 +9,7 @@ Date: 2026-09-23. Scope: hardening only. No provider, no consent wording, no che
 - `src/lib/newsletter.functions.ts` — `MeltConsentNotice` type gains `version`; handler wrapped in catch → `unavailable`.
 - `src/lib/newsletter/form-state.ts` — `buildSignupRequest(email, selected, consentVersion?)`.
 - `src/components/aurum-subscribe-section.tsx` — one argument: passes `consentNotice?.version`. No visual change.
-- Tests: new `src/lib/newsletter/signup-hardening.server.test.ts` (56 tests); updated `signup.server.test.ts`, `consent-versioning.test.ts`, `form-state.test.ts` for the token and well-formed test IPs.
+- Tests: new `src/lib/newsletter/signup-hardening.server.test.ts` (59 tests); updated `signup.server.test.ts`, `consent-versioning.test.ts`, `form-state.test.ts` for the token and well-formed test IPs.
 
 ## 2. Request flow (as implemented now)
 ```text

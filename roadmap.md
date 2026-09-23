@@ -8,6 +8,8 @@
 
 ## Done
 
+- [x] T3 Phase 6: MELT signup hardening (atomic limiter, fail-closed, stale-consent token). Blocked next: client consent wording/provider decisions.
+
 - [x] Aligned AURUM containers, hero height, and desktop section rhythm with the shared inner-page system.
 - [x] Derived AURUM calculator bounds, validation, provenance, and chart labels from the real history extent.
 - [x] Sourced AURUM Daily Notes from published Learn articles and added searchable Notes and Briefs archives.
