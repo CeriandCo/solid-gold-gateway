@@ -103,11 +103,14 @@ EXTRACT_JS = r"""
     revealedBy,
   }));
   const ids = Array.from(document.querySelectorAll("[id]")).map((e) => e.id).filter(Boolean);
+  const idCounts = {};
+  ids.forEach((i) => { idCounts[i] = (idCounts[i] || 0) + 1; });
+  const duplicateIds = Object.keys(idCounts).filter((i) => idCounts[i] > 1);
   const names = Array.from(document.querySelectorAll("a[name]")).map((e) => e.getAttribute("name"));
   const canonical = document.querySelector('link[rel="canonical"]');
   const h1 = document.querySelector("h1");
   return {
-    links, buttons, ids: Array.from(new Set(ids)), anchorNames: names,
+    links, buttons, ids: Array.from(new Set(ids)), duplicateIds, anchorNames: names,
     title: document.title, h1: h1 ? clean(h1.innerText) : null,
     canonical: canonical ? canonical.getAttribute("href") : null,
   };
