@@ -8,6 +8,8 @@
 
 ## Done
 
+- [x] T3 Phase 7 acceptance audit: provider-independent MELT foundation accepted. Open: client consent wording, checkbox, platform, list, double opt-in; Daily Note clarification.
+
 - [x] T3 Phase 6: MELT signup hardening (atomic limiter, fail-closed, stale-consent token). Blocked next: client consent wording/provider decisions.
 
 - [x] Aligned AURUM containers, hero height, and desktop section rhythm with the shared inner-page system.
