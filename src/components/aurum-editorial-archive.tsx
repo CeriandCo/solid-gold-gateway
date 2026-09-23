@@ -37,12 +37,12 @@ export function AurumEditorialArchive({
   const start = total === 0 ? 0 : (page - 1) * 20 + 1;
   const end = Math.min(page * 20, total);
   const pages = Math.max(1, Math.ceil(total / 20));
-  const sectionHash = kind === "notes" ? "daily-note" : "weekly-brief";
-
+  // The board no longer has a Daily Note section, so the notes archive returns to the board top.
+  const backHref = kind === "notes" ? "/aurum" : "/aurum#weekly-brief";
   return (
     <main className="aurum-archive">
       <div className="site-container">
-        <a className="aurum-archive__back" href={`/aurum#${sectionHash}`}>← Back to AURUM</a>
+        <a className="aurum-archive__back" href={backHref}>← Back to AURUM</a>
         <p className="aurum-note-eyebrow">AURUM</p>
         <h1 className="aurum-archive__title">{kind === "notes" ? "Daily Note archive" : "Weekly Brief archive"}</h1>
         <p className="aurum-archive__dek">{kind === "notes" ? "Short, sourced notes published when there is something worth recording." : "Longer reads on what moved in gold, what it means, and what it does not mean."}</p>
