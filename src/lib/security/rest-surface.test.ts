@@ -32,7 +32,11 @@ const AURUM_TABLES = [
   "aurum_fetcher_runs",
 ];
 
-const ALL_TABLES = [...COMMERCE_TABLES, ...AURUM_TABLES];
+// T3: MELT consent evidence and its rate-limit bucket. Both are locked the same
+// way — service_role only, RLS on, no policies — so no browser role may touch them.
+const NEWSLETTER_TABLES = ["newsletter_signups", "newsletter_attempts"];
+
+const ALL_TABLES = [...COMMERCE_TABLES, ...AURUM_TABLES, ...NEWSLETTER_TABLES];
 
 type Attempt = { label: string; status: number; rows: number };
 const report: Attempt[] = [];
