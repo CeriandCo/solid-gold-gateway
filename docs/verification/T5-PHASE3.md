@@ -175,9 +175,9 @@ All 4 are CORRECT (see §12).
 - None of these conflict with their link text. There are no tracking parameters.
 
 ## 25. Fragments (63)
-- CORRECT: 57.
-- CLIENT DECISION: 4 ("Learn about gold's qualities", "View all occasions", Vault "Learn more", and "See all questions", which is not a fragment).
-- To be exact: the fragment client-decision items are 3 ("Learn about gold's qualities", "View all occasions" and Vault "Learn more"). The rest match their section headings as listed above.
+- CORRECT: 60. Each lands on the section whose heading or content matches the link text, as captured in the Playwright fragment pass.
+- CLIENT DECISION: 3 ("Learn about gold's qualities", "View all occasions", Vault "Learn more").
+- Dead or mismatched sections: 0.
 
 ## 26. Duplicate-target patterns reviewed
 - Homepage "Read the note": 2 cards share `/aurum#learn`. Both are correct, because both topics are in that section.
