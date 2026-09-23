@@ -104,6 +104,10 @@ export function AdminWorkflowPanel({
 
     // Never send form state that is only in the browser: the server reads the
     // saved row, so unsaved changes are written first or the action is stopped.
+    // Saving rewrites updated_at, and this closure still holds the pre-save
+    // value, so the optimistic token is dropped: our own save is the newest
+    // version by definition.
+    let token: string | null = updatedAt;
     if (key === "submit" && dirty) {
       setPending(key);
       const saved = await saveNow();
@@ -111,11 +115,12 @@ export function AdminWorkflowPanel({
         setPending(null);
         return;
       }
+      token = null;
     }
 
     setPending(key);
     try {
-      await runWorkflowAction(key, runners, { postId, updatedAt, scheduledAt });
+      await runWorkflowAction(key, runners, { postId, updatedAt: token, scheduledAt });
       setConfirming(null);
       setScheduling(false);
       await onDone();
