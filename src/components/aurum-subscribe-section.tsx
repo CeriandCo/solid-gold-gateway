@@ -1,13 +1,23 @@
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
+import { useServerFn } from "@tanstack/react-start";
+
 import { GoldButton } from "@/components/site-chrome";
+import { subscribeToMelt } from "@/lib/newsletter.functions";
+import {
+  MELT_MESSAGES,
+  buildSignupRequest,
+  outcomeFor,
+  type MeltOutcome,
+} from "@/lib/newsletter/form-state";
 
 /**
- * Consent copy is awaiting compliance sign-off. Do not rewrite this text or bump the
- * version without approved wording — the version travels with every stored signup.
+ * No consent wording is shown here. The approved copy has not arrived, and the
+ * consent snapshot recorded against a signup is built on the server
+ * (src/lib/newsletter/consent.server.ts), never in the browser. Until that copy
+ * exists the server refuses every signup, so this form truthfully reports that
+ * sign-up is not available yet. When the wording arrives, it is added to the
+ * server module and displayed here in the same change.
  */
-const CONSENT_VERSION = "2026-09-20";
-const CONSENT_TEXT =
-  "We store the consent text shown, its version, the timestamp and the source of the signup.";
 
 const LISTS = [
   { id: "daily-note", key: "dailyNote", title: "Daily Note", description: "Short sourced notes, published as they are written." },
@@ -22,31 +32,21 @@ const BENEFITS = [
 ] as const;
 
 type ListId = (typeof LISTS)[number]["id"];
-type Status = "idle" | "submitting" | "success" | "error";
-
-function attributionSource() {
-  if (typeof window === "undefined") return { page: "/aurum#subscribe", campaign: {} as Record<string, string> };
-  const params = new URLSearchParams(window.location.search);
-  const campaign: Record<string, string> = {};
-  params.forEach((value, key) => {
-    if (key.startsWith("utm_") || key === "gclid" || key === "ref") campaign[key] = value;
-  });
-  return {
-    page: `${window.location.pathname}#subscribe`,
-    referrer: document.referrer || null,
-    campaign,
-  };
-}
 
 export function AurumSubscribeSection() {
   const statusId = useId();
+  const subscribe = useServerFn(subscribeToMelt);
+  const inFlight = useRef(false);
+
   const [selected, setSelected] = useState<ListId[]>([]);
   const [attempted, setAttempted] = useState(false);
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<Status>("idle");
+  const [submitting, setSubmitting] = useState(false);
+  const [outcome, setOutcome] = useState<MeltOutcome | null>(null);
 
   const noListSelected = selected.length === 0;
-  const canSubmit = status !== "submitting";
+  const canSubmit = !submitting;
+  const succeeded = outcome === "success";
 
   const toggle = (id: ListId) =>
     setSelected((current) => {
@@ -59,42 +59,36 @@ export function AurumSubscribeSection() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!canSubmit) return;
+    // Ref as well as state: a second click in the same tick cannot get through.
+    if (!canSubmit || inFlight.current) return;
     if (noListSelected) {
       setAttempted(true);
       return;
     }
-    setAttempted(false);
-    setStatus("submitting");
 
-    const payload = {
-      email,
-      dailyNote: selected.includes("daily-note"),
-      weeklyBrief: selected.includes("weekly-brief"),
-      consentText: CONSENT_TEXT,
-      consentVersion: CONSENT_VERSION,
-      timestamp: new Date().toISOString(),
-      source: attributionSource(),
-    };
+    inFlight.current = true;
+    setAttempted(false);
+    setOutcome(null);
+    setSubmitting(true);
 
     try {
-      // Customer.io is not wired yet — the shape below is what will be forwarded.
-      console.info("[the-melt] subscribe", payload);
-      await new Promise((resolve) => setTimeout(resolve, 400));
-      setStatus("success");
+      const result = await subscribe({ data: buildSignupRequest(email, selected) });
+      setOutcome(outcomeFor(result));
     } catch {
-      setStatus("error");
+      // Never surface an exception to the visitor; the server already refuses
+      // to describe its own internals.
+      setOutcome("unavailable");
+    } finally {
+      setSubmitting(false);
+      inFlight.current = false;
     }
   };
 
-  const statusMessage =
-    status === "submitting"
-      ? "Sending your preferences."
-      : status === "error"
-        ? "We could not save that just now. Your email is still here — press Subscribe again in a moment."
-        : status === "success"
-          ? `You are signed up for ${chosenLabels.join(" and ")}.`
-          : "";
+  const statusMessage = submitting
+    ? "Sending your preferences."
+    : outcome
+      ? MELT_MESSAGES[outcome]
+      : "";
 
   return (
     <section id="subscribe" className="aurum-section aurum-subscribe" aria-labelledby="aurum-subscribe-title">
@@ -110,12 +104,13 @@ export function AurumSubscribeSection() {
 
         <div className="aurum-subscribe__grid">
           <div className="aurum-subscribe__panel">
-            {status === "success" ? (
+            {succeeded ? (
+              // Truthful for both a first and a repeat signup, and identical
+              // either way: it says what we did, not that any provider has the
+              // address or that it has been confirmed.
               <div className="aurum-subscribe__done">
-                <h3>You are on the list.</h3>
-                <p>
-                  We will send {chosenLabels.join(" and ")} to {email}. Every email carries an unsubscribe link.
-                </p>
+                <h3>{MELT_MESSAGES.success}</h3>
+                <p>We have your preferences for {chosenLabels.join(" and ")}.</p>
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate={false}>
@@ -172,16 +167,12 @@ export function AurumSubscribeSection() {
                   }}
                   className="aurum-subscribe__submit"
                 >
-                  {status === "submitting" ? "Subscribing…" : "Subscribe"}
+                  {submitting ? "Subscribing…" : "Subscribe"}
                 </GoldButton>
 
                 <p id={statusId} role="status" aria-live="polite" className="aurum-subscribe__status">
                   {statusMessage}
                 </p>
-
-                <div className="aurum-subscribe__consent">
-                  <p className="aurum-subscribe__consent-text">{CONSENT_TEXT}</p>
-                </div>
               </form>
             )}
           </div>
