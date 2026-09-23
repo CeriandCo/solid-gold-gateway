@@ -9542,7 +9542,7 @@
    "notes": null,
    "semanticSeverity": "NONE",
    "semanticRule": "aurum:back",
-   "semanticEvidence": "Archive back-link returns to the matching AURUM section.",
+   "semanticEvidence": "Archive back-link returns to AURUM (notes → board top, since the board has no Daily Note section; briefs → Weekly Brief section).",
    "semanticFix": null,
    "semanticGroup": "individual"
   },
@@ -18582,13 +18582,13 @@
    "technicalReasons": [
     "canonical redirect (review)"
    ],
-   "semanticVerdict": "UNREVIEWED",
+   "semanticVerdict": "CORRECT",
    "finalVerdict": "NEEDS SEMANTIC REVIEW",
    "suggestedFix": null,
    "notes": null,
    "semanticSeverity": "NONE",
-   "semanticRule": "none",
-   "semanticEvidence": "No Phase 3 judgement covers this occurrence.",
+   "semanticRule": "aurum:back",
+   "semanticEvidence": "Archive back-link returns to AURUM (notes → board top, since the board has no Daily Note section; briefs → Weekly Brief section).",
    "semanticFix": null,
    "semanticGroup": "individual"
   },
@@ -73219,15 +73219,14 @@
   }
  ],
  "semanticSummary": {
-  "reviewedAt": "2026-09-23T18:11:59.860Z",
+  "reviewedAt": "2026-09-23T18:12:33.346Z",
   "occurrences": 1444,
   "globalComponentOccurrences": 1221,
   "globalGroups": 27,
   "individualOccurrences": 223,
   "verdicts": {
-   "CORRECT": 1415,
+   "CORRECT": 1416,
    "AMBIGUOUS — CLIENT DECISION": 27,
-   "UNREVIEWED": 1,
    "TECHNICALLY BLOCKED": 1
   },
   "severities": {
@@ -73289,9 +73288,8 @@
    "aurum:guides": 3,
    "aurum:gifts": 1,
    "aurum:fab": 7,
-   "aurum:back": 1,
+   "aurum:back": 2,
    "detail:back-briefs": 3,
-   "none": 1,
    "source:Good Delivery Current List \\u2014 Gold": 2,
    "source-index:Guide to the London precious metals market": 1,
    "source-index:Investment guidance on storage structures": 1,
