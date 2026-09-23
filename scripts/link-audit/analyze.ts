@@ -162,5 +162,5 @@ const summary = {
   severity: { BROKEN: sev("BROKEN"), SUSPICIOUS: sev("SUSPICIOUS"), "NEEDS SEMANTIC REVIEW": sev("NEEDS SEMANTIC REVIEW"), "EXTERNAL TO VERIFY": sev("EXTERNAL TO VERIFY"), OK: sev("OK") },
 };
 
-writeFileSync(outPath, JSON.stringify({ crawledAt: raw.startedAt, base, summary, routeBaseline, destinations, occurrences, nonAnchorButtons: buttons }, null, 1) + "\n");
+writeFileSync(outPath, JSON.stringify({ crawledAt: raw.startedAt, base, summary, routeBaseline, destinations, occurrences, nonAnchorButtons: buttons }) + "\n");
 console.log(JSON.stringify(summary, null, 1));
