@@ -14,6 +14,7 @@ import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { fetchEditorialPage, fetchPublishedLearnNotes } from "@/lib/aurum-editorial.functions";
+import { fetchMeltConsentNotice } from "@/lib/newsletter.functions";
 import { useEffect, useState } from "react";
 
 const NOTE_PAGE_SIZE = 3;
@@ -30,17 +31,19 @@ export const Route = createFileRoute("/aurum")({
   loader: async ({ deps }) => {
     // Editorial content is server-rendered so there is no loading flash.
     // A read failure degrades the two sections only; the rest of the page still renders.
-    const [notes, briefs] = await Promise.all([
+    const [notes, briefs, consentNotice] = await Promise.all([
       fetchPublishedLearnNotes({ data: { limit: NOTE_PAGE_SIZE, offset: 0 } }).catch(() => null),
       fetchEditorialPage({
         data: { type: "weekly_brief", limit: BRIEF_LIMIT, offset: 0, includeSlug: deps.brief },
       }).catch(() => null),
+      // The consent wording the MELT form shows. Null while signup is disabled.
+      fetchMeltConsentNotice().catch(() => null),
     ]);
     // A deep link to a post far past the capped expansion opens that post's own page.
     if (briefs?.deepLinkOverflow && deps.brief) {
       throw redirect({ to: "/aurum/briefs/$slug", params: { slug: deps.brief } });
     }
-    return { notes, briefs: briefs ? briefs.items : null };
+    return { notes, briefs: briefs ? briefs.items : null, consentNotice };
   },
 
   head: () => ({
@@ -97,7 +100,7 @@ function AurumPage() {
 
 function AurumPageContent() {
   const { range, note: openNote, brief: openBrief } = Route.useSearch();
-  const { notes, briefs } = Route.useLoaderData();
+  const { notes, briefs, consentNotice } = Route.useLoaderData();
   const [selectedRange, setSelectedRange] = useState<AurumRange>(range);
   const [expandedNote, setExpandedNote] = useState<string | null>(openNote ?? null);
   const [expandedBrief, setExpandedBrief] = useState<string | null>(openBrief ?? null);
@@ -161,7 +164,7 @@ function AurumPageContent() {
         <AurumCalculatorSection />
         <AurumGiftsSection />
 
-        <AurumSubscribeSection />
+        <AurumSubscribeSection consentNotice={consentNotice} />
       </main>
 
       <AurumFloatingNav />
