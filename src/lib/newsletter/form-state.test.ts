@@ -133,7 +133,6 @@ describe("the MELT component's client boundary", () => {
       "utm_",
       "gclid",
       "consentText",
-      "consentVersion",
     ]) {
       expect(COMPONENT).not.toContain(forbidden);
     }

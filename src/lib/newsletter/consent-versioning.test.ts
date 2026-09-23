@@ -114,8 +114,8 @@ describe("consent configuration", () => {
 
 describe("displayed and stored consent parity", () => {
   it("projects exactly the configured text and nothing else", () => {
-    expect(projectConsent(V1)).toEqual({ text: V1.text });
-    expect(Object.keys(projectConsent(V1)!)).toEqual(["text"]);
+    expect(projectConsent(V1)).toEqual({ text: V1.text, version: V1.version });
+    expect(Object.keys(projectConsent(V1)!).sort()).toEqual(["text", "version"]);
   });
 
   it("stores byte-for-byte the text the visitor was shown", async () => {
@@ -260,8 +260,9 @@ describe("structural safety", () => {
 
   it("keeps the browser non-authoritative: it displays text and never sends it", () => {
     expect(componentSource).toContain("consentNotice");
-    expect(componentSource).not.toMatch(/consent_text|consentVersion|CONSENT_TEXT/);
-    expect(formStateSource).not.toMatch(/consent_text|consent_version|consentText|consentVersion|consented_at/);
+    expect(componentSource).not.toMatch(/consent_text|consentText|CONSENT_TEXT/);
+    // The version travels only as a comparison token (T3 Phase 6); never text or time.
+    expect(formStateSource).not.toMatch(/consent_text|consent_version|consentText|consented_at/);
   });
 
   it("introduces no provider, confirmation or double-opt-in machinery", () => {

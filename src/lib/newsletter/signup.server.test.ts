@@ -26,11 +26,18 @@ const RAW_IP = "203.0.113.77";
 const TEST_CONSENT = { version: "test-v1", text: "Test consent text" };
 
 const usedHashes = new Set<string>();
+
+/** A unique, well-formed IPv6 documentation address, so each test has its own bucket. */
+function freshIp(): string {
+  const hex = crypto.randomUUID().replace(/-/g, "").slice(0, 16).match(/.{4}/g)!.join(":");
+  return `2001:db8:${hex}::1`;
+}
 const usedEmails = new Set<string>();
 
 function validRequest(email: string, lists: string[] = ["daily-note"]) {
   usedEmails.add(email.trim().toLowerCase());
-  return { email, lists, source: "aurum_melt" };
+  // consentVersion is the page's comparison token (T3 Phase 6); it matches TEST_CONSENT.
+  return { email, lists, source: "aurum_melt", consentVersion: "test-v1" };
 }
 
 async function useIp(ip: string | undefined) {
@@ -65,7 +72,7 @@ async function signupRow(email: string) {
 
 beforeEach(async () => {
   process.env["NEWSLETTER_HASH_PEPPER"] = PEPPER;
-  await useIp(`${RAW_IP}-${crypto.randomUUID()}`);
+  await useIp(freshIp());
 });
 
 afterEach(() => {
@@ -97,7 +104,7 @@ describe("consent fail-closed", () => {
   });
 
   it("still counts the attempt when consent is unavailable", async () => {
-    const ip = `fc-${crypto.randomUUID()}`;
+    const ip = freshIp();
     await useIp(ip);
     await runMeltSignup(validRequest(`fc-${crypto.randomUUID()}@example.com`));
     expect(await attemptCount(ip)).toBe(1);
@@ -171,7 +178,6 @@ describe("the browser cannot control server-owned fields", () => {
   const privileged = [
     { consentText: "I agree to anything" },
     { consent_text: "I agree to anything" },
-    { consentVersion: "approved-v9" },
     { consentedAt: "1999-01-01T00:00:00.000Z" },
     { createdAt: "1999-01-01T00:00:00.000Z" },
     { updatedAt: "1999-01-01T00:00:00.000Z" },
@@ -249,7 +255,7 @@ describe("newsletter pepper", () => {
 
 describe("rate limiting", () => {
   it("counts every attempt, including malformed ones", async () => {
-    const ip = `rl-${crypto.randomUUID()}`;
+    const ip = freshIp();
     await useIp(ip);
     await runMeltSignup("nonsense", { consent: TEST_CONSENT });
     await runMeltSignup({ email: "x" }, { consent: TEST_CONSENT });
@@ -257,7 +263,7 @@ describe("rate limiting", () => {
   });
 
   it("stops at the short-window threshold before any persistence", async () => {
-    const ip = `rl-${crypto.randomUUID()}`;
+    const ip = freshIp();
     await useIp(ip);
     const email = `burst-${crypto.randomUUID()}@example.com`;
 
@@ -273,7 +279,7 @@ describe("rate limiting", () => {
   });
 
   it("applies the 24-hour threshold to attempts older than the short window", async () => {
-    const ip = `rl-day-${crypto.randomUUID()}`;
+    const ip = freshIp();
     await useIp(ip);
     const hash = (await newsletterPeppered(ip))!;
 
@@ -307,7 +313,7 @@ describe("rate limiting", () => {
   });
 
   it("ignores a spoofed x-forwarded-for", async () => {
-    const ip = `xff-${crypto.randomUUID()}`;
+    const ip = freshIp();
     await useIp(ip);
     headers["x-forwarded-for"] = "1.2.3.4";
     await runMeltSignup(validRequest(`xff-${crypto.randomUUID()}@example.com`), {
