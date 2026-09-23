@@ -414,17 +414,17 @@ describe("preference canonicalisation", () => {
   it("stores both orders identically and deduplicates", async () => {
     const address = email("order");
     await runMeltSignup(request(address, { lists: ["weekly-brief", "daily-note"] }), { consent: V1 });
-    expect((await rows(address))[0].lists).toEqual(["daily-note", "weekly-brief"]);
-    const before = (await rows(address))[0];
+    expect((await rows(address))[0]!.lists).toEqual(["daily-note", "weekly-brief"]);
+    const before = (await rows(address))[0]!;
     await runMeltSignup(request(address, { lists: ["daily-note", "weekly-brief"] }), { consent: V1 });
     const after = await rows(address);
     expect(after).toHaveLength(1);
-    expect(after[0].lists).toEqual(["daily-note", "weekly-brief"]);
-    expect(after[0].created_at).toBe(before.created_at);
+    expect(after[0]!.lists).toEqual(["daily-note", "weekly-brief"]);
+    expect(after[0]!.created_at).toBe(before.created_at);
 
     const dup = email("dup");
     await runMeltSignup(request(dup, { lists: ["weekly-brief", "weekly-brief"] }), { consent: V1 });
-    expect((await rows(dup))[0].lists).toEqual(["weekly-brief"]);
+    expect((await rows(dup))[0]!.lists).toEqual(["weekly-brief"]);
   });
 });
 
@@ -442,7 +442,7 @@ describe("consent snapshot", () => {
     const address = email("snapshot");
     expect(await runMeltSignup(request(address), deps)).toEqual({ ok: true });
     expect(reads).toBe(1);
-    const [row] = await rows(address);
+    const row = (await rows(address))[0]!;
     expect([row.consent_version, row.consent_text]).toEqual([V1.version, V1.text]);
   });
 
@@ -471,7 +471,7 @@ describe("consent snapshot", () => {
   it("a matching token stores the server's own snapshot", async () => {
     const address = email("match");
     expect(await runMeltSignup(request(address, { consentVersion: V2.version }), { consent: V2 })).toEqual({ ok: true });
-    const [row] = await rows(address);
+    const row = (await rows(address))[0]!;
     expect([row.consent_version, row.consent_text]).toEqual([V2.version, V2.text]);
   });
 });
@@ -527,7 +527,7 @@ describe("privacy", () => {
   it("stored rows hold only the promised columns", async () => {
     const address = email("cols");
     await runMeltSignup(request(address), { consent: V1 });
-    const [row] = await rows(address);
+    const row = (await rows(address))[0]!;
     expect(Object.keys(row).sort()).toEqual(
       ["consent_text", "consent_version", "consented_at", "created_at", "email", "id", "lists", "source", "updated_at"].sort(),
     );

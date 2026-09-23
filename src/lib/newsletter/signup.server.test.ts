@@ -366,7 +366,7 @@ describe("persistence", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 20));
 
-    const second = await runMeltSignup(validRequest(email, ["weekly-brief"]), {
+    const second = await runMeltSignup({ ...validRequest(email, ["weekly-brief"]), consentVersion: "test-v2" }, {
       consent: { version: "test-v2", text: "Updated test consent text" },
     });
 
