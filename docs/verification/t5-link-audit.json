@@ -1,22 +1,22 @@
 {
- "crawledAt": "2026-09-23T17:27:59Z",
+ "crawledAt": "2026-09-23T18:06:42Z",
  "base": "http://localhost:8080",
  "summary": {
   "publicRoutes": 33,
   "renderedRoutesAudited": 33,
-  "linkOccurrences": 1451,
+  "linkOccurrences": 1444,
   "uniqueInternalDestinations": 33,
-  "internalPageOccurrences": 1182,
-  "internalFragmentOccurrences": 7,
-  "samePageFragmentOccurrences": 56,
-  "externalOccurrences": 199,
+  "internalPageOccurrences": 1179,
+  "internalFragmentOccurrences": 5,
+  "samePageFragmentOccurrences": 55,
+  "externalOccurrences": 198,
   "uniqueExternalDestinations": 25,
   "mailto": 6,
   "tel": 0,
   "placeholderCandidates": 1,
-  "blankTargetOccurrences": 197,
+  "blankTargetOccurrences": 196,
   "blankWithoutNoopener": 0,
-  "redirectOccurrences": 111,
+  "redirectOccurrences": 110,
   "uniqueRedirectingDestinations": 1,
   "technicalFailures": 0,
   "internal404": 0,
@@ -26,12 +26,12 @@
   "multiHopRedirects": 0,
   "pagesWithDuplicateIds": 0,
   "orphanPublicRoutes": 2,
-  "nonAnchorButtons": 44,
+  "nonAnchorButtons": 41,
   "severity": {
    "BROKEN": 1,
    "SUSPICIOUS": 0,
-   "NEEDS SEMANTIC REVIEW": 1251,
-   "EXTERNAL TO VERIFY": 199,
+   "NEEDS SEMANTIC REVIEW": 1245,
+   "EXTERNAL TO VERIFY": 198,
    "OK": 0
   }
  },
@@ -165,7 +165,7 @@
    "rendered": true,
    "pageErrors": [],
    "duplicateIds": [],
-   "inboundLinks": 11
+   "inboundLinks": 10
   },
   {
    "route": "/aurum/notes/allocated-and-unallocated",
@@ -191,7 +191,7 @@
    "rendered": true,
    "pageErrors": [],
    "duplicateIds": [],
-   "inboundLinks": 2
+   "inboundLinks": 1
   },
   {
    "route": "/aurum/notes/how-to-buy-gold-safely",
@@ -204,7 +204,7 @@
    "rendered": true,
    "pageErrors": [],
    "duplicateIds": [],
-   "inboundLinks": 2
+   "inboundLinks": 1
   },
   {
    "route": "/aurum/notes/physical-gold-vs-gold-etf",
@@ -217,7 +217,7 @@
    "rendered": true,
    "pageErrors": [],
    "duplicateIds": [],
-   "inboundLinks": 2
+   "inboundLinks": 1
   },
   {
    "route": "/aurum/notes/spread-on-a-one-ounce-coin",
@@ -373,7 +373,7 @@
    "rendered": true,
    "pageErrors": [],
    "duplicateIds": [],
-   "inboundLinks": 97
+   "inboundLinks": 96
   },
   {
    "route": "/learn/gifting-gold-guide",
@@ -524,14 +524,14 @@
   },
   "/aurum": {
    "category": "internal",
-   "occurrences": 111,
+   "occurrences": 110,
    "status": 200,
    "redirectClass": "canonical-redirect",
    "title": "AURUM Gold Education | SQOOT Pure"
   },
   "/learn": {
    "category": "internal",
-   "occurrences": 106,
+   "occurrences": 105,
    "status": 200,
    "redirectClass": "direct",
    "title": "Knowledge Center — Gold Education | SQOOT Pure"
@@ -640,41 +640,6 @@
    "status": null,
    "redirectClass": null,
    "title": null
-  },
-  "/aurum/notes/physical-gold-vs-gold-etf": {
-   "category": "internal",
-   "occurrences": 2,
-   "status": 200,
-   "redirectClass": "direct",
-   "title": "Physical Gold vs Gold ETF: What You Actually Own | AURUM Daily Note"
-  },
-  "https://www.lbma.org.uk/good-delivery/gold-current-list": {
-   "category": "external",
-   "occurrences": 3,
-   "status": null,
-   "redirectClass": null,
-   "title": null
-  },
-  "/aurum/notes/how-to-buy-gold-safely": {
-   "category": "internal",
-   "occurrences": 2,
-   "status": 200,
-   "redirectClass": "direct",
-   "title": "How to Buy Physical Gold Online Safely | AURUM Daily Note"
-  },
-  "/aurum/notes/gifting-gold-guide": {
-   "category": "internal",
-   "occurrences": 2,
-   "status": 200,
-   "redirectClass": "direct",
-   "title": "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | AURUM Daily Note"
-  },
-  "/aurum/notes?page=1": {
-   "category": "internal",
-   "occurrences": 11,
-   "status": 200,
-   "redirectClass": "direct",
-   "title": "Daily Note Archive | AURUM by SQOOT Pure"
   },
   "https://www.usmint.gov/news": {
    "category": "external",
@@ -795,6 +760,34 @@
    "redirectClass": "direct",
    "title": "Weekly Brief Archive | AURUM by SQOOT Pure"
   },
+  "/aurum/notes/physical-gold-vs-gold-etf": {
+   "category": "internal",
+   "occurrences": 1,
+   "status": 200,
+   "redirectClass": "direct",
+   "title": "Physical Gold vs Gold ETF: What You Actually Own | AURUM Daily Note"
+  },
+  "https://www.lbma.org.uk/good-delivery/gold-current-list": {
+   "category": "external",
+   "occurrences": 2,
+   "status": null,
+   "redirectClass": null,
+   "title": null
+  },
+  "/aurum/notes/how-to-buy-gold-safely": {
+   "category": "internal",
+   "occurrences": 1,
+   "status": 200,
+   "redirectClass": "direct",
+   "title": "How to Buy Physical Gold Online Safely | AURUM Daily Note"
+  },
+  "/aurum/notes/gifting-gold-guide": {
+   "category": "internal",
+   "occurrences": 1,
+   "status": 200,
+   "redirectClass": "direct",
+   "title": "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | AURUM Daily Note"
+  },
   "https://www.lbma.org.uk/publications": {
    "category": "external",
    "occurrences": 1,
@@ -808,6 +801,13 @@
    "status": null,
    "redirectClass": null,
    "title": null
+  },
+  "/aurum/notes?page=1": {
+   "category": "internal",
+   "occurrences": 10,
+   "status": 200,
+   "redirectClass": "direct",
+   "title": "Daily Note Archive | AURUM by SQOOT Pure"
   },
   "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18": {
    "category": "external",
@@ -6238,293 +6238,6 @@
   {
    "sourcePage": "AURUM Gold Education | SQOOT Pure",
    "sourceRoute": "/aurum",
-   "linkText": "/aurum/notes/physical-gold-vs-gold-etf",
-   "rawTarget": "/aurum/notes/physical-gold-vs-gold-etf",
-   "normalizedTarget": "/aurum/notes/physical-gold-vs-gold-etf",
-   "destinationKey": "/aurum/notes/physical-gold-vs-gold-etf",
-   "category": "internal-page",
-   "status": 200,
-   "redirectClass": "direct",
-   "redirectChain": null,
-   "fragment": null,
-   "fragmentExists": null,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "Physical Gold vs Gold ETF: What You Actually Own | AURUM Daily Note",
-   "destinationH1": "Physical Gold vs Gold ETF: What You Actually Own",
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "aurum-note-panel-physical-gold-vs-gold-etf",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:0>div:1>div:0>aside:1>a:1",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:open-as-page",
-   "semanticEvidence": "“OPEN AS A PAGE” shows the exact path of the expanded item and opens that item’s own page.",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
-   "linkText": "London Bullion Market Association — Good Delivery Current List — Gold",
-   "rawTarget": "https://www.lbma.org.uk/good-delivery/gold-current-list",
-   "normalizedTarget": "https://www.lbma.org.uk/good-delivery/gold-current-list",
-   "destinationKey": "https://www.lbma.org.uk/good-delivery/gold-current-list",
-   "category": "external",
-   "status": null,
-   "redirectClass": null,
-   "redirectChain": null,
-   "fragment": null,
-   "fragmentExists": null,
-   "opensNewTab": true,
-   "rel": "noopener noreferrer",
-   "relSafe": true,
-   "destinationTitle": null,
-   "destinationH1": null,
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "aurum-note-panel-how-to-buy-gold-safely",
-    "sectionClass": "aurum-section",
-    "sectionHeading": "What moved, and why"
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:1>div:1>div:0>div:0>div:1>ol:1>li:0>a:0",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "EXTERNAL TO VERIFY",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "EXTERNAL TO VERIFY",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "source:Good Delivery Current List \\u2014 Gold",
-   "semanticEvidence": "Citation names the publisher and resource; URL is that publisher’s page for that resource.",
-   "semanticFix": null,
-   "semanticGroup": "individual",
-   "externalVerdict": "REACHABLE",
-   "externalRedirect": "NONE",
-   "externalFinalUrl": null,
-   "externalBlocksT5": false,
-   "protocolIssue": null
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
-   "linkText": "/aurum/notes/how-to-buy-gold-safely",
-   "rawTarget": "/aurum/notes/how-to-buy-gold-safely",
-   "normalizedTarget": "/aurum/notes/how-to-buy-gold-safely",
-   "destinationKey": "/aurum/notes/how-to-buy-gold-safely",
-   "category": "internal-page",
-   "status": 200,
-   "redirectClass": "direct",
-   "redirectChain": null,
-   "fragment": null,
-   "fragmentExists": null,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "How to Buy Physical Gold Online Safely | AURUM Daily Note",
-   "destinationH1": "How to Buy Physical Gold Online Safely",
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "aurum-note-panel-how-to-buy-gold-safely",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:1>div:1>div:0>aside:1>a:1",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:open-as-page",
-   "semanticEvidence": "“OPEN AS A PAGE” shows the exact path of the expanded item and opens that item’s own page.",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
-   "linkText": "/aurum/notes/gifting-gold-guide",
-   "rawTarget": "/aurum/notes/gifting-gold-guide",
-   "normalizedTarget": "/aurum/notes/gifting-gold-guide",
-   "destinationKey": "/aurum/notes/gifting-gold-guide",
-   "category": "internal-page",
-   "status": 200,
-   "redirectClass": "direct",
-   "redirectChain": null,
-   "fragment": null,
-   "fragmentExists": null,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | AURUM Daily Note",
-   "destinationH1": "Gifting Gold: A Guide for Weddings, Festivals, and Milestones",
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "aurum-note-panel-gifting-gold-guide",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:2>div:1>div:0>aside:1>a:1",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:open-as-page",
-   "semanticEvidence": "“OPEN AS A PAGE” shows the exact path of the expanded item and opens that item’s own page.",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
-   "linkText": "Show older notes →",
-   "rawTarget": "/aurum/notes?page=1",
-   "normalizedTarget": "/aurum/notes?page=1",
-   "destinationKey": "/aurum/notes?page=1",
-   "category": "internal-page",
-   "status": 200,
-   "redirectClass": "direct",
-   "redirectChain": null,
-   "fragment": null,
-   "fragmentExists": null,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "Daily Note Archive | AURUM by SQOOT Pure",
-   "destinationH1": "Daily Note archive",
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "daily-note",
-    "sectionClass": "aurum-section",
-    "sectionHeading": "What moved, and why"
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [
-    "375",
-    "1440"
-   ],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>div:4>a:1",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:older-notes",
-   "semanticEvidence": "→ “Daily Note archive”.",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
-   "linkText": "Browse all notes →",
-   "rawTarget": "/learn#aurum-archive",
-   "normalizedTarget": "/learn#aurum-archive",
-   "destinationKey": "/learn",
-   "category": "internal-fragment",
-   "status": 200,
-   "redirectClass": "direct",
-   "redirectChain": null,
-   "fragment": "aurum-archive",
-   "fragmentExists": true,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "Knowledge Center — Gold Education | SQOOT Pure",
-   "destinationH1": "Gold. Start with clarity.",
-   "surface": "main",
-   "global": false,
-   "context": {
-    "nearestId": "daily-note",
-    "sectionClass": "aurum-section",
-    "sectionHeading": "What moved, and why"
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [
-    "375",
-    "1440"
-   ],
-   "revealedBy": null,
-   "domPath": "div:0>main:1>section:2>div:0>div:4>a:2",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:all-notes",
-   "semanticEvidence": "→ Learn section “AURUM ARCHIVE — Every published note and brief”.",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
    "linkText": "US Mint — Bullion product schedule update, 8 Sep 2026",
    "rawTarget": "https://www.usmint.gov/news",
    "normalizedTarget": "https://www.usmint.gov/news",
@@ -6553,7 +6266,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6604,7 +6317,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6655,7 +6368,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6706,7 +6419,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:3>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:3>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6757,7 +6470,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:4>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>div:0>div:2>ol:1>li:4>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6808,7 +6521,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>aside:1>a:1",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>aside:1>a:1",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -6854,7 +6567,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6905,7 +6618,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -6956,7 +6669,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7007,7 +6720,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:3>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:3>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7058,7 +6771,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:4>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>div:0>div:2>ol:1>li:4>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7109,7 +6822,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>aside:1>a:1",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>aside:1>a:1",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -7155,7 +6868,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:0>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7206,7 +6919,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:1>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7257,7 +6970,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:1>div:1>div:0>div:0>div:2>ol:1>li:2>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "EXTERNAL TO VERIFY",
@@ -7308,7 +7021,7 @@
    ],
    "visibleIn": [],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:1>div:1>div:0>aside:1>a:1",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:1>div:1>div:0>aside:1>a:1",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -7357,7 +7070,7 @@
     "1440"
    ],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:4>div:0>div:4>nav:1>a:0",
+   "domPath": "div:0>main:1>section:3>div:0>div:4>nav:1>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -7406,7 +7119,7 @@
     "1440"
    ],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:4>div:0>div:4>nav:1>a:1",
+   "domPath": "div:0>main:1>section:3>div:0>div:4>nav:1>a:1",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -7455,7 +7168,7 @@
     "1440"
    ],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:4>div:0>div:4>nav:1>a:2",
+   "domPath": "div:0>main:1>section:3>div:0>div:4>nav:1>a:2",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -7504,7 +7217,7 @@
     "1440"
    ],
    "revealedBy": null,
-   "domPath": "div:0>main:1>section:6>div:0>div:4>a:0",
+   "domPath": "div:0>main:1>section:5>div:0>div:4>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -8878,66 +8591,6 @@
   {
    "sourcePage": "AURUM Gold Education | SQOOT Pure",
    "sourceRoute": "/aurum",
-   "linkText": "Daily Note →",
-   "rawTarget": "#daily-note",
-   "normalizedTarget": "/aurum#daily-note",
-   "destinationKey": "/aurum",
-   "category": "same-page-fragment",
-   "status": 200,
-   "redirectClass": "canonical-redirect",
-   "redirectChain": [
-    {
-     "url": "http://localhost:8080/aurum",
-     "status": 307
-    },
-    {
-     "url": "http://localhost:8080/aurum?range=1Y",
-     "status": 200
-    }
-   ],
-   "fragment": "daily-note",
-   "fragmentExists": true,
-   "opensNewTab": false,
-   "rel": null,
-   "relSafe": true,
-   "destinationTitle": "AURUM Gold Education | SQOOT Pure",
-   "destinationH1": "Understand gold before you own it.",
-   "surface": "nav:AURUM sections",
-   "global": false,
-   "context": {
-    "nearestId": "aurum-floating-panel",
-    "sectionClass": "aurum-floating-nav__panel",
-    "sectionHeading": null
-   },
-   "viewports": [
-    "375",
-    "1440"
-   ],
-   "visibleIn": [
-    "375",
-    "1440"
-   ],
-   "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:1>a:0",
-   "tag": "a",
-   "placeholderReason": null,
-   "technicalVerdict": "NEEDS SEMANTIC REVIEW",
-   "technicalReasons": [
-    "canonical redirect (review)"
-   ],
-   "semanticVerdict": "CORRECT",
-   "finalVerdict": "NEEDS SEMANTIC REVIEW",
-   "suggestedFix": null,
-   "notes": null,
-   "semanticSeverity": "NONE",
-   "semanticRule": "aurum:fab",
-   "semanticEvidence": "Floating nav label → same-named section (#price TODAY'S GOLD PRICE, #daily-note DAILY NOTE, #weekly-brief WEEKLY BRIEF, #learn LEARN, #calculator LOOK BACK CALCULATOR, #gifts GIFTS THAT LAST, #subscribe STAY IN TOUCH).",
-   "semanticFix": null,
-   "semanticGroup": "individual"
-  },
-  {
-   "sourcePage": "AURUM Gold Education | SQOOT Pure",
-   "sourceRoute": "/aurum",
    "linkText": "Weekly Brief →",
    "rawTarget": "#weekly-brief",
    "normalizedTarget": "/aurum#weekly-brief",
@@ -8978,7 +8631,7 @@
     "1440"
    ],
    "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:2>a:0",
+   "domPath": "div:0>div:2>nav:0>ul:0>li:1>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -9038,7 +8691,7 @@
     "1440"
    ],
    "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:3>a:0",
+   "domPath": "div:0>div:2>nav:0>ul:0>li:2>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -9098,7 +8751,7 @@
     "1440"
    ],
    "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:4>a:0",
+   "domPath": "div:0>div:2>nav:0>ul:0>li:3>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -9158,7 +8811,7 @@
     "1440"
    ],
    "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:5>a:0",
+   "domPath": "div:0>div:2>nav:0>ul:0>li:4>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -9218,7 +8871,7 @@
     "1440"
    ],
    "revealedBy": "Open AURUM section navigation",
-   "domPath": "div:0>div:2>nav:0>ul:0>li:6>a:0",
+   "domPath": "div:0>div:2>nav:0>ul:0>li:5>a:0",
    "tag": "a",
    "placeholderReason": null,
    "technicalVerdict": "NEEDS SEMANTIC REVIEW",
@@ -9889,7 +9542,7 @@
    "notes": null,
    "semanticSeverity": "NONE",
    "semanticRule": "aurum:back",
-   "semanticEvidence": "Archive back-link returns to the matching AURUM section.",
+   "semanticEvidence": "Archive back-link returns to AURUM (notes → board top, since the board has no Daily Note section; briefs → Weekly Brief section).",
    "semanticFix": null,
    "semanticGroup": "individual"
   },
@@ -18883,10 +18536,10 @@
    "sourcePage": "Daily Note Archive | AURUM by SQOOT Pure",
    "sourceRoute": "/aurum/notes",
    "linkText": "← Back to AURUM",
-   "rawTarget": "/aurum#daily-note",
-   "normalizedTarget": "/aurum#daily-note",
+   "rawTarget": "/aurum",
+   "normalizedTarget": "/aurum",
    "destinationKey": "/aurum",
-   "category": "internal-fragment",
+   "category": "internal-page",
    "status": 200,
    "redirectClass": "canonical-redirect",
    "redirectChain": [
@@ -18899,8 +18552,8 @@
      "status": 200
     }
    ],
-   "fragment": "daily-note",
-   "fragmentExists": true,
+   "fragment": null,
+   "fragmentExists": null,
    "opensNewTab": false,
    "rel": null,
    "relSafe": true,
@@ -18935,7 +18588,7 @@
    "notes": null,
    "semanticSeverity": "NONE",
    "semanticRule": "aurum:back",
-   "semanticEvidence": "Archive back-link returns to the matching AURUM section.",
+   "semanticEvidence": "Archive back-link returns to AURUM (notes → board top, since the board has no Daily Note section; briefs → Weekly Brief section).",
    "semanticFix": null,
    "semanticGroup": "individual"
   },
@@ -48075,12 +47728,10 @@
     "sectionHeading": null
    },
    "viewports": [
-    "375",
-    "1440"
+    "375"
    ],
    "visibleIn": [
-    "375",
-    "1440"
+    "375"
    ],
    "revealedBy": null,
    "domPath": "a:3",
@@ -60948,10 +60599,12 @@
     "sectionHeading": null
    },
    "viewports": [
-    "375"
+    "375",
+    "1440"
    ],
    "visibleIn": [
-    "375"
+    "375",
+    "1440"
    ],
    "revealedBy": null,
    "domPath": "a:5",
@@ -65498,10 +65151,12 @@
     "sectionHeading": null
    },
    "viewports": [
-    "375"
+    "375",
+    "1440"
    ],
    "visibleIn": [
-    "375"
+    "375",
+    "1440"
    ],
    "revealedBy": null,
    "domPath": "a:3",
@@ -73120,42 +72775,6 @@
   },
   {
    "source": "/aurum",
-   "text": "Collapse ↑",
-   "surface": "main",
-   "context": {
-    "nearestId": "aurum-note-panel-physical-gold-vs-gold-etf",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:0>div:1>div:0>aside:1>button:2",
-   "viewport": "375"
-  },
-  {
-   "source": "/aurum",
-   "text": "Collapse ↑",
-   "surface": "main",
-   "context": {
-    "nearestId": "aurum-note-panel-how-to-buy-gold-safely",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:1>div:1>div:0>aside:1>button:2",
-   "viewport": "375"
-  },
-  {
-   "source": "/aurum",
-   "text": "Collapse ↑",
-   "surface": "main",
-   "context": {
-    "nearestId": "aurum-note-panel-gifting-gold-guide",
-    "sectionClass": "aurum-note-panel__aside",
-    "sectionHeading": null
-   },
-   "domPath": "div:0>main:1>section:2>div:0>ul:3>li:2>div:1>div:0>aside:1>button:2",
-   "viewport": "375"
-  },
-  {
-   "source": "/aurum",
    "text": "Close the brief ↑",
    "surface": "article",
    "context": {
@@ -73163,7 +72782,7 @@
     "sectionClass": "aurum-note-panel__aside",
     "sectionHeading": null
    },
-   "domPath": "div:0>main:1>section:3>div:0>article:3>div:1>div:0>aside:1>button:2",
+   "domPath": "div:0>main:1>section:2>div:0>article:3>div:1>div:0>aside:1>button:2",
    "viewport": "375"
   },
   {
@@ -73175,7 +72794,7 @@
     "sectionClass": "aurum-note-panel__aside",
     "sectionHeading": null
    },
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:0>div:1>div:0>aside:1>button:2",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:0>div:1>div:0>aside:1>button:2",
    "viewport": "375"
   },
   {
@@ -73187,7 +72806,7 @@
     "sectionClass": "aurum-note-panel__aside",
     "sectionHeading": null
    },
-   "domPath": "div:0>main:1>section:3>div:0>ul:4>li:1>div:1>div:0>aside:1>button:2",
+   "domPath": "div:0>main:1>section:2>div:0>ul:4>li:1>div:1>div:0>aside:1>button:2",
    "viewport": "375"
   },
   {
@@ -73600,18 +73219,18 @@
   }
  ],
  "semanticSummary": {
-  "reviewedAt": "2026-09-23T17:33:38.245Z",
-  "occurrences": 1451,
+  "reviewedAt": "2026-09-23T18:12:33.346Z",
+  "occurrences": 1444,
   "globalComponentOccurrences": 1221,
   "globalGroups": 27,
-  "individualOccurrences": 230,
+  "individualOccurrences": 223,
   "verdicts": {
-   "CORRECT": 1423,
+   "CORRECT": 1416,
    "AMBIGUOUS — CLIENT DECISION": 27,
    "TECHNICALLY BLOCKED": 1
   },
   "severities": {
-   "NONE": 1423,
+   "NONE": 1416,
    "CLIENT DECISION": 28
   },
   "rules": {
@@ -73655,15 +73274,12 @@
    "early-access-cta": 9,
    "aurum:hero-price": 1,
    "aurum:hero-learn": 1,
-   "aurum:open-as-page": 12,
-   "source:Good Delivery Current List \\u2014 Gold": 3,
-   "aurum:older-notes": 1,
-   "aurum:all-notes": 1,
    "source-index:Bullion product schedule update": 4,
    "source-index:Bullion operations statement": 7,
    "source-index:Refinery delivery notice": 7,
    "source:Gold price benchmark data": 4,
    "source:Gold demand trends": 7,
+   "aurum:open-as-page": 9,
    "source:production and sales figures|American Eagle production report": 4,
    "source:Good Delivery current list|Good delivery refiner list|Responsible sourcing and good delivery rules": 5,
    "source:International Monetary Fund \\u2014 International Financial Statistics": 4,
@@ -73671,9 +73287,10 @@
    "source:Bank for International Settlements \\u2014 International banking": 3,
    "aurum:guides": 3,
    "aurum:gifts": 1,
-   "aurum:fab": 8,
+   "aurum:fab": 7,
    "aurum:back": 2,
    "detail:back-briefs": 3,
+   "source:Good Delivery Current List \\u2014 Gold": 2,
    "source-index:Guide to the London precious metals market": 1,
    "source-index:Investment guidance on storage structures": 1,
    "detail:back-notes": 9,
@@ -73718,13 +73335,13 @@
  "externalSummary": {
   "checkedAt": "2026-09-23T17:36:59Z",
   "evidence": "docs/verification/t5-external-evidence.json",
-  "occurrences": 199,
+  "occurrences": 198,
   "uniqueUrls": 25,
   "uniqueHosts": 16,
   "verdictsByOccurrence": {
    "BROWSER-REACHABLE / AUTOMATED CHECK BLOCKED": 42,
    "AUTOMATED CHECK BLOCKED — BROWSER INCONCLUSIVE": 38,
-   "REACHABLE": 94,
+   "REACHABLE": 93,
    "CLIENT / EDITORIAL DECISION": 7,
    "REACHABLE VIA REDIRECT": 16,
    "DEAD": 2
@@ -73737,7 +73354,7 @@
    "REACHABLE VIA REDIRECT": 6,
    "DEAD": 2
   },
-  "blankOccurrences": 197,
+  "blankOccurrences": 196,
   "unsafeBlank": 0,
   "httpUrls": 0,
   "protocolIssues": 0,
@@ -73781,16 +73398,6 @@
     "identity": "X profile @SqootPure",
     "blocksT5": false,
     "occurrences": 34
-   },
-   "https://www.lbma.org.uk/good-delivery/gold-current-list": {
-    "verdict": "REACHABLE",
-    "redirect": "NONE",
-    "http": "200",
-    "browser": "200, “Good Delivery Current List | LBMA” (site appends #- client-side)",
-    "finalUrl": null,
-    "identity": "LBMA Good Delivery current list",
-    "blocksT5": false,
-    "occurrences": 3
    },
    "https://www.usmint.gov/news": {
     "verdict": "BROWSER-REACHABLE / AUTOMATED CHECK BLOCKED",
@@ -73891,6 +73498,16 @@
     "identity": "BIS statistics (trailing-slash canonicalisation)",
     "blocksT5": false,
     "occurrences": 3
+   },
+   "https://www.lbma.org.uk/good-delivery/gold-current-list": {
+    "verdict": "REACHABLE",
+    "redirect": "NONE",
+    "http": "200",
+    "browser": "200, “Good Delivery Current List | LBMA” (site appends #- client-side)",
+    "finalUrl": null,
+    "identity": "LBMA Good Delivery current list",
+    "blocksT5": false,
+    "occurrences": 2
    },
    "https://www.lbma.org.uk/publications": {
     "verdict": "REACHABLE",
