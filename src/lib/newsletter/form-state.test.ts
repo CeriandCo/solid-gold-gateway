@@ -143,8 +143,11 @@ describe("the MELT component's client boundary", () => {
     expect(COMPONENT).toContain("inFlight.current");
   });
 
-  it("does not import server-only newsletter code", () => {
-    expect(COMPONENT).not.toContain("signup.server");
-    expect(COMPONENT).not.toContain("consent.server");
+  it("imports no server-only newsletter module", () => {
+    const imports = COMPONENT.match(/^import .*$/gm) ?? [];
+    for (const line of imports) {
+      expect(line).not.toContain(".server");
+      expect(line).not.toContain("client.server");
+    }
   });
 });
