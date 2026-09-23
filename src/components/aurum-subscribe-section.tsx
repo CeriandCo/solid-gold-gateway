@@ -104,12 +104,13 @@ export function AurumSubscribeSection() {
 
         <div className="aurum-subscribe__grid">
           <div className="aurum-subscribe__panel">
-            {status === "success" ? (
+            {succeeded ? (
+              // Truthful for both a first and a repeat signup, and identical
+              // either way: it says what we did, not that any provider has the
+              // address or that it has been confirmed.
               <div className="aurum-subscribe__done">
-                <h3>You are on the list.</h3>
-                <p>
-                  We will send {chosenLabels.join(" and ")} to {email}. Every email carries an unsubscribe link.
-                </p>
+                <h3>{MELT_MESSAGES.success}</h3>
+                <p>We have your preferences for {chosenLabels.join(" and ")}.</p>
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate={false}>
