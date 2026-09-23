@@ -1,0 +1,197 @@
+{
+ "generatedFrom": [
+  "src/routeTree.gen.ts",
+  "src/lib/learn-articles.ts",
+  "docs/verification/t5-published-posts.json"
+ ],
+ "public": [
+  {
+   "path": "/",
+   "source": "file-route",
+   "pattern": "/"
+  },
+  {
+   "path": "/about-us",
+   "source": "file-route",
+   "pattern": "/about-us"
+  },
+  {
+   "path": "/aurum",
+   "source": "file-route",
+   "pattern": "/aurum"
+  },
+  {
+   "path": "/aurum/briefs",
+   "source": "index route /aurum/briefs/",
+   "pattern": "/aurum/briefs/"
+  },
+  {
+   "path": "/aurum/briefs/three-mints-one-supply-story",
+   "source": "aurum_posts published weekly_brief",
+   "pattern": "/aurum/briefs/$slug"
+  },
+  {
+   "path": "/aurum/briefs/what-a-widening-premium-actually-tells-you",
+   "source": "aurum_posts published weekly_brief",
+   "pattern": "/aurum/briefs/$slug"
+  },
+  {
+   "path": "/aurum/briefs/what-central-banks-reported-this-quarter",
+   "source": "aurum_posts published weekly_brief",
+   "pattern": "/aurum/briefs/$slug"
+  },
+  {
+   "path": "/aurum/notes",
+   "source": "index route /aurum/notes/",
+   "pattern": "/aurum/notes/"
+  },
+  {
+   "path": "/aurum/notes/allocated-and-unallocated",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/gifting-gold-guide",
+   "source": "learn-articles.ts (learn-fed note)",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/how-to-buy-gold-safely",
+   "source": "learn-articles.ts (learn-fed note)",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/physical-gold-vs-gold-etf",
+   "source": "learn-articles.ts (learn-fed note)",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/spread-on-a-one-ounce-coin",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/three-mints-longer-lead-times",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/troy-ounces-and-grams",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/what-a-central-bank-purchase-signals",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/aurum/notes/why-assay-cards-matter",
+   "source": "aurum_posts published daily_note",
+   "pattern": "/aurum/notes/$slug"
+  },
+  {
+   "path": "/contact",
+   "source": "file-route",
+   "pattern": "/contact"
+  },
+  {
+   "path": "/early-access",
+   "source": "file-route",
+   "pattern": "/early-access"
+  },
+  {
+   "path": "/fractional-gold",
+   "source": "file-route",
+   "pattern": "/fractional-gold"
+  },
+  {
+   "path": "/gifting",
+   "source": "file-route",
+   "pattern": "/gifting"
+  },
+  {
+   "path": "/gifting-old-ver",
+   "source": "file-route",
+   "pattern": "/gifting-old-ver"
+  },
+  {
+   "path": "/home-old-ver",
+   "source": "file-route",
+   "pattern": "/home-old-ver"
+  },
+  {
+   "path": "/learn",
+   "source": "file-route",
+   "pattern": "/learn"
+  },
+  {
+   "path": "/learn/gifting-gold-guide",
+   "source": "file-route",
+   "pattern": "/learn/gifting-gold-guide"
+  },
+  {
+   "path": "/learn/how-to-buy-gold-safely",
+   "source": "file-route",
+   "pattern": "/learn/how-to-buy-gold-safely"
+  },
+  {
+   "path": "/learn/physical-gold-vs-gold-etf",
+   "source": "file-route",
+   "pattern": "/learn/physical-gold-vs-gold-etf"
+  },
+  {
+   "path": "/precious-metal",
+   "source": "file-route",
+   "pattern": "/precious-metal"
+  },
+  {
+   "path": "/pricing",
+   "source": "file-route",
+   "pattern": "/pricing"
+  },
+  {
+   "path": "/privacy",
+   "source": "file-route",
+   "pattern": "/privacy"
+  },
+  {
+   "path": "/terms",
+   "source": "file-route",
+   "pattern": "/terms"
+  },
+  {
+   "path": "/trust-center",
+   "source": "file-route",
+   "pattern": "/trust-center"
+  },
+  {
+   "path": "/vault",
+   "source": "file-route",
+   "pattern": "/vault"
+  }
+ ],
+ "internal": [
+  "/admin",
+  "/admin/people",
+  "/admin/posts",
+  "/admin/settings",
+  "/admin/",
+  "/admin/posts/$postId",
+  "/admin/posts/new",
+  "/api/public/aurum-ai-daily-note",
+  "/api/public/aurum-backfill-daily-history",
+  "/api/public/aurum-gold-price-fetcher",
+  "/api/public/commerce-catalog-check",
+  "/api/public/get-gold-price",
+  "/api/public/get-history",
+  "/api/public/gift-card-delivery-tick",
+  "/api/public/stripe-webhook",
+  "/admin/posts/"
+ ],
+ "indexAliases": [
+  "/learn/",
+  "/aurum/briefs/",
+  "/aurum/notes/"
+ ]
+}
