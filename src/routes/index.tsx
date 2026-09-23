@@ -354,7 +354,7 @@ function AurumArticleCard({ article }: { article: (typeof AURUM_ARTICLES)[number
         ) : (
           <Link
             to="/aurum"
-            search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+            search={{ range: "1Y", brief: undefined, priceState: undefined }}
             hash="learn"
             className="home-three-ways-link home-aurum-card-link"
           >
@@ -669,7 +669,7 @@ function Index() {
               <div className="home-price-links">
                 <Link
                   to="/aurum"
-                  search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+                  search={{ range: "1Y", brief: undefined, priceState: undefined }}
                   className="home-price-link"
                 >
                   Read what moved it in AURUM
@@ -760,7 +760,7 @@ function Index() {
               </div>
               <Link
                 to="/aurum"
-                search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+                search={{ range: "1Y", brief: undefined, priceState: undefined }}
                 className="home-three-ways-link home-aurum-head-link"
               >
                 <span>Open AURUM</span>

@@ -31,7 +31,7 @@ export function AurumFloatingButton() {
   return (
     <Link
       to="/aurum"
-      search={{ range: "1Y", note: undefined, brief: undefined, priceState: undefined }}
+      search={{ range: "1Y", brief: undefined, priceState: undefined }}
       aria-label="Open AURUM gold price and insights"
       className="aurum-fab"
     >
