@@ -112,7 +112,7 @@ export function buildRunDeps(options: {
     persist,
     generate: options.generate,
     ...(options.force ? { force: true } : {}),
-  } as RunDeps;
+  };
 }
 
 export type CronResponse = { status: number; body: Record<string, unknown> };
