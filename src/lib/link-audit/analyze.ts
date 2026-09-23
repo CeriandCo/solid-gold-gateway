@@ -43,7 +43,7 @@ export function classifyRoutePath(fullPath: string): RouteKind {
 export function parseFullPaths(routeTreeSource: string): string[] {
   const m = routeTreeSource.match(/export interface FileRoutesByFullPath \{([\s\S]*?)\n\}/);
   if (!m) throw new Error("FileRoutesByFullPath not found in route tree");
-  return [...m[1].matchAll(/^\s*'([^']+)'\s*:/gm)].map((x) => x[1]);
+  return [...(m[1] ?? "").matchAll(/^\s*'([^']+)'\s*:/gm)].map((x) => x[1] as string);
 }
 
 // ---------------------------------------------------------------- URLs
@@ -96,9 +96,9 @@ export type Classified = {
   normalized: string | null;
   destinationKey: string | null;
   fragment: string | null;
-  placeholderReason?: string;
-  host?: string;
-  devHost?: boolean;
+  placeholderReason?: string | undefined;
+  host?: string | undefined;
+  devHost?: boolean | undefined;
 };
 
 /**
@@ -158,13 +158,13 @@ export type RedirectClass = "direct" | "canonical-redirect" | "unexpected-redire
  */
 export function classifyRedirect(chain: HttpHop[]): RedirectClass {
   if (!chain.length) return "failure";
-  const last = chain[chain.length - 1];
+  const last = chain[chain.length - 1]!;
   if (last.status === "LOOP" || last.status === "TOO_MANY_REDIRECTS") return "loop";
   if (typeof last.status !== "number") return "failure";
   if (last.status === 404 || last.status === 410) return "not-found";
   if (last.status >= 400) return "failure";
   if (chain.length === 1) return "direct";
-  const a = new URL(chain[0].url);
+  const a = new URL(chain[0]!.url);
   const b = new URL(last.url);
   const strip = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
   if (a.origin !== b.origin || strip(a.pathname) !== strip(b.pathname)) return "unexpected-redirect";
