@@ -133,6 +133,7 @@ const routeBaseline = pages.map((p) => ({
   h1: p.viewports["1440"]?.h1 ?? null,
   rendered: Object.values(p.viewports).every((v) => v.ok),
   pageErrors: Object.values(p.viewports).flatMap((v) => v.pageErrors ?? []),
+  duplicateIds: [...new Set(Object.values(p.viewports).flatMap((v: any) => v.duplicateIds ?? []))],
   inboundLinks: inbound.get(p.route.path) ?? 0,
 }));
 
@@ -157,6 +158,12 @@ const summary = {
   redirectOccurrences: count((o) => o.redirectChain),
   uniqueRedirectingDestinations: uniq((o) => !!o.redirectChain),
   technicalFailures: count((o) => ["not-found", "loop", "failure"].includes(o.redirectClass) || o.fragmentExists === false),
+  internal404: count((o) => o.redirectClass === "not-found"),
+  deadFragments: count((o) => o.fragmentExists === false),
+  redirectLoops: count((o) => o.redirectClass === "loop"),
+  unexpectedRedirects: count((o) => o.redirectClass === "unexpected-redirect"),
+  multiHopRedirects: count((o) => (o.redirectChain?.length ?? 0) > 2),
+  pagesWithDuplicateIds: routeBaseline.filter((r) => r.duplicateIds.length).length,
   orphanPublicRoutes: routeBaseline.filter((r) => r.inboundLinks === 0).length,
   nonAnchorButtons: buttons.length,
   severity: { BROKEN: sev("BROKEN"), SUSPICIOUS: sev("SUSPICIOUS"), "NEEDS SEMANTIC REVIEW": sev("NEEDS SEMANTIC REVIEW"), "EXTERNAL TO VERIFY": sev("EXTERNAL TO VERIFY"), OK: sev("OK") },
