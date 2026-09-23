@@ -47,7 +47,7 @@ As specified in the task, plus one honest sub-status: **AUTOMATED CHECK BLOCKED 
 | CLIENT / EDITORIAL DECISION | 1 | 7 |
 | **Total** | **25** | **199** |
 
-Before fixes there were additionally 2 DEAD URLs (5 occurrences: mint.ca ×... see §17) now fixed.
+Before fixes: DEAD 4 URLs (mint.ca 7 occ., nist.gov 1 occ., plus the 2 client domains) and 1 STALE (LBMA, 4 occ.); mint.ca, nist.gov and LBMA fixed (§17).
 
 ## 35. External remediation table (one row per unique URL; occurrence count in brackets)
 | Source page(s) | Link text | Original URL | HTTP | Redirect/final | Browser | Verdict | Fix |
