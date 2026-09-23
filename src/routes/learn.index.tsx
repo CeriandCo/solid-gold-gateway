@@ -475,7 +475,7 @@ function KnowledgeCenterPage() {
               <span className="kc-label">Explore the home of gold research</span>
               <h2>Get the latest insights from the World Gold Council</h2>
               <p>Explore trusted research, market analysis and educational resources about gold.</p>
-              <GoldButton href="#">Goldhub</GoldButton>
+              <GoldButton href="https://www.gold.org/goldhub" target="_blank" rel="noopener noreferrer">Goldhub</GoldButton>
             </div>
             <img
               src={laptop}
