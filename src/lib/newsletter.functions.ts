@@ -5,6 +5,21 @@ import type { NewsletterResult } from "./newsletter/types";
 export type { NewsletterErrorCode, NewsletterResult } from "./newsletter/types";
 export { MELT_LISTS, MELT_SOURCE } from "./newsletter/types";
 
+/** The wording a visitor sees, or null while signup is disabled. Read-only, no secrets, no version. */
+export type MeltConsentNotice = { text: string } | null;
+
+/**
+ * Public projection of the one authoritative consent definition. The browser
+ * displays this and nothing else; it cannot supply or override the snapshot the
+ * server stores, which comes from the same definition.
+ */
+export const fetchMeltConsentNotice = createServerFn({ method: "GET" }).handler(
+  async (): Promise<MeltConsentNotice> => {
+    const { publicConsentNotice } = await import("./newsletter/consent.server");
+    return publicConsentNotice();
+  },
+);
+
 /**
  * Public MELT newsletter signup. The browser sends only an address, the content
  * preferences it selected and the fixed form identifier; everything else —

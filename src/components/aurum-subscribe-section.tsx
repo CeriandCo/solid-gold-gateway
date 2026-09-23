@@ -2,7 +2,7 @@ import { useId, useRef, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
 
 import { GoldButton } from "@/components/site-chrome";
-import { subscribeToMelt } from "@/lib/newsletter.functions";
+import { subscribeToMelt, type MeltConsentNotice } from "@/lib/newsletter.functions";
 import {
   MELT_MESSAGES,
   buildSignupRequest,
@@ -11,12 +11,13 @@ import {
 } from "@/lib/newsletter/form-state";
 
 /**
- * No consent wording is shown here. The approved copy has not arrived, and the
- * consent snapshot recorded against a signup is built on the server
- * (src/lib/newsletter/consent.server.ts), never in the browser. Until that copy
- * exists the server refuses every signup, so this form truthfully reports that
- * sign-up is not available yet. When the wording arrives, it is added to the
- * server module and displayed here in the same change.
+ * The consent wording shown here is a read-only projection of the one
+ * authoritative server definition (src/lib/newsletter/consent.server.ts),
+ * delivered through the /aurum route loader. The browser never supplies the
+ * consent snapshot that is stored — the server builds that from the same
+ * definition, so displayed and stored text cannot drift. While no approved
+ * wording is configured the projection is null: nothing is displayed, the
+ * server refuses every signup, and this form truthfully says so.
  */
 
 const LISTS = [
@@ -33,7 +34,7 @@ const BENEFITS = [
 
 type ListId = (typeof LISTS)[number]["id"];
 
-export function AurumSubscribeSection() {
+export function AurumSubscribeSection({ consentNotice = null }: { consentNotice?: MeltConsentNotice }) {
   const statusId = useId();
   const subscribe = useServerFn(subscribeToMelt);
   const inFlight = useRef(false);
@@ -155,6 +156,12 @@ export function AurumSubscribeSection() {
                     className="h-[54px] w-full rounded-[2px] border border-beige bg-warm-white px-5 text-sm text-charcoal outline-none transition-shadow placeholder:text-[#8A938D] focus:border-gold focus:ring-2 focus:ring-gold/60"
                   />
                 </div>
+
+                {consentNotice ? (
+                  // Plain text only: React escapes it, no raw HTML is ever
+                  // injected. Byte-for-byte what the server records here.
+                  <p className="aurum-subscribe__consent">{consentNotice.text}</p>
+                ) : null}
 
                 <GoldButton
                   type="submit"
