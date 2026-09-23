@@ -73,8 +73,8 @@ Before fixes: DEAD 4 URLs (mint.ca 7 occ., nist.gov 1 occ., plus the 2 client do
 | why-assay-cards-matter [1] | PAMP — Veriscan authentication overview | pamp.com/veriscan | 403 Akamai | Firefox → /veriscan/ | Firefox 200, VERISCAN™ page | REACHABLE VIA REDIRECT (HEALTHY) | none |
 | AURUM pages [4] | US Mint — Bullion product schedule update | usmint.gov/news | 403 CF challenge | — | 200 “News \| U.S. Mint” | BROWSER-REACHABLE / AUTOMATED BLOCKED | none |
 | AURUM pages [4] | US Mint — production and sales figures / American Eagle report | usmint.gov/about/production-sales-figures | 403 CF challenge | — | Chromium + Firefox: challenge did not clear | BLOCKED — BROWSER INCONCLUSIVE | none |
-| /learn? (article) [1] | Jewelers Board of Trade | jewelersboard.com/were-legit | 200 | — | 200 “We're Legit!” | REACHABLE | none |
-| [1] | NCBA membership | ncbassoc.org/membership | 200 | — | 200 | REACHABLE | none |
+| /fractional-gold [1] | JBT MEMBER Jewelers Board of Trade | jewelersboard.com/were-legit | 200 | — | 200 “We're Legit!” | REACHABLE | none |
+| /fractional-gold [1] | NCBA MEMBER National Coin & Bullion Association | ncbassoc.org/membership | 200 | — | 200 | REACHABLE | none |
 | /contact [1] | sqootpure.com | https://sqootpure.com/ | TLS closed ×3 (DNS resolves); http:// 403 “forbidden by administrative rules” | — | ERR_CONNECTION_CLOSED; http 403 (Chromium+Firefox) | DEAD (client-owned) | none — client must decide |
 | /contact [1] | aurum.sqootpure.com | https://aurum.sqootpure.com/ | DNS not resolved ×3 | — | ERR_NAME_NOT_RESOLVED | DEAD (client-owned) | none — client must decide |
 
@@ -161,7 +161,7 @@ From the post-fix crawl (real Chromium at 1440 and 375): 171 external occurrence
 ## 40–43. Gates
 - New tests: `src/lib/link-audit/external.test.ts` (8): new-tab safety rule, no unsafe `_blank` in artifact, convention preserved, every URL reviewed, protocol hygiene, replaced URLs absent, Goldhub, Sign Up placeholder.
 - `bunx tsgo --noEmit`: pass.
-- `bun run test`: see final line below.
+- `bun run test`: 48 files, 707 tests passed (699 + 8 new).
 - `bun run build`: pass.
 
 ## 44–45. Integrity (queried this run)
