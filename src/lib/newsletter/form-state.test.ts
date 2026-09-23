@@ -112,7 +112,7 @@ describe("coded result mapping", () => {
 describe("the MELT component's client boundary", () => {
   it("calls the real server function and nothing else", () => {
     expect(COMPONENT).toContain("subscribeToMelt");
-    expect(COMPONENT).toContain("buildSignupRequest(email, selected)");
+    expect(COMPONENT).toContain("buildSignupRequest(email, selected, consentNotice?.version)");
   });
 
   it("has no fake submission path left", () => {

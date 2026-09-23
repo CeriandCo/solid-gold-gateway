@@ -12,6 +12,25 @@ vi.mock("@tanstack/react-start/server", () => ({
   getRequestHeader: (name: string) => headers[name.toLowerCase()],
 }));
 
+/**
+ * The generated admin client is a Proxy, so vi.spyOn cannot patch it. This
+ * wrapper delegates to the real client unless a test installs a fault.
+ */
+const faults = vi.hoisted(() => ({
+  rpc: null as null | ((...args: unknown[]) => unknown),
+  from: null as null | ((table: string) => unknown),
+}));
+
+vi.mock("@/integrations/supabase/client.server", async (importOriginal) => {
+  const real = ((await importOriginal()) as { supabaseAdmin: { rpc: (...a: unknown[]) => unknown; from: (t: string) => unknown } }).supabaseAdmin;
+  return {
+    supabaseAdmin: {
+      rpc: (...args: unknown[]) => (faults.rpc ? faults.rpc(...args) : real.rpc(...args)),
+      from: (table: string) => (faults.from ? faults.from(table) : real.from(table)),
+    },
+  };
+});
+
 const { runMeltSignup, newsletterPeppered, canonicalIpBucket, UNKNOWN_BUCKET } = await import(
   "./signup.server"
 );
@@ -81,7 +100,17 @@ beforeEach(async () => {
 
 afterEach(() => {
   vi.restoreAllMocks();
+  faults.rpc = null;
+  faults.from = null;
 });
+
+/** Installs a fault for exactly one call, then falls back to the real client. */
+function once<T>(fn: () => Promise<T>) {
+  return () => {
+    faults.rpc = null;
+    return fn();
+  };
+}
 
 afterAll(async () => {
   process.env["NEWSLETTER_HASH_PEPPER"] = PEPPER;
@@ -124,10 +153,12 @@ describe("rate limiter under concurrent bursts", () => {
 
   it("separate buckets for the same address: one row, identical success", async () => {
     const address = email("multi");
+    const ips = Array.from({ length: 6 }, () => freshIp());
+    for (const ip of ips) await hashOf(ip);
+    // The header is read synchronously when each call starts.
     const results = await Promise.all(
-      Array.from({ length: 6 }, async () => {
-        headers["cf-connecting-ip"] = freshIp();
-        await hashOf(headers["cf-connecting-ip"]!);
+      ips.map((ip) => {
+        headers["cf-connecting-ip"] = ip;
         return runMeltSignup(request(address), { consent: V1 });
       }),
     );
@@ -267,10 +298,10 @@ describe("pepper failure modes", () => {
 
 describe("dependency failures fail closed", () => {
   it("limiter returns an error → unavailable, no row", async () => {
-    vi.spyOn(supabaseAdmin, "rpc").mockResolvedValueOnce({
+    faults.rpc = once(async () => ({
       data: null,
       error: { message: "relation newsletter_attempts does not exist", code: "42P01" },
-    } as never);
+    }));
     const address = email("rpc-err");
     const result = await runMeltSignup(request(address), { consent: V1 });
     expect(result).toEqual({ ok: false, code: "unavailable" });
@@ -279,14 +310,16 @@ describe("dependency failures fail closed", () => {
   });
 
   it("limiter returns a non-boolean → unavailable, no row", async () => {
-    vi.spyOn(supabaseAdmin, "rpc").mockResolvedValueOnce({ data: null, error: null } as never);
+    faults.rpc = once(async () => ({ data: null, error: null }));
     const address = email("rpc-null");
     expect(await runMeltSignup(request(address), { consent: V1 })).toEqual({ ok: false, code: "unavailable" });
     expect(await rows(address)).toHaveLength(0);
   });
 
   it("limiter throws (timeout) → unavailable, no row", async () => {
-    vi.spyOn(supabaseAdmin, "rpc").mockRejectedValueOnce(new Error("timeout contacting service_role at db"));
+    faults.rpc = once(async () => {
+      throw new Error("timeout contacting service_role at db");
+    });
     const address = email("rpc-throw");
     const result = await runMeltSignup(request(address), { consent: V1 });
     expect(result).toEqual({ ok: false, code: "unavailable" });
@@ -295,14 +328,13 @@ describe("dependency failures fail closed", () => {
 
   it("signup upsert error → unavailable, no row, attempt kept", async () => {
     const hash = await hashOf(headers["cf-connecting-ip"]!);
-    const realFrom = supabaseAdmin.from.bind(supabaseAdmin);
-    vi.spyOn(supabaseAdmin, "from").mockImplementation(((table: string) =>
+    faults.from = (table) =>
       table === "newsletter_signups"
         ? { upsert: async () => ({ error: { code: "23514", message: "violates check newsletter_signups_email" } }) }
-        : realFrom(table as never)) as never);
+        : null;
     const address = email("upsert-err");
     const result = await runMeltSignup(request(address), { consent: V1 });
-    vi.restoreAllMocks();
+    faults.from = null;
     expect(result).toEqual({ ok: false, code: "unavailable" });
     expect(JSON.stringify(result)).not.toMatch(/23514|newsletter_signups|check/);
     expect(await rows(address)).toHaveLength(0);
@@ -310,11 +342,9 @@ describe("dependency failures fail closed", () => {
   });
 
   it("an unexpected throw during persistence → unavailable with no internals", async () => {
-    const realFrom = supabaseAdmin.from.bind(supabaseAdmin);
-    vi.spyOn(supabaseAdmin, "from").mockImplementation(((table: string) => {
-      if (table === "newsletter_signups") throw new Error("SELECT * FROM newsletter_signups; key=SUPABASE_SERVICE_ROLE_KEY");
-      return realFrom(table as never);
-    }) as never);
+    faults.from = () => {
+      throw new Error("SELECT * FROM newsletter_signups; key=SUPABASE_SERVICE_ROLE_KEY");
+    };
     const address = email("throw");
     const result = await runMeltSignup(request(address), { consent: V1 });
     expect(result).toEqual({ ok: false, code: "unavailable" });
@@ -452,14 +482,14 @@ describe("retry after failure", () => {
   it("failed attempt counts, retry succeeds once, one row", async () => {
     const hash = await hashOf(headers["cf-connecting-ip"]!);
     const address = email("retry");
-    vi.spyOn(supabaseAdmin, "rpc").mockRejectedValueOnce(new Error("network"));
+    faults.rpc = once(async () => {
+      throw new Error("network");
+    });
     expect(await runMeltSignup(request(address), { consent: V1 })).toEqual({ ok: false, code: "unavailable" });
     vi.restoreAllMocks();
-    const realFrom = supabaseAdmin.from.bind(supabaseAdmin);
-    vi.spyOn(supabaseAdmin, "from").mockImplementation(((table: string) =>
-      table === "newsletter_signups" ? { upsert: async () => ({ error: { code: "57014" } }) } : realFrom(table as never)) as never);
+    faults.from = () => ({ upsert: async () => ({ error: { code: "57014" } }) });
     expect(await runMeltSignup(request(address), { consent: V1 })).toEqual({ ok: false, code: "unavailable" });
-    vi.restoreAllMocks();
+    faults.from = null;
     expect(await runMeltSignup(request(address), { consent: V1 })).toEqual({ ok: true });
     expect(await runMeltSignup(request(address), { consent: V1 })).toEqual({ ok: true });
     expect(await rows(address)).toHaveLength(1);
@@ -485,7 +515,9 @@ describe("privacy", () => {
     await runMeltSignup(request(address), { consent: V2 });
     await runMeltSignup({ email: address }, { consent: V1 });
     await runMeltSignup(request(address), { consent: null });
-    vi.spyOn(supabaseAdmin, "rpc").mockRejectedValueOnce(new Error(`boom ${address}`));
+    faults.rpc = once(async () => {
+      throw new Error(`boom ${address}`);
+    });
     await runMeltSignup(request(address), { consent: V1 });
     const all = logged.join("\n");
     expect(logged.length).toBeGreaterThan(0);
