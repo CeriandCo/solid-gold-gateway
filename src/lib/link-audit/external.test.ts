@@ -48,7 +48,7 @@ describe("T5 Phase 4 external links", () => {
   it("Goldhub fix stays on the official WGC portal, new tab, protected", () => {
     const g = ext.filter((o) => o.normalizedTarget === "https://www.gold.org/goldhub");
     expect(g.map((o) => [o.opensNewTab, o.rel])).toEqual([[true, "noopener noreferrer"]]);
-    expect(EXTERNAL_VERDICTS["https://www.gold.org/goldhub"].verdict).toBe("REACHABLE");
+    expect(EXTERNAL_VERDICTS["https://www.gold.org/goldhub"]?.verdict).toBe("REACHABLE");
   });
 
   it("Sign Up on Gold.org remains an unresolved placeholder (not invented)", () => {
