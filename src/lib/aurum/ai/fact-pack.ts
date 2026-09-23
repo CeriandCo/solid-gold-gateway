@@ -231,6 +231,7 @@ export function buildFactPack(
   if (
     close &&
     close.currency?.toUpperCase() === "USD" &&
+    /^(oz|ozt|troy[ _]ounce)$/i.test(close.unit ?? "") &&
     Number.isFinite(close.close_price) &&
     close.close_price > 0
   ) {
