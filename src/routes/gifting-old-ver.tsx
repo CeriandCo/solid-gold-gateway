@@ -352,7 +352,7 @@ function GiftingPage() {
       </section>
 
       {/* How Gifting Works */}
-      <section className="bg-[#FAF7F2]">
+      <section id="gifting-process" className="bg-[#FAF7F2]">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <span className="mb-4 block text-center font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#57534E] md:text-sm">
             HOW GIFTING WORKS

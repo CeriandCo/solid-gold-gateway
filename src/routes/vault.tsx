@@ -589,7 +589,7 @@ function Index() {
       </section>
 
       {/* Founder walkthrough */}
-      <section data-reveal className="bg-background pb-0 pt-16 sm:pt-20">
+      <section data-reveal id="walkthrough" className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={STD}>
           <div className="grid gap-8 overflow-hidden rounded-[10px] bg-forest-deep lg:min-h-[214px] lg:grid-cols-[380px_1fr]">
             <div className="relative">
