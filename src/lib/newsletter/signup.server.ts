@@ -41,6 +41,12 @@ const signupInput = z
     email: z.string().min(1).max(1000),
     lists: z.array(z.enum(MELT_LISTS)).min(1).max(MELT_LISTS.length),
     source: z.literal(MELT_SOURCE),
+    /**
+     * Non-authoritative comparison token (task T3 Phase 6): the consent version
+     * the page was rendered with. It is never stored and can never choose the
+     * wording or version — it only lets the server refuse a stale page.
+     */
+    consentVersion: z.string().min(1).max(80).optional(),
   })
   .strict();
 
@@ -72,34 +78,55 @@ export async function newsletterPeppered(value: string): Promise<string | null> 
  * limiter still applies, it never fails open.
  */
 function clientIpBucket(): string {
-  const ip = getRequestHeader("cf-connecting-ip");
-  if (!ip) {
-    console.warn("[newsletter] cf-connecting-ip missing; using the shared rate-limit bucket");
-    return "unknown";
+  const bucket = canonicalIpBucket(getRequestHeader("cf-connecting-ip"));
+  if (bucket === UNKNOWN_BUCKET) {
+    console.warn("[newsletter] cf-connecting-ip missing or malformed; using the shared rate-limit bucket");
   }
-  return ip;
+  return bucket;
 }
 
-/** Records the attempt first, then reports whether this caller is over a limit. */
-async function recordAndCheckRate(ipHash: string): Promise<boolean> {
-  await supabaseAdmin.from("newsletter_attempts").insert({ ip_hash: ipHash });
+export const UNKNOWN_BUCKET = "unknown";
+/** Longest textual IPv6 form (IPv4-mapped) is 45 characters. */
+const IP_MAX = 45;
 
-  const now = Date.now();
-  const countSince = async (ms: number) => {
-    const { count } = await supabaseAdmin
-      .from("newsletter_attempts")
-      .select("id", { count: "exact", head: true })
-      .eq("ip_hash", ipHash)
-      .gte("created_at", new Date(now - ms).toISOString());
-    return count ?? 0;
-  };
+/**
+ * Minimal canonicalisation of the one trusted header (task T3 Phase 6): trim,
+ * lowercase (IPv6 hex case), and accept only IPv4/IPv6 characters. Anything
+ * else — empty, whitespace, control characters, a comma list, an overlong
+ * value — falls into the shared bucket rather than minting a fresh identity
+ * per variant. Not a networking library: equivalent IPv6 spellings such as
+ * `::1` and `0:0:0:0:0:0:0:1` still hash differently.
+ */
+export function canonicalIpBucket(raw: string | null | undefined): string {
+  if (typeof raw !== "string") return UNKNOWN_BUCKET;
+  const value = raw.trim().toLowerCase();
+  if (value.length === 0 || value.length > IP_MAX) return UNKNOWN_BUCKET;
+  if (!/^[0-9a-f:.]+$/.test(value)) return UNKNOWN_BUCKET;
+  if (!value.includes(".") && !value.includes(":")) return UNKNOWN_BUCKET;
+  return value;
+}
 
-  const [shortWindow, dayWindow] = await Promise.all([
-    countSince(RATE_SHORT_WINDOW_MS),
-    countSince(RATE_DAY_WINDOW_MS),
-  ]);
-
-  return shortWindow > SIGNUP_SHORT_MAX || dayWindow > SIGNUP_DAY_MAX;
+/**
+ * Records the attempt and reports whether this caller is over a limit, in one
+ * database call (task T3 Phase 6). The primitive takes a per-bucket advisory
+ * lock, inserts, then counts both windows, so concurrent requests from one
+ * bucket are serialised and each sees an exact count. The earlier
+ * insert-then-count version let a burst see each other's inserts and refuse
+ * requests that were still within the limit.
+ *
+ * Fails CLOSED: if the limiter cannot give an answer, the caller is treated as
+ * limited-unavailable and nothing is persisted.
+ */
+async function recordAndCheckRate(ipHash: string): Promise<"allowed" | "limited" | "error"> {
+  const { data, error } = await supabaseAdmin.rpc("newsletter_rate_check", {
+    _ip_hash: ipHash,
+    _short_max: SIGNUP_SHORT_MAX,
+    _day_max: SIGNUP_DAY_MAX,
+    _short_seconds: RATE_SHORT_WINDOW_MS / 1000,
+    _day_seconds: RATE_DAY_WINDOW_MS / 1000,
+  });
+  if (error || typeof data !== "boolean") return "error";
+  return data ? "limited" : "allowed";
 }
 
 /** Control characters, as stripped by the Stripe webhook helper. */
@@ -125,6 +152,17 @@ export async function runMeltSignup(
   data: unknown,
   deps: MeltSignupDeps = { consent: approvedConsent() },
 ): Promise<NewsletterResult> {
+  // Any unexpected throw becomes the same generic refusal: no stack, SQL,
+  // table name, secret name, email or IP ever leaves the server.
+  try {
+    return await signup(data, deps);
+  } catch {
+    refuse("unexpected error");
+    return { ok: false, code: "unavailable" };
+  }
+}
+
+async function signup(data: unknown, deps: MeltSignupDeps): Promise<NewsletterResult> {
   // 1. Trusted IP bucket and the newsletter pepper, before any other work.
   //    Without the secret we cannot account for abuse at all, so we stop.
   const ipHash = await newsletterPeppered(clientIpBucket());
@@ -135,7 +173,12 @@ export async function runMeltSignup(
 
   // 2. Every request costs quota, malformed ones included, so junk traffic
   //    cannot be sent without limit.
-  if (await recordAndCheckRate(ipHash)) {
+  const rate = await recordAndCheckRate(ipHash);
+  if (rate === "error") {
+    refuse("rate limiter unavailable");
+    return { ok: false, code: "unavailable" };
+  }
+  if (rate === "limited") {
     refuse("rate limited");
     return { ok: false, code: "rate_limited" };
   }
@@ -160,12 +203,24 @@ export async function runMeltSignup(
     return { ok: false, code: "invalid_request" };
   }
 
-  const lists = [...new Set(parsed.data.lists)];
+  // Canonical order and no duplicates, so browser ordering never causes a
+  // meaningless update.
+  const lists = MELT_LISTS.filter((list) => parsed.data.lists.includes(list));
 
   // 4. Consent is server-owned and fail-closed: no approved wording, no row.
+  //    `deps.consent` is read once per request; version and text below come
+  //    from this one object, so a hybrid snapshot cannot be stored.
   const consent = deps.consent;
   if (!isUsableConsent(consent)) {
     refuse("consent configuration missing");
+    return { ok: false, code: "unavailable" };
+  }
+
+  // A page rendered under different wording must be refreshed: storing the
+  // current wording against a visitor who saw other wording would break the
+  // displayed-equals-stored guarantee.
+  if (parsed.data.consentVersion !== consent.version) {
+    refuse("stale consent");
     return { ok: false, code: "unavailable" };
   }
 

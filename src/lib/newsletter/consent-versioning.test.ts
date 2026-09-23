@@ -39,6 +39,11 @@ function request(email: string, lists: string[] = ["daily-note"]) {
   return { email, lists, source: "aurum_melt" };
 }
 
+/** Echoes the version the page would have rendered (T3 Phase 6 comparison token). */
+function run(payload: Record<string, unknown>, deps: { consent: { version: string; text: string } | null }) {
+  return runMeltSignup({ ...payload, consentVersion: deps.consent?.version }, deps);
+}
+
 async function useIp(ip: string) {
   headers["cf-connecting-ip"] = ip;
   const hash = await newsletterPeppered(ip);
@@ -56,7 +61,7 @@ async function row(email: string) {
 
 beforeEach(async () => {
   process.env["NEWSLETTER_HASH_PEPPER"] = PEPPER;
-  await useIp(`consent-${crypto.randomUUID()}`);
+  await useIp(`2001:db8:${crypto.randomUUID().replace(/-/g, "").slice(0, 16).match(/.{4}/g)!.join(":")}::2`);
 });
 
 afterAll(async () => {
@@ -102,7 +107,7 @@ describe("consent configuration", () => {
 
   it("makes a malformed definition unavailable rather than partially stored", async () => {
     const email = `malformed-${crypto.randomUUID()}@example.com`;
-    const result = await runMeltSignup(request(email), {
+    const result = await run(request(email), {
       consent: { version: " untrimmed ", text: "Something" },
     });
     expect(result).toEqual({ ok: false, code: "unavailable" });
@@ -114,14 +119,14 @@ describe("consent configuration", () => {
 
 describe("displayed and stored consent parity", () => {
   it("projects exactly the configured text and nothing else", () => {
-    expect(projectConsent(V1)).toEqual({ text: V1.text });
-    expect(Object.keys(projectConsent(V1)!)).toEqual(["text"]);
+    expect(projectConsent(V1)).toEqual({ text: V1.text, version: V1.version });
+    expect(Object.keys(projectConsent(V1)!).sort()).toEqual(["text", "version"]);
   });
 
   it("stores byte-for-byte the text the visitor was shown", async () => {
     const email = `parity-${crypto.randomUUID()}@example.com`;
     const shown = projectConsent(V1)!;
-    expect(await runMeltSignup(request(email), { consent: V1 })).toEqual({ ok: true });
+    expect(await run(request(email), { consent: V1 })).toEqual({ ok: true });
 
     const stored = await row(email);
     expect(stored?.consent_text).toBe(shown.text);
@@ -130,7 +135,7 @@ describe("displayed and stored consent parity", () => {
 
   it("ignores consent fields supplied by the browser", async () => {
     const email = `override-${crypto.randomUUID()}@example.com`;
-    const result = await runMeltSignup(
+    const result = await run(
       {
         ...request(email),
         consent_text: "attacker text",
@@ -151,19 +156,19 @@ describe("version changes", () => {
     const older = `older-${crypto.randomUUID()}@example.com`;
     const returning = `returning-${crypto.randomUUID()}@example.com`;
 
-    expect(await runMeltSignup(request(older), { consent: V1 })).toEqual({ ok: true });
-    expect(await runMeltSignup(request(returning), { consent: V1 })).toEqual({ ok: true });
+    expect(await run(request(older), { consent: V1 })).toEqual({ ok: true });
+    expect(await run(request(returning), { consent: V1 })).toEqual({ ok: true });
     const first = await row(returning);
     expect(first?.consent_version).toBe(V1.version);
 
     // Wording is revised: a new signup records v2.
     const fresh = `fresh-${crypto.randomUUID()}@example.com`;
-    expect(await runMeltSignup(request(fresh), { consent: V2 })).toEqual({ ok: true });
+    expect(await run(request(fresh), { consent: V2 })).toEqual({ ok: true });
     expect((await row(fresh))?.consent_text).toBe(V2.text);
 
     // The returning address re-consents in place.
     expect(
-      await runMeltSignup(request(returning, ["daily-note", "weekly-brief"]), { consent: V2 }),
+      await run(request(returning, ["daily-note", "weekly-brief"]), { consent: V2 }),
     ).toEqual({ ok: true });
     const second = await row(returning);
     expect(second?.id).toBe(first?.id);
@@ -187,11 +192,11 @@ describe("version changes", () => {
 describe("repeat signup under the same version", () => {
   it("returns the identical public result and refreshes the submission", async () => {
     const email = `repeat-${crypto.randomUUID()}@example.com`;
-    const firstResult = await runMeltSignup(request(email), { consent: V1 });
+    const firstResult = await run(request(email), { consent: V1 });
     const first = await row(email);
 
     await new Promise((resolve) => setTimeout(resolve, 15));
-    const secondResult = await runMeltSignup(request(email, ["weekly-brief"]), { consent: V1 });
+    const secondResult = await run(request(email, ["weekly-brief"]), { consent: V1 });
     const second = await row(email);
 
     // No enumeration: a known address is indistinguishable from a new one.
@@ -213,21 +218,21 @@ describe("repeat signup under the same version", () => {
 describe("rollback to unconfigured", () => {
   it("stops new signups, hides the wording and preserves stored evidence", async () => {
     const existing = `rollback-${crypto.randomUUID()}@example.com`;
-    expect(await runMeltSignup(request(existing), { consent: V1 })).toEqual({ ok: true });
+    expect(await run(request(existing), { consent: V1 })).toEqual({ ok: true });
     const before = await row(existing);
 
     // Withdrawal is a single change: the configuration becomes unavailable.
     expect(projectConsent(null)).toBeNull();
 
     const fresh = `rollback-new-${crypto.randomUUID()}@example.com`;
-    expect(await runMeltSignup(request(fresh), { consent: null })).toEqual({
+    expect(await run(request(fresh), { consent: null })).toEqual({
       ok: false,
       code: "unavailable",
     });
     expect(await row(fresh)).toBeNull();
 
     // A returning address cannot overwrite its evidence either.
-    expect(await runMeltSignup(request(existing), { consent: null })).toEqual({
+    expect(await run(request(existing), { consent: null })).toEqual({
       ok: false,
       code: "unavailable",
     });
@@ -260,8 +265,9 @@ describe("structural safety", () => {
 
   it("keeps the browser non-authoritative: it displays text and never sends it", () => {
     expect(componentSource).toContain("consentNotice");
-    expect(componentSource).not.toMatch(/consent_text|consentVersion|CONSENT_TEXT/);
-    expect(formStateSource).not.toMatch(/consent_text|consent_version|consentText|consentVersion|consented_at/);
+    expect(componentSource).not.toMatch(/consent_text|consentText|CONSENT_TEXT/);
+    // The version travels only as a comparison token (T3 Phase 6); never text or time.
+    expect(formStateSource).not.toMatch(/consent_text|consent_version|consentText|consented_at/);
   });
 
   it("introduces no provider, confirmation or double-opt-in machinery", () => {

@@ -5,8 +5,8 @@ import type { NewsletterResult } from "./newsletter/types";
 export type { NewsletterErrorCode, NewsletterResult } from "./newsletter/types";
 export { MELT_LISTS, MELT_SOURCE } from "./newsletter/types";
 
-/** The wording a visitor sees, or null while signup is disabled. Read-only, no secrets, no version. */
-export type MeltConsentNotice = { text: string } | null;
+/** The wording a visitor sees and its version (a comparison token only), or null while signup is disabled. */
+export type MeltConsentNotice = { text: string; version: string } | null;
 
 /**
  * Public projection of the one authoritative consent definition. The browser
@@ -32,6 +32,10 @@ export const fetchMeltConsentNotice = createServerFn({ method: "GET" }).handler(
 export const subscribeToMelt = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => input)
   .handler(async ({ data }): Promise<NewsletterResult> => {
-    const { runMeltSignup } = await import("./newsletter/signup.server");
-    return runMeltSignup(data);
+    try {
+      const { runMeltSignup } = await import("./newsletter/signup.server");
+      return await runMeltSignup(data);
+    } catch {
+      return { ok: false, code: "unavailable" };
+    }
   });
