@@ -1,0 +1,636 @@
+{
+ "checkedAt": "2026-09-23T17:36:59Z",
+ "http": {
+  "https://aurum.sqootpure.com/": [
+   {
+    "chain": [],
+    "error": "ConnectionError: HTTPSConnectionPool(host='aurum.sqootpure.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='aurum.sqootpur"
+   },
+   {
+    "chain": [],
+    "error": "ConnectionError: HTTPSConnectionPool(host='aurum.sqootpure.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='aurum.sqootpur"
+   },
+   {
+    "chain": [],
+    "error": "ConnectionError: HTTPSConnectionPool(host='aurum.sqootpure.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='aurum.sqootpur"
+   }
+  ],
+  "https://data.imf.org/": [
+   {
+    "chain": [
+     {
+      "url": "https://data.imf.org/",
+      "status": 403,
+      "contentType": "text/html",
+      "contentLength": "364",
+      "server": "AkamaiGHost",
+      "cfMitigated": null
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://sqootpure.com/": [
+   {
+    "chain": [],
+    "error": "SSLError: HTTPSConnectionPool(host='sqootpure.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO"
+   },
+   {
+    "chain": [],
+    "error": "SSLError: HTTPSConnectionPool(host='sqootpure.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO"
+   },
+   {
+    "chain": [],
+    "error": "SSLError: HTTPSConnectionPool(host='sqootpure.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO"
+   }
+  ],
+  "https://www.bis.org/statistics/": [
+   {
+    "chain": [
+     {
+      "url": "https://www.bis.org/statistics/",
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "366",
+      "server": null,
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.bis.org/statistics",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "23145",
+      "server": null,
+      "cfMitigated": null,
+      "title": "Statistics | Bank for International Settlements"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.facebook.com/profile.php?id=61586363577228": [
+   {
+    "chain": [
+     {
+      "url": "https://www.facebook.com/profile.php?id=61586363577228",
+      "status": 400,
+      "contentType": "text/html; charset=\"utf-8\"",
+      "contentLength": "837",
+      "server": null,
+      "cfMitigated": null
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.gold.org/goldhub": [
+   {
+    "chain": [
+     {
+      "url": "https://www.gold.org/goldhub",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Goldhub | The Definitive Source for Gold Data and Insight"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.gold.org/goldhub/data/monthly-central-bank-statistics": [
+   {
+    "chain": [
+     {
+      "url": "https://www.gold.org/goldhub/data/monthly-central-bank-statistics",
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.gold.org/goldhub/data/gold-reserves-by-country",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Central Banks Gold Reserves by Country | World Gold Council"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.gold.org/goldhub/research": [
+   {
+    "chain": [
+     {
+      "url": "https://www.gold.org/goldhub/research",
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.gold.org/goldhub/research/library",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Gold Research Report Library | Goldhub | World Gold Council"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.gold.org/goldhub/research/gold-demand-trends": [
+   {
+    "chain": [
+     {
+      "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Gold Demand Trends | World Gold Council"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.instagram.com/sqootpure/": [
+   {
+    "chain": [
+     {
+      "url": "https://www.instagram.com/sqootpure/",
+      "status": 302,
+      "contentType": "text/html; charset=\"utf-8\"",
+      "contentLength": "0",
+      "server": null,
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fsqootpure%2F&is_from_rle",
+      "status": 429,
+      "contentType": "text/html; charset=\"utf-8\"",
+      "contentLength": "0",
+      "server": null,
+      "cfMitigated": null
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.jewelersboard.com/were-legit": [
+   {
+    "chain": [
+     {
+      "url": "https://www.jewelersboard.com/were-legit",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "12058",
+      "server": "nginx",
+      "cfMitigated": null,
+      "title": "We&#039;re Legit! | Jewelers Board of Trade"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.lbma.org.uk/good-delivery": [
+   {
+    "chain": [
+     {
+      "url": "https://www.lbma.org.uk/good-delivery",
+      "status": 302,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.lbma.org.uk/good-delivery/about-good-delivery",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "About Good Delivery | LBMA"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.lbma.org.uk/good-delivery/gold-current-list": [
+   {
+    "chain": [
+     {
+      "url": "https://www.lbma.org.uk/good-delivery/gold-current-list",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Good Delivery Current List | LBMA"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.lbma.org.uk/prices-and-data": [
+   {
+    "chain": [
+     {
+      "url": "https://www.lbma.org.uk/prices-and-data",
+      "status": 302,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null
+     },
+     {
+      "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "LBMA Precious Metal Prices | LBMA"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices": [
+   {
+    "chain": [
+     {
+      "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "LBMA Precious Metal Prices | LBMA"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.lbma.org.uk/publications": [
+   {
+    "chain": [
+     {
+      "url": "https://www.lbma.org.uk/publications",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Publications | LBMA"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.linkedin.com/company/sqootpure": [
+   {
+    "chain": [
+     {
+      "url": "https://www.linkedin.com/company/sqootpure",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": "17927",
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "SQOOT | LinkedIn"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.mint.ca/en/company/media-room": [
+   {
+    "chain": [
+     {
+      "url": "https://www.mint.ca/en/company/media-room",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "Media Room | The Royal Canadian Mint"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.ncbassoc.org/membership": [
+   {
+    "chain": [
+     {
+      "url": "https://www.ncbassoc.org/membership",
+      "status": 200,
+      "contentType": "text/html",
+      "contentLength": null,
+      "server": "nginx",
+      "cfMitigated": null,
+      "title": "National Coin &amp; Bullion Association"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18": [
+   {
+    "chain": [
+     {
+      "url": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": null,
+      "title": "NIST Handbook 44: Specifications, Tolerances and Other Technical Requirements for Weighing and Measuring Devices (2026 Ed.) | NIST"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.pamp.com/news": [
+   {
+    "chain": [
+     {
+      "url": "https://www.pamp.com/news",
+      "status": 403,
+      "contentType": "text/html",
+      "contentLength": "370",
+      "server": null,
+      "cfMitigated": null
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.pamp.com/veriscan": [
+   {
+    "chain": [
+     {
+      "url": "https://www.pamp.com/veriscan",
+      "status": 403,
+      "contentType": "text/html",
+      "contentLength": "372",
+      "server": null,
+      "cfMitigated": null
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.usmint.gov/about/production-sales-figures": [
+   {
+    "chain": [
+     {
+      "url": "https://www.usmint.gov/about/production-sales-figures",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": "challenge"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://www.usmint.gov/news": [
+   {
+    "chain": [
+     {
+      "url": "https://www.usmint.gov/news",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare",
+      "cfMitigated": "challenge"
+     }
+    ],
+    "error": null
+   }
+  ],
+  "https://x.com/sqootpure": [
+   {
+    "chain": [
+     {
+      "url": "https://x.com/sqootpure",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": null,
+      "server": "cloudflare envoy",
+      "cfMitigated": null,
+      "title": "SqootPure (@SqootPure) / X"
+     }
+    ],
+    "error": null
+   }
+  ]
+ },
+ "browser": {
+  "https://aurum.sqootpure.com/": {
+   "url": "https://aurum.sqootpure.com/",
+   "error": "Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://aurum.sqootpure.com/\nCall log:\n  - navigating to \"https://aurum.sqootpure.com/\", waiting until \"domcontentloade"
+  },
+  "https://data.imf.org/": {
+   "url": "https://data.imf.org/",
+   "status": 200,
+   "finalUrl": "https://data.imf.org/en",
+   "title": "Data Home",
+   "h1": "IMF DATA",
+   "text": "Skip to main menu Skip to main content ABOUT RESEARCH COUNTRIES CAPACITY DEVELOPMENT NEWS VIDEOS DATA PUBLICATIONS ENGLISH IMF DATA SIGN IN HELP ACCESS TO ECONOMIC AND FINANCIAL DATA Popular search requests: gdp exchange rate cpi DATA EXPLORER DATASETS RELEASE CALENDAR Latest Updates 9 JUN AI TOOL FOR ACCESSING OFFICIAL STATISTICS (PREVIEW RELEASE) Global Trusted Data Commons with StatGPT Disclaimer: Performance, availability, and functionality may vary as the service continues to mature. 16 SEP DATA BRIEF IMF Data Brief: Quarterly Gross Domestic Product World Growth Eased Slightly in 2026Q2 a"
+  },
+  "https://sqootpure.com/": {
+   "url": "https://sqootpure.com/",
+   "error": "Error: Page.goto: net::ERR_CONNECTION_CLOSED at https://sqootpure.com/\nCall log:\n  - navigating to \"https://sqootpure.com/\", waiting until \"domcontentloaded\"\n"
+  },
+  "https://www.bis.org/statistics/": {
+   "url": "https://www.bis.org/statistics/",
+   "status": 200,
+   "finalUrl": "https://www.bis.org/statistics",
+   "title": "Statistics | Bank for International Settlements",
+   "h1": "Statistics",
+   "text": "Skip to main content About Research & publications Committees Speeches Statistics Media & events Search Home Statistics Statistics About BIS statistics The statistics published by the BIS are a unique source of information about the structure of and activity in the global financial system. They are compiled in cooperation with central banks and other national authorities and are designed to inform analysis of financial stability, international monetary spillovers and global liquidity. Some BIS statistics, in particular those on international banking, securities markets and derivatives activity"
+  },
+  "https://www.facebook.com/profile.php?id=61586363577228": {
+   "url": "https://www.facebook.com/profile.php?id=61586363577228",
+   "status": 200,
+   "finalUrl": "https://www.facebook.com/people/Sqoot-Pure/61586363577228/",
+   "title": "Sqoot Pure | Facebook",
+   "h1": "Sqoot Pure",
+   "text": "Logga in Har du glömt kontot? Sqoot Pure 0 följare • 0 följer Fler Inlägg Om Foton Presentation A precious metals platform to buy + Store + Gift physical gold & silver - with real-time pricing. Ännu inte betygsatt (0 recensioner) Foton Visa alla foton Information om data från sidstatistik · Integritet · Användarvillkor · Annonsering · Annonsalternativ · Cookies · Mer Sqoot Pure har uppdaterat sin profilbild. för 5 dagar sedan 5 d · Gilla Kommentar Visa mer från Sqoot Pure E-post eller telefonnummer Lösenord Logga in Har du glömt lösenordet? eller Skapa nytt konto Vill du tillåta användningen a"
+  },
+  "https://www.gold.org/goldhub": {
+   "url": "https://www.gold.org/goldhub",
+   "status": 200,
+   "finalUrl": "https://www.gold.org/goldhub",
+   "title": "Goldhub | The Definitive Source for Gold Data and Insight",
+   "h1": "Latest research",
+   "text": "Skip to main content Global Global 中国 日本 Data Research Tools ESG Events Insights World Gold Council Gold Industry & Corporate Goldhub Professional Investors Invest.gold Individual Investors Gold Spot price EUR /oz - 3,762.80 Last Updated Show chart Latest research Looking for insight and analysis on gold? Our team of experts produce market-leading research and macroeconomic commentary on gold. Gold ETF Flows: August 2026 9 September, 2026 Gold Demand Trends: Q2 2026 30 July, 2026 Gold Market Commentary: Paved with good interventions 9 September, 2026 Gold Mid-Year Outlook 2026: Point break 1 J"
+  },
+  "https://www.gold.org/goldhub/data/monthly-central-bank-statistics": {
+   "url": "https://www.gold.org/goldhub/data/monthly-central-bank-statistics",
+   "status": 200,
+   "finalUrl": "https://www.gold.org/goldhub/data/gold-reserves-by-country",
+   "title": "Central Banks Gold Reserves by Country | World Gold Council",
+   "h1": "Gold Reserves by Country",
+   "text": "Skip to main content Global Global 中国 日本 Data Research Tools ESG Events Insights World Gold Council Gold Industry & Corporate Goldhub Professional Investors Invest.gold Individual Investors Gold Spot price EUR /oz - 3,762.80 Last Updated Show chart Goldhub Data Gold Reserves by Country Gold Reserves by Country 3 September, 2026 Central banks Gold is an important component of central bank reserves because of its safety, liquidity and return characteristics – the three key investment objectives for central banks. As such, they are significant holders of gold, accounting for around a fifth of all"
+  },
+  "https://www.gold.org/goldhub/research": {
+   "url": "https://www.gold.org/goldhub/research",
+   "status": 200,
+   "finalUrl": "https://www.gold.org/goldhub/research/library",
+   "title": "Gold Research Report Library | Goldhub | World Gold Council",
+   "h1": "Research",
+   "text": "Skip to main content Global Global 中国 日本 Data Research Tools ESG Events Insights World Gold Council Gold Industry & Corporate Goldhub Professional Investors Invest.gold Individual Investors Gold Spot price EUR /oz - 3,762.80 Last Updated Show chart Research Looking for insight and analysis on gold? Our expert team produces market-leading research and macroeconomic commentary on gold. Featured articles Gold Market Commentary Monthly ETF Commentary Gold Demand Trends: Q2 2026 Gold Demand Trends: US Focus Q2 2026 Gold Demand Trends: India Focus Q2 2026 Gold Mid-Year Outlook 2026: Point break Cent"
+  },
+  "https://www.gold.org/goldhub/research/gold-demand-trends": {
+   "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+   "status": 200,
+   "finalUrl": "https://www.gold.org/goldhub/research/gold-demand-trends",
+   "title": "Gold Demand Trends | World Gold Council",
+   "h1": "Gold Demand Trends",
+   "text": "Skip to main content Global Global 中国 日本 Data Research Tools ESG Events Insights World Gold Council Gold Industry & Corporate Goldhub Professional Investors Invest.gold Individual Investors Gold Spot price EUR /oz - 3,762.80 Last Updated Show chart Goldhub Research Gold Demand Trends Latest issue Gold Demand Trends Read the latest Gold Demand Trends Gold Demand Trends is the leading industry resource for gold demand data. Our unique position in the gold industry gives us unparalleled market insight and understanding of evolving consumer and institutional behaviours and trends. Each report incl"
+  },
+  "https://www.instagram.com/sqootpure/": {
+   "url": "https://www.instagram.com/sqootpure/",
+   "status": 429,
+   "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fsqootpure%2F&is_from_rle",
+   "title": "",
+   "h1": "",
+   "text": ""
+  },
+  "https://www.jewelersboard.com/were-legit": {
+   "url": "https://www.jewelersboard.com/were-legit",
+   "status": 200,
+   "finalUrl": "https://www.jewelersboard.com/were-legit",
+   "title": "We're Legit! | Jewelers Board of Trade",
+   "h1": "",
+   "text": "APPLY TODAY Membership Services Industry Knowledge About Us How This Page Shows We're Legit By clicking the JBT logo on our site, we have taken you here to the Jewelers Board of Trade (JBT) website to prove we are a member. JBT is a not-for-profit trade organization that has been vetting jewelry businesses for over 140 years. To become a JBT member, a business must undergo a rigorous vetting process, including background checks, references from other members, and in the case of website-only businesses a review of their online selling practices. Sample Company Info Placeholder We paste retail m"
+  },
+  "https://www.lbma.org.uk/good-delivery": {
+   "url": "https://www.lbma.org.uk/good-delivery",
+   "status": 200,
+   "finalUrl": "https://www.lbma.org.uk/good-delivery/about-good-delivery",
+   "title": "About Good Delivery | LBMA",
+   "h1": "About Good Delivery",
+   "text": "Consent Details About Our Cookies By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage, and assist in our marketing efforts. Customise Allow all FIND OUT MORE Register for the Global Precious Metals Conference in Sorrento, Italy Global Contact About Member login Market Standards Membership Good Delivery Responsible Sourcing Pricing & Data News Events Good Delivery About Good Delivery We set the stringent Good Delivery standards, trusted around the world, that enable the global trade in gold and silver bars. Only gol"
+  },
+  "https://www.lbma.org.uk/good-delivery/gold-current-list": {
+   "url": "https://www.lbma.org.uk/good-delivery/gold-current-list",
+   "status": 200,
+   "finalUrl": "https://www.lbma.org.uk/good-delivery/gold-current-list#-",
+   "title": "Good Delivery Current List | LBMA",
+   "h1": "Good Delivery Current List - Gold",
+   "text": "Consent Details About Our Cookies By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage, and assist in our marketing efforts. Customise Allow all FIND OUT MORE Register for the Global Precious Metals Conference in Sorrento, Italy Global Contact About Member login Market Standards Membership Good Delivery Responsible Sourcing Pricing & Data News Events Good Delivery Good Delivery Current List - Gold Only refiners whose bars have been accredited by LBMA as meeting the exacting standards for trading on the global OTC ma"
+  },
+  "https://www.lbma.org.uk/prices-and-data": {
+   "url": "https://www.lbma.org.uk/prices-and-data",
+   "status": 200,
+   "finalUrl": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+   "title": "LBMA Precious Metal Prices | LBMA",
+   "h1": "LBMA Precious Metal Prices",
+   "text": "Consent Details About Our Cookies By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage, and assist in our marketing efforts. Customise Allow all FIND OUT MORE Register for the Global Precious Metals Conference in Sorrento, Italy Global Contact About Member login Market Standards Membership Good Delivery Responsible Sourcing Pricing & Data News Events Prices and Data LBMA Precious Metal Prices International prices for gold, silver, platinum and palladium. Chart Table Prices explained Non-publication days Metal Gold S"
+  },
+  "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices": {
+   "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+   "status": 200,
+   "finalUrl": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+   "title": "LBMA Precious Metal Prices | LBMA",
+   "h1": "LBMA Precious Metal Prices",
+   "text": "Consent Details About Our Cookies By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage, and assist in our marketing efforts. Customise Allow all FIND OUT MORE Register for the Global Precious Metals Conference in Sorrento, Italy Global Contact About Member login Market Standards Membership Good Delivery Responsible Sourcing Pricing & Data News Events Prices and Data LBMA Precious Metal Prices International prices for gold, silver, platinum and palladium. Chart Table Prices explained Non-publication days Metal Gold S"
+  },
+  "https://www.lbma.org.uk/publications": {
+   "url": "https://www.lbma.org.uk/publications",
+   "status": 200,
+   "finalUrl": "https://www.lbma.org.uk/publications",
+   "title": "Publications | LBMA",
+   "h1": "Publications",
+   "text": "Consent Details About Our Cookies By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage, and assist in our marketing efforts. Customise Allow all FIND OUT MORE Register for the Global Precious Metals Conference in Sorrento, Italy Global Contact About Member login Market Standards Membership Good Delivery Responsible Sourcing Pricing & Data News Events Front page News & Insights Webinar Series Events Publications Menu ☰ Publications LBMA Report: Supporting Responsible Pathways for ASM READ MORE Spotlight on Mainland C"
+  },
+  "https://www.linkedin.com/company/sqootpure": {
+   "url": "https://www.linkedin.com/company/sqootpure",
+   "status": 200,
+   "finalUrl": "https://www.linkedin.com/company/sqootpure",
+   "title": "SQOOT | LinkedIn",
+   "h1": "SQOOT",
+   "text": "LinkedIn respects your privacy LinkedIn and 3rd parties use essential and non-essential cookies to provide, secure, analyze and improve our Services, and to show you relevant ads (including professional and job ads) on and off LinkedIn. Learn more in our Cookie Policy. Select Accept to consent or Reject to decline non-essential cookies for this use. You can update your choices at any time in your settings. Accept Reject Skip to main content LinkedIn Top Content People Learning Jobs Games Get the app Sign in Join now SQOOT Metal Ore Mining Houston, TX 16 followers Presious Metal Platform Follow"
+  },
+  "https://www.mint.ca/en/company/media-room": {
+   "url": "https://www.mint.ca/en/company/media-room",
+   "status": 200,
+   "finalUrl": "https://www.mint.ca/en/company/media-room",
+   "title": "Media Room | The Royal Canadian Mint",
+   "h1": "MEDIA ROOM",
+   "text": "Masters Club Visit the Mint EN - CAD SHOP NEW RELEASES BEST SELLERS LAST CHANCE Themes The Royal Canadian Legion FIFA World Cup 2026TM/MC CN Tower Canada's Unknown Soldier Daphne Odjig Opulence Collection Lunar New Year ALL THEMES Categories Silver Gold Coin Sets Circulation & Base Metals International Coins Subscriptions ALL CATEGORIES Gifts Annual Favourites Special Occasions Premium Bullion Accessories Books Holiday Gifts ALL GIFTABLES A Century Strong: 100th Anniversary of The Royal Canadian Legion SHOP ALL PRODUCTS INVEST Get Into Bullion Bullion 101 Buying Bullion Why Choose the Mint Let"
+  },
+  "https://www.ncbassoc.org/membership": {
+   "url": "https://www.ncbassoc.org/membership",
+   "status": 200,
+   "finalUrl": "https://www.ncbassoc.org/membership",
+   "title": "National Coin & Bullion Association",
+   "h1": "Membership",
+   "text": "Press Alt+1 for screen-reader mode, Alt+0 to cancel Accessibility Screen-Reader Guide, Feedback, and Issue Reporting | New window Home About Membership Advocacy Newsstand Resources Contact Us Join Donate Contact Sign In Forgot Your Password Home Membership Membership The National Coin & Bullion Association is the industry watchdog for the numismatic and precious-metals bullion communities. When you become an NCBA member, you unlock a world of numismatic advantages! VISIBILITY: Connect with fellow members and the thriving numismatic community. NETWORKING: Get involved in member events and advoc"
+  },
+  "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18": {
+   "url": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
+   "status": 200,
+   "finalUrl": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
+   "title": "NIST Handbook 44: Specifications, Tolerances and Other Technical Requirements for Weighing and Measuring Devices (2026 Ed.) | NIST",
+   "h1": "NIST Handbook 44: Specifications, Tolerances and Other Technical Requirements for Weighing and Measuring Devices (2026 Ed.)",
+   "text": "Skip to main content An official website of the United States government Here’s how you know Search NIST Menu PUBLICATIONS NIST Handbook 44: Specifications, Tolerances and Other Technical Requirements for Weighing and Measuring Devices (2026 Ed.) Published January 5, 2026 Author(s) Loren Minnich, Gloria Lee, Juana Williams, Isabel Baucom, Jan Konijnenburg, John McGuire, Katrice Lippa Abstract NIST Handbook 44 includes specifications, tolerances, and other technical requirements for weighing and measuring devices. These requirements are intended to encourage the design, installation, testing, a"
+  },
+  "https://www.pamp.com/news": {
+   "url": "https://www.pamp.com/news",
+   "status": 403,
+   "finalUrl": "https://www.pamp.com/news",
+   "title": "Access Denied",
+   "h1": "Access Denied",
+   "text": "Access Denied You don't have permission to access \"http://www.pamp.com/news\" on this server. Reference #18.24fd4817.1790184994.1ae57816 https://errors.edgesuite.net/18.24fd4817.1790184994.1ae57816"
+  },
+  "https://www.pamp.com/veriscan": {
+   "url": "https://www.pamp.com/veriscan",
+   "status": 403,
+   "finalUrl": "https://www.pamp.com/veriscan",
+   "title": "Access Denied",
+   "h1": "Access Denied",
+   "text": "Access Denied You don't have permission to access \"http://www.pamp.com/veriscan\" on this server. Reference #18.24fd4817.1790184999.1ae58399 https://errors.edgesuite.net/18.24fd4817.1790184999.1ae58399"
+  },
+  "https://www.usmint.gov/about/production-sales-figures": {
+   "url": "https://www.usmint.gov/about/production-sales-figures",
+   "status": 403,
+   "finalUrl": "https://www.usmint.gov/about/production-sales-figures",
+   "title": "Just a moment...",
+   "h1": "www.usmint.gov",
+   "text": "www.usmint.gov Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot. Ray ID: a3fb5032e8606f4c Performance and Security by Cloudflare Privacy"
+  },
+  "https://www.usmint.gov/news": {
+   "url": "https://www.usmint.gov/news",
+   "status": 200,
+   "finalUrl": "https://www.usmint.gov/news",
+   "title": "News | U.S. Mint",
+   "h1": "News",
+   "text": "Skip to main content Skip to footer content An official website of the United States government. Here’s how you know United States Mint SHOP LEARN NEWS ABOUT US Sign In 0 Celebrating America's 250th Anniversary Close header banner Home News News The Mint regularly updates the public through multiple channels. Stay informed with product announcements, new coin and medal imagery, and breaking news. Engage with us at an upcoming event, go behind-the-scenes with our Inside the Mint articles, or explore the world of coins with our monthly Coins Online newsletter. Press Releases | Media Kits | Image"
+  },
+  "https://x.com/sqootpure": {
+   "url": "https://x.com/sqootpure",
+   "status": 403,
+   "finalUrl": "https://x.com/sqootpure",
+   "title": "",
+   "h1": "",
+   "text": ""
+  }
+ }
+}
