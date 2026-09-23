@@ -167,16 +167,12 @@ export function AurumSubscribeSection() {
                   }}
                   className="aurum-subscribe__submit"
                 >
-                  {status === "submitting" ? "Subscribing…" : "Subscribe"}
+                  {submitting ? "Subscribing…" : "Subscribe"}
                 </GoldButton>
 
                 <p id={statusId} role="status" aria-live="polite" className="aurum-subscribe__status">
                   {statusMessage}
                 </p>
-
-                <div className="aurum-subscribe__consent">
-                  <p className="aurum-subscribe__consent-text">{CONSENT_TEXT}</p>
-                </div>
               </form>
             )}
           </div>
