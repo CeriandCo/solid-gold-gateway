@@ -533,7 +533,7 @@ describe("privacy", () => {
     );
     const hash = await hashOf(headers["cf-connecting-ip"]!);
     const { data } = await supabaseAdmin.from("newsletter_attempts").select("*").eq("ip_hash", hash).limit(1);
-    expect(Object.keys(data![0]).sort()).toEqual(["created_at", "id", "ip_hash"]);
-    expect(data![0].ip_hash).toMatch(/^[0-9a-f]{64}$/);
+    expect(Object.keys(data![0]!).sort()).toEqual(["created_at", "id", "ip_hash"]);
+    expect(data![0]!.ip_hash).toMatch(/^[0-9a-f]{64}$/);
   });
 });
