@@ -271,7 +271,7 @@ const RULES: Rule[] = [
 
   // ——— Trust Center ———
   { id: "trust:audit", match: is("Explore the audit programme", "/trust-center#audit-programme"), verdict: "CORRECT", evidence: "→ “Your gold. Verified. Always. Independent vault audits every 6 months.”" },
-  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@getsqoot\.com(\?subject=Legal%20Counsel%20Detail)?$/.test(tgt(o)) && (t(o) === "support@getsqoot.com" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Detail” to the same published support address." },
+  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@getsqoot\.com(\?subject=Legal%20Counsel%20Details%20Request)?$/.test(tgt(o)) && (t(o) === "support@getsqoot.com" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address." },
 
   // ——— Vault ———
   { id: "vault:walkthrough", match: is("See how it works", "/vault#walkthrough"), verdict: "CORRECT", evidence: "→ “FOUNDER WALKTHROUGH — See it, don’t just read about it.” (2 min walkthrough)." },
@@ -333,7 +333,7 @@ export function classifySemantic(o: SemanticOccurrence): SemanticResult {
   if (hits.length === 0) {
     return { semanticVerdict: "UNREVIEWED", semanticSeverity: "NONE", semanticRule: "none", semanticEvidence: "No Phase 3 judgement covers this occurrence.", semanticFix: null };
   }
-  const r = hits[0];
+  const r = hits[0]!;
   return {
     semanticVerdict: r.verdict,
     semanticSeverity: r.severity ?? (r.verdict === "INCORRECT" ? "LOW" : "NONE"),
