@@ -120,6 +120,7 @@ export const SYSTEM_PROMPT = [
   "Paragraph structure:",
   '- A "fact" paragraph states exactly one fact from the FACTS block. Set factId, subject,',
   "  metric and direction to that fact's own values, and print its value in the text.",
+  '  The word "gold" must appear in every fact paragraph, naming the subject of the figure.',
   '- A "context" paragraph carries no numbers at all: it may only restate, in plain words,',
   "  what the stored figures describe. Keep it generic and non-causal.",
   "Never invent gaps to fill.",
