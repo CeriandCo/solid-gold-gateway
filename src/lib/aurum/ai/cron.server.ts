@@ -109,6 +109,7 @@ export function buildRunDeps(options: {
     loadFactInputs,
     loadStyleSamples: () => loadStyleSamples(3),
     buildSources: buildInternalSources,
+    persist,
     generate: options.generate,
     ...(options.force ? { force: true } : {}),
   } as RunDeps;
