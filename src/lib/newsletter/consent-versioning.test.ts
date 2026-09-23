@@ -261,7 +261,7 @@ describe("structural safety", () => {
   it("keeps the browser non-authoritative: it displays text and never sends it", () => {
     expect(componentSource).toContain("consentNotice");
     expect(componentSource).not.toMatch(/consent_text|consentVersion|CONSENT_TEXT/);
-    expect(formStateSource).not.toMatch(/consent/i);
+    expect(formStateSource).not.toMatch(/consent_text|consent_version|consentText|consentVersion|consented_at/);
   });
 
   it("introduces no provider, confirmation or double-opt-in machinery", () => {

@@ -158,8 +158,8 @@ export function AurumSubscribeSection({ consentNotice = null }: { consentNotice?
                 </div>
 
                 {consentNotice ? (
-                  // Plain text only — never dangerouslySetInnerHTML. This is
-                  // byte-for-byte the text the server records for this signup.
+                  // Plain text only: React escapes it, no raw HTML is ever
+                  // injected. Byte-for-byte what the server records here.
                   <p className="aurum-subscribe__consent">{consentNotice.text}</p>
                 ) : null}
 
