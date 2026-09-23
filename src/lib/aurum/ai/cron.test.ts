@@ -4,7 +4,7 @@
  */
 import { describe, expect, it, vi } from "vitest";
 
-import { handleDailyNoteCron, timingSafeEqual } from "./cron.server";
+import { buildRunDeps, handleDailyNoteCron, timingSafeEqual } from "./cron.server";
 
 const SECRET = "s3cr3t-value-for-tests";
 
@@ -122,5 +122,25 @@ describe("endpoint authentication", () => {
     const blocked = await handleDailyNoteCron(post(), { expectedSecret: SECRET, run });
     expect(blocked.status).toBe(401);
     expect(run).toHaveBeenCalledTimes(3);
+  });
+});
+
+describe("buildRunDeps wiring", () => {
+  it("supplies every dependency the pipeline calls, including persist", () => {
+    const deps = buildRunDeps({ generate: async () => ({ ok: false, reason: "test" }) as never });
+    for (const key of [
+      "now",
+      "claimRun",
+      "finishRun",
+      "alert",
+      "loadFactInputs",
+      "loadStyleSamples",
+      "buildSources",
+      "persist",
+      "generate",
+    ] as const) {
+      expect(typeof (deps as unknown as Record<string, unknown>)[key]).toBe("function");
+    }
+    expect(deps.config).toBeTypeOf("object");
   });
 });
