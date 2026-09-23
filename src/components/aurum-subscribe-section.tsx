@@ -73,7 +73,7 @@ export function AurumSubscribeSection({ consentNotice = null }: { consentNotice?
     setSubmitting(true);
 
     try {
-      const result = await subscribe({ data: buildSignupRequest(email, selected) });
+      const result = await subscribe({ data: buildSignupRequest(email, selected, consentNotice?.version) });
       setOutcome(outcomeFor(result));
     } catch {
       // Never surface an exception to the visitor; the server already refuses

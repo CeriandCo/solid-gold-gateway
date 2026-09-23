@@ -12,12 +12,14 @@ export type MeltSignupRequest = {
   email: string;
   lists: MeltList[];
   source: typeof MELT_SOURCE;
+  /** Version of the wording this page displayed. A comparison token only; never stored. */
+  consentVersion?: string;
 };
 
 /**
  * Builds the request from what the visitor actually chose.
  *
- * Deliberately absent: consent text, consent version, consent timestamp, any
+ * Deliberately absent: consent text, consent timestamp, any
  * created/updated timestamp, IP or IP hash, provider, audience, subscription
  * status, referrer, UTM and gclid. The consent snapshot is server-owned, and
  * attribution is not part of this contract.
@@ -25,8 +27,11 @@ export type MeltSignupRequest = {
 export function buildSignupRequest(
   email: string,
   selected: readonly MeltList[],
+  consentVersion?: string,
 ): MeltSignupRequest {
-  return { email, lists: [...selected], source: MELT_SOURCE };
+  const request: MeltSignupRequest = { email, lists: [...selected], source: MELT_SOURCE };
+  if (consentVersion) request.consentVersion = consentVersion;
+  return request;
 }
 
 export type MeltOutcome = "success" | "invalid" | "rate_limited" | "unavailable";

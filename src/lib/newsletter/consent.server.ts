@@ -85,15 +85,18 @@ export function approvedConsent(): NewsletterConsent | null {
 }
 
 /**
- * The public projection: the wording a visitor sees, and nothing else. The
- * version is internal mechanics and is not sent to the browser — the server
- * decides what version to store. Returns null while signup is disabled, which
+ * The public projection: the wording a visitor sees, plus its version as a
+ * non-authoritative comparison token (task T3 Phase 6). The browser echoes the
+ * version back so the server can refuse a stale page; it can never choose what
+ * is stored — the server always stores its own snapshot. Returns null while signup is disabled, which
  * is what removes the consent block from the page.
  */
-export function projectConsent(consent: NewsletterConsent | null): { text: string } | null {
-  return isUsableConsent(consent) ? { text: consent.text } : null;
+export function projectConsent(
+  consent: NewsletterConsent | null,
+): { text: string; version: string } | null {
+  return isUsableConsent(consent) ? { text: consent.text, version: consent.version } : null;
 }
 
-export function publicConsentNotice(): { text: string } | null {
+export function publicConsentNotice(): { text: string; version: string } | null {
   return projectConsent(approvedConsent());
 }
