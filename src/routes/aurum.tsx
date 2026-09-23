@@ -1,7 +1,6 @@
 import { SiteFooter, SiteHeader, GoldButton } from "@/components/site-chrome";
 import aurumHero from "@/assets/aurum/aurum-hero.webp.asset.json";
 import { AurumPriceSection } from "@/components/aurum-price-section";
-import { AurumDailyNoteSection } from "@/components/aurum-daily-note-section";
 import { AurumWeeklyBriefSection } from "@/components/aurum-weekly-brief-section";
 import { AurumLearnSection } from "@/components/aurum-learn-section";
 import { AurumGiftsSection } from "@/components/aurum-gifts-section";
@@ -13,26 +12,23 @@ import { isAurumRange, isForcedPriceStatus, type AurumRange, type ForcedPriceSta
 import { AurumCalculatorSection } from "@/components/aurum-calculator-section";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
-import { fetchEditorialPage, fetchPublishedLearnNotes } from "@/lib/aurum-editorial.functions";
+import { fetchEditorialPage } from "@/lib/aurum-editorial.functions";
 import { fetchMeltConsentNotice } from "@/lib/newsletter.functions";
 import { useEffect, useState } from "react";
 
-const NOTE_PAGE_SIZE = 3;
 const BRIEF_LIMIT = 12;
 
 export const Route = createFileRoute("/aurum")({
   validateSearch: (search: Record<string, unknown>) => ({
     range: isAurumRange(search["range"]) ? search["range"] : "1Y" as AurumRange,
-    note: typeof search["note"] === "string" ? search["note"] : undefined,
     brief: typeof search["brief"] === "string" ? search["brief"] : undefined,
     priceState: isForcedPriceStatus(search["priceState"]) ? (search["priceState"] as ForcedPriceStatus) : undefined,
   }),
-  loaderDeps: ({ search }) => ({ note: search.note ?? null, brief: search.brief ?? null }),
+  loaderDeps: ({ search }) => ({ brief: search.brief ?? null }),
   loader: async ({ deps }) => {
     // Editorial content is server-rendered so there is no loading flash.
-    // A read failure degrades the two sections only; the rest of the page still renders.
-    const [notes, briefs, consentNotice] = await Promise.all([
-      fetchPublishedLearnNotes({ data: { limit: NOTE_PAGE_SIZE, offset: 0 } }).catch(() => null),
+    // A read failure degrades the Weekly Brief section only; the rest of the page still renders.
+    const [briefs, consentNotice] = await Promise.all([
       fetchEditorialPage({
         data: { type: "weekly_brief", limit: BRIEF_LIMIT, offset: 0, includeSlug: deps.brief },
       }).catch(() => null),
@@ -43,7 +39,7 @@ export const Route = createFileRoute("/aurum")({
     if (briefs?.deepLinkOverflow && deps.brief) {
       throw redirect({ to: "/aurum/briefs/$slug", params: { slug: deps.brief } });
     }
-    return { notes, briefs: briefs ? briefs.items : null, consentNotice };
+    return { briefs: briefs ? briefs.items : null, consentNotice };
   },
 
   head: () => ({
@@ -99,10 +95,9 @@ function AurumPage() {
 }
 
 function AurumPageContent() {
-  const { range, note: openNote, brief: openBrief } = Route.useSearch();
-  const { notes, briefs, consentNotice } = Route.useLoaderData();
+  const { range, brief: openBrief } = Route.useSearch();
+  const { briefs, consentNotice } = Route.useLoaderData();
   const [selectedRange, setSelectedRange] = useState<AurumRange>(range);
-  const [expandedNote, setExpandedNote] = useState<string | null>(openNote ?? null);
   const [expandedBrief, setExpandedBrief] = useState<string | null>(openBrief ?? null);
 
   useEffect(() => {
@@ -110,9 +105,8 @@ function AurumPageContent() {
   }, [range]);
 
   useEffect(() => {
-    setExpandedNote(openNote ?? null);
     setExpandedBrief(openBrief ?? null);
-  }, [openNote, openBrief]);
+  }, [openBrief]);
 
   const navigate = useNavigate({ from: Route.fullPath });
 
@@ -144,21 +138,10 @@ function AurumPageContent() {
           range={selectedRange}
           onRangeChange={changeRange}
         />
-        <AurumDailyNoteSection
-          initial={notes}
-          openSlug={expandedNote}
-          onToggle={(slug) => {
-            setExpandedNote(slug);
-            if (slug) setExpandedBrief(null);
-          }}
-        />
         <AurumWeeklyBriefSection
           briefs={briefs}
           openSlug={expandedBrief}
-          onToggle={(slug) => {
-            setExpandedBrief(slug);
-            if (slug) setExpandedNote(null);
-          }}
+          onToggle={(slug) => setExpandedBrief(slug)}
         />
         <AurumLearnSection />
         <AurumCalculatorSection />
