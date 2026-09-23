@@ -55,7 +55,7 @@ export const CONSENT_TEXT_MAX = 4000;
 /** Control characters other than newline and tab: never legitimate in approved copy. */
 const FORBIDDEN_CHARACTERS = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/;
 
-const APPROVED_CONSENT = null as NewsletterConsent | null;
+const APPROVED_CONSENT = { version: "browsercheck-v1", text: "Browser check consent wording version one." } as NewsletterConsent | null;
 
 /**
  * Mirrors the database CHECK constraints and refuses anything malformed. A
