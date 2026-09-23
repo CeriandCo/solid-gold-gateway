@@ -234,6 +234,7 @@ const AURUM_ARTICLES = [
     title: "Why the spread on a one-ounce coin moved",
     excerpt: "What changed in dealer premiums this week, and what it means for a first purchase.",
     destination: "notes",
+    noteSlug: "spread-on-a-one-ounce-coin",
   },
   {
     image: aurumArticleBeforeYouBuy.url,
@@ -344,8 +345,8 @@ function AurumArticleCard({ article }: { article: (typeof AURUM_ARTICLES)[number
         <p className="home-aurum-card-excerpt">{article.excerpt}</p>
         {article.destination === "notes" ? (
           <Link
-            to="/aurum/notes"
-            search={{ page: 1 }}
+            to="/aurum/notes/$slug"
+            params={{ slug: article.noteSlug }}
             className="home-three-ways-link home-aurum-card-link"
           >
             {linkContent}
