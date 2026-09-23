@@ -90,7 +90,10 @@ export function approvedConsent(): NewsletterConsent | null {
  * decides what version to store. Returns null while signup is disabled, which
  * is what removes the consent block from the page.
  */
+export function projectConsent(consent: NewsletterConsent | null): { text: string } | null {
+  return isUsableConsent(consent) ? { text: consent.text } : null;
+}
+
 export function publicConsentNotice(): { text: string } | null {
-  const consent = approvedConsent();
-  return consent ? { text: consent.text } : null;
+  return projectConsent(approvedConsent());
 }
