@@ -196,7 +196,7 @@ const RULES: Rule[] = [
   { id: "aurum:all-notes", match: is("Browse all notes →", "/learn#aurum-archive"), verdict: "CORRECT", evidence: "→ Learn section “AURUM ARCHIVE — Every published note and brief”." },
   { id: "aurum:guides", match: (o) => /Read the guide/.test(t(o)) && /^\/learn\/[a-z0-9-]+$/.test(tgt(o)) && guideTitleMatches(o), verdict: "CORRECT", evidence: "Guide card title equals destination article H1." },
   { id: "aurum:gifts", match: is("See gifting options →", "/gifting"), verdict: "CORRECT", evidence: "Gifts section CTA → gifting page." },
-  { id: "aurum:back", match: (o) => (t(o) === "← Back to AURUM") && ((o.sourceRoute === "/aurum/notes" && tgt(o) === "/aurum#daily-note") || (o.sourceRoute === "/aurum/briefs" && tgt(o) === "/aurum#weekly-brief")), verdict: "CORRECT", evidence: "Archive back-link returns to the matching AURUM section." },
+  { id: "aurum:back", match: (o) => (t(o) === "← Back to AURUM") && ((o.sourceRoute === "/aurum/notes" && tgt(o) === "/aurum") || (o.sourceRoute === "/aurum/briefs" && tgt(o) === "/aurum#weekly-brief")), verdict: "CORRECT", evidence: "Archive back-link returns to AURUM (notes → board top, since the board has no Daily Note section; briefs → Weekly Brief section)." },
   { id: "detail:back-notes", match: all(on(/^\/aurum\/notes\/[a-z0-9-]+$/), is("← Back to the notes archive", "/aurum/notes?page=1")), verdict: "CORRECT", evidence: "→ “Daily Note archive”." },
   { id: "detail:back-briefs", match: all(on(/^\/aurum\/briefs\/[a-z0-9-]+$/), is("← Back to the briefs archive", "/aurum/briefs?page=1")), verdict: "CORRECT", evidence: "→ “Weekly Brief archive”." },
 
