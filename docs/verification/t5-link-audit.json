@@ -1,5 +1,5 @@
 {
-  "crawledAt": "2026-09-23T17:01:30Z",
+  "crawledAt": "2026-09-23T17:27:59Z",
   "base": "http://localhost:8080",
   "summary": {
     "publicRoutes": 33,
@@ -683,7 +683,7 @@
       "redirectClass": null,
       "title": null
     },
-    "https://www.mint.ca/en/discover/news": {
+    "https://www.mint.ca/en/company/media-room": {
       "category": "external",
       "occurrences": 7,
       "status": null,
@@ -697,7 +697,7 @@
       "redirectClass": null,
       "title": null
     },
-    "https://www.lbma.org.uk/prices-and-data/precious-metal-prices": {
+    "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices": {
       "category": "external",
       "occurrences": 4,
       "status": null,
@@ -809,7 +809,7 @@
       "redirectClass": null,
       "title": null
     },
-    "https://www.nist.gov/pml/owm/nist-handbook-44": {
+    "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18": {
       "category": "external",
       "occurrences": 1,
       "status": null,
@@ -6527,9 +6527,9 @@
       "sourcePage": "AURUM Gold Education | SQOOT Pure",
       "sourceRoute": "/aurum",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 7 Sep 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -6619,9 +6619,9 @@
       "sourcePage": "AURUM Gold Education | SQOOT Pure",
       "sourceRoute": "/aurum",
       "linkText": "LBMA — Gold price benchmark data, 8 Sep 2026",
-      "rawTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "destinationKey": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
+      "rawTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "destinationKey": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -6803,9 +6803,9 @@
       "sourcePage": "AURUM Gold Education | SQOOT Pure",
       "sourceRoute": "/aurum",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 31 Aug 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -9813,9 +9813,9 @@
       "sourcePage": "Weekly Brief Archive | AURUM by SQOOT Pure",
       "sourceRoute": "/aurum/briefs",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 7 Sep 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -9905,9 +9905,9 @@
       "sourcePage": "Weekly Brief Archive | AURUM by SQOOT Pure",
       "sourceRoute": "/aurum/briefs",
       "linkText": "LBMA — Gold price benchmark data, 8 Sep 2026",
-      "rawTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "destinationKey": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
+      "rawTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "destinationKey": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -10089,9 +10089,9 @@
       "sourcePage": "Weekly Brief Archive | AURUM by SQOOT Pure",
       "sourceRoute": "/aurum/briefs",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 31 Aug 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -12366,9 +12366,9 @@
       "sourcePage": "Three mints, one supply story | AURUM Weekly Brief",
       "sourceRoute": "/aurum/briefs/three-mints-one-supply-story",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 31 Aug 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -14474,9 +14474,9 @@
       "sourcePage": "What a widening premium actually tells you | AURUM Weekly Brief",
       "sourceRoute": "/aurum/briefs/what-a-widening-premium-actually-tells-you",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 7 Sep 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -14572,9 +14572,9 @@
       "sourcePage": "What a widening premium actually tells you | AURUM Weekly Brief",
       "sourceRoute": "/aurum/briefs/what-a-widening-premium-actually-tells-you",
       "linkText": "LBMA — Gold price benchmark data, 8 Sep 2026",
-      "rawTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "destinationKey": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
+      "rawTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "destinationKey": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -28249,9 +28249,9 @@
       "sourcePage": "Why the spread on a one ounce coin moved this week | AURUM Daily Note",
       "sourceRoute": "/aurum/notes/spread-on-a-one-ounce-coin",
       "linkText": "LBMA — Gold price benchmark data, 9 Sep 2026",
-      "rawTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
-      "destinationKey": "https://www.lbma.org.uk/prices-and-data/precious-metal-prices",
+      "rawTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "normalizedTarget": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "destinationKey": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -30259,9 +30259,9 @@
       "sourcePage": "Three mints reported longer lead times | AURUM Daily Note",
       "sourceRoute": "/aurum/notes/three-mints-longer-lead-times",
       "linkText": "Royal Canadian Mint — Bullion operations statement, 8 Sep 2026",
-      "rawTarget": "https://www.mint.ca/en/discover/news",
-      "normalizedTarget": "https://www.mint.ca/en/discover/news",
-      "destinationKey": "https://www.mint.ca/en/discover/news",
+      "rawTarget": "https://www.mint.ca/en/company/media-room",
+      "normalizedTarget": "https://www.mint.ca/en/company/media-room",
+      "destinationKey": "https://www.mint.ca/en/company/media-room",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -32269,9 +32269,9 @@
       "sourcePage": "The troy ounce, and why the number on the invoice looks odd | AURUM Daily Note",
       "sourceRoute": "/aurum/notes/troy-ounces-and-grams",
       "linkText": "National Institute of Standards and Technology — Handbook 44, units of weight, 1 Jan 2026",
-      "rawTarget": "https://www.nist.gov/pml/owm/nist-handbook-44",
-      "normalizedTarget": "https://www.nist.gov/pml/owm/nist-handbook-44",
-      "destinationKey": "https://www.nist.gov/pml/owm/nist-handbook-44",
+      "rawTarget": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
+      "normalizedTarget": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
+      "destinationKey": "https://www.nist.gov/publications/nist-handbook-44-specifications-tolerances-and-other-technical-requirements-weighing-18",
       "category": "external",
       "status": null,
       "redirectClass": null,
@@ -47305,10 +47305,12 @@
         "sectionHeading": null
       },
       "viewports": [
-        "375"
+        "375",
+        "1440"
       ],
       "visibleIn": [
-        "375"
+        "375",
+        "1440"
       ],
       "revealedBy": null,
       "domPath": "a:3",
@@ -52354,10 +52356,12 @@
         "sectionHeading": null
       },
       "viewports": [
-        "375"
+        "375",
+        "1440"
       ],
       "visibleIn": [
-        "375"
+        "375",
+        "1440"
       ],
       "revealedBy": null,
       "domPath": "a:3",
@@ -72601,7 +72605,7 @@
     }
   ],
   "semanticSummary": {
-    "reviewedAt": "2026-09-23T17:06:49.926Z",
+    "reviewedAt": "2026-09-23T17:33:38.245Z",
     "occurrences": 1451,
     "globalComponentOccurrences": 1221,
     "globalGroups": 27,
