@@ -116,7 +116,12 @@ export function buildFactPack(
   const spot = inputs.spot;
   if (!spot) return { ok: false, reason: "no_spot_row" };
 
-  if (spot.currency?.toUpperCase() !== "USD" || !/^(oz|ozt|troy ounce)$/i.test(spot.unit ?? "")) {
+  // The stored unit spelling is `troy_ounce` in this database; the other
+  // spellings are accepted so a future writer cannot silently break the pack.
+  if (
+    spot.currency?.toUpperCase() !== "USD" ||
+    !/^(oz|ozt|troy[ _]ounce)$/i.test(spot.unit ?? "")
+  ) {
     return { ok: false, reason: "unsupported_currency_or_unit" };
   }
 
