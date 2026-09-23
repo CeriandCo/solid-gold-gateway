@@ -977,6 +977,16 @@ export type Database = {
         Returns: number
       }
       newsletter_prune_attempts: { Args: never; Returns: undefined }
+      newsletter_rate_check: {
+        Args: {
+          _day_max: number
+          _day_seconds?: number
+          _ip_hash: string
+          _short_max: number
+          _short_seconds?: number
+        }
+        Returns: boolean
+      }
       security_function_grants: {
         Args: never
         Returns: {
