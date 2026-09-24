@@ -399,7 +399,7 @@ function GiftingNewPage() {
           </div>
 
           <a href="#gift-card" className="gift-view-all" data-reveal>
-            View all occasions <ArrowRight />
+            Give a Gift Card <ArrowRight />
           </a>
         </div>
       </section>
