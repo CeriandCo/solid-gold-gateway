@@ -189,9 +189,24 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
     return { outcome: "rejected", reason, runId };
   }
 
-  // 4. Trusted composition and atomic persistence as in_review.
+  // 4. Cite only the facts the text actually uses, and refuse a note whose
+  //    cited sources disagree about the previous close.
+  const citedPack = citedFactPack(draft, pack);
+  const contradiction = previousCloseContradiction(citedPack);
+  if (contradiction) {
+    await deps.finishRun({ runId, outcome: "rejected", usage: generated.usage, detail: contradiction });
+    await deps.alert({
+      severity: "critical",
+      kind: "ai_source_contradiction",
+      message: `Generation rejected before saving: ${contradiction}`,
+      runId,
+    });
+    return { outcome: "rejected", reason: contradiction, runId };
+  }
+
+  // 5. Trusted composition and atomic persistence as in_review.
   const body = composeBody(draft);
-  const sources = deps.buildSources(pack, deps.config.siteUrl);
+  const sources = deps.buildSources(citedPack, deps.config.siteUrl);
   if (sources.length === 0) {
     const reason = "no_internal_sources";
     await deps.finishRun({ runId, outcome: "rejected", usage: generated.usage, detail: reason });
