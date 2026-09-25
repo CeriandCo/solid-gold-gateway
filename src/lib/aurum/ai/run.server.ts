@@ -189,9 +189,24 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
     return { outcome: "rejected", reason, runId };
   }
 
-  // 4. Trusted composition and atomic persistence as in_review.
+  // 4. Cite only the facts the text actually uses, and refuse a note whose
+  //    cited sources disagree about the previous close.
+  const citedPack = citedFactPack(draft, pack);
+  const contradiction = previousCloseContradiction(citedPack, pack);
+  if (contradiction) {
+    await deps.finishRun({ runId, outcome: "rejected", usage: generated.usage, detail: contradiction });
+    await deps.alert({
+      severity: "critical",
+      kind: "ai_source_contradiction",
+      message: `Generation rejected before saving: ${contradiction}`,
+      runId,
+    });
+    return { outcome: "rejected", reason: contradiction, runId };
+  }
+
+  // 5. Trusted composition and atomic persistence as in_review.
   const body = composeBody(draft);
-  const sources = deps.buildSources(pack, deps.config.siteUrl);
+  const sources = deps.buildSources(citedPack, deps.config.siteUrl);
   if (sources.length === 0) {
     const reason = "no_internal_sources";
     await deps.finishRun({ runId, outcome: "rejected", usage: generated.usage, detail: reason });
@@ -221,4 +236,38 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
     });
     return { outcome: "error", reason, runId };
   }
+}
+
+/** The pack narrowed to facts referenced by the draft's paragraphs. */
+export function citedFactPack(
+  draft: { paragraphs: ({ kind: "fact"; factId: string } | { kind: "context" })[] },
+  pack: FactPack,
+): FactPack {
+  const used = new Set(
+    draft.paragraphs.flatMap((p) => (p.kind === "fact" ? [p.factId] : [])),
+  );
+  return { ...pack, facts: pack.facts.filter((fact) => used.has(fact.id)) };
+}
+
+const PREVIOUS_CLOSE_METRICS = new Set(["previous_close", "change_absolute", "change_percent"]);
+
+/**
+ * A change stated against the spot row's previous close must not be cited
+ * alongside a stored daily close with a different value. Returns a reason on
+ * mismatch, null when consistent.
+ */
+export function previousCloseContradiction(pack: FactPack, full: FactPack = pack): string | null {
+  const usesPrevious = pack.facts.some((fact) => PREVIOUS_CLOSE_METRICS.has(fact.metric));
+  const dailyClose = pack.facts.find((fact) => fact.metric === "daily_close");
+  if (!usesPrevious || !dailyClose) return null;
+  const previous = full.facts.find((fact) => fact.metric === "previous_close");
+  const reference = previous?.value ?? null;
+  if (reference === null) {
+    // The change facts all derive from the same spot row's previous_close.
+    return null;
+  }
+  if (reference !== dailyClose.value) {
+    return `source_contradiction (previous close ${reference} vs cited daily close ${dailyClose.value})`;
+  }
+  return null;
 }

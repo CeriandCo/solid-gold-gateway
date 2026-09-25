@@ -273,3 +273,68 @@ describe("the success path", () => {
     expect(serialised).not.toContain("author_id");
   });
 });
+
+describe("cited sources agree with the stated change", () => {
+  const withClose = (closePrice: number) => ({
+    id: "close-1",
+    price_date: "2026-09-21",
+    close_price: closePrice,
+    currency: "USD",
+    unit: "troy_ounce",
+  });
+  const citingClose = (closeText: string) => ({
+    ok: true as const,
+    raw: {
+      ...GOOD_MODEL_OUTPUT,
+      paragraphs: [
+        ...GOOD_MODEL_OUTPUT.paragraphs.slice(0, 2),
+        {
+          kind: "fact",
+          factId: "f_last_daily_close",
+          subject: "gold",
+          metric: "daily_close",
+          direction: "none",
+          text: `The stored daily close for gold was ${closeText} a troy ounce.`,
+        },
+        GOOD_MODEL_OUTPUT.paragraphs[2],
+      ],
+    },
+    usage: null,
+  });
+
+  it("rejects and saves nothing when a cited daily close differs from the previous close used", async () => {
+    const { deps, alerts, persisted } = harness({
+      loadFactInputs: async () => ({ spot: SPOT, lastClose: withClose(3920) }),
+      generate: async () => citingClose("$3920.00"),
+    });
+    const result = await runDailyNoteGeneration(deps);
+    expect(result.outcome).toBe("rejected");
+    expect(persisted).toHaveLength(0);
+    expect(alerts.map((a) => a.kind)).toContain("ai_source_contradiction");
+  });
+
+  it("does not cite an unused daily close that disagrees", async () => {
+    let citedIds: string[] = [];
+    const { deps, persisted } = harness({
+      loadFactInputs: async () => ({ spot: SPOT, lastClose: withClose(3920) }),
+      buildSources: (pack) => {
+        citedIds = pack.facts.map((f) => f.id);
+        return [{ publisher: "p", title: "t", date: "2026-09-22", url: "https://example.test" }];
+      },
+    });
+    const result = await runDailyNoteGeneration(deps);
+    expect(result.outcome).toBe("saved");
+    expect(persisted).toHaveLength(1);
+    expect(citedIds).not.toContain("f_last_daily_close");
+  });
+
+  it("saves when the cited daily close matches the previous close", async () => {
+    const { deps, persisted } = harness({
+      loadFactInputs: async () => ({ spot: SPOT, lastClose: withClose(3866.4) }),
+      generate: async () => citingClose("$3866.40"),
+    });
+    const result = await runDailyNoteGeneration(deps);
+    expect(result.outcome).toBe("saved");
+    expect(persisted).toHaveLength(1);
+  });
+});
