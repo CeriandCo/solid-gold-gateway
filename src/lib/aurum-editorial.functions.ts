@@ -51,13 +51,9 @@ export const fetchPublishedLearnNotes = createServerFn({ method: "GET" })
     };
   })
   .handler(async ({ data }): Promise<EditorialPage> => {
-    const { getPublishedLearnArticles } = await import("@/lib/learn-articles");
-    const items = getPublishedLearnArticles();
-    return {
-      items: items.slice(data.offset, data.offset + data.limit),
-      total: items.length,
-      deepLinkOverflow: false,
-    };
+    // The Daily Note archive reads the published daily_note CMS posts.
+    const { loadEditorialPage } = await import("@/lib/aurum-editorial.server");
+    return loadEditorialPage({ type: "daily_note", limit: data.limit, offset: data.offset });
   });
 
 export const fetchPublishedLearnNoteBySlug = createServerFn({ method: "GET" })
