@@ -25,15 +25,21 @@
    "Restore" brings an archived post back to Draft.
 
 ## The AI-generated Daily Note
-- Runs automatically on a schedule (a secured cron job), not from a button
-  in the admin UI. It writes a Daily Note draft using only stored AURUM
-  price data, checks every figure against that data, and saves it directly
-  as "In review" (skipping the Draft stage) — marked with an "AI" badge.
-- It has a daily cap and won't run twice in the same window. Failures are
-  logged as alerts rather than silently retried.
-- A reviewer must still read it in full and Publish/Schedule/Return it like
-  any other in-review post — the AI never publishes on its own.
-- If it looks unstable (missing runs, bad output, wrong figures), that's a
-  code/config issue in the generation pipeline, not something fixable from
-  the admin UI — flag it for a follow-up prompt rather than trying to work
+- The pipeline is built and has been verified end-to-end (writes a
+  correct draft from stored price data, fails closed on a bad output,
+  never publishes on its own) — but **no automatic schedule is active
+  yet**. As of now, nothing calls it unless someone triggers it manually.
+- To turn on automatic generation, someone needs to:
+  1. Decide the cadence (how often — daily? which time of day?) — this is
+     a business decision, not a technical one.
+  2. Set `AURUM_AI_DAILY_NOTES_ENABLED=true`.
+  3. Point a scheduler (pg_cron, or an external scheduler) at
+     `POST /api/public/aurum-ai-daily-note` with header
+     `x-cron-secret: <AURUM_AI_CRON_SECRET>` on that cadence.
+- Until that's done, the only way to generate an AI draft is a manual
+  authenticated call to that endpoint (for testing), which a developer
+  would run, not an editor from the admin UI.
+- Once live, it still only creates an "In review" draft — a reviewer
+  always reads and publishes it manually, exactly like a human-written
+  post.
   around it by hand.
