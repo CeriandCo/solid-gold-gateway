@@ -240,11 +240,11 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
 
 /** The pack narrowed to facts referenced by the draft's paragraphs. */
 export function citedFactPack(
-  draft: { paragraphs: { factId?: string | null }[] },
+  draft: { paragraphs: ({ kind: "fact"; factId: string } | { kind: "context" })[] },
   pack: FactPack,
 ): FactPack {
   const used = new Set(
-    draft.paragraphs.map((p) => p.factId).filter((id): id is string => typeof id === "string"),
+    draft.paragraphs.flatMap((p) => (p.kind === "fact" ? [p.factId] : [])),
   );
   return { ...pack, facts: pack.facts.filter((fact) => used.has(fact.id)) };
 }
