@@ -192,7 +192,7 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
   // 4. Cite only the facts the text actually uses, and refuse a note whose
   //    cited sources disagree about the previous close.
   const citedPack = citedFactPack(draft, pack);
-  const contradiction = previousCloseContradiction(citedPack);
+  const contradiction = previousCloseContradiction(citedPack, pack);
   if (contradiction) {
     await deps.finishRun({ runId, outcome: "rejected", usage: generated.usage, detail: contradiction });
     await deps.alert({
@@ -256,11 +256,11 @@ const PREVIOUS_CLOSE_METRICS = new Set(["previous_close", "change_absolute", "ch
  * alongside a stored daily close with a different value. Returns a reason on
  * mismatch, null when consistent.
  */
-export function previousCloseContradiction(pack: FactPack): string | null {
+export function previousCloseContradiction(pack: FactPack, full: FactPack = pack): string | null {
   const usesPrevious = pack.facts.some((fact) => PREVIOUS_CLOSE_METRICS.has(fact.metric));
   const dailyClose = pack.facts.find((fact) => fact.metric === "daily_close");
   if (!usesPrevious || !dailyClose) return null;
-  const previous = pack.facts.find((fact) => fact.metric === "previous_close");
+  const previous = full.facts.find((fact) => fact.metric === "previous_close");
   const reference = previous?.value ?? null;
   if (reference === null) {
     // The change facts all derive from the same spot row's previous_close.
