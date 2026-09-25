@@ -42,4 +42,3 @@
 - Once live, it still only creates an "In review" draft — a reviewer
   always reads and publishes it manually, exactly like a human-written
   post.
-  around it by hand.
