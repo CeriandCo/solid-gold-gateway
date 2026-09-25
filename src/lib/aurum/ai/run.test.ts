@@ -294,7 +294,7 @@ describe("cited sources agree with the stated change", () => {
           subject: "gold",
           metric: "daily_close",
           direction: "none",
-          text: `The stored daily close was ${closeText} a troy ounce.`,
+          text: `The stored daily close for gold was ${closeText} a troy ounce.`,
         },
         GOOD_MODEL_OUTPUT.paragraphs[2],
       ],

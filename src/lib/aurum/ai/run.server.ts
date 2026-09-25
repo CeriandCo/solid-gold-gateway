@@ -237,3 +237,37 @@ export async function runDailyNoteGeneration(deps: RunDeps): Promise<RunResult> 
     return { outcome: "error", reason, runId };
   }
 }
+
+/** The pack narrowed to facts referenced by the draft's paragraphs. */
+export function citedFactPack(
+  draft: { paragraphs: { factId?: string | null }[] },
+  pack: FactPack,
+): FactPack {
+  const used = new Set(
+    draft.paragraphs.map((p) => p.factId).filter((id): id is string => typeof id === "string"),
+  );
+  return { ...pack, facts: pack.facts.filter((fact) => used.has(fact.id)) };
+}
+
+const PREVIOUS_CLOSE_METRICS = new Set(["previous_close", "change_absolute", "change_percent"]);
+
+/**
+ * A change stated against the spot row's previous close must not be cited
+ * alongside a stored daily close with a different value. Returns a reason on
+ * mismatch, null when consistent.
+ */
+export function previousCloseContradiction(pack: FactPack): string | null {
+  const usesPrevious = pack.facts.some((fact) => PREVIOUS_CLOSE_METRICS.has(fact.metric));
+  const dailyClose = pack.facts.find((fact) => fact.metric === "daily_close");
+  if (!usesPrevious || !dailyClose) return null;
+  const previous = pack.facts.find((fact) => fact.metric === "previous_close");
+  const reference = previous?.value ?? null;
+  if (reference === null) {
+    // The change facts all derive from the same spot row's previous_close.
+    return null;
+  }
+  if (reference !== dailyClose.value) {
+    return `source_contradiction (previous close ${reference} vs cited daily close ${dailyClose.value})`;
+  }
+  return null;
+}
