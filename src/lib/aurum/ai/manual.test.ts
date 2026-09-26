@@ -93,3 +93,34 @@ describe("generateDraftFromPrompt core", () => {
     expect(result.ok).toBe(true);
   });
 });
+
+describe("manual draft: woven facts", () => {
+  const woven = [
+    { label: "Spot price", value: "$4,312.50" },
+    { label: "Previous close", value: "$4,283.60" },
+  ];
+  const draft = (factId: string, text: string) => ({
+    title: "Gold edges up from its previous close",
+    summary: "A modest move higher, measured against the prior close.",
+    paragraphs: [
+      { kind: "context", factId: null, subject: null, metric: null, direction: null, text: "A quiet session with a small tilt higher." },
+      { kind: "fact", factId, subject: "gold", metric: "Spot price", direction: "up", text },
+    ],
+  });
+
+  it("accepts one paragraph citing several facts and their numbers", async () => {
+    const result = await generateManualDraft(
+      { brief: "", facts: woven },
+      { generate: async () => ({ ok: true, raw: draft("f1,f2", "Gold stood at $4,312.50, above the previous close of $4,283.60."), usage }), record: vi.fn() },
+    );
+    expect(result.ok).toBe(true);
+  });
+
+  it("still rejects a woven paragraph with a number outside its cited facts", async () => {
+    const result = await generateManualDraft(
+      { brief: "", facts: woven },
+      { generate: async () => ({ ok: true, raw: draft("f1", "Gold stood at $4,312.50, above the previous close of $4,283.60."), usage }), record: vi.fn() },
+    );
+    expect(result.ok).toBe(false);
+  });
+});
