@@ -265,5 +265,5 @@ Titles and summaries still generalise ("Gold's slight rise, viewed through polic
 
 ## Gates
 - `bunx tsgo --noEmit`: exit 0
-- `bun run test`: see chat. The cron/run/verify suites are listed in the test output.
+- `bun run test`: Test Files 49 passed (49), Tests 724 passed (724). cron.test (11), run.test (21) and verify.test (24) pass unchanged.
 - `bun run build`: exit 0
