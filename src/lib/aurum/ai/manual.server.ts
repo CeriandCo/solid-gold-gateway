@@ -137,6 +137,55 @@ export function buildManualUserPrompt(input: ManualInput): string {
 }
 
 /** Numeric tokens with thousands separators removed, e.g. "$4,310.50" -> "4310.50". */
+const ATTRIBUTION_STOPWORDS = new Set(["gold", "the", "of", "a", "an", "and", "in", "on", "at", "to", "per", "oz", "usd"]);
+/** Max characters between a number and the label word that attributes it. */
+const ATTRIBUTION_WINDOW = 60;
+
+/**
+ * Strict number-to-label attribution for woven paragraphs. Each number in the text
+ * must have, as its nearest distinctive label word, a word from a cited fact whose
+ * value contains that number, within ATTRIBUTION_WINDOW characters. Anything else
+ * (no label nearby, nearest label belongs to another fact) is a violation: ambiguity
+ * fails closed. Label words shared by several cited facts (e.g. "24h") are ignored.
+ */
+export function attributionViolations(text: string, cited: { id: string; fact: ManualFact }[]): string[] {
+  const wordsOf = (label: string) =>
+    (label.toLowerCase().match(/[a-z]+/g) ?? []).filter((w) => w.length > 1 && !ATTRIBUTION_STOPWORDS.has(w));
+  const counts = new Map<string, number>();
+  for (const { fact } of cited) for (const w of new Set(wordsOf(fact.label))) counts.set(w, (counts.get(w) ?? 0) + 1);
+
+  const lower = text.toLowerCase();
+  const hits: { id: string; start: number; end: number }[] = [];
+  for (const { id, fact } of cited) {
+    for (const word of new Set(wordsOf(fact.label))) {
+      if (counts.get(word) !== 1) continue;
+      const re = new RegExp(`\\b${word}\\b`, "g");
+      for (const m of lower.matchAll(re)) hits.push({ id, start: m.index!, end: m.index! + word.length });
+    }
+  }
+
+  const problems: string[] = [];
+  // Number tokens glued to letters ("24h") are part of a label, not a stated figure.
+  for (const m of text.matchAll(/\d[\d,]*(?:\.\d+)?(?![\d.,]*[a-zA-Z])/g)) {
+    const value = m[0].replace(/,/g, "").replace(/\.0+$/, "");
+    const owners = cited.filter(({ fact }) => numbers(fact.value).includes(value)).map(({ id }) => id);
+    if (owners.length === 0) continue; // label-only numbers are handled by the membership check
+    const start = m.index!;
+    const end = start + m[0].length;
+    let best: { id: string; distance: number } | null = null;
+    for (const hit of hits) {
+      const distance = hit.end <= start ? start - hit.end : Math.max(0, hit.start - end);
+      if (!best || distance < best.distance) best = { id: hit.id, distance };
+    }
+    if (!best || best.distance > ATTRIBUTION_WINDOW) {
+      problems.push(`states ${value} with no label naming its fact nearby`);
+    } else if (!owners.includes(best.id)) {
+      problems.push(`attributes ${value} to fact ${best.id}, but it belongs to ${owners.join("/")}`);
+    }
+  }
+  return problems;
+}
+
 function numbers(text: string): string[] {
   return (text.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).map((token) =>
     token.replace(/,/g, "").replace(/\.0+$/, ""),
@@ -173,6 +222,10 @@ export function verifyManualDraft(draft: ModelDraft, input: ManualInput): string
     if (unknown || cited.length === 0) continue;
     for (const n of numbers(paragraph.text)) {
       if (!allowed.has(n)) violations.push(`paragraph ${index + 1} states ${n}, not in its facts`);
+    }
+    const citedFacts = cited.map((id) => ({ id, fact: ids.get(id)! }));
+    for (const problem of attributionViolations(paragraph.text, citedFacts)) {
+      violations.push(`paragraph ${index + 1} ${problem}`);
     }
   }
   for (const id of ids.keys()) {

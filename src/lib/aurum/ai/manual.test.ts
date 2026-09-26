@@ -124,3 +124,34 @@ describe("manual draft: woven facts", () => {
     expect(result.ok).toBe(false);
   });
 });
+
+describe("manual draft: strict number-to-label attribution", () => {
+  const facts4 = [
+    { label: "Spot price", value: "4,312.50 USD/oz" },
+    { label: "24h change", value: "+0.68%" },
+    { label: "Previous close", value: "4,283.60 USD/oz" },
+    { label: "Key driver", value: "Weaker USD, inflation concerns" },
+  ];
+  const make = (text: string) => ({
+    title: "Gold edges higher on a weaker dollar",
+    summary: "A modest move higher against the previous close.",
+    paragraphs: [
+      { kind: "context", factId: null, subject: null, metric: null, direction: null, text: "A modest move, not a break from the pattern." },
+      { kind: "fact", factId: "f1,f2,f3,f4", subject: "gold", metric: "Spot price", direction: "up", text },
+    ],
+  });
+  const run = (text: string) =>
+    generateManualDraft({ brief: "", facts: facts4 }, { generate: async () => ({ ok: true, raw: make(text), usage }), record: vi.fn() });
+
+  it("accepts correctly labelled figures", async () => {
+    expect((await run("With the spot price at 4,312.50 USD/oz, gold showed a 24h change of +0.68% against its previous close of 4,283.60 USD/oz, driven by weaker USD and inflation concerns.")).ok).toBe(true);
+  });
+
+  it("rejects swapped spot price and previous close", async () => {
+    expect((await run("With the spot price at 4,283.60 USD/oz, gold showed a 24h change of +0.68% against its previous close of 4,312.50 USD/oz, driven by weaker USD and inflation concerns.")).ok).toBe(false);
+  });
+
+  it("rejects a figure with no label nearby (ambiguous fails closed)", async () => {
+    expect((await run("Gold stood at 4,312.50 USD/oz, with a 24h change of +0.68% against a previous close of 4,283.60 USD/oz, driven by weaker USD and inflation concerns.")).ok).toBe(false);
+  });
+});
