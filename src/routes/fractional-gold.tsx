@@ -34,7 +34,7 @@ export const Route = createFileRoute("/fractional-gold")({
         name: "description",
         content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
-      { property: "og:title", content: "Fractional Gold Allocation | SQOOT Pure" },
+      { property: "og:title", content: "Fractional Gold | SQOOT Pure" },
       {
         property: "og:description",
         content: "A simple, secure way to own fine physical gold. Start with $25.",
@@ -43,10 +43,10 @@ export const Route = createFileRoute("/fractional-gold")({
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: FRACTIONAL_GOLD_URL },
       { property: "og:image", content: OG_IMAGE },
-      { name: "twitter:title", content: "Fractional Gold Allocation | SQOOT Pure" },
+      { name: "twitter:title", content: "Fractional Gold | SQOOT Pure" },
       {
         name: "twitter:description",
-        content: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees.",
+        content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
       { name: "twitter:image", content: OG_IMAGE },
     ],

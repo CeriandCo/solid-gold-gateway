@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
         content:
           "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
       },
-      { property: "og:title", content: "SQOOT Pure — Own Real Gold, Three Ways" },
+      { property: "og:title", content: "SQOOT Pure — Own Fine Gold, Three Ways" },
       {
         property: "og:description",
         content:
