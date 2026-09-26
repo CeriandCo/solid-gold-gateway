@@ -111,7 +111,7 @@ describe("manual draft: woven facts", () => {
   it("accepts one paragraph citing several facts and their numbers", async () => {
     const result = await generateManualDraft(
       { brief: "", facts: woven },
-      { generate: async () => ({ ok: true, raw: draft("f1,f2", "Gold stood at $4,312.50, above the previous close of $4,283.60."), usage }), record: vi.fn() },
+      { generate: async () => ({ ok: true, raw: draft("f1,f2", "The spot price of $4,312.50 sat above the previous close of $4,283.60."), usage }), record: vi.fn() },
     );
     expect(result.ok).toBe(true);
   });
@@ -119,7 +119,7 @@ describe("manual draft: woven facts", () => {
   it("still rejects a woven paragraph with a number outside its cited facts", async () => {
     const result = await generateManualDraft(
       { brief: "", facts: woven },
-      { generate: async () => ({ ok: true, raw: draft("f1", "Gold stood at $4,312.50, above the previous close of $4,283.60."), usage }), record: vi.fn() },
+      { generate: async () => ({ ok: true, raw: draft("f1", "The spot price of $4,312.50 sat above the previous close of $4,283.60."), usage }), record: vi.fn() },
     );
     expect(result.ok).toBe(false);
   });

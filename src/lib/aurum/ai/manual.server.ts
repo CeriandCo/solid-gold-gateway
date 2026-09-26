@@ -93,6 +93,9 @@ export const MANUAL_SYSTEM_PROMPT = [
   "  supplied reason belongs in the sentence that describes the move it explains.",
   "- Order the facts as a small narrative arc (what happened, what it is measured against,",
   "  what the editor says drove it), not in the order they were entered.",
+  "- Name every figure with its fact's own label words right next to it (for example",
+  "  \"a previous close of [Q]\", \"the spot price of [P]\"). A figure without its label nearby",
+  "  is rejected.",
   "- Vary sentence structure. Never repeat the pattern \"Gold's X is Y\" fact after fact.",
   "- Measured, slightly conversational, factual, never promotional. No hype words.",
   "- Where it fits the brief, close by saying plainly what the note does not claim (for",
@@ -108,8 +111,8 @@ export const MANUAL_SYSTEM_PROMPT = [
   "NOT like this: \"Gold's spot price is [P]. Gold's 24h change is [C]. Gold's previous close",
   "was [Q]. Key driver: [R].\"",
   "Like this: context paragraph \"Gold ended the day a little firmer, a modest move rather than",
-  "a break from the recent pattern.\" then one fact paragraph citing all four ids: \"At [P] an",
-  "ounce, gold sat [C] above its previous close of [Q], a move the editor attributes to [R].\"",
+  "a break from the recent pattern.\" then one fact paragraph citing all four ids: \"With the spot price at",
+  "[P] an ounce, gold showed a 24h change of [C] against its previous close of [Q], a move the editor attributes to [R].\"",
   "then, if it fits, a closing context paragraph on what the note does not claim.",
 ].join("\n");
 
