@@ -16,6 +16,7 @@ export const siteNav = [
   ["Aurum", "/aurum"],
   ["Learn", "/learn"],
   ["About Us", "/about-us"],
+  ["Partners", "/partners"],
   ["Trust Center", "/trust-center"],
 ] as const;
 
@@ -355,6 +356,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "About Us", to: "/about-us" },
       { label: "Trust Center", to: "/trust-center" },
+      { label: "Partners", to: "/partners" },
       { label: "Get In Touch", to: "/contact" },
     ],
   },

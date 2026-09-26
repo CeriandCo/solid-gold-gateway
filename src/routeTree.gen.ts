@@ -20,6 +20,8 @@ import { Route as GiftingRouteImport } from './routes/gifting'
 import { Route as GiftingOldVerRouteImport } from './routes/gifting-old-ver'
 import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PartnerTermsRouteImport } from './routes/partner-terms'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -103,6 +105,16 @@ const HomeOldVerRoute = HomeOldVerRouteImport.update({
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerTermsRoute = PartnerTermsRouteImport.update({
+  id: '/partner-terms',
+  path: '/partner-terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PreciousMetalRoute = PreciousMetalRouteImport.update({
@@ -269,6 +281,8 @@ export interface FileRoutesByFullPath {
   '/gifting-old-ver': typeof GiftingOldVerRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
+  '/partner-terms': typeof PartnerTermsRoute
+  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -309,6 +323,8 @@ export interface FileRoutesByTo {
   '/gifting': typeof GiftingRoute
   '/gifting-old-ver': typeof GiftingOldVerRoute
   '/home-old-ver': typeof HomeOldVerRoute
+  '/partner-terms': typeof PartnerTermsRoute
+  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -351,6 +367,8 @@ export interface FileRoutesById {
   '/gifting-old-ver': typeof GiftingOldVerRoute
   '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
+  '/partner-terms': typeof PartnerTermsRoute
+  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -395,6 +413,8 @@ export interface FileRouteTypes {
     | '/gifting-old-ver'
     | '/home-old-ver'
     | '/learn'
+    | '/partner-terms'
+    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -435,6 +455,8 @@ export interface FileRouteTypes {
     | '/gifting'
     | '/gifting-old-ver'
     | '/home-old-ver'
+    | '/partner-terms'
+    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -476,6 +498,8 @@ export interface FileRouteTypes {
     | '/gifting-old-ver'
     | '/home-old-ver'
     | '/learn'
+    | '/partner-terms'
+    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -519,6 +543,8 @@ export interface RootRouteChildren {
   GiftingOldVerRoute: typeof GiftingOldVerRoute
   HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRouteWithChildren
+  PartnerTermsRoute: typeof PartnerTermsRoute
+  PartnersRoute: typeof PartnersRoute
   PreciousMetalRoute: typeof PreciousMetalRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -616,6 +642,20 @@ declare module '@tanstack/react-router' {
       path: '/learn'
       fullPath: '/learn'
       preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner-terms': {
+      id: '/partner-terms'
+      path: '/partner-terms'
+      fullPath: '/partner-terms'
+      preLoaderRoute: typeof PartnerTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/precious-metal': {
@@ -884,6 +924,8 @@ const rootRouteChildren: RootRouteChildren = {
   GiftingOldVerRoute: GiftingOldVerRoute,
   HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRouteWithChildren,
+  PartnerTermsRoute: PartnerTermsRoute,
+  PartnersRoute: PartnersRoute,
   PreciousMetalRoute: PreciousMetalRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
