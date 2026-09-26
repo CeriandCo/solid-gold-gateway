@@ -190,6 +190,13 @@
       "when": 1790178079053,
       "tag": "0026_newsletter_rate_check",
       "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1790436120032,
+      "tag": "0027_aurum_ai_manual_runs",
+      "breakpoints": true
     }
   ]
 }
