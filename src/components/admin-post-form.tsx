@@ -10,6 +10,7 @@ import {
 } from "@/lib/admin.functions";
 import { AurumEditorialPreview } from "@/components/aurum-editorial-preview";
 import { AdminWorkflowPanel } from "@/components/admin-workflow-panel";
+import { AdminAiGeneratePanel } from "@/components/admin-ai-generate-panel";
 import { readOnlyReason } from "@/lib/aurum/workflow-ui";
 import type { AdminRole } from "@/lib/admin-roles";
 import { formatShortDate, type AurumEditorial } from "@/lib/aurum-editorial";
@@ -382,6 +383,20 @@ export function AdminPostForm({
           onDone={async () => {
             await onReload?.();
           }}
+        />
+      ) : null}
+
+      {post === null ? (
+        <AdminAiGeneratePanel
+          onGenerated={(draft) =>
+            setState((current) => ({
+              ...current,
+              title: draft.title,
+              slug: current.slugTouched ? current.slug : slugify(draft.title),
+              summary: draft.summary,
+              body: draft.body.length > 0 ? draft.body : [""],
+            }))
+          }
         />
       ) : null}
 
