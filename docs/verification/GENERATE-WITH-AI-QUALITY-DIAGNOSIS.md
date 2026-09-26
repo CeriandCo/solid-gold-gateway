@@ -196,3 +196,38 @@ The supplied driver is now often quoted mechanically ("with the stated key drive
 
 ## Not verified
 - Admin panel in a browser (no signed-in session).
+
+---
+
+# Diagnosis: supplied fact softened ("the Fed's" dropped)
+
+## Finding: caused by a rule, not by random variation
+The manual tool's own prompt (`MANUAL_SYSTEM_PROMPT`, `src/lib/aurum/ai/manual.server.ts` line 83) still contains:
+```
+- Never name a mint, dealer, bank, exchange, company, institution or person. Name a country
+  or currency only if it appears in a supplied fact.
+```
+The manual tool does not inherit this from the cron prompt; the manual prompt was written with this line. When the countries/currencies exception was added, it covered countries and currencies only, not institutions. "The Fed" is a central bank and an institution, so the model follows the rule and removes it. The cron `SYSTEM_PROMPT` in `contract.ts` has its own separate, stricter version, and that one is out of scope.
+
+## Consistency: 3 regenerations, same input (recorder stubbed, no DB write)
+Fact: `Key driver = "Investors awaiting the Fed's upcoming policy meeting"`
+```
+RUN 1 generated  "...with investors awaiting an upcoming policy meeting cited as the key driver."
+                 title "Gold edges up as investors await a policy meeting"
+RUN 2 generated  "...with investors awaiting an upcoming policy meeting cited as the key driver."
+                 title "Gold's modest rise amid policy anticipation"
+RUN 3 generated  "...with investors awaiting the upcoming policy meeting as the key driver."
+                 title "Gold edges higher with a policy meeting in view"
+```
+**3 of 3 dropped "the Fed's".** The result is consistent and is caused by the rule, not by chance.
+
+The verifier did not catch it. The omission check only confirms that each fact id is cited. It never compares a word fact's text with its value, so a softened version passes.
+
+## Proposed smallest fix (not implemented)
+1. **Prompt, manual tool only:** scope the naming ban so it excludes supplied facts. Suggested wording: "Never name a mint, dealer, bank, exchange, company, institution, person, country or currency *unless that exact name appears in a supplied fact*; when it does, keep the name exactly as supplied." Also: "State a word fact faithfully; do not generalise, soften or drop any part of it."
+2. **Verifier, manual tool only, fails closed like the others:** for each word fact (a value with no digits), every capitalised word in the value (proper names like "Fed" and "USD") must also appear in the paragraph that cites the fact. If one is missing, the draft is rejected as a softened fact. This is deliberately narrow: it checks names, not exact wording, so normal rephrasing ("investors are awaiting…") still passes and the omission check stays as it is.
+
+The number-to-label check, the omission check and the cron pipeline would not be changed.
+
+## Decision needed before implementing
+Project rule: "Do not name a real mint, dealer or institution unless that name already exists in our data." This fix relies on treating an editor-typed fact as "in our data". The editor typed it on purpose and reviews the draft before publishing. Please confirm that reading is acceptable before the ban is scoped.
