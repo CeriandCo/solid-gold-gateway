@@ -90,3 +90,57 @@ Note: the body is still terse (the driver is restated as a plain line, not woven
 
 ## Not verified
 - In a real browser via the admin panel (no signed-in session this turn).
+
+---
+
+# Writing-voice upgrade (manual tool only)
+
+## What changed
+- `src/lib/aurum/ai/manual.server.ts` only.
+  - `MANUAL_SYSTEM_PROMPT`: new Voice section (open with an interpretive framing, weave related facts into one sentence, narrative order, vary structure, measured tone, optional closing "what this does not claim"). It also adds a title/summary angle modelled on "Why the spread on a one ounce coin moved this week", and a bad/good shape example that uses bracket placeholders only (no digits).
+  - A fact paragraph may now cite several facts: `factId` = `"f1,f3"`. `verifyManualDraft` splits the ids. Each cited id must exist and be used only once across the draft. The paragraph's numbers must appear in the facts it cites.
+- Unchanged: the no-invented-number rule, the every-fact-used rule, the rule that context paragraphs contain no digits, the form-fill-only behaviour, and the shared `contract.ts`/`provider.server.ts` schema.
+- Cron pipeline untouched: `contract.ts` `SYSTEM_PROMPT` and `run.server.ts` are not edited (the manual prompt was already a separate constant, so no split was needed).
+- `manual.test.ts`: +2 tests (woven paragraph accepted; woven paragraph with a number from an uncited fact rejected).
+
+## Before (first attempt with only the Voice rules, still one fact per paragraph)
+```
+A: "Gold's spot price is 4,312.50 USD/oz." / "Gold's 24h change is +0.68%." /
+   "Gold's previous close was 4,283.60 USD/oz." / "Key driver: Weaker USD, inflation concerns."
+B: "The 24h high was $4,310." / "The 24h low was $4,271." / "The spot price was $4,295.80."
+```
+The model ignored the Voice rules until the shape example was added.
+
+## After: live runs (recorder stubbed, no DB write). All outcome `generated`.
+Case A: brief "Gold rose slightly today. Explain the move calmly."; facts: spot 4,312.50 USD/oz, 24h +0.68%, prev close 4,283.60 USD/oz, Key driver "Weaker USD, inflation concerns".
+```
+A1 title "Gold edges higher with currency and inflation in focus"
+   body  "The move in gold calls for a measured reading rather than a sweeping conclusion."
+         "Gold stood at 4,312.50 USD/oz, with a 24h change of +0.68% against a previous close of 4,283.60 USD/oz, driven by weaker USD and inflation concerns."
+A2 title "Gold's move through a currency and inflation lens"
+   body  "The price move is best read alongside its reference point and the pressures behind it."
+         "Spot gold stood at 4,312.50 USD/oz against a previous close of 4,283.60 USD/oz, with a 24h change of +0.68%, driven by weaker USD and inflation concerns."
+         "That describes the move, not where the price goes next."
+A3 title "Gold edges higher against a currency and inflation backdrop"
+   body  "Gold's move calls for perspective rather than a forecast: the price comparison and its stated drivers provide the frame."
+         "At 4,312.50 USD/oz, gold recorded a 24h change of +0.68% against a previous close of 4,283.60 USD/oz, with weaker USD and inflation concerns identified as the key drivers."
+```
+Case B (different facts): brief "A quiet, range-bound session. Focus on how narrow the range was."; facts: 24h high $4,310, 24h low $4,271, spot $4,295.80.
+```
+B1 title "Gold's spot price within a narrow range"
+   body  "Gold's narrow range provides the frame here, rather than a claim about momentum."
+         "At $4,295.80, gold's spot price sat between the 24h low of $4,271 and high of $4,310."
+```
+Only supplied numbers and the supplied reason appear. There are no invented causes.
+
+## Remaining observations
+- Drafts are now short (2–3 paragraphs), and the framing sentences lean abstract ("calls for a measured reading"). The fact sentence is connected prose, but it packs every figure into one long sentence.
+- Titles are specific but repeat the same angle across runs. Titles about why the price moved depend on whether the supplied reason is used, which the rules allow.
+
+## Gates
+- `bunx tsgo --noEmit`: exit 0
+- `bun run test`: Test Files 49 passed (49), Tests 718 passed (718). Includes the unchanged cron `run`/`verify`/`cron` suites.
+- `bun run build`: exit 0
+
+## Not verified
+- In the browser through the admin panel (no signed-in session).
