@@ -53,3 +53,40 @@ Numbers stay locked: `verifyManualDraft` keeps rejecting any number not in the f
 
 Open decision for you: is stating an editor-supplied cause acceptable under the editorial rules? Today the
 rules forbid causes outright, which is the root reason the driver is dropped.
+
+---
+
+# Fix applied (manual tool only)
+
+## What changed
+- `src/lib/aurum/ai/manual.server.ts` only:
+  - `MANUAL_SYSTEM_PROMPT`: every fact must be used once; a reason/qualitative detail may be stated only if supplied as a fact, never inferred; country/currency may be named only if in a supplied fact; BRIEF now shapes angle/emphasis/tone but cannot override rules; title/summary must reflect direction and supplied driver.
+  - BRIEF block label updated accordingly.
+  - `verifyManualDraft`: new violation `fact <id> not used` (draft rejected, nothing filled in, no automatic retry).
+  - Rejection message now covers both cases (added something / left a fact out).
+- Number check unchanged. Cron pipeline untouched: it uses `SYSTEM_PROMPT` in `contract.ts` and `run.server.ts`, neither edited (the manual prompt was already separate).
+- `manual.test.ts`: +2 tests (omitted fact rejected; supplied qualitative reason accepted).
+
+## After: same brief + 4 facts, 3 live runs (recorder stubbed, no DB write)
+```
+RUN 1 title "Gold edges higher on weaker USD and inflation concerns"
+      summary "Gold rose slightly, with a weaker USD and inflation concerns cited as the key driver."
+RUN 2 title "Gold edges higher on weaker USD and inflation concerns"
+      summary "Gold rose slightly, with weaker USD and inflation concerns cited as the key driver."
+RUN 3 title "Gold edges higher on weaker USD and inflation concerns"
+      summary "Gold rose slightly, with weaker USD and inflation concerns as the key driver."
+Body (all 3): "Gold's spot price is 4,312.50 USD/oz." / "Gold's 24h change is +0.68%." /
+              "Gold's previous close was 4,283.60 USD/oz." / "Key driver: Weaker USD, inflation concerns."
+```
+All 3 outcome `generated`; driver present in body, title and summary; no number outside the facts.
+
+Note: the body is still terse (the driver is restated as a plain line, not woven into prose). The brief's
+"rose slightly" framing shows in title/summary but not in body sentences.
+
+## Gates
+- `bunx tsgo --noEmit`: exit 0
+- `bun run test`: Test Files 49 passed (49), Tests 716 passed (716) — includes existing no-hallucination test and the cron suite (`run`/`verify` tests), all passing unchanged.
+- `bun run build`: exit 0
+
+## Not verified
+- In a real browser via the admin panel (no signed-in session this turn).

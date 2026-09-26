@@ -69,4 +69,27 @@ describe("generateDraftFromPrompt core", () => {
     expect(result.ok).toBe(false);
     expect(record).toHaveBeenCalledWith(expect.objectContaining({ outcome: "rejected" }));
   });
+
+  it("discards a draft that leaves out a supplied fact", async () => {
+    const missing = structuredClone(good);
+    missing.paragraphs = missing.paragraphs.filter((p) => p.factId !== "f2");
+    const record = vi.fn();
+    const result = await generateManualDraft(
+      { brief: "", facts },
+      { generate: async () => ({ ok: true, raw: missing, usage }), record },
+    );
+    expect(result.ok).toBe(false);
+    expect(record).toHaveBeenCalledWith(expect.objectContaining({ outcome: "rejected", detail: expect.stringContaining("f2 not used") }));
+  });
+
+  it("accepts a supplied qualitative reason stated in a fact paragraph", async () => {
+    const withDriver = [...facts, { label: "Key driver", value: "Weaker USD, inflation concerns" }];
+    const draft = structuredClone(good);
+    draft.paragraphs.push({ kind: "fact", factId: "f3", subject: "gold", metric: "Key driver", direction: "none", text: "The supplied driver for gold's move is a weaker USD and inflation concerns." });
+    const result = await generateManualDraft(
+      { brief: "", facts: withDriver },
+      { generate: async () => ({ ok: true, raw: draft, usage }), record: vi.fn() },
+    );
+    expect(result.ok).toBe(true);
+  });
 });
