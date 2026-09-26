@@ -231,3 +231,39 @@ The number-to-label check, the omission check and the cron pipeline would not be
 
 ## Decision needed before implementing
 Project rule: "Do not name a real mint, dealer or institution unless that name already exists in our data." This fix relies on treating an editor-typed fact as "in our data". The editor typed it on purpose and reviews the draft before publishing. Please confirm that reading is acceptable before the ban is scoped.
+
+---
+
+# Fix applied: keep names from supplied facts (manual tool only)
+
+## What changed (`src/lib/aurum/ai/manual.server.ts` only)
+- Prompt naming rule: "Never name a mint, dealer, bank, exchange, company, institution, person, country or currency unless that exact name appears in a supplied fact. When it does, keep the name exactly as supplied…". A new line adds: "State a word fact faithfully… never generalise, soften or drop any part of it, and never drop a name it contains."
+- New `namesInWordFact(value)`: applies only to facts whose value has no digits. It collects capitalised words except a sentence-initial capital ("Investors…"), always counts all-caps words, and strips a possessive "'s" (so "the Fed's" requires "Fed").
+- `verifyManualDraft`: every such name must appear, as a whole word and case-sensitive, in the paragraph that cites the fact. Otherwise the draft is rejected (`drops the name "Fed" from fact f4`), with no retry.
+- Unchanged: the number-to-label check, the omission check, the invented-number check and the cron pipeline (`contract.ts`, `run.server.ts`, `verify.ts`).
+
+## Tests (+3 in `manual.test.ts`)
+- Name extraction: "Investors awaiting the Fed's…" gives ["Fed"], "Weaker USD, inflation concerns" gives ["USD"], and "4,312.50 USD/oz" gives [] (numeric facts are skipped).
+- **Generalised institution rejected:** "…investors awaiting an upcoming policy meeting…".
+- Ordinary rephrasing that keeps the name is accepted: "…as investors wait for the Fed's upcoming policy meeting, the key driver."
+
+## Before / after, same Fed input, 3 live runs each (recorder stubbed, no DB write)
+Before: 3/3 dropped the name ("investors awaiting an upcoming policy meeting").
+After:
+```
+RUN 1 generated  "...the key driver was investors awaiting the Fed's upcoming policy meeting."
+RUN 2 generated  "...with investors awaiting the Fed's upcoming policy meeting identified as the key driver."
+RUN 3 generated  "...with investors awaiting the Fed's upcoming policy meeting as the key driver."
+```
+3/3 kept "the Fed's".
+
+## Rejection rate on correct drafts
+Fresh batch: 3 Fed runs + case A ×3 (driver "Weaker USD, inflation concerns", so "USD" is required) + case B ×1 = **7 generated, 0 rejected**.
+
+## Remaining gap
+Titles and summaries still generalise ("Gold's slight rise, viewed through policy anticipation"). The name check covers paragraphs only, as specified. It can be extended to titles and summaries if wanted, but that would be stricter than asked.
+
+## Gates
+- `bunx tsgo --noEmit`: exit 0
+- `bun run test`: Test Files 49 passed (49), Tests 724 passed (724). cron.test (11), run.test (21) and verify.test (24) pass unchanged.
+- `bun run build`: exit 0
