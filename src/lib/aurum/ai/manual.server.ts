@@ -175,10 +175,14 @@ export function attributionViolations(text: string, cited: { id: string; fact: M
     if (owners.length === 0) continue; // label-only numbers are handled by the membership check
     const start = m.index!;
     const end = start + m[0].length;
-    let best: { id: string; distance: number } | null = null;
+    let best: { id: string; distance: number; before: boolean } | null = null;
     for (const hit of hits) {
       const distance = hit.end <= start ? start - hit.end : Math.max(0, hit.start - end);
-      if (!best || distance < best.distance) best = { id: hit.id, distance };
+      // On an exact tie, the label before the number wins ("the low of $X and high of $Y").
+      const before = hit.end <= start;
+      if (!best || distance < best.distance || (distance === best.distance && before && !best.before)) {
+        best = { id: hit.id, distance, before };
+      }
     }
     if (!best || best.distance > ATTRIBUTION_WINDOW) {
       problems.push(`states ${value} with no label naming its fact nearby`);
