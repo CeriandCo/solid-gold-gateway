@@ -104,6 +104,48 @@ export type Database = {
           },
         ]
       }
+      aurum_ai_manual_runs: {
+        Row: {
+          cost_usd: number | null
+          created_at: string
+          detail: string | null
+          id: string
+          input_tokens: number | null
+          model: string | null
+          outcome: string
+          output_tokens: number | null
+          provider: string | null
+          total_tokens: number | null
+          user_id: string | null
+        }
+        Insert: {
+          cost_usd?: number | null
+          created_at?: string
+          detail?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          outcome: string
+          output_tokens?: number | null
+          provider?: string | null
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          cost_usd?: number | null
+          created_at?: string
+          detail?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          outcome?: string
+          output_tokens?: number | null
+          provider?: string | null
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       aurum_ai_runs: {
         Row: {
           cost_available: boolean

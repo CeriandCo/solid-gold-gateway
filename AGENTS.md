@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Editor "Generate with AI" usage is logged in `aurum_ai_manual_runs`, not `aurum_ai_runs` — so manual generations never consume the scheduled Daily Note daily cap.
