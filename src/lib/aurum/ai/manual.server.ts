@@ -93,6 +93,9 @@ export const MANUAL_SYSTEM_PROMPT = [
   "  supplied reason belongs in the sentence that describes the move it explains.",
   "- Order the facts as a small narrative arc (what happened, what it is measured against,",
   "  what the editor says drove it), not in the order they were entered.",
+  "- Name every figure with its fact's own label words right next to it (for example",
+  "  \"a previous close of [Q]\", \"the spot price of [P]\"). A figure without its label nearby",
+  "  is rejected.",
   "- Vary sentence structure. Never repeat the pattern \"Gold's X is Y\" fact after fact.",
   "- Measured, slightly conversational, factual, never promotional. No hype words.",
   "- Where it fits the brief, close by saying plainly what the note does not claim (for",
@@ -108,8 +111,8 @@ export const MANUAL_SYSTEM_PROMPT = [
   "NOT like this: \"Gold's spot price is [P]. Gold's 24h change is [C]. Gold's previous close",
   "was [Q]. Key driver: [R].\"",
   "Like this: context paragraph \"Gold ended the day a little firmer, a modest move rather than",
-  "a break from the recent pattern.\" then one fact paragraph citing all four ids: \"At [P] an",
-  "ounce, gold sat [C] above its previous close of [Q], a move the editor attributes to [R].\"",
+  "a break from the recent pattern.\" then one fact paragraph citing all four ids: \"With the spot price at",
+  "[P] an ounce, gold showed a 24h change of [C] against its previous close of [Q], a move the editor attributes to [R].\"",
   "then, if it fits, a closing context paragraph on what the note does not claim.",
 ].join("\n");
 
@@ -137,6 +140,59 @@ export function buildManualUserPrompt(input: ManualInput): string {
 }
 
 /** Numeric tokens with thousands separators removed, e.g. "$4,310.50" -> "4310.50". */
+const ATTRIBUTION_STOPWORDS = new Set(["gold", "the", "of", "a", "an", "and", "in", "on", "at", "to", "per", "oz", "usd"]);
+/** Max characters between a number and the label word that attributes it. */
+const ATTRIBUTION_WINDOW = 60;
+
+/**
+ * Strict number-to-label attribution for woven paragraphs. Each number in the text
+ * must have, as its nearest distinctive label word, a word from a cited fact whose
+ * value contains that number, within ATTRIBUTION_WINDOW characters. Anything else
+ * (no label nearby, nearest label belongs to another fact) is a violation: ambiguity
+ * fails closed. Label words shared by several cited facts (e.g. "24h") are ignored.
+ */
+export function attributionViolations(text: string, cited: { id: string; fact: ManualFact }[]): string[] {
+  const wordsOf = (label: string) =>
+    (label.toLowerCase().match(/[a-z]+/g) ?? []).filter((w) => w.length > 1 && !ATTRIBUTION_STOPWORDS.has(w));
+  const counts = new Map<string, number>();
+  for (const { fact } of cited) for (const w of new Set(wordsOf(fact.label))) counts.set(w, (counts.get(w) ?? 0) + 1);
+
+  const lower = text.toLowerCase();
+  const hits: { id: string; start: number; end: number }[] = [];
+  for (const { id, fact } of cited) {
+    for (const word of new Set(wordsOf(fact.label))) {
+      if (counts.get(word) !== 1) continue;
+      const re = new RegExp(`\\b${word}\\b`, "g");
+      for (const m of lower.matchAll(re)) hits.push({ id, start: m.index!, end: m.index! + word.length });
+    }
+  }
+
+  const problems: string[] = [];
+  // Number tokens glued to letters ("24h") are part of a label, not a stated figure.
+  for (const m of text.matchAll(/\d[\d,]*(?:\.\d+)?(?![\d.,]*[a-zA-Z])/g)) {
+    const value = m[0].replace(/,/g, "").replace(/\.0+$/, "");
+    const owners = cited.filter(({ fact }) => numbers(fact.value).includes(value)).map(({ id }) => id);
+    if (owners.length === 0) continue; // label-only numbers are handled by the membership check
+    const start = m.index!;
+    const end = start + m[0].length;
+    let best: { id: string; distance: number; before: boolean } | null = null;
+    for (const hit of hits) {
+      const distance = hit.end <= start ? start - hit.end : Math.max(0, hit.start - end);
+      // On an exact tie, the label before the number wins ("the low of $X and high of $Y").
+      const before = hit.end <= start;
+      if (!best || distance < best.distance || (distance === best.distance && before && !best.before)) {
+        best = { id: hit.id, distance, before };
+      }
+    }
+    if (!best || best.distance > ATTRIBUTION_WINDOW) {
+      problems.push(`states ${value} with no label naming its fact nearby`);
+    } else if (!owners.includes(best.id)) {
+      problems.push(`attributes ${value} to fact ${best.id}, but it belongs to ${owners.join("/")}`);
+    }
+  }
+  return problems;
+}
+
 function numbers(text: string): string[] {
   return (text.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).map((token) =>
     token.replace(/,/g, "").replace(/\.0+$/, ""),
@@ -173,6 +229,10 @@ export function verifyManualDraft(draft: ModelDraft, input: ManualInput): string
     if (unknown || cited.length === 0) continue;
     for (const n of numbers(paragraph.text)) {
       if (!allowed.has(n)) violations.push(`paragraph ${index + 1} states ${n}, not in its facts`);
+    }
+    const citedFacts = cited.map((id) => ({ id, fact: ids.get(id)! }));
+    for (const problem of attributionViolations(paragraph.text, citedFacts)) {
+      violations.push(`paragraph ${index + 1} ${problem}`);
     }
   }
   for (const id of ids.keys()) {
