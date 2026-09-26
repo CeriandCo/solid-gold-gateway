@@ -8,7 +8,6 @@
  */
 import { parseModelDraft, type ModelDraft } from "./contract";
 import type { DailyNoteGenerator, ProviderUsage } from "./provider.server";
-import { composeBody } from "./verify";
 
 export type ManualFact = { label: string; value: string };
 export type ManualInput = { brief: string; facts: ManualFact[] };
@@ -187,7 +186,7 @@ export async function generateManualDraft(input: ManualInput, deps: ManualDeps):
   }
 
   await safeRecord(deps, { outcome: "generated", usage: generated.usage, detail: null });
-  return { ok: true, title: draft.title.trim(), summary: draft.summary.trim(), body: composeBody(draft) };
+  return { ok: true, title: draft.title.trim(), summary: draft.summary.trim(), body: draft.paragraphs.map((p) => p.text.trim()).filter(Boolean) };
 }
 
 async function safeRecord(deps: ManualDeps, input: Parameters<ManualDeps["record"]>[0]) {
