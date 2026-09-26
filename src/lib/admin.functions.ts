@@ -764,3 +764,51 @@ export const setEditorPassword = createServerFn({ method: "POST" })
     if (!result.ok) throw new Error(result.message);
     return { created: result.created };
   });
+
+export type GeneratedDraft =
+  | { ok: true; title: string; summary: string; body: string[] }
+  | { ok: false; error: string };
+
+/**
+ * "Generate with AI" for the new-post form. Returns text to fill the open form;
+ * never writes a post. Usage is recorded in the manual-run ledger so gateway
+ * spend is tracked without consuming the scheduled pipeline's daily cap.
+ */
+export const generateDraftFromPrompt = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(async (data: unknown) => {
+    const { parseManualInput } = await import("@/lib/aurum/ai/manual.server");
+    return parseManualInput(data);
+  })
+  .handler(async ({ data, context }): Promise<GeneratedDraft> => {
+    const role = await resolveRole(context.supabase);
+    if (!role) throw new Error("Forbidden: you are not on the editor list.");
+
+    const { generateManualDraft, NO_FACTS_MESSAGE } = await import("@/lib/aurum/ai/manual.server");
+    if (data.facts.length === 0) return { ok: false, error: NO_FACTS_MESSAGE };
+
+    const apiKey = process.env["LOVABLE_API_KEY"];
+    if (!apiKey) return { ok: false, error: "AI generation is not configured." };
+
+    const { createGatewayGenerator } = await import("@/lib/aurum/ai/provider.server");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const userId = context.userId;
+
+    return generateManualDraft(data, {
+      generate: createGatewayGenerator(apiKey),
+      record: async ({ outcome, usage, detail }) => {
+        const { error } = await supabaseAdmin.from("aurum_ai_manual_runs").insert({
+          user_id: userId,
+          outcome,
+          provider: usage?.provider ?? null,
+          model: usage?.model ?? null,
+          input_tokens: usage?.inputTokens ?? null,
+          output_tokens: usage?.outputTokens ?? null,
+          total_tokens: usage?.totalTokens ?? null,
+          cost_usd: usage?.costUsd ?? null,
+          detail,
+        });
+        if (error) throw new Error(error.message);
+      },
+    });
+  });
