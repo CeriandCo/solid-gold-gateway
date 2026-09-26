@@ -122,7 +122,7 @@ function PartnersPage() {
       <section className="pt-section" aria-labelledby="pt-who">
         <div className="site-container pt-two">
           <div>
-            <p className="pt-eyebrow">Who it's for</p>
+            <p className="pt-eyebrow">Partners</p>
             <h2 id="pt-who" className="pt-h2">Who it's for</h2>
             <ul className="pt-list">
               {WHO.map((item) => (
