@@ -192,7 +192,7 @@ export async function generateManualDraft(input: ManualInput, deps: ManualDeps):
     });
     return {
       ok: false,
-      error: "The AI draft stated something not in your facts, so it was discarded. Nothing was filled in.",
+      error: "The AI draft did not match your facts (it added something or left a fact out), so it was discarded. Nothing was filled in.",
     };
   }
 
