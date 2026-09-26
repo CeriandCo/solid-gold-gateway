@@ -97,18 +97,6 @@ const PROOF_ITEMS = [
 const OWNERSHIP_WAYS = [
   {
     number: "01",
-    title: "Coins, delivered home",
-    description:
-      "Gold Eagles, Britannias and Sovereigns, shipped insured with signature on delivery.",
-    linkLabel: "Browse coins",
-    to: "/precious-metal",
-    background: coinsCardBackground.url,
-    backgroundAlt: "Gold coins presented in a premium SQOOT Pure gift box",
-    screen: coinsPhoneScreen.url,
-    screenAlt: "SQOOT Pure app coin collection screen",
-  },
-  {
-    number: "02",
     title: "Start with $25",
     description:
       "Buy fine gold in dollars, starting at $25. Add more anytime.",
@@ -120,7 +108,7 @@ const OWNERSHIP_WAYS = [
     screenAlt: "SQOOT Pure app buy screen",
   },
   {
-    number: "03",
+    number: "02",
     title: "Keep it in the vault",
     description:
       "Insured storage, fully backed in the vault, with statements, fees shown upfront and delivery on request.",
@@ -130,6 +118,18 @@ const OWNERSHIP_WAYS = [
     backgroundAlt: "Gold bars and coins stored in a secure vault",
     screen: vaultPhoneScreen.url,
     screenAlt: "SQOOT Pure app vaulted holdings screen",
+  },
+  {
+    number: "03",
+    title: "Coins, delivered home",
+    description:
+      "Gold Eagles, Britannias and Sovereigns, shipped insured with signature on delivery.",
+    linkLabel: "Browse coins",
+    to: "/precious-metal",
+    background: coinsCardBackground.url,
+    backgroundAlt: "Gold coins presented in a premium SQOOT Pure gift box",
+    screen: coinsPhoneScreen.url,
+    screenAlt: "SQOOT Pure app coin collection screen",
   },
 ] as const;
 
