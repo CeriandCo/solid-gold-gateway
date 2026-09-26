@@ -144,3 +144,55 @@ Only supplied numbers and the supplied reason appear. There are no invented caus
 
 ## Not verified
 - In the browser through the admin panel (no signed-in session).
+
+---
+
+# Strict number-to-label attribution (manual tool only)
+
+## What changed (`src/lib/aurum/ai/manual.server.ts` only)
+- New `attributionViolations(text, citedFacts)`, called for every fact paragraph by `verifyManualDraft`. For each number in the text that belongs to a cited fact's value:
+  - It finds the nearest distinctive label word among the cited facts. Label words are lower-cased, stopwords (gold, of, usd, oz, …) and single letters removed, and words shared by two or more cited labels (for example "24h") are ignored.
+  - If no label word is within 60 characters, the draft is rejected ("no label naming its fact nearby").
+  - If the nearest label belongs to a different fact, the draft is rejected ("attributes X to fact fN, but it belongs to fM").
+  - On an exact distance tie, the label *before* the number wins ("the low of $X and high of $Y").
+  - Number tokens glued to letters ("24h") are treated as part of a label, not as figures.
+- Fails closed with no retry, the same as the other checks. Existing membership, omission and context-no-digit checks are unchanged.
+- Prompt: added "Name every figure with its fact's own label words right next to it … A figure without its label nearby is rejected". The shape example now reads "With the spot price at [P] …, a 24h change of [C] against its previous close of [Q]".
+- Cron pipeline (`contract.ts` SYSTEM_PROMPT, `run.server.ts`, `verify.ts`) not edited.
+
+## Tests (`manual.test.ts`, +3; 1 existing fixture reworded)
+- Correct labels accepted.
+- **Swap rejected:** "spot price at 4,283.60 … previous close of 4,312.50".
+- Figure without its label ("Gold stood at 4,312.50 …") rejected.
+- The earlier woven-facts fixture "Gold stood at $4,312.50, above the previous close…" was reworded to "The spot price of $4,312.50 …", because the new rule correctly rejects an unlabelled spot figure.
+- The omission and number-hallucination tests pass unchanged.
+
+## False-positive measurement
+Replay of today's 4 earlier accepted drafts (generated before the rule and the prompt line existed):
+```
+A1 ["attributes 4312.50 to fact f2, but it belongs to f1"]   "Gold stood at 4,312.50 …, with a 24h change …"
+A2 []
+A3 ["attributes 4312.50 to fact f2, but it belongs to f1"]   "At 4,312.50 USD/oz, gold recorded a 24h change …"
+B1 []   (initially rejected on a distance tie; fixed by the preceding-label tie-break)
+```
+2 of 4 were correct in meaning but did not name the spot price next to its number, so they are rejected now. This is the strictness you asked for.
+
+Fresh live runs with the updated prompt (8 generations: case A ×6, case B ×2; recorder stubbed, no DB write):
+```
+RECORD B1 generated / A2 generated / A3 generated / A1 generated   (batch 1)
+RECORD B1 generated / A2 generated / A3 generated / A1 generated   (batch 2)
+```
+**0 of 8 rejected.** All labelled every figure (for example "With a spot price of 4,312.50 USD/oz, gold recorded a 24h change of +0.68% against a previous close of 4,283.60 USD/oz …"). These runs happened before the tie-break edit. That edit only turns some rejections into acceptances, so these results still stand.
+
+So the observed false-positive rate with the current prompt is 0/8. On drafts written without the labelling instruction it is 2/4, so the rate depends on the model following that instruction. The sample is small.
+
+## Side effect observed
+The supplied driver is now often quoted mechanically ("with the stated key driver: Weaker USD, inflation concerns"), because the model echoes the label wording. It is accurate but less fluent. Editors may want to smooth it.
+
+## Gates
+- `bunx tsgo --noEmit`: exit 0
+- `bun run test`: Test Files 49 passed (49), Tests 721 passed (721). cron.test (11), verify.test (24) and run.test (21) all pass.
+- `bun run build`: exit 0
+
+## Not verified
+- Admin panel in a browser (no signed-in session).
