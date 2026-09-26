@@ -357,7 +357,7 @@ function CalculatorResult({
       <div className="pricing-calculator-result" aria-live="polite">
         <ResultHeading kicker="Your estimate" sample />
         <p className="pricing-calculator-headline">{formatWeight(vaultEstimate.ounces)} oz</p>
-        <p className="pricing-calculator-subline">of gold allocated in your name</p>
+        <p className="pricing-calculator-subline">of gold, fully backed in the vault</p>
         <div className="pricing-calculator-lines">
           <ResultLine label={`Gold at spot · ${formatWeight(vaultEstimate.ounces)} oz`} value={formatMoney(vaultEstimate.atSpot)} />
           <ResultLine label={`Product premium · ${(PRICING.sample.vaultPremiumRate * 100).toFixed(0)}%`} value={formatMoney(vaultEstimate.premium)} />

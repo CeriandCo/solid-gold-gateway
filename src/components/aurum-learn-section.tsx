@@ -12,8 +12,8 @@ const CAUTIONS = [
   },
   {
     image: allocatedImage.url,
-    title: "Allocated or pooled",
-    body: "Allocated metal is yours specifically. Pooled metal is a claim on a shared holding. They are not the same.",
+    title: "Fully backed or pooled",
+    body: "Gold fully backed in the vault is yours specifically. Pooled metal is a claim on a shared holding. They are not the same.",
   },
   {
     image: storageImage.url,

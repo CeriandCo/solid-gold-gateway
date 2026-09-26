@@ -367,7 +367,7 @@ function PreciousMetalPage() {
         <InnerPageHero
           titleId="pm-hero-title"
           eyebrow="Buy Gold"
-          title={<><span>Real gold.</span><span>In your hands.</span></>}
+          title={<><span>Fine gold.</span><span>In your hands.</span></>}
           body={<><span>No vaulting, no third party holding your metal.</span><span>Order coins or bars, we ship them insured to your address, and they're yours the moment they arrive.</span></>}
           actions={<GoldButton to="/early-access">Get Early Access</GoldButton>}
           imageSrc={heroImage}

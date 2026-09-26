@@ -115,7 +115,7 @@ function TermsPage() {
             6. Gold Ownership and Storage
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            All gold purchased on the Platform is physically allocated and stored in insured, audited vault facilities through institutional-grade custodians. You retain full ownership of your gold. Vault storage fees, if applicable, will be disclosed at the time of purchase.
+            All gold purchased on the Platform is fully backed in the vault and stored in insured, audited vault facilities through institutional-grade custodians. You retain full ownership of your gold. Vault storage fees, if applicable, will be disclosed at the time of purchase.
           </p>
 
           <h2 id="redemption-and-delivery" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
@@ -203,7 +203,7 @@ function TermsPage() {
             All gold purchases on SQOOT Pure are final and non-refundable. By confirming a transaction, you acknowledge that no cash refund will be issued to your original payment method for any reason, including changes in gold market value after your purchase is confirmed.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            <strong>Why sales are final:</strong> Gold is a physical commodity. Once your purchase is confirmed, your gold is physically allocated to your vault in your name at the live spot price at the moment of confirmation. Market prices change in real time, and the purchase price is locked at confirmation. We cannot reverse a physically settled commodity transaction.
+            <strong>Why sales are final:</strong> Gold is a physical commodity. Once your purchase is confirmed, your gold is fully backed in the vault at the live spot price at the moment of confirmation. Market prices change in real time, and the purchase price is locked at confirmation. We cannot reverse a physically settled commodity transaction.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
             <strong>Want to exit your position? Redeem your gold.</strong>

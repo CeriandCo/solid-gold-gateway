@@ -14,16 +14,16 @@ import giftingPackagedImage from "@/assets/gifting-phone-gold-bar-enhanced.png";
 export const Route = createFileRoute("/gifting-old-ver")({
   head: () => ({
     meta: [
-      { title: "Gifting — Give Real Gold | SQOOT Pure" },
+      { title: "Gifting — Give Fine Gold | SQOOT Pure" },
       {
         name: "description",
         content:
           "Give a gift that holds its value. Send real, physical gold to the people who matter — beautifully presented, genuinely theirs.",
       },
-      { property: "og:title", content: "Gifting — Give Real Gold | SQOOT Pure" },
+      { property: "og:title", content: "Gifting — Give Fine Gold | SQOOT Pure" },
       {
         property: "og:description",
-        content: "Real gold, given properly. A gift with lasting value.",
+        content: "Fine gold, given properly. A gift with lasting value.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -173,7 +173,7 @@ function GiftingPage() {
               </div>
 
               <p className="mt-5 max-w-[385px] font-sans text-[14px] font-normal leading-[1.58] text-warm-white/80 sm:text-[15px]">
-                SQOOT Pure gold gifts are real, secure, and made to be remembered. Perfect for weddings, new beginnings, achievements, and the people who matter most.
+                SQOOT Pure gold gifts are fine gold, secure, and made to be remembered. Perfect for weddings, new beginnings, achievements, and the people who matter most.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -207,7 +207,7 @@ function GiftingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-gold-soft/20">
             {[
               { icon: Gift, title: "Thoughtful & Timeless", description: "A gift they'll value today and for generations." },
-              { icon: ShieldCheck, title: "100% Real Gold", description: "Allocated, insured, and fully backed." },
+              { icon: ShieldCheck, title: "100% Fine Gold", description: "Fully backed in the vault and insured." },
               { icon: Landmark, title: "Securely Vaulted", description: "Stored in insured U.S. vaults you can trust." },
               { icon: CreditCard, title: "Beautifully Presented", description: "Premium packaging, ready to gift." },
               { icon: Smartphone, title: "Digital Convenience", description: "Send instantly or schedule for later." },
@@ -310,7 +310,7 @@ function GiftingPage() {
 
             <div className="flex flex-col gap-3">
               {[
-                "Real gold, real value",
+                "Fine gold, real value",
                 "Secure, transparent, and easy to send",
                 "Redeemable anytime, anywhere",
               ].map((item) => (
@@ -459,7 +459,7 @@ function GiftingPage() {
               Every detail designed to impress.
             </h2>
             <p className="mb-10 max-w-xl font-sans text-base leading-relaxed text-[#C4CFC9] md:text-lg">
-              Premium packaging, a personal message, and the confidence of real gold—because how you give matters just as much as what you give.
+              Premium packaging, a personal message, and the confidence of fine gold—because how you give matters just as much as what you give.
             </p>
             <Link
               to="/precious-metal"

@@ -79,18 +79,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SQOOT Pure — Real Gold, Real Ownership" },
+      { title: "SQOOT Pure — Fine Gold, Real Ownership" },
       {
         name: "description",
         content:
-          "Buy physical gold coins, fractional gold, or vaulted allocated gold. Real ownership, insured U.S. storage, redeemable on demand.",
+          "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership, insured U.S. storage, redeemable on demand.",
       },
       { name: "author", content: "SQOOT Pure" },
-      { property: "og:title", content: "SQOOT Pure — Real Gold, Real Ownership" },
+      { property: "og:title", content: "SQOOT Pure — Fine Gold, Real Ownership" },
       {
         property: "og:description",
         content:
-          "Three ways to own real gold: delivered to your door, fractional, or securely vaulted.",
+          "Three ways to own fine gold: start with $25, keep it in the vault, or have coins delivered to your door.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
