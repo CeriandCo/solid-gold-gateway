@@ -29,15 +29,15 @@ const OG_IMAGE = `${SITE_ORIGIN}/og/fractional-gold.png`;
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
     meta: [
-      { title: "Fractional Gold Allocation | SQOOT Pure" },
+      { title: "Fractional Gold | SQOOT Pure" },
       {
         name: "description",
-        content: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees.",
+        content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
       { property: "og:title", content: "Fractional Gold Allocation | SQOOT Pure" },
       {
         property: "og:description",
-        content: "A simple, secure way to allocate and own physical gold from $25.",
+        content: "A simple, secure way to own fine physical gold. Start with $25.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -87,14 +87,14 @@ const steps = [
     title: "Fund and purchase",
     summary: "Review clear pricing before confirming your purchase.",
     detail:
-      "When transactions become available, you will see the applicable price and fees before confirming. Once purchased, your physical gold allocation is recorded to your account.",
+      "When transactions become available, you will see the applicable price and fees before confirming. Once purchased, your gold is fully backed in the vault and shown in My Gold.",
     icon: Wallet,
   },
   {
     title: "Track your holding",
-    summary: "See your allocated gold and its value from your account.",
+    summary: "See your gold and its value in My Gold.",
     detail:
-      "Track your allocated gold and its value from your account. When transactions become available, you can choose to sell; fractional holdings redeem to cash first, while buying a physical coin is a separate purchase.",
+      "Track your gold and its value in My Gold. When transactions become available, you can choose to sell; fractional holdings redeem to cash first, while buying a physical coin is a separate purchase.",
     icon: ChartNoAxesCombined,
   },
 ] as const;
@@ -102,7 +102,7 @@ const steps = [
 const faqs = [
   [
     "What are the fees?",
-    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Allocation fee: 3.00% of the amount allocated (US$3 per US$100), charged when you purchase and allocate gold to your account. Storage and insurance: free for your first 12 months, then 0.45% of the value of your allocated gold per year, charged pro-rata for the exact days held. Insurance is included — there is no separate insurance charge. A minimum storage fee of US$3.00 per year applies after your first 12 months. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
+    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Purchase fee: 3.00% of the amount purchased (US$3 per US$100), charged when you purchase gold. Storage and insurance: free for your first 12 months, then 0.45% of the value of your vaulted gold per year, charged pro-rata for the exact days held. Insurance is included — there is no separate insurance charge. A minimum storage fee of US$3.00 per year applies after your first 12 months. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
   ],
   [
     "Do I pay a fee when I sell my gold?",
@@ -118,11 +118,11 @@ const faqs = [
   ],
   [
     "Is vaulted gold the same as buying a physical coin?",
-    "No. They are separate products. Vaulted gold is a fractional interest in physical gold held through Sqoot's custody arrangement. A physical coin is a specific retail product bought through a separate checkout and shipped to an eligible address. At launch, vaulted gold will not convert directly into a coin for delivery."
+    "No. They are separate products. Vaulted gold is a fractional interest in physical gold held through Sqoot's custody arrangement. A physical coin is a specific retail product bought through a separate checkout and shipped to an eligible address. At launch, you will not be able to use your vaulted gold toward a coin for delivery."
   ],
   [
     "How do I buy vaulted gold?",
-    "Complete verification, select Buy, enter the dollar or gold amount, choose an available bank-payment method, review the live price, quantity, fees, and total, then confirm. The order will appear in Portfolio and Activity with its current status."
+    "Complete verification, select Buy, enter the dollar amount (start with $25), choose an available bank-payment method, review the live price, quantity, fees, and total, then confirm. The order will appear in My Gold and Activity with its current status."
   ],
   [
     "Is the gold real?",
@@ -134,7 +134,7 @@ const faqs = [
   ],
   [
     "Where does the gold come from?",
-    "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+    "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
   ],
   [
     "Is gold guaranteed to increase in value?",
@@ -226,9 +226,9 @@ function Index() {
       <InnerPageHero
         id="why-gold"
         titleId="fractional-hero-title"
-        eyebrow="Real Gold. Real Allocation."
-        title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
-        body={<>Allocate a fraction of physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
+        eyebrow="Fine Gold. Fully Backed."
+        title={<>Fine gold,<br />made more<br /><em>accessible.</em></>}
+        body={<>Start with $25 in fine physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
         actions={<GoldButton to="/early-access" onClick={() => track("fractional_cta_click", { target: "early_access" })}>Get Early Access</GoldButton>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
@@ -388,10 +388,10 @@ function Index() {
           <div className="self-start">
             <p className="eyebrow text-gold">How it works</p>
             <h2 className="section-title mt-5 text-forest">Five steps. All online. All simple.</h2>
-            <p className="mt-4 max-w-[280px] text-[13px] leading-[1.6] text-charcoal/75">A clear path from joining the waitlist to managing an allocated gold holding when access becomes available.</p>
+            <p className="mt-4 max-w-[280px] text-[13px] leading-[1.6] text-charcoal/75">A clear path from joining the waitlist to managing gold fully backed in the vault when access becomes available.</p>
           </div>
 
-          <div aria-label="Five-step gold allocation process">
+          <div aria-label="Five-step gold buying process">
             {/* Tablet & desktop: all five steps in one horizontal row */}
             <div className="hidden md:block">
               <div className="grid grid-cols-5 gap-3 lg:gap-6" role="tablist" aria-label="Select a process step">
@@ -491,7 +491,7 @@ function Index() {
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
           <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
-          <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">allocate</em> only what<br />you want.</h2><List items={["Start from as little as $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
+          <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">buy</em> only what<br />you want.</h2><List items={["Start with $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
 

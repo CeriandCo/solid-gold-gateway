@@ -49,16 +49,16 @@ export const Route = createFileRoute("/gifting")({
   loader: () => getGiftCardOffering(),
   head: () => ({
     meta: [
-      { title: "Gift Real Gold — SQOOT Pure" },
+      { title: "Gift Fine Gold — SQOOT Pure" },
       {
         name: "description",
         content:
-          "Celebrate life's most precious moments with real gold, thoughtfully and beautifully delivered by SQOOT Pure.",
+          "Celebrate life's most precious moments with fine gold, thoughtfully and beautifully delivered by SQOOT Pure.",
       },
-      { property: "og:title", content: "Gift Real Gold — SQOOT Pure" },
+      { property: "og:title", content: "Gift Fine Gold — SQOOT Pure" },
       {
         property: "og:description",
-        content: "A thoughtful, meaningful and timeless gift of real gold.",
+        content: "A thoughtful, meaningful and timeless gift of fine gold.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/gifting" },
@@ -95,7 +95,7 @@ const features: Feature[] = [
   {
     icon: ShieldCheck,
     title: "Real & Secure",
-    description: "Real gold, fully insured in U.S. vaults",
+    description: "Fine gold, fully insured in U.S. vaults",
   },
   {
     icon: HandHeart,
@@ -107,7 +107,7 @@ const features: Feature[] = [
   {
     icon: Globe2,
     title: "Vaulted Gifting",
-    description: "Gift allocated gold held securely in insured U.S. vaults",
+    description: "Gift gold fully backed in the vault, held securely in insured U.S. vaults",
   },
 ];
 
@@ -121,7 +121,7 @@ const occasions = [
 ];
 
 const assurances: Feature[] = [
-  { icon: Gem, title: "100% Real Gold", description: "Allocated, audited and insured" },
+  { icon: Gem, title: "100% Fine Gold", description: "Fully backed in the vault, audited and insured" },
   {
     icon: ShieldCheck,
     title: "Secure Vaulted",
@@ -140,7 +140,7 @@ const assurances: Feature[] = [
   {
     icon: Send,
     title: "Simple to Gift",
-    description: "Allocated to the recipient — no international shipping",
+    description: "Fully backed in the vault for the recipient — no international shipping",
   },
 ];
 
@@ -332,7 +332,7 @@ function GiftingNewPage() {
         }
         body={
           <>
-            Thoughtful, meaningful and timeless. Real gold that marks life&apos;s most precious
+            Thoughtful, meaningful and timeless. Fine gold that marks life&apos;s most precious
             moments.
           </>
         }
@@ -595,7 +595,7 @@ function GiftingNewPage() {
               More than a gift.<span>A legacy of love.</span>
             </h2>
             <p data-reveal>
-              Give real gold that will be cherished today and passed down through generations.
+              Give fine gold that will be cherished today and passed down through generations.
             </p>
             <GoldButton href="#top" className="mt-8" data-reveal>
               Start Gifting Gold

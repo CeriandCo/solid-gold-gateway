@@ -16,12 +16,12 @@ export const Route = createFileRoute("/trust-center")({
       {
         name: "description",
         content:
-          "Independent audits, allocated storage and independent legal counsel: see how SQOOT Pure verifies and publishes proof of your gold ownership.",
+          "Independent audits, storage fully backed in the vault and independent legal counsel: see how SQOOT Pure verifies and publishes proof of your gold ownership.",
       },
       { property: "og:title", content: "Trust Center — SQOOT Pure Verified Gold Ownership" },
       {
         property: "og:description",
-        content: "Transparent ownership. Verified gold. Always in your name.",
+        content: "Transparent ownership. Verified gold. Always fully backed in the vault.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,7 +39,7 @@ const TC = {
     headingLine1: "Built for trust.",
     headingLine2Lead: "Backed by ",
     headingLine2Gold: "verification.",
-    body: ["Transparent ownership. Verified gold.", "Always in your name."],
+    body: ["Transparent ownership. Verified gold.", "Always fully backed in the vault."],
   },
   pillars: [
     {
@@ -66,11 +66,11 @@ const TC = {
   verification: {
     titleTop: "Your gold.",
     titleGold: "Verified. Always.",
-    body: "Independent vault audits every 6 months. Every ounce of your gold is verified, allocated, and accounted for — and the full report is published publicly, every time.",
+    body: "Independent vault audits every 6 months. Every ounce of your gold is verified, fully backed in the vault, and accounted for — and the full report is published publicly, every time.",
     checklist: [
       "Independent third-party auditor",
       "Published every 6 months",
-      "Allocated — never pooled",
+      "Fully backed in the vault — never pooled",
       "Independent legal counsel on standby",
     ],
   },
@@ -125,7 +125,7 @@ const TC = {
       {
         icon: "vault" as const,
         title: "Physical vault inspection",
-        body: "The auditor inspects the vault and matches each holding to its allocation record.",
+        body: "The auditor inspects the vault and matches each holding to its vault record.",
       },
       {
         icon: "signed" as const,
@@ -154,7 +154,7 @@ const TC = {
       {
         icon: "landmark" as const,
         label: "Client action:",
-        value: "Contact directly, present verified identity, claim allocated holdings",
+        value: "Contact directly, present verified identity, claim holdings fully backed in the vault",
       },
     ],
     disclosureLead: "Counsel name, firm, and contact details are disclosed to verified SQOOT Pure account holders upon written request. Email ",
@@ -165,8 +165,8 @@ const TC = {
   safeguards: [
     {
       icon: "cube" as const,
-      title: "Allocated storage",
-      body: "All gold held through SQOOT Pure is allocated, in each client's name, and is not co-mingled with other clients' holdings or SQOOT Pure's corporate assets.",
+      title: "Fully backed in the vault",
+      body: "All gold held through SQOOT Pure is fully backed in the vault and is not co-mingled with other clients' holdings or SQOOT Pure's corporate assets.",
     },
     {
       icon: "shieldCheck" as const,

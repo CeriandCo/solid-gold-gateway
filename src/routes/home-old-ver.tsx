@@ -7,16 +7,16 @@ import heroImage from "@/assets/gold-bar-velvet-marble-branded.png";
 export const Route = createFileRoute("/home-old-ver")({
   head: () => ({
     meta: [
-      { title: "SQOOT Pure — Real Gold, Real Ownership" },
+      { title: "SQOOT Pure — Fine Gold, Real Ownership" },
       {
         name: "description",
         content:
-          "Buy physical gold delivered to your door, own fractional gold, or store allocated metal in an insured US vault. Real ownership, your way.",
+          "Buy physical gold delivered to your door, start with $25 in fine gold, or keep it fully backed in an insured US vault. Real ownership, your way.",
       },
-      { property: "og:title", content: "SQOOT Pure — Real Gold, Real Ownership" },
+      { property: "og:title", content: "SQOOT Pure — Fine Gold, Real Ownership" },
       {
         property: "og:description",
-        content: "Physical gold delivered, fractional gold, and insured vault storage — real metal, held in your name.",
+        content: "Physical gold delivered, fractional gold, and insured vault storage — real metal, fully backed in the vault.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,19 +35,19 @@ const paths = [
   {
     icon: Layers,
     title: "Fractional Gold",
-    copy: "Own real gold from $25. Fully allocated, never pooled, always yours.",
+    copy: "Start with $25 in fine gold. Fully backed in the vault, never pooled, always yours.",
     to: "/fractional-gold",
   },
   {
     icon: Warehouse,
     title: "Vault",
-    copy: "Physical metal stored in an insured US vault, allocated in your name.",
+    copy: "Physical metal stored in an insured US vault, fully backed in the vault.",
     to: "/vault",
   },
   {
     icon: Gift,
     title: "Gifting",
-    copy: "Give real gold. A gift that holds its value long after the moment.",
+    copy: "Give fine gold. A gift that holds its value long after the moment.",
     to: "/gifting",
   },
 ] as const;
@@ -72,13 +72,13 @@ function HomePage() {
               className="mt-5 max-w-[560px] font-display font-semibold text-charcoal"
               style={{ fontSize: "clamp(38px, 4.72vw, 68px)", lineHeight: "1.02", letterSpacing: "-0.025em" }}
             >
-              Real gold.
+              Fine gold.
               <br />
               Real <em className="font-semibold italic text-gold">ownership.</em>
             </h1>
             <p className="mt-6 max-w-[520px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
               Buy physical gold and have it delivered, own it fractionally, or hold it
-              allocated in an insured US vault. However you choose to own it — it’s real,
+              fully backed in an insured US vault. However you choose to own it — it’s real,
               and it’s yours.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-8">
@@ -95,7 +95,7 @@ function HomePage() {
         <div className={STD}>
           <Eyebrow>Ways to own</Eyebrow>
           <GoldRule />
-          <h2 className="section-title mt-5 text-charcoal">Four paths to real gold.</h2>
+          <h2 className="section-title mt-5 text-charcoal">Four paths to fine gold.</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {paths.map(({ icon: Icon, title, copy, to }) => (
               <Link

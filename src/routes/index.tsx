@@ -30,17 +30,17 @@ import { useWaitlistForm } from "@/hooks/use-waitlist-form";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SQOOT Pure — Own Real Gold, Three Ways" },
+      { title: "SQOOT Pure — Own Fine Gold, Three Ways" },
       {
         name: "description",
         content:
-          "Buy a physical coin delivered home, buy fractional gold from ½ oz, or store allocated gold in insured U.S. vaults. Real ownership, at live spot pricing.",
+          "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
       },
       { property: "og:title", content: "SQOOT Pure — Own Real Gold, Three Ways" },
       {
         property: "og:description",
         content:
-          "Coins delivered home, fractional gold, or insured vault storage. Allocated, audited, redeemable on demand.",
+          "Start with $25, keep it in the vault, or have coins delivered home. Fully backed in the vault, audited, redeemable on demand.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -74,13 +74,13 @@ const HERO_SPOT = {
 const PROOF_ITEMS = [
   {
     number: "01",
-    title: "Real, physical gold",
+    title: "Fine, physical gold",
     line: "Coins and bullion — never a token, note or ETF.",
   },
   {
     number: "02",
-    title: "Held in your name",
-    line: "Allocated to you and shown on every statement.",
+    title: "Fully backed in the vault",
+    line: "Shown in My Gold and on every statement.",
   },
   {
     number: "03",
@@ -109,21 +109,21 @@ const OWNERSHIP_WAYS = [
   },
   {
     number: "02",
-    title: "Buy by weight",
+    title: "Start with $25",
     description:
-      "Own from 1/10 oz. Enter an amount in dollars or ounces — your price holds for 90 seconds at checkout.",
+      "Buy fine gold in dollars, starting at $25. Add more anytime.",
     linkLabel: "How fractional works",
     to: "/fractional-gold",
     background: weightCardBackground.url,
-    backgroundAlt: "Gold bars arranged by weight on cream linen",
+    backgroundAlt: "Gold bars arranged on cream linen",
     screen: weightPhoneScreen.url,
-    screenAlt: "SQOOT Pure app buy-by-weight screen",
+    screenAlt: "SQOOT Pure app buy screen",
   },
   {
     number: "03",
     title: "Keep it in the vault",
     description:
-      "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request.",
+      "Insured storage, fully backed in the vault, with statements, fees shown upfront and delivery on request.",
     linkLabel: "See the vault",
     to: "/vault",
     background: vaultCardBackground.url,
@@ -139,8 +139,8 @@ const APP_FEATURES_LEFT = [
     body: "Spot from global markets plus a premium you see before you confirm — never after.",
   },
   {
-    title: "Held in your name",
-    body: "Allocated metal with serial-level records and a statement every month.",
+    title: "Fully backed in the vault",
+    body: "See your gold balance and history in My Gold, with monthly statements.",
   },
 ] as const;
 
@@ -151,7 +151,7 @@ const APP_FEATURES_RIGHT = [
   },
   {
     title: "Gift in a minute",
-    body: "Send a coin or a gram with a note. They see the gift, not the price.",
+    body: "Send a coin or a dollar amount of gold with a note. They see the gift, not the price.",
   },
 ] as const;
 
@@ -169,7 +169,7 @@ const HOW_IT_WORKS_STEPS = [
   {
     number: "03",
     title: "Buy your way",
-    body: "A coin, a weight, or both. Spot, premium and fees are shown before you confirm.",
+    body: "Start with $25, a coin, or both. Spot, premium and fees are shown before you confirm.",
   },
   {
     number: "04",
@@ -202,13 +202,13 @@ const GIFT_TILES = [
 const TRUST_SAFEGUARDS = [
   {
     title: "Sourced",
-    body: "Supplied through Dillon Gage, a precious-metals wholesaler and refiner applying OECD-aligned due diligence.",
+    body: "Sourced from established precious-metals wholesalers applying OECD-aligned due diligence.",
     status: "confirmed",
     statusLabel: "Confirmed",
   },
   {
     title: "Stored",
-    body: "Allocated, segregated storage with a professional vault operator, recorded in your name.",
+    body: "Segregated storage with a professional vault operator, fully backed in the vault.",
     status: "pending",
     statusLabel: "Partner named before launch",
   },
@@ -248,7 +248,7 @@ const AURUM_ARTICLES = [
     image: aurumArticleGuide.url,
     alt: "Gold bars and a tagged bar arranged on dark green velvet",
     label: "GUIDE · 6 MIN",
-    title: "Allocated or pooled: what you actually own",
+    title: "Fully backed or pooled: what you actually own",
     excerpt: "Two ways to hold vaulted gold, and the questions to ask before you choose.",
     destination: "learn",
   },
@@ -261,11 +261,11 @@ const HOME_FAQS = [
   },
   {
     question: "Is the gold real?",
-    answer: "Yes. Sqoot is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
+    answer: "Yes. Sqoot is built around fine physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
   },
   {
     question: "Where does the gold come from?",
-    answer: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually.",
+    answer: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually.",
   },
   {
     question: "Do I need to pay or share bank details to join?",
@@ -440,22 +440,24 @@ function Index() {
 
         <div className="home-hero-inner site-container">
           <div className="home-hero-copy">
-            <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p>
+            <p className="home-hero-eyebrow">BUY · VAULT · SELL</p>
             <h1 className="home-hero-title">
-              <span>Own gold</span>
-              <span>the way it was</span>
-              <em>meant to be.</em>
+              <span>Build fine gold,</span>
+              <em>grain by grain.</em>
             </h1>
             <p className="home-hero-body">
-              Two clear paths: buy, vault and sell your gold from the app — or buy a coin or bar and have it delivered to your door. Priced live, held in your name.
+              Start with just $25. Every dollar is backed by fine physical gold in our vault. Add more anytime, sell when you want, or use your gold toward a coin at the live price.
             </p>
 
             <CtaRow className="home-hero-ctas mt-7">
-              <GoldButton to="/early-access">Join the waitlist</GoldButton>
+              <GoldButton href="#cta">Start with $25</GoldButton>
               <GoldButton href="#how-it-works" variant="secondary" icon="none">
                 How it works
               </GoldButton>
             </CtaRow>
+            <p className="home-hero-body mt-4 text-sm">
+              Fine physical gold · Fully backed in the vault · Live prices, no hidden fees
+            </p>
 
             <div className="home-hero-stores" aria-label="Mobile apps coming soon">
               {(["App Store", "Google Play"] as const).map((store) => (
@@ -470,7 +472,7 @@ function Index() {
           <div className="home-hero-phone-stage">
             <img
               src={heroPhone.url}
-              alt="SQOOT Pure app showing allocated vaulted gold holdings"
+              alt="SQOOT Pure app showing My Gold vaulted gold balance"
               width={611}
               height={1262}
               className="home-hero-phone"
@@ -519,12 +521,12 @@ function Index() {
               <div className="home-three-ways-intro">
                 <p className="home-three-ways-eyebrow">THREE WAYS TO OWN</p>
                 <h2>
-                  Start with a coin,
+                  Start with $25,
                   <br />
-                  or buy gold by weight.
+                  or start with a coin.
                 </h2>
                 <p className="home-three-ways-copy">
-                  Pick the way that suits you today. Switch any time — everything you own sits in one account, in your name.
+                  Pick the way that suits you today. Switch any time — everything you own sits in one account, fully backed in the vault.
                 </p>
               </div>
               <Link to="/pricing" hash="pricing-compare" className="home-three-ways-link">
@@ -693,7 +695,7 @@ function Index() {
                   that matter.
                 </h2>
                 <p className="home-gift-copy">
-                  Send a coin or a few grams with a note, straight from the app. They open a gift — not a price tag.
+                  Send a coin or a dollar amount of gold with a note, straight from the app. They open a gift — not a price tag.
                 </p>
               </div>
               <Link to="/gifting" className="home-three-ways-link">

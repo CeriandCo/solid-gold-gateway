@@ -69,7 +69,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "With professionally vaulted physical gold, it is important to understand exactly how that gold is held. Is it allocated to owners? Who is the custodian? How is it insured? Is it independently audited? And what rights do you have to sell or take delivery?"
+      text: "With professionally vaulted physical gold, it is important to understand exactly how that gold is held. Is it fully backed in the vault for owners? Who is the custodian? How is it insured? Is it independently audited? And what rights do you have to sell or take delivery?"
     },
     {
       type: "p",
@@ -93,7 +93,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "Either way, as an everyday ETF holder, what you own is the ETF security, not a gold bar sitting in your name."
+      text: "Either way, as an everyday ETF holder, what you own is the ETF security, not a gold bar fully backed in the vault for you."
     },
     {
       type: "p",
@@ -310,7 +310,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "blockquote",
-      text: "Is specific physical gold allocated to customers, or is my purchase simply represented as a balance on an account?"
+      text: "Is specific physical gold fully backed in the vault for customers, or is my purchase simply represented as a balance on an account?"
     },
     {
       type: "p",
@@ -458,11 +458,11 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "ul",
-      text: "who operates the vaultwhere the gold is storedwhether your gold is allocatedwhether customer gold is kept separate from company assetswhat insurance applieswhether holdings are independently auditedwhether you can request physical deliverywhat happens to your gold if the provider stops operating",
+      text: "who operates the vaultwhere the gold is storedwhether your gold is fully backed in the vaultwhether customer gold is kept separate from company assetswhat insurance applieswhether holdings are independently auditedwhether you can request physical deliverywhat happens to your gold if the provider stops operating",
       items: [
         "who operates the vault",
         "where the gold is stored",
-        "whether your gold is allocated",
+        "whether your gold is fully backed in the vault",
         "whether customer gold is kept separate from company assets",
         "what insurance applies",
         "whether holdings are independently audited",
@@ -935,12 +935,12 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "ul",
-      text: "Is the recipient receiving ownership of physical gold or exposure to the gold price through another financial product?What type and purity of gold is being purchased?Where is the gold stored?Is it allocated or pooled?Is the gold independently audited?Is the stored gold insured?What fees apply when buying, holding, selling or taking delivery?Can the owner sell their gold if they choose?Can physical delivery be requested, and under what conditions?How does the provider verify the identity of gift recipients and transfer ownership?",
+      text: "Is the recipient receiving ownership of physical gold or exposure to the gold price through another financial product?What type and purity of gold is being purchased?Where is the gold stored?Is it fully backed in the vault or pooled?Is the gold independently audited?Is the stored gold insured?What fees apply when buying, holding, selling or taking delivery?Can the owner sell their gold if they choose?Can physical delivery be requested, and under what conditions?How does the provider verify the identity of gift recipients and transfer ownership?",
       items: [
         "Is the recipient receiving ownership of physical gold or exposure to the gold price through another financial product?",
         "What type and purity of gold is being purchased?",
         "Where is the gold stored?",
-        "Is it allocated or pooled?",
+        "Is it fully backed in the vault or pooled?",
         "Is the gold independently audited?",
         "Is the stored gold insured?",
         "What fees apply when buying, holding, selling or taking delivery?",

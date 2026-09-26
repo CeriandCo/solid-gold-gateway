@@ -210,7 +210,7 @@ function EarlyAccessPage() {
               <div className="rounded-[8px] border border-beige bg-forest-deep px-10 py-12 text-warm-white">
                 <img src={sqootPureMandala.url} alt="" className="h-16 w-16 object-contain" />
                 <p className="mt-8 font-display text-[1.75rem] font-medium leading-[1.15] text-gold-soft">
-                  Real gold, real ownership — launching soon.
+                  Fine gold, real ownership — launching soon.
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-warm-white/75">
                   Buy physical gold from US$25, keep it securely stored in insured U.S. vaults, or

@@ -31,16 +31,16 @@ import laptopImage from "@/assets/walkthrough-laptop.jpg";
 export const Route = createFileRoute("/vault")({
   head: () => ({
     meta: [
-      { title: "Vaulted Gold Held in Your Name | SQOOT Pure" },
+      { title: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure" },
       {
         name: "description",
         content:
-          "Physical gold stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose.",
+          "Fine physical gold, fully backed in an insured US vault — verify it, redeem it, or take delivery whenever you choose.",
       },
-      { property: "og:title", content: "Vaulted Gold Held in Your Name | SQOOT Pure" },
+      { property: "og:title", content: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure" },
       {
         property: "og:description",
-        content: "Insured US vault storage with individual allocation, pro-rata billing and redemption on your schedule.",
+        content: "Insured US vault storage, fully backed in the vault, with pro-rata billing and redemption on your schedule.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -51,8 +51,8 @@ export const Route = createFileRoute("/vault")({
 
 
 const faqs = [
-  ["Is this actually real gold?", "Yes. Every allocation is backed by physical metal held at an insured depository in your name."],
-  ["What happens if SQOOT disappears?", "Your metal is held at IDS in your name, not on our balance sheet, and remains yours."],
+  ["Is this actually fine gold?", "Yes. Every dollar is backed by fine physical metal held at an insured depository, fully backed in the vault."],
+  ["What happens if SQOOT disappears?", "Your metal is held at IDS, fully backed in the vault, not on our balance sheet, and remains yours."],
   ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
   ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
   ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
@@ -134,14 +134,14 @@ function Index() {
         title={
           <>
             <span>Your gold.</span>
-            <span>Held in your name.</span>
+            <span>Fully backed in the vault.</span>
           </>
         }
         body={
           <>
             <span>Real, insured, and yours to redeem whenever you choose.</span>
             <span>
-              Physical gold, stored in an insured US vault, allocated to you individually. Not a promise on
+              Fine physical gold, stored in an insured US vault, fully backed in the vault. Not a promise on
               a screen. A specific holding you can verify and reach.
             </span>
           </>
@@ -171,7 +171,7 @@ function Index() {
           {[
             [ShieldCheck, "IDS custody", ["Third-party depository", "built for this purpose."]],
             [Umbrella, "Insured storage", ["Full value, all risk", "insurance coverage."]],
-            [UserRound, "Individually allocated", ["Not pooled. Never", "commingled."]],
+            [UserRound, "Fully backed in the vault", ["Not pooled. Never", "commingled."]],
           ].map(([Icon, title, lines], index) => {
             const ProofIcon = Icon as typeof ShieldCheck;
             return (
@@ -198,24 +198,24 @@ function Index() {
       </section>
 
 
-      {/* Allocation diagram */}
+      {/* Vault diagram */}
       <section data-reveal className="bg-background pb-0 pt-16 sm:pt-20">
         <div className={WIDE}>
           <div className="grid gap-10 rounded-[10px] bg-forest-deep p-8 text-[#F8F5F1] lg:min-h-[358px] lg:grid-cols-[330px_1fr] lg:p-10">
             <div className="flex flex-col">
-              <Eyebrow>Allocation, not pooling</Eyebrow>
+              <Eyebrow>Fully backed, not pooled</Eyebrow>
               <GoldRule />
               <h2 className="section-title mt-5 text-[#F8F5F1]">
-                One allocation.
+                One holding.
                 <br />
                 One customer.
               </h2>
               <p className="compact-copy mt-4 max-w-[260px] text-[#C8CFC9]">
                 Your gold is held at IDS and
                 <br />
-                recorded in your name. Your
+                fully backed in the vault. Your
                 <br />
-                allocation is never mixed with
+                gold is never mixed with
                 <br />
                 someone else’s.
               </p>
@@ -223,7 +223,7 @@ function Index() {
                 href="#how-it-works"
                 className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-gold-soft underline underline-offset-4"
               >
-                How allocation works <ArrowRight size={15} strokeWidth={1.5} />
+                How the vault works <ArrowRight size={15} strokeWidth={1.5} />
               </a>
             </div>
 
@@ -246,7 +246,7 @@ function Index() {
                 </div>
                 <ThinArrow className="hidden w-10 md:block" />
                 <div className="text-center">
-                  <p className="eyebrow text-[11px] text-[#F8F5F1]">Individual allocations</p>
+                  <p className="eyebrow text-[11px] text-[#F8F5F1]">Individual holdings</p>
                   <p className="mt-1 text-[12px] text-[#9FAAA2]">In customer names</p>
                   <div className="mt-3 space-y-2">
                     {[
@@ -367,7 +367,7 @@ function Index() {
                     <br />
                     insured US depository,
                     <br />
-                    allocated in your name and
+                    fully backed in the vault and
                     <br />
                     ready to redeem.
                   </>
@@ -609,7 +609,7 @@ function Index() {
               <Eyebrow>Founder walkthrough</Eyebrow>
               <h2 className="card-title mt-2 text-[#F8F5F1]">See it, don’t just read about it.</h2>
               <p className="mt-2 max-w-[520px] text-[14px] leading-[1.5] text-[#C8CFC9]">
-                Watch an actual vault record, an allocation certificate and a redemption request from start to finish.
+                Watch an actual vault record, a holding certificate and a redemption request from start to finish.
                 Nothing staged.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-7">

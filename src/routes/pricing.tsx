@@ -58,8 +58,8 @@ const trustItems = [
   },
   {
     icon: User,
-    title: "Allocated to you",
-    text: "Your metal is recorded in your name",
+    title: "Fully backed in the vault",
+    text: "Your gold is shown in My Gold",
   },
   {
     icon: Gift,
@@ -76,7 +76,7 @@ type FaqItem = {
 const faqItems: readonly FaqItem[] = [
   {
     question: "What fees do I pay?",
-    answer: `It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Allocated metal: a ${vaultPurchaseFee} one-off purchase fee, then storage and insurance free for your first ${freeStorageMonths} months and ${vaultStorageFee} of value per year after that, charged pro-rata for the exact days you hold.`,
+    answer: `It depends on what you buy. Coins and bars: no purchase fee and no storage fee — just the product price and insured shipping. Vaulted gold: a ${vaultPurchaseFee} one-off purchase fee, then storage and insurance free for your first ${freeStorageMonths} months and ${vaultStorageFee} of value per year after that, charged pro-rata for the exact days you hold.`,
   },
   {
     question: "How is the purchase price calculated?",
@@ -84,9 +84,9 @@ const faqItems: readonly FaqItem[] = [
       "Weight multiplied by the live spot price at the moment your order is placed, plus a product premium that reflects minting, refining and handling. The premium varies by product and is always shown before you confirm.",
   },
   {
-    question: 'What does "allocated metal" mean?',
+    question: 'What does "fully backed in the vault" mean?',
     answer:
-      "When your purchase completes, a specific quantity of metal is allocated to you and recorded in your name in our ledger, which is reconciled to the depository. It is your property, held in custody for you — not a claim on the company, and never lent, pledged or used as collateral.",
+      "When your purchase completes, a specific quantity of fine gold is recorded to you in our ledger and shown in My Gold, fully backed in the vault and reconciled to the depository. It is your property, held in custody for you — not a claim on the company, and never lent, pledged or used as collateral.",
   },
   {
     question: "How are storage fees charged?",
@@ -99,12 +99,12 @@ const faqItems: readonly FaqItem[] = [
   {
     question: "Can I take physical delivery?",
     answer:
-      "Yes. You can convert your allocated metal into a coin or bar and have it shipped, insured, at any time. Delivery cost depends on location and weight and is shown before you confirm.",
+      "Yes. You can use your gold toward a coin at the live price and have it shipped, insured, at any time. Delivery cost depends on location and weight and is shown before you confirm.",
   },
   {
     question: "Can I gift gold?",
     answer:
-      "Yes. Coins and bars can be shipped directly to a recipient with premium gift packaging, shown at checkout. Allocated metal can be transferred as a gift on request.",
+      "Yes. Coins and bars can be shipped directly to a recipient with premium gift packaging, shown at checkout. Vaulted gold can be transferred as a gift on request.",
   },
   {
     question: "Are there any other fees?",
@@ -168,11 +168,11 @@ function PricingPage() {
     },
     {
       value: `${(PRICING.vault.purchaseFeeRate * 100).toFixed(2)}%`,
-      caption: "one-off purchase fee on allocated metal",
+      caption: "one-off purchase fee on vaulted gold",
     },
     {
       value: `${(PRICING.vault.storageRatePerYear * 100).toFixed(2)}%`,
-      caption: "a year to store allocated metal — year one free",
+      caption: "a year to store vaulted gold — year one free",
     },
   ];
 
@@ -194,7 +194,7 @@ function PricingPage() {
       label: "Storage & insurance",
       value: `Free for ${freeStorageMonths} months, then ${vaultStorageFee} a year (min. ${currencyPrefix}${PRICING.vault.storageMinimumPerYearUsd})`,
     },
-    { label: "Delivery", value: "Convert to a coin or bar and ship any time" },
+    { label: "Delivery", value: "Use your gold toward a coin at the live price and ship any time" },
     { label: "Gifting", value: "Transfer as a gift on request" },
   ] as const;
 
@@ -273,7 +273,7 @@ function PricingPage() {
                           </div>
                           <span className="pricing-v2-table-title">Buy, vault and sell</span>
                           <span className="pricing-v2-table-subtitle">
-                            Allocated metal, recorded in your name.
+                            Fine gold, fully backed in the vault.
                           </span>
                         </th>
                       </tr>
@@ -307,7 +307,7 @@ function PricingPage() {
                       <tr data-reveal>
                         <th scope="row">Delivery</th>
                         <td>Insured shipping, shown at checkout</td>
-                        <td>Convert to a coin or bar and ship any time</td>
+                        <td>Use your gold toward a coin at the live price and ship any time</td>
                       </tr>
                       <tr data-reveal>
                         <th scope="row">{sharedComparisonRows[1].label}</th>
@@ -352,7 +352,7 @@ function PricingPage() {
                     title="Buy and take delivery"
                   />
                   <ComparisonCard
-                    description="Allocated metal, recorded in your name."
+                    description="Fine gold, fully backed in the vault."
                     images={[vaultThumbnailAsset.url]}
                     rows={vaultRows}
                     title="Buy, vault and sell"

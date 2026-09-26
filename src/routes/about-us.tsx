@@ -11,7 +11,7 @@ export const Route = createFileRoute("/about-us")({
       { title: "About SQOOT Pure — Built on Gold Expertise" },
       {
         name: "description",
-        content: "Four decades of precious metals expertise, built into a transparent platform for owning real, allocated and insured gold.",
+        content: "Four decades of precious metals expertise, built into a transparent platform for owning fine gold, fully backed in the vault and insured.",
       },
       { property: "og:title", content: "About SQOOT Pure — Built on Gold Expertise" },
       {
@@ -83,15 +83,15 @@ function Mandala({ className = "" }: { className?: string }) {
 }
 
 const processItems: Array<{ icon: IconName; title: string; body: string }> = [
-  { icon: "bank", title: "Dillon Gage", body: "Sourced from established suppliers with a long standing presence in the precious metals industry." },
-  { icon: "vault", title: "IDS", body: "Allocated, vaulted, and held in independently operated, professional vaults with secure custody." },
+  { icon: "bank", title: "Sourced", body: "Sourced from established precious-metals wholesalers with a long standing presence in the precious metals industry." },
+  { icon: "vault", title: "IDS", body: "Fully backed in the vault, and held in independently operated, professional vaults with secure custody." },
   { icon: "shield", title: "Lloyd's of London", body: "Your gold is insured by Lloyd's of London." },
 ];
 
 const ownershipItems: Array<{ icon: IconName; title: string; body: string; featured?: boolean }> = [
-  { icon: "coinbar", title: "Coins & Bars", body: "Own specific, identifiable gold in the form of coins or bars. Fully allocated and withdrawable." },
-  { icon: "bank", title: "Vaulted Gold", body: "Allocated gold securely held in professional vaults. Redeemable on your terms.", featured: true },
-  { icon: "cubes", title: "Fractional Gold", body: "Own a precise fraction of allocated gold. Access real exposure with flexible entry." },
+  { icon: "coinbar", title: "Coins & Bars", body: "Own specific, identifiable gold in the form of coins or bars. Fully backed in the vault and withdrawable." },
+  { icon: "bank", title: "Vaulted Gold", body: "Gold fully backed in the vault, securely held in professional vaults. Redeemable on your terms.", featured: true },
+  { icon: "cubes", title: "Fractional Gold", body: "Start with $25 in fine gold, fully backed in the vault. Access real exposure with flexible entry." },
 ];
 
 function AboutPage() {
@@ -105,7 +105,7 @@ function AboutPage() {
         titleId="about-title"
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
-        body={<>Our experience became SQOOT Pure: a simpler, more transparent way to own real gold.</>}
+        body={<>Our experience became SQOOT Pure: a simpler, more transparent way to own fine gold.</>}
         actions={<GoldButton href="/trust-center#protection">How we protect ownership</GoldButton>}
         imageSrc={aboutHeroBg.url}
         imageAlt="SQOOT Pure gold bar resting on dark green velvet"
