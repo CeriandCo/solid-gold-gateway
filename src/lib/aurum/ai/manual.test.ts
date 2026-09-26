@@ -155,3 +155,35 @@ describe("manual draft: strict number-to-label attribution", () => {
     expect((await run("Gold stood at 4,312.50 USD/oz, with a 24h change of +0.68% against a previous close of 4,283.60 USD/oz, driven by weaker USD and inflation concerns.")).ok).toBe(false);
   });
 });
+
+describe("manual draft: names in word facts are preserved", () => {
+  const facts = [
+    { label: "24h change", value: "+0.68%" },
+    { label: "Key driver", value: "Investors awaiting the Fed's upcoming policy meeting" },
+  ];
+  const make = (text: string) => ({
+    title: "Gold edges up ahead of a policy meeting",
+    summary: "A modest move higher as markets look to the meeting ahead.",
+    paragraphs: [
+      { kind: "context", factId: null, subject: null, metric: null, direction: null, text: "A modest move rather than a break from the pattern." },
+      { kind: "fact", factId: "f1,f2", subject: "gold", metric: "24h change", direction: "up", text },
+    ],
+  });
+  const run = (text: string) =>
+    generateManualDraft({ brief: "", facts }, { generate: async () => ({ ok: true, raw: make(text), usage }), record: vi.fn() });
+
+  it("extracts names, skipping the sentence-initial capital", async () => {
+    const { namesInWordFact } = await import("./manual.server");
+    expect(namesInWordFact("Investors awaiting the Fed's upcoming policy meeting")).toEqual(["Fed"]);
+    expect(namesInWordFact("Weaker USD, inflation concerns")).toEqual(["USD"]);
+    expect(namesInWordFact("4,312.50 USD/oz")).toEqual([]);
+  });
+
+  it("rejects a draft that generalises the named institution away", async () => {
+    expect((await run("Gold posted a 24h change of +0.68%, with investors awaiting an upcoming policy meeting cited as the key driver.")).ok).toBe(false);
+  });
+
+  it("accepts ordinary rephrasing that keeps the name", async () => {
+    expect((await run("Gold posted a 24h change of +0.68% as investors wait for the Fed's upcoming policy meeting, the key driver.")).ok).toBe(true);
+  });
+});
