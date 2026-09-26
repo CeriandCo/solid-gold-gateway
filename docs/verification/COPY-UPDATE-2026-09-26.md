@@ -1,0 +1,420 @@
+# COPY-UPDATE-2026-09-26
+
+Text-only copy update per uploaded brief. Layout, colours, fonts, images and brand name unchanged.
+
+## Gates (raw)
+- `bunx tsgo --noEmit`: no output (pass)
+- `bun run test`: Tests 724 passed (724)
+- `bun run build`: completed (nitro build OK)
+
+## Browser check (homepage)
+```
+375 scrollWidth 375 cards ['Start with $25', 'Keep it in the vault', 'Coins, delivered home'] how<gift True
+768 scrollWidth 768 cards [same] how<gift True
+1440 scrollWidth 1440 cards [same] how<gift True
+hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with just $25. ... | Start with $25 | How it works | Fine physical gold · Fully backed in the vault · Live prices, no hidden fees
+```
+
+## Not changed (flagged)
+- Words baked into images (app screenshots show 'Allocated holdings', 'Buy by weight', 'My vault', gram amounts): images were not to be changed.
+- Coin sizes (1 oz … 1/10 oz) kept per client answer.
+- 'Portfolio' in Learn ETF articles and 'Portfolio Diversifier' benefit: refer to investment portfolios, not the balance screen.
+- 'Dillon Gage' remains only in internal code comments of price-feed endpoints (not shown to visitors).
+- '10g' in an image alt on the unused old gifting page describes the pictured bar.
+- Gifting section was already below How It Works; no move needed.
+- Homepage three-ways cards reordered to Start with $25 / vault / coins (text + order only).
+
+## Every sentence changed
+
+- `src/routes/index.tsx`
+  - OLD: "SQOOT Pure — Own Real Gold, Three Ways"
+  - NEW: "SQOOT Pure — Own Fine Gold, Three Ways"
+- `src/routes/index.tsx`
+  - OLD: "Buy a physical coin delivered home, buy fractional gold from ½ oz, or store allocated gold in insured U.S. vaults. Real ownership, at live spot pricing."
+  - NEW: "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees."
+- `src/routes/index.tsx`
+  - OLD: "Coins delivered home, fractional gold, or insured vault storage. Allocated, audited, redeemable on demand."
+  - NEW: "Start with $25, keep it in the vault, or have coins delivered home. Fully backed in the vault, audited, redeemable on demand."
+- `src/routes/index.tsx`
+  - OLD: title: "Real, physical gold"
+  - NEW: title: "Fine, physical gold"
+- `src/routes/index.tsx`
+  - OLD: title: "Held in your name", line: "Allocated to you and shown on every statement."
+  - NEW: title: "Fully backed in the vault", line: "Shown in My Gold and on every statement."
+- `src/routes/index.tsx`
+  - OLD: title: "Buy by weight", description: "Own from 1/10 oz. Enter an amount in dollars or ounces — your price holds for 90 seconds at checkout.",
+  - NEW: title: "Start with $25", description: "Buy fine gold in dollars, starting at $25. Add more anytime.",
+- `src/routes/index.tsx`
+  - OLD: backgroundAlt: "Gold bars arranged by weight on cream linen"
+  - NEW: backgroundAlt: "Gold bars arranged on cream linen"
+- `src/routes/index.tsx`
+  - OLD: screenAlt: "SQOOT Pure app buy-by-weight screen"
+  - NEW: screenAlt: "SQOOT Pure app buy screen"
+- `src/routes/index.tsx`
+  - OLD: "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request."
+  - NEW: "Insured storage, fully backed in the vault, with statements, fees shown upfront and delivery on request."
+- `src/routes/index.tsx`
+  - OLD: title: "Held in your name", body: "Allocated metal with serial-level records and a statement every month."
+  - NEW: title: "Fully backed in the vault", body: "See your gold balance and history in My Gold, with monthly statements."
+- `src/routes/index.tsx`
+  - OLD: body: "Send a coin or a gram with a note. They see the gift, not the price."
+  - NEW: body: "Send a coin or a dollar amount of gold with a note. They see the gift, not the price."
+- `src/routes/index.tsx`
+  - OLD: body: "A coin, a weight, or both. Spot, premium and fees are shown before you confirm."
+  - NEW: body: "Start with $25, a coin, or both. Spot, premium and fees are shown before you confirm."
+- `src/routes/index.tsx`
+  - OLD: "Supplied through Dillon Gage, a precious-metals wholesaler and refiner applying OECD-aligned due diligence."
+  - NEW: "Sourced from established precious-metals wholesalers applying OECD-aligned due diligence."
+- `src/routes/index.tsx`
+  - OLD: "Allocated, segregated storage with a professional vault operator, recorded in your name."
+  - NEW: "Segregated storage with a professional vault operator, fully backed in the vault."
+- `src/routes/index.tsx`
+  - OLD: title: "Allocated or pooled: what you actually own"
+  - NEW: title: "Fully backed or pooled: what you actually own"
+- `src/routes/index.tsx`
+  - OLD: "Yes. Sqoot is built around real physical gold held
+  - NEW: "Yes. Sqoot is built around fine physical gold held
+- `src/routes/index.tsx`
+  - OLD: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+  - NEW: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
+- `src/routes/index.tsx`
+  - OLD: <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p> <h1 className="home-hero-title"> <span>Own gold</span> <span>the way it was</span> <em>meant to be.</em> </h1> <p className="home-hero-body"> Two clear paths: buy, vault and sell your gold from the app — or buy a coin or bar and have it delivered to your door. Priced live, held in your name. </p> <CtaRow className="home-hero-ctas mt-7"> <GoldButton to="/early-access">Join the waitlist</GoldButton> <GoldButton href="#how-it-works" variant="secondary" icon="none"> How it works </GoldButton> </CtaRow>
+  - NEW: <p className="home-hero-eyebrow">BUY · VAULT · SELL</p> <h1 className="home-hero-title"> <span>Build fine gold,</span> <em>grain by grain.</em> </h1> <p className="home-hero-body"> Start with just $25. Every dollar is backed by fine physical gold in our vault. Add more anytime, sell when you want, or use your gold toward a coin at the live price. </p> <CtaRow className="home-hero-ctas mt-7"> <GoldButton href="#cta">Start with $25</GoldButton> <GoldButton href="#how-it-works" variant="secondary" icon="none"> How it works </GoldButton> </CtaRow> <p className="home-hero-body mt-4 text-sm"> Fine physical gold · Fully backed in the vault · Live prices, no hidden fees </p>
+- `src/routes/index.tsx`
+  - OLD: alt="SQOOT Pure app showing allocated vaulted gold holdings"
+  - NEW: alt="SQOOT Pure app showing My Gold vaulted gold balance"
+- `src/routes/index.tsx`
+  - OLD: Start with a coin, <br /> or buy gold by weight.
+  - NEW: Start with $25, <br /> or start with a coin.
+- `src/routes/index.tsx`
+  - OLD: everything you own sits in one account, in your name.
+  - NEW: everything you own sits in one account, fully backed in the vault.
+- `src/routes/index.tsx`
+  - OLD: Send a coin or a few grams with a note, straight from the app.
+  - NEW: Send a coin or a dollar amount of gold with a note, straight from the app.
+- `src/routes/fractional-gold.tsx`
+  - OLD: "Fractional Gold Allocation | SQOOT Pure"
+  - NEW: "Fractional Gold | SQOOT Pure"
+- `src/routes/fractional-gold.tsx`
+  - OLD: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees."
+  - NEW: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees."
+- `src/routes/fractional-gold.tsx`
+  - OLD: "A simple, secure way to allocate and own physical gold from $25."
+  - NEW: "A simple, secure way to own fine physical gold. Start with $25."
+- `src/routes/fractional-gold.tsx`
+  - OLD: Once purchased, your physical gold allocation is recorded to your account.
+  - NEW: Once purchased, your gold is fully backed in the vault and shown in My Gold.
+- `src/routes/fractional-gold.tsx`
+  - OLD: summary: "See your allocated gold and its value from your account."
+  - NEW: summary: "See your gold and its value in My Gold."
+- `src/routes/fractional-gold.tsx`
+  - OLD: "Track your allocated gold and its value from your account.
+  - NEW: "Track your gold and its value in My Gold.
+- `src/routes/fractional-gold.tsx`
+  - OLD: Allocation fee: 3.00% of the amount allocated (US$3 per US$100), charged when you purchase and allocate gold to your account.
+  - NEW: Purchase fee: 3.00% of the amount purchased (US$3 per US$100), charged when you purchase gold.
+- `src/routes/fractional-gold.tsx`
+  - OLD: 0.45% of the value of your allocated gold per year
+  - NEW: 0.45% of the value of your vaulted gold per year
+- `src/routes/fractional-gold.tsx`
+  - OLD: At launch, vaulted gold will not convert directly into a coin for delivery.
+  - NEW: At launch, you will not be able to use your vaulted gold toward a coin for delivery.
+- `src/routes/fractional-gold.tsx`
+  - OLD: enter the dollar or gold amount,
+  - NEW: enter the dollar amount (start with $25),
+- `src/routes/fractional-gold.tsx`
+  - OLD: The order will appear in Portfolio and Activity
+  - NEW: The order will appear in My Gold and Activity
+- `src/routes/fractional-gold.tsx`
+  - OLD: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+  - NEW: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
+- `src/routes/fractional-gold.tsx`
+  - OLD: eyebrow="Real Gold. Real Allocation."
+  - NEW: eyebrow="Fine Gold. Fully Backed."
+- `src/routes/fractional-gold.tsx`
+  - OLD: title={<>Gold allocation,<br />made more<br /><em>accessible.</em></>}
+  - NEW: title={<>Fine gold,<br />made more<br /><em>accessible.</em></>}
+- `src/routes/fractional-gold.tsx`
+  - OLD: body={<>Allocate a fraction of physical gold.<br />
+  - NEW: body={<>Start with $25 in fine physical gold.<br />
+- `src/routes/fractional-gold.tsx`
+  - OLD: managing an allocated gold holding when access
+  - NEW: managing gold fully backed in the vault when access
+- `src/routes/fractional-gold.tsx`
+  - OLD: aria-label="Five-step gold allocation process"
+  - NEW: aria-label="Five-step gold buying process"
+- `src/routes/fractional-gold.tsx`
+  - OLD: <em className="comparison-emphasis text-gold">allocate</em> only what
+  - NEW: <em className="comparison-emphasis text-gold">buy</em> only what
+- `src/routes/fractional-gold.tsx`
+  - OLD: "Start from as little as $25"
+  - NEW: "Start with $25"
+- `src/routes/vault.tsx`
+  - OLD: "Vaulted Gold Held in Your Name | SQOOT Pure"
+  - NEW: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure"
+- `src/routes/vault.tsx`
+  - OLD: "Vaulted Gold Held in Your Name | SQOOT Pure"
+  - NEW: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure"
+- `src/routes/vault.tsx`
+  - OLD: "Physical gold stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose."
+  - NEW: "Fine physical gold, fully backed in an insured US vault — verify it, redeem it, or take delivery whenever you choose."
+- `src/routes/vault.tsx`
+  - OLD: "Insured US vault storage with individual allocation, pro-rata billing
+  - NEW: "Insured US vault storage, fully backed in the vault, with pro-rata billing
+- `src/routes/vault.tsx`
+  - OLD: ["Is this actually real gold?", "Yes. Every allocation is backed by physical metal held at an insured depository in your name."]
+  - NEW: ["Is this actually fine gold?", "Yes. Every dollar is backed by fine physical metal held at an insured depository, fully backed in the vault."]
+- `src/routes/vault.tsx`
+  - OLD: "Your metal is held at IDS in your name, not on our balance sheet, and remains yours."
+  - NEW: "Your metal is held at IDS, fully backed in the vault, not on our balance sheet, and remains yours."
+- `src/routes/vault.tsx`
+  - OLD: <span>Held in your name.</span>
+  - NEW: <span>Fully backed in the vault.</span>
+- `src/routes/vault.tsx`
+  - OLD: Physical gold, stored in an insured US vault, allocated to you individually. Not a promise on
+  - NEW: Fine physical gold, stored in an insured US vault, fully backed in the vault. Not a promise on
+- `src/routes/vault.tsx`
+  - OLD: [UserRound, "Individually allocated", ["Not pooled. Never", "commingled."]]
+  - NEW: [UserRound, "Fully backed in the vault", ["Not pooled. Never", "commingled."]]
+- `src/routes/vault.tsx`
+  - OLD: {/* Allocation diagram */}
+  - NEW: {/* Vault diagram */}
+- `src/routes/vault.tsx`
+  - OLD: <Eyebrow>Allocation, not pooling</Eyebrow>
+  - NEW: <Eyebrow>Fully backed, not pooled</Eyebrow>
+- `src/routes/vault.tsx`
+  - OLD: One allocation. <br /> One customer.
+  - NEW: One holding. <br /> One customer.
+- `src/routes/vault.tsx`
+  - OLD: recorded in your name. Your <br /> allocation is never mixed with
+  - NEW: fully backed in the vault. Your <br /> gold is never mixed with
+- `src/routes/vault.tsx`
+  - OLD: How allocation works <ArrowRight
+  - NEW: How the vault works <ArrowRight
+- `src/routes/vault.tsx`
+  - OLD: >Individual allocations</p>
+  - NEW: >Individual holdings</p>
+- `src/routes/vault.tsx`
+  - OLD: allocated in your name and <br /> ready to redeem.
+  - NEW: fully backed in the vault and <br /> ready to redeem.
+- `src/routes/vault.tsx`
+  - OLD: an allocation certificate and a redemption request
+  - NEW: a holding certificate and a redemption request
+- `src/routes/pricing.tsx`
+  - OLD: title: "Allocated to you", text: "Your metal is recorded in your name"
+  - NEW: title: "Fully backed in the vault", text: "Your gold is shown in My Gold"
+- `src/routes/pricing.tsx`
+  - OLD: Allocated metal: a ${vaultPurchaseFee}
+  - NEW: Vaulted gold: a ${vaultPurchaseFee}
+- `src/routes/pricing.tsx`
+  - OLD: question: 'What does "allocated metal" mean?',
+  - NEW: question: 'What does "fully backed in the vault" mean?',
+- `src/routes/pricing.tsx`
+  - OLD: "When your purchase completes, a specific quantity of metal is allocated to you and recorded in your name in our ledger, which is reconciled to the depository.
+  - NEW: "When your purchase completes, a specific quantity of fine gold is recorded to you in our ledger and shown in My Gold, fully backed in the vault and reconciled to the depository.
+- `src/routes/pricing.tsx`
+  - OLD: "Yes. You can convert your allocated metal into a coin or bar and have it shipped, insured, at any time.
+  - NEW: "Yes. You can use your gold toward a coin at the live price and have it shipped, insured, at any time.
+- `src/routes/pricing.tsx`
+  - OLD: Allocated metal can be transferred as a gift on request.
+  - NEW: Vaulted gold can be transferred as a gift on request.
+- `src/routes/pricing.tsx`
+  - OLD: caption: "one-off purchase fee on allocated metal"
+  - NEW: caption: "one-off purchase fee on vaulted gold"
+- `src/routes/pricing.tsx`
+  - OLD: caption: "a year to store allocated metal — year one free"
+  - NEW: caption: "a year to store vaulted gold — year one free"
+- `src/routes/pricing.tsx`
+  - OLD: { label: "Delivery", value: "Convert to a coin or bar and ship any time" }
+  - NEW: { label: "Delivery", value: "Use your gold toward a coin at the live price and ship any time" }
+- `src/routes/pricing.tsx`
+  - OLD: <td>Convert to a coin or bar and ship any time</td>
+  - NEW: <td>Use your gold toward a coin at the live price and ship any time</td>
+- `src/routes/pricing.tsx`
+  - OLD: Allocated metal, recorded in your name.
+  - NEW: Fine gold, fully backed in the vault.
+- `src/routes/pricing.tsx`
+  - OLD: description="Allocated metal, recorded in your name."
+  - NEW: description="Fine gold, fully backed in the vault."
+- `src/routes/gifting.tsx`
+  - OLD: "Gift Real Gold — SQOOT Pure"
+  - NEW: "Gift Fine Gold — SQOOT Pure"
+- `src/routes/gifting.tsx`
+  - OLD: "Gift Real Gold — SQOOT Pure"
+  - NEW: "Gift Fine Gold — SQOOT Pure"
+- `src/routes/gifting.tsx`
+  - OLD: moments with real gold, thoughtfully
+  - NEW: moments with fine gold, thoughtfully
+- `src/routes/gifting.tsx`
+  - OLD: "A thoughtful, meaningful and timeless gift of real gold."
+  - NEW: "A thoughtful, meaningful and timeless gift of fine gold."
+- `src/routes/gifting.tsx`
+  - OLD: description: "Real gold, fully insured in U.S. vaults"
+  - NEW: description: "Fine gold, fully insured in U.S. vaults"
+- `src/routes/gifting.tsx`
+  - OLD: description: "Gift allocated gold held securely in insured U.S. vaults"
+  - NEW: description: "Gift gold fully backed in the vault, held securely in insured U.S. vaults"
+- `src/routes/gifting.tsx`
+  - OLD: title: "100% Real Gold", description: "Allocated, audited and insured"
+  - NEW: title: "100% Fine Gold", description: "Fully backed in the vault, audited and insured"
+- `src/routes/gifting.tsx`
+  - OLD: description: "Allocated to the recipient — no international shipping"
+  - NEW: description: "Fully backed in the vault for the recipient — no international shipping"
+- `src/routes/gifting.tsx`
+  - OLD: Real gold that marks life&apos;s
+  - NEW: Fine gold that marks life&apos;s
+- `src/routes/gifting.tsx`
+  - OLD: Give real gold that will be cherished
+  - NEW: Give fine gold that will be cherished
+- `src/routes/trust-center.tsx`
+  - OLD: "Independent audits, allocated storage and independent
+  - NEW: "Independent audits, storage fully backed in the vault and independent
+- `src/routes/trust-center.tsx`
+  - OLD: content: "Transparent ownership. Verified gold. Always in your name."
+  - NEW: content: "Transparent ownership. Verified gold. Always fully backed in the vault."
+- `src/routes/trust-center.tsx`
+  - OLD: "Always in your name."
+  - NEW: "Always fully backed in the vault."
+- `src/routes/trust-center.tsx`
+  - OLD: is verified, allocated, and accounted for
+  - NEW: is verified, fully backed in the vault, and accounted for
+- `src/routes/trust-center.tsx`
+  - OLD: "Allocated — never pooled"
+  - NEW: "Fully backed in the vault — never pooled"
+- `src/routes/trust-center.tsx`
+  - OLD: matches each holding to its allocation record.
+  - NEW: matches each holding to its vault record.
+- `src/routes/trust-center.tsx`
+  - OLD: claim allocated holdings"
+  - NEW: claim holdings fully backed in the vault"
+- `src/routes/trust-center.tsx`
+  - OLD: title: "Allocated storage"
+  - NEW: title: "Fully backed in the vault"
+- `src/routes/trust-center.tsx`
+  - OLD: "All gold held through SQOOT Pure is allocated, in each client's name, and is not co-mingled
+  - NEW: "All gold held through SQOOT Pure is fully backed in the vault and is not co-mingled
+- `src/routes/about-us.tsx`
+  - OLD: owning real, allocated and insured gold.
+  - NEW: owning fine gold, fully backed in the vault and insured.
+- `src/routes/about-us.tsx`
+  - OLD: title: "Dillon Gage", body: "Sourced from established suppliers with a long standing presence in the precious metals industry."
+  - NEW: title: "Sourced", body: "Sourced from established precious-metals wholesalers with a long standing presence in the precious metals industry."
+- `src/routes/about-us.tsx`
+  - OLD: body: "Allocated, vaulted, and held in independently operated
+  - NEW: body: "Fully backed in the vault, and held in independently operated
+- `src/routes/about-us.tsx`
+  - OLD: Fully allocated and withdrawable.
+  - NEW: Fully backed in the vault and withdrawable.
+- `src/routes/about-us.tsx`
+  - OLD: body: "Allocated gold securely held in professional vaults.
+  - NEW: body: "Gold fully backed in the vault, securely held in professional vaults.
+- `src/routes/about-us.tsx`
+  - OLD: body: "Own a precise fraction of allocated gold. Access real exposure with flexible entry."
+  - NEW: body: "Start with $25 in fine gold, fully backed in the vault. Access real exposure with flexible entry."
+- `src/routes/about-us.tsx`
+  - OLD: more transparent way to own real gold.
+  - NEW: more transparent way to own fine gold.
+- `src/routes/__root.tsx`
+  - OLD: { title: "SQOOT Pure — Real Gold, Real Ownership" }
+  - NEW: { title: "SQOOT Pure — Fine Gold, Real Ownership" }
+- `src/routes/__root.tsx`
+  - OLD: "Buy physical gold coins, fractional gold, or vaulted allocated gold. Real ownership,
+  - NEW: "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership,
+- `src/routes/__root.tsx`
+  - OLD: content: "SQOOT Pure — Real Gold, Real Ownership"
+  - NEW: content: "SQOOT Pure — Fine Gold, Real Ownership"
+- `src/routes/__root.tsx`
+  - OLD: "Three ways to own real gold: delivered to your door, fractional, or securely vaulted."
+  - NEW: "Three ways to own fine gold: start with $25, keep it in the vault, or have coins delivered to your door."
+- `src/components/aurum-learn-section.tsx`
+  - OLD: title: "Allocated or pooled", body: "Allocated metal is yours specifically.
+  - NEW: title: "Fully backed or pooled", body: "Gold fully backed in the vault is yours specifically.
+- `src/routes/terms.tsx`
+  - OLD: All gold purchased on the Platform is physically allocated and stored in insured
+  - NEW: All gold purchased on the Platform is fully backed in the vault and stored in insured
+- `src/routes/terms.tsx`
+  - OLD: your gold is physically allocated to your vault in your name at the live spot price
+  - NEW: your gold is fully backed in the vault at the live spot price
+- `src/routes/precious-metal.tsx`
+  - OLD: <span>Real gold.</span><span>In your hands.</span>
+  - NEW: <span>Fine gold.</span><span>In your hands.</span>
+- `src/routes/early-access.tsx`
+  - OLD: Real gold, real ownership — launching soon.
+  - NEW: Fine gold, real ownership — launching soon.
+- `src/components/pricing-calculator.tsx`
+  - OLD: >of gold allocated in your name<
+  - NEW: >of gold, fully backed in the vault<
+- `src/lib/learn-articles.ts`
+  - OLD: Is it allocated to owners?
+  - NEW: Is it fully backed in the vault for owners?
+- `src/lib/learn-articles.ts`
+  - OLD: not a gold bar sitting in your name."
+  - NEW: not a gold bar fully backed in the vault for you."
+- `src/lib/learn-articles.ts`
+  - OLD: "Is specific physical gold allocated to customers,
+  - NEW: "Is specific physical gold fully backed in the vault for customers,
+- `src/lib/learn-articles.ts`
+  - OLD: whether your gold is allocatedwhether
+  - NEW: whether your gold is fully backed in the vaultwhether
+- `src/lib/learn-articles.ts`
+  - OLD: "whether your gold is allocated",
+  - NEW: "whether your gold is fully backed in the vault",
+- `src/lib/learn-articles.ts`
+  - OLD: Is it allocated or pooled?Is
+  - NEW: Is it fully backed in the vault or pooled?Is
+- `src/lib/learn-articles.ts`
+  - OLD: "Is it allocated or pooled?",
+  - NEW: "Is it fully backed in the vault or pooled?",
+- `src/routes/home-old-ver.tsx`
+  - OLD: { title: "SQOOT Pure — Real Gold, Real Ownership" }
+  - NEW: { title: "SQOOT Pure — Fine Gold, Real Ownership" }
+- `src/routes/home-old-ver.tsx`
+  - OLD: content: "SQOOT Pure — Real Gold, Real Ownership"
+  - NEW: content: "SQOOT Pure — Fine Gold, Real Ownership"
+- `src/routes/home-old-ver.tsx`
+  - OLD: "Buy physical gold delivered to your door, own fractional gold, or store allocated metal in an insured US vault.
+  - NEW: "Buy physical gold delivered to your door, start with $25 in fine gold, or keep it fully backed in an insured US vault.
+- `src/routes/home-old-ver.tsx`
+  - OLD: real metal, held in your name."
+  - NEW: real metal, fully backed in the vault."
+- `src/routes/home-old-ver.tsx`
+  - OLD: "Own real gold from $25. Fully allocated, never pooled, always yours."
+  - NEW: "Start with $25 in fine gold. Fully backed in the vault, never pooled, always yours."
+- `src/routes/home-old-ver.tsx`
+  - OLD: "Physical metal stored in an insured US vault, allocated in your name."
+  - NEW: "Physical metal stored in an insured US vault, fully backed in the vault."
+- `src/routes/home-old-ver.tsx`
+  - OLD: "Give real gold. A gift
+  - NEW: "Give fine gold. A gift
+- `src/routes/home-old-ver.tsx`
+  - OLD: Real gold.
+  - NEW: Fine gold.
+- `src/routes/home-old-ver.tsx`
+  - OLD: or hold it allocated in an insured US vault.
+  - NEW: or hold it fully backed in an insured US vault.
+- `src/routes/home-old-ver.tsx`
+  - OLD: Four paths to real gold.
+  - NEW: Four paths to fine gold.
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: { title: "Gifting — Give Real Gold | SQOOT Pure" }
+  - NEW: { title: "Gifting — Give Fine Gold | SQOOT Pure" }
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: content: "Gifting — Give Real Gold | SQOOT Pure"
+  - NEW: content: "Gifting — Give Fine Gold | SQOOT Pure"
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: "Real gold, given properly.
+  - NEW: "Fine gold, given properly.
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: gold gifts are real, secure,
+  - NEW: gold gifts are fine gold, secure,
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: title: "100% Real Gold", description: "Allocated, insured, and fully backed."
+  - NEW: title: "100% Fine Gold", description: "Fully backed in the vault and insured."
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: "Real gold, real value"
+  - NEW: "Fine gold, real value"
+- `src/routes/gifting-old-ver.tsx`
+  - OLD: the confidence of real gold—
+  - NEW: the confidence of fine gold—
+- `src/routes/fractional-gold.tsx` (og/twitter duplicates) OLD: Fractional Gold Allocation | SQOOT Pure / Own allocated physical gold from $25… NEW: Fractional Gold | SQOOT Pure / Start with $25 in fine physical gold, fully backed in the vault…
+- `src/routes/index.tsx` og:title OLD: Own Real Gold, Three Ways NEW: Own Fine Gold, Three Ways
