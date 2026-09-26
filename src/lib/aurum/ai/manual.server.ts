@@ -103,6 +103,14 @@ export const MANUAL_SYSTEM_PROMPT = [
   "supplied as a fact, that reason. Never a generic label (not \"Gold daily note\").",
   "",
   "Length: 2 to 5 paragraphs, each of one to three full sentences.",
+  "",
+  "Shape example (placeholders in brackets, never copy them; use only supplied facts):",
+  "NOT like this: \"Gold's spot price is [P]. Gold's 24h change is [C]. Gold's previous close",
+  "was [Q]. Key driver: [R].\"",
+  "Like this: context paragraph \"Gold ended the day a little firmer, a modest move rather than",
+  "a break from the recent pattern.\" then one fact paragraph citing all four ids: \"At [P] an",
+  "ounce, gold sat [C] above its previous close of [Q], a move the editor attributes to [R].\"",
+  "then, if it fits, a closing context paragraph on what the note does not claim.",
 ].join("\n");
 
 export function factId(index: number): string {
