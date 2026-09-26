@@ -776,15 +776,20 @@ export type GeneratedDraft =
  */
 export const generateDraftFromPrompt = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator(async (data: unknown) => {
-    const { parseManualInput } = await import("@/lib/aurum/ai/manual.server");
-    return parseManualInput(data);
-  })
-  .handler(async ({ data, context }): Promise<GeneratedDraft> => {
+  .inputValidator((data: unknown) => data)
+  .handler(async ({ data: raw, context }): Promise<GeneratedDraft> => {
     const role = await resolveRole(context.supabase);
     if (!role) throw new Error("Forbidden: you are not on the editor list.");
 
-    const { generateManualDraft, NO_FACTS_MESSAGE } = await import("@/lib/aurum/ai/manual.server");
+    const { generateManualDraft, parseManualInput, NO_FACTS_MESSAGE } = await import(
+      "@/lib/aurum/ai/manual.server"
+    );
+    let data;
+    try {
+      data = parseManualInput(raw);
+    } catch (cause) {
+      return { ok: false, error: cause instanceof Error ? cause.message : "Invalid input." };
+    }
     if (data.facts.length === 0) return { ok: false, error: NO_FACTS_MESSAGE };
 
     const apiKey = process.env["LOVABLE_API_KEY"];
