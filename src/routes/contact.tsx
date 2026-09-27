@@ -119,28 +119,28 @@ const contactStyles = `
 
 .contact-hero{background:var(--forest-deep);color:var(--warm-white);padding-block:clamp(64px,8.3vw,120px);text-align:center}
 .contact-hero__logo{width:clamp(180px,16vw,240px);height:auto;margin:0 auto clamp(32px,4vw,48px)}
-.contact-hero__eyebrow{margin:0 0 14px;color:var(--gold);font-family:"Inter",Arial,sans-serif;font-size:12px;font-weight:600;line-height:18px;letter-spacing:.22em;text-transform:uppercase}
-.contact-hero h1{margin:0;color:var(--warm-white);font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(40px,4.5vw,64px);font-weight:600;line-height:1.02;letter-spacing:-.02em}
-.contact-hero__body{max-width:520px;margin:20px auto 0;color:color-mix(in srgb,var(--warm-white) 80%,transparent);font-family:"Inter",Arial,sans-serif;font-size:16px;line-height:1.6}
+.contact-hero__eyebrow{margin:0 0 14px;color:var(--gold);font-family:"Geist",Arial,sans-serif;font-size:12px;font-weight:600;line-height:18px;letter-spacing:.22em;text-transform:uppercase}
+.contact-hero h1{margin:0;color:var(--warm-white);font-family:"Newsreader",Georgia,serif;font-size:clamp(40px,4.5vw,64px);font-weight:600;line-height:1.02;letter-spacing:-.02em}
+.contact-hero__body{max-width:520px;margin:20px auto 0;color:color-mix(in srgb,var(--warm-white) 80%,transparent);font-family:"Geist",Arial,sans-serif;font-size:16px;line-height:1.6}
 
 .contact-channels{padding-block:clamp(72px,8.3vw,120px)}
 .contact-channels__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
 .contact-card{background:var(--cream-2);border:1px solid color-mix(in srgb,var(--forest) 10%,transparent);border-radius:4px;padding:clamp(24px,3vw,40px)}
-.contact-card__label{margin:0 0 10px;color:var(--gold-dark);font-family:"Inter",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
-.contact-card__value{margin:0;color:var(--forest-deep);font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(22px,2.2vw,30px);font-weight:600;line-height:1.15;text-decoration:none}
+.contact-card__label{margin:0 0 10px;color:var(--gold-dark);font-family:"Geist",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.contact-card__value{margin:0;color:var(--forest-deep);font-family:"Newsreader",Georgia,serif;font-size:clamp(22px,2.2vw,30px);font-weight:600;line-height:1.15;text-decoration:none}
 a.contact-card__value:hover{color:var(--gold-dark)}
-.contact-card__note{margin:10px 0 0;color:color-mix(in srgb,var(--ink) 70%,transparent);font-family:"Inter",Arial,sans-serif;font-size:14px;line-height:1.55}
+.contact-card__note{margin:10px 0 0;color:color-mix(in srgb,var(--ink) 70%,transparent);font-family:"Geist",Arial,sans-serif;font-size:14px;line-height:1.55}
 
 .contact-social{background:var(--forest);color:var(--warm-white);padding-block:clamp(56px,6vw,88px)}
-.contact-social__heading{margin:0 0 28px;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter);color:var(--gold);font-family:"Inter",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.contact-social__heading{margin:0 0 28px;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter);color:var(--gold);font-family:"Geist",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
 .contact-social__list{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter);list-style:none}
 .contact-social__link{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px solid color-mix(in srgb,var(--warm-white) 15%,transparent);border-radius:4px;color:var(--warm-white);text-decoration:none;transition:border-color .22s,background-color .22s}
 .contact-social__link:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 8%,transparent)}
 .contact-social__icon{display:grid;place-items:center;width:40px;height:40px;flex:none;border:1px solid color-mix(in srgb,var(--gold) 60%,transparent);border-radius:9999px;color:var(--gold)}
 .contact-social__icon svg{width:18px;height:18px}
 .contact-social__text{display:flex;flex-direction:column;min-width:0}
-.contact-social__name{font-family:"Inter",Arial,sans-serif;font-size:14px;font-weight:600}
-.contact-social__handle{color:color-mix(in srgb,var(--warm-white) 62%,transparent);font-family:"Inter",Arial,sans-serif;font-size:13px}
+.contact-social__name{font-family:"Geist",Arial,sans-serif;font-size:14px;font-weight:600}
+.contact-social__handle{color:color-mix(in srgb,var(--warm-white) 62%,transparent);font-family:"Geist",Arial,sans-serif;font-size:13px}
 
 @media(max-width:900px){
   .contact-channels__grid{grid-template-columns:1fr}
