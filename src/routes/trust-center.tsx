@@ -617,7 +617,7 @@ const trustStyles = `
 }
 .trust-center-page h1,.trust-center-page h2,.trust-center-page h3,.trust-center-page h4,.trust-center-page p,.trust-center-page dl,.trust-center-page dd,.trust-center-page dt,.trust-center-page ul{margin:0;padding:0}
 .trust-center-page ul{list-style:none}
-.trust-center-page p,.trust-center-page li,.trust-center-page h3,.trust-center-page h4,.trust-center-page dt,.trust-center-page dd,.trust-center-page a,.trust-center-page b{font-family:"DM Sans",system-ui,sans-serif}
+.trust-center-page p,.trust-center-page li,.trust-center-page h3,.trust-center-page h4,.trust-center-page dt,.trust-center-page dd,.trust-center-page a,.trust-center-page b{font-family:"Geist",Arial,sans-serif}
 .trust-center-page svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 
 /* HERO */
@@ -640,7 +640,7 @@ const trustStyles = `
 .tc-pillars-grid article:first-child{padding-left:0}
 .tc-pillars-grid article+article:before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:68px;background:rgba(213,163,59,.20)}
 .trust-center-page .tc-pillar-icon{width:40px;height:40px;color:var(--tc-gold);stroke-width:1.5}
-.tc-pillars-grid h2{font-family:"DM Sans",system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--tc-cream)}
+.tc-pillars-grid h2{font-family:"Geist",Arial,sans-serif;font-size:12px;font-weight:600;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--tc-cream)}
 .tc-pillars-grid p{margin-top:8px;max-width:225px;font-size:13.5px;font-weight:400;line-height:1.45;color:rgba(252,250,247,.84)}
 
 /* SHARED CREAM BACKGROUND */
