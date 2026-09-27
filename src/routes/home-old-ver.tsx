@@ -74,7 +74,7 @@ function HomePage() {
             >
               Fine gold.
               <br />
-              Real <em className="font-semibold italic text-gold">ownership.</em>
+              Real <em className="font-semibold not-italic text-gold">ownership.</em>
             </h1>
             <p className="mt-6 max-w-[520px] text-[17px] font-medium leading-[30px] text-[#2C332E]">
               Buy physical gold and have it delivered, own it fractionally, or hold it

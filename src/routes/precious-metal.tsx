@@ -447,7 +447,7 @@ function PreciousMetalPage() {
             margin: 0;
             max-width: clamp(484px, 47.2222vw, 1209px);
             color: var(--pm-cream-text);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(40px, 4.0278vw, 103px);
             font-weight: 500;
             line-height: .98;
@@ -482,7 +482,7 @@ function PreciousMetalPage() {
           .pm-hero-copy p {
             margin: 0;
             color: rgba(247,240,229,.94);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(18px, 1.7361vw, 44px);
             font-weight: 400;
             line-height: 1.55;
@@ -532,7 +532,7 @@ function PreciousMetalPage() {
           .pm-products-heading-row h2 {
             margin: 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(32px, 3.125vw, 80px);
             font-weight: 500;
             line-height: 1;
@@ -543,7 +543,7 @@ function PreciousMetalPage() {
           .pm-products-eyebrow {
             margin: clamp(4px, .4167vw, 11px) 0 0;
             color: var(--pm-gold-muted);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(10px, .9722vw, 25px);
             font-weight: 500;
             letter-spacing: .12em;
@@ -608,7 +608,7 @@ function PreciousMetalPage() {
           .pm-product-art text {
             fill: #26362D;
             stroke: none;
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: 7px;
             letter-spacing: .08em;
           }
@@ -627,7 +627,7 @@ function PreciousMetalPage() {
             height: clamp(56px, 5.4861vw, 140px);
             margin: 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(28px, 2.7083vw, 69px);
             font-weight: 500;
             line-height: 1.02;
@@ -645,7 +645,7 @@ function PreciousMetalPage() {
           .pm-product-label {
             margin: 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(13.5px, 1.3194vw, 34px);
             font-weight: 400;
             line-height: 1.4;
@@ -658,7 +658,7 @@ function PreciousMetalPage() {
             justify-content: center;
             margin-top: clamp(5px, .4861vw, 12px);
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(12.5px, 1.25vw, 32px);
             font-weight: 400;
             line-height: 1;
@@ -719,7 +719,7 @@ function PreciousMetalPage() {
           .pm-process-heading-row h2 {
             margin: 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(32px, 3.125vw, 80px);
             font-weight: 500;
             line-height: 1;
@@ -784,7 +784,7 @@ function PreciousMetalPage() {
           .pm-step h3 {
             margin: clamp(11px, 1.1111vw, 28px) 0 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(21px, 2.0139vw, 52px);
             font-weight: 500;
             line-height: 1.02;
@@ -796,7 +796,7 @@ function PreciousMetalPage() {
             max-width: clamp(140px, 13.8889vw, 356px);
             margin: clamp(4px, .4167vw, 11px) 0 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(11px, 1.1111vw, 28px);
             font-weight: 400;
             line-height: 1.45;
@@ -940,7 +940,7 @@ function PreciousMetalPage() {
           .pm-pricing-copy p {
             margin: 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(17px, 1.7361vw, 44px);
             font-weight: 500;
             line-height: 1.18;
@@ -1014,7 +1014,7 @@ function PreciousMetalPage() {
           .pm-benefit h3 {
             margin: clamp(14px, 1.3194vw, 34px) 0 0;
             color: var(--pm-ink);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(22px, 1.6667vw, 43px);
             font-weight: 500;
             line-height: 1;
@@ -1024,7 +1024,7 @@ function PreciousMetalPage() {
           .pm-benefit > p {
             margin: clamp(8px, .6944vw, 18px) 0 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(13px, 1.0417vw, 27px);
             font-weight: 400;
             line-height: 1.42;
@@ -1113,7 +1113,7 @@ function PreciousMetalPage() {
             margin: 0 auto;
             max-width: clamp(680px, 47.2222vw, 1209px);
             color: var(--pm-cream-text);
-            font-family: "Cormorant Garamond", Georgia, serif;
+            font-family: "Newsreader", Georgia, serif;
             font-size: clamp(30px, 2.7778vw, 70px);
             font-weight: 500;
             line-height: 1.08;
