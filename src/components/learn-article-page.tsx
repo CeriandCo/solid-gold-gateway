@@ -20,7 +20,7 @@ export function LearnArticlePage({ article }: { article: PublishedLearnArticle }
             if (block.type === "h2") return <Fragment key={index}><GoldRule /><h2 className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">{block.text}</h2></Fragment>;
             if (block.type === "h3") return <Fragment key={index}><GoldRule /><h3 className="font-display mt-12 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">{block.text}</h3></Fragment>;
             if (block.type === "ul") return <ul key={index} className="body-copy leading-relaxed mt-5 list-disc space-y-3 pl-6 text-charcoal/90">{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
-            if (block.type === "blockquote") return <blockquote key={index} className="mt-6 border-l-4 border-gold bg-cream/60 py-5 pr-6 pl-6"><p className="font-display text-xl font-medium italic leading-[1.25] tracking-[-0.01em] text-forest-deep sm:text-2xl">{block.text}</p></blockquote>;
+            if (block.type === "blockquote") return <blockquote key={index} className="mt-6 border-l-4 border-gold bg-cream/60 py-5 pr-6 pl-6"><p className="font-display text-xl font-normal not-italic leading-[1.25] tracking-[-0.01em] text-forest-deep sm:text-2xl">{block.text}</p></blockquote>;
             return <p key={index} className={`body-copy leading-relaxed text-charcoal/90${index > 0 ? " mt-6" : ""}`}>{block.text}</p>;
           })}
         </article>
