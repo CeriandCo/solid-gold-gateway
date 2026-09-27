@@ -482,7 +482,7 @@ function PreciousMetalPage() {
           .pm-hero-copy p {
             margin: 0;
             color: rgba(247,240,229,.94);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(18px, 1.7361vw, 44px);
             font-weight: 400;
             line-height: 1.55;
@@ -543,7 +543,7 @@ function PreciousMetalPage() {
           .pm-products-eyebrow {
             margin: clamp(4px, .4167vw, 11px) 0 0;
             color: var(--pm-gold-muted);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(10px, .9722vw, 25px);
             font-weight: 500;
             letter-spacing: .12em;
@@ -608,7 +608,7 @@ function PreciousMetalPage() {
           .pm-product-art text {
             fill: #26362D;
             stroke: none;
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: 7px;
             letter-spacing: .08em;
           }
@@ -645,7 +645,7 @@ function PreciousMetalPage() {
           .pm-product-label {
             margin: 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(13.5px, 1.3194vw, 34px);
             font-weight: 400;
             line-height: 1.4;
@@ -658,7 +658,7 @@ function PreciousMetalPage() {
             justify-content: center;
             margin-top: clamp(5px, .4861vw, 12px);
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(12.5px, 1.25vw, 32px);
             font-weight: 400;
             line-height: 1;
@@ -796,7 +796,7 @@ function PreciousMetalPage() {
             max-width: clamp(140px, 13.8889vw, 356px);
             margin: clamp(4px, .4167vw, 11px) 0 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(11px, 1.1111vw, 28px);
             font-weight: 400;
             line-height: 1.45;
@@ -1024,7 +1024,7 @@ function PreciousMetalPage() {
           .pm-benefit > p {
             margin: clamp(8px, .6944vw, 18px) 0 0;
             color: var(--pm-body);
-            font-family: "DM Sans", Arial, sans-serif;
+            font-family: "Geist", Arial, sans-serif;
             font-size: clamp(13px, 1.0417vw, 27px);
             font-weight: 400;
             line-height: 1.42;

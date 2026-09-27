@@ -1690,7 +1690,7 @@ input {
 
 /* Scoped: restored fractional gold page keeps its source-commit typography */
 .fractional-legacy {
-  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-sans: "Geist", Arial, sans-serif;
   font-family: var(--font-sans);
 }
 
