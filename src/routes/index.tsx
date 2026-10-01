@@ -208,7 +208,7 @@ const TRUST_SAFEGUARDS = [
   },
   {
     title: "Stored",
-    body: "Segregated storage with a professional vault operator, fully backed in the vault.",
+    body: "Allocated, segregated storage with a professional vault operator, recorded in your name.",
     status: "pending",
     statusLabel: "Partner named before launch",
   },
@@ -248,7 +248,7 @@ const AURUM_ARTICLES = [
     image: aurumArticleGuide.url,
     alt: "Gold bars and a tagged bar arranged on dark green velvet",
     label: "GUIDE · 6 MIN",
-    title: "Fully backed or pooled: what you actually own",
+    title: "Allocated or pooled: what you actually own",
     excerpt: "Two ways to hold vaulted gold, and the questions to ask before you choose.",
     destination: "learn",
   },
