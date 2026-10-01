@@ -169,7 +169,7 @@ const HOW_IT_WORKS_STEPS = [
   {
     number: "03",
     title: "Buy your way",
-    body: "Start with $25, a coin, or both. Spot, premium and fees are shown before you confirm.",
+    body: "A coin, a weight, or both. Spot, premium and fees are shown before you confirm.",
   },
   {
     number: "04",
@@ -694,7 +694,7 @@ function Index() {
                   that matter.
                 </h2>
                 <p className="home-gift-copy">
-                  Send a coin or a dollar amount of gold with a note, straight from the app. They open a gift — not a price tag.
+                  Send a coin or a few grams with a note, straight from the app. They open a gift — not a price tag.
                 </p>
               </div>
               <Link to="/gifting" className="home-three-ways-link">
