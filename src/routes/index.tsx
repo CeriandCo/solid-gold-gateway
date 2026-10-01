@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
+import { HomeGoldPrice, HomeHeroSpotCard } from "@/components/home-live-price";
 import { ArrowRight } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
@@ -51,25 +53,6 @@ export const Route = createFileRoute("/")({
 
 const STANDARD_SECTION = "py-[clamp(72px,8.3vw,120px)]";
 
-const GOLD_PRICE = {
-  price: "$3,412.80",
-  changePercent: "0.42%",
-  changeAmount: "$14.27",
-  asOf: "09:41",
-  stats: [
-    { label: "24-hour high", value: "$3,421.06" },
-    { label: "24-hour low", value: "$3,389.44" },
-    { label: "Previous close", value: "$3,398.53" },
-  ],
-} as const;
-
-const HERO_SPOT = {
-  price: "$3,412.80",
-  changeGlyph: "▲",
-  changeDirection: "Up",
-  changePercent: "0.42%",
-  note: "Sample data — not a real price",
-} as const;
 
 const PROOF_ITEMS = [
   {
@@ -423,6 +406,7 @@ function Index() {
   const { email, formState, setEmail, submitWaitlist } = useWaitlistForm();
 
   return (
+    <AurumPriceProvider>
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
 
@@ -478,18 +462,7 @@ function Index() {
             />
           </div>
 
-          <aside className="home-hero-spot-card" aria-label="Sample gold spot price">
-            <p>GOLD SPOT · PER OZ</p>
-            <div>
-              <strong>{HERO_SPOT.price}</strong>
-              <span>
-                <span aria-hidden="true">{HERO_SPOT.changeGlyph} </span>
-                <span className="sr-only">{HERO_SPOT.changeDirection} </span>
-                {HERO_SPOT.changePercent}
-              </span>
-            </div>
-            <small>{HERO_SPOT.note}</small>
-          </aside>
+          <HomeHeroSpotCard />
         </div>
       </section>
 
@@ -646,41 +619,7 @@ function Index() {
           />
           <div className="home-price-scrim" aria-hidden="true" />
           <div className="site-container home-price-inner">
-            <div className="home-price-copy">
-              <div className="home-price-labels">
-                <p className="home-price-eyebrow">TODAY&rsquo;S GOLD PRICE</p>
-                <span className="home-price-chip">Sample data — not a real price</span>
-              </div>
-              <p className="home-price-value">{GOLD_PRICE.price}</p>
-              <div className="home-price-change">
-                <span className="home-price-delta">
-                  <span aria-hidden="true">▲</span> +{GOLD_PRICE.changePercent}
-                </span>
-                <span className="home-price-delta">+{GOLD_PRICE.changeAmount}</span>
-                <span className="home-price-meta">per troy ounce · USD · as of {GOLD_PRICE.asOf}</span>
-              </div>
-              <dl className="home-price-stats">
-                {GOLD_PRICE.stats.map((stat) => (
-                  <div key={stat.label}>
-                    <dt>{stat.label}</dt>
-                    <dd>{stat.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="home-price-links">
-                <Link
-                  to="/aurum"
-                  search={{ range: "1Y", brief: undefined, priceState: undefined }}
-                  className="home-price-link"
-                >
-                  Read what moved it in AURUM
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
-                <p className="home-price-disclaimer">
-                  Figures are indicative. Not an offer to buy or sell.
-                </p>
-              </div>
-            </div>
+            <HomeGoldPrice />
           </div>
         </section>
         <section id="gifting" className={`bg-cream ${STANDARD_SECTION}`} aria-labelledby="gifting-heading">
@@ -865,5 +804,6 @@ function Index() {
 
       <SiteFooter />
     </div>
+    </AurumPriceProvider>
   );
 }
