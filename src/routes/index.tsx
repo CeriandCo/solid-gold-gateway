@@ -109,9 +109,9 @@ const OWNERSHIP_WAYS = [
   },
   {
     number: "02",
-    title: "Buy by weight",
+    title: "Buy any amount",
     description:
-      "Own from 1/10 oz. Enter an amount in dollars or ounces — your price holds for 90 seconds at checkout.",
+      "Choose what you want to spend and we turn it into fine gold at the live price — or switch to ounces if you prefer. Orders start at $25, and your price locks for 90 seconds at checkout.",
     linkLabel: "How fractional works",
     to: "/fractional-gold",
     background: weightCardBackground.url,
@@ -151,7 +151,7 @@ const APP_FEATURES_RIGHT = [
   },
   {
     title: "Gift in a minute",
-    body: "Send a coin or a gram with a note. They see the gift, not the price.",
+    body: "Send a coin or any amount of gold with a note. They see the gift, not the price.",
   },
 ] as const;
 
@@ -169,7 +169,7 @@ const HOW_IT_WORKS_STEPS = [
   {
     number: "03",
     title: "Buy your way",
-    body: "A coin, a weight, or both. Spot, premium and fees are shown before you confirm.",
+    body: "A coin, any amount, or both. Spot, premium and fees are shown before you confirm.",
   },
   {
     number: "04",
@@ -447,7 +447,7 @@ function Index() {
               <em>meant to be.</em>
             </h1>
             <p className="home-hero-body">
-              Buy a coin delivered to your door, build a holding by weight, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
+              Buy a coin delivered to your door, start with any amount that suits you, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
             </p>
 
             <CtaRow className="home-hero-ctas mt-7">
@@ -522,7 +522,7 @@ function Index() {
                 <h2>
                   Start with a coin,
                   <br />
-                  or buy gold by weight.
+                  or buy any amount.
                 </h2>
                 <p className="home-three-ways-copy">
                   Pick the way that suits you today. Switch any time — everything you own sits in one account, in your name.
@@ -694,7 +694,7 @@ function Index() {
                   that matter.
                 </h2>
                 <p className="home-gift-copy">
-                  Send a coin or a few grams with a note, straight from the app. They open a gift — not a price tag.
+                  Send a coin or any amount of gold with a note, straight from the app. They open a gift — not a price tag.
                 </p>
               </div>
               <Link to="/gifting" className="home-three-ways-link">
