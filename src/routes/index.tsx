@@ -406,6 +406,7 @@ function Index() {
   const { email, formState, setEmail, submitWaitlist } = useWaitlistForm();
 
   return (
+    <AurumPriceProvider>
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
 
@@ -803,5 +804,6 @@ function Index() {
 
       <SiteFooter />
     </div>
+    </AurumPriceProvider>
   );
 }
