@@ -97,30 +97,6 @@ const PROOF_ITEMS = [
 const OWNERSHIP_WAYS = [
   {
     number: "01",
-    title: "Start with $25",
-    description:
-      "Buy fine gold in dollars, starting at $25. Add more anytime.",
-    linkLabel: "How fractional works",
-    to: "/fractional-gold",
-    background: weightCardBackground.url,
-    backgroundAlt: "Gold bars arranged on cream linen",
-    screen: weightPhoneScreen.url,
-    screenAlt: "SQOOT Pure app buy screen",
-  },
-  {
-    number: "02",
-    title: "Keep it in the vault",
-    description:
-      "Insured storage, fully backed in the vault, with statements, fees shown upfront and delivery on request.",
-    linkLabel: "See the vault",
-    to: "/vault",
-    background: vaultCardBackground.url,
-    backgroundAlt: "Gold bars and coins stored in a secure vault",
-    screen: vaultPhoneScreen.url,
-    screenAlt: "SQOOT Pure app vaulted holdings screen",
-  },
-  {
-    number: "03",
     title: "Coins, delivered home",
     description:
       "Gold Eagles, Britannias and Sovereigns, shipped insured with signature on delivery.",
@@ -130,6 +106,30 @@ const OWNERSHIP_WAYS = [
     backgroundAlt: "Gold coins presented in a premium SQOOT Pure gift box",
     screen: coinsPhoneScreen.url,
     screenAlt: "SQOOT Pure app coin collection screen",
+  },
+  {
+    number: "02",
+    title: "Buy by weight",
+    description:
+      "Own from 1/10 oz. Enter an amount in dollars or ounces — your price holds for 90 seconds at checkout.",
+    linkLabel: "How fractional works",
+    to: "/fractional-gold",
+    background: weightCardBackground.url,
+    backgroundAlt: "Gold bars arranged on cream linen",
+    screen: weightPhoneScreen.url,
+    screenAlt: "SQOOT Pure app buy screen",
+  },
+  {
+    number: "03",
+    title: "Keep it in the vault",
+    description:
+      "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request.",
+    linkLabel: "See the vault",
+    to: "/vault",
+    background: vaultCardBackground.url,
+    backgroundAlt: "Gold bars and coins stored in a secure vault",
+    screen: vaultPhoneScreen.url,
+    screenAlt: "SQOOT Pure app vaulted holdings screen",
   },
 ] as const;
 
@@ -520,12 +520,12 @@ function Index() {
               <div className="home-three-ways-intro">
                 <p className="home-three-ways-eyebrow">THREE WAYS TO OWN</p>
                 <h2>
-                  Start with $25,
+                  Start with a coin,
                   <br />
-                  or start with a coin.
+                  or buy gold by weight.
                 </h2>
                 <p className="home-three-ways-copy">
-                  Pick the way that suits you today. Switch any time — everything you own sits in one account, fully backed in the vault.
+                  Pick the way that suits you today. Switch any time — everything you own sits in one account, in your name.
                 </p>
               </div>
               <Link to="/pricing" hash="pricing-compare" className="home-three-ways-link">
