@@ -139,8 +139,8 @@ const APP_FEATURES_LEFT = [
     body: "Spot from global markets plus a premium you see before you confirm — never after.",
   },
   {
-    title: "Fully backed in the vault",
-    body: "See your gold balance and history in My Gold, with monthly statements.",
+    title: "Held in your name",
+    body: "Allocated metal with serial-level records and a statement every month.",
   },
 ] as const;
 
@@ -151,7 +151,7 @@ const APP_FEATURES_RIGHT = [
   },
   {
     title: "Gift in a minute",
-    body: "Send a coin or a dollar amount of gold with a note. They see the gift, not the price.",
+    body: "Send a coin or a gram with a note. They see the gift, not the price.",
   },
 ] as const;
 
