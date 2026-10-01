@@ -74,13 +74,13 @@ const HERO_SPOT = {
 const PROOF_ITEMS = [
   {
     number: "01",
-    title: "Fine, physical gold",
+    title: "Real, physical gold",
     line: "Coins and bullion — never a token, note or ETF.",
   },
   {
     number: "02",
-    title: "Fully backed in the vault",
-    line: "Shown in My Gold and on every statement.",
+    title: "Held in your name",
+    line: "Allocated to you and shown on every statement.",
   },
   {
     number: "03",
@@ -90,7 +90,7 @@ const PROOF_ITEMS = [
   {
     number: "04",
     title: "Deliver or sell back",
-    line: "Coins delivered to your door — sell back what you hold in the vault.",
+    line: "Take it home or sell it back from the app.",
   },
 ] as const;
 
