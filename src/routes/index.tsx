@@ -440,24 +440,23 @@ function Index() {
 
         <div className="home-hero-inner site-container">
           <div className="home-hero-copy">
-            <p className="home-hero-eyebrow">BUY · VAULT · SELL</p>
+            <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p>
             <h1 className="home-hero-title">
-              <span>Build fine gold,</span>
-              <em>grain by grain.</em>
+              <span>Own gold</span>
+              <span>the way it was</span>
+              <em>meant to be.</em>
             </h1>
             <p className="home-hero-body">
-              Start with just $25. Every dollar is backed by fine physical gold in our vault. Add more anytime, sell when you want, or use your gold toward a coin at the live price.
+              Buy a coin delivered to your door, build a holding by weight, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
             </p>
 
             <CtaRow className="home-hero-ctas mt-7">
-              <GoldButton href="#cta">Start with $25</GoldButton>
+              <GoldButton href="#cta">Join the waitlist</GoldButton>
               <GoldButton href="#how-it-works" variant="secondary" icon="none">
                 How it works
               </GoldButton>
             </CtaRow>
-            <p className="home-hero-body mt-4 text-sm">
-              Fine physical gold · Fully backed in the vault · Live prices, no hidden fees
-            </p>
+
 
             <div className="home-hero-stores" aria-label="Mobile apps coming soon">
               {(["App Store", "Google Play"] as const).map((store) => (
