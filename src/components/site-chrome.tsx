@@ -236,18 +236,18 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
   return (
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
       <div className="site-container">
-        <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 lg:min-h-[112px] lg:py-5">
+        <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 lg:gap-4 xl:gap-6 lg:min-h-[112px] lg:py-5">
           <Link to="/" aria-label="TRUNK home" className="shrink-0">
             <img
               src={logoImage}
               alt="TRUNK"
               width={505}
               height={92}
-              className="h-[38px] w-auto lg:h-[42px] xl:h-[46px] min-[1440px]:h-[50px]"
+              className="h-[38px] w-auto lg:h-[42px] xl:h-[46px] min-[90rem]:h-[50px]"
             />
           </Link>
           <nav
-            className="hidden flex-1 items-center justify-center lg:flex lg:gap-2.5 xl:gap-3.5 min-[1440px]:gap-5"
+            className="hidden flex-1 items-center justify-center lg:flex lg:gap-1.5 xl:gap-3.5 min-[1440px]:gap-5"
             aria-label="Primary navigation"
           >
             <BuyDropdown />
