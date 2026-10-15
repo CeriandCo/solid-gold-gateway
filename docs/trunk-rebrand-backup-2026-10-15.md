@@ -692,7 +692,16 @@ Title template: none — each route sets its own full title (pattern `<Page> —
 - `src/routes/fractional-gold.tsx:45:      { property: "og:image", content: OG_IMAGE },`
 - `src/routes/fractional-gold.tsx:51:      { name: "twitter:image", content: OG_IMAGE },`
 
+- `src/routes/pricing.tsx:18: const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;`
+- `src/routes/fractional-gold.tsx:26: const OG_IMAGE = `${SITE_ORIGIN}/og/fractional-gold.png`;`
+- All other routes: no og:image.
+
 **CSS font variables (src/styles.css):**
+- `29:  --font-display: "Newsreader", Georgia, serif;`
+- `30:  --font-aurum-display: "Cormorant Garamond", Georgia, serif;`
+- `31:  --font-number: "Geist Mono", monospace;`
+- `32:  --font-money: "Geist Mono", monospace;`
+- `33:  --font-sans: "Geist", Arial, sans-serif;`
 
 **Google Fonts URL:**
 - `src/routes/__root.tsx:108:        href: "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap",`
