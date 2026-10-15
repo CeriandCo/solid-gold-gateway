@@ -400,7 +400,7 @@ function PricingPage() {
                 <h2>Fees, answered plainly.</h2>
                 <p className="pricing-v2-faq-lead">
                   Still unsure about a cost? Write to{" "}
-                  <a href="mailto:support@getsqoot.com">support@getsqoot.com</a> and we will show
+                  <a href="mailto:support@gettrunk.com">support@gettrunk.com</a> and we will show
                   you the full breakdown.
                 </p>
               </div>

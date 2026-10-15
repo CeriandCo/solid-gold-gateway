@@ -10,12 +10,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact TRUNK: email hello@sqoot.us, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
+          "Contact TRUNK: email hello@gettrunk.com, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
       },
       { property: "og:title", content: "Get In Touch — TRUNK" },
       {
         property: "og:description",
-        content: "Email hello@sqoot.us, find us in Sugar Land, TX, or follow TRUNK on social.",
+        content: "Email hello@gettrunk.com, find us in Sugar Land, TX, or follow TRUNK on social.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,25 +27,25 @@ export const Route = createFileRoute("/contact")({
 const contactChannels = [
   {
     label: "Email",
-    value: "hello@sqoot.us",
-    href: "mailto:hello@sqoot.us",
+    value: "hello@gettrunk.com",
+    href: "mailto:hello@gettrunk.com",
     note: "For everything — orders, accounts, gifting and general questions.",
   },
   {
     label: "Website",
-    value: "sqootpure.com",
-    href: "https://sqootpure.com",
+    value: "gettrunk.com",
+    href: "https://gettrunk.com",
     note: "Our home on the web.",
   },
   {
     label: "Learn",
-    value: "aurum.sqootpure.com",
-    href: "https://aurum.sqootpure.com",
+    value: "aurum.gettrunk.com",
+    href: "https://aurum.gettrunk.com",
     note: "Live gold prices, history and daily market notes.",
   },
   {
     label: "Address",
-    value: "SQOOT PURE, Sugar Land TX 77478",
+    value: "TRUNK, Sugar Land TX 77478",
     note: "Our office in Sugar Land, Texas.",
   },
 ];
@@ -89,7 +89,7 @@ function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-social" aria-label="Follow SQOOT Pure">
+      <section className="contact-social" aria-label="Follow TRUNK">
         <p className="contact-social__heading">Follow us</p>
         <ul className="contact-social__list">
           {socialLinks.map(({ Icon, label, href, handle }) => (
