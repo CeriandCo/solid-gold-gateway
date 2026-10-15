@@ -75,7 +75,7 @@ const articles = [
     title: "PHYSICAL GOLD VS GOLD ETF",
     copy: "Understand what you actually own when you buy physical gold versus a gold ETF.",
     image: articlePhone.url,
-    alt: "A hand holding a phone displaying the SQOOT Pure My Vault interface",
+    alt: "A hand holding a phone displaying the TRUNK My Vault interface",
     width: 1536,
     height: 1024,
     decoding: "async",
@@ -85,7 +85,7 @@ const articles = [
     title: "HOW TO BUY GOLD SAFELY",
     copy: "What to check before buying physical gold online, from provenance to storage.",
     image: articleGoldBar.url,
-    alt: "SQOOT Pure 10g fine gold bar with engraved emblem",
+    alt: "TRUNK 10g fine gold bar with engraved emblem",
     width: 1536,
     height: 1024,
     decoding: "async",
@@ -386,7 +386,7 @@ function KnowledgeCenterPage() {
           <article className="kc-promo-card kc-guide-card" data-reveal>
             <img
               src={buyingGuide.url}
-              alt="Dark green SQOOT Pure Buying Gold Safely guide"
+              alt="Dark green TRUNK Buying Gold Safely guide"
               width={1400}
               height={900}
               loading="lazy"
@@ -426,7 +426,7 @@ function KnowledgeCenterPage() {
             </div>
             <img
               src={investingBanner.url}
-              alt="SQOOT Pure 10g gold bar, two emblem coins and stacked bullion"
+              alt="TRUNK 10g gold bar, two emblem coins and stacked bullion"
               width={1820}
               height={864}
               loading="lazy"

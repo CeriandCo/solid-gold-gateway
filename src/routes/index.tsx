@@ -86,9 +86,9 @@ const OWNERSHIP_WAYS = [
     linkLabel: "Browse coins",
     to: "/precious-metal",
     background: coinsCardBackground.url,
-    backgroundAlt: "Gold coins presented in a premium SQOOT Pure gift box",
+    backgroundAlt: "Gold coins presented in a premium TRUNK gift box",
     screen: coinsPhoneScreen.url,
-    screenAlt: "SQOOT Pure app coin collection screen",
+    screenAlt: "TRUNK app coin collection screen",
   },
   {
     number: "02",
@@ -100,7 +100,7 @@ const OWNERSHIP_WAYS = [
     background: weightCardBackground.url,
     backgroundAlt: "Gold bars arranged on cream linen",
     screen: weightPhoneScreen.url,
-    screenAlt: "SQOOT Pure app buy screen",
+    screenAlt: "TRUNK app buy screen",
   },
   {
     number: "03",
@@ -112,7 +112,7 @@ const OWNERSHIP_WAYS = [
     background: vaultCardBackground.url,
     backgroundAlt: "Gold bars and coins stored in a secure vault",
     screen: vaultPhoneScreen.url,
-    screenAlt: "SQOOT Pure app vaulted holdings screen",
+    screenAlt: "TRUNK app vaulted holdings screen",
   },
 ] as const;
 
@@ -239,23 +239,23 @@ const AURUM_ARTICLES = [
 
 const HOME_FAQS = [
   {
-    question: "Is SQOOT Pure available now?",
+    question: "Is TRUNK available now?",
     answer: "Not yet. We are in pre-launch. You can join the waitlist, but accounts, payments and gold purchases are not open.",
   },
   {
     question: "Is the gold real?",
-    answer: "Yes. Sqoot is built around fine physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
+    answer: "Yes. TRUNK is built around fine physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch.",
   },
   {
     question: "Where does the gold come from?",
-    answer: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually.",
+    answer: "TRUNK's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually.",
   },
   {
     question: "Do I need to pay or share bank details to join?",
-    answer: "No. Joining the waitlist is free. We will not ask you to fund an account or provide bank details while Sqoot remains in waitlist mode.",
+    answer: "No. Joining the waitlist is free. We will not ask you to fund an account or provide bank details while TRUNK remains in waitlist mode.",
   },
   {
-    question: "When will SQOOT Pure launch?",
+    question: "When will TRUNK launch?",
     answer: "We are working toward launch, but we will not promise a date before the product and its safeguards are ready. Waitlist members will receive an update when access begins.",
   },
   {
@@ -455,7 +455,7 @@ function Index() {
           <div className="home-hero-phone-stage">
             <img
               src={heroPhone.url}
-              alt="SQOOT Pure app showing My Gold vaulted gold balance"
+              alt="TRUNK app showing My Gold vaulted gold balance"
               width={611}
               height={1262}
               className="home-hero-phone"
@@ -470,7 +470,7 @@ function Index() {
         <section id="proof" className="bg-forest-2" aria-labelledby="proof-heading">
           <div className="site-container">
             <h2 id="proof-heading" className="sr-only">
-              Why SQOOT gold
+              Why TRUNK gold
             </h2>
             <ul className="home-proof">
               {PROOF_ITEMS.map((item) => (
@@ -538,7 +538,7 @@ function Index() {
         <section id="app" className="bg-forest-black" aria-labelledby="app-heading">
           <div className="home-app">
             <div className="home-app-head">
-              <p className="home-app-eyebrow">THE SQOOT PURE APP</p>
+              <p className="home-app-eyebrow">THE TRUNK APP</p>
               <h2 id="app-heading" className="home-app-title">
                 All of your gold, <em>in your pocket.</em>
               </h2>
@@ -695,7 +695,7 @@ function Index() {
           <div className="site-container home-aurum-inner">
             <div className="home-aurum-head">
               <div className="home-aurum-intro">
-                <p className="home-aurum-eyebrow">FROM AURUM · THE SQOOT PURE GOLD BOARD</p>
+                <p className="home-aurum-eyebrow">FROM AURUM · THE TRUNK GOLD BOARD</p>
                 <h2 id="from-aurum-heading">Understand gold before you own it.</h2>
               </div>
               <Link

@@ -233,11 +233,11 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "h3",
-      text: "Explore physical gold ownership with SQOOT Pure"
+      text: "Explore physical gold ownership with TRUNK"
     },
     {
       type: "p",
-      text: "SQOOT Pure is being built to make physical precious metal ownership more accessible, transparent and easier to understand."
+      text: "TRUNK is being built to make physical precious metal ownership more accessible, transparent and easier to understand."
     },
     {
       type: "p",
@@ -630,7 +630,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "SQOOT Pure is being built around a simple idea: make physical precious metal ownership easier to understand and more accessible."
+      text: "TRUNK is being built around a simple idea: make physical precious metal ownership easier to understand and more accessible."
     },
     {
       type: "p",
@@ -638,7 +638,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "Join the SQOOT Pure waitlist to be among the first to know when we launch."
+      text: "Join the TRUNK waitlist to be among the first to know when we launch."
     }
   ],
   sources: [
@@ -999,7 +999,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "SQOOT Pure is being built to make physical precious metal ownership simpler and more accessible."
+      text: "TRUNK is being built to make physical precious metal ownership simpler and more accessible."
     },
     {
       type: "p",
@@ -1015,7 +1015,7 @@ export const PUBLISHED_LEARN_ARTICLES: PublishedLearnArticle[] = [
     },
     {
       type: "p",
-      text: "Join the SQOOT Pure waitlist to be among the first to know when gifting and precious metal ownership become available."
+      text: "Join the TRUNK waitlist to be among the first to know when gifting and precious metal ownership become available."
     }
   ],
   sources: [],

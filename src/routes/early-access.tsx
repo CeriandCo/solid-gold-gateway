@@ -53,13 +53,13 @@ const benefits = [
   { Icon: Coins, text: "Real physical gold" },
   { Icon: Vault, text: "Start from US$25" },
   { Icon: ShieldCheck, text: "Secure storage and delivery options" },
-  { Icon: Smartphone, text: "Manage your holding through the SQOOT Pure app" },
+  { Icon: Smartphone, text: "Manage your holding through the TRUNK app" },
 ];
 
 const faqs = [
   {
-    q: "Is SQOOT Pure available now?",
-    a: "Not yet. SQOOT Pure is currently in pre-launch. Joining the waitlist is the best way to be notified as soon as the app becomes available.",
+    q: "Is TRUNK available now?",
+    a: "Not yet. TRUNK is currently in pre-launch. Joining the waitlist is the best way to be notified as soon as the app becomes available.",
   },
   {
     q: "What happens when I join the waitlist?",
@@ -74,7 +74,7 @@ const faqs = [
     a: "Joining the waitlist registers your interest and ensures you are notified, but it does not guarantee account approval or access at launch. Access may be subject to eligibility and availability.",
   },
   {
-    q: "How will SQOOT Pure protect my information?",
+    q: "How will TRUNK protect my information?",
     a: <>Your email address is used only for waitlist communications and handled in line with our <Link to="/privacy" className="font-medium text-gold underline underline-offset-4">Privacy Policy</Link>. We do not sell your personal information.</>,
   },
   {
@@ -127,7 +127,7 @@ function EarlyAccessPage() {
                 Be first in line.
               </h1>
               <p className="mt-5 max-w-[460px] text-[15px] leading-relaxed text-charcoal/80 sm:text-base">
-                Join the SQOOT Pure waitlist and be notified when the app launches.
+                Join the TRUNK waitlist and be notified when the app launches.
               </p>
 
               {formState === "success" ? (
@@ -142,7 +142,7 @@ function EarlyAccessPage() {
                     You’re on the list.
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-charcoal/80">
-                    Thank you for joining the SQOOT Pure waitlist. We’ll let you know when access
+                    Thank you for joining the TRUNK waitlist. We’ll let you know when access
                     becomes available.
                   </p>
                 </div>
@@ -251,7 +251,7 @@ function EarlyAccessPage() {
         <section data-reveal className="bg-forest-deep py-16 text-warm-white sm:py-20">
           <div className={WIDE}>
             <div className="max-w-[560px]">
-              <Eyebrow>Why SQOOT Pure</Eyebrow>
+              <Eyebrow>Why TRUNK</Eyebrow>
               <h2 className="mt-4 font-display text-[2rem] font-medium leading-[1.1] tracking-[-0.015em] text-warm-white sm:text-[2.5rem]">
                 A simpler way to own gold.
               </h2>

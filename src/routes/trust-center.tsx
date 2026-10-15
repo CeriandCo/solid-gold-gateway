@@ -90,12 +90,12 @@ const TC = {
   reportPreview: {
     eyebrow: "Audit Report — Full Pages",
     title: ["First audit report", "publishing Q4 2026"],
-    body: "SQOOT Pure launched in 2026. Our first biannual audit is scheduled for Q4 2026. The complete report — every page, unredacted — will be published here the day it is received from our auditor.",
+    body: "TRUNK launched in 2026. Our first biannual audit is scheduled for Q4 2026. The complete report — every page, unredacted — will be published here the day it is received from our auditor.",
   },
   archive: {
     title: "Audit Archive",
     subtitle: "All Published Reports",
-    body: "Every audit SQOOT Pure has completed, in order. All reports remain permanently accessible — nothing is removed or altered after publication.",
+    body: "Every audit TRUNK has completed, in order. All reports remain permanently accessible — nothing is removed or altered after publication.",
     rows: [
       {
         name: "Vault Audit — Q4 2026",
@@ -115,7 +115,7 @@ const TC = {
   process: {
     title: "The Process",
     subtitle: "How our audit works",
-    body: "Every six months, an independent auditor verifies every ounce of gold held for SQOOT Pure clients.",
+    body: "Every six months, an independent auditor verifies every ounce of gold held for TRUNK clients.",
     steps: [
       {
         icon: "auditor" as const,
@@ -142,7 +142,7 @@ const TC = {
   protection: {
     title: "Client Protection",
     subtitle: "Independent legal counsel",
-    body: "In the event SQOOT Pure ceases operations, you do not need to rely on us to access your gold. An independent legal counsel holds your custody claim instructions and can act on your behalf directly.",
+    body: "In the event TRUNK ceases operations, you do not need to rely on us to access your gold. An independent legal counsel holds your custody claim instructions and can act on your behalf directly.",
     statement: "Your gold is claimable without us.",
     cta: "Request details",
     overviewTitle: "Independent Legal Counsel — Overview",
@@ -150,14 +150,14 @@ const TC = {
       { icon: "role" as const, label: "Role:", value: "Independent Client Asset Custodian" },
       { icon: "seal" as const, label: "Jurisdiction:", value: "United States — Wyoming" },
       { icon: "doc" as const, label: "Agreement:", value: "Standing instruction — pre-authorized" },
-      { icon: "alert" as const, label: "Trigger:", value: "SQOOT Pure wind-down or insolvency event" },
+      { icon: "alert" as const, label: "Trigger:", value: "TRUNK wind-down or insolvency event" },
       {
         icon: "landmark" as const,
         label: "Client action:",
         value: "Contact directly, present verified identity, claim holdings fully backed in the vault",
       },
     ],
-    disclosureLead: "Counsel name, firm, and contact details are disclosed to verified SQOOT Pure account holders upon written request. Email ",
+    disclosureLead: "Counsel name, firm, and contact details are disclosed to verified TRUNK account holders upon written request. Email ",
     disclosureEmail: "support@gettrunk.com",
     disclosureMid: " with subject: ",
     disclosureSubject: "Legal Counsel Details Request.",
@@ -166,17 +166,17 @@ const TC = {
     {
       icon: "cube" as const,
       title: "Fully backed in the vault",
-      body: "All gold held through SQOOT Pure is fully backed in the vault and is not co-mingled with other clients' holdings or SQOOT Pure's corporate assets.",
+      body: "All gold held through TRUNK is fully backed in the vault and is not co-mingled with other clients' holdings or TRUNK's corporate assets.",
     },
     {
       icon: "shieldCheck" as const,
       title: "Audit independence",
-      body: "SQOOT Pure's audit partner has no financial interest in SQOOT Pure and is engaged under a fixed-fee arrangement not contingent on audit results.",
+      body: "TRUNK's audit partner has no financial interest in TRUNK and is engaged under a fixed-fee arrangement not contingent on audit results.",
     },
     {
       icon: "landmark" as const,
       title: "Regulatory notice",
-      body: "SQOOT Pure is operated by Fortress Gold Inc. (Wyoming), a registered precious metals dealer. This Trust Center is published for transparency purposes and does not constitute a legal guarantee.",
+      body: "TRUNK is operated by Fortress Gold Inc. (Wyoming), a registered precious metals dealer. This Trust Center is published for transparency purposes and does not constitute a legal guarantee.",
     },
     {
       icon: "lock" as const,

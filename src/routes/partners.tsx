@@ -44,7 +44,7 @@ const WHY = [
 const STEPS = [
   ["Apply", "Tell us about you and your firm."],
   ["Get approved", "Approved partners receive a unique partner link."],
-  ["Introduce clients", "Clients open their own accounts, complete identity verification and buy directly through SQOOT Pure."],
+  ["Introduce clients", "Clients open their own accounts, complete identity verification and buy directly through TRUNK."],
   ["Earn rewards", "Eligible partners receive monthly referral rewards for qualifying active clients under the Partner Terms."],
 ] as const;
 
@@ -107,7 +107,7 @@ function PartnersPage() {
         titleId="partners-hero-title"
         eyebrow="For advisors · Wealth managers · Family offices"
         title={<><span>Fine gold for your clients.</span><span><em>Simple to introduce.</em></span></>}
-        body="SQOOT Pure gives your clients a simple way to buy fine physical gold, from $25 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Apply to become a partner and, if approved, earn referral rewards for eligible clients you introduce."
+        body="TRUNK gives your clients a simple way to buy fine physical gold, from $25 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Apply to become a partner and, if approved, earn referral rewards for eligible clients you introduce."
         actions={
           <>
             <GoldButton href="#apply">Apply to partner</GoldButton>
@@ -155,9 +155,9 @@ function PartnersPage() {
               </li>
             ))}
           </ol>
-          <p className="pt-note">Partners never collect, hold or transmit client money. Clients buy, hold and sell directly through SQOOT Pure.</p>
+          <p className="pt-note">Partners never collect, hold or transmit client money. Clients buy, hold and sell directly through TRUNK.</p>
           <p className="pt-small">
-            Participation is subject to approval, Partner Terms and any required employer or firm authorization. Partners must clearly disclose their compensated relationship with SQOOT Pure whenever they share their partner link.
+            Participation is subject to approval, Partner Terms and any required employer or firm authorization. Partners must clearly disclose their compensated relationship with TRUNK whenever they share their partner link.
           </p>
         </div>
       </section>

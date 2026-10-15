@@ -52,7 +52,7 @@ export const Route = createFileRoute("/vault")({
 
 const faqs = [
   ["Is this actually fine gold?", "Yes. Every dollar is backed by fine physical metal held at an insured depository, fully backed in the vault."],
-  ["What happens if SQOOT disappears?", "Your metal is held at IDS, fully backed in the vault, not on our balance sheet, and remains yours."],
+  ["What happens if TRUNK disappears?", "Your metal is held at IDS, fully backed in the vault, not on our balance sheet, and remains yours."],
   ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
   ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
   ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
@@ -270,7 +270,7 @@ function Index() {
               </div>
               <div className="mt-6 flex justify-center">
                 <div className="inline-flex items-center gap-3 rounded-[4px] border border-gold/45 px-5 py-2.5">
-                  <span className="eyebrow text-[11px] text-[#F8F5F1]">SQOOT Record</span>
+                  <span className="eyebrow text-[11px] text-[#F8F5F1]">TRUNK Record</span>
                   <span className="text-gold-soft">↔</span>
                   <span className="eyebrow text-[11px] text-[#F8F5F1]">IDS Record</span>
                 </div>
@@ -428,7 +428,7 @@ function Index() {
                   "Operated by Vaultify PMC",
                   "Fully insured holdings",
                   "Houston metro access",
-                  "Available to all SQOOT Pure clients",
+                  "Available to all TRUNK clients",
                 ],
               ],
             ] as const
@@ -595,7 +595,7 @@ function Index() {
             <div className="relative">
               <img
                 src={laptopImage}
-                alt="Laptop showing a SQOOT Pure vault record dashboard"
+                alt="Laptop showing a TRUNK vault record dashboard"
                 loading="lazy"
                 width={1024}
                 height={640}

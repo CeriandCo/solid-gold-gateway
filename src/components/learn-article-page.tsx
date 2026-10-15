@@ -26,9 +26,9 @@ export function LearnArticlePage({ article }: { article: PublishedLearnArticle }
         </article>
         <section className="bg-forest-deep py-14 text-warm-white sm:py-18"><div className={WIDE}><div data-reveal className="mx-auto max-w-[720px] text-center">
           <p className="eyebrow text-gold mb-4">Get early access</p>
-          <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-[-0.015em] sm:text-3xl">Join the SQOOT Pure waitlist</h2>
-          <p className="body-copy mx-auto mt-5 max-w-[600px] text-warm-white/80">Be among the first to explore fractional physical gold ownership when SQOOT Pure launches.</p>
-          <div className="mt-8"><GoldButton to="/early-access">Join the SQOOT Pure waitlist</GoldButton></div>
+          <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-[-0.015em] sm:text-3xl">Join the TRUNK waitlist</h2>
+          <p className="body-copy mx-auto mt-5 max-w-[600px] text-warm-white/80">Be among the first to explore fractional physical gold ownership when TRUNK launches.</p>
+          <div className="mt-8"><GoldButton to="/early-access">Join the TRUNK waitlist</GoldButton></div>
           <p className="compact-copy mt-10 text-warm-white/60">{article.disclaimer}</p>
         </div></div></section>
       </main>

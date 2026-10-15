@@ -380,7 +380,7 @@ function PricingPage() {
 
         <section id="pricing-trust" className="pricing-v2-trust" ref={trustRef}>
           <div className="site-container">
-            <h2 className="sr-only">Why customers trust SQOOT Pure</h2>
+            <h2 className="sr-only">Why customers trust TRUNK</h2>
             <ul className="pricing-v2-trust-list" data-reveal>
               {trustItems.map((item) => (
                 <li className="pricing-v2-trust-item" key={item.title} data-reveal>

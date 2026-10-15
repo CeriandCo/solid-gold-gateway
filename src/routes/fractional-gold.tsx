@@ -66,7 +66,7 @@ const steps = [
     title: "Create an account",
     summary: "Join the waitlist now; account access will follow when available.",
     detail:
-      "SQOOT Pure is currently in pre-launch. You will be prompted to set up a transactional account after launch.",
+      "TRUNK is currently in pre-launch. You will be prompted to set up a transactional account after launch.",
     icon: UserPlus,
   },
   {
@@ -80,7 +80,7 @@ const steps = [
     title: "Choose an amount",
     summary: "When access becomes available, start with as little as US$25.",
     detail:
-      "Choose an amount that suits you, starting from US$25. SQOOT Pure is still pre-launch, so gold purchases are not available yet.",
+      "Choose an amount that suits you, starting from US$25. TRUNK is still pre-launch, so gold purchases are not available yet.",
     icon: Coins,
   },
   {
@@ -102,7 +102,7 @@ const steps = [
 const faqs = [
   [
     "What are the fees?",
-    "SQOOT Pure keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Purchase fee: 3.00% of the amount purchased (US$3 per US$100), charged when you purchase gold. Storage and insurance: free for your first 12 months, then 0.45% of the value of your vaulted gold per year, charged pro-rata for the exact days held. Insurance is included — there is no separate insurance charge. A minimum storage fee of US$3.00 per year applies after your first 12 months. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
+    "TRUNK keeps fees simple and transparent. You'll always see the applicable fees before confirming a transaction. For fractional gold ownership, the current fees are: Purchase fee: 3.00% of the amount purchased (US$3 per US$100), charged when you purchase gold. Storage and insurance: free for your first 12 months, then 0.45% of the value of your vaulted gold per year, charged pro-rata for the exact days held. Insurance is included — there is no separate insurance charge. A minimum storage fee of US$3.00 per year applies after your first 12 months. There are no hidden fees. Any applicable charges will be clearly disclosed before you complete a transaction. Fees may change from time to time. Please refer to our Fee Schedule for the current fees and full terms."
   ],
   [
     "Do I pay a fee when I sell my gold?",
@@ -114,11 +114,11 @@ const faqs = [
   ],
   [
     "What am I buying when I buy vaulted gold?",
-    "You are buying in physical gold held through Sqoot's custody arrangement. It is not an ETF, cryptocurrency, or digital token."
+    "You are buying in physical gold held through TRUNK's custody arrangement. It is not an ETF, cryptocurrency, or digital token."
   ],
   [
     "Is vaulted gold the same as buying a physical coin?",
-    "No. They are separate products. Vaulted gold is a fractional interest in physical gold held through Sqoot's custody arrangement. A physical coin is a specific retail product bought through a separate checkout and shipped to an eligible address. At launch, you will not be able to use your vaulted gold toward a coin for delivery."
+    "No. They are separate products. Vaulted gold is a fractional interest in physical gold held through TRUNK's custody arrangement. A physical coin is a specific retail product bought through a separate checkout and shipped to an eligible address. At launch, you will not be able to use your vaulted gold toward a coin for delivery."
   ],
   [
     "How do I buy vaulted gold?",
@@ -126,19 +126,19 @@ const faqs = [
   ],
   [
     "Is the gold real?",
-    "Yes. Sqoot is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch."
+    "Yes. TRUNK is built around real physical gold held in professional vault storage, not cryptocurrency, a digital token, or an ETF. Full ownership and custody details will be published before launch."
   ],
   [
-    "Is Sqoot an ETF, cryptocurrency, or digital token?",
-    "No. Sqoot is being designed around real physical gold, not an ETF, cryptocurrency, or digital token. We will publish the precise ownership and custody structure before customers can buy."
+    "Is TRUNK an ETF, cryptocurrency, or digital token?",
+    "No. TRUNK is being designed around real physical gold, not an ETF, cryptocurrency, or digital token. We will publish the precise ownership and custody structure before customers can buy."
   ],
   [
     "Where does the gold come from?",
-    "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
+    "TRUNK's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
   ],
   [
     "Is gold guaranteed to increase in value?",
-    "No. Gold prices can rise or fall, and you may receive less when you sell than you paid. Fees and the difference between buy and sell prices can also affect your return. Sqoot does not provide investment, legal, or tax advice."
+    "No. Gold prices can rise or fall, and you may receive less when you sell than you paid. Fees and the difference between buy and sell prices can also affect your return. TRUNK does not provide investment, legal, or tax advice."
   ],
 ] as const;
 
@@ -231,7 +231,7 @@ function Index() {
         body={<>Start with $25 in fine physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
         actions={<GoldButton to="/early-access" onClick={() => track("fractional_cta_click", { target: "early_access" })}>Get Early Access</GoldButton>}
         imageSrc={fractionalGoldHero.url}
-        imageAlt="SQOOT Pure gold bars and a coin arranged on a deep green velvet tray over marble"
+        imageAlt="TRUNK gold bars and a coin arranged on a deep green velvet tray over marble"
         imageVariant="fractional"
         media={
           <div aria-hidden="true" className="fg-price-badge">
@@ -256,7 +256,7 @@ function Index() {
         <div className="site-container">
           <p className="eyebrow text-center text-gold">Credentials you can verify.</p>
           <div className="mt-8 grid grid-cols-2 items-start gap-y-9 sm:mt-9 md:grid-cols-4 lg:gap-y-0">
-            {/* JBT — SQOOT Pure industry membership */}
+            {/* JBT — TRUNK industry membership */}
             <a
               href="https://www.jewelersboard.com/were-legit"
               target="_blank"
@@ -281,7 +281,7 @@ function Index() {
                 Jewelers Board of Trade
               </span>
             </a>
-            {/* NCBA — SQOOT Pure industry membership */}
+            {/* NCBA — TRUNK industry membership */}
             <a
               href="https://www.ncbassoc.org/membership"
               target="_blank"
@@ -373,7 +373,7 @@ function Index() {
               Each purchase may be small, but together they can become something durable: a personal reserve, family wealth and an asset recognised across borders.
             </p>
             <p className="mt-5 max-w-[540px] font-['DM_Sans',_sans-serif] text-base leading-relaxed text-charcoal/80 sm:text-[1.05rem]">
-              SQOOT Pure brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
+              TRUNK brings this established behaviour into a modern fractional-purchase experience. Build a vaulted precious-metal balance through purchases that fit your budget, without waiting until you can afford an entire coin or bar.
             </p>
             <p className="mt-8 max-w-[560px] font-['DM_Sans',_sans-serif] text-[0.8rem] leading-[1.6] text-charcoal/70 sm:text-[0.85rem]">
               Gold is not presented as guaranteed appreciation or a replacement for productive investments. It is a distinct reserve, built gradually, held for the long term and available for sale or eligible physical redemption when needed.
@@ -490,8 +490,8 @@ function Index() {
       <section data-reveal className="bg-ivory px-5 py-16 sm:px-7 sm:py-20">
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
-          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="SQOOT PURE green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
-          <div className="lg:pl-8"><h2 className="section-title text-background">With SQOOT Pure,<br /><em className="comparison-emphasis text-gold">buy</em> only what<br />you want.</h2><List items={["Start with $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
+          <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="TRUNK green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
+          <div className="lg:pl-8"><h2 className="section-title text-background">With TRUNK,<br /><em className="comparison-emphasis text-gold">buy</em> only what<br />you want.</h2><List items={["Start with $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
 
