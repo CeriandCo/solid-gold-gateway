@@ -41,7 +41,7 @@ import familyPhoto from "@/assets/occasion-family.jpg";
 import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
 import { PurchaseAcknowledgement } from "@/components/purchase-acknowledgement";
 import { ACKNOWLEDGEMENT_VERSION } from "@/lib/commerce/acknowledgement";
-import sqootLogo from "@/assets/sqoot-pure-logo.png";
+import sqootLogo from "@/assets/trunk-wordmark-for-dark.svg";
 import sqootMandala from "@/assets/sqoot-mandala.png";
 import closingGift from "@/assets/gifting-closing-v2.png.asset.json";
 
@@ -531,8 +531,8 @@ function GiftingNewPage() {
               className="gift-card-logo"
               src={sqootLogo}
               alt=""
-              width={567}
-              height={200}
+              width={1030}
+              height={232}
               draggable={false}
             />
             <img
