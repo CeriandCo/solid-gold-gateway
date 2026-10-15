@@ -53,7 +53,7 @@ function PrivacyPage() {
           </p>
 
           <p className="body-copy mt-5 text-charcoal/90">
-            Fortress Gold Inc. DBA Sqoot ("Sqoot Pure," "we," "us," or "our") operates the website getsqoot.com and related services. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you visit our website or use our platform.
+            Fortress Gold Inc. DBA TRUNK ("TRUNK," "we," "us," or "our") operates the website gettrunk.com and related services. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you visit our website or use our platform.
           </p>
 
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
@@ -149,7 +149,7 @@ function PrivacyPage() {
             Depending on your jurisdiction, you may have the right to: access, correct, or delete your personal information; withdraw consent for marketing communications; request a copy of your data in a portable format; object to certain types of data processing.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            To exercise these rights, contact us at compliance@sqoot.us.
+            To exercise these rights, contact us at compliance@gettrunk.com.
           </p>
 
           <h2 id="cookies" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
@@ -184,7 +184,7 @@ function PrivacyPage() {
             11. SMS and Text Messaging
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            By providing your phone number during account registration, through our website contact forms, or through our live chat, you consent to receive text messages from Sqoot Pure related to your account, including order confirmations, shipping notifications, KYC verification updates, payment receipts, and customer support responses.
+            By providing your phone number during account registration, through our website contact forms, or through our live chat, you consent to receive text messages from TRUNK related to your account, including order confirmations, shipping notifications, KYC verification updates, payment receipts, and customer support responses.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
             Message and data rates may apply. Message frequency varies based on your account activity. You can opt out at any time by replying STOP to any message. For help, reply HELP to any message or contact us at +1 (254) 455-5959, +1 (920) 776-6863, or through our contact form. We do not share your phone number with third parties for marketing purposes. Carriers are not liable for delayed or undelivered messages.
@@ -197,18 +197,18 @@ function PrivacyPage() {
             12. Stripe Payment Integration
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            We use regulated payment processors to handle all transactions — including ACH bank transfer, RTP, and wire transfer. When you initiate a payment, your bank account details are transmitted directly to our payment processor and are never stored by SQOOT Pure. We receive only the transaction confirmation and limited account details necessary to fulfill your order.
+            We use regulated payment processors to handle all transactions — including ACH bank transfer, RTP, and wire transfer. When you initiate a payment, your bank account details are transmitted directly to our payment processor and are never stored by TRUNK. We receive only the transaction confirmation and limited account details necessary to fulfill your order.
           </p>
 
           <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             13. Contact Us
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            If you have questions or concerns about this Privacy Policy, please contact us through our contact form on getsqoot.com.
+            If you have questions or concerns about this Privacy Policy, please contact us through our contact form on gettrunk.com.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            Fortress Gold Inc. DBA Sqoot<br />
-            Website: getsqoot.com
+            Fortress Gold Inc. DBA TRUNK<br />
+            Website: gettrunk.com
           </p>
         </article>
       </main>
