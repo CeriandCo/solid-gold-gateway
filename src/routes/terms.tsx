@@ -4,17 +4,17 @@ import { SiteFooter, SiteHeader, STD } from "@/components/site-chrome";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Use | SQOOT Pure" },
+      { title: "Terms of Use | TRUNK" },
       {
         name: "description",
         content:
-          "Read the SQOOT Pure Terms of Use governing access to getsqoot.com and related services operated by Fortress Gold Inc. DBA Sqoot.",
+          "Read the TRUNK Terms of Use governing access to getsqoot.com and related services operated by Fortress Gold Inc. DBA TRUNK.",
       },
-      { property: "og:title", content: "Terms of Use | SQOOT Pure" },
+      { property: "og:title", content: "Terms of Use | TRUNK" },
       {
         property: "og:description",
         content:
-          "Terms of Use for the SQOOT Pure digital gold ownership platform.",
+          "Terms of Use for the TRUNK digital gold ownership platform.",
       },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/terms" },
       { property: "og:type", content: "website" },

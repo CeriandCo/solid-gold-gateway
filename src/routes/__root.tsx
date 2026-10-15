@@ -80,14 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { title: "TRUNK — Fine Gold, Real Ownership" },
       {
         name: "description",
         content:
           "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership, insured U.S. storage, redeemable on demand.",
       },
-      { name: "author", content: "SQOOT Pure" },
-      { property: "og:title", content: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { name: "author", content: "TRUNK" },
+      { property: "og:title", content: "TRUNK — Fine Gold, Real Ownership" },
       {
         property: "og:description",
         content:

@@ -34,13 +34,13 @@ export const Route = createFileRoute("/learn/")({
   loader: () => fetchEditorialArchive(),
   head: () => ({
     meta: [
-      { title: "Knowledge Center — Gold Education | SQOOT Pure" },
+      { title: "Knowledge Center — Gold Education | TRUNK" },
       {
         name: "description",
         content:
-          "Explore clear, trusted education on gold ownership, performance, safety and long-term value from SQOOT Pure.",
+          "Explore clear, trusted education on gold ownership, performance, safety and long-term value from TRUNK.",
       },
-      { property: "og:title", content: "Knowledge Center — Gold Education | SQOOT Pure" },
+      { property: "og:title", content: "Knowledge Center — Gold Education | TRUNK" },
       {
         property: "og:description",
         content: "Clear, trusted education on gold ownership, performance and long-term value.",

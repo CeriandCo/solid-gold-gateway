@@ -4,17 +4,17 @@ import { SiteFooter, SiteHeader, STD } from "@/components/site-chrome";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy | SQOOT Pure" },
+      { title: "Privacy Policy | TRUNK" },
       {
         name: "description",
         content:
-          "Read the SQOOT Pure Privacy Policy to understand how we collect, use, disclose, and protect your personal information.",
+          "Read the TRUNK Privacy Policy to understand how we collect, use, disclose, and protect your personal information.",
       },
-      { property: "og:title", content: "Privacy Policy | SQOOT Pure" },
+      { property: "og:title", content: "Privacy Policy | TRUNK" },
       {
         property: "og:description",
         content:
-          "Privacy Policy for the SQOOT Pure digital gold ownership platform.",
+          "Privacy Policy for the TRUNK digital gold ownership platform.",
       },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/privacy" },
       { property: "og:type", content: "website" },

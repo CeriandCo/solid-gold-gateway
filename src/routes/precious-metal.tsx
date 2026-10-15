@@ -14,13 +14,13 @@ const heroImage = heroAsset.url;
 export const Route = createFileRoute("/precious-metal")({
   head: () => ({
     meta: [
-      { title: "Buy Physical Gold and Silver, Delivered | SQOOT Pure" },
+      { title: "Buy Physical Gold and Silver, Delivered | TRUNK" },
       {
         name: "description",
         content:
           "Buy physical gold and silver coins and bars, insured in transit and shipped directly to your address. Real metal, in your hands.",
       },
-      { property: "og:title", content: "Buy Physical Gold and Silver, Delivered | SQOOT Pure" },
+      { property: "og:title", content: "Buy Physical Gold and Silver, Delivered | TRUNK" },
       {
         property: "og:description",
         content: "Physical gold and silver, insured in transit, delivered to your door.",

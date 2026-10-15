@@ -32,13 +32,13 @@ import { useWaitlistForm } from "@/hooks/use-waitlist-form";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SQOOT Pure — Own Fine Gold, Three Ways" },
+      { title: "TRUNK — Own Fine Gold, Three Ways" },
       {
         name: "description",
         content:
           "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
       },
-      { property: "og:title", content: "SQOOT Pure — Own Fine Gold, Three Ways" },
+      { property: "og:title", content: "TRUNK — Own Fine Gold, Three Ways" },
       {
         property: "og:description",
         content:

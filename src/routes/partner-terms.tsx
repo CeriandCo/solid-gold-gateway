@@ -4,10 +4,10 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 export const Route = createFileRoute("/partner-terms")({
   head: () => ({
     meta: [
-      { title: "Partner Program Terms — SQOOT Pure" },
-      { name: "description", content: "SQOOT Pure Partner Program Terms." },
-      { property: "og:title", content: "Partner Program Terms — SQOOT Pure" },
-      { property: "og:description", content: "SQOOT Pure Partner Program Terms." },
+      { title: "Partner Program Terms — TRUNK" },
+      { name: "description", content: "TRUNK Partner Program Terms." },
+      { property: "og:title", content: "Partner Program Terms — TRUNK" },
+      { property: "og:description", content: "TRUNK Partner Program Terms." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

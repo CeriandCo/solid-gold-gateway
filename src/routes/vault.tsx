@@ -31,13 +31,13 @@ import laptopImage from "@/assets/walkthrough-laptop.jpg";
 export const Route = createFileRoute("/vault")({
   head: () => ({
     meta: [
-      { title: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure" },
+      { title: "Vaulted Gold, Fully Backed in the Vault | TRUNK" },
       {
         name: "description",
         content:
           "Fine physical gold, fully backed in an insured US vault — verify it, redeem it, or take delivery whenever you choose.",
       },
-      { property: "og:title", content: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure" },
+      { property: "og:title", content: "Vaulted Gold, Fully Backed in the Vault | TRUNK" },
       {
         property: "og:description",
         content: "Insured US vault storage, fully backed in the vault, with pro-rata billing and redemption on your schedule.",

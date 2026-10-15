@@ -42,7 +42,7 @@ export const Route = createFileRoute("/aurum_/briefs/$slug")({
         "@context": "https://schema.org", "@type": "Article", headline: brief.title,
         description: brief.summary, datePublished: brief.publishedAt,
         mainEntityOfPage: `${origin}/aurum/briefs/${brief.slug}`,
-        publisher: { "@type": "Organization", name: "SQOOT Pure" },
+        publisher: { "@type": "Organization", name: "TRUNK" },
       }) }],
     };
   },

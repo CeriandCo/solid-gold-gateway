@@ -8,9 +8,9 @@ if (!article) throw new Error("Published Learn article is missing");
 export const Route = createFileRoute("/learn/how-to-buy-gold-safely")({
   head: () => ({
     meta: [
-      { title: "How to Buy Physical Gold Online Safely | SQOOT Pure" },
+      { title: "How to Buy Physical Gold Online Safely | TRUNK" },
       { name: "description", content: article.summary },
-      { property: "og:title", content: "How to Buy Physical Gold Online Safely | SQOOT Pure" },
+      { property: "og:title", content: "How to Buy Physical Gold Online Safely | TRUNK" },
       { property: "og:description", content: article.ogDescription },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/learn/how-to-buy-gold-safely" },
       { property: "og:type", content: "article" },

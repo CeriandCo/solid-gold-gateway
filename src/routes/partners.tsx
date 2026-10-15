@@ -8,16 +8,16 @@ import heroImage from "@/assets/trust-centre-hero-gold-register.png.asset.json";
 export const Route = createFileRoute("/partners")({
   head: () => ({
     meta: [
-      { title: "Partners — SQOOT Pure" },
+      { title: "Partners — TRUNK" },
       {
         name: "description",
         content:
           "For advisors, wealth managers and family offices: give clients a simple way to buy fine physical gold, fully backed in the vault. Apply to partner.",
       },
-      { property: "og:title", content: "Partners — SQOOT Pure" },
+      { property: "og:title", content: "Partners — TRUNK" },
       {
         property: "og:description",
-        content: "Fine gold for your clients. Simple to introduce. Apply to the SQOOT Pure partner program.",
+        content: "Fine gold for your clients. Simple to introduce. Apply to the TRUNK partner program.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

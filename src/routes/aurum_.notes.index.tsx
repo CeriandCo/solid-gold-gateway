@@ -13,9 +13,9 @@ export const Route = createFileRoute("/aurum_/notes/")({
   loader: ({ deps }) => fetchPublishedLearnNotes({ data: { limit: 20, offset: (deps.page - 1) * 20 } }),
   head: () => ({
     meta: [
-      { title: "Daily Note Archive | AURUM by SQOOT Pure" },
+      { title: "Daily Note Archive | AURUM by TRUNK" },
       { name: "description", content: "Browse AURUM's published, sourced notes on gold ownership and the gold market." },
-      { property: "og:title", content: "Daily Note Archive | AURUM by SQOOT Pure" },
+      { property: "og:title", content: "Daily Note Archive | AURUM by TRUNK" },
       { property: "og:description", content: "Browse AURUM's published, sourced notes on gold ownership and the gold market." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

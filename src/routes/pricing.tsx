@@ -15,7 +15,7 @@ import { useReveal } from "@/hooks/use-reveal";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const CANONICAL_URL = "https://getsqoot.com/pricing";
-const OG_IMAGE = `${SITE_ORIGIN}/og/pricing.png`;
+const OG_IMAGE = `${SITE_ORIGIN}/og/pricing-trunk.png`;
 
 const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;
 const deliveryFee = `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`;
@@ -128,18 +128,18 @@ const faqStructuredData = {
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing & Fees | SQOOT Pure" },
+      { title: "Pricing & Fees | TRUNK" },
       {
         name: "description",
         content: META_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Pricing & Fees — SQOOT Pure" },
+      { property: "og:title", content: "Pricing & Fees — TRUNK" },
       { property: "og:description", content: META_DESCRIPTION },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:url", content: CANONICAL_URL },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Pricing & Fees — SQOOT Pure" },
+      { name: "twitter:title", content: "Pricing & Fees — TRUNK" },
       { name: "twitter:description", content: META_DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
