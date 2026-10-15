@@ -8,7 +8,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "Read the TRUNK Terms of Use governing access to getsqoot.com and related services operated by Fortress Gold Inc. DBA Sqoot.",
+          "Read the TRUNK Terms of Use governing access to gettrunk.com and related services operated by Fortress Gold Inc. DBA TRUNK.",
       },
       { property: "og:title", content: "Terms of Use | TRUNK" },
       {
@@ -50,7 +50,7 @@ function TermsPage() {
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
           <p className="body-copy text-charcoal/90">Last updated: May 5, 2026</p>
           <p className="body-copy mt-5 text-charcoal/90">
-            These Terms of Use (&quot;Terms&quot;) govern your access to and use of getsqoot.com and related services (&quot;Platform&quot;) operated by Fortress Gold Inc. DBA Sqoot (&quot;Sqoot Pure,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.
+            These Terms of Use (&quot;Terms&quot;) govern your access to and use of gettrunk.com and related services (&quot;Platform&quot;) operated by Fortress Gold Inc. DBA TRUNK (&quot;TRUNK,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.
           </p>
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
             <p className="eyebrow text-gold mb-4">On this page</p>
@@ -80,7 +80,7 @@ function TermsPage() {
             1. Program Description
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            Sqoot Pure is a digital platform for purchasing, storing, gifting, and redeeming physical gold. Gold is classified as a commodity under US law. Sqoot Pure is not a securities broker, investment advisor, bank, or money services business. We provide infrastructure for direct physical gold ownership.
+            TRUNK is a digital platform for purchasing, storing, gifting, and redeeming physical gold. Gold is classified as a commodity under US law. TRUNK is not a securities broker, investment advisor, bank, or money services business. We provide infrastructure for direct physical gold ownership.
           </p>
 
           <h2 id="eligibility" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
@@ -101,7 +101,7 @@ function TermsPage() {
             4. Payment Methods
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            SQOOT Pure accepts the following payment methods: (1) ACH bank transfer up to $100,000 per transaction with same-day settlement; (2) RTP instant bank payment; and (3) wire transfer. No cash, no cards, and no cryptocurrency accepted. Payment processing is subject to identity verification and may be delayed pending AML review. SQOOT Pure reserves the right to add, modify, or remove supported payment methods with notice to users.
+            TRUNK accepts the following payment methods: (1) ACH bank transfer up to $100,000 per transaction with same-day settlement; (2) RTP instant bank payment; and (3) wire transfer. No cash, no cards, and no cryptocurrency accepted. Payment processing is subject to identity verification and may be delayed pending AML review. TRUNK reserves the right to add, modify, or remove supported payment methods with notice to users.
           </p>
 
           <h2 id="pricing-and-fees" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
@@ -122,17 +122,17 @@ function TermsPage() {
             7. Redemption and Delivery
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            You may redeem your SQOOT Pure gold at any time. Redemption is the process for exiting a gold position or requesting physical delivery. Depending on the redemption method available in your account, you may request an ACH cash payout based on the current live spot price, less disclosed platform and processing fees, or request physical delivery through an insured carrier. Redemption requests are subject to processing times, identity verification, available liquidity, shipping requirements, and applicable fees.
+            You may redeem your TRUNK gold at any time. Redemption is the process for exiting a gold position or requesting physical delivery. Depending on the redemption method available in your account, you may request an ACH cash payout based on the current live spot price, less disclosed platform and processing fees, or request physical delivery through an insured carrier. Redemption requests are subject to processing times, identity verification, available liquidity, shipping requirements, and applicable fees.
           </p>
 
           <h2 id="sms-and-text-messaging-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             8. SMS and Text Messaging Terms
           </h2>
           <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
-            Sqoot Pure Customer Care Messaging Program
+            TRUNK Customer Care Messaging Program
           </h3>
           <p className="body-copy mt-5 text-charcoal/90">
-            By providing your phone number on this Platform, you consent to receive text messages from Sqoot Pure for customer care purposes, including: order confirmations and status updates, shipping and delivery notifications, KYC verification updates, payment receipts and transaction alerts, customer support responses.
+            By providing your phone number on this Platform, you consent to receive text messages from TRUNK for customer care purposes, including: order confirmations and status updates, shipping and delivery notifications, KYC verification updates, payment receipts and transaction alerts, customer support responses.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
             Message frequency varies based on your account activity and support interactions. Message and data rates may apply depending on your carrier and plan.
@@ -158,14 +158,14 @@ function TermsPage() {
             10. Intellectual Property
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            All content on getsqoot.com, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA Sqoot and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.
+            All content on gettrunk.com, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA TRUNK and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.
           </p>
 
           <h2 id="limitation-of-liability" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             11. Limitation of Liability
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            To the maximum extent permitted by law, Sqoot Pure shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.
+            To the maximum extent permitted by law, TRUNK shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.
           </p>
 
           <h2 id="disclaimer-of-warranties" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
@@ -193,14 +193,14 @@ function TermsPage() {
             15. Commodity Risk and Market Movement
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            Gold prices fluctuate continuously. SQOOT Pure does not guarantee that your gold will increase in value or that a redemption will return the same amount you paid. You are responsible for reviewing the live price, fees, and transaction details before confirming any purchase or redemption.
+            Gold prices fluctuate continuously. TRUNK does not guarantee that your gold will increase in value or that a redemption will return the same amount you paid. You are responsible for reviewing the live price, fees, and transaction details before confirming any purchase or redemption.
           </p>
 
           <h2 id="refund-policy-all-sales-final" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
             16. Refund Policy — All Sales Final
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            All gold purchases on SQOOT Pure are final and non-refundable. By confirming a transaction, you acknowledge that no cash refund will be issued to your original payment method for any reason, including changes in gold market value after your purchase is confirmed.
+            All gold purchases on TRUNK are final and non-refundable. By confirming a transaction, you acknowledge that no cash refund will be issued to your original payment method for any reason, including changes in gold market value after your purchase is confirmed.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
             <strong>Why sales are final:</strong> Gold is a physical commodity. Once your purchase is confirmed, your gold is fully backed in the vault at the live spot price at the moment of confirmation. Market prices change in real time, and the purchase price is locked at confirmation. We cannot reverse a physically settled commodity transaction.
@@ -209,22 +209,22 @@ function TermsPage() {
             <strong>Want to exit your position? Redeem your gold.</strong>
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            On SQOOT Pure, &quot;redeem&quot; is the customer exit process. It may mean receiving an ACH cash payout for your gold at the current live spot price, less disclosed fees, or requesting insured physical delivery when available. We do not treat &quot;redeem&quot; and &quot;buyback&quot; as separate customer actions.
+            On TRUNK, &quot;redeem&quot; is the customer exit process. It may mean receiving an ACH cash payout for your gold at the current live spot price, less disclosed fees, or requesting insured physical delivery when available. We do not treat &quot;redeem&quot; and &quot;buyback&quot; as separate customer actions.
           </p>
           <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
             How cash redemption works:
           </h3>
           <ol className="body-copy mt-5 list-decimal space-y-3 pl-6 text-charcoal/90">
-            <li>Submit a redemption request from your account dashboard or by contacting hello@sqoot.us.</li>
+            <li>Submit a redemption request from your account dashboard or by contacting hello@gettrunk.com.</li>
             <li>Your gold is valued at the live spot price when the request is processed, not the price you originally paid.</li>
             <li>Applicable platform and processing fees are disclosed before you confirm.</li>
             <li>Net proceeds are returned via ACH to your verified bank account, typically within 3 to 5 business days after approval.</li>
           </ol>
           <p className="body-copy mt-5 text-charcoal/90">
-            Your redemption price will reflect current market conditions. SQOOT Pure does not guarantee that the redemption value will equal or exceed your original purchase price.
+            Your redemption price will reflect current market conditions. TRUNK does not guarantee that the redemption value will equal or exceed your original purchase price.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            <strong>Platform Errors:</strong> If a verified technical error by SQOOT Pure results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@sqoot.us with your transaction ID and a description of the issue.
+            <strong>Platform Errors:</strong> If a verified technical error by TRUNK results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@gettrunk.com with your transaction ID and a description of the issue.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
             <strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today&apos;s market price, less disclosed fees. That is your exit path.
@@ -234,12 +234,12 @@ function TermsPage() {
             17. Contact Us
           </h2>
           <p className="body-copy mt-5 text-charcoal/90">
-            If you have questions about these Terms, please contact us through our contact form on getsqoot.com or call +1 (254) 455-5959 or +1 (920) 776-6863.
+            If you have questions about these Terms, please contact us through our contact form on gettrunk.com or call +1 (254) 455-5959 or +1 (920) 776-6863.
           </p>
           <p className="body-copy mt-5 text-charcoal/90">
-            Fortress Gold Inc. DBA Sqoot<br />
+            Fortress Gold Inc. DBA TRUNK<br />
             Wyoming Corporation · Headquarters: Houston, TX<br />
-            Website: getsqoot.com
+            Website: gettrunk.com
           </p>
         </article>
       </main>
