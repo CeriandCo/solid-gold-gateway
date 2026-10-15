@@ -158,7 +158,7 @@ const TC = {
       },
     ],
     disclosureLead: "Counsel name, firm, and contact details are disclosed to verified SQOOT Pure account holders upon written request. Email ",
-    disclosureEmail: "support@getsqoot.com",
+    disclosureEmail: "support@gettrunk.com",
     disclosureMid: " with subject: ",
     disclosureSubject: "Legal Counsel Details Request.",
   },
@@ -506,7 +506,7 @@ function TrustCenterPage() {
               <h3>{TC.protection.subtitle}</h3>
               <p>{TC.protection.body}</p>
               <p className="tc-statement">{TC.protection.statement}</p>
-              <GoldButton className="mt-[calc(22*var(--u))]" href="mailto:support@getsqoot.com?subject=Legal%20Counsel%20Details%20Request">
+              <GoldButton className="mt-[calc(22*var(--u))]" href="mailto:support@gettrunk.com?subject=Legal%20Counsel%20Details%20Request">
                 {TC.protection.cta}
               </GoldButton>
             </div>
@@ -533,7 +533,7 @@ function TrustCenterPage() {
               <TcIcon name="lock" className="tc-legal-icon" />
               <p>
                 {TC.protection.disclosureLead}
-                <a href="mailto:support@getsqoot.com">{TC.protection.disclosureEmail}</a>
+                <a href="mailto:support@gettrunk.com">{TC.protection.disclosureEmail}</a>
                 {TC.protection.disclosureMid}
                 <em>{TC.protection.disclosureSubject}</em>
               </p>

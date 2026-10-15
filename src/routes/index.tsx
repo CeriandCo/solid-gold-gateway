@@ -260,7 +260,7 @@ const HOME_FAQS = [
   },
   {
     question: "Can I leave the waitlist?",
-    answer: "Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@getsqoot.com.",
+    answer: "Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@gettrunk.com.",
   },
 ] as const;
 
@@ -364,7 +364,7 @@ function HomeFaqItem({
   const answer = item.question === "Can I leave the waitlist?" ? (
     <>
       Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact{" "}
-      <a href="mailto:support@getsqoot.com">support@getsqoot.com</a>.
+      <a href="mailto:support@gettrunk.com">support@gettrunk.com</a>.
     </>
   ) : item.answer;
 
@@ -721,7 +721,7 @@ function Index() {
               <p className="home-faq-eyebrow">FAQ</p>
               <h2 id="home-faq-heading">Questions, answered plainly.</h2>
               <p className="home-faq-copy">
-                Still unsure? Write to <a href="mailto:support@getsqoot.com">support@getsqoot.com</a>. We will never ask for a password, one-time code or bank login by email.
+                Still unsure? Write to <a href="mailto:support@gettrunk.com">support@gettrunk.com</a>. We will never ask for a password, one-time code or bank login by email.
               </p>
               <Link to="/contact" className="home-three-ways-link home-faq-link">
                 <span>See all questions</span>
