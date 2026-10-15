@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, CirclePlay, Facebook, Instagram, Linkedin, Menu, Twitter, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logoImage from "@/assets/sqoot-pure-logo.png";
+import logoImage from "@/assets/trunk-lockup-l3-horizontal-for-dark.svg";
 
 export const WIDE = "site-container";
 export const STD = "site-container";
@@ -237,13 +237,13 @@ export function SiteNav({ variant = "solid" }: { variant?: "solid" | "overlay" }
     <div className={cn("relative text-warm-white", variant === "solid" ? "bg-forest-deep" : "bg-transparent")}>
       <div className="site-container">
         <div className="relative z-10 flex min-h-[76px] w-full items-center justify-between gap-6 py-2 lg:min-h-[112px] lg:py-5">
-          <Link to="/" aria-label="SQOOT Pure home" className="shrink-0">
+          <Link to="/" aria-label="TRUNK home" className="shrink-0">
             <img
               src={logoImage}
-              alt="SQOOT Pure"
-              width={567}
-              height={200}
-              className="h-auto w-[200px] sm:w-[230px] lg:w-[210px] xl:w-[250px] min-[1440px]:w-[290px]"
+              alt="TRUNK"
+              width={505}
+              height={92}
+              className="h-[38px] w-auto lg:h-[42px] xl:h-[46px] min-[1440px]:h-[50px]"
             />
           </Link>
           <nav
@@ -388,8 +388,8 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer__grid">
         <div className="site-footer__brand">
-          <Link to="/" aria-label="SQOOT Pure home" className="site-footer__logo-link">
-            <img src={logoImage} alt="SQOOT Pure" width={567} height={200} className="site-footer__logo" />
+          <Link to="/" aria-label="TRUNK home" className="site-footer__logo-link">
+            <img src={logoImage} alt="TRUNK" width={505} height={92} className="site-footer__logo" />
           </Link>
           <p className="site-footer__tagline">
             A compliance-first platform for buying, storing, and redeeming real physical gold.
