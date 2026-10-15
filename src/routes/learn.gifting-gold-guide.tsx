@@ -8,9 +8,9 @@ if (!article) throw new Error("Published Learn article is missing");
 export const Route = createFileRoute("/learn/gifting-gold-guide")({
   head: () => ({
     meta: [
-      { title: "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | SQOOT Pure" },
+      { title: "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | TRUNK" },
       { name: "description", content: article.summary },
-      { property: "og:title", content: "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | SQOOT Pure" },
+      { property: "og:title", content: "Gifting Gold: A Guide for Weddings, Festivals, and Milestones | TRUNK" },
       { property: "og:description", content: article.ogDescription },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/learn/gifting-gold-guide" },
       { property: "og:type", content: "article" },

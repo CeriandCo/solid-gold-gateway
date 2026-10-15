@@ -6,16 +6,16 @@ import logoImage from "@/assets/trunk-lockup-l3-horizontal-for-dark.svg";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Get In Touch — SQOOT Pure" },
+      { title: "Get In Touch — TRUNK" },
       {
         name: "description",
         content:
-          "Contact SQOOT Pure: email hello@sqoot.us, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
+          "Contact TRUNK: email hello@sqoot.us, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
       },
-      { property: "og:title", content: "Get In Touch — SQOOT Pure" },
+      { property: "og:title", content: "Get In Touch — TRUNK" },
       {
         property: "og:description",
-        content: "Email hello@sqoot.us, find us in Sugar Land, TX, or follow SQOOT Pure on social.",
+        content: "Email hello@sqoot.us, find us in Sugar Land, TX, or follow TRUNK on social.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

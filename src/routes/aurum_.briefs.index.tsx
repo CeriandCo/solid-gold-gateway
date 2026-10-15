@@ -13,9 +13,9 @@ export const Route = createFileRoute("/aurum_/briefs/")({
   loader: ({ deps }) => fetchEditorialPage({ data: { type: "weekly_brief", limit: 20, offset: (deps.page - 1) * 20 } }),
   head: () => ({
     meta: [
-      { title: "Weekly Brief Archive | AURUM by SQOOT Pure" },
+      { title: "Weekly Brief Archive | AURUM by TRUNK" },
       { name: "description", content: "Browse every published AURUM Weekly Brief on gold market context and physical ownership." },
-      { property: "og:title", content: "Weekly Brief Archive | AURUM by SQOOT Pure" },
+      { property: "og:title", content: "Weekly Brief Archive | AURUM by TRUNK" },
       { property: "og:description", content: "Browse every published AURUM Weekly Brief on gold market context and physical ownership." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

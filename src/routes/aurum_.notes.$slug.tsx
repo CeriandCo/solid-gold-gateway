@@ -48,7 +48,7 @@ export const Route = createFileRoute("/aurum_/notes/$slug")({
           description: note.summary,
           datePublished: note.publishedAt,
           mainEntityOfPage: `${origin}/aurum/notes/${note.slug}`,
-          publisher: { "@type": "Organization", name: "SQOOT Pure" },
+          publisher: { "@type": "Organization", name: "TRUNK" },
         }),
       }],
     };

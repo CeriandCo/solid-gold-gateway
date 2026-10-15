@@ -8,15 +8,15 @@ import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 export const Route = createFileRoute("/about-us")({
   head: () => ({
     meta: [
-      { title: "About SQOOT Pure — Built on Gold Expertise" },
+      { title: "About TRUNK — Built on Gold Expertise" },
       {
         name: "description",
         content: "Four decades of precious metals expertise, built into a transparent platform for owning fine gold, fully backed in the vault and insured.",
       },
-      { property: "og:title", content: "About SQOOT Pure — Built on Gold Expertise" },
+      { property: "og:title", content: "About TRUNK — Built on Gold Expertise" },
       {
         property: "og:description",
-        content: "Founder-led and compliance-first: discover the experience behind SQOOT Pure.",
+        content: "Founder-led and compliance-first: discover the experience behind TRUNK.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

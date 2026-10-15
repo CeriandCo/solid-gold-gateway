@@ -49,13 +49,13 @@ export const Route = createFileRoute("/gifting")({
   loader: () => getGiftCardOffering(),
   head: () => ({
     meta: [
-      { title: "Gift Fine Gold — SQOOT Pure" },
+      { title: "Gift Fine Gold — TRUNK" },
       {
         name: "description",
         content:
-          "Celebrate life's most precious moments with fine gold, thoughtfully and beautifully delivered by SQOOT Pure.",
+          "Celebrate life's most precious moments with fine gold, thoughtfully and beautifully delivered by TRUNK.",
       },
-      { property: "og:title", content: "Gift Fine Gold — SQOOT Pure" },
+      { property: "og:title", content: "Gift Fine Gold — TRUNK" },
       {
         property: "og:description",
         content: "A thoughtful, meaningful and timeless gift of fine gold.",

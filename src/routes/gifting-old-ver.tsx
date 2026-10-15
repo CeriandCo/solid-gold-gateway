@@ -14,13 +14,13 @@ import giftingPackagedImage from "@/assets/gifting-phone-gold-bar-enhanced.png";
 export const Route = createFileRoute("/gifting-old-ver")({
   head: () => ({
     meta: [
-      { title: "Gifting — Give Fine Gold | SQOOT Pure" },
+      { title: "Gifting — Give Fine Gold | TRUNK" },
       {
         name: "description",
         content:
           "Give a gift that holds its value. Send real, physical gold to the people who matter — beautifully presented, genuinely theirs.",
       },
-      { property: "og:title", content: "Gifting — Give Fine Gold | SQOOT Pure" },
+      { property: "og:title", content: "Gifting — Give Fine Gold | TRUNK" },
       {
         property: "og:description",
         content: "Fine gold, given properly. A gift with lasting value.",

@@ -12,13 +12,13 @@ import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 export const Route = createFileRoute("/trust-center")({
   head: () => ({
     meta: [
-      { title: "Trust Center — SQOOT Pure Verified Gold Ownership" },
+      { title: "Trust Center — TRUNK Verified Gold Ownership" },
       {
         name: "description",
         content:
-          "Independent audits, storage fully backed in the vault and independent legal counsel: see how SQOOT Pure verifies and publishes proof of your gold ownership.",
+          "Independent audits, storage fully backed in the vault and independent legal counsel: see how TRUNK verifies and publishes proof of your gold ownership.",
       },
-      { property: "og:title", content: "Trust Center — SQOOT Pure Verified Gold Ownership" },
+      { property: "og:title", content: "Trust Center — TRUNK Verified Gold Ownership" },
       {
         property: "og:description",
         content: "Transparent ownership. Verified gold. Always fully backed in the vault.",

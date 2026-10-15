@@ -9,17 +9,17 @@ import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 export const Route = createFileRoute("/early-access")({
   head: () => ({
     meta: [
-      { title: "Early Access — Join the Waitlist | SQOOT Pure" },
+      { title: "Early Access — Join the Waitlist | TRUNK" },
       {
         name: "description",
         content:
-          "Join the SQOOT Pure waitlist and be notified when the app launches. Real physical gold from US$25, with secure storage and delivery options.",
+          "Join the TRUNK waitlist and be notified when the app launches. Real physical gold from US$25, with secure storage and delivery options.",
       },
-      { property: "og:title", content: "Early Access — Join the Waitlist | SQOOT Pure" },
+      { property: "og:title", content: "Early Access — Join the Waitlist | TRUNK" },
       {
         property: "og:description",
         content:
-          "Be first in line. Join the SQOOT Pure waitlist and be notified when the app launches.",
+          "Be first in line. Join the TRUNK waitlist and be notified when the app launches.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

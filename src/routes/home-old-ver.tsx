@@ -7,13 +7,13 @@ import heroImage from "@/assets/gold-bar-velvet-marble-branded.png";
 export const Route = createFileRoute("/home-old-ver")({
   head: () => ({
     meta: [
-      { title: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { title: "TRUNK — Fine Gold, Real Ownership" },
       {
         name: "description",
         content:
           "Buy physical gold delivered to your door, start with $25 in fine gold, or keep it fully backed in an insured US vault. Real ownership, your way.",
       },
-      { property: "og:title", content: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { property: "og:title", content: "TRUNK — Fine Gold, Real Ownership" },
       {
         property: "og:description",
         content: "Physical gold delivered, fractional gold, and insured vault storage — real metal, fully backed in the vault.",

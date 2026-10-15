@@ -29,12 +29,12 @@ const OG_IMAGE = `${SITE_ORIGIN}/og/fractional-gold.png`;
 export const Route = createFileRoute("/fractional-gold")({
   head: () => ({
     meta: [
-      { title: "Fractional Gold | SQOOT Pure" },
+      { title: "Fractional Gold | TRUNK" },
       {
         name: "description",
         content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
-      { property: "og:title", content: "Fractional Gold | SQOOT Pure" },
+      { property: "og:title", content: "Fractional Gold | TRUNK" },
       {
         property: "og:description",
         content: "A simple, secure way to own fine physical gold. Start with $25.",
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/fractional-gold")({
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: FRACTIONAL_GOLD_URL },
       { property: "og:image", content: OG_IMAGE },
-      { name: "twitter:title", content: "Fractional Gold | SQOOT Pure" },
+      { name: "twitter:title", content: "Fractional Gold | TRUNK" },
       {
         name: "twitter:description",
         content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",

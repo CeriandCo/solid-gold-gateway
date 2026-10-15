@@ -80,14 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { title: "TRUNK — Fine Gold, Real Ownership" },
       {
         name: "description",
         content:
           "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership, insured U.S. storage, redeemable on demand.",
       },
-      { name: "author", content: "SQOOT Pure" },
-      { property: "og:title", content: "SQOOT Pure — Fine Gold, Real Ownership" },
+      { name: "author", content: "TRUNK" },
+      { property: "og:title", content: "TRUNK — Fine Gold, Real Ownership" },
       {
         property: "og:description",
         content:
@@ -108,6 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap",
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,

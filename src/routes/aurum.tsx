@@ -44,15 +44,15 @@ export const Route = createFileRoute("/aurum")({
 
   head: () => ({
     meta: [
-      { title: "AURUM Gold Education | SQOOT Pure" },
+      { title: "AURUM Gold Education | TRUNK" },
       {
         name: "description",
-        content: "Free gold education from SQOOT Pure, with clear learning resources and no investment advice.",
+        content: "Free gold education from TRUNK, with clear learning resources and no investment advice.",
       },
-      { property: "og:title", content: "AURUM Gold Education | SQOOT Pure" },
+      { property: "og:title", content: "AURUM Gold Education | TRUNK" },
       {
         property: "og:description",
-        content: "Free, clear gold education published by SQOOT Pure.",
+        content: "Free, clear gold education published by TRUNK.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -8,9 +8,9 @@ if (!article) throw new Error("Published Learn article is missing");
 export const Route = createFileRoute("/learn/physical-gold-vs-gold-etf")({
   head: () => ({
     meta: [
-      { title: "Physical Gold vs Gold ETF: What You Actually Own | SQOOT Pure" },
+      { title: "Physical Gold vs Gold ETF: What You Actually Own | TRUNK" },
       { name: "description", content: article.summary },
-      { property: "og:title", content: "Physical Gold vs Gold ETF: What You Actually Own | SQOOT Pure" },
+      { property: "og:title", content: "Physical Gold vs Gold ETF: What You Actually Own | TRUNK" },
       { property: "og:description", content: article.ogDescription },
       { property: "og:url", content: "https://solid-gold-gateway.lovable.app/learn/physical-gold-vs-gold-etf" },
       { property: "og:type", content: "article" },
