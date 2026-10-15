@@ -8,7 +8,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "Read the TRUNK Terms of Use governing access to getsqoot.com and related services operated by Fortress Gold Inc. DBA TRUNK.",
+          "Read the TRUNK Terms of Use governing access to getsqoot.com and related services operated by Fortress Gold Inc. DBA Sqoot.",
       },
       { property: "og:title", content: "Terms of Use | TRUNK" },
       {
