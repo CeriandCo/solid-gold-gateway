@@ -345,7 +345,7 @@ function GiftingNewPage() {
           </CtaRow>
         }
         imageSrc={heroGift.url}
-        imageAlt="Dark green gift box tied with bronze ribbon beside a SQOOT Pure 10g gold bar"
+        imageAlt="Dark green gift box tied with bronze ribbon beside a TRUNK 10g gold bar"
         imageWidth={1920}
         imageHeight={720}
         imageLoading="eager"
@@ -409,7 +409,7 @@ function GiftingNewPage() {
           <div className="gift-card-copy-inner">
             <div className="gift-card-overline" data-reveal>
               <span />
-              <p>SQOOT Pure Gift Card</p>
+              <p>TRUNK Gift Card</p>
               <Mandala />
             </div>
             <h2 id="gift-card-title" data-reveal>
@@ -418,7 +418,7 @@ function GiftingNewPage() {
             </h2>
             <p className="gift-card-intro" data-reveal>
               A meaningful gift for every occasion. Choose an amount and let someone special begin
-              their journey with SQOOT Pure.
+              their journey with TRUNK.
             </p>
 
             <fieldset className="gift-amount-fieldset" data-reveal>
@@ -509,7 +509,7 @@ function GiftingNewPage() {
           className="gift-card-visual"
           data-reveal
           role="img"
-          aria-label="SQOOT Pure gift card resting on green velvet with cream paper and ribbon"
+          aria-label="TRUNK gift card resting on green velvet with cream paper and ribbon"
         >
           <img
             className="gift-card-background"
@@ -578,7 +578,7 @@ function GiftingNewPage() {
       <section id="closing-gift" className="gift-closing" data-reveal="trigger">
         <img
           src={closingGift.url}
-          alt="SQOOT Pure 10g gold bar in an ivory presentation box with forest green velvet and olive branches"
+          alt="TRUNK 10g gold bar in an ivory presentation box with forest green velvet and olive branches"
           width={1942}
           height={809}
           loading="lazy"

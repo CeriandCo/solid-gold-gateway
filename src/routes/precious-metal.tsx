@@ -219,7 +219,7 @@ function PricingSection() {
         <span className="pm-pricing-divider" aria-hidden="true" />
         <div className="pm-pricing-copy">
           <h2 id="pm-pricing-title">Live spot + premium, varies by product.</h2>
-          <p>Exact pricing and purchasing available in the SQOOT Pure app October 1.</p>
+          <p>Exact pricing and purchasing available in the TRUNK app October 1.</p>
         </div>
       </div>
     </section>

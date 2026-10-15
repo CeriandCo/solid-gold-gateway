@@ -105,10 +105,10 @@ function AboutPage() {
         titleId="about-title"
         eyebrow="Founder-led. Compliance-first."
         title={<><span>Forty years in</span><span>the gold market.</span><span>One platform built</span><span>to get it right.</span></>}
-        body={<>Our experience became SQOOT Pure: a simpler, more transparent way to own fine gold.</>}
+        body={<>Our experience became TRUNK: a simpler, more transparent way to own fine gold.</>}
         actions={<GoldButton href="/trust-center#protection">How we protect ownership</GoldButton>}
         imageSrc={aboutHeroBg.url}
-        imageAlt="SQOOT Pure gold bar resting on dark green velvet"
+        imageAlt="TRUNK gold bar resting on dark green velvet"
         imageVariant="about"
       />
 
@@ -121,7 +121,7 @@ function AboutPage() {
           <div className="about-story-copy">
             <p>For more than four decades, we have worked across every part of the precious metals ecosystem: sourcing, trading, refining, vaulting and delivering.</p>
             <p>We have seen what works, what fails, and what truly serves the everyday buyer.</p>
-            <p>SQOOT Pure is the outcome of that experience.<br />Built with a single purpose: to offer a gold ownership platform designed for a new era.</p>
+            <p>TRUNK is the outcome of that experience.<br />Built with a single purpose: to offer a gold ownership platform designed for a new era.</p>
           </div>
           <img className="about-story-etch" src={sqootMandala.url} alt="" aria-hidden="true" />
         </div>

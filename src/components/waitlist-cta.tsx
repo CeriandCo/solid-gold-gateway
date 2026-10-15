@@ -59,7 +59,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
 
           {formState === "success" ? (
             <p role="status" className="waitlist-cta-success" data-reveal>
-              You’re on the list. Thank you for joining the SQOOT Pure waitlist — we’ll let you
+              You’re on the list. Thank you for joining the TRUNK waitlist — we’ll let you
               know when access becomes available.
             </p>
           ) : (
