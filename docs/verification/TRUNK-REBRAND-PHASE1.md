@@ -6,4 +6,4 @@
 - `public/og/pricing-trunk.png` (1200x640, 356K) added; /pricing og:image and twitter:image point to it. Old `public/og/pricing.png` kept.
 - Not done: `favicon.ico` was not among the uploads (favicon-48.png was), so no .ico file or link was added.
 - Remaining "sqoot" matches in head blocks: only the email, domain and legal DBA above.
-- Gates not run in this task; browser check not run.
+- Gates: `bunx tsgo --noEmit` passed, `bun run build` passed. `bun run test` and browser check not run.
