@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] TRUNK phase 6a: replace the supplied home phones, active laptop usages, and pricing share image; preserve rendering and old assets; verify at 375 / 768 / 1440.
+- [x] TRUNK phase 6a: replaced the supplied home phones, active laptop usages, and pricing share image; rendering verified unchanged at 375 / 768 / 1440, original assets retained; isolated test startup blocked (see verification report).
 
 - [x] Simplify AURUM's MELT newsletter invitation, remove daily/weekly choices, and verify the external Join button at 375 / 768 / 1440; isolated tests could not start.
 
