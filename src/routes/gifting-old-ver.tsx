@@ -173,7 +173,7 @@ function GiftingPage() {
               </div>
 
               <p className="mt-5 max-w-[385px] font-sans text-[14px] font-normal leading-[1.58] text-warm-white/80 sm:text-[15px]">
-                SQOOT Pure gold gifts are fine gold, secure, and made to be remembered. Perfect for weddings, new beginnings, achievements, and the people who matter most.
+                TRUNK gold gifts are fine gold, secure, and made to be remembered. Perfect for weddings, new beginnings, achievements, and the people who matter most.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -249,7 +249,7 @@ function GiftingPage() {
             Celebrate what matters most.
           </h2>
           <p className="mx-auto mb-8 max-w-xl whitespace-pre-line text-center font-sans text-sm leading-snug text-[#57534E] md:text-base">
-            From joyous occasions to life&apos;s biggest milestones,{"\n"}SQOOT Pure makes gifting gold simple, meaningful, and memorable.
+            From joyous occasions to life&apos;s biggest milestones,{"\n"}TRUNK makes gifting gold simple, meaningful, and memorable.
           </p>
 
           <div className="grid grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6 items-start justify-center w-full">
@@ -438,7 +438,7 @@ function GiftingPage() {
           <div className="relative h-[400px] w-full sm:h-[500px] lg:h-[600px] lg:w-[55%]">
             <img
               src={giftingPackagedImage}
-              alt="Luxury smartphone and 10g SQOOT Pure gold bar on dark green velvet"
+              alt="Luxury smartphone and 10g TRUNK gold bar on dark green velvet"
               width={1536}
               height={1024}
               loading="lazy"
