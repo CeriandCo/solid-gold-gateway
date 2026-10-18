@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] TRUNK phase 7: audit stored posts/settings, remove old preview routes and exclusive assets, complete final brand sweep and verify.
+- [ ] TRUNK phase 7: database preflight complete; application sweep/removals blocked pending compatibility, retained-asset and historical-evidence exceptions (docs/verification/TRUNK-REBRAND-PHASE7.md).
 
 - [x] TRUNK phase 6d: replaced four Learn images; originals retained; bytes and unchanged display verified at 375 / 768 / 1440; isolated tests blocked (see verification report).
 
