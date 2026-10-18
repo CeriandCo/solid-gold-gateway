@@ -62,11 +62,11 @@ function HomePage() {
         <div className="grid lg:min-h-[628px] lg:grid-cols-[39%_61%]">
           <img
             src={heroImage}
-            alt="SQOOT Pure gold bar resting on dark velvet and marble"
+            alt="TRUNK gold bar resting on dark velvet and marble"
             className="h-[280px] w-full object-cover object-center sm:h-[380px] lg:h-full"
           />
           <div className="flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-0 lg:pl-[84px] lg:pr-10">
-            <Eyebrow>SQOOT Pure</Eyebrow>
+            <Eyebrow>TRUNK</Eyebrow>
             <GoldRule />
             <h1
               className="mt-5 max-w-[560px] font-display font-semibold text-charcoal"
@@ -123,7 +123,7 @@ function HomePage() {
           <div>
             <h2 className="font-display text-[36px] font-semibold leading-[1.05] text-gold-soft">Be first in line.</h2>
             <p className="mt-2 max-w-[420px] text-[14px] leading-[1.55] text-[#C8CFC9]">
-              SQOOT Pure is launching soon. Join the waitlist to get early access and updates.
+              TRUNK is launching soon. Join the waitlist to get early access and updates.
             </p>
           </div>
           <GoldButton to="/early-access" className="h-[54px] bg-gradient-to-b from-gold-soft to-gold px-8 text-[15px] font-bold">
