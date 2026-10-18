@@ -57,7 +57,7 @@ const all = (...fs: Array<(o: SemanticOccurrence) => boolean>) => (o: SemanticOc
 
 /** Header / footer labels → expected destination (shared site chrome). */
 const GLOBAL_MAP: Array<[string, string, string]> = [
-  ["SQOOT Pure home", "/", "logo → homepage (H1 “Own gold the way it was meant to be.”)"],
+  ["TRUNK home", "/", "logo → homepage (H1 “Own gold the way it was meant to be.”)"],
   ["Coin", "/precious-metal", "coins page (H1 “Real gold. In your hands.”)"],
   ["Buy Gold", "/precious-metal", "coins/bars purchase page (H1 “Real gold. In your hands.”)"],
   ["Fraction", "/fractional-gold", "fractional page (H1 “Gold allocation, made more accessible.”)"],
@@ -129,7 +129,7 @@ const RULES: Rule[] = [
   },
 
   // ——— Homepage ———
-  { id: "home:waitlist", match: all(on(/^\/(home-old-ver)?$/), is(/^(Join the waitlist|Get Early Access)$/, "/early-access")), verdict: "CORRECT", evidence: "Waitlist CTA → /early-access (H1 “Be first in line.”)." },
+  { id: "home:waitlist", match: all(on("/"), is(/^(Join the waitlist|Get Early Access)$/, "/early-access")), verdict: "CORRECT", evidence: "Waitlist CTA → /early-access (H1 “Be first in line.”)." },
   { id: "home:how-it-works", match: all(on("/"), is("How it works", "/#how-it-works")), verdict: "CORRECT", evidence: "Lands on section “HOW IT WORKS — From waitlist to your first ounce.”" },
   {
     id: "home:compare",
@@ -163,7 +163,7 @@ const RULES: Rule[] = [
     verdict: "CORRECT",
     evidence: "Cards “Spot is not your price” / “Allocated or pooled” → AURUM #learn “Four things worth understanding first”, which contains cautions titled “Spot is not your price” and “Allocated or pooled”.",
   },
-  { id: "home:mail", match: all(on("/"), is("support@getsqoot.com", "mailto:support@getsqoot.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target; FAQ/privacy-request context." },
+  { id: "home:mail", match: all(on("/"), is("support@gettrunk.com", "mailto:support@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target; FAQ/privacy-request context." },
   {
     id: "home:see-all-questions",
     match: all(on("/"), is("See all questions", "/contact")),
@@ -176,8 +176,8 @@ const RULES: Rule[] = [
 
   // ——— About / Early access / Pricing / Precious metal / Fractional ———
   { id: "about:protection", match: is("How we protect ownership", "/trust-center#protection"), verdict: "CORRECT", evidence: "Lands on Trust Center section “Client Protection”." },
-  { id: "early-access-cta", match: is(/^(Get Early Access|Join the Waitlist|Join the waitlist to buy →|Join the SQOOT Pure waitlist)$/, "/early-access"), verdict: "CORRECT", evidence: "Waitlist CTA (site is pre-launch; purchase opens via waitlist) → /early-access." },
-  { id: "pricing:mail", match: all(on("/pricing"), is("support@getsqoot.com", "mailto:support@getsqoot.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target (fees FAQ)." },
+  { id: "early-access-cta", match: is(/^(Get Early Access|Join the Waitlist|Join the waitlist to buy →|Join the TRUNK waitlist)$/, "/early-access"), verdict: "CORRECT", evidence: "Waitlist CTA (site is pre-launch; purchase opens via waitlist) → /early-access." },
+  { id: "pricing:mail", match: all(on("/pricing"), is("support@gettrunk.com", "mailto:support@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target (fees FAQ)." },
   { id: "fractional:jbt", match: is(/Jewelers Board of Trade/, "https://www.jewelersboard.com/were-legit"), verdict: "CORRECT", evidence: "JBT member badge → Jewelers Board of Trade site." },
   { id: "fractional:ncba", match: is(/National Coin & Bullion Association/, "https://www.ncbassoc.org/membership"), verdict: "CORRECT", evidence: "NCBA member badge → NCBA membership page." },
   { id: "fractional:lbma", match: is("Learn about the standard →", "https://www.lbma.org.uk/good-delivery"), verdict: "CORRECT", evidence: "Good Delivery standard copy → LBMA Good Delivery page." },
@@ -245,11 +245,11 @@ const RULES: Rule[] = [
   { id: "learn:read-briefs", match: is("READ THE BRIEFS →", "/aurum/briefs?page=1"), verdict: "CORRECT", evidence: "→ “Weekly Brief archive”." },
 
   // ——— Contact ———
-  { id: "contact:mail", match: all(on("/contact"), is("hello@sqoot.us", "mailto:hello@sqoot.us")), verdict: "CORRECT", evidence: "Visible address equals mailto target. Which address is canonical is a separate client content decision." },
-  { id: "contact:domains", match: all(on("/contact"), (o) => (t(o) === "sqootpure.com" && tgt(o) === "https://sqootpure.com/") || (t(o) === "aurum.sqootpure.com" && tgt(o) === "https://aurum.sqootpure.com/")), verdict: "CORRECT", evidence: "Visible domain equals target domain. Reachability/ownership left to Phase 4." },
+  { id: "contact:mail", match: all(on("/contact"), is("hello@gettrunk.com", "mailto:hello@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target. Which address is canonical is a separate client content decision." },
+  { id: "contact:domains", match: all(on("/contact"), (o) => (t(o) === "gettrunk.com" && tgt(o) === "https://gettrunk.com/") || (t(o) === "aurum.gettrunk.com" && tgt(o) === "https://aurum.gettrunk.com/")), verdict: "CORRECT", evidence: "Visible domain equals target domain. Reachability/ownership left to Phase 4." },
 
   // ——— Gifting ———
-  { id: "gifting:gift-card", match: is("Buy a Gift Card", "/gifting#gift-card"), verdict: "CORRECT", evidence: "→ “SQOOT PURE GIFT CARD — Give them the freedom to choose.” (purchase section)." },
+  { id: "gifting:gift-card", match: is("Buy a Gift Card", "/gifting#gift-card"), verdict: "CORRECT", evidence: "→ “TRUNK GIFT CARD — Give them the freedom to choose.” (purchase section)." },
   { id: "gifting:occasions", match: is("Explore Gold Gifts", "/gifting#occasions"), verdict: "CORRECT", evidence: "→ “FOR EVERY OCCASION — Mark life's most precious moments”." },
   {
     id: "gifting:view-all",
@@ -260,18 +260,12 @@ const RULES: Rule[] = [
     fix: "Client: relabel or supply an occasions destination.",
   },
   { id: "gifting:start", match: is("Start Gifting Gold", "/gifting#top"), verdict: "CORRECT", evidence: "Closing CTA → gifting hero containing “Buy a Gift Card” / “Explore Gold Gifts”." },
-  { id: "old-gifting:explore", match: all(on("/gifting-old-ver"), is("Explore Gifts", "/precious-metal")), verdict: "CORRECT", evidence: "Legacy page sells gold pieces as gifts; → coins/bars catalogue. Route lifecycle is a separate IA decision." },
-  { id: "old-gifting:how", match: is("How Gifting Works", "/gifting-old-ver#gifting-process"), verdict: "CORRECT", evidence: "→ “HOW GIFTING WORKS — Simple steps. Lasting impact.” (Choose Your Gift, …)." },
-
-  // ——— Old homepage ———
-  { id: "old-home:paths", match: all(on("/home-old-ver"), (o) => /^(Precious Metal|Fractional Gold|Vault|Gifting) /.test(t(o)) && ({ "Precious Metal": "/precious-metal", "Fractional Gold": "/fractional-gold", Vault: "/vault", Gifting: "/gifting" } as Record<string, string>)[t(o).split(" ").slice(0, t(o).startsWith("Precious") || t(o).startsWith("Fractional") ? 2 : 1).join(" ")] === tgt(o)), verdict: "CORRECT", evidence: "“Four paths to real gold” card title → same-named product page." },
-
   // ——— Legal ———
   { id: "legal:toc", match: (o) => (o.sourceRoute === "/privacy" || o.sourceRoute === "/terms") && o.category === "same-page-fragment" && /^\d+\. /.test(t(o)), verdict: "CORRECT", evidence: "Table-of-contents entry → H2 with the identical numbered heading (verified per fragment)." },
 
   // ——— Trust Center ———
   { id: "trust:audit", match: is("Explore the audit programme", "/trust-center#audit-programme"), verdict: "CORRECT", evidence: "→ “Your gold. Verified. Always. Independent vault audits every 6 months.”" },
-  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@getsqoot\.com(\?subject=Legal%20Counsel%20Details%20Request)?$/.test(tgt(o)) && (t(o) === "support@getsqoot.com" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address." },
+  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@gettrunk\.com(\?subject=Legal%20Counsel%20Details%20Request)?$/.test(tgt(o)) && (t(o) === "support@gettrunk.com" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address." },
 
   // ——— Vault ———
   { id: "vault:walkthrough", match: is("See how it works", "/vault#walkthrough"), verdict: "CORRECT", evidence: "→ “FOUNDER WALKTHROUGH — See it, don’t just read about it.” (2 min walkthrough)." },

@@ -57,7 +57,7 @@ export function buildInternalSources(pack: FactPack, siteUrl: string) {
     if (seen.has(key)) continue;
     seen.add(key);
     sources.push({
-      publisher: "SQOOT AURUM price record",
+      publisher: "TRUNK AURUM price record",
       title:
         fact.source.table === "aurum_spot_prices"
           ? `Stored gold spot observation (${fact.source.table} row ${fact.source.rowId})`

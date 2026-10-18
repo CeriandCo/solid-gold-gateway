@@ -106,7 +106,7 @@ function PrivacyPage() {
             <li>Request a copy of your data in a portable format.</li>
             <li>Object to certain types of data processing.</li>
           </ul>
-          <p className="body-copy mt-5 text-charcoal/90">To exercise these rights, contact us at compliance@sqoot.us.</p>
+          <p className="body-copy mt-5 text-charcoal/90">To exercise these rights, contact us at compliance@gettrunk.com.</p>
           <h2 id="cookies" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">7. Cookies</h2>
           <p className="body-copy mt-5 text-charcoal/90">We use cookies and similar tracking technologies to analyze website traffic and improve your experience. You can control cookie preferences through your browser settings. We use Cloudflare analytics for performance monitoring.</p>
           <h2 id="third-party-links" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">8. Third-Party Links</h2>

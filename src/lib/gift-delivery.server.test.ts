@@ -264,7 +264,7 @@ describe("delivery happy path", () => {
     expect(forThisCard).toHaveLength(1);
     const message = forThisCard[0]!;
     expect(message.from).toBe("gifts@example.test");
-    expect(message.subject).toBe("You've received a SQOOT Pure Gift Card");
+    expect(message.subject).toBe("You've received a TRUNK Gift Card");
 
     const card = await readCard(cardId);
     expect(card.status).toBe("delivered");

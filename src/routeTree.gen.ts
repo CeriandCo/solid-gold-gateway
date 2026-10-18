@@ -17,8 +17,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EarlyAccessRouteImport } from './routes/early-access'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
-import { Route as GiftingOldVerRouteImport } from './routes/gifting-old-ver'
-import { Route as HomeOldVerRouteImport } from './routes/home-old-ver'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PartnerTermsRouteImport } from './routes/partner-terms'
 import { Route as PartnersRouteImport } from './routes/partners'
@@ -90,16 +88,6 @@ const FractionalGoldRoute = FractionalGoldRouteImport.update({
 const GiftingRoute = GiftingRouteImport.update({
   id: '/gifting',
   path: '/gifting',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GiftingOldVerRoute = GiftingOldVerRouteImport.update({
-  id: '/gifting-old-ver',
-  path: '/gifting-old-ver',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeOldVerRoute = HomeOldVerRouteImport.update({
-  id: '/home-old-ver',
-  path: '/home-old-ver',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnRoute = LearnRouteImport.update({
@@ -278,8 +266,6 @@ export interface FileRoutesByFullPath {
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/gifting-old-ver': typeof GiftingOldVerRoute
-  '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
   '/partner-terms': typeof PartnerTermsRoute
   '/partners': typeof PartnersRoute
@@ -321,8 +307,6 @@ export interface FileRoutesByTo {
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/gifting-old-ver': typeof GiftingOldVerRoute
-  '/home-old-ver': typeof HomeOldVerRoute
   '/partner-terms': typeof PartnerTermsRoute
   '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
@@ -364,8 +348,6 @@ export interface FileRoutesById {
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
-  '/gifting-old-ver': typeof GiftingOldVerRoute
-  '/home-old-ver': typeof HomeOldVerRoute
   '/learn': typeof LearnRouteWithChildren
   '/partner-terms': typeof PartnerTermsRoute
   '/partners': typeof PartnersRoute
@@ -410,8 +392,6 @@ export interface FileRouteTypes {
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
-    | '/gifting-old-ver'
-    | '/home-old-ver'
     | '/learn'
     | '/partner-terms'
     | '/partners'
@@ -453,8 +433,6 @@ export interface FileRouteTypes {
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
-    | '/gifting-old-ver'
-    | '/home-old-ver'
     | '/partner-terms'
     | '/partners'
     | '/precious-metal'
@@ -495,8 +473,6 @@ export interface FileRouteTypes {
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
-    | '/gifting-old-ver'
-    | '/home-old-ver'
     | '/learn'
     | '/partner-terms'
     | '/partners'
@@ -540,8 +516,6 @@ export interface RootRouteChildren {
   EarlyAccessRoute: typeof EarlyAccessRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
   GiftingRoute: typeof GiftingRoute
-  GiftingOldVerRoute: typeof GiftingOldVerRoute
-  HomeOldVerRoute: typeof HomeOldVerRoute
   LearnRoute: typeof LearnRouteWithChildren
   PartnerTermsRoute: typeof PartnerTermsRoute
   PartnersRoute: typeof PartnersRoute
@@ -621,20 +595,6 @@ declare module '@tanstack/react-router' {
       path: '/gifting'
       fullPath: '/gifting'
       preLoaderRoute: typeof GiftingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gifting-old-ver': {
-      id: '/gifting-old-ver'
-      path: '/gifting-old-ver'
-      fullPath: '/gifting-old-ver'
-      preLoaderRoute: typeof GiftingOldVerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home-old-ver': {
-      id: '/home-old-ver'
-      path: '/home-old-ver'
-      fullPath: '/home-old-ver'
-      preLoaderRoute: typeof HomeOldVerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn': {
@@ -921,8 +881,6 @@ const rootRouteChildren: RootRouteChildren = {
   EarlyAccessRoute: EarlyAccessRoute,
   FractionalGoldRoute: FractionalGoldRoute,
   GiftingRoute: GiftingRoute,
-  GiftingOldVerRoute: GiftingOldVerRoute,
-  HomeOldVerRoute: HomeOldVerRoute,
   LearnRoute: LearnRouteWithChildren,
   PartnerTermsRoute: PartnerTermsRoute,
   PartnersRoute: PartnersRoute,

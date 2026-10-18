@@ -61,7 +61,7 @@ export function parseManualInput(data: unknown): ManualInput {
 }
 
 export const MANUAL_SYSTEM_PROMPT = [
-  "You draft one short AURUM post for SQOOT Pure. An editor will review and edit it.",
+  "You draft one short AURUM post for TRUNK. An editor will review and edit it.",
   "",
   "You have no internet access and no research tools. The FACTS block in the user",
   "message is the only factual information that exists. Facts may be numbers or words",
