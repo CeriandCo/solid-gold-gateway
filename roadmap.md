@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [ ] TRUNK phase 8: audit the 21 requested public routes at 1440 / 768 / 375; verify visible branding, image branding/loading, titles, favicon, pricing share image and unchanged fonts; fix only failed checks and record raw evidence.
+
 - [x] TRUNK phase 7: current branding updated, source publisher corrected, old routes/exclusive images removed; 404/browser verified and 69 focused tests passed.
 - [ ] TRUNK phase 7 literal zero-match gate blocked by compatibility identifiers, retained assets, secret handling and historical evidence requiring expanded exceptions (docs/verification/TRUNK-REBRAND-PHASE7.md); full suite blocked by isolated DB startup.
 
