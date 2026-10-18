@@ -85,7 +85,7 @@ function harness(overrides: Partial<RunDeps> = {}, claim: ClaimResult = {
     loadStyleSamples: async () => ["Gold was quiet in our stored records."],
     buildSources: () => [
       {
-        publisher: "SQOOT AURUM price record",
+        publisher: "TRUNK AURUM price record",
         title: "aurum_spot_prices row spot-1",
         date: "2026-09-22",
         url: "https://example.test/aurum#price",

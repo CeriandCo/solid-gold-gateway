@@ -75,10 +75,10 @@ export function formatAmount(amountCents: number, currency: string): string {
   }).format(amountCents / 100);
 }
 
-export const GIFT_EMAIL_SUBJECT = "You've received a SQOOT Pure Gift Card";
+export const GIFT_EMAIL_SUBJECT = "You've received a TRUNK Gift Card";
 // COPY PENDING CLIENT APPROVAL
 const REDEMPTION_COPY =
-  "Keep this code safe. You'll be able to redeem it with SQOOT Pure.";
+  "Keep this code safe. You'll be able to redeem it with TRUNK.";
 
 export function buildGiftEmail(input: {
   to: string;
@@ -96,14 +96,14 @@ export function buildGiftEmail(input: {
   const text = [
     `Hello ${name},`,
     "",
-    `You've received a SQOOT Pure Gift Card worth ${amount}.`,
+    `You've received a TRUNK Gift Card worth ${amount}.`,
     input.giftMessage ? `Message: ${input.giftMessage}` : null,
     "",
     `Your code: ${displayCode}`,
     "",
     REDEMPTION_COPY,
     "",
-    "SQOOT Pure",
+    "TRUNK",
   ]
     .filter((line) => line !== null)
     .join("\n");
@@ -115,10 +115,10 @@ export function buildGiftEmail(input: {
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFDF8;border:1px solid #E3DAC8;">
         <tr><td style="padding:40px 40px 8px 40px;">
-          <p style="margin:0 0 24px 0;font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:#1F3B2C;">SQOOT Pure</p>
+          <p style="margin:0 0 24px 0;font-family:Georgia,'Times New Roman',serif;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:#1F3B2C;">TRUNK</p>
           <h1 style="margin:0 0 20px 0;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.2;font-weight:400;color:#1F3B2C;">${escapeHtml(GIFT_EMAIL_SUBJECT)}</h1>
           <p style="margin:0 0 16px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.6;color:#2B3B33;">Hello ${escapeHtml(name)},</p>
-          <p style="margin:0 0 24px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.6;color:#2B3B33;">You've received a SQOOT Pure Gift Card worth <strong>${escapeHtml(amount)}</strong>.</p>
+          <p style="margin:0 0 24px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.6;color:#2B3B33;">You've received a TRUNK Gift Card worth <strong>${escapeHtml(amount)}</strong>.</p>
           ${
             input.giftMessage
               ? `<blockquote style="margin:0 0 24px 0;padding:16px 20px;background:#F6F1E7;border-left:3px solid #1F3B2C;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.6;color:#2B3B33;">${escapeHtml(input.giftMessage)}</blockquote>`

@@ -1,6 +1,6 @@
-# SQOOT Pure Design System
+# TRUNK Design System
 
-This document is the single source of truth for the visual language of the SQOOT Pure website. It is intended for both designers and future engineering/AI contributors working in this repository. All values below describe the current implementation; they are not aspirational. When building new pages or components, reference these tokens first before introducing new values.
+This document is the single source of truth for the visual language of the TRUNK website. It is intended for both designers and future engineering/AI contributors working in this repository. All values below describe the current implementation; they are not aspirational. When building new pages or components, reference these tokens first before introducing new values.
 
 ---
 
@@ -346,7 +346,7 @@ The site uses two primary card/panel surfaces:
 
 ## 3. Responsive Breakpoints
 
-This section consolidates every Tailwind responsive prefix actually used across the SQOOT Pure site. The values below are the **concrete pixel breakpoints** in production code (`src/routes/*.tsx`, `src/components/site-chrome.tsx`, and `src/styles.css`).
+This section consolidates every Tailwind responsive prefix actually used across the TRUNK site. The values below are the **concrete pixel breakpoints** in production code (`src/routes/*.tsx`, `src/components/site-chrome.tsx`, and `src/styles.css`).
 
 Tailwind v4 defaults provide `sm`, `md`, `lg`, and `xl`. The site adds one custom arbitrary breakpoint for the full artboard navigation, plus a secondary one-off in the Vault process row.
 
@@ -455,7 +455,7 @@ The image spans edge-to-edge; the caption and CTA below it are constrained to `m
    - Used as a decorative rule ornament below the homepage hero headline (`h-4 w-4`).
    - Stroke widths `1` and `0.8`; inherits `currentColor` (`text-gold`).
 
-2. **SQOOT Pure mandala** (`sqoot-mandala.png` / `sqoot-pure-mandala.png.asset.json`)
+2. **TRUNK mandala** (`sqoot-mandala.png` / `sqoot-pure-mandala.png.asset.json`)
     - A repeating brand motif used decoratively across multiple pages. The treatment varies by placement rather than using one fixed formula:
 
     | Placement | Opacity | Blend mode | Notes |

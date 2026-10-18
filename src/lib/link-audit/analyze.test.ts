@@ -57,7 +57,7 @@ describe("classification", () => {
   });
   it("external, mailto, tel, dev host", () => {
     expect(c("https://x.com/sqootpure")).toMatchObject({ category: "external", destinationKey: "https://x.com/sqootpure" });
-    expect(c("mailto:hello@sqootpure.com").category).toBe("mailto");
+    expect(c("mailto:hello@gettrunk.com").category).toBe("mailto");
     expect(c("tel:+1 (555) 010-0000").normalized).toBe("tel:+15550100000");
     expect(c("http://127.0.0.1:3000/x").devHost).toBe(true);
     expect(c("https://id-preview--abc.lovable.app/").devHost).toBe(true);

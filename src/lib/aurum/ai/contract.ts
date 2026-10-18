@@ -96,7 +96,7 @@ export function parseModelDraft(raw: unknown): ModelDraft {
 }
 
 export const SYSTEM_PROMPT = [
-  "You write one short AURUM Daily Note about the gold price for SQOOT Pure.",
+  "You write one short AURUM Daily Note about the gold price for TRUNK.",
   "",
   "You have no internet access, no news feed and no research tools. The FACTS block",
   "in the user message is the only information that exists. Everything you write must",

@@ -54,7 +54,7 @@ const BODY = JSON.stringify([
 
 const SOURCES = JSON.stringify([
   {
-    publisher: "SQOOT AURUM price record",
+    publisher: "TRUNK AURUM price record",
     title: "aurum_spot_prices latest observation",
     date: "2026-09-22",
     url: "https://solid-gold-gateway.lovable.app/aurum#price",

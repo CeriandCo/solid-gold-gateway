@@ -121,13 +121,13 @@ function TermsPage() {
           <p className="body-copy mt-5 text-charcoal/90">On TRUNK, "redeem" is the customer exit process. It may mean receiving an ACH cash payout for your gold at the current live spot price, less disclosed fees, or requesting insured physical delivery when available. We do not treat "redeem" and "buyback" as separate customer actions.</p>
           <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl"><strong>How cash redemption works:</strong></h3>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li>Submit a redemption request from your account dashboard or by contacting hello@sqoot.us.</li>
+            <li>Submit a redemption request from your account dashboard or by contacting hello@gettrunk.com.</li>
             <li>Your gold is valued at the live spot price when the request is processed, not the price you originally paid.</li>
             <li>Applicable platform and processing fees are disclosed before you confirm.</li>
             <li>Net proceeds are returned via ACH to your verified bank account, typically within 3 to 5 business days after approval.</li>
           </ul>
           <p className="body-copy mt-5 text-charcoal/90">Your redemption price will reflect current market conditions. TRUNK does not guarantee that the redemption value will equal or exceed your original purchase price.</p>
-          <p className="body-copy mt-5 text-charcoal/90"><strong>Platform Errors:</strong> If a verified technical error by TRUNK results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@sqoot.us with your transaction ID and a description of the issue.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>Platform Errors:</strong> If a verified technical error by TRUNK results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@gettrunk.com with your transaction ID and a description of the issue.</p>
           <p className="body-copy mt-5 text-charcoal/90"><strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today's market price, less disclosed fees. That is your exit path.</p>
           <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
           <p className="body-copy mt-5 text-charcoal/90">If you have questions about these Terms, please contact us through our contact form on trunk.gold or call +1 (254) 455-5959.</p>

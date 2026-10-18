@@ -36,7 +36,7 @@ export function Eyebrow({ children, className = "" }: { children: React.ReactNod
 }
 
 /**
- * Shared SQOOT CTA button.
+ * Shared TRUNK CTA button.
  * variant: "primary" (gold fill) | "secondary" (bordered) | "video" (bordered, play icon)
  *          | "forest" (forest-black fill, compact — pairs with sm/md/lg sizes)
  * size: "hero" (54px, min-width 200px — the default for primary/secondary/video)
@@ -227,7 +227,7 @@ function BuyDropdown() {
 }
 
 /**
- * Shared SQOOT Pure navbar — single source for every page.
+ * Shared TRUNK navbar — single source for every page.
  * variant="overlay" is used on the homepage (transparent, over the hero image);
  * variant="solid" is used on all other pages via SiteHeader.
  */
@@ -377,7 +377,7 @@ const socialIcons = [
 ];
 
 /**
- * Shared SQOOT Pure footer — single source for every page.
+ * Shared TRUNK footer — single source for every page.
  * Styled by the `footer.site-footer` block in src/styles.css so that
  * page-scoped stylesheets cannot alter its typography or spacing.
  */

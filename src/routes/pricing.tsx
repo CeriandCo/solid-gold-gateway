@@ -15,7 +15,7 @@ import { InnerPageHero } from "@/components/inner-page-hero";
 import { useReveal } from "@/hooks/use-reveal";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
-const CANONICAL_URL = "https://getsqoot.com/pricing";
+const CANONICAL_URL = "https://gettrunk.com/pricing";
 const OG_IMAGE = `${SITE_ORIGIN}${pricingShareAsset.url}`;
 
 const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;

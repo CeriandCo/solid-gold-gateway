@@ -1,12 +1,12 @@
-# SQOOT Gold Vault
+# TRUNK Gold Vault
 
-Use the supplied SQOOT Pure Style Guide as the single source of truth for colors, typography, spacing, radii, buttons and emotional register.
+Use the supplied TRUNK Style Guide as the single source of truth for colors, typography, spacing, radii, buttons and emotional register.
 
 Use SQOOT-Website-New-01.jpg and IMG_5216.png as the primary website layout and visual-quality references.
 
 Use IMG_5215.png and the checkout assets only as references for component consistency and future app-preview visuals. Do not build checkout, account, KYC or payment functionality on the website.
 
-Preserve the established SQOOT visual language:
+Preserve the established TRUNK visual language:
 
 - Deep Forest #1A3A2A
 
