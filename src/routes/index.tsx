@@ -36,13 +36,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
+          "Start with $50 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
       },
       { property: "og:title", content: "TRUNK — Own Fine Gold, Three Ways" },
       {
         property: "og:description",
         content:
-          "Start with $25, keep it in the vault, or have coins delivered home. Fully backed in the vault, audited, redeemable on demand.",
+          "Start with $50, keep it in the vault, or have coins delivered home. Fully backed in the vault, audited, redeemable on demand.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -94,7 +94,7 @@ const OWNERSHIP_WAYS = [
     number: "02",
     title: "Buy any amount",
     description:
-      "Choose what you want to spend and we turn it into fine gold at the live price — or switch to ounces if you prefer. Orders start at $25, and your price locks for 90 seconds at checkout.",
+      "Choose what you want to spend and we turn it into fine gold at the live price — or switch to ounces if you prefer. Orders start at $50, and your price locks for 90 seconds at checkout.",
     linkLabel: "How fractional works",
     to: "/fractional-gold",
     background: weightCardBackground.url,

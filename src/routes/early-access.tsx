@@ -13,7 +13,7 @@ export const Route = createFileRoute("/early-access")({
       {
         name: "description",
         content:
-          "Join the TRUNK waitlist and be notified when the app launches. Real physical gold from US$25, with secure storage and delivery options.",
+          "Join the TRUNK waitlist and be notified when the app launches. Real physical gold from US$50, with secure storage and delivery options.",
       },
       { property: "og:title", content: "Early Access — Join the Waitlist | TRUNK" },
       {
@@ -51,7 +51,7 @@ const steps = [
 
 const benefits = [
   { Icon: Coins, text: "Real physical gold" },
-  { Icon: Vault, text: "Start from US$25" },
+  { Icon: Vault, text: "Start from US$50" },
   { Icon: ShieldCheck, text: "Secure storage and delivery options" },
   { Icon: Smartphone, text: "Manage your holding through the TRUNK app" },
 ];
@@ -213,7 +213,7 @@ function EarlyAccessPage() {
                   Fine gold, real ownership — launching soon.
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-warm-white/75">
-                  Buy physical gold from US$25, keep it securely stored in insured U.S. vaults, or
+                  Buy physical gold from US$50, keep it securely stored in insured U.S. vaults, or
                   take delivery when you choose.
                 </p>
               </div>

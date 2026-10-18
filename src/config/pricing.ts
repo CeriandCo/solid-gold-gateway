@@ -43,7 +43,7 @@ export type PricingSampleProduct = {
 export const PRICING = {
   currency: "USD",
   vault: {
-    minimumPurchaseUsd: 25,
+    minimumPurchaseUsd: 50,
     purchaseFeeRate: 0.03,
     freeStorageDays: 365,
     storageRatePerYear: 0.0045,

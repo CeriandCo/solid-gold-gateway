@@ -11,7 +11,7 @@ export const Route = createFileRoute("/home-old-ver")({
       {
         name: "description",
         content:
-          "Buy physical gold delivered to your door, start with $25 in fine gold, or keep it fully backed in an insured US vault. Real ownership, your way.",
+          "Buy physical gold delivered to your door, start with $50 in fine gold, or keep it fully backed in an insured US vault. Real ownership, your way.",
       },
       { property: "og:title", content: "TRUNK — Fine Gold, Real Ownership" },
       {
@@ -35,7 +35,7 @@ const paths = [
   {
     icon: Layers,
     title: "Fractional Gold",
-    copy: "Start with $25 in fine gold. Fully backed in the vault, never pooled, always yours.",
+    copy: "Start with $50 in fine gold. Fully backed in the vault, never pooled, always yours.",
     to: "/fractional-gold",
   },
   {

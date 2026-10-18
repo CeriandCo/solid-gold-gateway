@@ -36,7 +36,7 @@ const WHO = [
 const WHY = [
   "Fine physical gold, fully backed in the vault",
   "Live gold pricing, with every applicable fee shown before confirmation",
-  "Start with $25, add more anytime and sell when they choose",
+  "Start with $50, add more anytime and sell when they choose",
   "Use their gold toward an eligible coin delivered to their home",
   "View their gold balance, transaction history and monthly statements in My Gold",
 ];
@@ -107,7 +107,7 @@ function PartnersPage() {
         titleId="partners-hero-title"
         eyebrow="For advisors · Wealth managers · Family offices"
         title={<><span>Fine gold for your clients.</span><span><em>Simple to introduce.</em></span></>}
-        body="TRUNK gives your clients a simple way to buy fine physical gold, from $25 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Apply to become a partner and, if approved, earn referral rewards for eligible clients you introduce."
+        body="TRUNK gives your clients a simple way to buy fine physical gold, from $50 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Apply to become a partner and, if approved, earn referral rewards for eligible clients you introduce."
         actions={
           <>
             <GoldButton href="#apply">Apply to partner</GoldButton>
