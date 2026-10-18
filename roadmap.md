@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] Update Privacy Policy and Terms of Use from the October 17, 2026 Word documents, preserve their exact contact details, and verify both pages.
+- [x] Update Privacy Policy and Terms of Use from the October 17, 2026 Word documents, preserve exact contact details, and browser-verify both pages; isolated test startup blocked (see verification report).
 
 - [x] Make AURUM day change, prior close, and rolling range use one validated same-provider spot source.
 - [x] Rebuild homepage phase 1 with the shared tokens, container, and ordered empty section shell.
