@@ -8,7 +8,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "Read the TRUNK Terms of Use governing access to gettrunk.com and related services operated by Fortress Gold Inc. DBA TRUNK.",
+          "Read the TRUNK Terms of Use governing access to trunk.gold and related services operated by Fortress Gold Inc. DBA TRUNK.",
       },
       { property: "og:title", content: "Terms of Use | TRUNK" },
       {
@@ -48,10 +48,8 @@ function TermsPage() {
         </section>
 
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
-          <p className="body-copy text-charcoal/90">Last updated: May 5, 2026</p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            These Terms of Use (&quot;Terms&quot;) govern your access to and use of gettrunk.com and related services (&quot;Platform&quot;) operated by Fortress Gold Inc. DBA TRUNK (&quot;TRUNK,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.
-          </p>
+          <p className="body-copy text-charcoal/90"><strong>Last updated: October 17, 2026</strong></p>
+          <p className="body-copy mt-5 text-charcoal/90">These Terms of Use ("Terms") govern your access to and use of trunk.gold and related services ("Platform") operated by Fortress Gold Inc. DBA TRUNK ("TRUNK," "we," "us," or "our"), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.</p>
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
             <p className="eyebrow text-gold mb-4">On this page</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -74,173 +72,67 @@ function TermsPage() {
               <a href="#contact-us" className="text-sm text-forest transition-colors hover:text-gold">17. Contact Us</a>
             </div>
           </nav>
-
-
-          <h2 id="program-description" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            1. Program Description
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            TRUNK is a digital platform for purchasing, storing, gifting, and redeeming physical gold. Gold is classified as a commodity under US law. TRUNK is not a securities broker, investment advisor, bank, or money services business. We provide infrastructure for direct physical gold ownership.
-          </p>
-
-          <h2 id="eligibility" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            2. Eligibility
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            You must be at least 18 years old and a US resident to use the Platform. By creating an account, you represent that you meet these requirements and that all information you provide is accurate and complete.
-          </p>
-
-          <h2 id="account-registration-kyc" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            3. Account Registration and KYC
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            To use the Platform, you must create an account and complete identity verification (Know Your Customer / KYC). As part of our BSA/AML compliance program, we are required to verify all customers. Failure to complete KYC will prevent access to buying, selling, and gifting features.
-          </p>
-
-          <h2 id="payment-methods" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            4. Payment Methods
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            TRUNK accepts the following payment methods: (1) ACH bank transfer up to $100,000 per transaction with same-day settlement; (2) RTP instant bank payment; and (3) wire transfer. No cash, no cards, and no cryptocurrency accepted. Payment processing is subject to identity verification and may be delayed pending AML review. TRUNK reserves the right to add, modify, or remove supported payment methods with notice to users.
-          </p>
-
-          <h2 id="pricing-and-fees" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            5. Pricing and Fees
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Gold prices are based on live spot prices sourced from global exchanges (COMEX, LME, LBMA, DGCX, Perth Mint). A transparent platform fee is applied per transaction. All pricing is displayed before you confirm a purchase. Prices are indicative and may change between the time a quote is viewed and a transaction is confirmed.
-          </p>
-
-          <h2 id="gold-ownership-and-storage" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            6. Gold Ownership and Storage
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            All gold purchased on the Platform is fully backed in the vault and stored in insured, audited vault facilities through institutional-grade custodians. You retain full ownership of your gold. Vault storage fees, if applicable, will be disclosed at the time of purchase.
-          </p>
-
-          <h2 id="redemption-and-delivery" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            7. Redemption and Delivery
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            You may redeem your TRUNK gold at any time. Redemption is the process for exiting a gold position or requesting physical delivery. Depending on the redemption method available in your account, you may request an ACH cash payout based on the current live spot price, less disclosed platform and processing fees, or request physical delivery through an insured carrier. Redemption requests are subject to processing times, identity verification, available liquidity, shipping requirements, and applicable fees.
-          </p>
-
-          <h2 id="sms-and-text-messaging-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            8. SMS and Text Messaging Terms
-          </h2>
-          <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
-            TRUNK Customer Care Messaging Program
-          </h3>
-          <p className="body-copy mt-5 text-charcoal/90">
-            By providing your phone number on this Platform, you consent to receive text messages from TRUNK for customer care purposes, including: order confirmations and status updates, shipping and delivery notifications, KYC verification updates, payment receipts and transaction alerts, customer support responses.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Message frequency varies based on your account activity and support interactions. Message and data rates may apply depending on your carrier and plan.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            To opt out: Reply STOP to any message to unsubscribe from all text communications. You will receive a one-time confirmation message.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            For help: Reply HELP to any message, or contact us at +1 (254) 455-5959, +1 (920) 776-6863, or through our contact form.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Consent to receive text messages is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. We do not share your phone number with third parties for their marketing purposes.
-          </p>
-
-          <h2 id="prohibited-uses" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            9. Prohibited Uses
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            You agree not to use the Platform for any unlawful purpose, including money laundering, fraud, or circumventing regulatory requirements. We reserve the right to suspend or terminate any account that violates these Terms or applicable law.
-          </p>
-
-          <h2 id="intellectual-property" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            10. Intellectual Property
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            All content on gettrunk.com, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA TRUNK and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.
-          </p>
-
-          <h2 id="limitation-of-liability" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            11. Limitation of Liability
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            To the maximum extent permitted by law, TRUNK shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.
-          </p>
-
-          <h2 id="disclaimer-of-warranties" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            12. Disclaimer of Warranties
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            The Platform is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or implied. We do not guarantee that the Platform will be uninterrupted, error-free, or secure at all times.
-          </p>
-
-          <h2 id="governing-law" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            13. Governing Law
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            These Terms are governed by the laws of the State of Wyoming. Any disputes arising from these Terms shall be resolved in the state or federal courts located in Wyoming.
-          </p>
-
-          <h2 id="changes-to-these-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            14. Changes to These Terms
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            We may update these Terms from time to time. Changes will be posted on this page with an updated revision date. Continued use of the Platform after changes constitutes acceptance of the revised Terms.
-          </p>
-
-          <h2 id="commodity-risk-and-market-movement" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            15. Commodity Risk and Market Movement
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Gold prices fluctuate continuously. TRUNK does not guarantee that your gold will increase in value or that a redemption will return the same amount you paid. You are responsible for reviewing the live price, fees, and transaction details before confirming any purchase or redemption.
-          </p>
-
-          <h2 id="refund-policy-all-sales-final" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            16. Refund Policy — All Sales Final
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            All gold purchases on TRUNK are final and non-refundable. By confirming a transaction, you acknowledge that no cash refund will be issued to your original payment method for any reason, including changes in gold market value after your purchase is confirmed.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            <strong>Why sales are final:</strong> Gold is a physical commodity. Once your purchase is confirmed, your gold is fully backed in the vault at the live spot price at the moment of confirmation. Market prices change in real time, and the purchase price is locked at confirmation. We cannot reverse a physically settled commodity transaction.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            <strong>Want to exit your position? Redeem your gold.</strong>
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            On TRUNK, &quot;redeem&quot; is the customer exit process. It may mean receiving an ACH cash payout for your gold at the current live spot price, less disclosed fees, or requesting insured physical delivery when available. We do not treat &quot;redeem&quot; and &quot;buyback&quot; as separate customer actions.
-          </p>
-          <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl">
-            How cash redemption works:
-          </h3>
-          <ol className="body-copy mt-5 list-decimal space-y-3 pl-6 text-charcoal/90">
-            <li>Submit a redemption request from your account dashboard or by contacting hello@gettrunk.com.</li>
+          <h2 id="program-description" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">1. Program Description</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK is a digital platform for purchasing, storing, gifting, and redeeming physical gold. Gold is classified as a commodity under US law. TRUNK is not a securities broker, investment advisor, bank, or money services business. We provide infrastructure for direct physical gold ownership.</p>
+          <h2 id="eligibility" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">2. Eligibility</h2>
+          <p className="body-copy mt-5 text-charcoal/90">You must be at least 18 years old and a US resident to use the Platform. By creating an account, you represent that you meet these requirements and that all information you provide is accurate and complete.</p>
+          <h2 id="account-registration-kyc" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">3. Account Registration and KYC</h2>
+          <p className="body-copy mt-5 text-charcoal/90">To use the Platform, you must create an account and complete identity verification (Know Your Customer / KYC). As part of our BSA/AML compliance program, we are required to verify all customers. Failure to complete KYC will prevent access to buying, selling, and gifting features.</p>
+          <h2 id="payment-methods" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">4. Payment Methods</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK accepts the following payment methods: (1) ACH bank transfer from a bank account verified through Plaid; (2) credit and debit cards; (3) USDC and USDG stablecoins; and (4) wire transfer, which is the required method for larger purchases. For physical coin purchases, buy now, pay later (BNPL) options may also be available at checkout. ACH, card and stablecoin payments are processed through Stripe. No cash accepted. Transaction limits apply by payment method, and purchases above those limits must be paid by wire transfer. Every purchase requires identity verification (KYC) at checkout, and payment processing may be delayed pending AML review. Redemption payouts are made by ACH to your verified bank account. TRUNK reserves the right to add, modify, or remove supported payment methods with notice to users.</p>
+          <h2 id="pricing-and-fees" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">5. Pricing and Fees</h2>
+          <p className="body-copy mt-5 text-charcoal/90">Gold prices are based on live spot prices sourced from global exchanges (COMEX, LME, LBMA, DGCX, Perth Mint). A transparent platform fee is applied per transaction. All pricing is displayed before you confirm a purchase. Prices are indicative and may change between the time a quote is viewed and a transaction is confirmed.</p>
+          <h2 id="gold-ownership-and-storage" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">6. Gold Ownership and Storage</h2>
+          <p className="body-copy mt-5 text-charcoal/90">All gold purchased on the Platform is physically allocated and stored in insured, audited vault facilities through institutional-grade custodians. You retain full ownership of your gold. Vault storage fees, if applicable, will be disclosed at the time of purchase.</p>
+          <h2 id="redemption-and-delivery" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">7. Redemption and Delivery</h2>
+          <p className="body-copy mt-5 text-charcoal/90">You may redeem your TRUNK gold at any time. Redemption is the process for exiting a gold position or requesting physical delivery. Depending on the redemption method available in your account, you may request an ACH cash payout based on the current live spot price, less disclosed platform and processing fees, or request physical delivery through an insured carrier. Redemption requests are subject to processing times, identity verification, available liquidity, shipping requirements, and applicable fees.</p>
+          <h2 id="sms-and-text-messaging-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">8. SMS and Text Messaging Terms</h2>
+          <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl"><strong>TRUNK Customer Care Messaging Program</strong></h3>
+          <p className="body-copy mt-5 text-charcoal/90">By providing your phone number on this Platform, you consent to receive text messages from TRUNK for customer care purposes, including:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Order confirmations and status updates</li>
+            <li>Shipping and delivery notifications</li>
+            <li>KYC verification updates</li>
+            <li>Payment receipts and transaction alerts</li>
+            <li>Customer support responses</li>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>Message frequency</strong> varies based on your account activity and support interactions. Message and data rates may apply depending on your carrier and plan.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>To opt out:</strong> Reply <strong>STOP</strong> to any message to unsubscribe from all text communications. You will receive a one-time confirmation message.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>For help:</strong> Reply <strong>HELP</strong> to any message, or contact us at +1 (254) 455-5959 or through our contact form.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Consent to receive text messages is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. We do not share your phone number with third parties for their marketing purposes.</p>
+          <h2 id="prohibited-uses" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">9. Prohibited Uses</h2>
+          <p className="body-copy mt-5 text-charcoal/90">You agree not to use the Platform for any unlawful purpose, including money laundering, fraud, or circumventing regulatory requirements. We reserve the right to suspend or terminate any account that violates these Terms or applicable law.</p>
+          <h2 id="intellectual-property" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">10. Intellectual Property</h2>
+          <p className="body-copy mt-5 text-charcoal/90">All content on trunk.gold, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA TRUNK and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+          <h2 id="limitation-of-liability" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">11. Limitation of Liability</h2>
+          <p className="body-copy mt-5 text-charcoal/90">To the maximum extent permitted by law, TRUNK shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.</p>
+          <h2 id="disclaimer-of-warranties" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">12. Disclaimer of Warranties</h2>
+          <p className="body-copy mt-5 text-charcoal/90">The Platform is provided "as is" and "as available" without warranties of any kind, either express or implied. We do not guarantee that the Platform will be uninterrupted, error-free, or secure at all times.</p>
+          <h2 id="governing-law" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">13. Governing Law</h2>
+          <p className="body-copy mt-5 text-charcoal/90">These Terms are governed by the laws of the State of Wyoming. Any disputes arising from these Terms shall be resolved in the state or federal courts located in Wyoming.</p>
+          <h2 id="changes-to-these-terms" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">14. Changes to These Terms</h2>
+          <p className="body-copy mt-5 text-charcoal/90">We may update these Terms from time to time. Changes will be posted on this page with an updated revision date. Continued use of the Platform after changes constitutes acceptance of the revised Terms.</p>
+          <h2 id="commodity-risk-and-market-movement" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">15. Commodity Risk and Market Movement</h2>
+          <p className="body-copy mt-5 text-charcoal/90">Gold prices fluctuate continuously. TRUNK does not guarantee that your gold will increase in value or that a redemption will return the same amount you paid. You are responsible for reviewing the live price, fees, and transaction details before confirming any purchase or redemption.</p>
+          <h2 id="refund-policy-all-sales-final" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">16. Refund Policy — All Sales Final</h2>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>All gold purchases on TRUNK are final and non-refundable.</strong> By confirming a transaction, you acknowledge that no cash refund will be issued to your original payment method for any reason, including changes in gold market value after your purchase is confirmed.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>Why sales are final:</strong> Gold is a physical commodity. Once your purchase is confirmed, your gold is physically allocated to your vault in your name at the live spot price at the moment of confirmation. Market prices change in real time, and the purchase price is locked at confirmation. We cannot reverse a physically settled commodity transaction.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>Want to exit your position? Redeem your gold.</strong></p>
+          <p className="body-copy mt-5 text-charcoal/90">On TRUNK, "redeem" is the customer exit process. It may mean receiving an ACH cash payout for your gold at the current live spot price, less disclosed fees, or requesting insured physical delivery when available. We do not treat "redeem" and "buyback" as separate customer actions.</p>
+          <h3 className="font-display mt-8 text-xl font-medium leading-[1.15] tracking-[-0.01em] text-forest-deep sm:text-2xl"><strong>How cash redemption works:</strong></h3>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Submit a redemption request from your account dashboard or by contacting hello@sqoot.us.</li>
             <li>Your gold is valued at the live spot price when the request is processed, not the price you originally paid.</li>
             <li>Applicable platform and processing fees are disclosed before you confirm.</li>
             <li>Net proceeds are returned via ACH to your verified bank account, typically within 3 to 5 business days after approval.</li>
-          </ol>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Your redemption price will reflect current market conditions. TRUNK does not guarantee that the redemption value will equal or exceed your original purchase price.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            <strong>Platform Errors:</strong> If a verified technical error by TRUNK results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@gettrunk.com with your transaction ID and a description of the issue.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            <strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today&apos;s market price, less disclosed fees. That is your exit path.
-          </p>
-
-          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">
-            17. Contact Us
-          </h2>
-          <p className="body-copy mt-5 text-charcoal/90">
-            If you have questions about these Terms, please contact us through our contact form on gettrunk.com or call +1 (254) 455-5959 or +1 (920) 776-6863.
-          </p>
-          <p className="body-copy mt-5 text-charcoal/90">
-            Fortress Gold Inc. DBA TRUNK<br />
-            Wyoming Corporation · Headquarters: Houston, TX<br />
-            Website: gettrunk.com
-          </p>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90">Your redemption price will reflect current market conditions. TRUNK does not guarantee that the redemption value will equal or exceed your original purchase price.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>Platform Errors:</strong> If a verified technical error by TRUNK results in a duplicate charge or incorrect transaction amount, we will investigate and issue a correction within 5 business days. Contact hello@sqoot.us with your transaction ID and a description of the issue.</p>
+          <p className="body-copy mt-5 text-charcoal/90"><strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today's market price, less disclosed fees. That is your exit path.</p>
+          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
+          <p className="body-copy mt-5 text-charcoal/90">If you have questions about these Terms, please contact us through our contact form on trunk.gold or call +1 (254) 455-5959.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK Wyoming Corporation · Headquarters: Houston, TX Website: trunk.gold</p>
+          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved. Wyoming Corporation · Houston, TX.</p>
         </article>
       </main>
 
