@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [ ] TRUNK phase 6a: replace the supplied home phones, active laptop usages, and pricing share image; preserve rendering and old assets; verify at 375 / 768 / 1440.
+
 - [x] Simplify AURUM's MELT newsletter invitation, remove daily/weekly choices, and verify the external Join button at 375 / 768 / 1440; isolated tests could not start.
 
 - [x] Update Privacy Policy and Terms of Use from the October 17, 2026 Word documents, preserve exact contact details, and browser-verify both pages; isolated test startup blocked (see verification report).
