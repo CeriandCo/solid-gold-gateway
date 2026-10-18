@@ -113,3 +113,18 @@ build OK
 ```
 
 A source search for `$25`, `$ 25`, and `minimumPurchaseUsd: 25` in src/routes and src/config returned zero matches. No in-page controls changed, so scroll-preservation testing was not applicable.
+
+## Targeted test retry (raw output)
+
+```text
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/dev-server[39m
+
+ [32m✓[39m src/lib/minimum-purchase.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 05:01:45
+[2m   Duration [22m 127ms[2m (transform 61%, import 23%, worker 9%, tests 7%)[22m
+
+```
