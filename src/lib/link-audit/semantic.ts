@@ -129,7 +129,7 @@ const RULES: Rule[] = [
   },
 
   // ——— Homepage ———
-  { id: "home:waitlist", match: all(on(/^\/(home-old-ver)?$/), is(/^(Join the waitlist|Get Early Access)$/, "/early-access")), verdict: "CORRECT", evidence: "Waitlist CTA → /early-access (H1 “Be first in line.”)." },
+  { id: "home:waitlist", match: all(on("/"), is(/^(Join the waitlist|Get Early Access)$/, "/early-access")), verdict: "CORRECT", evidence: "Waitlist CTA → /early-access (H1 “Be first in line.”)." },
   { id: "home:how-it-works", match: all(on("/"), is("How it works", "/#how-it-works")), verdict: "CORRECT", evidence: "Lands on section “HOW IT WORKS — From waitlist to your first ounce.”" },
   {
     id: "home:compare",
@@ -260,12 +260,6 @@ const RULES: Rule[] = [
     fix: "Client: relabel or supply an occasions destination.",
   },
   { id: "gifting:start", match: is("Start Gifting Gold", "/gifting#top"), verdict: "CORRECT", evidence: "Closing CTA → gifting hero containing “Buy a Gift Card” / “Explore Gold Gifts”." },
-  { id: "old-gifting:explore", match: all(on("/gifting-old-ver"), is("Explore Gifts", "/precious-metal")), verdict: "CORRECT", evidence: "Legacy page sells gold pieces as gifts; → coins/bars catalogue. Route lifecycle is a separate IA decision." },
-  { id: "old-gifting:how", match: is("How Gifting Works", "/gifting-old-ver#gifting-process"), verdict: "CORRECT", evidence: "→ “HOW GIFTING WORKS — Simple steps. Lasting impact.” (Choose Your Gift, …)." },
-
-  // ——— Old homepage ———
-  { id: "old-home:paths", match: all(on("/home-old-ver"), (o) => /^(Precious Metal|Fractional Gold|Vault|Gifting) /.test(t(o)) && ({ "Precious Metal": "/precious-metal", "Fractional Gold": "/fractional-gold", Vault: "/vault", Gifting: "/gifting" } as Record<string, string>)[t(o).split(" ").slice(0, t(o).startsWith("Precious") || t(o).startsWith("Fractional") ? 2 : 1).join(" ")] === tgt(o)), verdict: "CORRECT", evidence: "“Four paths to real gold” card title → same-named product page." },
-
   // ——— Legal ———
   { id: "legal:toc", match: (o) => (o.sourceRoute === "/privacy" || o.sourceRoute === "/terms") && o.category === "same-page-fragment" && /^\d+\. /.test(t(o)), verdict: "CORRECT", evidence: "Table-of-contents entry → H2 with the identical numbered heading (verified per fragment)." },
 

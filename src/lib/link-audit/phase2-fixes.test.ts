@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 // T5 Phase 2 regression guards for the three repaired links.
@@ -11,10 +11,12 @@ describe("T5 Phase 2 link repairs", () => {
     expect(s).toMatch(/\{\/\* Founder walkthrough \*\/\}\s*<section data-reveal id="walkthrough"/);
   });
 
-  it("old gifting 'How Gifting Works' targets the How Gifting Works section, which carries the id", () => {
-    const s = read("src/routes/gifting-old-ver.tsx");
-    expect(s).toContain('href="#gifting-process"');
-    expect(s).toMatch(/\{\/\* How Gifting Works \*\/\}\s*<section id="gifting-process"/);
+  it("retired home preview route is absent", () => {
+    expect(existsSync("src/routes/home-old-ver.tsx")).toBe(false);
+  });
+
+  it("retired gifting preview route is absent", () => {
+    expect(existsSync("src/routes/gifting-old-ver.tsx")).toBe(false);
   });
 
   it("Goldhub opens the official World Gold Council Goldhub in a safe new tab", () => {
