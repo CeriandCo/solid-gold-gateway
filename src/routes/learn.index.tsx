@@ -21,7 +21,7 @@ import { InnerPageHero } from "@/components/inner-page-hero";
 import bandGold from "@/assets/learn-hero-poster.jpg.asset.json";
 import learnHeroVideo from "@/assets/learn-hero-intro.mp4.asset.json";
 import learnHeroVideoWebm from "@/assets/learn-hero-intro.webm.asset.json";
-import laptop from "@/assets/walkthrough-laptop.jpg";
+import laptopAsset from "@/assets/walkthrough-laptop-trunk.jpg.asset.json";
 import articlePhone from "@/assets/learn-article-phone-v2.png.asset.json";
 import articleGoldBar from "@/assets/learn-article-gold-bar-v2.png.asset.json";
 import coupleBench from "@/assets/knowledge-couple-bench.jpg.asset.json";
@@ -29,6 +29,8 @@ import goldNugget from "@/assets/knowledge-gold-nugget.jpg.asset.json";
 import cinematicGold from "@/assets/knowledge-cinematic-gold.jpg.asset.json";
 import buyingGuide from "@/assets/knowledge-buying-guide.jpg.asset.json";
 import investingBanner from "@/assets/learn-investing-banner-v2.png.asset.json";
+
+const laptop = laptopAsset.url;
 
 export const Route = createFileRoute("/learn/")({
   loader: () => fetchEditorialArchive(),

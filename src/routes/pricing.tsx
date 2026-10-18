@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import pricingHeroAsset from "@/assets/pricing/pricing-hero.png.asset.json";
+import pricingShareAsset from "@/assets/pricing/og-pricing-trunk.png.asset.json";
 import barThumbnailAsset from "@/assets/pricing/thumb-bar.png.asset.json";
 import coinThumbnailAsset from "@/assets/pricing/thumb-coin.png.asset.json";
 import vaultThumbnailAsset from "@/assets/pricing/thumb-vault.png.asset.json";
@@ -15,7 +16,7 @@ import { useReveal } from "@/hooks/use-reveal";
 
 const SITE_ORIGIN = "https://solid-gold-gateway.lovable.app";
 const CANONICAL_URL = "https://getsqoot.com/pricing";
-const OG_IMAGE = `${SITE_ORIGIN}/og/pricing-trunk.png`;
+const OG_IMAGE = `${SITE_ORIGIN}${pricingShareAsset.url}`;
 
 const currencyPrefix = PRICING.currency === "USD" ? "US$" : `${PRICING.currency} `;
 const deliveryFee = `${(PRICING.delivery.purchaseFeeRate * 100).toFixed(0)}%`;

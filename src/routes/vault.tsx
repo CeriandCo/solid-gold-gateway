@@ -25,7 +25,8 @@ import { cn } from "@/lib/utils";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import vaultDoor from "@/assets/vault-door-hero-v2.png.asset.json";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import laptopImage from "@/assets/walkthrough-laptop.jpg";
+import laptopImageAsset from "@/assets/walkthrough-laptop-trunk.jpg.asset.json";
+const laptopImage = laptopImageAsset.url;
 
 
 export const Route = createFileRoute("/vault")({
