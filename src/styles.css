@@ -3730,6 +3730,45 @@ footer.site-footer a:focus-visible {
   color: var(--muted-ink, #4f5451);
 }
 
+.aurum-page .aurum-subscribe__invitation {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.aurum-page .aurum-subscribe__join {
+  margin-top: 28px;
+}
+
+.aurum-page .aurum-subscribe__more {
+  border-left: 1px solid var(--border);
+  padding-left: 40px;
+}
+
+.aurum-page .aurum-subscribe__more .aurum-subscribe__benefits h3 {
+  color: var(--foreground);
+}
+
+.aurum-page .aurum-subscribe__more .aurum-subscribe__benefits p {
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+@media (max-width: 899px) {
+  .aurum-page .aurum-subscribe__invitation {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .aurum-page .aurum-subscribe__more {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 28px;
+  }
+}
+
 .aurum-page .aurum-subscribe__grid {
   display: grid;
   grid-template-columns: minmax(0, 64fr) minmax(0, 36fr);
