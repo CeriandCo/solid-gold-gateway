@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [x] TRUNK phase 6c: replaced fractional gold hero/comparison images; original assets retained; bytes and unchanged display verified at 375 / 768 / 1440; isolated tests blocked (see verification report).
+
 - [x] TRUNK phase 6b: replaced About hero and Gifting hero/closing images; original files retained; unchanged rendering and bytes verified; tests blocked by isolated stack startup (see verification report).
 
 - [x] TRUNK phase 6a: replaced the supplied home phones, active laptop usages, and pricing share image; rendering verified unchanged at 375 / 768 / 1440, original assets retained; isolated test startup blocked (see verification report).
