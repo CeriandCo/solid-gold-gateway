@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [x] TRUNK phase 8: all 63 route/width checks recorded; 411 image observations with zero broken images, TRUNK favicon/pricing share image verified; retained social labels and existing heading-font exceptions reported, no app changes (docs/verification/TRUNK-REBRAND-PHASE8.md). Full tests blocked by isolated database startup.
+
 - [x] TRUNK phase 7: current branding updated, source publisher corrected, old routes/exclusive images removed; 404/browser verified and 69 focused tests passed.
 - [ ] TRUNK phase 7 literal zero-match gate blocked by compatibility identifiers, retained assets, secret handling and historical evidence requiring expanded exceptions (docs/verification/TRUNK-REBRAND-PHASE7.md); full suite blocked by isolated DB startup.
 
