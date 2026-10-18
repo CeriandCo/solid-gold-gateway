@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import heroGift from "@/assets/gifting-hero-v2.png.asset.json";
+import heroGift from "@/assets/gifting-hero-v2-trunk.png.asset.json";
 import weddingPhoto from "@/assets/occasion-weddings.jpg";
 import arrivalsPhoto from "@/assets/occasion-new-arrivals.jpg";
 import birthdayPhoto from "@/assets/occasion-birthdays.jpg";
@@ -43,7 +43,7 @@ import { PurchaseAcknowledgement } from "@/components/purchase-acknowledgement";
 import { ACKNOWLEDGEMENT_VERSION } from "@/lib/commerce/acknowledgement";
 import sqootLogo from "@/assets/trunk-wordmark-for-dark.svg";
 import sqootMandala from "@/assets/sqoot-mandala.png";
-import closingGift from "@/assets/gifting-closing-v2.png.asset.json";
+import closingGift from "@/assets/gifting-closing-v2-trunk.png.asset.json";
 
 export const Route = createFileRoute("/gifting")({
   loader: () => getGiftCardOffering(),

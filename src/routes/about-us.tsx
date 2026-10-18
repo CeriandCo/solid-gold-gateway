@@ -2,7 +2,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
-import aboutHeroBg from "@/assets/about-hero-velvet-bar.png.asset.json";
+import aboutHeroBg from "@/assets/about-hero-velvet-bar-trunk.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
