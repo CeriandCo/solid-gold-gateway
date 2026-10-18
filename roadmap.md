@@ -2,7 +2,8 @@
 
 ## In progress
 
-- [ ] TRUNK phase 7: database preflight complete; application sweep/removals blocked pending compatibility, retained-asset and historical-evidence exceptions (docs/verification/TRUNK-REBRAND-PHASE7.md).
+- [x] TRUNK phase 7: current branding updated, source publisher corrected, old routes/exclusive images removed; 404/browser verified and 69 focused tests passed.
+- [ ] TRUNK phase 7 literal zero-match gate blocked by compatibility identifiers, retained assets, secret handling and historical evidence requiring expanded exceptions (docs/verification/TRUNK-REBRAND-PHASE7.md); full suite blocked by isolated DB startup.
 
 - [x] TRUNK phase 6d: replaced four Learn images; originals retained; bytes and unchanged display verified at 375 / 768 / 1440; isolated tests blocked (see verification report).
 
