@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] TRUNK phase 6b: replace About hero and Gifting hero/closing images, retain originals and verify unchanged rendering.
+- [x] TRUNK phase 6b: replaced About hero and Gifting hero/closing images; original files retained; unchanged rendering and bytes verified; tests blocked by isolated stack startup (see verification report).
 
 - [x] TRUNK phase 6a: replaced the supplied home phones, active laptop usages, and pricing share image; rendering verified unchanged at 375 / 768 / 1440, original assets retained; isolated test startup blocked (see verification report).
 
