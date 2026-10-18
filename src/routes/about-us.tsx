@@ -91,7 +91,7 @@ const processItems: Array<{ icon: IconName; title: string; body: string }> = [
 const ownershipItems: Array<{ icon: IconName; title: string; body: string; featured?: boolean }> = [
   { icon: "coinbar", title: "Coins & Bars", body: "Own specific, identifiable gold in the form of coins or bars. Fully backed in the vault and withdrawable." },
   { icon: "bank", title: "Vaulted Gold", body: "Gold fully backed in the vault, securely held in professional vaults. Redeemable on your terms.", featured: true },
-  { icon: "cubes", title: "Fractional Gold", body: "Start with $25 in fine gold, fully backed in the vault. Access real exposure with flexible entry." },
+  { icon: "cubes", title: "Fractional Gold", body: "Start with $50 in fine gold, fully backed in the vault. Access real exposure with flexible entry." },
 ];
 
 function AboutPage() {

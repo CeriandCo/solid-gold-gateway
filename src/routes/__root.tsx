@@ -84,14 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership, insured U.S. storage, redeemable on demand.",
+          "Start with $50 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership, insured U.S. storage, redeemable on demand.",
       },
       { name: "author", content: "TRUNK" },
       { property: "og:title", content: "TRUNK — Fine Gold, Real Ownership" },
       {
         property: "og:description",
         content:
-          "Three ways to own fine gold: start with $25, keep it in the vault, or have coins delivered to your door.",
+          "Three ways to own fine gold: start with $50, keep it in the vault, or have coins delivered to your door.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

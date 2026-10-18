@@ -32,12 +32,12 @@ export const Route = createFileRoute("/fractional-gold")({
       { title: "Fractional Gold | TRUNK" },
       {
         name: "description",
-        content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
+        content: "Start with $50 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
       { property: "og:title", content: "Fractional Gold | TRUNK" },
       {
         property: "og:description",
-        content: "A simple, secure way to own fine physical gold. Start with $25.",
+        content: "A simple, secure way to own fine physical gold. Start with $50.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/fractional-gold")({
       { name: "twitter:title", content: "Fractional Gold | TRUNK" },
       {
         name: "twitter:description",
-        content: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
+        content: "Start with $50 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees.",
       },
       { name: "twitter:image", content: OG_IMAGE },
     ],
@@ -78,9 +78,9 @@ const steps = [
   },
   {
     title: "Choose an amount",
-    summary: "When access becomes available, start with as little as US$25.",
+    summary: "When access becomes available, start with as little as US$50.",
     detail:
-      "Choose an amount that suits you, starting from US$25. TRUNK is still pre-launch, so gold purchases are not available yet.",
+      "Choose an amount that suits you, starting from US$50. TRUNK is still pre-launch, so gold purchases are not available yet.",
     icon: Coins,
   },
   {
@@ -122,7 +122,7 @@ const faqs = [
   ],
   [
     "How do I buy vaulted gold?",
-    "Complete verification, select Buy, enter the dollar amount (start with $25), choose an available bank-payment method, review the live price, quantity, fees, and total, then confirm. The order will appear in My Gold and Activity with its current status."
+    "Complete verification, select Buy, enter the dollar amount (start with $50), choose an available bank-payment method, review the live price, quantity, fees, and total, then confirm. The order will appear in My Gold and Activity with its current status."
   ],
   [
     "Is the gold real?",
@@ -228,7 +228,7 @@ function Index() {
         titleId="fractional-hero-title"
         eyebrow="Fine Gold. Fully Backed."
         title={<>Fine gold,<br />made more<br /><em>accessible.</em></>}
-        body={<>Start with $25 in fine physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
+        body={<>Start with $50 in fine physical gold.<br />It’s simple, secure, and built for how<br />you want to save in gold.</>}
         actions={<GoldButton to="/early-access" onClick={() => track("fractional_cta_click", { target: "early_access" })}>Get Early Access</GoldButton>}
         imageSrc={fractionalGoldHero.url}
         imageAlt="TRUNK gold bars and a coin arranged on a deep green velvet tray over marble"
@@ -237,7 +237,7 @@ function Index() {
           <div aria-hidden="true" className="fg-price-badge">
             <div>
               <p className="fg-price-label">START FROM</p>
-              <p className="fg-price-value">$25</p>
+              <p className="fg-price-value">$50</p>
               <p className="fg-price-detail">≈ 0.0104 oz</p>
             </div>
             <style>{`
@@ -491,7 +491,7 @@ function Index() {
         <div className="site-container grid overflow-hidden rounded-[26px] bg-forest py-10 text-background lg:grid-cols-[1fr_1.25fr_1fr] lg:items-center lg:py-12">
           <div><h2 className="section-title text-background">A whole bar<br />asks you to buy<br />all of it.</h2><List bad items={["High upfront cost", "Less flexibility", "Storage and insurance to arrange", "Harder to sell small amounts"]} /></div>
           <div className="relative my-10 min-h-[280px] lg:my-0"><img src={comparisonImage.url} alt="TRUNK green suede box, gold bar, display card, flowers and velvet cloth" width={1540} height={1021} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-cover object-center shadow-xl" /></div>
-          <div className="lg:pl-8"><h2 className="section-title text-background">With TRUNK,<br /><em className="comparison-emphasis text-gold">buy</em> only what<br />you want.</h2><List items={["Start with $25", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
+          <div className="lg:pl-8"><h2 className="section-title text-background">With TRUNK,<br /><em className="comparison-emphasis text-gold">buy</em> only what<br />you want.</h2><List items={["Start with $50", "Buy or sell any amount", "Stored, insured and managed for you"]} /></div>
         </div>
       </section>
 
