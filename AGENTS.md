@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Editor "Generate with AI" usage is logged in `aurum_ai_manual_runs`, not `aurum_ai_runs` — so manual generations never consume the scheduled Daily Note daily cap.
+- The AURUM subscribe presentation is an external community invitation, not a local signup form; keep the existing newsletter server/storage contracts intact because this change is presentation-only.
