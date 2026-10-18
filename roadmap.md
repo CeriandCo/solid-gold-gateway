@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] TRUNK phase 6d: replace four Learn images, preserve originals and display settings, verify rendered sizes and byte integrity.
+- [x] TRUNK phase 6d: replaced four Learn images; originals retained; bytes and unchanged display verified at 375 / 768 / 1440; isolated tests blocked (see verification report).
 
 - [x] TRUNK phase 6c: replaced fractional gold hero/comparison images; original assets retained; bytes and unchanged display verified at 375 / 768 / 1440; isolated tests blocked (see verification report).
 
