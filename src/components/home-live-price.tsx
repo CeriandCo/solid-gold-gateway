@@ -32,7 +32,7 @@ export function HomeHeroSpotCard() {
           <strong className="text-base">Price unavailable right now</strong>
         )}
       </div>
-      {showSampleChip ? <small>Sample data — not a real price</small> : null}
+      {showSampleChip ? <small>Sample data, not a real price</small> : null}
     </aside>
   );
 }
@@ -55,7 +55,7 @@ export function HomeGoldPrice() {
     <div className="home-price-copy" aria-busy={loading || undefined}>
       <div className="home-price-labels">
         <p className="home-price-eyebrow">TODAY&rsquo;S GOLD PRICE</p>
-        {showSampleChip ? <span className="home-price-chip">Sample data — not a real price</span> : null}
+        {showSampleChip ? <span className="home-price-chip">Sample data, not a real price</span> : null}
       </div>
 
       {data ? (

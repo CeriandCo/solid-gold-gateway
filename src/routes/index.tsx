@@ -32,13 +32,13 @@ import { useWaitlistForm } from "@/hooks/use-waitlist-form";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TRUNK — Own Fine Gold, Three Ways" },
+      { title: "TRUNK: Own Fine Gold, Three Ways" },
       {
         name: "description",
         content:
           "Start with $50 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees.",
       },
-      { property: "og:title", content: "TRUNK — Own Fine Gold, Three Ways" },
+      { property: "og:title", content: "TRUNK: Own Fine Gold, Three Ways" },
       {
         property: "og:description",
         content:
@@ -80,22 +80,10 @@ const PROOF_ITEMS = [
 const OWNERSHIP_WAYS = [
   {
     number: "01",
-    title: "Coins, delivered home",
+    title: "Own a fraction of real gold",
     description:
-      "Gold Eagles, Britannias and Sovereigns, shipped insured with signature on delivery.",
-    linkLabel: "Browse coins",
-    to: "/precious-metal",
-    background: coinsCardBackground.url,
-    backgroundAlt: "Gold coins presented in a premium TRUNK gift box",
-    screen: coinsPhoneScreen.url,
-    screenAlt: "TRUNK app coin collection screen",
-  },
-  {
-    number: "02",
-    title: "Buy any amount",
-    description:
-      "Choose what you want to spend and we turn it into fine gold at the live price — or switch to ounces if you prefer. Orders start at $50, and your price locks for 90 seconds at checkout.",
-    linkLabel: "How fractional works",
+      "Start from $50 and buy a fraction of physical gold at live prices. Add to your holdings over time, at your own pace.",
+    linkLabel: "How fractional gold works",
     to: "/fractional-gold",
     background: weightCardBackground.url,
     backgroundAlt: "Gold bars arranged on cream linen",
@@ -103,11 +91,23 @@ const OWNERSHIP_WAYS = [
     screenAlt: "TRUNK app buy screen",
   },
   {
-    number: "03",
-    title: "Keep it in the vault",
+    number: "02",
+    title: "Gold coins, delivered to your door",
     description:
-      "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request.",
-    linkLabel: "See the vault",
+      "Choose from a collection of physical gold coins, including Eagles, Britannias and Sovereigns. Insured delivery, straight to your door.",
+    linkLabel: "Explore gold coins",
+    to: "/precious-metal",
+    background: coinsCardBackground.url,
+    backgroundAlt: "Gold coins presented in a premium TRUNK gift box",
+    screen: coinsPhoneScreen.url,
+    screenAlt: "TRUNK app coin collection screen",
+  },
+  {
+    number: "03",
+    title: "Your gold. Securely stored.",
+    description:
+      "Keep eligible physical gold holdings in insured vault storage, with transparent fees and clear records of what you own.",
+    linkLabel: "Explore vault storage",
     to: "/vault",
     background: vaultCardBackground.url,
     backgroundAlt: "Gold bars and coins stored in a secure vault",
@@ -119,7 +119,7 @@ const OWNERSHIP_WAYS = [
 const APP_FEATURES_LEFT = [
   {
     title: "Priced live",
-    body: "Spot from global markets plus a premium you see before you confirm — never after.",
+    body: "See the global spot price and your premium before you confirm, with no surprises afterward.",
   },
   {
     title: "Held in your name",
@@ -224,7 +224,7 @@ const AURUM_ARTICLES = [
     alt: "A brass balance scale with a gold bar on marble",
     label: "BEFORE YOU BUY",
     title: "Spot is not your price",
-    excerpt: "Spot is a wholesale reference. What you pay includes a premium — here is how to read it.",
+    excerpt: "Spot is a wholesale reference. Learn how to read the premium included in your purchase price.",
     destination: "learn",
   },
   {
@@ -260,7 +260,7 @@ const HOME_FAQS = [
   },
   {
     question: "Can I leave the waitlist?",
-    answer: "Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@gettrunk.com.",
+    answer: "Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact support@trunk.gold.",
   },
 ] as const;
 
@@ -364,7 +364,7 @@ function HomeFaqItem({
   const answer = item.question === "Can I leave the waitlist?" ? (
     <>
       Yes. Use the unsubscribe link in any marketing email. For a privacy or deletion request, contact{" "}
-      <a href="mailto:support@gettrunk.com">support@gettrunk.com</a>.
+      <a href="mailto:support@trunk.gold">support@trunk.gold</a>.
     </>
   ) : item.answer;
 
@@ -491,18 +491,18 @@ function Index() {
           <div className="home-three-ways site-container">
             <div className="home-three-ways-head">
               <div className="home-three-ways-intro">
-                <p className="home-three-ways-eyebrow">THREE WAYS TO OWN</p>
+                <p className="home-three-ways-eyebrow">GOLD OWNERSHIP, YOUR WAY</p>
                 <h2>
-                  Start with a coin,
+                  Start small. Own real gold.
                   <br />
-                  or buy any amount.
+                  Build from there.
                 </h2>
                 <p className="home-three-ways-copy">
-                  Pick the way that suits you today. Switch any time — everything you own sits in one account, in your name.
+                  Buy a fraction of real, physical gold, choose a coin to call your own, or keep your holdings securely stored. All managed through one simple app.
                 </p>
               </div>
               <Link to="/pricing" hash="pricing-compare" className="home-three-ways-link">
-                <span>Compare the three</span>
+                <span>Explore your options</span>
                 <ArrowRight aria-hidden="true" />
               </Link>
             </div>
@@ -543,7 +543,7 @@ function Index() {
                 All of your gold, <em>in your pocket.</em>
               </h2>
               <p className="home-app-body">
-                Buy, store, gift, deliver and sell back — every step priced in the open and confirmed with Face ID.
+                Buy, store, gift, deliver and sell back with transparent pricing and Face ID confirmation at every step.
               </p>
             </div>
 
@@ -633,7 +633,7 @@ function Index() {
                   that matter.
                 </h2>
                 <p className="home-gift-copy">
-                  Send a coin or any amount of gold with a note, straight from the app. They open a gift — not a price tag.
+                  Send a coin or any amount of gold with a note, straight from the app. They see the gift, not its price.
                 </p>
               </div>
               <Link to="/gifting" className="home-three-ways-link">
@@ -665,7 +665,7 @@ function Index() {
               <div className="home-trust-intro">
                 <p className="home-trust-eyebrow">TRUST, IN THE OPEN</p>
                 <h2 id="trust-heading">
-                  Where your gold comes from —
+                  Where your gold comes from
                   <br />
                   and where it lives.
                 </h2>
@@ -721,7 +721,7 @@ function Index() {
               <p className="home-faq-eyebrow">FAQ</p>
               <h2 id="home-faq-heading">Questions, answered plainly.</h2>
               <p className="home-faq-copy">
-                Still unsure? Write to <a href="mailto:support@gettrunk.com">support@gettrunk.com</a>. We will never ask for a password, one-time code or bank login by email.
+                Still unsure? Write to <a href="mailto:support@trunk.gold">support@trunk.gold</a>. We will never ask for a password, one-time code or bank login by email.
               </p>
               <Link to="/contact" className="home-three-ways-link home-faq-link">
                 <span>See all questions</span>
