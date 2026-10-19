@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] Apply fractional-first ownership brief, remove homepage em dashes, and update sitewide support address; verify copy, image pairing, links and unchanged layouts.
+- [x] Applied fractional-first ownership copy, removed homepage em dashes, and updated sitewide support address; 63 browser checks and preview build OK, full tests blocked during isolated database startup (docs/verification/HOME-FRACTIONAL-EM-DASH-SUPPORT-2026-10-19.md).
 
 - [x] Updated only homepage hero and four-column trust-strip copy; browser verified at 375 / 768 / 1440, automatic preview build OK; full tests blocked during isolated database startup (docs/verification/HOME-HERO-TRUST-COPY-2026-10-19.md).
 
