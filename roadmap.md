@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [x] Applied support@trunk.gold to remaining Terms and Privacy contacts; nine browser checks passed at 375 / 768 / 1440, no old public contact matches, preview build OK (docs/verification/SITEWIDE-CONTACT-EMAIL.md); full tests blocked by isolated database startup.
+
 - [x] Updated shared footer copy for comment 744c0526-d4b8-4bb5-926e-8fa725ec056c; exact wording and no overflow verified at 375 / 768 / 1440, preview build OK; full tests blocked by isolated database startup (docs/verification/FOOTER-BRAND-COPY.md).
 
 - [x] Applied fractional-first ownership copy, removed homepage em dashes, and updated sitewide support address; 63 browser checks and preview build OK, full tests blocked during isolated database startup (docs/verification/HOME-FRACTIONAL-EM-DASH-SUPPORT-2026-10-19.md).
