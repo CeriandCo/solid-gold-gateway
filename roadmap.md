@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [x] Updated only homepage hero and four-column trust-strip copy; browser verified at 375 / 768 / 1440, automatic preview build OK; full tests blocked during isolated database startup (docs/verification/HOME-HERO-TRUST-COPY-2026-10-19.md).
+
 - [x] TRUNK phase 8: all 63 route/width checks recorded; 411 image observations with zero broken images, TRUNK favicon/pricing share image verified; retained social labels and existing heading-font exceptions reported, no app changes (docs/verification/TRUNK-REBRAND-PHASE8.md). Full tests blocked by isolated database startup.
 
 - [x] TRUNK phase 7: current branding updated, source publisher corrected, old routes/exclusive images removed; 404/browser verified and 69 focused tests passed.
