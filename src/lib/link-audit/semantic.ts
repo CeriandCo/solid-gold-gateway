@@ -163,7 +163,7 @@ const RULES: Rule[] = [
     verdict: "CORRECT",
     evidence: "Cards “Spot is not your price” / “Allocated or pooled” → AURUM #learn “Four things worth understanding first”, which contains cautions titled “Spot is not your price” and “Allocated or pooled”.",
   },
-  { id: "home:mail", match: all(on("/"), is("support@gettrunk.com", "mailto:support@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target; FAQ/privacy-request context." },
+  { id: "home:mail", match: all(on("/"), is("support@trunk.gold", "mailto:support@trunk.gold")), verdict: "CORRECT", evidence: "Visible address equals mailto target; FAQ/privacy-request context." },
   {
     id: "home:see-all-questions",
     match: all(on("/"), is("See all questions", "/contact")),
@@ -177,7 +177,7 @@ const RULES: Rule[] = [
   // ——— About / Early access / Pricing / Precious metal / Fractional ———
   { id: "about:protection", match: is("How we protect ownership", "/trust-center#protection"), verdict: "CORRECT", evidence: "Lands on Trust Center section “Client Protection”." },
   { id: "early-access-cta", match: is(/^(Get Early Access|Join the Waitlist|Join the waitlist to buy →|Join the TRUNK waitlist)$/, "/early-access"), verdict: "CORRECT", evidence: "Waitlist CTA (site is pre-launch; purchase opens via waitlist) → /early-access." },
-  { id: "pricing:mail", match: all(on("/pricing"), is("support@gettrunk.com", "mailto:support@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target (fees FAQ)." },
+  { id: "pricing:mail", match: all(on("/pricing"), is("support@trunk.gold", "mailto:support@trunk.gold")), verdict: "CORRECT", evidence: "Visible address equals mailto target (fees FAQ)." },
   { id: "fractional:jbt", match: is(/Jewelers Board of Trade/, "https://www.jewelersboard.com/were-legit"), verdict: "CORRECT", evidence: "JBT member badge → Jewelers Board of Trade site." },
   { id: "fractional:ncba", match: is(/National Coin & Bullion Association/, "https://www.ncbassoc.org/membership"), verdict: "CORRECT", evidence: "NCBA member badge → NCBA membership page." },
   { id: "fractional:lbma", match: is("Learn about the standard →", "https://www.lbma.org.uk/good-delivery"), verdict: "CORRECT", evidence: "Good Delivery standard copy → LBMA Good Delivery page." },
@@ -265,7 +265,7 @@ const RULES: Rule[] = [
 
   // ——— Trust Center ———
   { id: "trust:audit", match: is("Explore the audit programme", "/trust-center#audit-programme"), verdict: "CORRECT", evidence: "→ “Your gold. Verified. Always. Independent vault audits every 6 months.”" },
-  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@gettrunk\.com(\?subject=Legal%20Counsel%20Details%20Request)?$/.test(tgt(o)) && (t(o) === "support@gettrunk.com" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address." },
+  { id: "trust:mail", match: all(on("/trust-center"), (o) => /^mailto:support@trunk\.gold(\?subject=Legal%20Counsel%20Details%20Request)?$/.test(tgt(o)) && (t(o) === "support@trunk.gold" || t(o) === "Request details")), verdict: "CORRECT", evidence: "Client Protection: visible address equals target; “Request details” pre-fills subject “Legal Counsel Details Request” to the same published support address." },
 
   // ——— Vault ———
   { id: "vault:walkthrough", match: is("See how it works", "/vault#walkthrough"), verdict: "CORRECT", evidence: "→ “FOUNDER WALKTHROUGH — See it, don’t just read about it.” (2 min walkthrough)." },
