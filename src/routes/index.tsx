@@ -57,23 +57,23 @@ const STANDARD_SECTION = "py-[clamp(72px,8.3vw,120px)]";
 const PROOF_ITEMS = [
   {
     number: "01",
-    title: "Real, physical gold",
-    line: "Coins and bullion — never a token, note or ETF.",
+    title: "Real gold. Any amount.",
+    line: "Own a fraction of real, physical gold. No need to buy a whole bar.",
   },
   {
     number: "02",
     title: "Held in your name",
-    line: "Allocated to you and shown on every statement.",
+    line: "Your gold holdings are allocated to you and clearly documented.",
   },
   {
     number: "03",
     title: "Priced live",
-    line: "Spot and premium shown before you confirm.",
+    line: "See the spot price and premiums before you confirm.",
   },
   {
     number: "04",
     title: "Deliver or sell back",
-    line: "Take it home or sell it back from the app.",
+    line: "Choose physical delivery where eligible, or sell through the app.",
   },
 ] as const;
 
@@ -424,14 +424,14 @@ function Index() {
 
         <div className="home-hero-inner site-container">
           <div className="home-hero-copy">
-            <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p>
+            <p className="home-hero-eyebrow">REAL GOLD. ANY AMOUNT.</p>
             <h1 className="home-hero-title">
               <span>Own gold</span>
               <span>the way it was</span>
               <em>meant to be.</em>
             </h1>
             <p className="home-hero-body">
-              Buy a coin delivered to your door, start with any amount that suits you, or keep allocated gold in an insured vault — all from one app, priced live and held in your name.
+              You don't need to buy a whole bar to own real gold. With TRUNK, start with a fraction, add to your holdings whenever you like, and keep your gold securely stored in an insured vault.
             </p>
 
             <CtaRow className="home-hero-ctas mt-7">
