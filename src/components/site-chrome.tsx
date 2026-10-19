@@ -392,7 +392,9 @@ export function SiteFooter() {
             <img src={logoImage} alt="TRUNK" width={505} height={92} className="site-footer__logo" />
           </Link>
           <p className="site-footer__tagline">
-            A compliance-first platform for buying, storing, and redeeming real physical gold.
+            TRUNK<br />
+            Make room for gold.<br />
+            Start with a fraction, build at your own pace, and manage it all in one place.
           </p>
         </div>
 
