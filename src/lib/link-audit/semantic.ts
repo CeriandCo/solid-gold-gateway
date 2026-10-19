@@ -245,7 +245,7 @@ const RULES: Rule[] = [
   { id: "learn:read-briefs", match: is("READ THE BRIEFS →", "/aurum/briefs?page=1"), verdict: "CORRECT", evidence: "→ “Weekly Brief archive”." },
 
   // ——— Contact ———
-  { id: "contact:mail", match: all(on("/contact"), is("hello@gettrunk.com", "mailto:hello@gettrunk.com")), verdict: "CORRECT", evidence: "Visible address equals mailto target. Which address is canonical is a separate client content decision." },
+  { id: "contact:mail", match: all(on("/contact"), is("support@trunk.gold", "mailto:support@trunk.gold")), verdict: "CORRECT", evidence: "Visible address equals mailto target. Which address is canonical is a separate client content decision." },
   { id: "contact:domains", match: all(on("/contact"), (o) => (t(o) === "gettrunk.com" && tgt(o) === "https://gettrunk.com/") || (t(o) === "aurum.gettrunk.com" && tgt(o) === "https://aurum.gettrunk.com/")), verdict: "CORRECT", evidence: "Visible domain equals target domain. Reachability/ownership left to Phase 4." },
 
   // ——— Gifting ———
