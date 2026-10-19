@@ -10,12 +10,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact TRUNK: email hello@gettrunk.com, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
+          "Contact TRUNK: email support@trunk.gold, find us in Sugar Land, TX, or follow us on Facebook, Instagram, LinkedIn and X.",
       },
       { property: "og:title", content: "Get In Touch — TRUNK" },
       {
         property: "og:description",
-        content: "Email hello@gettrunk.com, find us in Sugar Land, TX, or follow TRUNK on social.",
+        content: "Email support@trunk.gold, find us in Sugar Land, TX, or follow TRUNK on social.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,8 +27,8 @@ export const Route = createFileRoute("/contact")({
 const contactChannels = [
   {
     label: "Email",
-    value: "hello@gettrunk.com",
-    href: "mailto:hello@gettrunk.com",
+    value: "support@trunk.gold",
+    href: "mailto:support@trunk.gold",
     note: "For everything — orders, accounts, gifting and general questions.",
   },
   {
