@@ -351,7 +351,7 @@ function CTASection() {
       <CtaBranchWatermark />
       <div className="pm-cta-inner">
         <h2 id="pm-cta-title">Join the waitlist to buy coins and bars when the app launches.</h2>
-        <GoldButton to="/early-access" className="mt-[clamp(22px,2.0833vw,53px)]">Join the Waitlist</GoldButton>
+        <GoldButton to="/early-access" className="mt-[clamp(22px,calc(2.0833*var(--pm-vw)),30px)]">Join the Waitlist</GoldButton>
       </div>
     </section>
   );
@@ -399,6 +399,7 @@ function PreciousMetalPage() {
             --pm-cream-text: #F7F0E5;
             --pm-border: rgba(168, 119, 43, 0.35);
             --pm-divider: rgba(157, 111, 39, 0.42);
+            --pm-vw: min(1vw, 14.4px);
             box-sizing: border-box;
             width: 100%;
             overflow-x: clip;
@@ -439,16 +440,16 @@ function PreciousMetalPage() {
             position: absolute;
             z-index: 1;
             top: clamp(110px, 28vh, 260px);
-            left: clamp(48px, 4.5139vw, 116px);
-            max-width: clamp(476px, 46.5278vw, 1191px);
+            left: clamp(48px, calc(4.5139 * var(--pm-vw)), 65px);
+            max-width: clamp(476px, calc(46.5278 * var(--pm-vw)), 670px);
           }
 
           .pm-hero-copy h1 {
             margin: 0;
-            max-width: clamp(484px, 47.2222vw, 1209px);
+            max-width: clamp(484px, calc(47.2222 * var(--pm-vw)), 680px);
             color: var(--pm-cream-text);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(40px, 4.0278vw, 103px);
+            font-size: clamp(40px, calc(4.0278 * var(--pm-vw)), 58px);
             font-weight: 500;
             line-height: .98;
             letter-spacing: -.025em;
@@ -472,10 +473,10 @@ function PreciousMetalPage() {
 
           .pm-hero-rule {
             display: block;
-            width: clamp(41px, 4.0278vw, 103px);
+            width: clamp(41px, calc(4.0278 * var(--pm-vw)), 58px);
             height: 2px;
-            margin-top: clamp(26px, 2.5vw, 64px);
-            margin-bottom: clamp(17px, 1.6667vw, 43px);
+            margin-top: clamp(26px, calc(2.5 * var(--pm-vw)), 36px);
+            margin-bottom: clamp(17px, calc(1.6667 * var(--pm-vw)), 24px);
             background: var(--pm-gold);
           }
 
@@ -483,7 +484,7 @@ function PreciousMetalPage() {
             margin: 0;
             color: rgba(247,240,229,.94);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(18px, 1.7361vw, 44px);
+            font-size: clamp(18px, calc(1.7361 * var(--pm-vw)), 25px);
             font-weight: 400;
             line-height: 1.55;
             letter-spacing: 0;
@@ -492,8 +493,8 @@ function PreciousMetalPage() {
           .pm-products {
             position: relative;
             isolation: isolate;
-            height: clamp(410px, 40vw, 1000px);
-            padding: clamp(24px, 2.3611vw, 60px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(9px, .8333vw, 21px);
+            min-height: clamp(410px, calc(40 * var(--pm-vw)), 576px);
+            padding: clamp(24px, calc(2.3611 * var(--pm-vw)), 34px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(9px, calc(.8333 * var(--pm-vw)), 12px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -517,7 +518,7 @@ function PreciousMetalPage() {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
             align-items: center;
-            column-gap: clamp(27px, 2.6389vw, 68px);
+            column-gap: clamp(27px, calc(2.6389 * var(--pm-vw)), 38px);
             width: 100%;
             margin-inline: auto;
           }
@@ -533,7 +534,7 @@ function PreciousMetalPage() {
             margin: 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(32px, 3.125vw, 80px);
+            font-size: clamp(32px, calc(3.125 * var(--pm-vw)), 45px);
             font-weight: 500;
             line-height: 1;
             letter-spacing: -.015em;
@@ -541,10 +542,10 @@ function PreciousMetalPage() {
           }
 
           .pm-products-eyebrow {
-            margin: clamp(4px, .4167vw, 11px) 0 0;
+            margin: clamp(4px, calc(.4167 * var(--pm-vw)), 6px) 0 0;
             color: var(--pm-gold-muted);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(10px, .9722vw, 25px);
+            font-size: clamp(10px, calc(.9722 * var(--pm-vw)), 14px);
             font-weight: 500;
             letter-spacing: .12em;
             line-height: 1.4;
@@ -555,17 +556,17 @@ function PreciousMetalPage() {
           .pm-products-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: clamp(21px, 2.0139vw, 52px);
+            gap: clamp(21px, calc(2.0139 * var(--pm-vw)), 29px);
             width: 100%;
-            margin: clamp(10px, .9722vw, 25px) auto 0;
+            margin: clamp(10px, calc(.9722 * var(--pm-vw)), 14px) auto 0;
           }
 
           .pm-product-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: clamp(304px, 29.6528vw, 759px);
-            padding: clamp(14px, 1.3889vw, 36px) clamp(14px, 1.3889vw, 36px) clamp(13px, 1.25vw, 32px);
+            min-height: clamp(304px, calc(29.6528 * var(--pm-vw)), 427px);
+            padding: clamp(14px, calc(1.3889 * var(--pm-vw)), 20px) clamp(14px, calc(1.3889 * var(--pm-vw)), 20px) clamp(13px, calc(1.25 * var(--pm-vw)), 18px);
             border: 1px solid var(--pm-border);
             border-radius: 8px;
             background: rgba(250,245,236,.28);
@@ -592,7 +593,7 @@ function PreciousMetalPage() {
             display: grid;
             place-items: center;
             width: 100%;
-            height: clamp(107px, 10.7639vw, 276px);
+            height: clamp(107px, calc(10.7639 * var(--pm-vw)), 155px);
             flex: 0 0 auto;
           }
 
@@ -613,31 +614,31 @@ function PreciousMetalPage() {
             letter-spacing: .08em;
           }
           .pm-product-card:hover .pm-product-art { transform: scale(1.025); }
-          .pm-coin-art { width: clamp(98px, 9.8611vw, 252px); height: clamp(98px, 9.8611vw, 252px); }
+          .pm-coin-art { width: clamp(98px, calc(9.8611 * var(--pm-vw)), 142px); height: clamp(98px, calc(9.8611 * var(--pm-vw)), 142px); }
           .pm-coin-art[src] { object-fit: contain; border-radius: 50%; }
-          .pm-maple-art { width: clamp(103px, 10.4167vw, 267px); height: clamp(103px, 10.4167vw, 267px); }
+          .pm-maple-art { width: clamp(103px, calc(10.4167 * var(--pm-vw)), 150px); height: clamp(103px, calc(10.4167 * var(--pm-vw)), 150px); }
           .pm-maple-art[src] { object-fit: contain; border-radius: 50%; }
-          .pm-bar-art { width: clamp(74px, 7.6389vw, 196px); height: clamp(107px, 10.7639vw, 276px); }
+          .pm-bar-art { width: clamp(74px, calc(7.6389 * var(--pm-vw)), 110px); height: clamp(107px, calc(10.7639 * var(--pm-vw)), 155px); }
           .pm-bar-art[src] { object-fit: contain; }
 
           .pm-product-card h3 {
             display: grid;
             place-items: center;
             width: 100%;
-            height: clamp(56px, 5.4861vw, 140px);
+            min-height: clamp(56px, calc(5.4861 * var(--pm-vw)), 79px);
             margin: 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(28px, 2.7083vw, 69px);
+            font-size: clamp(28px, calc(2.7083 * var(--pm-vw)), 39px);
             font-weight: 500;
             line-height: 1.02;
             letter-spacing: -.015em;
           }
 
           .pm-product-divider {
-            width: clamp(34px, 3.3333vw, 85px);
+            width: clamp(34px, calc(3.3333 * var(--pm-vw)), 48px);
             height: 1.5px;
-            margin: clamp(12px, 1.1806vw, 30px) auto clamp(10px, .9722vw, 25px);
+            margin: clamp(12px, calc(1.1806 * var(--pm-vw)), 17px) auto clamp(10px, calc(.9722 * var(--pm-vw)), 14px);
             background: var(--pm-gold);
           }
 
@@ -646,7 +647,7 @@ function PreciousMetalPage() {
             margin: 0;
             color: var(--pm-body);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(13.5px, 1.3194vw, 34px);
+            font-size: clamp(13.5px, calc(1.3194 * var(--pm-vw)), 19px);
             font-weight: 400;
             line-height: 1.4;
             letter-spacing: 0;
@@ -656,10 +657,12 @@ function PreciousMetalPage() {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: clamp(5px, .4861vw, 12px);
+            margin-top: clamp(5px, calc(.4861 * var(--pm-vw)), 7px);
+            flex-wrap: wrap;
+            row-gap: 4px;
             color: var(--pm-body);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(12.5px, 1.25vw, 32px);
+            font-size: clamp(12.5px, calc(1.25 * var(--pm-vw)), 18px);
             font-weight: 400;
             line-height: 1;
             white-space: nowrap;
@@ -670,16 +673,16 @@ function PreciousMetalPage() {
           .pm-product-sizes i {
             display: inline-block;
             width: 1px;
-            height: clamp(16px, 1.5278vw, 39px);
-            margin-inline: clamp(9px, .9722vw, 25px);
+            height: clamp(16px, calc(1.5278 * var(--pm-vw)), 22px);
+            margin-inline: clamp(9px, calc(.9722 * var(--pm-vw)), 14px);
             background: rgba(140,94,28,.55);
           }
 
           .pm-process {
             position: relative;
             isolation: isolate;
-            height: clamp(300px, 28vw, 560px);
-            padding: clamp(6px, .625vw, 16px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(16px, 1.5278vw, 39px);
+            min-height: clamp(300px, calc(28 * var(--pm-vw)), 403.2px);
+            padding: clamp(6px, calc(.625 * var(--pm-vw)), 9px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(16px, calc(1.5278 * var(--pm-vw)), 22px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -703,7 +706,7 @@ function PreciousMetalPage() {
             display: grid;
             grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
             align-items: center;
-            column-gap: clamp(27px, 2.6389vw, 68px);
+            column-gap: clamp(27px, calc(2.6389 * var(--pm-vw)), 38px);
             width: 100%;
             opacity: 0;
             transform: translateY(14px);
@@ -720,7 +723,7 @@ function PreciousMetalPage() {
             margin: 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(32px, 3.125vw, 80px);
+            font-size: clamp(32px, calc(3.125 * var(--pm-vw)), 45px);
             font-weight: 500;
             line-height: 1;
             letter-spacing: -.015em;
@@ -732,7 +735,7 @@ function PreciousMetalPage() {
             grid-template-columns: repeat(4, minmax(0,1fr));
             width: 100%;
             max-width: var(--container);
-            margin: clamp(17px, 1.7361vw, 44px) auto 0;
+            margin: clamp(17px, calc(1.7361 * var(--pm-vw)), 25px) auto 0;
           }
 
           .pm-step {
@@ -749,9 +752,9 @@ function PreciousMetalPage() {
             content: "";
             position: absolute;
             z-index: 0;
-            top: clamp(40px, 3.8889vw, 100px);
-            left: calc(50% + clamp(62px, 6.0764vw, 156px));
-            width: clamp(101px, 9.8611vw, 252px);
+            top: clamp(40px, calc(3.8889 * var(--pm-vw)), 56px);
+            left: calc(50% + clamp(62px, calc(6.0764 * var(--pm-vw)), 87.5px));
+            width: clamp(101px, calc(9.8611 * var(--pm-vw)), 142px);
             height: 1px;
             background: rgba(167,123,49,.72);
             transform: scaleX(0);
@@ -763,16 +766,16 @@ function PreciousMetalPage() {
             z-index: 1;
             display: grid;
             place-items: center;
-            width: clamp(80px, 7.7778vw, 199px);
-            height: clamp(80px, 7.7778vw, 199px);
+            width: clamp(80px, calc(7.7778 * var(--pm-vw)), 112px);
+            height: clamp(80px, calc(7.7778 * var(--pm-vw)), 112px);
             border: 2.2px solid var(--pm-gold);
             border-radius: 50%;
             background: transparent;
           }
 
           .pm-step-circle svg {
-            width: clamp(46px, 4.5833vw, 117px);
-            height: clamp(46px, 4.5833vw, 117px);
+            width: clamp(46px, calc(4.5833 * var(--pm-vw)), 66px);
+            height: clamp(46px, calc(4.5833 * var(--pm-vw)), 66px);
             fill: none;
             stroke: var(--pm-gold);
             stroke-width: 1.7;
@@ -782,10 +785,10 @@ function PreciousMetalPage() {
           }
 
           .pm-step h3 {
-            margin: clamp(11px, 1.1111vw, 28px) 0 0;
+            margin: clamp(11px, calc(1.1111 * var(--pm-vw)), 16px) 0 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(21px, 2.0139vw, 52px);
+            font-size: clamp(21px, calc(2.0139 * var(--pm-vw)), 29px);
             font-weight: 500;
             line-height: 1.02;
             letter-spacing: 0;
@@ -793,11 +796,11 @@ function PreciousMetalPage() {
           }
 
           .pm-step p {
-            max-width: clamp(140px, 13.8889vw, 356px);
-            margin: clamp(4px, .4167vw, 11px) 0 0;
+            max-width: clamp(140px, calc(13.8889 * var(--pm-vw)), 200px);
+            margin: clamp(4px, calc(.4167 * var(--pm-vw)), 6px) 0 0;
             color: var(--pm-body);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(11px, 1.1111vw, 28px);
+            font-size: clamp(11px, calc(1.1111 * var(--pm-vw)), 16px);
             font-weight: 400;
             line-height: 1.45;
             letter-spacing: 0;
@@ -859,7 +862,7 @@ function PreciousMetalPage() {
           .pm-pricing {
             position: relative;
             isolation: isolate;
-            height: clamp(84px, 8.125vw, 208px);
+            min-height: clamp(84px, calc(8.125 * var(--pm-vw)), 117px);
             padding: 0 calc(max(0px, (100% - var(--container)) / 2) + var(--gutter));
             overflow: hidden;
             background-color: var(--pm-cream);
@@ -884,8 +887,8 @@ function PreciousMetalPage() {
             display: flex;
             align-items: center;
             width: 100%;
-            height: clamp(82px, 7.9167vw, 203px);
-            padding-right: clamp(24px, 2.4306vw, 62px);
+            min-height: clamp(82px, calc(7.9167 * var(--pm-vw)), 114px);
+            padding-right: clamp(24px, calc(2.4306 * var(--pm-vw)), 35px);
             border: 1px solid rgba(199, 169, 115, 0.52);
             border-radius: 8px;
             background: #F2EADC;
@@ -898,9 +901,9 @@ function PreciousMetalPage() {
           }
 
           .pm-pricing-leaf {
-            width: clamp(46px, 4.7222vw, 121px);
-            height: clamp(46px, 4.7222vw, 121px);
-            margin-left: clamp(160px, 16.32vw, 418px);
+            width: clamp(46px, calc(4.7222 * var(--pm-vw)), 68px);
+            height: clamp(46px, calc(4.7222 * var(--pm-vw)), 68px);
+            margin-left: clamp(160px, calc(16.32 * var(--pm-vw)), 235.01px);
             flex: 0 0 auto;
             fill: none;
             stroke: var(--pm-ink);
@@ -922,8 +925,8 @@ function PreciousMetalPage() {
 
           .pm-pricing-divider {
             width: 1px;
-            height: clamp(46px, 4.7222vw, 121px);
-            margin-inline: clamp(24px, 2.4306vw, 62px);
+            height: clamp(46px, calc(4.7222 * var(--pm-vw)), 68px);
+            margin-inline: clamp(24px, calc(2.4306 * var(--pm-vw)), 35px);
             background: rgba(140,94,28,.56);
             flex: 0 0 auto;
           }
@@ -941,7 +944,7 @@ function PreciousMetalPage() {
             margin: 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(17px, 1.7361vw, 44px);
+            font-size: clamp(17px, calc(1.7361 * var(--pm-vw)), 25px);
             font-weight: 500;
             line-height: 1.18;
             text-align: left;
@@ -950,8 +953,8 @@ function PreciousMetalPage() {
           .pm-benefits {
             position: relative;
             isolation: isolate;
-            height: clamp(260px, 22vw, 564px);
-            padding: clamp(30px, 2.9167vw, 75px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(30px, 2.9167vw, 75px);
+            min-height: clamp(260px, calc(22 * var(--pm-vw)), 316.8px);
+            padding: clamp(30px, calc(2.9167 * var(--pm-vw)), 42px) calc(max(0px, (100% - var(--container)) / 2) + var(--gutter)) clamp(30px, calc(2.9167 * var(--pm-vw)), 42px);
             overflow: hidden;
             background-color: var(--pm-cream);
           }
@@ -983,7 +986,7 @@ function PreciousMetalPage() {
             min-width: 0;
             flex-direction: column;
             align-items: center;
-            padding-inline: clamp(3px, .2778vw, 7px);
+            padding-inline: clamp(3px, calc(.2778 * var(--pm-vw)), 4px);
             text-align: center;
             opacity: 0;
             transform: translateY(16px);
@@ -994,15 +997,15 @@ function PreciousMetalPage() {
           .pm-benefit-icon {
             display: grid;
             place-items: center;
-            width: clamp(72px, 5.6944vw, 146px);
-            height: clamp(72px, 5.6944vw, 146px);
+            width: clamp(72px, calc(5.6944 * var(--pm-vw)), 82px);
+            height: clamp(72px, calc(5.6944 * var(--pm-vw)), 82px);
             border: 2px solid rgba(167,123,49,.78);
             border-radius: 50%;
           }
 
           .pm-benefit-icon svg {
-            width: clamp(52px, 4.1667vw, 107px);
-            height: clamp(52px, 4.1667vw, 107px);
+            width: clamp(52px, calc(4.1667 * var(--pm-vw)), 60px);
+            height: clamp(52px, calc(4.1667 * var(--pm-vw)), 60px);
             fill: none;
             stroke: color-mix(in oklab, var(--pm-ink) 78%, var(--pm-gold-muted));
             stroke-width: 1.9;
@@ -1012,20 +1015,20 @@ function PreciousMetalPage() {
           }
 
           .pm-benefit h3 {
-            margin: clamp(14px, 1.3194vw, 34px) 0 0;
+            margin: clamp(14px, calc(1.3194 * var(--pm-vw)), 19px) 0 0;
             color: var(--pm-ink);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(22px, 1.6667vw, 43px);
+            font-size: clamp(22px, calc(1.6667 * var(--pm-vw)), 24px);
             font-weight: 500;
             line-height: 1;
             letter-spacing: -.01em;
           }
 
           .pm-benefit > p {
-            margin: clamp(8px, .6944vw, 18px) 0 0;
+            margin: clamp(8px, calc(.6944 * var(--pm-vw)), 10px) 0 0;
             color: var(--pm-body);
             font-family: "Geist", Arial, sans-serif;
-            font-size: clamp(13px, 1.0417vw, 27px);
+            font-size: clamp(13px, calc(1.0417 * var(--pm-vw)), 15px);
             font-weight: 400;
             line-height: 1.42;
             letter-spacing: 0;
@@ -1072,7 +1075,7 @@ function PreciousMetalPage() {
           .pm-cta {
             position: relative;
             isolation: isolate;
-            height: clamp(220px, 21vw, 538px);
+            min-height: clamp(220px, calc(21 * var(--pm-vw)), 302.4px);
             display: grid;
             place-items: center;
             overflow: hidden;
@@ -1080,9 +1083,9 @@ function PreciousMetalPage() {
           }
           .pm-cta-branch {
             position: absolute;
-            left: clamp(-40px, -2.7778vw, -12px);
-            bottom: clamp(-60px, -4.1667vw, -20px);
-            width: clamp(260px, 29.1667vw, 420px);
+            left: clamp(-40px, calc(-2.7778 * var(--pm-vw)), -12px);
+            bottom: clamp(-60px, calc(-4.1667 * var(--pm-vw)), -20px);
+            width: clamp(260px, calc(29.1667 * var(--pm-vw)), 420px);
             height: auto;
             opacity: .10;
             pointer-events: none;
@@ -1111,10 +1114,10 @@ function PreciousMetalPage() {
           }
           .pm-cta h2 {
             margin: 0 auto;
-            max-width: clamp(680px, 47.2222vw, 1209px);
+            max-width: clamp(680px, calc(47.2222 * var(--pm-vw)), 680px);
             color: var(--pm-cream-text);
             font-family: "Newsreader", Georgia, serif;
-            font-size: clamp(30px, 2.7778vw, 70px);
+            font-size: clamp(30px, calc(2.7778 * var(--pm-vw)), 40px);
             font-weight: 500;
             line-height: 1.08;
             letter-spacing: -.015em;
@@ -1142,7 +1145,7 @@ function PreciousMetalPage() {
             }
             .pm-hero-copy h1 {
               max-width: 300px;
-              font-size: clamp(32px, 9.2vw, 42px);
+              font-size: clamp(32px, calc(9.2 * var(--pm-vw)), 42px);
             }
             .pm-hero-rule { margin-top: 22px; margin-bottom: 16px; }
             .pm-hero-copy p { font-size: 15px; }
