@@ -4,7 +4,7 @@ import { HomeGoldPrice, HomeHeroSpotCard } from "@/components/home-live-price";
 import { ArrowRight } from "lucide-react";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
-import heroPhone from "@/assets/home/phone-hero-vault-holdings-trunk.png.asset.json";
+import heroPhone from "@/assets/home/phone-hero-vault-holdings-trunk-v2.png.asset.json";
 import coinsCardBackground from "@/assets/home/card-bg-coins-delivered-home.png.asset.json";
 import weightCardBackground from "@/assets/home/card-bg-buy-by-weight.png.asset.json";
 import vaultCardBackground from "@/assets/home/card-bg-keep-it-in-the-vault.png.asset.json";
