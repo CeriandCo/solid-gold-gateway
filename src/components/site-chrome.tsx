@@ -8,8 +8,8 @@ export const WIDE = "site-container";
 export const STD = "site-container";
 
 export const siteNav = [
-  ["Coin", "/precious-metal"],
   ["Fraction", "/fractional-gold"],
+  ["Coin", "/precious-metal"],
   ["Gifting", "/gifting"],
   ["Vault", "/vault"],
   ["Pricing", "/pricing"],
@@ -343,8 +343,8 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Discover More",
     links: [
-      { label: "Buy Gold", to: "/precious-metal" },
       { label: "Fractional", to: "/fractional-gold" },
+      { label: "Buy Gold", to: "/precious-metal" },
       { label: "Gifting", to: "/gifting" },
       { label: "Vault", to: "/vault" },
       { label: "AURUM", to: "/aurum" },
