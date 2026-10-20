@@ -8,12 +8,12 @@ import heroPhone from "@/assets/home/phone-hero-vault-holdings-trunk.png.asset.j
 import coinsCardBackground from "@/assets/home/card-bg-coins-delivered-home.png.asset.json";
 import weightCardBackground from "@/assets/home/card-bg-buy-by-weight.png.asset.json";
 import vaultCardBackground from "@/assets/home/card-bg-keep-it-in-the-vault.png.asset.json";
-import coinsPhoneScreen from "@/assets/home/phone-screen-coins-delivered-home.png.asset.json";
-import weightPhoneScreen from "@/assets/home/phone-screen-buy-by-weight.png.asset.json";
-import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault.png.asset.json";
+import coinsPhoneScreen from "@/assets/home/phone-screen-coins-delivered-home-trunk.png.asset.json";
+import weightPhoneScreen from "@/assets/home/phone-screen-buy-by-weight-trunk.png.asset.json";
+import vaultPhoneScreen from "@/assets/home/phone-screen-keep-it-in-the-vault-trunk.png.asset.json";
 import introPhoneScreen from "@/assets/home/phone-screen-intro-priced-trunk.png.asset.json";
 import homePhoneScreen from "@/assets/home/phone-screen-home-full-trunk.png.asset.json";
-import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview.png.asset.json";
+import giftPhoneScreen from "@/assets/home/phone-screen-gift-preview-trunk.png.asset.json";
 import goldPriceBackground from "@/assets/home/gold-price-background.png.asset.json";
 import giftWeddings from "@/assets/home/gift-tile-weddings.png.asset.json";
 import giftNewArrivals from "@/assets/home/gift-tile-new-arrivals.png.asset.json";
@@ -23,8 +23,8 @@ import aurumArticleDailyNote from "@/assets/home/aurum-article-daily-note.png.as
 import aurumArticleBeforeYouBuy from "@/assets/home/aurum-article-before-you-buy.png.asset.json";
 import aurumArticleGuide from "@/assets/home/aurum-article-guide.png.asset.json";
 import ctaBackground from "@/assets/home/cta-background-curtain.png.asset.json";
-import ctaDeliverScreen from "@/assets/home/cta-phone-screen-deliver.png.asset.json";
-import ctaSellScreen from "@/assets/home/cta-phone-screen-sell-quote.png.asset.json";
+import ctaDeliverScreen from "@/assets/home/cta-phone-screen-deliver-trunk.png.asset.json";
+import ctaSellScreen from "@/assets/home/cta-phone-screen-sell-quote-trunk.png.asset.json";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWaitlistForm } from "@/hooks/use-waitlist-form";
