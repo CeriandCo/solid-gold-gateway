@@ -18,5 +18,6 @@ At 1920, 2880 and 3840 the cards match 1440 exactly. The automatic edge check fl
 
 Buy dropdown order: desktop 1440 `['Fraction','Coin']`; mobile 375 `['Fraction','Coin']`.
 
-## Not run
-I did not run `bunx tsgo --noEmit`, `bun run test` or `bun run build` this turn.
+## Gates
+- `bunx tsgo --noEmit`: exit 0, no output.
+- `bun run test`, `bun run build`: not run this turn. The automatic preview build reloaded the page without errors.
