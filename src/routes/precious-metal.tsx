@@ -399,7 +399,7 @@ function PreciousMetalPage() {
             --pm-cream-text: #F7F0E5;
             --pm-border: rgba(168, 119, 43, 0.35);
             --pm-divider: rgba(157, 111, 39, 0.42);
-            --pm-vw: min(calc(1 * var(--pm-vw)), 14.4px);
+            --pm-vw: min(1vw, 14.4px);
             box-sizing: border-box;
             width: 100%;
             overflow-x: clip;
