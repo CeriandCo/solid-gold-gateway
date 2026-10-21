@@ -113,7 +113,6 @@ function TexasMap() {
         className="text-gold/70"
       />
       <circle cx="52" cy="33" r="2.6" className="fill-gold" />
-      <circle cx="57" cy="66" r="2.6" className="fill-gold" />
     </svg>
   );
 }
@@ -401,9 +400,6 @@ function Index() {
             <div className="relative mt-6 w-[240px]">
               <TexasMap />
               <span className="absolute left-[105px] top-[32px] text-[11px] font-medium text-charcoal">Dallas, TX</span>
-              <span className="absolute left-[112px] top-[72px] text-[11px] font-medium text-charcoal">
-                TRUNK Vault
-              </span>
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] Check sitewide message consistency without repeating full copy; align remaining custody wording and record verification.
+- [x] Checked sitewide message consistency without repeating full copy; aligned remaining custody wording; recorded browser results and preserved published educational article exception (docs/verification/SITEWIDE-MESSAGE-CONSISTENCY-2026-10-21.md). Full suite blocked at isolated database startup.
 
 - [x] Apply exact homepage Stored and gold-card gifting copy; check static website custody/gift wording and $50 minimum; browser-verify and record results (full isolated suite blocked at database startup).
 
