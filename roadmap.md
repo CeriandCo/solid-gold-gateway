@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] Apply exact homepage Stored and gold-card gifting copy; check website-wide custody/gift wording and $50 minimum; browser-verify and record results.
+- [x] Apply exact homepage Stored and gold-card gifting copy; check static website custody/gift wording and $50 minimum; browser-verify and record results (full isolated suite blocked at database startup).
 
 - [x] Applied support@trunk.gold to remaining Terms and Privacy contacts; nine browser checks passed at 375 / 768 / 1440, no old public contact matches, preview build OK (docs/verification/SITEWIDE-CONTACT-EMAIL.md); full tests blocked by isolated database startup.
 
