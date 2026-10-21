@@ -8,6 +8,10 @@ import trustHeroImage from "@/assets/trust-centre-hero-gold-register.png.asset.j
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
 import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import { formatAuditDate, vaultAuditSchedule } from "@/config/vault-audit";
+
+const latestAuditDate = formatAuditDate(vaultAuditSchedule.latestAuditDate);
+const upcomingReportDate = formatAuditDate(vaultAuditSchedule.upcomingReportDate);
 
 export const Route = createFileRoute("/trust-center")({
   head: () => ({
@@ -60,7 +64,7 @@ const TC = {
     {
       icon: "seal" as const,
       title: "Independent Oversight",
-      body: "Annual third-party audits and ongoing independent verification.",
+      body: "Third-party audits every six months and ongoing independent verification.",
     },
   ],
   verification: {
@@ -69,7 +73,7 @@ const TC = {
     body: "Independent vault audits every 6 months. Every ounce of your gold is verified, fully backed in the vault, and accounted for — and the full report is published publicly, every time.",
     checklist: [
       "Independent third-party auditor",
-      "Published every 6 months",
+      `Published every ${vaultAuditSchedule.intervalMonths} months`,
       "Fully backed in the vault — never pooled",
       "Independent legal counsel on standby",
     ],
@@ -77,10 +81,10 @@ const TC = {
   latestAudit: {
     title: "Latest Audit",
     smallHeading: "Most Recent Report",
-    intro: "The latest published audit result. Full report pages are published here within 5 business days of completion.",
-    reportName: "Vault Audit — Q4 2026",
-    metadata: "Scheduled: December 2026  ·  Auditor: Independent third-party firm",
-    status: "Scheduled",
+    intro: "Vault audit reporting takes place every six months. Full report pages are published here within 5 business days of completion.",
+    reportName: `Vault Audit — ${latestAuditDate}`,
+    metadata: `Audit date: ${latestAuditDate}  ·  Auditor: Independent third-party firm`,
+    status: "June 2026 Audit",
     metrics: [
       { label: "Total Gold Verified", value: "—", note: "Published post-audit" },
       { label: "Client Accounts", value: "—", note: "Published post-audit" },
@@ -89,8 +93,8 @@ const TC = {
   },
   reportPreview: {
     eyebrow: "Audit Report — Full Pages",
-    title: ["First audit report", "publishing Q4 2026"],
-    body: "TRUNK launched in 2026. Our first biannual audit is scheduled for Q4 2026. The complete report — every page, unredacted — will be published here the day it is received from our auditor.",
+    title: ["Upcoming six-month report", upcomingReportDate],
+    body: `Our vault audit is dated ${latestAuditDate}. The next six-month report is scheduled for ${upcomingReportDate}. The complete report — every page, unredacted — will be published here the day it is received from our auditor.`,
   },
   archive: {
     title: "Audit Archive",
@@ -98,15 +102,15 @@ const TC = {
     body: "Every audit TRUNK has completed, in order. All reports remain permanently accessible — nothing is removed or altered after publication.",
     rows: [
       {
-        name: "Vault Audit — Q4 2026",
-        meta: "Scheduled December 2026  ·  Independent auditor",
+        name: `Vault Report — ${upcomingReportDate}`,
+        meta: "Upcoming six-month report  ·  Independent auditor",
         badge: "Upcoming",
         tone: "gold" as const,
       },
       {
-        name: "Vault Audit — Q2 2026",
-        meta: "Scheduled June 2026  ·  Independent auditor",
-        badge: "In Progress",
+        name: `Vault Audit — ${latestAuditDate}`,
+        meta: `Audit date: ${latestAuditDate}  ·  Independent auditor`,
+        badge: "June 2026 Audit",
         tone: "green" as const,
       },
     ],
