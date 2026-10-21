@@ -64,8 +64,8 @@ const trustItems = [
   },
   {
     icon: Gift,
-    title: "Optional gifting service",
-    text: "Premium packaging for delivery to friends or family",
+    title: "TRUNK gold cards",
+    text: "Delivered digitally with a personal note, never shipped",
   },
 ] as const;
 
@@ -105,7 +105,7 @@ const faqItems: readonly FaqItem[] = [
   {
     question: "Can I gift gold?",
     answer:
-      "Yes. Coins and bars can be shipped directly to a recipient with premium gift packaging, shown at checkout. Vaulted gold can be transferred as a gift on request.",
+      "Send a TRUNK gold card with a personal note. It's delivered digitally and never shipped. Your recipient pays nothing to claim their gold. They open a free TRUNK account and complete a quick ID check. The gold is then theirs to keep, hold or sell.",
   },
   {
     question: "Are there any other fees?",

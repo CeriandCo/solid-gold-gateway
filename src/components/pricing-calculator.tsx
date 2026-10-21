@@ -241,15 +241,15 @@ export function PricingCalculator() {
             </div>
             <div className="pricing-calculator-gift-row">
               <div>
-                <span>This is a gift</span>
-                <small>Premium gift packaging, priced at checkout</small>
+                <span>Presentation packaging</span>
+                <small>Premium packaging, priced at checkout. Gifts are digital TRUNK gold cards only.</small>
               </div>
               <Button
                 className="pricing-calculator-toggle"
                 type="button"
                 role="switch"
                 aria-checked={gift}
-                aria-label="This is a gift"
+                aria-label="Presentation packaging"
                 onClick={() => setGift((current) => !current)}
                 variant="outline"
               >
@@ -390,7 +390,7 @@ function CalculatorResult({
         <ResultLine label={`Product premium · ${(deliveryEstimate.item.premiumRate * 100).toFixed(0)}%`} value={formatMoney(deliveryEstimate.premium)} />
         <ResultLine label="Purchase fee" value={formatMoney(PRICING.delivery.purchaseFeeRate)} />
         {deliveryKind === "coin" ? <ResultLine label="Storage" value="None — it is with you" subdued /> : null}
-        {gift ? <ResultLine label="Premium gift packaging" value="Shown at checkout" subdued /> : null}
+        {gift ? <ResultLine label="Premium presentation packaging" value="Shown at checkout" subdued /> : null}
         <ResultLine label="Insured shipping" value="Shown at checkout" subdued />
         <ResultLine label="Left from your budget" value={formatMoney(deliveryEstimate.remainder)} />
       </div>
@@ -398,7 +398,7 @@ function CalculatorResult({
       <ResultAction />
       <p className="pricing-calculator-note">
         {deliveryKind === "bar" && gift
-          ? "Gift options and shipping are priced at checkout, before you pay."
+          ? "Presentation packaging and shipping are priced at checkout, before you pay. Gifts are digital TRUNK gold cards only."
           : `${deliveryKind === "coin" ? "Coins" : "Bars"} are sold whole. Shipping depends on your address and is shown before you pay.`}
       </p>
     </div>
