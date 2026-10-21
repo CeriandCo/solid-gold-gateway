@@ -171,3 +171,27 @@ Its timestamp predates the final source edits; it does not independently verify 
 
 ## Limits
 Database-backed editorial copy was read-only; no changes to previously published posts. Vault operations, insurance and account-claiming behavior were not independently audited. No claim of final published-site verification.
+
+## Final map correction
+Removed the obsolete Sugar Land map marker rather than relabeling it as the Dallas vault. Re-ran all changed-page checks.
+```text
+Skipping host requirements validation logic because `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS` env variable is set.
+{"width": 375, "route": "/vault", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 375, "control": "Stored for me", "scroll_before": 1404, "scroll_after": 1404}
+{"width": 375, "control": "Where is my gold stored?", "scroll_before": 6054, "scroll_after": 6054, "answer": "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams."}
+{"width": 375, "route": "/pricing", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 375, "route": "/about-us", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 375, "route": "/fractional-gold", "dallas": false, "old_vault_locations": false, "overflow_px": 0}
+{"width": 768, "route": "/vault", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 768, "control": "Stored for me", "scroll_before": 1114, "scroll_after": 1114}
+{"width": 768, "control": "Where is my gold stored?", "scroll_before": 4536, "scroll_after": 4536, "answer": "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams."}
+{"width": 768, "route": "/pricing", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 768, "route": "/about-us", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 768, "route": "/fractional-gold", "dallas": false, "old_vault_locations": false, "overflow_px": 0}
+{"width": 1440, "route": "/vault", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 1440, "control": "Stored for me", "scroll_before": 0, "scroll_after": 0}
+{"width": 1440, "control": "Where is my gold stored?", "scroll_before": 2455, "scroll_after": 2455, "answer": "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams."}
+{"width": 1440, "route": "/pricing", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 1440, "route": "/about-us", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
+{"width": 1440, "route": "/fractional-gold", "dallas": false, "old_vault_locations": false, "overflow_px": 0}
+```
