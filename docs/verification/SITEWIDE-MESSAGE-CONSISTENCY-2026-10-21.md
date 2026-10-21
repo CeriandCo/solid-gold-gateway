@@ -195,3 +195,19 @@ Skipping host requirements validation logic because `PLAYWRIGHT_SKIP_VALIDATE_HO
 {"width": 1440, "route": "/about-us", "dallas": true, "old_vault_locations": false, "overflow_px": 0}
 {"width": 1440, "route": "/fractional-gold", "dallas": false, "old_vault_locations": false, "overflow_px": 0}
 ```
+
+## Latest automatic preview build
+```text
+Z ===
+build OK
+
+=== build 2026-10-21T01:23:25Z ===
+build OK
+
+=== build 2026-10-21T01:23:37Z ===
+build OK
+
+=== build 2026-10-21T01:23:57Z ===
+build OK
+
+```
