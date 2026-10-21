@@ -36,12 +36,12 @@ export const Route = createFileRoute("/vault")({
       {
         name: "description",
         content:
-          "Fine physical gold, fully backed in an insured US vault — verify it, redeem it, or take delivery whenever you choose.",
+          "Physical gold held in the insured TRUNK Vault in Dallas, recorded to your account in grams, and never lent, pledged or used by us.",
       },
       { property: "og:title", content: "Vaulted Gold, Fully Backed in the Vault | TRUNK" },
       {
         property: "og:description",
-        content: "Insured US vault storage, fully backed in the vault, with pro-rata billing and redemption on your schedule.",
+        content: "Insured TRUNK Vault storage in Dallas, with gold recorded to your account in grams and never lent, pledged or used by us.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -53,10 +53,10 @@ export const Route = createFileRoute("/vault")({
 
 const faqs = [
   ["Is this actually fine gold?", "Yes. Every dollar is backed by fine physical metal held at an insured depository, fully backed in the vault."],
-  ["What happens if TRUNK disappears?", "Your metal is held at IDS, fully backed in the vault, not on our balance sheet, and remains yours."],
-  ["Where is my gold stored?", "In insured US facilities — IDS in Dallas, Texas and Vaultify PMC in Sugar Land, Texas."],
+  ["Is my gold lent or pledged?", "No. Your gold is never lent, pledged or used by us."],
+  ["Where is my gold stored?", "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams."],
   ["How is my gold insured?", "Holdings carry full value, all-risk insurance coverage through the depository."],
-  ["Can I take physical delivery?", "Yes. Request delivery at any time and we ship your metal insured to your address."],
+  ["Can I take physical delivery?", "Physical delivery is subject to the applicable product and delivery requirements. TRUNK gold-card gifts are delivered digitally and never shipped."],
   ["How are fees calculated?", "Storage is billed quarterly and pro-rata: quarterly fee × days held ÷ 90, with a $3 minimum charge."],
 ] as const;
 
@@ -113,7 +113,6 @@ function TexasMap() {
         className="text-gold/70"
       />
       <circle cx="52" cy="33" r="2.6" className="fill-gold" />
-      <circle cx="57" cy="66" r="2.6" className="fill-gold" />
     </svg>
   );
 }
@@ -142,8 +141,7 @@ function Index() {
           <>
             <span>Real, insured, and yours to redeem whenever you choose.</span>
             <span>
-              Fine physical gold, stored in an insured US vault, fully backed in the vault. Not a promise on
-              a screen. A specific holding you can verify and reach.
+              Fine physical gold, held in the insured TRUNK Vault in Dallas and recorded to your account in grams.
             </span>
           </>
         }
@@ -170,9 +168,9 @@ function Index() {
       <section data-reveal className="border-t border-beige/70 bg-background" aria-label="Custody assurances">
         <div className={cn(STD, "grid gap-10 py-11 sm:grid-cols-3 sm:gap-0 sm:py-12")}>
           {[
-            [ShieldCheck, "IDS custody", ["Third-party depository", "built for this purpose."]],
+            [ShieldCheck, "TRUNK Vault", ["Insured gold storage", "in Dallas."]],
             [Umbrella, "Insured storage", ["Full value, all risk", "insurance coverage."]],
-            [UserRound, "Fully backed in the vault", ["Not pooled. Never", "commingled."]],
+            [UserRound, "Recorded to your account", ["Your gold balance", "in grams."]],
           ].map(([Icon, title, lines], index) => {
             const ProofIcon = Icon as typeof ShieldCheck;
             return (
@@ -204,21 +202,21 @@ function Index() {
         <div className={WIDE}>
           <div className="grid gap-10 rounded-[10px] bg-forest-deep p-8 text-[#F8F5F1] lg:min-h-[358px] lg:grid-cols-[330px_1fr] lg:p-10">
             <div className="flex flex-col">
-              <Eyebrow>Fully backed, not pooled</Eyebrow>
+              <Eyebrow>Fully backed in the vault</Eyebrow>
               <GoldRule />
               <h2 className="section-title mt-5 text-[#F8F5F1]">
-                One holding.
+                Your gold.
                 <br />
-                One customer.
+                Your account.
               </h2>
               <p className="compact-copy mt-4 max-w-[260px] text-[#C8CFC9]">
-                Your gold is held at IDS and
+                Your gold is held in Dallas and
                 <br />
-                fully backed in the vault. Your
+                recorded in grams. It is
                 <br />
-                gold is never mixed with
+                never lent, pledged or
                 <br />
-                someone else’s.
+                used by us.
               </p>
               <a
                 href="#how-it-works"
@@ -232,28 +230,28 @@ function Index() {
               <div className="grid items-center gap-5 md:grid-cols-[1fr_auto_1fr_auto_1.5fr]">
                 <div className="flex flex-col items-center text-center">
                   <p className="eyebrow text-[11px] text-[#F8F5F1]">Physical gold</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">At IDS</p>
+                  <p className="mt-1 text-[12px] text-[#9FAAA2]">In Dallas</p>
                   <IconCircle size={116}>
                     <Layers size={46} strokeWidth={1.4} className="text-gold-soft" />
                   </IconCircle>
                 </div>
                 <ThinArrow className="hidden w-10 md:block" />
                 <div className="flex flex-col items-center text-center">
-                  <p className="eyebrow text-[11px] text-[#F8F5F1]">IDS custody</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">Segregated storage</p>
+                  <p className="eyebrow text-[11px] text-[#F8F5F1]">TRUNK Vault</p>
+                  <p className="mt-1 text-[12px] text-[#9FAAA2]">Insured storage</p>
                   <IconCircle size={116}>
-                    <span className="font-display text-[34px] font-medium tracking-[0.02em] text-gold-soft">IDS</span>
+                    <span className="font-display text-[34px] font-medium tracking-[0.02em] text-gold-soft">Vault</span>
                   </IconCircle>
                 </div>
                 <ThinArrow className="hidden w-10 md:block" />
                 <div className="text-center">
                   <p className="eyebrow text-[11px] text-[#F8F5F1]">Individual holdings</p>
-                  <p className="mt-1 text-[12px] text-[#9FAAA2]">In customer names</p>
+                  <p className="mt-1 text-[12px] text-[#9FAAA2]">Recorded to accounts</p>
                   <div className="mt-3 space-y-2">
                     {[
-                      ["Sonja", "0.024 oz"],
-                      ["Alex", "0.051 oz"],
-                      ["Maya", "0.017 oz"],
+                      ["Sonja", "0.7465 g"],
+                      ["Alex", "1.5863 g"],
+                      ["Maya", "0.5288 g"],
                     ].map(([name, amount]) => (
                       <div
                         key={name}
@@ -273,7 +271,7 @@ function Index() {
                 <div className="inline-flex items-center gap-3 rounded-[4px] border border-gold/45 px-5 py-2.5">
                   <span className="eyebrow text-[11px] text-[#F8F5F1]">TRUNK Record</span>
                   <span className="text-gold-soft">↔</span>
-                  <span className="eyebrow text-[11px] text-[#F8F5F1]">IDS Record</span>
+                  <span className="eyebrow text-[11px] text-[#F8F5F1]">Vault Record</span>
                 </div>
               </div>
             </div>
@@ -327,7 +325,7 @@ function Index() {
                   ] as const)
                 : ([
                     [Package, "Choose", ["Select physical", "gold."]],
-                    [Warehouse, "We vault it", ["Stored insured at", "an IDS facility."]],
+                    [Warehouse, "We vault it", ["Insured TRUNK Vault", "in Dallas."]],
                     [FileText, "Verify", ["View your vault", "records anytime."]],
                   ] as const)
               ).map(([Icon, title, lines], index) => (
@@ -364,13 +362,13 @@ function Index() {
                   </>
                 ) : (
                   <>
-                    We hold your metal in an
+                    We hold your gold in the
                     <br />
-                    insured US depository,
+                    insured TRUNK Vault,
                     <br />
-                    fully backed in the vault and
+                    recorded to your account
                     <br />
-                    ready to redeem.
+                    in grams.
                   </>
                 )}
               </p>
@@ -383,7 +381,7 @@ function Index() {
       <section data-reveal id="storage" className="bg-background pb-10 pt-16 sm:pb-14 sm:pt-20">
         <div className={cn(STD, "grid gap-8 lg:grid-cols-[31%_1fr_1fr]")}>
           <div>
-            <Eyebrow>Storage locations</Eyebrow>
+            <Eyebrow>Vault storage</Eyebrow>
             <GoldRule />
             <h2 className="section-title mt-5 text-charcoal">
               Your gold is held
@@ -391,45 +389,42 @@ function Index() {
               somewhere real.
             </h2>
             <p className="mt-4 max-w-[290px] text-[13px] leading-[1.5] text-[#444A45]">
-              Choose from secure US locations.
+              Insured storage in Dallas.
               <br />
-              Custody documentation, insurance
+              Gold recorded in grams
               <br />
-              and access to your vault records
+              and access to your account records
               <br />
               come standard.
             </p>
             <div className="relative mt-6 w-[240px]">
               <TexasMap />
               <span className="absolute left-[105px] top-[32px] text-[11px] font-medium text-charcoal">Dallas, TX</span>
-              <span className="absolute left-[112px] top-[72px] text-[11px] font-medium text-charcoal">
-                Sugar Land, TX
-              </span>
             </div>
           </div>
 
           {(
             [
               [
-                "IDS Partner Vault",
-                ["IDS — Dallas, TX"],
-                ["International Depository Services", "Dallas, Texas"],
+                "TRUNK Vault",
+                ["Dallas, TX"],
+                ["Insured TRUNK Vault", "Dallas, Texas"],
                 [
-                  "Fully insured, segregated storage",
-                  "IDS-issued custody receipts",
-                  "LBMA-recognized facility",
-                  "Available for IDS account holders",
+                  "Insured gold storage",
+                  "Fully backed in the vault",
+                  "Never lent or pledged",
+                  "Never used by us",
                 ],
               ],
               [
-                "Vaultify HOU",
-                ["Vaultify PMC —", "Sugar Land, TX"],
-                ["10410 Corporate Dr, Suite 107", "Sugar Land, TX 77478"],
+                "Your TRUNK account",
+                ["Gold in grams"],
+                ["Your gold balance", "Recorded to your account"],
                 [
-                  "Operated by Vaultify PMC",
-                  "Fully insured holdings",
-                  "Houston metro access",
-                  "Available to all TRUNK clients",
+                  "Held in the TRUNK Vault",
+                  "Insured storage in Dallas",
+                  "View your gold balance",
+                  "Keep, hold or sell your gold",
                 ],
               ],
             ] as const

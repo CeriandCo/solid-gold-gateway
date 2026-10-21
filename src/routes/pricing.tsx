@@ -49,8 +49,8 @@ const otherFeeItems = [
 const trustItems = [
   {
     icon: Shield,
-    title: "Insured, segregated storage",
-    text: "Held in U.S. vaults at IDS or Vaultify PMC",
+    title: "Insured TRUNK Vault",
+    text: "Held in Dallas and recorded to your account in grams",
   },
   {
     icon: Globe,

@@ -320,10 +320,10 @@ function Index() {
                 />
               </span>
               <span className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-forest">
-                Securely vaulted with IDS
+                Insured TRUNK Vault in Dallas
               </span>
               <span className="mt-1 text-[0.66rem] leading-[1.5] text-charcoal/70">
-                Institutional precious metals storage
+                Gold recorded to your account in grams
               </span>
             </div>
             {/* LBMA — bullion sourcing standard (typographic treatment, no badge) */}

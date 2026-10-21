@@ -84,7 +84,7 @@ function Mandala({ className = "" }: { className?: string }) {
 
 const processItems: Array<{ icon: IconName; title: string; body: string }> = [
   { icon: "bank", title: "Sourced", body: "Sourced from established precious-metals wholesalers with a long standing presence in the precious metals industry." },
-  { icon: "vault", title: "IDS", body: "Fully backed in the vault, and held in independently operated, professional vaults with secure custody." },
+  { icon: "vault", title: "TRUNK Vault", body: "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams." },
   { icon: "shield", title: "Lloyd's of London", body: "Your gold is insured by Lloyd's of London." },
 ];
 
