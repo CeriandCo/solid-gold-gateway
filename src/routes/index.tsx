@@ -62,8 +62,8 @@ const PROOF_ITEMS = [
   },
   {
     number: "02",
-    title: "Held in your name",
-    line: "Your gold holdings are allocated to you and clearly documented.",
+    title: "Recorded to your account",
+    line: "Your gold holdings are recorded to your account in grams.",
   },
   {
     number: "03",
@@ -98,7 +98,7 @@ const OWNERSHIP_WAYS = [
     linkLabel: "Explore gold coins",
     to: "/precious-metal",
     background: coinsCardBackground.url,
-    backgroundAlt: "Gold coins presented in a premium TRUNK gift box",
+    backgroundAlt: "Gold coins presented in a premium TRUNK box",
     screen: coinsPhoneScreen.url,
     screenAlt: "TRUNK app coin collection screen",
   },
@@ -122,8 +122,8 @@ const APP_FEATURES_LEFT = [
     body: "See the global spot price and your premium before you confirm, with no surprises afterward.",
   },
   {
-    title: "Held in your name",
-    body: "Allocated metal with serial-level records and a statement every month.",
+    title: "Recorded to your account",
+    body: "Your gold is recorded to your account in grams.",
   },
 ] as const;
 
@@ -134,7 +134,7 @@ const APP_FEATURES_RIGHT = [
   },
   {
     title: "Gift in a minute",
-    body: "Send a coin or any amount of gold with a note. They see the gift, not the price.",
+    body: "Send a TRUNK gold card with a personal note. It's delivered digitally and never shipped.",
   },
 ] as const;
 
@@ -157,7 +157,7 @@ const HOW_IT_WORKS_STEPS = [
   {
     number: "04",
     title: "Keep, deliver or sell",
-    body: "Store it in the vault, ship it home, gift it, or sell it back in the app.",
+    body: "Store eligible gold in the vault, request physical delivery where eligible, send a TRUNK gold card, or sell gold back in the app.",
   },
 ] as const;
 
@@ -166,7 +166,7 @@ const GIFT_TILES = [
     image: giftWeddings.url,
     alt: "A couple's hands with a gold coin at a wedding",
     title: "Weddings",
-    body: "A coin for the couple, kept in their name for the years ahead.",
+    body: "A TRUNK gold card for the couple, for the years ahead.",
   },
   {
     image: giftNewArrivals.url,
@@ -190,8 +190,8 @@ const TRUST_SAFEGUARDS = [
     statusLabel: "Confirmed",
   },
   {
-    title: "Stored",
-    body: "Allocated, segregated storage with a professional vault operator, recorded in your name.",
+    title: "Stored.",
+    body: "Your gold is held in the insured TRUNK Vault in Dallas and recorded to your account in grams. It is never lent, pledged or used by us.",
     status: "pending",
     statusLabel: "Partner named before launch",
   },
@@ -231,7 +231,7 @@ const AURUM_ARTICLES = [
     image: aurumArticleGuide.url,
     alt: "Gold bars and a tagged bar arranged on dark green velvet",
     label: "GUIDE · 6 MIN",
-    title: "Allocated or pooled: what you actually own",
+    title: "Vaulted gold: what you actually own",
     excerpt: "Two ways to hold vaulted gold, and the questions to ask before you choose.",
     destination: "learn",
   },
@@ -628,12 +628,18 @@ function Index() {
               <div className="home-gift-intro">
                 <p className="home-gift-eyebrow">GOLD GIFTS THAT LAST</p>
                 <h2 id="gifting-heading">
-                  Gold marks the moments
-                  <br />
-                  that matter.
+                  Give the gift of gold.
                 </h2>
                 <p className="home-gift-copy">
-                  Send a coin or any amount of gold with a note, straight from the app. They see the gift, not its price.
+                  Send a TRUNK gold card with a personal note. It's delivered digitally and never shipped.
+                </p>
+                <h3>Free to claim.</h3>
+                <p className="home-gift-copy">
+                  Your recipient pays nothing to claim their gold. They open a free TRUNK account and complete a quick ID check. The gold is then theirs to keep, hold or sell.
+                </p>
+                <h3>Why we verify.</h3>
+                <p className="home-gift-copy">
+                  Gold has real value. If your recipient sells their gold, we send the money to their own bank account. A verified account makes sure the gold and the money only reach the right person.
                 </p>
               </div>
               <Link to="/gifting" className="home-three-ways-link">

@@ -53,7 +53,7 @@ export const Route = createFileRoute("/gifting")({
       {
         name: "description",
         content:
-          "Celebrate life's most precious moments with fine gold, thoughtfully and beautifully delivered by TRUNK.",
+          "Send a TRUNK gold card with a personal note. It's delivered digitally and never shipped.",
       },
       { property: "og:title", content: "Gift Fine Gold — TRUNK" },
       {
@@ -100,14 +100,14 @@ const features: Feature[] = [
   {
     icon: HandHeart,
     title: "Flexible",
-    description: "Choose an amount and let them pick the gift",
+    description: "Choose a TRUNK gold card amount",
   },
-  { icon: Truck, title: "Beautifully Delivered", description: "Premium packaging, ready to gift" },
-  { icon: RefreshCw, title: "Redeemable", description: "Redeem or upgrade anytime" },
+  { icon: Truck, title: "Delivered Digitally", description: "A TRUNK gold card with a personal note, never shipped" },
+  { icon: RefreshCw, title: "Free to Claim", description: "Your recipient pays nothing to claim their gold" },
   {
     icon: Globe2,
     title: "Vaulted Gifting",
-    description: "Gift gold fully backed in the vault, held securely in insured U.S. vaults",
+    description: "TRUNK gold cards, backed by gold held securely in insured U.S. vaults",
   },
 ];
 
@@ -134,13 +134,13 @@ const assurances: Feature[] = [
   },
   {
     icon: RefreshCw,
-    title: "Redeem or Upgrade",
-    description: "Redeem, sell or upgrade at any time",
+    title: "Keep, Hold or Sell",
+    description: "After claiming, the gold is theirs to keep, hold or sell",
   },
   {
     icon: Send,
     title: "Simple to Gift",
-    description: "Fully backed in the vault for the recipient — no international shipping",
+    description: "A TRUNK gold card, delivered digitally and never shipped",
   },
 ];
 
@@ -332,8 +332,7 @@ function GiftingNewPage() {
         }
         body={
           <>
-            Thoughtful, meaningful and timeless. Fine gold that marks life&apos;s most precious
-            moments.
+            Send a TRUNK gold card with a personal note. It's delivered digitally and never shipped.
           </>
         }
         actions={
