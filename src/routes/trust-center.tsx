@@ -16,16 +16,16 @@ const upcomingReportDate = formatAuditDate(vaultAuditSchedule.upcomingReportDate
 export const Route = createFileRoute("/trust-center")({
   head: () => ({
     meta: [
-      { title: "Trust Center — TRUNK Verified Gold Ownership" },
+      { title: "Trust Center — TRUNK Custody and Audit Information" },
       {
         name: "description",
         content:
-          "Independent audits, storage fully backed in the vault and independent legal counsel: see how TRUNK verifies and publishes proof of your gold ownership.",
+          "TRUNK vault audits take place every six months. Audit information is confidential; clients may request information relevant to their own account.",
       },
-      { property: "og:title", content: "Trust Center — TRUNK Verified Gold Ownership" },
+      { property: "og:title", content: "Trust Center — TRUNK Custody and Audit Information" },
       {
         property: "og:description",
-        content: "Transparent ownership. Verified gold. Always fully backed in the vault.",
+        content: "Six-month vault audits. Confidential information available to clients on request for their own account.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,8 +42,8 @@ const TC = {
   hero: {
     headingLine1: "Built for trust.",
     headingLine2Lead: "Backed by ",
-    headingLine2Gold: "verification.",
-    body: ["Transparent ownership. Verified gold.", "Always fully backed in the vault."],
+    headingLine2Gold: "independent oversight.",
+    body: ["Independent oversight. Confidential information.", "Always fully backed in the vault."],
   },
   pillars: [
     {
@@ -64,16 +64,16 @@ const TC = {
     {
       icon: "seal" as const,
       title: "Independent Oversight",
-      body: "Third-party audits every six months and ongoing independent verification.",
+      body: "Third-party vault audits every six months.",
     },
   ],
   verification: {
     titleTop: "Your gold.",
-    titleGold: "Verified. Always.",
-    body: "Independent vault audits every 6 months. Every ounce of your gold is verified, fully backed in the vault, and accounted for — and the full report is published publicly, every time.",
+    titleGold: "Protected. Always.",
+    body: "Independent vault audits take place every six months. Audit reports and company and client data are confidential. Clients may request information relevant to their own account.",
     checklist: [
       "Independent third-party auditor",
-      `Published every ${vaultAuditSchedule.intervalMonths} months`,
+      `Vault audits every ${vaultAuditSchedule.intervalMonths} months`,
       "Fully backed in the vault — never pooled",
       "Independent legal counsel on standby",
     ],
@@ -81,25 +81,21 @@ const TC = {
   latestAudit: {
     title: "Latest Audit",
     smallHeading: "Most Recent Report",
-    intro: "Vault audit reporting takes place every six months. Full report pages are published here within 5 business days of completion.",
+    intro: "Vault audit reporting takes place every six months. Audit information is confidential and is not made publicly available.",
     reportName: `Vault Audit — ${latestAuditDate}`,
     metadata: `Audit date: ${latestAuditDate}  ·  Auditor: Independent third-party firm`,
     status: "June 2026 Audit",
-    metrics: [
-      { label: "Total Gold Verified", value: "—", note: "Published post-audit" },
-      { label: "Client Accounts", value: "—", note: "Published post-audit" },
-      { label: "Discrepancies Found", value: "0", note: "Target — published post-audit" },
-    ],
+    requestLabel: "Request audit information",
   },
   reportPreview: {
-    eyebrow: "Audit Report — Full Pages",
+    eyebrow: "Six-Month Reporting",
     title: ["Upcoming six-month report", upcomingReportDate],
-    body: `Our vault audit is dated ${latestAuditDate}. The next six-month report is scheduled for ${upcomingReportDate}. The complete report — every page, unredacted — will be published here the day it is received from our auditor.`,
+    body: `Our vault audit is dated ${latestAuditDate}. The next six-month report is scheduled for ${upcomingReportDate}. Clients who need information relevant to their own account can contact TRUNK to request access.`,
   },
   archive: {
-    title: "Audit Archive",
-    subtitle: "All Published Reports",
-    body: "Every audit TRUNK has completed, in order. All reports remain permanently accessible — nothing is removed or altered after publication.",
+    title: "Audit Schedule",
+    subtitle: "Six-Month Reporting Dates",
+    body: "These dates outline our six-month reporting schedule. Confidential reports and client information are not displayed on this page.",
     rows: [
       {
         name: `Vault Report — ${upcomingReportDate}`,
@@ -114,12 +110,12 @@ const TC = {
         tone: "green" as const,
       },
     ],
-    footnote: "All future audit reports will be added to this archive permanently.",
+    footnote: "Requests are limited to information relevant to your own account, not company-wide data or another client’s information.",
   },
   process: {
     title: "The Process",
     subtitle: "How our audit works",
-    body: "Every six months, an independent auditor verifies every ounce of gold held for TRUNK clients.",
+    body: "Every six months, an independent auditor conducts a vault audit. Reports remain confidential; clients may request information relevant to their own account.",
     steps: [
       {
         icon: "auditor" as const,
@@ -134,12 +130,12 @@ const TC = {
       {
         icon: "signed" as const,
         title: "Signed report issued",
-        body: "A signed report confirms total gold, client accounts and any discrepancies.",
+        body: "The auditor provides a confidential report to TRUNK.",
       },
       {
         icon: "globe" as const,
-        title: "Published in full",
-        body: "The complete report is published within five business days—nothing withheld.",
+        title: "Client access by request",
+        body: "Contact TRUNK to request information relevant to your own account. Company-wide data and other clients’ information remain private.",
       },
     ],
   },
@@ -180,7 +176,7 @@ const TC = {
     {
       icon: "landmark" as const,
       title: "Regulatory notice",
-      body: "TRUNK is operated by Fortress Gold Inc. (Wyoming), a registered precious metals dealer. This Trust Center is published for transparency purposes and does not constitute a legal guarantee.",
+      body: "TRUNK is operated by Fortress Gold Inc. (Wyoming), a registered precious metals dealer. This Trust Center provides general information and does not constitute a legal guarantee.",
     },
     {
       icon: "lock" as const,
@@ -403,15 +399,11 @@ function TrustCenterPage() {
                 <h4 className="tc-report-name">{TC.latestAudit.reportName}</h4>
                 <p className="tc-meta">{TC.latestAudit.metadata}</p>
                 <span className="tc-badge tc-badge-gold">{TC.latestAudit.status}</span>
-                <div className="tc-metrics">
-                  {TC.latestAudit.metrics.map((m) => (
-                    <div key={m.label}>
-                      <p className="tc-metric-label">{m.label}</p>
-                      <p className="tc-metric-value">{m.value}</p>
-                      <p className="tc-metric-note">{m.note}</p>
-                    </div>
-                  ))}
-                </div>
+                <p className="tc-latest-intro">
+                  <a href="mailto:support@trunk.gold?subject=Audit%20information%20request" className="tc-inline-link">
+                    {TC.latestAudit.requestLabel}
+                  </a>
+                </p>
               </div>
 
               <aside className="tc-preview">
