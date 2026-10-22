@@ -12,12 +12,12 @@ export const Route = createFileRoute("/partners")({
       {
         name: "description",
         content:
-          "For advisors, wealth managers and family offices: give clients a simple way to buy fine physical gold, fully backed in the vault. Apply to partner.",
+          "For advisors, wealth managers and family offices: give clients a simple way to buy fine physical gold, fully backed in the vault. Join as a partner.",
       },
       { property: "og:title", content: "Partners — TRUNK" },
       {
         property: "og:description",
-        content: "Fine gold for your clients. Simple to introduce. Apply to the TRUNK partner program.",
+        content: "Fine gold for your clients. Simple to introduce. Join the TRUNK partner program.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,7 +42,7 @@ const WHY = [
 ];
 
 const STEPS = [
-  ["Apply", "Tell us about you and your firm."],
+  ["Join", "Tell us about you and your firm."],
   ["Get approved", "Approved partners receive a unique partner link."],
   ["Introduce clients", "Clients open their own accounts, complete identity verification and buy directly through TRUNK."],
   ["Earn rewards", "Eligible partners receive monthly referral rewards for qualifying active clients under the Partner Terms."],
@@ -107,10 +107,10 @@ function PartnersPage() {
         titleId="partners-hero-title"
         eyebrow="For advisors · Wealth managers · Family offices"
         title={<><span>Fine gold for your clients.</span><span><em>Simple to introduce.</em></span></>}
-        body="TRUNK gives your clients a simple way to buy fine physical gold, from $50 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Apply to become a partner and, if approved, earn referral rewards for eligible clients you introduce."
+        body="TRUNK gives your clients a simple way to buy fine physical gold, from $50 to larger holdings. Each client's gold balance is fully backed in the vault, priced using live gold prices, and available to sell when they choose. Join as a partner and, if approved, earn referral rewards for eligible clients you introduce."
         actions={
           <>
-            <GoldButton href="#apply">Apply to partner</GoldButton>
+            <GoldButton href="#apply">Join as a partner</GoldButton>
             <InnerHeroSecondaryLink href="#how-it-works">How the program works</InnerHeroSecondaryLink>
           </>
         }
@@ -164,8 +164,8 @@ function PartnersPage() {
 
       <section id="apply" className="pt-section" aria-labelledby="pt-apply">
         <div className="site-container">
-          <p className="pt-eyebrow">Apply</p>
-          <h2 id="pt-apply" className="pt-h2">Apply to partner</h2>
+          <p className="pt-eyebrow">Join</p>
+          <h2 id="pt-apply" className="pt-h2">Join as a partner</h2>
           {submitted ? (
             <p className="pt-success" role="status">Thank you. We'll review your application and contact you within two business days.</p>
           ) : (
@@ -194,7 +194,7 @@ function PartnersPage() {
                 </span>
               </label>
               <div className="pt-full">
-                <GoldButton type="submit">Submit application</GoldButton>
+                <GoldButton type="submit">Submit request to join</GoldButton>
               </div>
             </form>
           )}
