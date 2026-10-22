@@ -12,12 +12,12 @@ export const Route = createFileRoute("/partners")({
       {
         name: "description",
         content:
-          "For advisors, wealth managers and family offices: give clients a simple way to buy fine physical gold, fully backed in the vault. Apply to partner.",
+          "For advisors, wealth managers and family offices: give clients a simple way to buy fine physical gold, fully backed in the vault. Join as a partner.",
       },
       { property: "og:title", content: "Partners — TRUNK" },
       {
         property: "og:description",
-        content: "Fine gold for your clients. Simple to introduce. Apply to the TRUNK partner program.",
+        content: "Fine gold for your clients. Simple to introduce. Join the TRUNK partner program.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
