@@ -52,7 +52,7 @@ const contactChannels = [
 
 const socialLinks = [
   { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/trunk.gold", handle: "facebook/trunk.gold" },
-  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/jointrunk", handle: "instagram/jointrunk" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/jointrunk_/", handle: "instagram/jointrunk_" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/trunkgold", handle: "linkedin/trunkgold" },
   { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/jointrunk", handle: "x/jointrunk" },
   { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@Jointrunkgold", handle: "youtube/@Jointrunkgold" },
