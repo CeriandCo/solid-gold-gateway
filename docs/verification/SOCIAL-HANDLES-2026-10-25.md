@@ -3,3 +3,4 @@
 - Not run: browser check, test/typecheck gates. Link-audit fixtures in src/lib/link-audit still reference old handles.
 - Facebook → facebook.com/trunk.gold (footer + Contact).
 - Instagram → instagram.com/jointrunk_/ (footer + Contact).
+- X → x.com/jointrunk_ (footer + Contact).
