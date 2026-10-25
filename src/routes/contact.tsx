@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import logoImage from "@/assets/trunk-lockup-l3-horizontal-for-dark.svg";
 
 export const Route = createFileRoute("/contact")({
@@ -52,9 +52,10 @@ const contactChannels = [
 
 const socialLinks = [
   { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61586363577228", handle: "facebook" },
-  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/sqootpure/", handle: "instagram/sqootpure" },
-  { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/sqootpure", handle: "linkedin/sqootpure" },
-  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/sqootpure", handle: "x/sqootpure" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/jointrunk", handle: "instagram/jointrunk" },
+  { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/trunkgold", handle: "linkedin/trunkgold" },
+  { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/jointrunk", handle: "x/jointrunk" },
+  { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@Jointrunkgold", handle: "youtube/@Jointrunkgold" },
 ];
 
 function ContactPage() {
