@@ -370,7 +370,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
 ];
 
 const socialIcons = [
-  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61586363577228" },
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/trunk.gold" },
   { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/jointrunk" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/trunkgold" },
   { Icon: Twitter, label: "X (Twitter)", href: "https://x.com/jointrunk" },
