@@ -48,8 +48,10 @@ function PrivacyPage() {
         </section>
 
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
-          <p className="body-copy text-charcoal/90"><strong>Last updated: October 17, 2026</strong></p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK ("TRUNK," "we," "us," or "our") operates the website trunk.gold and related services. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you visit our website or use our platform.</p>
+          <p className="body-copy text-charcoal/90"><strong>Last updated: October 23, 2026</strong></p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc., doing business as TRUNK ("TRUNK," "we," "us," or "our"), is a Wyoming corporation operating the website www.trunk.gold and related digital platforms and services.</p>
+          <p className="body-copy mt-5 text-charcoal/90">We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use and share it, how long we keep it, and the rights and choices available to you under applicable United States privacy laws, including California law.</p>
+          <p className="body-copy mt-5 text-charcoal/90">By using our website or services, you acknowledge the practices described in this Privacy Policy.</p>
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
             <p className="eyebrow text-gold mb-4">On this page</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -69,13 +71,67 @@ function PrivacyPage() {
             </div>
           </nav>
           <h2 id="information-we-collect" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">1. Information We Collect</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We may collect the following types of information:</p>
+          <p className="body-copy mt-5 text-charcoal/90">We collect personal information necessary to provide our services, process transactions, verify identities, protect accounts, and meet applicable legal obligations. Depending on how you interact with TRUNK, this may include the following.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.1 Personal and Account Information</h3>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li><strong>Account Information:</strong> Name, email address, phone number, date of birth, and government-issued identification for KYC (Know Your Customer) verification.</li>
-            <li><strong>Financial Information:</strong> When you link a bank account through Plaid or make a payment through Stripe, we may receive certain account and transaction information authorized by you and necessary for payment processing, account verification, fraud prevention, and related services. If you pay with USDC or USDG, we may receive the sending wallet address and transaction details. We do not store your bank credentials, card numbers, or payment authentication data — these are handled exclusively by our payment and verification providers.</li>
-            <li><strong>Transaction Data:</strong> Records of gold purchases, gifts, and redemptions made through the platform.</li>
-            <li><strong>Usage Data:</strong> Browser type, IP address, pages visited, time spent on pages, and other analytics data collected through cookies and similar technologies.</li>
-            <li><strong>Communication Data:</strong> Emails, support inquiries, and newsletter subscriptions.</li>
+            <li>Full name</li>
+            <li>Email address</li>
+            <li>Telephone number</li>
+            <li>Residential or mailing address</li>
+            <li>Date of birth</li>
+            <li>Account credentials and preferences</li>
+            <li>Other information you voluntarily provide</li>
+          </ul>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.2 Identity Verification Information</h3>
+          <p className="body-copy mt-5 text-charcoal/90">To comply with identity verification, fraud prevention, and financial regulatory requirements, we or our authorized verification providers may collect:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Government-issued identification details</li>
+            <li>Copies or images of identity documents</li>
+            <li>Address verification information</li>
+            <li>Identity verification results</li>
+            <li>Information required for Know Your Customer (KYC) and anti-money laundering (AML) procedures</li>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90">Where identity verification is performed by a third-party provider, that provider may collect and process information directly. The information TRUNK receives or keeps depends on the verification service used and applicable legal requirements.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.3 Financial and Payment Information</h3>
+          <p className="body-copy mt-5 text-charcoal/90">When you make a payment or connect a financial account, we and our payment service providers may process:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Bank account identifiers and limited account information</li>
+            <li>Payment method and transaction details</li>
+            <li>Payment authorization and confirmation information</li>
+            <li>Billing information</li>
+            <li>Fraud prevention and payment verification data</li>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90">We use third-party service providers, including Stripe and Plaid, for payment and financial account connection services. Sensitive payment credentials are handled through those providers' secure systems. TRUNK does not collect or store online banking passwords or complete payment card numbers through its own systems.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.4 Gold Transaction Information</h3>
+          <p className="body-copy mt-5 text-charcoal/90">When you use TRUNK to purchase, hold, sell back, or redeem eligible gold products, we may collect:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Purchase, sale, and transaction history</li>
+            <li>Gold holdings and ownership records</li>
+            <li>Payment and settlement information</li>
+            <li>Redemption and sell-back requests</li>
+            <li>Delivery or fulfillment information, where applicable</li>
+            <li>Customer service records relating to transactions</li>
+          </ul>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.5 Website and Usage Information</h3>
+          <p className="body-copy mt-5 text-charcoal/90">When you visit our website or use our services, we and our advertising and analytics partners may automatically collect:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>IP address</li>
+            <li>Browser type and version</li>
+            <li>Device and operating system information</li>
+            <li>Pages visited and interactions with our services</li>
+            <li>Session and referral information</li>
+            <li>Approximate location derived from IP address</li>
+            <li>Cookies, pixels, and similar technical identifiers</li>
+            <li>Website performance and diagnostic information</li>
+          </ul>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">1.6 Communications</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We may collect information you provide when you:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Contact customer support</li>
+            <li>Submit an inquiry</li>
+            <li>Subscribe to updates or marketing communications</li>
+            <li>Respond to surveys</li>
+            <li>Communicate with us by email, telephone, or text message</li>
           </ul>
           <h2 id="how-we-use-your-information" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">2. How We Use Your Information</h2>
           <p className="body-copy mt-5 text-charcoal/90">We use the information we collect to:</p>
