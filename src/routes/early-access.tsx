@@ -147,7 +147,7 @@ function EarlyAccessPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={submitWaitlist} noValidate className="mt-8 max-w-[520px]">
+                <form onSubmit={submitWaitlist} noValidate className="mt-8 max-w-[520px]" data-amp-mask>
                   <label
                     htmlFor="early-access-email"
                     className="block text-sm font-semibold text-forest"

@@ -63,7 +63,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
               know when access becomes available.
             </p>
           ) : (
-            <form onSubmit={submitWaitlist} noValidate className="waitlist-cta-form" data-reveal>
+            <form onSubmit={submitWaitlist} noValidate className="waitlist-cta-form" data-reveal data-amp-mask>
               <label htmlFor="waitlist-cta-email" className="sr-only">
                 Email address
               </label>

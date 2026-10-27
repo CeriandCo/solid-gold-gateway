@@ -766,7 +766,7 @@ function Index() {
                   You’re on the list. We’ll let you know when access becomes available.
                 </p>
               ) : (
-                <form onSubmit={submitWaitlist} noValidate className="home-final-cta-form">
+                <form onSubmit={submitWaitlist} noValidate className="home-final-cta-form" data-amp-mask>
                   <label htmlFor="home-final-cta-email" className="sr-only">Email address</label>
                   <div className="home-final-cta-control">
                     <input

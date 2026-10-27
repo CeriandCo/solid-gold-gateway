@@ -169,7 +169,7 @@ function PartnersPage() {
           {submitted ? (
             <p className="pt-success" role="status">Thank you. We'll review your application and contact you within two business days.</p>
           ) : (
-            <form className="pt-form" onSubmit={onSubmit} noValidate>
+            <form className="pt-form" onSubmit={onSubmit} noValidate data-amp-mask>
               <Field label="Full name" required><input name="fullName" required autoComplete="name" className="pt-input" /></Field>
               <Field label="Firm name" required><input name="firmName" required autoComplete="organization" className="pt-input" /></Field>
               <Field label="Firm website"><input name="website" type="url" autoComplete="url" className="pt-input" /></Field>

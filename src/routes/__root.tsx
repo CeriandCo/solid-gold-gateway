@@ -7,12 +7,14 @@ import {
   HeadContent,
   Scripts,
   type ErrorComponentProps,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { IntercomMessenger } from "../components/intercom-messenger";
+import { initAmplitude } from "../lib/analytics/amplitude";
 import { AurumFloatingButton } from "../components/aurum-floating-button";
 
 function NotFoundComponent() {
@@ -133,6 +135,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Re-checked on navigation so a visit starting on /admin can still start analytics on a public page; the module flag prevents re-init.
+  useEffect(() => {
+    initAmplitude();
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

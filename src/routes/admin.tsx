@@ -122,7 +122,7 @@ function AdminLayout() {
           ) : null}
         </nav>
         <div className="admin-topbar__account">
-          <span className="admin-muted">{me.email}</span>
+          <span className="admin-muted" data-amp-block>{me.email}</span>
           <button type="button" className="admin-button admin-button--ghost" onClick={signOut}>
             Sign out
           </button>
