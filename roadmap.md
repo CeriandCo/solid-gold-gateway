@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [ ] Connect real waitlist submissions to Customer.io and implement privacy-safe custom analytics; blocked on secure entry of CUSTOMERIO_SITE_ID and CUSTOMERIO_TRACK_API_KEY. No application changes made (docs/verification/WAITLIST-CUSTOMERIO-ANALYTICS-PREFLIGHT.md).
+
 - [x] Removed public audit-data claims and metrics from Trust Center; added private own-account information request by email, retained six-month dates; browser verified at 375/768/1440. Full tests blocked at isolated startup (docs/verification/TRUST-PRIVATE-AUDIT-REQUESTS.md).
 
 - [x] Updated Trust Center to six-month reports, June 30, 2026 audit and December 30, 2026 upcoming report; verified at 375/768/1440. Isolated tests blocked at startup; preview build OK (docs/verification/TRUST-SIX-MONTH-REPORTS.md).
