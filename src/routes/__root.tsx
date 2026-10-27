@@ -7,12 +7,14 @@ import {
   HeadContent,
   Scripts,
   type ErrorComponentProps,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { IntercomMessenger } from "../components/intercom-messenger";
+import { initAmplitude } from "../lib/analytics/amplitude";
 import { AurumFloatingButton } from "../components/aurum-floating-button";
 
 function NotFoundComponent() {
