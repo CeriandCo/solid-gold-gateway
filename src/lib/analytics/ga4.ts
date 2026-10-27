@@ -2,9 +2,9 @@
 // Page views come from GA4 Enhanced Measurement (history changes); no manual page_view or custom events.
 // If a CSP is added, allow www.googletagmanager.com and *.google-analytics.com.
 import { isExcludedPath, isInternalBrowser } from "./amplitude";
+import { PROD_HOSTS } from "./hosts";
 
 const MEASUREMENT_ID = "G-J3Y6EZZ2CW";
-const PROD_HOSTS = ["trunk.gold", "www.trunk.gold"];
 let started = false;
 
 export function shouldLoadGA4(hostname: string, pathname: string) {

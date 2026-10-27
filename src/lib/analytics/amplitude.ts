@@ -1,13 +1,14 @@
 // Amplitude analytics + Session Replay, client-only. Loaded once per page load.
 // Privacy: no custom track calls; URLs are stripped of non-UTM params and hashes;
 // forms are blocked from replay; private (signed-in staff) routes never load it.
+import { PROD_HOSTS } from "./hosts";
+
 const API_KEY = "d6a71b487ca2fd826e85491ecbb4b38a";
 const CDN = `https://cdn.amplitude.com/script/${API_KEY}.js`;
 let started = false;
 
 // Real private routes in this project: only the /admin CMS (sign-in + editorial tools).
 export const EXCLUDED = [/^\/admin(\/|$)/];
-const PROD_HOSTS = ["trunk.gold", "www.trunk.gold"];
 const KEEP_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid", "li_fat_id"];
 
 export function isExcludedPath(pathname: string) {
