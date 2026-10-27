@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { IntercomMessenger } from "../components/intercom-messenger";
 import { initAmplitude } from "../lib/analytics/amplitude";
+import { initGA4 } from "../lib/analytics/ga4";
 import { AurumFloatingButton } from "../components/aurum-floating-button";
 
 function NotFoundComponent() {
@@ -139,6 +140,7 @@ function RootComponent() {
   // Re-checked on navigation so a visit starting on /admin can still start analytics on a public page; the module flag prevents re-init.
   useEffect(() => {
     initAmplitude();
+    initGA4();
   }, [pathname]);
 
   return (
