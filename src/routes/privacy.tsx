@@ -57,17 +57,21 @@ function PrivacyPage() {
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <a href="#information-we-collect" className="text-sm text-forest transition-colors hover:text-gold">1. Information We Collect</a>
               <a href="#how-we-use-your-information" className="text-sm text-forest transition-colors hover:text-gold">2. How We Use Your Information</a>
-              <a href="#information-sharing" className="text-sm text-forest transition-colors hover:text-gold">3. Information Sharing</a>
-              <a href="#data-security" className="text-sm text-forest transition-colors hover:text-gold">4. Data Security</a>
-              <a href="#data-retention" className="text-sm text-forest transition-colors hover:text-gold">5. Data Retention</a>
-              <a href="#your-rights" className="text-sm text-forest transition-colors hover:text-gold">6. Your Rights</a>
-              <a href="#cookies" className="text-sm text-forest transition-colors hover:text-gold">7. Cookies</a>
-              <a href="#third-party-links" className="text-sm text-forest transition-colors hover:text-gold">8. Third-Party Links</a>
-              <a href="#childrens-privacy" className="text-sm text-forest transition-colors hover:text-gold">9. Children's Privacy</a>
-              <a href="#changes-to-this-policy" className="text-sm text-forest transition-colors hover:text-gold">10. Changes to This Policy</a>
-              <a href="#sms-and-text-messaging" className="text-sm text-forest transition-colors hover:text-gold">11. SMS and Text Messaging</a>
-              <a href="#stripe-payment-integration" className="text-sm text-forest transition-colors hover:text-gold">12. Stripe Payment Integration</a>
-              <a href="#contact-us" className="text-sm text-forest transition-colors hover:text-gold">13. Contact Us</a>
+              <a href="#information-sharing" className="text-sm text-forest transition-colors hover:text-gold">3. How We Share Personal Information</a>
+              <a href="#sensitive-personal-information" className="text-sm text-forest transition-colors hover:text-gold">4. Sensitive Personal Information</a>
+              <a href="#automated-processing" className="text-sm text-forest transition-colors hover:text-gold">5. Automated Processing in Identity Verification and Fraud Prevention</a>
+              <a href="#data-security" className="text-sm text-forest transition-colors hover:text-gold">6. Data Security</a>
+              <a href="#data-retention" className="text-sm text-forest transition-colors hover:text-gold">7. Data Retention</a>
+              <a href="#your-rights" className="text-sm text-forest transition-colors hover:text-gold">8. Your Privacy Rights</a>
+              <a href="#california-residents" className="text-sm text-forest transition-colors hover:text-gold">9. Additional Privacy Information for California Residents</a>
+              <a href="#cookies" className="text-sm text-forest transition-colors hover:text-gold">10. Cookies and Tracking Technologies</a>
+              <a href="#marketing-communications" className="text-sm text-forest transition-colors hover:text-gold">11. Marketing Communications</a>
+              <a href="#sms-and-text-messaging" className="text-sm text-forest transition-colors hover:text-gold">12. SMS and Text Messaging</a>
+              <a href="#payment-processing" className="text-sm text-forest transition-colors hover:text-gold">13. Payment Processing and Third-Party Financial Services</a>
+              <a href="#third-party-websites" className="text-sm text-forest transition-colors hover:text-gold">14. Third-Party Websites and Services</a>
+              <a href="#childrens-privacy" className="text-sm text-forest transition-colors hover:text-gold">15. Children's Privacy</a>
+              <a href="#changes-to-this-policy" className="text-sm text-forest transition-colors hover:text-gold">16. Changes to This Privacy Policy</a>
+              <a href="#contact-us" className="text-sm text-forest transition-colors hover:text-gold">17. Contact Us</a>
             </div>
           </nav>
           <h2 id="information-we-collect" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">1. Information We Collect</h2>
@@ -271,30 +275,48 @@ function PrivacyPage() {
           <p className="body-copy mt-5 text-charcoal/90">We do not sell personal information, and we do not knowingly share the personal information of consumers under 16 years of age.</p>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">9.7 Information Covered by Other Laws</h3>
           <p className="body-copy mt-5 text-charcoal/90">Some personal information we collect in connection with financial transactions may be subject to the Gramm-Leach-Bliley Act or other federal or state financial privacy laws. To the extent those laws apply, that information may be exempt from certain CCPA requirements. This does not affect the rights described in this Policy for other personal information.</p>
-          <h2 id="cookies" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">7. Cookies</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We use cookies and similar tracking technologies to analyze website traffic and improve your experience. You can control cookie preferences through your browser settings. We use Cloudflare analytics for performance monitoring.</p>
-          <h2 id="third-party-links" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">8. Third-Party Links</h2>
-          <p className="body-copy mt-5 text-charcoal/90">Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites and encourage you to review their privacy policies.</p>
-          <h2 id="childrens-privacy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">9. Children's Privacy</h2>
-          <p className="body-copy mt-5 text-charcoal/90">Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from minors.</p>
-          <h2 id="changes-to-this-policy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">10. Changes to This Policy</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of our services after changes constitutes acceptance of the revised policy.</p>
-          <h2 id="sms-and-text-messaging" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">11. SMS and Text Messaging</h2>
-          <p className="body-copy mt-5 text-charcoal/90">By providing your phone number during account registration, through our website contact forms, or through our live chat, you consent to receive text messages from TRUNK related to your account, including order confirmations, shipping notifications, KYC verification updates, payment receipts, and customer support responses.</p>
+          <h2 id="cookies" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">10. Cookies and Tracking Technologies</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK uses cookies, pixels, and similar technologies for the following purposes:</p>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li>Message and data rates may apply. Message frequency varies based on your account activity.</li>
-            <li>You can opt out at any time by replying <strong>STOP</strong> to any message.</li>
-            <li>For help, reply <strong>HELP</strong> to any message or contact us at +1 (254) 455-5959 or through our contact form.</li>
-            <li>We do not share your phone number with third parties for marketing purposes.</li>
-            <li>Carriers are not liable for delayed or undelivered messages.</li>
+            <li><strong>Essential:</strong> Required for website functionality and security, including Cloudflare security and performance services.</li>
+            <li><strong>Preferences:</strong> Remember your settings.</li>
+            <li><strong>Analytics:</strong> Understand website traffic and performance.</li>
+            <li><strong>Advertising:</strong> Meta, Google, and Reddit pixels used to deliver and measure TRUNK advertising, as described in Section 3.5.</li>
           </ul>
-          <p className="body-copy mt-5 text-charcoal/90">By consenting to receive text messages, you confirm that you are the owner or authorized user of the phone number provided. Your consent is not a condition of purchase.</p>
-          <h2 id="stripe-payment-integration" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">12. Stripe Payment Integration</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We use regulated payment processors to handle all transactions — including ACH bank transfer, credit and debit cards, USDC and USDG stablecoins, buy now, pay later (BNPL) for physical coin purchases, and wire transfer for larger purchases. When you initiate a payment, your bank account and card details are transmitted directly to our payment processor and are never stored by TRUNK. We receive only the transaction confirmation and limited account details necessary to fulfill your order.</p>
-          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">13. Contact Us</h2>
-          <p className="body-copy mt-5 text-charcoal/90">If you have questions or concerns about this Privacy Policy, please contact us through our contact form on trunk.gold or call +1 (254) 455-5959.</p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK Website: trunk.gold</p>
-          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved. Wyoming Corporation.</p>
+          <p className="body-copy mt-5 text-charcoal/90">You can manage cookies through your browser settings, opt out of sharing as described in Section 9.4, and use the opt-out tools offered by Meta, Google, and Reddit in your account settings with those services. Disabling essential cookies may affect website functionality.</p>
+          <h2 id="marketing-communications" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">11. Marketing Communications</h2>
+          <p className="body-copy mt-5 text-charcoal/90">We may send marketing communications about TRUNK products, platform updates, and other relevant information where permitted by law.</p>
+          <p className="body-copy mt-5 text-charcoal/90">You can unsubscribe from marketing emails at any time using the unsubscribe link in the message or by contacting compliance@trunk.gold. Opting out of marketing does not stop essential transactional, account security, legal, or service-related communications.</p>
+          <h2 id="sms-and-text-messaging" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">12. SMS and Text Messaging</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK sends text messages for account verification, security notifications, payment confirmations, transaction updates, and customer support, where permitted by law and based on any required consent.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Where TRUNK offers promotional or marketing text messages, we will obtain any separate consent required by law. Consent to receive marketing text messages is not a condition of purchase.</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Message frequency varies based on account activity and the messaging program.</li>
+            <li>Message and data rates may apply.</li>
+            <li>Reply STOP to opt out of a text messaging program.</li>
+            <li>Reply HELP for assistance, or contact compliance@trunk.gold.</li>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90">Mobile phone numbers and SMS consent information are not sold or shared with third parties for their own marketing purposes. Wireless carriers are not liable for delayed or undelivered messages. Opting out of a text messaging program does not prevent essential account communications through other channels.</p>
+          <h2 id="payment-processing" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">13. Payment Processing and Third-Party Financial Services</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK uses third-party financial technology and payment service providers to support the following payment methods, where offered:</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>ACH bank transfers</li>
+            <li>Credit and debit card payments</li>
+            <li>Bank account connections through Plaid</li>
+            <li>Wire transfers</li>
+          </ul>
+          <p className="body-copy mt-5 text-charcoal/90">Certain payment methods may be subject to additional terms, eligibility requirements, or third-party privacy policies. Payment providers may collect information directly from you and process it as necessary to provide their services, comply with law, and prevent fraud.</p>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK receives payment confirmations, limited financial account information, transaction identifiers, and other information needed to administer purchases and maintain accurate records. We never ask customers to provide online banking passwords directly to TRUNK.</p>
+          <h2 id="third-party-websites" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">14. Third-Party Websites and Services</h2>
+          <p className="body-copy mt-5 text-charcoal/90">Our website and platform may contain links to or integrations with third-party websites and services that have their own privacy policies. We encourage you to review those policies before providing personal information. TRUNK is not responsible for the independent privacy practices of third parties outside our control, except to the extent required by law.</p>
+          <h2 id="childrens-privacy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">15. Children's Privacy</h2>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK's services are intended for individuals 18 years of age or older. We do not knowingly collect personal information from children under 18. If we learn that we have collected personal information from a minor, we will delete it or otherwise handle it as required by law. If you believe a minor has provided personal information to TRUNK, contact compliance@trunk.gold.</p>
+          <h2 id="changes-to-this-policy" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">16. Changes to This Privacy Policy</h2>
+          <p className="body-copy mt-5 text-charcoal/90">We review this Privacy Policy at least once every 12 months and may update it to reflect changes in our services, practices, technology, or legal obligations. When we make changes, we will update the "Last updated" date at the top of this Policy. Where required by law, we will provide additional notice or obtain consent before making material changes.</p>
+          <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
+          <p className="body-copy mt-5 text-charcoal/90">If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have concerns about how your personal information is handled, contact:</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK<br />Website: www.trunk.gold<br />Email: compliance@trunk.gold<br />Telephone: +1 (254) 455-5959<br />Registered jurisdiction: Wyoming, United States<br />Business mailing address: 10410 Corprate Dr Ste 107, Sugar Land TX 77478</p>
+          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved.</p>
         </article>
       </main>
 
