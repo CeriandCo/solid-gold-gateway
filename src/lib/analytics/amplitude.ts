@@ -14,6 +14,14 @@ export function isExcludedPath(pathname: string) {
   return EXCLUDED.some((r) => r.test(pathname));
 }
 
+export function isInternalBrowser() {
+  try {
+    return localStorage.getItem("trunk_internal") === "1";
+  } catch {
+    return false;
+  }
+}
+
 export function cleanUrl(raw?: string, origin = "https://trunk.gold") {
   if (!raw) return raw;
   try {
@@ -53,10 +61,7 @@ export function initAmplitude() {
     if (q.get("internal") === "1") localStorage.setItem("trunk_internal", "1");
     if (q.get("internal") === "0") localStorage.removeItem("trunk_internal");
   } catch {}
-  let internal = false;
-  try {
-    internal = localStorage.getItem("trunk_internal") === "1";
-  } catch {}
+  const internal = isInternalBrowser();
   const env = PROD_HOSTS.includes(location.hostname) ? "production" : "preview";
 
   const s = document.createElement("script");
