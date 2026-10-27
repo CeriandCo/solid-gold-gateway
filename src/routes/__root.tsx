@@ -133,6 +133,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Re-checked on navigation so a visit starting on /admin can still start analytics on a public page; the module flag prevents re-init.
+  useEffect(() => {
+    initAmplitude();
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
