@@ -134,22 +134,56 @@ function PrivacyPage() {
             <li>Communicate with us by email, telephone, or text message</li>
           </ul>
           <h2 id="how-we-use-your-information" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">2. How We Use Your Information</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We use the information we collect to:</p>
+          <p className="body-copy mt-5 text-charcoal/90">We use personal information to:</p>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li>Process and fulfill gold transactions on the platform.</li>
-            <li>Verify your identity in compliance with applicable KYC and anti-money laundering (AML) regulations.</li>
-            <li>Maintain your account and provide customer support.</li>
-            <li>Send transactional emails, platform updates, and marketing communications (with your consent).</li>
-            <li>Improve our website, platform, and services.</li>
-            <li>Comply with legal obligations and regulatory requirements.</li>
+            <li>Create, manage, and secure customer accounts.</li>
+            <li>Process gold purchases, sales, payments, and eligible redemptions.</li>
+            <li>Maintain accurate ownership, transaction, and account records.</li>
+            <li>Verify identities and prevent fraud, money laundering, and unauthorized activity.</li>
+            <li>Comply with legal, tax, financial, and regulatory obligations.</li>
+            <li>Respond to inquiries and provide customer support.</li>
+            <li>Send account notifications, security alerts, and transaction confirmations.</li>
+            <li>Send marketing communications where permitted by law and in line with your preferences.</li>
+            <li>Measure and improve our advertising, including through the advertising partners described in Section 3.5.</li>
+            <li>Analyze platform performance and improve our products and services.</li>
+            <li>Detect, investigate, and respond to security incidents or suspected misuse.</li>
+            <li>Enforce our agreements and protect the rights, property, and safety of TRUNK, our customers, and others.</li>
           </ul>
-          <h2 id="information-sharing" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">3. Information Sharing</h2>
-          <p className="body-copy mt-5 text-charcoal/90">We do not sell your personal information. We may share information with:</p>
+          <p className="body-copy mt-5 text-charcoal/90">We do not use personal information for purposes that are materially incompatible with those described in this Policy without providing notice and obtaining any consent required by law.</p>
+          <h2 id="information-sharing" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">3. How We Share Personal Information</h2>
+          <p className="body-copy mt-5 text-charcoal/90">We disclose personal information only where reasonably necessary for the purposes described in this Policy or as permitted or required by law. Recipients include the following.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.1 Payment and Financial Service Providers</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We work with payment processors and financial technology providers, including Stripe and Plaid, to facilitate payments, financial account connections, verification, and fraud prevention. These providers may process information under their own privacy policies and contractual obligations.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.2 Identity Verification and Compliance Providers</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We share information with authorized identity verification, fraud prevention, sanctions-screening, and compliance service providers.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.3 Gold Suppliers, Custodians, and Fulfillment Partners</h3>
+          <p className="body-copy mt-5 text-charcoal/90">Where necessary to complete a transaction, we disclose relevant information to gold suppliers, vault custodians, storage providers, delivery partners, and other fulfillment providers.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.4 Technology and Communications Providers</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We use third-party technology providers, including AWS, Cloudflare, Twilio, and Customer.io, to support website hosting, infrastructure, security, account messaging, and platform operations.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.5 Advertising Partners</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We use advertising and measurement technologies provided by Meta, Google, and Reddit on our website. These partners may collect identifiers and information about your interactions with our website through cookies and pixels, and may use that information to deliver and measure TRUNK advertising across other websites and apps. Under California law, this is considered "sharing" personal information for cross-context behavioral advertising. You can opt out as described in Section 8.4.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.6 Professional Advisers and Regulatory Authorities</h3>
+          <p className="body-copy mt-5 text-charcoal/90">We may disclose information to legal advisers, auditors, insurers, regulators, law enforcement agencies, or other authorized parties where reasonably necessary or legally required.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.7 Business Transfers</h3>
+          <p className="body-copy mt-5 text-charcoal/90">If TRUNK is involved in a merger, acquisition, restructuring, financing, or sale of assets, personal information may be disclosed or transferred as part of that transaction, subject to applicable law.</p>
+          <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.8 Sale and Sharing of Personal Information</h3>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK does not sell personal information. In the preceding 12 months, TRUNK has not sold personal information to any third party.</p>
+          <p className="body-copy mt-5 text-charcoal/90">TRUNK shares identifiers and internet or network activity information with Meta, Google, and Reddit for cross-context behavioral advertising, as described in Section 3.5. We do not share sensitive personal information, identity documents, or financial account information with advertising partners.</p>
+          <h2 id="sensitive-personal-information" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">4. Sensitive Personal Information</h2>
+          <p className="body-copy mt-5 text-charcoal/90">Some information we collect is classified as sensitive personal information under applicable privacy laws, including government identification details, financial account information, and account log-in credentials.</p>
+          <p className="body-copy mt-5 text-charcoal/90">We use and disclose sensitive personal information only to:</p>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li><strong>Service Providers:</strong> Third-party vendors who assist with payment processing (Stripe), identity and bank account verification (Plaid), vault custody, and infrastructure hosting (AWS, Cloudflare).</li>
-            <li><strong>Regulatory Authorities:</strong> As required by law, including compliance with AML, tax reporting, and other regulatory obligations.</li>
-            <li><strong>Business Partners:</strong> Vault custodians and gold supply partners who need transaction details to fulfill your orders.</li>
+            <li>Provide the products and services you request</li>
+            <li>Process and secure financial transactions</li>
+            <li>Verify your identity</li>
+            <li>Prevent and investigate fraud and unauthorized activity</li>
+            <li>Maintain account and transaction records</li>
+            <li>Meet legal and regulatory obligations</li>
           </ul>
+          <p className="body-copy mt-5 text-charcoal/90">We do not use sensitive personal information to infer characteristics about you, and we do not use or disclose it for advertising or marketing.</p>
+          <h2 id="automated-processing" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">5. Automated Processing in Identity Verification and Fraud Prevention</h2>
+          <p className="body-copy mt-5 text-charcoal/90">Our identity verification and fraud prevention providers use automated tools to check identity documents, screen against sanctions lists, and flag unusual activity. These tools assist our compliance team. They do not make final decisions on their own.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Any decision to decline an account application, restrict an account, or block a transaction is reviewed by a member of our compliance team before it becomes final. If you believe a decision about your account was made in error, contact compliance@trunk.gold and we will review it.</p>
           <h2 id="data-security" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">4. Data Security</h2>
           <p className="body-copy mt-5 text-charcoal/90">We implement security controls appropriate to our current stage and risk profile to protect your information, including AES-256 encryption for data at rest, TLS encryption for data in transit, and field-level encryption for sensitive personal data. Access to personal information is restricted to authorized personnel only.</p>
           <h2 id="data-retention" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">5. Data Retention</h2>
