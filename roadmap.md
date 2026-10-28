@@ -116,4 +116,4 @@
 - [x] C-10 — diagnose the admin sign-in link; cause is the missing verified sending domain, not signup being disabled (docs/verification/C10.md).
 - [x] C-9 — purchase acknowledgement panel gating the gift card CTA, with server enforcement and the consent recorded on the order (docs/verification/C9.md). Physical gold list ready; no physical purchase CTA exists yet.
 
-- [ ] Launch countdown bar on the homepage (21 November 2026, 00:00 New York).
+- [x] Launch countdown bar on the homepage (21 November 2026, 00:00 New York).
