@@ -31,6 +31,7 @@
   --font-number: "Geist Mono", monospace;
   --font-money: "Geist Mono", monospace;
   --font-sans: "Geist", Arial, sans-serif;
+  --font-launch: "DM Sans", Arial, sans-serif;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   /* UI text scale: recurring interface sizes between Tailwind's xs and base. */
   --text-ui-xs: 0.78125rem; /* 12.5px */
@@ -81,6 +82,8 @@
   --color-forest-black-deep: var(--forest-black-deep);
   --color-pricing-hero: var(--pricing-hero);
   --color-parchment: var(--parchment);
+  --color-launch-forest: var(--launch-forest);
+  --color-launch-parchment: var(--launch-parchment);
   --color-warm-ink: var(--warm-ink);
   --color-warm-ink-soft: var(--warm-ink-soft);
 }
@@ -114,6 +117,8 @@
   --forest-black-deep: oklch(0.13 0.026 162);
   --pricing-hero: oklch(0.160701 0.019064 162.844); /* #06100B */
   --parchment: oklch(0.918 0.036 82);
+  --launch-forest: #1A3A2A;
+  --launch-parchment: #EDE5D4;
   --warm-ink: oklch(0.31 0.055 82);
   --warm-ink-soft: oklch(0.42 0.068 82);
 
