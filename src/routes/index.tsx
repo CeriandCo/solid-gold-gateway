@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AurumPriceProvider } from "@/lib/aurum/use-aurum-price";
 import { HomeGoldPrice, HomeHeroSpotCard } from "@/components/home-live-price";
 import { ArrowRight } from "lucide-react";
+import { LaunchCountdown } from "@/components/launch-countdown";
 import { CtaRow, GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import homeHero from "@/assets/home/home-hero.png.asset.json";
 import heroPhone from "@/assets/home/phone-hero-vault-holdings-trunk-v2.png.asset.json";
@@ -409,6 +410,7 @@ function Index() {
     <AurumPriceProvider>
     <div className="min-h-screen bg-cream text-ink">
       <SiteHeader />
+      <LaunchCountdown />
 
       <section id="hero" className="home-hero">
         <img
