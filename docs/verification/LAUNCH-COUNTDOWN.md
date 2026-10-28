@@ -8,3 +8,8 @@
 - Not checked: what the bar looks like after launch (only covered by the maths test); refresh/inactive-tab accuracy (follows from recalculating from the clock every tick and on tab return).
 - Conflict: the homepage FAQ still says "we will not promise a date". It was not changed.
 - The brief was cut off at "Ensure the component does not negatively…".
+
+## Ticker (update, 28 Oct)
+- Added a "COMING SOON · MAKE ROOM FOR GOLD · TRUNK" ticker right below the countdown, in the same component. It uses a #10251A background (existing forest token), gold text, DM Sans, 4px letter spacing, 10px on mobile / 11px from 640px up, and a height of 32px.
+- The loop is two identical halves of 6 repeats each, moving left by 50%. Pure CSS, linear, 90s per half, which works out to about 30s per two-phrase line. Reduced motion turns the animation off (measured: `animationName: none`).
+- Browser check: ticker 32px tall at 375/768/1440; page scrollWidth = 375/768/1440 (no overflow); the strip's position changed within 1s at every width.

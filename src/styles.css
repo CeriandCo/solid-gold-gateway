@@ -7478,3 +7478,15 @@ footer.site-footer a:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
+
+/* Launch ticker (~30s per COMING SOON · MAKE ROOM FOR GOLD · TRUNK ×2 line): two identical halves slide left by 50% for a seamless loop. */
+@keyframes launch-ticker-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.launch-ticker-track {
+  animation: launch-ticker-scroll 90s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .launch-ticker-track { animation: none; }
+}

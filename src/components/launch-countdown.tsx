@@ -24,6 +24,7 @@ export function LaunchCountdown() {
     : [];
 
   return (
+    <>
     <section aria-label="TRUNK launch countdown" className="bg-launch-forest text-launch-parchment">
       <div className="site-container flex min-h-[64px] flex-col items-center justify-center gap-2 py-3 text-center sm:flex-row sm:gap-6 sm:text-left">
         {left?.done ? (
@@ -54,5 +55,35 @@ export function LaunchCountdown() {
         )}
       </div>
     </section>
+    <LaunchTicker />
+    </>
+  );
+}
+
+const tickerPhrases = ["Coming soon", "Make room for gold", "TRUNK"];
+
+function TickerHalf({ hidden }: { hidden?: boolean }) {
+  return (
+    <span className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
+      {Array.from({ length: 6 }).flatMap((_, r) =>
+        tickerPhrases.map((t, i) => (
+          <span key={`${r}-${i}`} className="flex items-center">
+            <span className="px-5 sm:px-6">{t}</span>
+            <span aria-hidden="true" className="h-1 w-1 rounded-full bg-gold" />
+          </span>
+        )),
+      )}
+    </span>
+  );
+}
+
+function LaunchTicker() {
+  return (
+    <div className="font-launch flex h-8 items-center overflow-hidden bg-forest text-[10px] uppercase tracking-[4px] text-gold sm:text-[11px]" role="marquee" aria-label="Coming soon. Make room for gold. TRUNK.">
+      <div className="launch-ticker-track flex w-max items-center whitespace-nowrap" aria-hidden="true">
+        <TickerHalf />
+        <TickerHalf hidden />
+      </div>
+    </div>
   );
 }
