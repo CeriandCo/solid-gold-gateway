@@ -335,7 +335,7 @@ export function SiteHeader() {
   );
 }
 
-type SiteRoute = "/" | "/terms" | "/privacy" | "/contact" | (typeof siteNav)[number][1];
+type SiteRoute = "/" | "/terms" | "/privacy" | "/do-not-sell-or-share" | "/contact" | (typeof siteNav)[number][1];
 type FooterLink = { label: string; to?: SiteRoute; href?: string };
 
 /** Footer columns — mirrors the homepage footer, now shared by every page. */
@@ -365,6 +365,7 @@ const footerColumns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Terms of Service", to: "/terms" },
       { label: "Data Privacy Policy", to: "/privacy" },
+      { label: "Do Not Sell or Share My Personal Information", to: "/do-not-sell-or-share" },
     ],
   },
 ];
