@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader, STD } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/privacy")({
@@ -48,7 +48,7 @@ function PrivacyPage() {
         </section>
 
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
-          <p className="body-copy text-charcoal/90"><strong>Last updated: October 23, 2026</strong></p>
+          <p className="body-copy text-charcoal/90"><strong>Last updated: October 30, 2026</strong></p>
           <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc., doing business as TRUNK ("TRUNK," "we," "us," or "our"), is a Wyoming corporation operating the website www.trunk.gold and related digital platforms and services.</p>
           <p className="body-copy mt-5 text-charcoal/90">We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use and share it, how long we keep it, and the rights and choices available to you under applicable United States privacy laws, including California law.</p>
           <p className="body-copy mt-5 text-charcoal/90">By using our website or services, you acknowledge the practices described in this Privacy Policy.</p>
@@ -164,8 +164,11 @@ function PrivacyPage() {
           <p className="body-copy mt-5 text-charcoal/90">Where necessary to complete a transaction, we disclose relevant information to gold suppliers, vault custodians, storage providers, delivery partners, and other fulfillment providers.</p>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.4 Technology and Communications Providers</h3>
           <p className="body-copy mt-5 text-charcoal/90">We use third-party technology providers, including AWS, Cloudflare, Twilio, and Customer.io, to support website hosting, infrastructure, security, account messaging, and platform operations.</p>
+          <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
+            <li>Analytics providers. Companies such as Amplitude and Google, which process website usage information on our behalf to help us measure and improve our services.</li>
+          </ul>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.5 Advertising Partners</h3>
-          <p className="body-copy mt-5 text-charcoal/90">We use advertising and measurement technologies provided by Meta, Google, and Reddit on our website. These partners may collect identifiers and information about your interactions with our website through cookies and pixels, and may use that information to deliver and measure TRUNK advertising across other websites and apps. Under California law, this is considered "sharing" personal information for cross-context behavioral advertising. You can opt out as described in Section 8.4.</p>
+          <p className="body-copy mt-5 text-charcoal/90">We use advertising and measurement technologies provided by Meta, Google, and Reddit on our website. These partners may collect identifiers and information about your interactions with our website through cookies and pixels, and may use that information to deliver and measure TRUNK advertising across other websites and apps. Under California law, this is considered "sharing" personal information for cross-context behavioral advertising. You can opt out as described in Section 9.4.</p>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.6 Professional Advisers and Regulatory Authorities</h3>
           <p className="body-copy mt-5 text-charcoal/90">We may disclose information to legal advisers, auditors, insurers, regulators, law enforcement agencies, or other authorized parties where reasonably necessary or legally required.</p>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">3.7 Business Transfers</h3>
@@ -266,7 +269,7 @@ function PrivacyPage() {
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">9.4 How to Opt Out of Sharing</h3>
           <p className="body-copy mt-5 text-charcoal/90">You can opt out of sharing for cross-context behavioral advertising by:</p>
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
-            <li>Clicking the Do Not Sell or Share My Personal Information link in the footer of our website, or</li>
+            <li>Clicking the <Link to="/do-not-sell-or-share" className="text-forest underline underline-offset-2 hover:text-gold">Do Not Sell or Share My Personal Information</Link> link in the footer of our website, or</li>
             <li>Enabling Global Privacy Control (GPC) in a supported browser or extension. We treat a GPC signal as a valid opt-out request for that browser and, if you are signed in, for your account.</li>
           </ul>
           <h3 className="font-display mt-8 text-lg font-semibold text-forest-deep">9.5 Do Not Track</h3>
@@ -280,9 +283,12 @@ function PrivacyPage() {
           <ul className="body-copy mt-5 list-disc space-y-2 pl-6 text-charcoal/90">
             <li><strong>Essential:</strong> Required for website functionality and security, including Cloudflare security and performance services.</li>
             <li><strong>Preferences:</strong> Remember your settings.</li>
-            <li><strong>Analytics:</strong> Understand website traffic and performance.</li>
             <li><strong>Advertising:</strong> Meta, Google, and Reddit pixels used to deliver and measure TRUNK advertising, as described in Section 3.5.</li>
           </ul>
+<p className="body-copy mt-5 text-charcoal/90">Analytics. We use Amplitude and Google Analytics to understand how visitors use our website, for example which pages are viewed, which links are clicked, the type of device and browser used, approximate location (city or country, based on IP address) and the campaign or website that referred you to us.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Amplitude Session Replay records how our pages are used, such as scrolling, clicks and page navigation, so we can find and fix usability issues. Text entered into forms and other personal fields is masked and is not recorded.</p>
+          <p className="body-copy mt-5 text-charcoal/90">We do not send names, email addresses, identity verification information, banking details or payment information to these analytics providers. Google signals and ad personalisation are turned off in our Google Analytics settings.</p>
+          <p className="body-copy mt-5 text-charcoal/90">You can opt out of Google Analytics by installing the Google Analytics Opt-out Browser Add-on (<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-forest underline underline-offset-2 hover:text-gold">https://tools.google.com/dlpage/gaoptout</a>), and you can manage cookies through your browser settings. We also honour Global Privacy Control signals as described in Section 9.4.</p>
           <p className="body-copy mt-5 text-charcoal/90">You can manage cookies through your browser settings, opt out of sharing as described in Section 9.4, and use the opt-out tools offered by Meta, Google, and Reddit in your account settings with those services. Disabling essential cookies may affect website functionality.</p>
           <h2 id="marketing-communications" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">11. Marketing Communications</h2>
           <p className="body-copy mt-5 text-charcoal/90">We may send marketing communications about TRUNK products, platform updates, and other relevant information where permitted by law.</p>
@@ -315,7 +321,7 @@ function PrivacyPage() {
           <p className="body-copy mt-5 text-charcoal/90">We review this Privacy Policy at least once every 12 months and may update it to reflect changes in our services, practices, technology, or legal obligations. When we make changes, we will update the "Last updated" date at the top of this Policy. Where required by law, we will provide additional notice or obtain consent before making material changes.</p>
           <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
           <p className="body-copy mt-5 text-charcoal/90">If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have concerns about how your personal information is handled, contact:</p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK<br />Website: www.trunk.gold<br />Email: compliance@trunk.gold<br />Telephone: +1 (254) 455-5959<br />Registered jurisdiction: Wyoming, United States<br />Business mailing address: 10410 Corprate Dr Ste 107, Sugar Land TX 77478</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK<br />Website: www.trunk.gold<br />Email: compliance@trunk.gold<br />Telephone: +1 (254) 455-5959<br />Registered jurisdiction: Wyoming, United States<br />Business mailing address: 10410 Corporate Dr Ste 107, Sugar Land TX 77478</p>
           <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved.</p>
         </article>
       </main>
