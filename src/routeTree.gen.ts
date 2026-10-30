@@ -14,6 +14,7 @@ import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AurumRouteImport } from './routes/aurum'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DoNotSellOrShareRouteImport } from './routes/do-not-sell-or-share'
 import { Route as EarlyAccessRouteImport } from './routes/early-access'
 import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
@@ -73,6 +74,11 @@ const AurumRoute = AurumRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoNotSellOrShareRoute = DoNotSellOrShareRouteImport.update({
+  id: '/do-not-sell-or-share',
+  path: '/do-not-sell-or-share',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EarlyAccessRoute = EarlyAccessRouteImport.update({
@@ -263,6 +269,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
   '/contact': typeof ContactRoute
+  '/do-not-sell-or-share': typeof DoNotSellOrShareRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -304,6 +311,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/aurum': typeof AurumRoute
   '/contact': typeof ContactRoute
+  '/do-not-sell-or-share': typeof DoNotSellOrShareRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -345,6 +353,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/aurum': typeof AurumRoute
   '/contact': typeof ContactRoute
+  '/do-not-sell-or-share': typeof DoNotSellOrShareRoute
   '/early-access': typeof EarlyAccessRoute
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
@@ -389,6 +398,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/aurum'
     | '/contact'
+    | '/do-not-sell-or-share'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -430,6 +440,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/aurum'
     | '/contact'
+    | '/do-not-sell-or-share'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -470,6 +481,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/aurum'
     | '/contact'
+    | '/do-not-sell-or-share'
     | '/early-access'
     | '/fractional-gold'
     | '/gifting'
@@ -513,6 +525,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AurumRoute: typeof AurumRoute
   ContactRoute: typeof ContactRoute
+  DoNotSellOrShareRoute: typeof DoNotSellOrShareRoute
   EarlyAccessRoute: typeof EarlyAccessRoute
   FractionalGoldRoute: typeof FractionalGoldRoute
   GiftingRoute: typeof GiftingRoute
@@ -574,6 +587,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/do-not-sell-or-share': {
+      id: '/do-not-sell-or-share'
+      path: '/do-not-sell-or-share'
+      fullPath: '/do-not-sell-or-share'
+      preLoaderRoute: typeof DoNotSellOrShareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/early-access': {
@@ -878,6 +898,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   AurumRoute: AurumRoute,
   ContactRoute: ContactRoute,
+  DoNotSellOrShareRoute: DoNotSellOrShareRoute,
   EarlyAccessRoute: EarlyAccessRoute,
   FractionalGoldRoute: FractionalGoldRoute,
   GiftingRoute: GiftingRoute,
