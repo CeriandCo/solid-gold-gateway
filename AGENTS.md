@@ -13,3 +13,4 @@
 - The AURUM subscribe presentation is an external community invitation, not a local signup form; keep the existing newsletter server/storage contracts intact because this change is presentation-only.
 - Retired preview pages have no route modules or redirects; the shared not-found page handles their URLs to avoid retaining obsolete content.
 - Trust Center audit cadence and dates use the tested vault-audit configuration to keep report labels consistent.
+- Public lead forms (waitlist, partner) save first via src/lib/leads and send to Customer.io only from the live host, fail-soft and claim-once — so preview never emits events and a provider outage never loses a signup.
