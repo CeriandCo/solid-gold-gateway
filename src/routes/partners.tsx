@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { Check } from "lucide-react";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero, InnerHeroSecondaryLink } from "@/components/inner-page-hero";
+import { submitPartnerApplication } from "@/lib/leads.functions";
 import heroImage from "@/assets/trust-centre-hero-gold-register.png.asset.json";
 
 export const Route = createFileRoute("/partners")({
@@ -89,14 +90,45 @@ function Select({ name, options }: { name: string; options: string[] }) {
 
 function PartnersPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!event.currentTarget.checkValidity()) {
-      event.currentTarget.reportValidity();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
-    setSubmitted(true);
+    if (sending) return;
+    const f = new FormData(form);
+    const text = (name: string) => String(f.get(name) ?? "");
+    setSending(true);
+    setFailed(false);
+    try {
+      const result = await submitPartnerApplication({
+        data: {
+          fullName: text("fullName"),
+          firmName: text("firmName"),
+          website: text("website"),
+          role: text("role"),
+          license: text("license"),
+          email: text("email"),
+          phone: text("phone"),
+          state: text("state"),
+          clients: text("clients"),
+          message: text("message"),
+          authorization: f.get("authorization") === "on",
+          terms: f.get("terms") === "on",
+        },
+      });
+      if (result.ok) setSubmitted(true);
+      else setFailed(true);
+    } catch {
+      setFailed(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -195,6 +227,7 @@ function PartnersPage() {
               </label>
               <div className="pt-full">
                 <GoldButton type="submit">Submit request to join</GoldButton>
+                {failed && <p role="alert" className="pt-check" style={{ marginTop: 12, color: "var(--destructive)" }}>Something went wrong. Please try again.</p>}
               </div>
             </form>
           )}

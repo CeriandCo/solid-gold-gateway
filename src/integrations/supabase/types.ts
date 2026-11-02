@@ -821,6 +821,27 @@ export type Database = {
           },
         ]
       }
+      lead_rate_events: {
+        Row: {
+          created_at: string
+          id: number
+          ip_hash: string
+          scope: string
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          ip_hash: string
+          scope: string
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          ip_hash?: string
+          scope?: string
+        }
+        Relationships: []
+      }
       newsletter_attempts: {
         Row: {
           created_at: string
@@ -875,6 +896,69 @@ export type Database = {
         }
         Relationships: []
       }
+      partner_applications: {
+        Row: {
+          authorization_confirmed: boolean
+          cio_attempts: number
+          cio_sent_at: string | null
+          cio_status: string
+          client_count: string
+          created_at: string
+          email: string
+          environment: string
+          firm_name: string
+          full_name: string
+          id: string
+          license: string
+          message: string | null
+          phone: string | null
+          role: string
+          state: string
+          terms_accepted: boolean
+          website: string | null
+        }
+        Insert: {
+          authorization_confirmed: boolean
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
+          client_count: string
+          created_at?: string
+          email: string
+          environment: string
+          firm_name: string
+          full_name: string
+          id?: string
+          license: string
+          message?: string | null
+          phone?: string | null
+          role: string
+          state: string
+          terms_accepted: boolean
+          website?: string | null
+        }
+        Update: {
+          authorization_confirmed?: boolean
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
+          client_count?: string
+          created_at?: string
+          email?: string
+          environment?: string
+          firm_name?: string
+          full_name?: string
+          id?: string
+          license?: string
+          message?: string | null
+          phone?: string | null
+          role?: string
+          state?: string
+          terms_accepted?: boolean
+          website?: string | null
+        }
+        Relationships: []
+      }
       stripe_events: {
         Row: {
           error: string | null
@@ -902,6 +986,48 @@ export type Database = {
           received_at?: string
           status?: string
           type?: string | null
+        }
+        Relationships: []
+      }
+      waitlist_signups: {
+        Row: {
+          cio_attempts: number
+          cio_sent_at: string | null
+          cio_status: string
+          consent_text: string
+          consent_version: string
+          consented_at: string
+          created_at: string
+          email: string
+          environment: string
+          id: string
+          source: string
+        }
+        Insert: {
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
+          consent_text: string
+          consent_version: string
+          consented_at?: string
+          created_at?: string
+          email: string
+          environment: string
+          id?: string
+          source: string
+        }
+        Update: {
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
+          consent_text?: string
+          consent_version?: string
+          consented_at?: string
+          created_at?: string
+          email?: string
+          environment?: string
+          id?: string
+          source?: string
         }
         Relationships: []
       }
@@ -1017,6 +1143,17 @@ export type Database = {
       gift_card_set_stripe_prices: {
         Args: { _map: Json; _mode: string }
         Returns: number
+      }
+      lead_rate_check: {
+        Args: {
+          _day_max: number
+          _day_seconds: number
+          _ip_hash: string
+          _scope: string
+          _short_max: number
+          _short_seconds: number
+        }
+        Returns: boolean
       }
       newsletter_prune_attempts: { Args: never; Returns: undefined }
       newsletter_rate_check: {
