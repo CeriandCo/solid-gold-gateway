@@ -1,4 +1,6 @@
 import { useReveal } from "@/hooks/use-reveal";
+import { sendWaitlistSignup } from "@/hooks/use-waitlist-form";
+import { WaitlistConsent } from "@/components/waitlist-consent";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Check, Coins, LockKeyhole, ShieldCheck, Smartphone, Vault } from "lucide-react";
