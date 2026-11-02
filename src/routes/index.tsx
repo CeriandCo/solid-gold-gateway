@@ -29,6 +29,7 @@ import ctaSellScreen from "@/assets/home/cta-phone-screen-sell-quote-trunk.png.a
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWaitlistForm } from "@/hooks/use-waitlist-form";
+import { WaitlistConsent } from "@/components/waitlist-consent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -404,7 +405,7 @@ function PhoneMockup({ screen, className }: { screen: string; className?: string
 
 function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm();
+  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm("home_final_cta");
 
   return (
     <AurumPriceProvider>
@@ -794,6 +795,7 @@ function Index() {
                       {formState === "invalid" ? "Please enter a valid email address." : "Something went wrong. Please try again."}
                     </p>
                   )}
+                  <WaitlistConsent className="home-final-cta-fineprint" />
                 </form>
               )}
 

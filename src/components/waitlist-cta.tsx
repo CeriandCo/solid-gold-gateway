@@ -8,6 +8,7 @@ import phoneSellWebpAsset from "@/assets/pricing/phone-sell-quote.webp.asset.jso
 import phoneDeliverPngAsset from "@/assets/pricing/phone-deliver.png.asset.json";
 import phoneDeliverWebpAsset from "@/assets/pricing/phone-deliver.webp.asset.json";
 import { useWaitlistForm } from "@/hooks/use-waitlist-form";
+import { WaitlistConsent } from "@/components/waitlist-consent";
 
 export type WaitlistCtaProps = {
   eyebrow: string;
@@ -17,7 +18,7 @@ export type WaitlistCtaProps = {
 };
 
 export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaProps) {
-  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm(() => {
+  const { email, formState, setEmail, submitWaitlist } = useWaitlistForm("waitlist_cta", () => {
     track("bottom_cta_click", { section: "pricing_cta" });
   });
 
@@ -93,6 +94,7 @@ export function WaitlistCta({ eyebrow, title, titleAccent, body }: WaitlistCtaPr
                     : "Something went wrong. Please try again."}
                 </p>
               )}
+              <WaitlistConsent className="waitlist-cta-fineprint" />
             </form>
           )}
 

@@ -99,9 +99,7 @@ function EarlyAccessPage() {
     }
     setFormState("submitting");
     try {
-      // Waitlist storage is not connected yet; registration completes locally.
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      setFormState("success");
+      setFormState((await sendWaitlistSignup(trimmed, "early_access")) ? "success" : "error");
     } catch {
       setFormState("error");
     }
@@ -197,6 +195,7 @@ function EarlyAccessPage() {
                         ? "Something went wrong. Please try again."
                         : "No payment or bank details required. No obligation."}
                   </p>
+                  <WaitlistConsent className="mt-3 text-[12px] leading-[1.5] text-charcoal/60" />
                 </form>
               )}
 
