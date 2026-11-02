@@ -197,6 +197,13 @@
       "when": 1790436120032,
       "tag": "0027_aurum_ai_manual_runs",
       "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1793610576617,
+      "tag": "0028_waitlist_partner_leads_customerio",
+      "breakpoints": true
     }
   ]
 }
