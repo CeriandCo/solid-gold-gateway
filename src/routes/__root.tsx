@@ -16,6 +16,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { IntercomMessenger } from "../components/intercom-messenger";
 import { initAmplitude } from "../lib/analytics/amplitude";
 import { initGA4 } from "../lib/analytics/ga4";
+import { initMetricool } from "../lib/analytics/metricool";
+import { initLinkedIn } from "../lib/analytics/linkedin";
 import { AurumFloatingButton } from "../components/aurum-floating-button";
 
 function NotFoundComponent() {
@@ -142,6 +144,8 @@ function RootComponent() {
   useEffect(() => {
     initAmplitude();
     initGA4();
+    initMetricool();
+    initLinkedIn();
   }, [pathname]);
 
   return (

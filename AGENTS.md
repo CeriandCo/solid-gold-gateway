@@ -14,3 +14,4 @@
 - Retired preview pages have no route modules or redirects; the shared not-found page handles their URLs to avoid retaining obsolete content.
 - Trust Center audit cadence and dates use the tested vault-audit configuration to keep report labels consistent.
 - Public lead forms (waitlist, partner) save first via src/lib/leads and send to Customer.io only from the live host, fail-soft and claim-once — so preview never emits events and a provider outage never loses a signup.
+- Marketing tag modules initialise from the root pathname effect with shared production-host/private-path gates; suppress internal marketing traffic because these tags lack GA4's internal classification.
