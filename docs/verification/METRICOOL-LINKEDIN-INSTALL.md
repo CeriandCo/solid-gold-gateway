@@ -6,7 +6,7 @@
 - Metricool uses the supplied hash, tracks initially after script load and on later public pathname changes without duplicating initial tracking.
 - LinkedIn uses partner ID `559237849`, sets the partner globals and queue stub; exports `trackLinkedInConversion(conversionId)`. No application conversion calls added.
 - No repository CSP found. If one is later added, allow `tracker.metricool.com`, `snap.licdn.com` and `px.ads.linkedin.com` in the relevant script/connect/image directives.
-- Existing GA4/Amplitude behavior and the previously requested static Metricool image remain unchanged. That old image is still ungated and can generate an additional Metricool request; the new script gating does not govern it.
+- Existing GA4/Amplitude behavior remains unchanged. The static Metricool `c3po.jpg` img pixel was removed from RootShell and replaced by the official `be.js` script tracker, which uses production-host, private-path and internal-browser gating and tracks SPA pathname changes.
 - No page UI/copy changes, database writes, or publishing.
 
 ## Verification
@@ -53,7 +53,7 @@ build OK
 
 ## DevTools verification after client publication
 1. On `https://trunk.gold`, use a non-internal browser, disable ad blockers and open DevTools Network with Preserve log enabled.
-2. Reload; filter `metricool`. Confirm `resources/be.js` loads once and tracking requests follow. Navigate through a site link: another tracking call should occur without another script load. The retained `c3po.jpg` image is distinct from the new script.
+2. Reload; filter `metricool`. Confirm `resources/be.js` loads once and tracking requests follow. Navigate through a site link: another tracking call should occur without another script load. The old hard-coded `c3po.jpg` img pixel is no longer rendered.
 3. Filter `licdn` then `px.ads.linkedin.com`. Confirm `insight.min.js` loads and inspect its tracking requests for partner ID `559237849`.
 4. Direct preview/localhost/admin visits must not load the new scripts. An internal browser must not load them either. Existing vendor scripts already loaded on a public page cannot be unloaded by navigating to admin; our Metricool calls/conversion helper recheck exclusions.
 5. No LinkedIn conversion is expected until an actual conversion ID is created and an application action explicitly calls the helper.

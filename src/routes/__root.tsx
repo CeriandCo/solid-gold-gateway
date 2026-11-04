@@ -130,7 +130,6 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
-        <img src="https://tracker.metricool.com/c3po.jpg?hash=d50f9e1e0e1d26d82d2786ce19a34567" alt="" width={1} height={1} style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none" }} />
         <Scripts />
       </body>
     </html>
