@@ -95,7 +95,7 @@ function ContactPage() {
         <ul className="contact-social__list">
           {socialLinks.map(({ Icon, label, href, handle }) => (
             <li key={label}>
-              <a className="contact-social__link" href={href} target="_blank" rel="noopener noreferrer">
+              <a className="contact-social__link" href={href} target="_blank" rel="noopener noreferrer" aria-label={label === "LinkedIn" ? "Trunk on LinkedIn" : undefined}>
                 <span className="contact-social__icon" aria-hidden="true">
                   <Icon strokeWidth={1.5} />
                 </span>
