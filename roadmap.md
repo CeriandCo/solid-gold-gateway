@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] Install production-gated Metricool and LinkedIn tags, test pathname tracking and document verification; do not publish.
+- [x] Installed production-gated Metricool and LinkedIn tags; 11 focused tests passed and SPA tracking verified at 375/768/1440. Full tests blocked by isolated database startup; not published (docs/verification/METRICOOL-LINKEDIN-INSTALL.md).
 
 - [ ] Connect real waitlist submissions to Customer.io and implement privacy-safe custom analytics; blocked on secure entry of CUSTOMERIO_SITE_ID and CUSTOMERIO_TRACK_API_KEY. No application changes made (docs/verification/WAITLIST-CUSTOMERIO-ANALYTICS-PREFLIGHT.md).
 
