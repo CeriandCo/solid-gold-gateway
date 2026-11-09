@@ -14,13 +14,12 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { isValidEmail } from "../admin.server";
 import { canonicalIpBucket, CONTROL_CHARACTERS, normalizeSignupEmail } from "../newsletter/signup.server";
 import { WAITLIST_CONSENT, WAITLIST_SOURCES, type LeadResult } from "./consent";
-import { isLiveHost, sendToCustomerIo, type CioEvent } from "./customerio.server";
+import { isLiveHost } from "./customerio.server";
+import { deliver } from "./delivery.server";
 
 const SHORT_SECONDS = 15 * 60;
 const DAY_SECONDS = 24 * 60 * 60;
 const LIMITS = { waitlist: { short: 5, day: 20 }, partner: { short: 3, day: 10 } } as const;
-
-type Table = "waitlist_signups" | "partner_applications";
 
 function refuse(reason: string) {
   console.warn(`[leads] refused: ${reason}`);
@@ -56,31 +55,6 @@ function cleanEmail(raw: string): string | null {
 
 function isLive(): boolean {
   return isLiveHost(getRequestHeader("origin"), getRequestHeader("host"));
-}
-
-/** Claims the row for sending, sends, and records the outcome. Never throws. */
-async function deliver(table: Table, id: string, event: CioEvent): Promise<void> {
-  try {
-    const { data: claimed } = await supabaseAdmin
-      .from(table)
-      .update({ cio_status: "sending" })
-      .eq("id", id)
-      .in("cio_status", ["pending", "failed", "skipped"])
-      .select("id, cio_attempts")
-      .maybeSingle();
-    if (!claimed) return; // already sent or in flight: no duplicate event
-    const ok = await sendToCustomerIo(event);
-    await supabaseAdmin
-      .from(table)
-      .update({
-        cio_status: ok ? "sent" : "failed",
-        cio_attempts: (claimed.cio_attempts ?? 0) + 1,
-        cio_sent_at: ok ? new Date().toISOString() : null,
-      })
-      .eq("id", id);
-  } catch {
-    refuse("customerio delivery bookkeeping failed");
-  }
 }
 
 const waitlistInput = z

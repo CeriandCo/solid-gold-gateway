@@ -131,14 +131,14 @@ describe("newsletter_signups constraints", () => {
     if (!result.ok) expect(result.message).toContain("newsletter_signups_source_len");
   });
 
-  it("has no provider, confirmation or sync columns", () => {
+  it("has delivery bookkeeping but no confirmation columns", () => {
     const columns = sql(
       `SELECT string_agg(column_name, ',' ORDER BY ordinal_position)
        FROM information_schema.columns
        WHERE table_schema='public' AND table_name='newsletter_signups'`,
     );
     expect(columns).toBe(
-      "id,email,lists,consent_version,consent_text,consented_at,source,created_at,updated_at",
+      "id,email,lists,consent_version,consent_text,consented_at,source,created_at,updated_at,environment,cio_status,cio_attempts,cio_sent_at",
     );
   });
 });

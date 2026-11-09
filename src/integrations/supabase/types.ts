@@ -862,33 +862,45 @@ export type Database = {
       }
       newsletter_signups: {
         Row: {
+          cio_attempts: number
+          cio_sent_at: string | null
+          cio_status: string
           consent_text: string
           consent_version: string
           consented_at: string
           created_at: string
           email: string
+          environment: string
           id: string
           lists: string[]
           source: string
           updated_at: string
         }
         Insert: {
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
           consent_text: string
           consent_version: string
           consented_at: string
           created_at?: string
           email: string
+          environment?: string
           id?: string
           lists: string[]
           source: string
           updated_at?: string
         }
         Update: {
+          cio_attempts?: number
+          cio_sent_at?: string | null
+          cio_status?: string
           consent_text?: string
           consent_version?: string
           consented_at?: string
           created_at?: string
           email?: string
+          environment?: string
           id?: string
           lists?: string[]
           source?: string

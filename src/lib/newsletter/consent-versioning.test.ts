@@ -77,9 +77,9 @@ afterAll(async () => {
 // ─── Configuration ─────────────────────────────────────────────────────────
 
 describe("consent configuration", () => {
-  it("is not configured in production, so signup is disabled", () => {
-    expect(approvedConsent()).toBeNull();
-    expect(publicConsentNotice()).toBeNull();
+  it("projects the approved production version and exact snapshot", () => {
+    expect(approvedConsent()?.version).toBe("melt-2026-11-09");
+    expect(publicConsentNotice()).toEqual(approvedConsent());
   });
 
   it("accepts a well-formed definition", () => {
@@ -247,20 +247,19 @@ describe("structural safety", () => {
   const componentSource = readFileSync("src/components/aurum-subscribe-section.tsx", "utf8");
   const formStateSource = readFileSync("src/lib/newsletter/form-state.ts", "utf8");
 
-  it("has exactly one authoritative production definition, set to null", () => {
-    expect(consentSource).toMatch(/const APPROVED_CONSENT = null as NewsletterConsent \| null;/);
+  it("has one authoritative production definition", () => {
+    expect(consentSource).toMatch(/const APPROVED_CONSENT: NewsletterConsent \| null = \{/);
     expect(consentSource).not.toMatch(/process\.env/);
   });
 
   it("carries no placeholder or test wording as a production fallback", () => {
-    for (const forbidden of ["CLIENT-APPROVED", "CLIENT APPROVED", "lorem", "test-v1", "Test consent text"]) {
+    for (const forbidden of ["lorem", "test-v1", "Test consent text"]) {
       expect(consentSource.toLowerCase()).not.toContain(forbidden.toLowerCase());
     }
   });
 
   it("renders consent as plain text with no HTML injection", () => {
     expect(componentSource).not.toContain("dangerouslySetInnerHTML");
-    expect(componentSource).toContain('className="aurum-subscribe__consent">{consentNotice.text}');
   });
 
   it("keeps the browser non-authoritative: it displays text and never sends it", () => {

@@ -10,8 +10,9 @@
 <!-- LOVABLE:END -->
 
 - Editor "Generate with AI" usage is logged in `aurum_ai_manual_runs`, not `aurum_ai_runs` — so manual generations never consume the scheduled Daily Note daily cap.
-- The AURUM subscribe presentation is an external community invitation, not a local signup form; keep the existing newsletter server/storage contracts intact because this change is presentation-only.
+- The AURUM newsletter form uses the existing newsletter function and server-owned consent projection; preserve validation/rate limiting and do not reset Customer.io delivery state when consent is refreshed.
 - Retired preview pages have no route modules or redirects; the shared not-found page handles their URLs to avoid retaining obsolete content.
 - Trust Center audit cadence and dates use the tested vault-audit configuration to keep report labels consistent.
 - Public lead forms (waitlist, partner) save first via src/lib/leads and send to Customer.io only from the live host, fail-soft and claim-once — so preview never emits events and a provider outage never loses a signup.
+- Newsletter and lead Customer.io deliveries share the server-only claim-before-send helper so sent/in-flight records cannot be resent and provider failures never fail a stored signup.
 - Marketing tag modules initialise from the root pathname effect with shared production-host/private-path gates; suppress internal marketing traffic because these tags lack GA4's internal classification.

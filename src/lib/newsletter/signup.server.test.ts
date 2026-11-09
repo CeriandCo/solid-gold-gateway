@@ -92,13 +92,13 @@ afterAll(async () => {
 // ─── Production fail-closed ────────────────────────────────────────────────
 
 describe("consent fail-closed", () => {
-  it("has no approved consent wording configured", () => {
-    expect(approvedConsent()).toBeNull();
+  it("uses the approved MELT consent version", () => {
+    expect(approvedConsent()?.version).toBe("melt-2026-11-09");
   });
 
   it("refuses with a generic unavailable and writes no row", async () => {
     const email = `failclosed-${crypto.randomUUID()}@example.com`;
-    const result = await runMeltSignup(validRequest(email));
+    const result = await runMeltSignup(validRequest(email), { consent: null });
     expect(result).toEqual({ ok: false, code: "unavailable" });
     expect(await signupRow(email)).toBeNull();
   });
@@ -106,7 +106,7 @@ describe("consent fail-closed", () => {
   it("still counts the attempt when consent is unavailable", async () => {
     const ip = freshIp();
     await useIp(ip);
-    await runMeltSignup(validRequest(`fc-${crypto.randomUUID()}@example.com`));
+    await runMeltSignup(validRequest(`fc-${crypto.randomUUID()}@example.com`), { consent: null });
     expect(await attemptCount(ip)).toBe(1);
   });
 

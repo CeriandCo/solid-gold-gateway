@@ -3,10 +3,9 @@
  * (tasks T3 Phase 3 and Phase 5).
  *
  * ════════════════════════════════════════════════════════════════════════════
- * PRODUCTION SIGNUP IS DISABLED.
+ * SIGNUP USES THE CLIENT-APPROVED MELT CONSENT.
  *
- * APPROVED_CONSENT is null because the client has not supplied approved MELT
- * consent wording. While it is null:
+ * APPROVED_CONSENT holds the approved wording and version. If set to null:
  *   • the form shows no consent wording at all;
  *   • every signup is refused with a generic "unavailable";
  *   • no row is written to newsletter_signups.
@@ -20,7 +19,7 @@
  *   2. run `bunx vitest run src/lib/newsletter` — the consent tests must pass;
  *   3. check /aurum#subscribe in a browser: the wording appears and a signup
  *      stores that exact text;
- *   4. deploy.
+ *   4. leave publishing to the client.
  *
  * TO ROLL BACK URGENTLY: set it to null again. The wording disappears, signup
  * fails closed, and every stored consent record is left untouched.
@@ -55,7 +54,10 @@ export const CONSENT_TEXT_MAX = 4000;
 /** Control characters other than newline and tab: never legitimate in approved copy. */
 const FORBIDDEN_CHARACTERS = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/;
 
-const APPROVED_CONSENT = null as NewsletterConsent | null;
+const APPROVED_CONSENT: NewsletterConsent | null = {
+  version: "melt-2026-11-09",
+  text: "By subscribing, you agree to receive The MELT newsletter and related emails from TRUNK. You can unsubscribe anytime. See our Privacy Policy.",
+};
 
 /**
  * Mirrors the database CHECK constraints and refuses anything malformed. A

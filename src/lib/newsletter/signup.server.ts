@@ -4,7 +4,7 @@
  * untrusted request → rate limit → strict validation → server-owned consent →
  * atomic local upsert.
  *
- * Nothing here calls a newsletter provider: none has been chosen. Nothing here
+ * Saved signups send to Customer.io only on the live host, fail-soft. Nothing
  * can persist while the approved consent wording is missing. The browser never
  * supplies consent text, consent time, timestamps, the IP hash or any status.
  */
@@ -15,6 +15,19 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { isValidEmail, normalizeEmail } from "../admin.server";
 import { approvedConsent, isUsableConsent, type NewsletterConsent } from "./consent.server";
 import { MELT_LISTS, MELT_SOURCE, type NewsletterResult } from "./types";
+import { isLiveHost, type CioEvent } from "../leads/customerio.server";
+import { deliver } from "../leads/delivery.server";
+
+/** Only stored, server-owned values enter the identify/track payload. */
+export function meltSubscribedEvent(row: { email: string; created_at: string; consent_version: string }): CioEvent {
+  const joined = Math.floor(new Date(row.created_at).getTime() / 1000);
+  return {
+    email: row.email,
+    attributes: { created_at: joined, melt_consent_version: row.consent_version },
+    name: "melt_subscribed",
+    data: { email: row.email, date_joined: joined, source: MELT_SOURCE, consent_version: row.consent_version },
+  };
+}
 
 /**
  * Operational defaults, not a product or client decision: no newsletter limits
@@ -227,6 +240,7 @@ async function signup(data: unknown, deps: MeltSignupDeps): Promise<NewsletterRe
   // 5. Atomic local upsert. The unique email constraint resolves concurrent
   //    requests; id and created_at are absent from the payload, so a repeat
   //    signup refreshes consent and preferences in place.
+  const live = isLiveHost(getRequestHeader("origin"), getRequestHeader("host"));
   const { error } = await supabaseAdmin.from("newsletter_signups").upsert(
     {
       email,
@@ -237,6 +251,8 @@ async function signup(data: unknown, deps: MeltSignupDeps): Promise<NewsletterRe
       consent_text: consent.text,
       consented_at: new Date().toISOString(),
       source: MELT_SOURCE,
+      environment: live ? "production" : "non_production",
+      // Never reset delivery status/attempts on conflict; sent stays sent.
     },
     { onConflict: "email" },
   );
@@ -246,5 +262,17 @@ async function signup(data: unknown, deps: MeltSignupDeps): Promise<NewsletterRe
     return { ok: false, code: "unavailable" };
   }
 
+  if (live) {
+    // Everything after persistence is fail-soft, including row lookup.
+    try {
+      const { data: row } = await supabaseAdmin.from("newsletter_signups")
+        .select("id, email, created_at, consent_version")
+        .eq("email", email)
+        .maybeSingle();
+      if (row) await deliver("newsletter_signups", row.id, meltSubscribedEvent(row));
+    } catch {
+      refuse("customerio delivery lookup failed");
+    }
+  }
   return { ok: true };
 }

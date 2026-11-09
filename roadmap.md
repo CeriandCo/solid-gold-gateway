@@ -2,7 +2,8 @@
 
 ## In progress
 
-- [ ] Activate the AURUM MELT opt-in, consent snapshot, live-only claim-once Customer.io event, newsletter/leads tests, and verification report (2026-11-09); do not publish.
+- [x] Activated AURUM MELT consent and inline opt-in with live-only claim-once Customer.io delivery; 29 database-free tests passed and 375/768/1440 browser checks passed; report: docs/verification/AURUM-MELT-OPTIN-2026-11-09.md. Not published.
+- [ ] MELT full newsletter/leads integration verification blocked by isolated test-database startup; real stored signup and Customer.io Activity Logs remain unverified. No live test writes permitted.
 
 - [x] Installed production-gated Metricool and LinkedIn tags; 11 focused tests passed and SPA tracking verified at 375/768/1440. Full tests blocked by isolated database startup; not published (docs/verification/METRICOOL-LINKEDIN-INSTALL.md).
 
