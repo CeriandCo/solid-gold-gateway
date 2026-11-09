@@ -171,3 +171,91 @@ build OK
 
 ## Client verification after publishing
 On `https://trunk.gold/aurum#subscribe`, subscribe with a new address you control. In Customer.io workspace Trunk, find the matching person and inspect Activity/Profile activity for `melt_subscribed`; inspect `date_joined`, `source`, `consent_version` and identify attribute `melt_consent_version`. Resubmit the same address and confirm no second successful event. A thank-you confirms local persistence only, not provider delivery; if absent, inspect stored delivery status/attempt count and coded server logs. Preview must not create Customer.io events.
+
+## Tight follow-up verification — 13:49 UTC
+
+The approved implementation was already committed; no application changes were needed. Reran requested suites: isolated database startup still blocks the full newsletter/leads suites. Reran focused database-free newsletter/leads unit tests: 29 passed. Rechecked actual browser at 375/1440; POSTs blocked to prevent live test writes. Zero horizontal overflow; unchanged scrollY on unavailable submission. Stored success and real provider delivery remain unverified. Nothing published.
+
+### Focused unit output
+```text
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/dev-server[39m
+
+ [32m✓[39m src/lib/newsletter/form-state.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[90mstderr[2m | src/lib/leads/customerio.server.test.ts[2m > [22m[2mCustomer.io sender[2m > [22m[2mfails soft (returns false, never throws) when Customer.io is down
+[22m[39m[customerio] request error
+
+[90mstderr[2m | src/lib/leads/customerio.server.test.ts[2m > [22m[2mCustomer.io sender[2m > [22m[2mfails soft (returns false, never throws) when Customer.io is down
+[22m[39m[customerio] identify failed (500)
+
+ [32m✓[39m src/lib/leads/customerio.server.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+[90mstderr[2m | src/lib/newsletter/customerio-signup.server.test.ts[2m > [22m[2mMELT Customer.io delivery[2m > [22m[2mkeeps signup successful if delivery lookup throws
+[22m[39m[newsletter] signup refused: customerio delivery lookup failed
+
+[90mstderr[2m | src/lib/newsletter/customerio-signup.server.test.ts[2m > [22m[2mMELT Customer.io delivery[2m > [22m[2mfails closed with unavailable consent
+[22m[39m[newsletter] signup refused: consent configuration missing
+
+ [32m✓[39m src/lib/newsletter/customerio-signup.server.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m29 passed[39m[22m[90m (29)[39m
+[2m   Start at [22m 13:49:07
+[2m   Duration [22m 228ms[2m (transform 50%, tests 24%, import 23%, worker 3%)[22m
+
+```
+
+### Newsletter/leads suite output
+```text
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+[1m[30m[43m Vitest [49m[39m[22m [33mThe "isolated" project applies the same plugin multiple times: "vite-tsconfig-paths". Since Vitest 5, an inline project extends the config file that declares it by default, so the plugins from "vitest.config.ts" already apply to this project and don't need to be listed again.
+Remove the duplicated plugins from the project, or set `extends: false` to not inherit the declaring config. Setting the `extends` option explicitly hides this warning.[39m
+[1m[30m[43m Vitest [49m[39m[22m [33mThe "live-readonly" project applies the same plugin multiple times: "vite-tsconfig-paths". Since Vitest 5, an inline project extends the config file that declares it by default, so the plugins from "vitest.config.ts" already apply to this project and don't need to be listed again.
+Remove the duplicated plugins from the project, or set `extends: false` to not inherit the declaring config. Setting the `extends` option explicitly hides this warning.[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/dev-server[39m
+
+[31mNo test files found, exiting with code 1
+[39m
+[2mfilter: [22m[33msrc/lib/newsletter[2m, [22msrc/lib/leads[39m
+
+[30m[46m isolated [49m[39m 
+
+[2minclude: [22m[33msrc/**/*.test.ts[2m, [22msrc/**/*.test.tsx[39m
+[2mexclude:  [22m[33m**/node_modules/**[2m, [22msrc/lib/security/function-privileges.test.ts[2m, [22msrc/lib/admin-password.server.test.ts[2m, [22msrc/lib/security/rest-surface.test.ts[39m
+
+[30m[46m live-readonly [49m[39m 
+
+[2minclude: [22m[33msrc/lib/security/function-privileges.test.ts[39m
+[2mexclude:  [22m[33m**/node_modules/**[2m, [22m**/.git/**[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: Command failed: bash /dev-server/scripts/test-db/up.sh[39m
+[90m [2m❯[22m genericNodeError node:internal/errors:[2m983:15[22m[39m
+[90m [2m❯[22m wrappedFn node:internal/errors:[2m537:14[22m[39m
+[90m [2m❯[22m checkExecSyncError node:child_process:[2m916:11[22m[39m
+[90m [2m❯[22m execFileSync node:child_process:[2m952:15[22m[39m
+[90m [2m❯[22m Object.setup src/test/global-setup.ts:[2m17:5[22m[39m
+[90m [2m❯[22m TestProject._initializeGlobalSetup ../persist/node_modules/vitest/dist/chunks/index.DzobfTyw.js:[2m12113:50[22m[39m
+[90m [2m❯[22m Vitest.initializeGlobalSetup ../persist/node_modules/vitest/dist/chunks/index.DzobfTyw.js:[2m21212:35[22m[39m
+[90m [2m❯[22m ../persist/node_modules/vitest/dist/chunks/index.DzobfTyw.js:[2m21052:6[22m[39m
+[90m [2m❯[22m ../persist/node_modules/vitest/dist/chunks/index.DzobfTyw.js:[2m21081:11[22m[39m
+[90m [2m❯[22m ../persist/node_modules/vitest/dist/chunks/index.DzobfTyw.js:[2m20943:19[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ status: 1, signal: null, output: [ null, null, null ], pid: 7491, stdout: null, stderr: null }[39m
+
+
+
+```
+
+### Browser measurements
+```text
+Skipping host requirements validation logic because `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS` env variable is set.
+{"width": 375, "overflow": 0, "input": {"x": 20, "y": 380.9375, "width": 335, "height": 54}, "button": {"x": 20, "y": 446.9375, "width": 335, "height": 54}, "consent": "By subscribing, you agree to receive The MELT newsletter and related emails from TRUNK. You can unsubscribe anytime. See our Privacy Policy."}
+{"width": 375, "scroll_before": 10074, "scroll_after": 10074, "error": "Something went wrong. Please try again."}
+{"width": 1440, "overflow": 0, "input": {"x": 92, "y": 1101.703125, "width": 461.734375, "height": 54}, "button": {"x": 565.734375, "y": 1101.703125, "width": 200, "height": 54}, "consent": "By subscribing, you agree to receive The MELT newsletter and related emails from TRUNK. You can unsubscribe anytime. See our Privacy Policy."}
+{"width": 1440, "scroll_before": 5479, "scroll_after": 5479, "error": "Something went wrong. Please try again."}
+```
