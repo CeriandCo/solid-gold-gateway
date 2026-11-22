@@ -1,10 +1,10 @@
 /**
  * Launch countdown target. Change `launchAt` to move the launch date;
  * the countdown bar reads only this value.
- * 21 November 2026, 00:00 America/New_York (EST, UTC-5) = 05:00 UTC.
+ * 21 January 2027, 00:00 America/New_York (EST, UTC-5) = 05:00 UTC.
  */
 export const launchConfig = {
-  launchAt: "2026-11-21T05:00:00Z",
+  launchAt: "2027-01-21T05:00:00Z",
 } as const;
 
 export type Remaining = { days: number; hours: number; minutes: number; seconds: number; done: boolean };
