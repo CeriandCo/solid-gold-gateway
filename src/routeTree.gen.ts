@@ -20,7 +20,6 @@ import { Route as FractionalGoldRouteImport } from './routes/fractional-gold'
 import { Route as GiftingRouteImport } from './routes/gifting'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PartnerTermsRouteImport } from './routes/partner-terms'
-import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PreciousMetalRouteImport } from './routes/precious-metal'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -104,11 +103,6 @@ const LearnRoute = LearnRouteImport.update({
 const PartnerTermsRoute = PartnerTermsRouteImport.update({
   id: '/partner-terms',
   path: '/partner-terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnersRoute = PartnersRouteImport.update({
-  id: '/partners',
-  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PreciousMetalRoute = PreciousMetalRouteImport.update({
@@ -275,7 +269,6 @@ export interface FileRoutesByFullPath {
   '/gifting': typeof GiftingRoute
   '/learn': typeof LearnRouteWithChildren
   '/partner-terms': typeof PartnerTermsRoute
-  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -316,7 +309,6 @@ export interface FileRoutesByTo {
   '/fractional-gold': typeof FractionalGoldRoute
   '/gifting': typeof GiftingRoute
   '/partner-terms': typeof PartnerTermsRoute
-  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -359,7 +351,6 @@ export interface FileRoutesById {
   '/gifting': typeof GiftingRoute
   '/learn': typeof LearnRouteWithChildren
   '/partner-terms': typeof PartnerTermsRoute
-  '/partners': typeof PartnersRoute
   '/precious-metal': typeof PreciousMetalRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -404,7 +395,6 @@ export interface FileRouteTypes {
     | '/gifting'
     | '/learn'
     | '/partner-terms'
-    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -445,7 +435,6 @@ export interface FileRouteTypes {
     | '/fractional-gold'
     | '/gifting'
     | '/partner-terms'
-    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -487,7 +476,6 @@ export interface FileRouteTypes {
     | '/gifting'
     | '/learn'
     | '/partner-terms'
-    | '/partners'
     | '/precious-metal'
     | '/pricing'
     | '/privacy'
@@ -531,7 +519,6 @@ export interface RootRouteChildren {
   GiftingRoute: typeof GiftingRoute
   LearnRoute: typeof LearnRouteWithChildren
   PartnerTermsRoute: typeof PartnerTermsRoute
-  PartnersRoute: typeof PartnersRoute
   PreciousMetalRoute: typeof PreciousMetalRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -629,13 +616,6 @@ declare module '@tanstack/react-router' {
       path: '/partner-terms'
       fullPath: '/partner-terms'
       preLoaderRoute: typeof PartnerTermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partners': {
-      id: '/partners'
-      path: '/partners'
-      fullPath: '/partners'
-      preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/precious-metal': {
@@ -904,7 +884,6 @@ const rootRouteChildren: RootRouteChildren = {
   GiftingRoute: GiftingRoute,
   LearnRoute: LearnRouteWithChildren,
   PartnerTermsRoute: PartnerTermsRoute,
-  PartnersRoute: PartnersRoute,
   PreciousMetalRoute: PreciousMetalRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
