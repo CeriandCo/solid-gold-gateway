@@ -1,5 +1,7 @@
 # Standardize inner-page heroes
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
 Apply the Buy Gold hero structure to `/precious-metal`, `/fractional-gold`, `/gifting`, `/trust-center`, `/about-us`, and `/learn` only. Do not change the Homepage, Vault, shared navigation, or visual content below each hero.
 
@@ -22,5 +24,5 @@ Apply the Buy Gold hero structure to `/precious-metal`, `/fractional-gold`, `/gi
 
 ## Verification
 - Check all six routes at 1440px, 1024px, and 390px with browser screenshots and measurements.
-- Confirm equal hero heights, aligned eyebrow/headline/rule/body/CTA rows, stable CTA-row heights, smooth SQOOT-green fades, recognisable unchanged images, working CTA targets, and no horizontal overflow or console errors.
+- Confirm equal hero heights, aligned eyebrow/headline/rule/body/CTA rows, stable CTA-row heights, smooth TRUNK-green fades, recognisable unchanged images, working CTA targets, and no horizontal overflow or console errors.
 - Confirm Homepage and Vault source/rendering are unchanged, shared navigation remains unchanged, lower sections retain their structure, and the final typecheck/build is clean.

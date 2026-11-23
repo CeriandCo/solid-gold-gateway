@@ -1,4 +1,6 @@
-# SQOOT Pure Weight and Hero Wrap Correction
+# TRUNK Weight and Hero Wrap Correction
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 ## Changes
 - Update the Google Fonts request so Cormorant Garamond includes weight 600 in both roman and italic styles while leaving every DM Sans request unchanged.

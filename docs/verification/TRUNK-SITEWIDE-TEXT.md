@@ -1,8 +1,10 @@
 # TRUNK sitewide page-text replacement
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Changes
-- `src/routes/home-old-ver.tsx`: three SQOOT Pure → TRUNK replacements (hero image description, eyebrow, waitlist sentence).
-- `src/routes/gifting-old-ver.tsx`: three SQOOT Pure → TRUNK replacements (hero introduction, occasions introduction, packaged image description).
+- `src/routes/home-old-ver.tsx`: three TRUNK → TRUNK replacements (hero image description, eyebrow, waitlist sentence).
+- `src/routes/gifting-old-ver.tsx`: three TRUNK → TRUNK replacements (hero introduction, occasions introduction, packaged image description).
 - Other public pages already use TRUNK; no changes were needed there.
 - Layouts, images, social links, backend/payment identifiers, historical audit data and AI pipelines were not changed.
 

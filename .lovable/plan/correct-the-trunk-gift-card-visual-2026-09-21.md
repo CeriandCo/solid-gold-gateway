@@ -1,4 +1,6 @@
-# Correct the SQOOT Pure Gift Card Visual
+# Correct the TRUNK Gift Card Visual
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 ## Scope
 - Change only the gift-card visual on `/gifting` and add its verification report.
@@ -6,7 +8,7 @@
 - Do not publish.
 
 ## Changes
-- Replace the card’s drawn mark with the existing SQOOT Pure PNG logo and use the existing brand mandala PNG as the right-side structural watermark.
+- Replace the card’s drawn mark with the existing TRUNK PNG logo and use the existing brand mandala PNG as the right-side structural watermark.
 - Add a fixed-size perspective presentation, restrained shadow and edge highlight, plus a slow surface sheen.
 - Add capped mouse-only parallax that returns smoothly at pointer exit; keep touch and reduced-motion presentations static.
 - Preserve the neutral pre-selection amount and live selected-denomination amount without changing card dimensions.

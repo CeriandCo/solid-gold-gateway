@@ -1,4 +1,6 @@
-# Rebuild the SQOOT Gifting Redesign
+# Rebuild the TRUNK Gifting Redesign
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 ## Scope
 - Rebuild `src/routes/gifting-new.tsx` from scratch while preserving `/gifting` byte-for-byte.
@@ -7,7 +9,7 @@
 
 ## Imagery
 - Generate a cohesive high-resolution editorial set: full-bleed gifting hero, six occasion photographs, three personalisation photographs, and the closing banner.
-- Use SQOOT’s deep forest, warm gold, bronze ribbon, cream, and warm-brown palette; avoid text overlays except the specifically requested engraved bar and handwritten card content.
+- Use TRUNK’s deep forest, warm gold, bronze ribbon, cream, and warm-brown palette; avoid text overlays except the specifically requested engraved bar and handwritten card content.
 - Import each image directly into the new route with descriptive alt text, correct aspect treatment, and no generic asset substitutions.
 
 ## Page construction

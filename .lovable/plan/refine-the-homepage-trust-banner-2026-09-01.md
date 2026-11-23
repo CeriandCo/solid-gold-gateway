@@ -1,5 +1,7 @@
 # Refine the homepage trust banner
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Goal
 Bring the selected “Backed by trust. Built for you.” banner into close alignment with the supplied fractional-gold landing-page reference, without changing the surrounding hero or “How it works” sections.
 
@@ -13,6 +15,6 @@ Bring the selected “Backed by trust. Built for you.” banner into close align
 
 ## Technical details
 - Update only the trust-banner markup and responsive utility classes in `src/routes/index.tsx`.
-- Continue using the existing SQOOT semantic colors and Cormorant Garamond / DM Sans typography tokens.
+- Continue using the existing TRUNK semantic colors and Cormorant Garamond / DM Sans typography tokens.
 - Keep the section semantic with its existing accessible label and meaningful partner text.
 - Verify the result against the supplied reference at the current desktop viewport and at a narrow mobile viewport, checking alignment, wrapping, dividers, and section-to-section spacing.

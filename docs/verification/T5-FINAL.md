@@ -1,5 +1,7 @@
 # T5 — Full link audit: final report (Phase 5 of 5)
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 Run date: 2026-09-23 (UTC). Nothing was published or deployed.
 
 ## 1. Executive summary
@@ -90,7 +92,7 @@ The totals are 198 external occurrences and 196 `_blank` links. Phase 4 had 199 
 
 **Website link state fully clean?** No. Three links are still unusable:
 - the Sign Up placeholder;
-- the two dead Sqoot domains.
+- the two dead TRUNK domains.
 
 **Can T5 be administratively closed with client flags?** Yes, as an audit. Two of the original criteria (zero 404s and zero dead anchors) are met. The third (every external link reachable or explicitly flagged) is met because of the flags. Literal zero-broken-link acceptance still waits on T5-Q01 to Q03.
 

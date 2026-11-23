@@ -1,4 +1,6 @@
-# C-7a — SQOOT Pure gift-card visual
+# C-7a — TRUNK gift-card visual
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 Date: 2026-09-21. Nothing published.
 
@@ -6,11 +8,11 @@ Date: 2026-09-21. Nothing published.
 
 - Card logo: `src/assets/sqoot-pure-logo.png` — the same 567 × 200 RGBA lockup imported by the shared header/footer. The browser loaded it at its full intrinsic dimensions and rendered it between 111px and 202px wide in the tested layouts.
 - Card watermark: `src/assets/sqoot-mandala.png` — the 767 × 768 transparent brand mandala. It uses the design system's **Structural** tier: opacity `0.12`, `screen` blend mode.
-- No standalone SQOOT Pure logo SVG or mandala SVG exists in the project. The only SVG previously involved was a hand-authored React decoration in `gifting.tsx`; it is no longer used on the card. A client-supplied vector logo would still be preferable for future print-scale output.
+- No standalone TRUNK logo SVG or mandala SVG exists in the project. The only SVG previously involved was a hand-authored React decoration in `gifting.tsx`; it is no longer used on the card. A client-supplied vector logo would still be preferable for future print-scale output.
 
 ## Implementation
 
-- The card uses the real logo lockup as one image; there is no hand-set `SQOOT` / `PURE` typography on the card.
+- The card uses the real logo lockup as one image; there is no hand-set `TRUNK` / `PURE` typography on the card.
 - The right-side watermark is the brand mandala PNG, not the old inline flower drawing.
 - The card keeps a fixed aspect ratio and width while the denomination changes. Before selection it says `Select amount`; after selection it mirrors the selected denomination.
 - Premium depth uses a small resting perspective, directional shadow, outer gold border, inset edge highlight, and restrained animated sheen.

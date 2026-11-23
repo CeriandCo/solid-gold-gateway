@@ -1,5 +1,7 @@
 # TRUNK rebrand phase 7 — verification
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Result and scope
 
 Current branding updated; both old route modules and their three exclusive ordinary images removed. No layout, styles, fonts or image display changes. Shared images retained. Nothing published.
@@ -27,7 +29,7 @@ post_id=1ce2d203-e3e7-4c1d-8c66-c34f8c2b6ca1
 publisher=TRUNK AURUM test
 ```
 
-Posts changed: **0**; post fields changed: **none** (all 12 already free of the old brand). Related sources changed: **1**, publisher only, from SQOOT AURUM test to TRUNK AURUM test. Settings changed: **0**. Post JSON search covered every column, including embedded body data. No separate excerpt/SEO/image-alt columns exist; summary is the excerpt field. No commerce/operator rows altered.
+Posts changed: **0**; post fields changed: **none** (all 12 already free of the old brand). Related sources changed: **1**, publisher only, from TRUNK AURUM test to TRUNK AURUM test. Settings changed: **0**. Post JSON search covered every column, including embedded body data. No separate excerpt/SEO/image-alt columns exist; summary is the excerpt field. No commerce/operator rows altered.
 
 ## Files edited
 
@@ -379,7 +381,7 @@ Manual typecheck/build not run: prohibited by platform instructions. The request
 Search included entire project source, scripts, public, seed/migration files, docs and hidden planning files; excluded dependencies, Git, generated build/cache artifacts, environment files and the secret-related admin-password module. The explicitly permitted backup file was excluded from this result. Report excluded itself to avoid recursive matches. Secret-related module listed by filename only; no secret values inspected or printed. Binary filename matches are recorded separately below. Thus this is a non-secret textual inventory, not a claim of a secret-complete zero-match audit.
 
 Remaining categories:
-- Permitted mandala paths/imports and existing sqootpure social links.
+- Permitted mandala paths/imports and existing TRUNK social links.
 - Payment metadata/catalog keys and ledger-write migration identifiers (compatibility).
 - Local isolated-test paths/environment variable names and matching fixtures (compatibility).
 - Old name in legacy AI allowlist and backfill user-agent (preserved technical behavior).
@@ -390,17 +392,17 @@ Remaining categories:
 Exact remaining non-secret file/line inventory:
 
 - `./.lovable/plan/add-the-aurum-route-shell-2026-09-16.md`: 4
-- `./.lovable/plan/correct-the-sqoot-pure-gift-card-visual-2026-09-21.md`: 1, 9
+- `./.lovable/plan/correct-the-trunk-gift-card-visual-2026-09-21.md`: 1, 9
 - `./.lovable/plan/match-the-us-only-trust-icon-to-the-reference-2026-09-01.md`: 14
 - `./.lovable/plan/polish-the-global-aurum-cta-2026-09-21.md`: 9
 - `./.lovable/plan/rebalance-aurum-surfaces-2026-09-20.md`: 5
 - `./.lovable/plan/rebuild-the-knowledge-center-2026-09-03.md`: 6
-- `./.lovable/plan/rebuild-the-sqoot-gifting-redesign-2026-09-03.md`: 1, 10
-- `./.lovable/plan/rebuild-the-sqoot-pure-about-page-2026-09-03.md`: 1
+- `./.lovable/plan/rebuild-the-trunk-gifting-redesign-2026-09-03.md`: 1, 10
+- `./.lovable/plan/rebuild-the-trunk-about-page-2026-09-03.md`: 1
 - `./.lovable/plan/refine-the-homepage-trust-banner-2026-09-01.md`: 16
 - `./.lovable/plan/refine-the-landing-page-typography-and-ui-rhythm-2026-09-01.md`: 4
 - `./.lovable/plan/replace-engraving-with-gift-cards-2026-09-19.md`: 9, 11
-- `./.lovable/plan/sqoot-pure-weight-and-hero-wrap-correction-2026-09-01.md`: 1
+- `./.lovable/plan/trunk-weight-and-hero-wrap-correction-2026-09-01.md`: 1
 - `./.lovable/plan/standardize-inner-page-heroes-2026-09-09.md`: 25
 - `./DESIGN_SYSTEM.md`: 458
 - `./README.md`: 5

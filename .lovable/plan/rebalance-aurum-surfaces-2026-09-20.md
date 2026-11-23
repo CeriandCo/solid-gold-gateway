@@ -1,8 +1,10 @@
 # Rebalance AURUM surfaces
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
 - Keep all AURUM content, section order, shared header, and footer unchanged.
-- Relight the current-price and facts bands using only the supplied SQOOT tokens.
+- Relight the current-price and facts bands using only the supplied TRUNK tokens.
 - Make Weekly Brief the single dark anchor in the lower page.
 - Remove the two retired background image imports, preloads, and CSS references.
 

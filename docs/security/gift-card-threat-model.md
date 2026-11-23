@@ -1,4 +1,6 @@
-# SQOOT Pure Gift Card — threat model and go-live checklist
+# TRUNK Gift Card — threat model and go-live checklist
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 Covers everything built in steps B1–B5. Last reviewed 2026-09-19.
 

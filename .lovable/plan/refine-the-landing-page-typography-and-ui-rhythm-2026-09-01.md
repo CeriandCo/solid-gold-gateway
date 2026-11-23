@@ -1,7 +1,9 @@
 # Refine the landing page typography and UI rhythm
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Goal
-Bring the existing SQOOT Pure landing page’s typography, hierarchy, and spacing into close alignment with the uploaded reference while preserving its content, section order, imagery, palette, interactions, and overall layout.
+Bring the existing TRUNK landing page’s typography, hierarchy, and spacing into close alignment with the uploaded reference while preserving its content, section order, imagery, palette, interactions, and overall layout.
 
 ## Current findings
 - The page already uses Cormorant Garamond for headings and has exactly one `h1`, but the global heading weight is currently 300 rather than the requested restrained 400–500 editorial range.

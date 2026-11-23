@@ -1,5 +1,7 @@
 # COPY-UPDATE-2026-09-26
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 Text-only copy update per uploaded brief. Layout, colours, fonts, images and brand name unchanged.
 
 ## Gates (raw)
@@ -27,8 +29,8 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
 ## Every sentence changed
 
 - `src/routes/index.tsx`
-  - OLD: "SQOOT Pure — Own Real Gold, Three Ways"
-  - NEW: "SQOOT Pure — Own Fine Gold, Three Ways"
+  - OLD: "TRUNK — Own Real Gold, Three Ways"
+  - NEW: "TRUNK — Own Fine Gold, Three Ways"
 - `src/routes/index.tsx`
   - OLD: "Buy a physical coin delivered home, buy fractional gold from ½ oz, or store allocated gold in insured U.S. vaults. Real ownership, at live spot pricing."
   - NEW: "Start with $25 in fine gold, fully backed in the vault, or buy a physical coin delivered home. Live prices, no hidden fees."
@@ -48,8 +50,8 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: backgroundAlt: "Gold bars arranged by weight on cream linen"
   - NEW: backgroundAlt: "Gold bars arranged on cream linen"
 - `src/routes/index.tsx`
-  - OLD: screenAlt: "SQOOT Pure app buy-by-weight screen"
-  - NEW: screenAlt: "SQOOT Pure app buy screen"
+  - OLD: screenAlt: "TRUNK app buy-by-weight screen"
+  - NEW: screenAlt: "TRUNK app buy screen"
 - `src/routes/index.tsx`
   - OLD: "Allocated, insured storage in your name, with statements, fees shown upfront and delivery on request."
   - NEW: "Insured storage, fully backed in the vault, with statements, fees shown upfront and delivery on request."
@@ -72,17 +74,17 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: title: "Allocated or pooled: what you actually own"
   - NEW: title: "Fully backed or pooled: what you actually own"
 - `src/routes/index.tsx`
-  - OLD: "Yes. Sqoot is built around real physical gold held
-  - NEW: "Yes. Sqoot is built around fine physical gold held
+  - OLD: "Yes. TRUNK is built around real physical gold held
+  - NEW: "Yes. TRUNK is built around fine physical gold held
 - `src/routes/index.tsx`
-  - OLD: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
-  - NEW: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
+  - OLD: "TRUNK's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+  - NEW: "TRUNK's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
 - `src/routes/index.tsx`
   - OLD: <p className="home-hero-eyebrow">GOLD, MADE PERSONAL</p> <h1 className="home-hero-title"> <span>Own gold</span> <span>the way it was</span> <em>meant to be.</em> </h1> <p className="home-hero-body"> Two clear paths: buy, vault and sell your gold from the app — or buy a coin or bar and have it delivered to your door. Priced live, held in your name. </p> <CtaRow className="home-hero-ctas mt-7"> <GoldButton to="/early-access">Join the waitlist</GoldButton> <GoldButton href="#how-it-works" variant="secondary" icon="none"> How it works </GoldButton> </CtaRow>
   - NEW: <p className="home-hero-eyebrow">BUY · VAULT · SELL</p> <h1 className="home-hero-title"> <span>Build fine gold,</span> <em>grain by grain.</em> </h1> <p className="home-hero-body"> Start with just $25. Every dollar is backed by fine physical gold in our vault. Add more anytime, sell when you want, or use your gold toward a coin at the live price. </p> <CtaRow className="home-hero-ctas mt-7"> <GoldButton href="#cta">Start with $25</GoldButton> <GoldButton href="#how-it-works" variant="secondary" icon="none"> How it works </GoldButton> </CtaRow> <p className="home-hero-body mt-4 text-sm"> Fine physical gold · Fully backed in the vault · Live prices, no hidden fees </p>
 - `src/routes/index.tsx`
-  - OLD: alt="SQOOT Pure app showing allocated vaulted gold holdings"
-  - NEW: alt="SQOOT Pure app showing My Gold vaulted gold balance"
+  - OLD: alt="TRUNK app showing allocated vaulted gold holdings"
+  - NEW: alt="TRUNK app showing My Gold vaulted gold balance"
 - `src/routes/index.tsx`
   - OLD: Start with a coin, <br /> or buy gold by weight.
   - NEW: Start with $25, <br /> or start with a coin.
@@ -93,8 +95,8 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: Send a coin or a few grams with a note, straight from the app.
   - NEW: Send a coin or a dollar amount of gold with a note, straight from the app.
 - `src/routes/fractional-gold.tsx`
-  - OLD: "Fractional Gold Allocation | SQOOT Pure"
-  - NEW: "Fractional Gold | SQOOT Pure"
+  - OLD: "Fractional Gold Allocation | TRUNK"
+  - NEW: "Fractional Gold | TRUNK"
 - `src/routes/fractional-gold.tsx`
   - OLD: "Own allocated physical gold from $25 with secure U.S. storage and transparent fees."
   - NEW: "Start with $25 in fine physical gold, fully backed in the vault, with secure U.S. storage and transparent fees."
@@ -126,8 +128,8 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: The order will appear in Portfolio and Activity
   - NEW: The order will appear in My Gold and Activity
 - `src/routes/fractional-gold.tsx`
-  - OLD: "Sqoot's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
-  - NEW: "Sqoot's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
+  - OLD: "TRUNK's gold is supplied through Dillon Gage, a U.S. precious-metals wholesaler and refiner. Dillon Gage applies OECD-aligned due diligence to its suppliers, prohibits sourcing connected to conflict or serious human-rights abuses, and reviews its precious-metals supply chain annually."
+  - NEW: "TRUNK's gold is sourced from established precious-metals wholesalers that apply OECD-aligned due diligence to their suppliers, prohibit sourcing connected to conflict or serious human-rights abuses, and review their precious-metals supply chains annually."
 - `src/routes/fractional-gold.tsx`
   - OLD: eyebrow="Real Gold. Real Allocation."
   - NEW: eyebrow="Fine Gold. Fully Backed."
@@ -150,11 +152,11 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: "Start from as little as $25"
   - NEW: "Start with $25"
 - `src/routes/vault.tsx`
-  - OLD: "Vaulted Gold Held in Your Name | SQOOT Pure"
-  - NEW: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure"
+  - OLD: "Vaulted Gold Held in Your Name | TRUNK"
+  - NEW: "Vaulted Gold, Fully Backed in the Vault | TRUNK"
 - `src/routes/vault.tsx`
-  - OLD: "Vaulted Gold Held in Your Name | SQOOT Pure"
-  - NEW: "Vaulted Gold, Fully Backed in the Vault | SQOOT Pure"
+  - OLD: "Vaulted Gold Held in Your Name | TRUNK"
+  - NEW: "Vaulted Gold, Fully Backed in the Vault | TRUNK"
 - `src/routes/vault.tsx`
   - OLD: "Physical gold stored in an insured US vault and allocated to you individually — verify it, redeem it, or take delivery whenever you choose."
   - NEW: "Fine physical gold, fully backed in an insured US vault — verify it, redeem it, or take delivery whenever you choose."
@@ -237,11 +239,11 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: description="Allocated metal, recorded in your name."
   - NEW: description="Fine gold, fully backed in the vault."
 - `src/routes/gifting.tsx`
-  - OLD: "Gift Real Gold — SQOOT Pure"
-  - NEW: "Gift Fine Gold — SQOOT Pure"
+  - OLD: "Gift Real Gold — TRUNK"
+  - NEW: "Gift Fine Gold — TRUNK"
 - `src/routes/gifting.tsx`
-  - OLD: "Gift Real Gold — SQOOT Pure"
-  - NEW: "Gift Fine Gold — SQOOT Pure"
+  - OLD: "Gift Real Gold — TRUNK"
+  - NEW: "Gift Fine Gold — TRUNK"
 - `src/routes/gifting.tsx`
   - OLD: moments with real gold, thoughtfully
   - NEW: moments with fine gold, thoughtfully
@@ -291,8 +293,8 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: title: "Allocated storage"
   - NEW: title: "Fully backed in the vault"
 - `src/routes/trust-center.tsx`
-  - OLD: "All gold held through SQOOT Pure is allocated, in each client's name, and is not co-mingled
-  - NEW: "All gold held through SQOOT Pure is fully backed in the vault and is not co-mingled
+  - OLD: "All gold held through TRUNK is allocated, in each client's name, and is not co-mingled
+  - NEW: "All gold held through TRUNK is fully backed in the vault and is not co-mingled
 - `src/routes/about-us.tsx`
   - OLD: owning real, allocated and insured gold.
   - NEW: owning fine gold, fully backed in the vault and insured.
@@ -315,14 +317,14 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: more transparent way to own real gold.
   - NEW: more transparent way to own fine gold.
 - `src/routes/__root.tsx`
-  - OLD: { title: "SQOOT Pure — Real Gold, Real Ownership" }
-  - NEW: { title: "SQOOT Pure — Fine Gold, Real Ownership" }
+  - OLD: { title: "TRUNK — Real Gold, Real Ownership" }
+  - NEW: { title: "TRUNK — Fine Gold, Real Ownership" }
 - `src/routes/__root.tsx`
   - OLD: "Buy physical gold coins, fractional gold, or vaulted allocated gold. Real ownership,
   - NEW: "Start with $25 in fine gold fully backed in the vault, or buy physical gold coins. Real ownership,
 - `src/routes/__root.tsx`
-  - OLD: content: "SQOOT Pure — Real Gold, Real Ownership"
-  - NEW: content: "SQOOT Pure — Fine Gold, Real Ownership"
+  - OLD: content: "TRUNK — Real Gold, Real Ownership"
+  - NEW: content: "TRUNK — Fine Gold, Real Ownership"
 - `src/routes/__root.tsx`
   - OLD: "Three ways to own real gold: delivered to your door, fractional, or securely vaulted."
   - NEW: "Three ways to own fine gold: start with $25, keep it in the vault, or have coins delivered to your door."
@@ -366,11 +368,11 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: "Is it allocated or pooled?",
   - NEW: "Is it fully backed in the vault or pooled?",
 - `src/routes/home-old-ver.tsx`
-  - OLD: { title: "SQOOT Pure — Real Gold, Real Ownership" }
-  - NEW: { title: "SQOOT Pure — Fine Gold, Real Ownership" }
+  - OLD: { title: "TRUNK — Real Gold, Real Ownership" }
+  - NEW: { title: "TRUNK — Fine Gold, Real Ownership" }
 - `src/routes/home-old-ver.tsx`
-  - OLD: content: "SQOOT Pure — Real Gold, Real Ownership"
-  - NEW: content: "SQOOT Pure — Fine Gold, Real Ownership"
+  - OLD: content: "TRUNK — Real Gold, Real Ownership"
+  - NEW: content: "TRUNK — Fine Gold, Real Ownership"
 - `src/routes/home-old-ver.tsx`
   - OLD: "Buy physical gold delivered to your door, own fractional gold, or store allocated metal in an insured US vault.
   - NEW: "Buy physical gold delivered to your door, start with $25 in fine gold, or keep it fully backed in an insured US vault.
@@ -396,11 +398,11 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
   - OLD: Four paths to real gold.
   - NEW: Four paths to fine gold.
 - `src/routes/gifting-old-ver.tsx`
-  - OLD: { title: "Gifting — Give Real Gold | SQOOT Pure" }
-  - NEW: { title: "Gifting — Give Fine Gold | SQOOT Pure" }
+  - OLD: { title: "Gifting — Give Real Gold | TRUNK" }
+  - NEW: { title: "Gifting — Give Fine Gold | TRUNK" }
 - `src/routes/gifting-old-ver.tsx`
-  - OLD: content: "Gifting — Give Real Gold | SQOOT Pure"
-  - NEW: content: "Gifting — Give Fine Gold | SQOOT Pure"
+  - OLD: content: "Gifting — Give Real Gold | TRUNK"
+  - NEW: content: "Gifting — Give Fine Gold | TRUNK"
 - `src/routes/gifting-old-ver.tsx`
   - OLD: "Real gold, given properly.
   - NEW: "Fine gold, given properly.
@@ -416,5 +418,5 @@ hero: BUY · VAULT · SELL | Build fine gold, | grain by grain. | Start with jus
 - `src/routes/gifting-old-ver.tsx`
   - OLD: the confidence of real gold—
   - NEW: the confidence of fine gold—
-- `src/routes/fractional-gold.tsx` (og/twitter duplicates) OLD: Fractional Gold Allocation | SQOOT Pure / Own allocated physical gold from $25… NEW: Fractional Gold | SQOOT Pure / Start with $25 in fine physical gold, fully backed in the vault…
+- `src/routes/fractional-gold.tsx` (og/twitter duplicates) OLD: Fractional Gold Allocation | TRUNK / Own allocated physical gold from $25… NEW: Fractional Gold | TRUNK / Start with $25 in fine physical gold, fully backed in the vault…
 - `src/routes/index.tsx` og:title OLD: Own Real Gold, Three Ways NEW: Own Fine Gold, Three Ways

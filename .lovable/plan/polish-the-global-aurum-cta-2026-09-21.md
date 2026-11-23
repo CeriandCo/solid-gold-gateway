@@ -1,12 +1,14 @@
 # Polish the Global AURUM CTA
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
 - Restyle only the existing global AURUM link as the companion to the `/aurum` floating navigator.
 - Preserve its destination, cleared search keys, global mount, exclusions, safe-area placement, and layer.
 - Leave AURUM content, shared site chrome, and all other floating controls unchanged.
 
 ## Presentation and behavior
-- Reuse the exact existing SQOOT mandala asset and the AURUM navigator’s forest pill, gold border, and restrained shadow language.
+- Reuse the exact existing TRUNK mandala asset and the AURUM navigator’s forest pill, gold border, and restrained shadow language.
 - Add the two-line desktop label, compact mobile label, and right arrow inside one accessible router link.
 - Reveal after 180px with one 420ms entrance; keep the mandala stable and add no shimmer.
 - Add clear hover, active, keyboard-focus, and reduced-motion states using existing tokens.

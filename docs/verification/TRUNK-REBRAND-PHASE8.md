@@ -1,5 +1,7 @@
 # TRUNK rebrand phase 8 — QA report
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope and result
 
 Browser QA against the current preview on localhost, October 18, 2026. All 21 requested public routes were visited at exactly 1440 × 1800, 768 × 1800 and 375 × 1800 CSS pixels (63 route/width observations). This does not certify the last published version. Nothing published.
@@ -14,7 +16,7 @@ Font confirmation is qualified: body is Geist on every route and the general dis
 
 Each row is a separate browser visit. “Page title” is the actual document title, not the visible H1. Old-name image assessment combines visual inspection of all 73 decoded raster assets (including CSS backgrounds), rendered logo inspection and OCR support; OCR alone is not treated as proof.
 
-| Route | Width (px) | Page title | Visible SQOOT/Sqoot text? | Image showing old name? | Broken image? |
+| Route | Width (px) | Page title | Visible TRUNK/Sqoot text? | Image showing old name? | Broken image? |
 |---|---:|---|---|---|---|
 | `/` | 1440 | TRUNK — Own Fine Gold, Three Ways | No | No detected | No |
 | `/about-us` | 1440 | About TRUNK — Built on Gold Expertise | No | No detected | No |

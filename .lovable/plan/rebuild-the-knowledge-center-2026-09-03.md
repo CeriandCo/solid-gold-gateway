@@ -1,9 +1,11 @@
 # Rebuild the Knowledge Center
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
 - Replace only the `/learn` page implementation in `src/routes/learn.tsx`.
 - Keep the shared `SiteHeader` and `SiteFooter` unchanged.
-- Add only the four new editorial images needed for gaps in the existing asset library; reuse existing SQOOT photography and product imagery everywhere else.
+- Add only the four new editorial images needed for gaps in the existing asset library; reuse existing TRUNK photography and product imagery everywhere else.
 
 ## Page build
 - Create a route-scoped `.knowledge-center-page` design system with the supplied forest, gold, paper, typography, border, radius, and shadow values.

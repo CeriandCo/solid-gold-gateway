@@ -1,7 +1,9 @@
 # Add the AURUM Route Shell
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
-- Add one new `/aurum` route while preserving the shared SQOOT Pure header and footer.
+- Add one new `/aurum` route while preserving the shared TRUNK header and footer.
 - Add only the requested `AURUM` footer link under “Discover More”.
 - Build the route shell and navigation behavior only; leave all nine content sections as placeholders for later work.
 

@@ -1,14 +1,16 @@
 # Replace Engraving With Gift Cards
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Scope
 - Change only `src/routes/gifting.tsx` and add one new photographic background asset for the gift-card composition.
 - Preserve the page’s hero structure, benefits, occasions, trust strip, final call-to-action, footer, and shared site styling.
 - Remove only the old personalisation section’s imports, markup, helper artwork, and scoped styles; keep its image files in place.
 
 ## Gift-card section
-- Replace `#personalise` with a content-sized `#gift-card` editorial split: copy and purchase controls on the left, a generated velvet/paper/ribbon photograph with a code-rendered SQOOT Pure gift card on the right.
+- Replace `#personalise` with a content-sized `#gift-card` editorial split: copy and purchase controls on the left, a generated velvet/paper/ribbon photograph with a code-rendered TRUNK gift card on the right.
 - Add six accessible radio amounts, selected/check and keyboard-focus states, client-only selection state, a disabled-until-selected shared primary button, reserved status area, Stripe lock note, live amount announcement, and the temporary checkout-unavailable message.
-- Reuse the existing SQOOT logo, Mandala, typography, palette, spacing, and button component. The card amount will cross-fade without changing dimensions and motion will be suppressed when requested.
+- Reuse the existing TRUNK logo, Mandala, typography, palette, spacing, and button component. The card amount will cross-fade without changing dimensions and motion will be suppressed when requested.
 
 ## Navigation and responsive behavior
 - Update the hero actions to “Buy a Gift Card” → `#gift-card` and “Explore Gold Gifts” → `#occasions`, with reduced-motion-aware in-page navigation.

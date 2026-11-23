@@ -1,5 +1,7 @@
 # T5 Phase 3 — Semantic destination audit
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 Date: 2026-09-23. Phase 1 (`T5-PHASE1.md`) and Phase 2 (`T5-PHASE2.md`) are unchanged. The historical record lives in those files.
 
 ## 1. Files changed
@@ -29,7 +31,7 @@ Re-run order: `routes.ts` → `crawl.py` → `analyze.ts` → `semantic.ts`.
 ## 5. Global navigation — all CORRECT
 | Label | Target | Destination identity | Count |
 |---|---|---|---|
-| SQOOT Pure home (logo, header+footer) | / | "Own gold the way it was meant to be." | 66 |
+| TRUNK home (logo, header+footer) | / | "Own gold the way it was meant to be." | 66 |
 | Coin / Buy Gold | /precious-metal | "Real gold. In your hands." | 66 / 33 |
 | Fraction / Fractional | /fractional-gold | "Gold allocation, made more accessible." | 66 / 33 |
 | Gifting | /gifting | "Celebrate love with a gift that lasts." | 99 |
@@ -155,7 +157,7 @@ There are 136 social occurrences (footer ×33 each plus contact ×1 each):
 Each platform matches its icon. I could not verify account ownership from the repository; Phase 4 will check that the profiles resolve.
 
 ## 20. Logos and badges
-- Header and footer logos ("SQOOT Pure home") go to `/`. CORRECT.
+- Header and footer logos ("TRUNK home") go to `/`. CORRECT.
 - JBT and NCBA badges go to their named organisations. CORRECT.
 
 ## 21. Old homepage (6)

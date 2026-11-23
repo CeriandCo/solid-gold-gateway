@@ -1,5 +1,7 @@
 # Match the US-only trust icon to the reference
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 ## Goal
 Replace the current generic US marker in the trust banner with a compact full-color American flag that closely matches the supplied landing-page reference.
 
@@ -11,5 +13,5 @@ Replace the current generic US marker in the trust banner with a compact full-co
 
 ## Technical details
 - Update only the trust-banner icon and its related import in `src/routes/index.tsx`.
-- Use a lightweight inline SVG with existing SQOOT semantic colors where appropriate; no external image or package is needed.
+- Use a lightweight inline SVG with existing TRUNK semantic colors where appropriate; no external image or package is needed.
 - Verify the trust row at desktop and mobile widths for visual match, alignment, wrapping, and overflow.

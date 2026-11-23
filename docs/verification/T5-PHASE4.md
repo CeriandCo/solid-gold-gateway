@@ -1,5 +1,7 @@
 # T5 Phase 4 — External link reachability, redirects and new-tab security
 
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
+
 Run: 2026-09-23 (UTC). Crawl `crawledAt` in artifact; external evidence `checkedAt` 2026-09-23T17:36:59Z (post-fix run). Pre-fix run: 2026-09-23 ~17:20Z (same script, same 25 URLs).
 
 ## 1. Files changed
@@ -52,10 +54,10 @@ Before fixes: DEAD 4 URLs (mint.ca 7 occ., nist.gov 1 occ., plus the 2 client do
 ## 35. External remediation table (one row per unique URL; occurrence count in brackets)
 | Source page(s) | Link text | Original URL | HTTP | Redirect/final | Browser | Verdict | Fix |
 |---|---|---|---|---|---|---|---|
-| footer, all 33 pages [33+1] | Facebook | facebook.com/profile.php?id=61586363577228 | 400 | → /people/Sqoot-Pure/61586363577228/ | 200, page “Sqoot Pure”, bio “A precious metals platform to buy + Store + Gift physical gold…” | BROWSER-REACHABLE / AUTOMATED BLOCKED | none |
+| footer, all 33 pages [33+1] | Facebook | facebook.com/profile.php?id=61586363577228 | 400 | → /people/Sqoot-Pure/61586363577228/ | 200, page “TRUNK”, bio “A precious metals platform to buy + Store + Gift physical gold…” | BROWSER-REACHABLE / AUTOMATED BLOCKED | none |
 | footer [33+1] | Instagram | instagram.com/sqootpure/ | 302 → 429 | login wall `next=/sqootpure/` | 429 login wall (no login attempted) | BLOCKED — BROWSER INCONCLUSIVE | none |
-| footer [33+1] | LinkedIn | linkedin.com/company/sqootpure | 200 “SQOOT \| LinkedIn” | — | 200 “SQOOT \| LinkedIn” | REACHABLE | none |
-| footer [33+1] | X (Twitter) | x.com/sqootpure | 200 “SqootPure (@SqootPure) / X” | — | Chromium 403 blank; Firefox 200 profile “SqootPure @SqootPure — Real gold. Real ownership…” | REACHABLE | none |
+| footer [33+1] | LinkedIn | linkedin.com/company/sqootpure | 200 “TRUNK \| LinkedIn” | — | 200 “TRUNK \| LinkedIn” | REACHABLE | none |
+| footer [33+1] | X (Twitter) | x.com/sqootpure | 200 “TRUNK (@SqootPure) / X” | — | Chromium 403 blank; Firefox 200 profile “TRUNK @SqootPure — Real gold. Real ownership…” | REACHABLE | none |
 | /learn [1] | Goldhub | gold.org/goldhub | 200 | — | 200 “Goldhub \| The Definitive Source for Gold Data and Insight” | REACHABLE | none (Phase 2 fix confirmed) |
 | AURUM pages [7] | WGC — Gold demand trends … | gold.org/goldhub/research/gold-demand-trends | 200 | — | 200 | REACHABLE | none |
 | AURUM pages [4] | WGC — (Monthly) central bank statistics | gold.org/goldhub/data/monthly-central-bank-statistics | 301 → 200 | → /goldhub/data/gold-reserves-by-country | 200 “Central Banks Gold Reserves by Country” | REACHABLE VIA REDIRECT (HEALTHY) | not changed: page renamed; same-dataset equivalence is editorial |
@@ -108,7 +110,7 @@ Unchanged: `href="#"`, same tab. No authoritative destination encountered. CLIEN
 Total 20. Exact dated documents were not guessed.
 
 ## 22. Social links
-All four render in the footer on all 33 pages at 375 and 1440, plus once each on /contact: 34 occurrences each, `_blank`, `noopener noreferrer`. Facebook: page “Sqoot Pure” (browser). X: profile @SqootPure (Firefox). LinkedIn: “SQOOT” company page. Instagram: login wall — profile not observable without logging in (not attempted). Ownership beyond visible names not inferred.
+All four render in the footer on all 33 pages at 375 and 1440, plus once each on /contact: 34 occurrences each, `_blank`, `noopener noreferrer`. Facebook: page “TRUNK” (browser). X: profile @SqootPure (Firefox). LinkedIn: “TRUNK” company page. Instagram: login wall — profile not observable without logging in (not attempted). Ownership beyond visible names not inferred.
 
 ## 23. mailto/tel
 6 mailto, 0 tel: excluded from HTTP statistics, not contacted. Phase 2/3 results kept. Contact-email policy remains a client decision.
@@ -123,7 +125,7 @@ All four render in the footer on all 33 pages at 375 and 1440, plus once each on
 No lookalikes, shorteners, tracking redirectors or preview hosts. Anomaly: the two client-owned domains on /contact do not serve a site (see §35).
 
 ## 30. Query parameters
-One: Facebook `?id=61586363577228` — required identifier, resolves to the “Sqoot Pure” page. Nothing changed.
+One: Facebook `?id=61586363577228` — required identifier, resolves to the “TRUNK” page. Nothing changed.
 
 ## 31. External fragments
 None in sources. (LBMA appends `#-` client-side; not ours.)

@@ -1,4 +1,6 @@
-# Rebuild the SQOOT Pure About Page
+# Rebuild the TRUNK About Page
+
+> Archive note: Brand wording was normalized to TRUNK on November 23, 2026. Addresses, technical identifiers and recorded measurements remain historical; this is not a new verification run.
 
 ## Scope
 - Replace only `src/routes/about-us.tsx`; keep the shared `SiteHeader` and `SiteFooter` and reuse the two existing hero assets.
