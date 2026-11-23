@@ -6,7 +6,7 @@ import { useState, type FormEvent } from "react";
 import { Check, Coins, LockKeyhole, ShieldCheck, Smartphone, Vault } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Eyebrow, GoldButton, SiteFooter, SiteHeader, WIDE } from "@/components/site-chrome";
-import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import trunkMandala from "@/assets/trunk-mandala.png.asset.json";
 
 export const Route = createFileRoute("/early-access")({
   head: () => ({
@@ -115,7 +115,7 @@ function EarlyAccessPage() {
         {/* Hero — form above the fold */}
         <section className="relative overflow-hidden bg-ivory">
           <img
-            src={sqootPureMandala.url}
+            src={trunkMandala.url}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute -right-24 top-1/2 hidden w-[420px] -translate-y-1/2 opacity-[0.12] mix-blend-multiply sm:block lg:-right-10 lg:w-[520px]"
@@ -209,7 +209,7 @@ function EarlyAccessPage() {
             {/* Calm brand panel instead of a large hero image */}
             <div className="relative hidden lg:block" aria-hidden="true">
               <div className="rounded-[8px] border border-beige bg-forest-deep px-10 py-12 text-warm-white">
-                <img src={sqootPureMandala.url} alt="" className="h-16 w-16 object-contain" />
+                <img src={trunkMandala.url} alt="" className="h-16 w-16 object-contain" />
                 <p className="mt-8 font-display text-[1.75rem] font-medium leading-[1.15] text-gold-soft">
                   Fine gold, real ownership — launching soon.
                 </p>

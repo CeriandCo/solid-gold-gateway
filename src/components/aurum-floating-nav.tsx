@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { GoldButton } from "@/components/site-chrome";
-import mandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import mandala from "@/assets/trunk-mandala.png.asset.json";
 import { AURUM_USD } from "@/lib/aurum/price-format";
 import { useAurumPrice } from "@/lib/aurum/use-aurum-price";
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";

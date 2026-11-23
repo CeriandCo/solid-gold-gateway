@@ -49,7 +49,7 @@ function PrivacyPage() {
 
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
           <p className="body-copy text-charcoal/90"><strong>Last updated: October 30, 2026</strong></p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc., doing business as TRUNK ("TRUNK," "we," "us," or "our"), is a Wyoming corporation operating the website www.trunk.gold and related digital platforms and services.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. ("TRUNK," "we," "us," or "our") is a Wyoming corporation operating the website www.trunk.gold and related digital platforms and services.</p>
           <p className="body-copy mt-5 text-charcoal/90">We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use and share it, how long we keep it, and the rights and choices available to you under applicable United States privacy laws, including California law.</p>
           <p className="body-copy mt-5 text-charcoal/90">By using our website or services, you acknowledge the practices described in this Privacy Policy.</p>
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
@@ -321,8 +321,8 @@ function PrivacyPage() {
           <p className="body-copy mt-5 text-charcoal/90">We review this Privacy Policy at least once every 12 months and may update it to reflect changes in our services, practices, technology, or legal obligations. When we make changes, we will update the "Last updated" date at the top of this Policy. Where required by law, we will provide additional notice or obtain consent before making material changes.</p>
           <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
           <p className="body-copy mt-5 text-charcoal/90">If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have concerns about how your personal information is handled, contact:</p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK<br />Website: www.trunk.gold<br />Email: compliance@trunk.gold<br />Telephone: +1 (254) 455-5959<br />Registered jurisdiction: Wyoming, United States<br />Business mailing address: 10410 Corporate Dr Ste 107, Sugar Land TX 77478</p>
-          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc.<br />Website: www.trunk.gold<br />Email: compliance@trunk.gold<br />Telephone: +1 (254) 455-5959<br />Registered jurisdiction: Wyoming, United States<br />Business mailing address: 10410 Corporate Dr Ste 107, Sugar Land TX 77478</p>
+          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc.. All rights reserved.</p>
         </article>
       </main>
 

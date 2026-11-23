@@ -8,7 +8,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "Read the TRUNK Terms of Use governing access to trunk.gold and related services operated by Fortress Gold Inc. DBA TRUNK.",
+          "Read the TRUNK Terms of Use governing access to trunk.gold and related services operated by Fortress Gold Inc..",
       },
       { property: "og:title", content: "Terms of Use | TRUNK" },
       {
@@ -49,7 +49,7 @@ function TermsPage() {
 
         <article className={"mx-auto max-w-[760px] px-5 py-14 text-forest-deep sm:py-18 lg:py-22"}>
           <p className="body-copy text-charcoal/90"><strong>Last updated: October 17, 2026</strong></p>
-          <p className="body-copy mt-5 text-charcoal/90">These Terms of Use ("Terms") govern your access to and use of trunk.gold and related services ("Platform") operated by Fortress Gold Inc. DBA TRUNK ("TRUNK," "we," "us," or "our"), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.</p>
+          <p className="body-copy mt-5 text-charcoal/90">These Terms of Use ("Terms") govern your access to and use of trunk.gold and related services ("Platform") operated by Fortress Gold Inc. ("TRUNK," "we," "us," or "our"), a Wyoming Corporation. By accessing or using the Platform, you agree to be bound by these Terms.</p>
           <nav className="mt-8 rounded-[8px] border border-beige bg-cream/60 p-6">
             <p className="eyebrow text-gold mb-4">On this page</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -103,7 +103,7 @@ function TermsPage() {
           <h2 id="prohibited-uses" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">9. Prohibited Uses</h2>
           <p className="body-copy mt-5 text-charcoal/90">You agree not to use the Platform for any unlawful purpose, including money laundering, fraud, or circumventing regulatory requirements. We reserve the right to suspend or terminate any account that violates these Terms or applicable law.</p>
           <h2 id="intellectual-property" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">10. Intellectual Property</h2>
-          <p className="body-copy mt-5 text-charcoal/90">All content on trunk.gold, including text, graphics, logos, and software, is the property of Fortress Gold Inc. DBA TRUNK and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+          <p className="body-copy mt-5 text-charcoal/90">All content on trunk.gold, including text, graphics, logos, and software, is the property of Fortress Gold Inc. and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.</p>
           <h2 id="limitation-of-liability" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">11. Limitation of Liability</h2>
           <p className="body-copy mt-5 text-charcoal/90">To the maximum extent permitted by law, TRUNK shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid to us in the twelve months preceding the claim.</p>
           <h2 id="disclaimer-of-warranties" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">12. Disclaimer of Warranties</h2>
@@ -131,8 +131,8 @@ function TermsPage() {
           <p className="body-copy mt-5 text-charcoal/90"><strong>In plain language:</strong> You bought gold. It is yours. Its value moves with the market. If you want to exit, you redeem your gold at today's market price, less disclosed fees. That is your exit path.</p>
           <h2 id="contact-us" className="font-display mt-12 text-2xl font-medium leading-[1.1] tracking-[-0.015em] text-forest-deep sm:text-3xl">17. Contact Us</h2>
           <p className="body-copy mt-5 text-charcoal/90">If you have questions about these Terms, please contact us through our contact form on trunk.gold or call +1 (254) 455-5959.</p>
-          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. DBA TRUNK Wyoming Corporation · Headquarters: Houston, TX Website: trunk.gold</p>
-          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc. DBA TRUNK. All rights reserved. Wyoming Corporation · Houston, TX.</p>
+          <p className="body-copy mt-5 text-charcoal/90">Fortress Gold Inc. Wyoming Corporation · Headquarters: Houston, TX Website: trunk.gold</p>
+          <p className="body-copy mt-5 text-charcoal/90">© 2026 Fortress Gold Inc.. All rights reserved. Wyoming Corporation · Houston, TX.</p>
         </article>
       </main>
 

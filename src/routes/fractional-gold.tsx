@@ -15,7 +15,7 @@ import { GoldButton, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import fractionalGoldHero from "@/assets/fractional-gold-hero-trunk.png.asset.json";
 import comparisonImage from "@/assets/trunk-product-comparison.png.asset.json";
-import sqootPureMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import trunkMandala from "@/assets/trunk-mandala.png.asset.json";
 import jbtMemberBadge from "@/assets/jbt-retail-member-badge.png.asset.json";
 import ncbaMemberBadge from "@/assets/ncba-member-badge.png.asset.json";
 import idsLogoClean from "@/assets/ids-logo-clean.png.asset.json";
@@ -155,7 +155,7 @@ const FAQ_SCHEMA = {
 function OfficialMandala({ className }: { className?: string }) {
   return (
     <img
-      src={sqootPureMandala.url}
+      src={trunkMandala.url}
       alt=""
       aria-hidden="true"
       width={512}

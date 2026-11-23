@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter, GoldButton } from "@/components/site-chrome";
 import { InnerPageHero } from "@/components/inner-page-hero";
 import aboutHeroBg from "@/assets/about-hero-velvet-bar-trunk.png.asset.json";
-import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import trunkMandala from "@/assets/trunk-mandala.png.asset.json";
 
 export const Route = createFileRoute("/about-us")({
   head: () => ({
@@ -123,13 +123,13 @@ function AboutPage() {
             <p>We have seen what works, what fails, and what truly serves the everyday buyer.</p>
             <p>TRUNK is the outcome of that experience.<br />Built with a single purpose: to offer a gold ownership platform designed for a new era.</p>
           </div>
-          <img className="about-story-etch" src={sqootMandala.url} alt="" aria-hidden="true" />
+          <img className="about-story-etch" src={trunkMandala.url} alt="" aria-hidden="true" />
         </div>
       </section>
 
       <section className="about-compliance" data-reveal>
-        <img className="about-mandala about-mandala-left" src={sqootMandala.url} alt="" aria-hidden="true" />
-        <img className="about-mandala about-mandala-right" src={sqootMandala.url} alt="" aria-hidden="true" />
+        <img className="about-mandala about-mandala-left" src={trunkMandala.url} alt="" aria-hidden="true" />
+        <img className="about-mandala about-mandala-right" src={trunkMandala.url} alt="" aria-hidden="true" />
         <div className="about-compliance-copy">
           <h2><span>Compliance first.</span><span>Transparency always.</span><span>Real ownership.</span></h2>
           <div className="about-ornament"><span /><i /><span /></div>
@@ -165,7 +165,7 @@ function AboutPage() {
 
       <section className="about-trust" data-reveal>
         <div className="about-trust-inner">
-          <div className="about-trust-emblem"><img src={sqootMandala.url} alt="" aria-hidden="true" /><LineIcon name="shield" /></div>
+          <div className="about-trust-emblem"><img src={trunkMandala.url} alt="" aria-hidden="true" /><LineIcon name="shield" /></div>
           <div className="about-trust-copy">
             <p className="about-eyebrow">Trust close</p>
             <h2>Compliance isn&apos;t a department. It&apos;s the product.</h2>

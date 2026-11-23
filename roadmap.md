@@ -2,6 +2,9 @@
 
 ## In progress
 
+- [x] Rebrand project/package and local asset references; legal names use Fortress Gold Inc. without DBA; 27 browser checks passed at 375/768/1440. Inventory and report: docs/verification/TRUNK-REBRAND-SWEEP-2026-11-23.md. Not published; full tests blocked by isolated database startup.
+- [ ] Final rebrand exception-only gate awaits client decision on historical records and additional immutable/behavior-sensitive references listed in the report.
+
 - [x] Activated AURUM MELT consent and inline opt-in with live-only claim-once Customer.io delivery; 29 database-free tests passed and 375/768/1440 browser checks passed; report: docs/verification/AURUM-MELT-OPTIN-2026-11-09.md. Not published.
 - [ ] MELT full newsletter/leads integration verification blocked by isolated test-database startup; real stored signup and Customer.io Activity Logs remain unverified. No live test writes permitted.
 

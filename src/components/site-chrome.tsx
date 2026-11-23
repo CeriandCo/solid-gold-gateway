@@ -421,7 +421,7 @@ export function SiteFooter() {
       </div>
 
       <div className="site-footer__bottom">
-        <p className="site-footer__copy">© {year} TRUNK. All rights reserved.</p>
+        <p className="site-footer__copy">© {year} Fortress Gold Inc. All rights reserved.</p>
         <div className="site-footer__social">
           {socialIcons.map(({ Icon, label, href }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label === "LinkedIn" ? "Trunk on LinkedIn" : label}>

@@ -41,8 +41,8 @@ import familyPhoto from "@/assets/occasion-family.jpg";
 import giftCardBackground from "@/assets/gifting-gift-card-background.jpg";
 import { PurchaseAcknowledgement } from "@/components/purchase-acknowledgement";
 import { ACKNOWLEDGEMENT_VERSION } from "@/lib/commerce/acknowledgement";
-import sqootLogo from "@/assets/trunk-wordmark-for-dark.svg";
-import sqootMandala from "@/assets/sqoot-mandala.png";
+import trunkLogo from "@/assets/trunk-wordmark-for-dark.svg";
+import trunkMandala from "@/assets/trunk-mandala.png";
 import closingGift from "@/assets/gifting-closing-v2-trunk.png.asset.json";
 
 export const Route = createFileRoute("/gifting")({
@@ -528,7 +528,7 @@ function GiftingNewPage() {
           >
             <img
               className="gift-card-logo"
-              src={sqootLogo}
+              src={trunkLogo}
               alt=""
               width={1030}
               height={232}
@@ -536,7 +536,7 @@ function GiftingNewPage() {
             />
             <img
               className="gift-card-mandala"
-              src={sqootMandala}
+              src={trunkMandala}
               alt=""
               width={767}
               height={768}

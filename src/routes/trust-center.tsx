@@ -7,7 +7,7 @@ import { InnerPageHero } from "@/components/inner-page-hero";
 import trustHeroImage from "@/assets/trust-centre-hero-gold-register.png.asset.json";
 import scalesImage from "@/assets/scale-trust-center.png.asset.json";
 import protectionBackground from "@/assets/trust-center-protection-background.png.asset.json";
-import sqootMandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import trunkMandala from "@/assets/trunk-mandala.png.asset.json";
 import { formatAuditDate, vaultAuditSchedule } from "@/config/vault-audit";
 
 const latestAuditDate = formatAuditDate(vaultAuditSchedule.latestAuditDate);
@@ -368,10 +368,10 @@ function TrustCenterPage() {
         <div className="tc-audit-panel" data-reveal>
           {/* left verification column */}
           <div className="tc-verify" data-reveal>
-            <img className="tc-verify-watermark" src={sqootMandala.url} alt="" aria-hidden="true" />
+            <img className="tc-verify-watermark" src={trunkMandala.url} alt="" aria-hidden="true" />
             <div className="tc-verify-head">
               <span className="tc-medallion">
-                <img src={sqootMandala.url} alt="" aria-hidden="true" />
+                <img src={trunkMandala.url} alt="" aria-hidden="true" />
               </span>
               <h2>
                 <span>{TC.verification.titleTop}</span>

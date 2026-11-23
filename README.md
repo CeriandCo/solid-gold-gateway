@@ -1,4 +1,4 @@
-# TRUNK Gold Vault
+# TRUNK
 
 Use the supplied TRUNK Style Guide as the single source of truth for colors, typography, spacing, radii, buttons and emotional register.
 

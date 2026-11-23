@@ -455,7 +455,7 @@ The image spans edge-to-edge; the caption and CTA below it are constrained to `m
    - Used as a decorative rule ornament below the homepage hero headline (`h-4 w-4`).
    - Stroke widths `1` and `0.8`; inherits `currentColor` (`text-gold`).
 
-2. **TRUNK mandala** (`sqoot-mandala.png` / `sqoot-pure-mandala.png.asset.json`)
+2. **TRUNK mandala** (`trunk-mandala.png` / `trunk-mandala.png.asset.json`)
     - A repeating brand motif used decoratively across multiple pages. The treatment varies by placement rather than using one fixed formula:
 
     | Placement | Opacity | Blend mode | Notes |

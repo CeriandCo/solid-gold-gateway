@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import mandala from "@/assets/sqoot-pure-mandala.png.asset.json";
+import mandala from "@/assets/trunk-mandala.png.asset.json";
 
 /**
  * Persistent floating entry point to AURUM, bottom right on every page except
